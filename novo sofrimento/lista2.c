@@ -61,12 +61,12 @@ void insereInicio(Lista l, Item n){
     
 }
 
-void *insereDepois(Lista l, Item n, Item x){
+void insereDepois(Lista l, Item n, Item x){
     celulaL *lista = (celulaL*) l;
     ImpList *aux = (ImpList*) l;
     celulaL *celulaAnterior;
 
-    //Buscando a celula com valor desejado
+    //Buscando a celula com valor n desejado
     while (lista->next != NULL){
         if (lista->value == n){
             celulaAnterior = lista;
@@ -75,7 +75,7 @@ void *insereDepois(Lista l, Item n, Item x){
         lista = lista->next;
     }
 
-    //Cria celula
+    //Cria celula com valor x desejado
     celulaL *novaCelula = (celulaL *) malloc(sizeof(celulaL));
 
     novaCelula->value = x;
