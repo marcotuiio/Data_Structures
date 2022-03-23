@@ -19,7 +19,7 @@ typedef struct ptrL ImpList;
 Lista criaLista(){
     ImpList *novaLista;
 
-    novaLista = (ImpList)* malloc(sizeof(ImpList));
+    novaLista = malloc(sizeof(ImpList));
     novaLista->inicio = NULL;
     novaLista->fim = NULL;
 
@@ -27,7 +27,8 @@ Lista criaLista(){
 }
 
 void printList(Lista l){
-    celulaL *temporary = l->inicio;
+    ImpList *aux = (ImpList*) l;
+    celulaL *temporary = aux->inicio;
 
     while (temporary != NULL){
         printf("%p - ", temporary->value);
@@ -40,21 +41,19 @@ void insereInicio(Lista l, Item n){
     ImpList *lista = (ImpList*) l;
 
     //Cria celula
-    celulaL *novaCelula = (celulaL *) malloc(sizeof(celulaL));
+    celulaL *novaCelula = malloc(sizeof(celulaL*));
 
     novaCelula->value = n;
     novaCelula->next = NULL;
     novaCelula->prev = NULL;
 
-    l->inicio = novaCelula;
-
-    if (l->inicio != NULL){
-        novaCelula->prev = NULL  //nova -> inico -> next
-        novaCelula->next = l->inicio;
-        l->inicio = novaCelula;
-    }else{
-        l->fim = novaCelula;
-        l->inicio = novaCelula;  //(inicio)nova(fim) 
+    if (lista->inicio != NULL){
+        novaCelula->prev = NULL;  //nova -> inico -> next
+        novaCelula->next->prev = novaCelula;
+        lista->inicio = novaCelula;
+    }else{  //(Lista vazia)
+        lista->fim = novaCelula;
+        lista->inicio = novaCelula;  //(inicio)nova(fim) 
         novaCelula->prev = NULL; 
         novaCelula->next = NULL;
     }
@@ -67,7 +66,7 @@ void insereDepois(Lista l, Item n, Item x){
     celulaL *celulaAnterior;
 
     //Buscando a celula com valor n desejado
-    while (lista->next != NULL){
+    while (lista != NULL){
         if (lista->value == n){
             celulaAnterior = lista;
             break;
@@ -75,8 +74,8 @@ void insereDepois(Lista l, Item n, Item x){
         lista = lista->next;
     }
 
-    //Cria celula com valor x desejado
-    celulaL *novaCelula = (celulaL *) malloc(sizeof(celulaL));
+    //Criando celula com valor x desejado
+    celulaL *novaCelula = (celulaL*) malloc(sizeof(celulaL));
 
     novaCelula->value = x;
     novaCelula->next = NULL;
@@ -94,12 +93,12 @@ void insereDepois(Lista l, Item n, Item x){
 }
 
 void removeCelula(Lista l, Item n){
-    celulaL *lista = (Lista*) l;
+    celulaL *lista = (celulaL*) l;
     ImpList *aux = (ImpList*) l;
-    celulaL celulaARemover;
+    celulaL *celulaARemover;
 
     //Buscando a celula com valor desejado
-    while (lista->next != NULL){
+    while (lista != NULL){
         if (lista->value == malloc(sizeof(n))){
             celulaARemover = lista;
             break;
