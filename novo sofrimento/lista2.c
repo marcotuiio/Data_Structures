@@ -23,7 +23,7 @@ Lista criaLista(){
     novaLista->inicio = NULL;
     novaLista->fim = NULL;
 
-    return novaLista;
+    return novaLista;     
 }
 
 void printList(Lista l){
@@ -37,7 +37,7 @@ void printList(Lista l){
 }
 
 void insereInicio(Lista l, Item n){
-    Lista *lista = (Lista*) l;
+    ImpList *lista = (ImpList*) l;
 
     //Cria celula
     celulaL *novaCelula = (celulaL *) malloc(sizeof(celulaL));
@@ -62,7 +62,8 @@ void insereInicio(Lista l, Item n){
 }
 
 void *insereDepois(Lista l, Item n, Item x){
-    Lista *lista = (Lista*) l;
+    celulaL *lista = (celulaL*) l;
+    ImpList *aux = (ImpList*) l;
     celulaL *celulaAnterior;
 
     //Buscando a celula com valor desejado
@@ -85,15 +86,16 @@ void *insereDepois(Lista l, Item n, Item x){
 
     if (novaCelula->next != NULL){ //ant -> new <- next
         novaCelula->next->prev = novaCelula;
-    }else if (celulaAnterior == l->fim){
-        l->fim = novaCelula;  //ant -> new -> fim
+    }else if (celulaAnterior == aux->fim){
+        aux->fim = novaCelula;  //ant -> new -> fim
     }
     novaCelula->prev = celulaAnterior;
     celulaAnterior->next = novaCelula;
 }
 
 void removeCelula(Lista l, Item n){
-    Lista *lista = (Lista*) l;
+    celulaL *lista = (Lista*) l;
+    ImpList *aux = (ImpList*) l;
     celulaL celulaARemover;
 
     //Buscando a celula com valor desejado
@@ -105,12 +107,12 @@ void removeCelula(Lista l, Item n){
         lista = lista->next;
     }
      
-    if (l->inicio == celulaARemover){
-        l->inicio = celulaARemover->next;
+    if (aux->inicio == celulaARemover){
+        aux->inicio = celulaARemover->next;
         celulaARemover->next->prev = NULL;
         
-    }else if (l->fim == celulaARemover){
-        l->fim = celulaARemover->prev;
+    }else if (aux->fim == celulaARemover){
+        aux->fim = celulaARemover->prev;
         celulaARemover->prev->next = NULL;
 
     }else{
