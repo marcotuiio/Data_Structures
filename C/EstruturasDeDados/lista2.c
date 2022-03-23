@@ -31,7 +31,7 @@ void printList(Lista l){
     celulaL *temporary = aux->inicio;
 
     while (temporary != NULL){
-        printf("%d - ", *(int*) temporary->value);
+        printf("%p - ", temporary->value);
         temporary = temporary->next;
     }
     printf("\n");
