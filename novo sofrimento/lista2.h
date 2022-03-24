@@ -4,8 +4,8 @@
 //Lista são estruturas de dados alocadas dinamicamente na qual 
 //escoho a posição onde removerei ou adicionarei um elemento
 
-typedef void *Lista;
-typedef void *Item;
+typedef void* Lista;
+typedef void* Item;
 
 Lista criaLista();
 //Criação de uma lista;

@@ -29,13 +29,19 @@ void main() {
 
     printf("\n--- LISTA DUPLAMENTE ENCADEADA ---\n");
     Lista lista = criaLista();
+    printf("--- PASSOU DA CRIACAO DA LISTA ---\n");
 
     for (int i=0; i<25; i++){
-        insereInicio(lista, &i);
+        insereInicio(lista, i);
     }
 
+    printf("--- PASSOU DO INSERE INICIO ---\n");
+
     int a=3, b=8, c=1;
-    insereDepois(lista, &a, &b);
+    insereDepois(lista, a, b);
+
+    printf("--- PASSOU DO INSERE DEPOIS ---\n");
+
 
     printList(lista);
 
