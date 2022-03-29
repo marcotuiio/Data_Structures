@@ -15,7 +15,7 @@ void main(int argc, char **argv) {
     char *pathGeo = makePathGeoFile(param);
 
     printf("main3\n");
-    char *geoFile = loadFile(pathGeo);
+    FILE *geoFile = loadFile(pathGeo);
 
     printf("main4\n");
     if (geoFile == NULL){
@@ -23,12 +23,18 @@ void main(int argc, char **argv) {
         return;
     }
 
-    printf("----> %s\n", geoFile);
+    buildGeometricForms(geoFile);
+
+    /* printf("----> %s\n", geoFile);
     Lista teste = criaLista();
-    FILE * geo_source = fopen(geoFile, "rb"); //geoFile contem o path do arquivo geo
+    //FILE * geo_source = fopen(geoFile, "rb"); //geoFile contem o path do arquivo geo
+    char *var = malloc(sizeof(char*));
     while (fscanf(geoFile, "%s", var) != -1){
         printf("%s\n", var);
         insereFim(teste, var);
+        var = malloc(sizeof(char*));
     }
     getFirst(teste);
+    getLenght(teste);
+    printList(teste); */
 }

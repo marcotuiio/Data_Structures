@@ -30,7 +30,7 @@ void printList(Lista l){
     celulaL *temporary = aux->inicio;  
 
     while (temporary != NULL){
-        printf("%s - ", temporary->value);
+        printf("%p - ", temporary->value);
         temporary = temporary->next;
     }
     printf("\n");
@@ -156,7 +156,7 @@ void getFirst(Lista l){
     ImpList *lista = (ImpList*) l;
     celulaL *aux = lista->inicio;
 
-    printf("O primeiro elemento da lista é: %s\n", aux->value);
+    printf("O primeiro elemento da lista é: %s\n", lista->inicio->value);
     free(aux);
 }
 
@@ -168,15 +168,15 @@ void getLast(Lista l){
     free(aux);
 }
 
-// void getLenght(Lista l){
-//     ImpList *lista = (ImpList*) l;
-//     celulaL *aux = lista->inicio;
-//     int contador = 0;
+void getLenght(Lista l){
+    ImpList *lista = (ImpList*) l;
+    celulaL *aux = lista->inicio;
+    int contador = 0;
 
-//     while (aux != NULL){
-//         contador++;
-//         aux = aux->next;
-//     }
-//     printf("O tamanho da lista é de %d elementos\n", contador);
-//     free(aux);
-// }
+    while (aux != NULL){
+        contador++;
+        aux = aux->next;
+    }
+    printf("O tamanho da lista é de %d elementos\n", contador);
+    free(aux);
+}

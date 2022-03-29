@@ -51,9 +51,8 @@ struct rectangle {
 };
 typedef struct rectangle GRectangle;
 
-Item buildRectangle(FILE *arq, char infos[], char *eptr){
+Item buildRectangle(FILE *arq, GRectangle *rectangle, char infos[], char *eptr){
     printf("\nInicio Build Rectangle\n");
-    GRectangle *rectangle = calloc(1, sizeof(GRectangle*));
 
     rectangle->type = infos[0];
 
@@ -90,9 +89,8 @@ Item buildRectangle(FILE *arq, char infos[], char *eptr){
     return rectangle;
 }
 
-Item buildCircle(FILE *arq, char infos[], char *eptr){
+Item buildCircle(FILE *arq, GCircle *circle, char infos[], char *eptr){
     printf("\nInicio Build Circle\n");
-    GCircle *circle = calloc(1, sizeof(GCircle*));
 
     circle->type = infos[0];
 
@@ -128,6 +126,8 @@ Item buildCircle(FILE *arq, char infos[], char *eptr){
 Lista buildGeometricForms(FILE *arq) {
     printf("\nInicio Build GeoForms\n");
     Lista list = criaLista();
+    GCircle *circle = calloc(1, sizeof(GCircle*));
+    GRectangle *rectangle = calloc(1, sizeof(GRectangle*));
 
     while(!feof(arq)) {
         char infos[10];
@@ -135,13 +135,14 @@ Lista buildGeometricForms(FILE *arq) {
         fscanf(arq, "%s", infos);
 
          if (infos[0] == 'c' && infos[1] == NULL) {
-            Item item = buildCircle(arq, infos, eptr);
+            Item item = buildCircle(arq, circle, infos, eptr);
             insereInicio(list, item);
 
          }else if(infos[0] == 'r' && infos[1] == NULL) {
-            Item item = buildRectangle(arq, infos, eptr);
+            Item item = buildRectangle(arq, rectangle, infos, eptr);
             insereInicio(list, item);
          }
     }
 
+    getLenght(list);
 }
