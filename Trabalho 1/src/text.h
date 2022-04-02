@@ -1,9 +1,16 @@
 #ifndef TEXT_H
 #define TEXT_H
 
+#include <stdio.h>
 #include "list.h"
 
 typedef void* Text1;
+
+/*
+ * Texto é uma forma simples, com propriedades como sua âncora, 
+ * cor de borda e de preenchimento, além da menssagem de texto em si. 
+ * Pode ser escrito no formato de svg, possuindo assim um x e y no plano
+*/
 
 Text1 criaTxt();
 //cria um novo texto para svg

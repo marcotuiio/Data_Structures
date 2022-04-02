@@ -1,8 +1,16 @@
 #ifndef RECTANGLE_H
 #define RECTANGLE_H
+
+#include <stdio.h>
 #include "list.h"
 
 typedef void* Rectangle1;
+
+/*
+ * Retângulo é uma figura geometrica básica, com propriedades
+ * como altura, largura, cor de borda e de preenchimento. Pode ser desenhado
+ * no formato de svg, possuindo assim um x e y no plano.
+*/
 
 Rectangle1 criaRec();
 //cria um novo retângulo para svg

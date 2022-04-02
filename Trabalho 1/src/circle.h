@@ -5,6 +5,12 @@
 
 typedef void* Circle1;
 
+/*
+ * Círculo é uma figura geométrica básica, com propriedades
+ * como raio, cor de borda e de preenchimento. Pode ser desenhado
+ * no formato de svg, possuindo assim um x e y no plano
+*/
+
 Circle1 criaCirc();
 //cria um novo círculo para svg
 

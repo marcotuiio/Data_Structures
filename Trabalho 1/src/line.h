@@ -1,9 +1,16 @@
 #ifndef LINE_H
 #define LINE_H
 
+#include <stdio.h>
 #include "list.h"
 
 typedef void* Line1;
+
+/*
+ * Linha é uma forma geometrica básica, com propriedades
+ * como x inicial, y inicial, x final, y final e sua cor. Pode 
+ * ser desenhado no formato de svg, possuindo assim um x e y no plano
+*/
 
 Line1 criaLinha();
 //cria uma nova linha para svg
