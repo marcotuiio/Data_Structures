@@ -9,5 +9,4 @@ dor sofrimento e desgraça
     * ver em geo.c
     * ver em svg.c (nas funções get)
 
-*  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  *
 
