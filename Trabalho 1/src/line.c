@@ -12,7 +12,7 @@ struct line {
     double y1;
     double x2;
     double y2;
-    char *color;
+    char color[15];
 };
 typedef struct line Linha;
 
@@ -47,14 +47,19 @@ Item buildLine(FILE *arq, Line1 l, char infos[], char *eptr){
     fscanf(arq, "%s", infos);
     line->y2 = strtod(infos, &eptr);
 
-    //printf("ta dando erro aqui?\n");
     strcpy(infos, "");
     fscanf(arq, "%s", infos);
-    line->color = infos;
-    //printf("%s\n", line->color);
-
+    strcpy(line->color, infos);
+    //line->color = infos;
 
     strcpy(infos, "");
+
+    printf("\nid %d\n", line->id);
+    printf("x %lf\n", line->x1);
+    printf("y %lf\n", line->y1);
+    printf("x %lf\n", line->x2);
+    printf("y %lf\n", line->y2);
+    printf("corb %s\n", line->color);
 
     return line;
 }

@@ -54,7 +54,7 @@ Parameters *createParameters(int argc, char** argv) {
     param->nameQryFile = malloc(sizeof(char*));
 
     param->inputDir = getcwd(NULL, 0);
-    param->nameGeoFile = "geo.geo";
+    param->nameGeoFile = "geo.geo"; //arrumar aqui!!!
 
     return setParameters(argc, argv, param);
 }

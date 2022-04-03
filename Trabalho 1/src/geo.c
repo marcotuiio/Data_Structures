@@ -43,13 +43,14 @@ Lista buildGeometricForms(FILE *arq) {
         insereFim(listLINHA, item); 
         }
     }
-
-    double aux = getRectHEIGHT(getFirst(listRETANGULO));
-    char *aux2 = getCircFILL(getFirst(listCIRCULO));
-    double aux3 = getCircRADIUS(getFirst(listCIRCULO));
-    printf("\naux %lf\n", aux);
-    printf("aux2 %s\n", aux2);
-    printf("aux3 %lf\n", aux3);
+    //aqui começam os erros!
+    //nao consigo extrair o valores corretamente
+    //Decobrir o que ta errado com as gets
+    Rectangle1 aux = getFirst(listRETANGULO);
+    double x = getRectX(aux);
+    printf("\ntestex %lf\n", x);
+    double y = getRectY(aux);
+    printf("\ntestey %lf\n", y);
 
     getLenght(listCIRCULO);
     getLenght(listRETANGULO);

@@ -12,8 +12,8 @@ struct rect{
     double y;
     double width;
     double height;
-    char *corb;
-    char *corp;
+    char corb[15];
+    char corp[15];
 };
 typedef struct rect Retangulo;
 
@@ -26,7 +26,7 @@ Item buildRectangle(FILE *arq, Rectangle1 rec, char infos[], char *eptr){
     printf("\nInicio Build Rectangle\n");
     Retangulo *rectangle = (Retangulo*) rec;
 
-     rectangle->type = infos[0];
+    rectangle->type = infos[0];
 
     strcpy(infos, "");
     fscanf(arq, "%s", infos);
@@ -51,54 +51,64 @@ Item buildRectangle(FILE *arq, Rectangle1 rec, char infos[], char *eptr){
     //printf("deu arro aqui?\n");
     strcpy(infos, "");
     fscanf(arq, "%s", infos);
-    rectangle->corb = infos;
+    strcpy(rectangle->corb, infos);
+    //rectangle->corb = infos;
 
     strcpy(infos, "");
     fscanf(arq, "%s", infos);
-    rectangle->corp = infos;
+    strcpy(rectangle->corp, infos);
+    //rectangle->corp = infos;
 
     strcpy(infos, "");
+
+    printf("\nid %d\n", rectangle->id);
+    printf("x %lf\n", rectangle->x);
+    printf("y %lf\n", rectangle->y);
+    printf("w %lf\n", rectangle->width);
+    printf("h %lf\n", rectangle->height);
+    printf("corb %s\n", rectangle->corb);
+    printf("corp %s\n", rectangle->corp);
 
     return rectangle;
 }
 
-int getRectID(Rectangle1 r){
+int getRectID(Item r){
     Retangulo *rect = (Retangulo*) r;
 
     return rect->id;
 }
 
-double getRectX(Rectangle1 r){
+double getRectX(Item r){
     Retangulo *rect = (Retangulo*) r;
 
     return rect->x;
 }
 
-double getRectY(Rectangle1 r){
+double getRectY(Item r){
     Retangulo *rect = (Retangulo*) r;
 
     return rect->y;
 }
 
-double getRectWIDTH(Rectangle1 r){
+double getRectWIDTH(Item r){
     Retangulo *rect = (Retangulo*) r;
 
     return rect->width;
 }
 
-double getRectHEIGHT(Rectangle1 r){
+double getRectHEIGHT(Item r){
     Retangulo *rect = (Retangulo*) r; // lista{ retangulo1(infos) retangulo2(infos) }
 
     return rect->height;
 }
 
-char* getRectFILL(Rectangle1 r){
+char* getRectFILL(Item r){
     Retangulo *rect = (Retangulo*) r;
 
     return rect->corp;
 }
 
-char* getRectEDGE(Rectangle1 r){
+char* getRectEDGE(Item r){
     Retangulo *rect = (Retangulo*) r;
 
     return rect->corb;

@@ -11,8 +11,8 @@ struct circ{
     double x;
     double y;
     double radius;
-    char *corp;
-    char *corb;
+    char corp[15];
+    char corb[15];
 };
 typedef struct circ Circulo;
 
@@ -45,13 +45,22 @@ Item buildCircle(FILE *arq, Circle1 circ, char infos[], char *eptr){
 
     strcpy(infos, "");
     fscanf(arq, "%s", infos );
-    circle->corb = infos;
+    strcpy(circle->corb, infos);
+    //circle->corb = infos;
 
     strcpy(infos, "");
     fscanf(arq, "%s", infos);
-    circle->corp = infos;
+    strcpy(circle->corp, infos);
+    //circle->corp = infos;
 
     strcpy(infos, "");
+
+    printf("\nid %d\n", circle->id);
+    printf("x %lf\n", circle->x);
+    printf("y %lf\n", circle->y);
+    printf("r %lf\n", circle->radius);
+    printf("corb %s\n", circle->corb);
+    printf("corp %s\n", circle->corp);
 
     return circle;
 }

@@ -30,7 +30,7 @@ void printList(Lista l){
     celulaL *temporary = aux->inicio;  
 
     while (temporary != NULL){
-        printf("%s - ", temporary->value);
+        printf("%p - ", temporary->value);
         temporary = temporary->next;
     }
     printf("\n");
@@ -52,7 +52,7 @@ Item encontraCelula(Lista l, Item n){
     }
     if(result == NULL){
         printf("VALOR NÂO ENCONTRADO");
-        return;
+        exit(1);
     }
 }
 
@@ -216,6 +216,6 @@ Item getNext(Lista l, Item at){
     }
     if(result == NULL){
         printf("VALOR NÂO ENCONTRADO");
-        return;
+        exit(1);
     }
 }

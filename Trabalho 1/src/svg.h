@@ -15,12 +15,12 @@ void killSvg(FILE * svg);
 
 void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha);
 
-void drawCircle(FILE * svg, Item circ);
+void drawCircle(FILE * svg, Circle1 circ);
 
-void drawRectangle(FILE * svg, Item rect);
+void drawRectangle(FILE * svg, Rectangle1 rect);
 
-void drawLine(FILE * svg, Item linha);
+void drawLine(FILE * svg, Line1 linha);
 
-void drawText(FILE * svg, Item txt);
+void drawText(FILE * svg, Text1 txt);
 
 #endif

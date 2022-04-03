@@ -11,9 +11,9 @@ struct txt{
     double x;
     double y;
     double anchor;
-    char *corp;
-    char *corb;
-    char *text;
+    char corp[15];
+    char corb[15];
+    char text[50];
 };
 typedef struct txt Texto;
 
@@ -46,17 +46,27 @@ Item buildText(FILE *arq, Text1 txt, char infos[], char *eptr){
 
     strcpy(infos, "");
     fscanf(arq, "%s", infos);
-    Text->corb = infos;
+    strcpy(Text->corb, infos);
+    //Text->corb = infos;
 
     strcpy(infos, "");
     fscanf(arq, "%s", infos);
-    Text->corp = infos;
+    strcpy(Text->corp, infos);
+    //Text->corp = infos;
 
     strcpy(infos, "");
     fscanf(arq, "%s", infos);
-    Text->text = infos;
+    strcpy(Text->text, infos);
+    //Text->text = infos;
 
     strcpy(infos, "");
+    printf("\nid %d\n", Text->id);
+    printf("x %lf\n", Text->x);
+    printf("y %lf\n", Text->y);
+    printf("a %lf\n", Text->anchor);
+    printf("corb %s\n", Text->corb);
+    printf("corp %s\n", Text->corp);
+    printf("txt %s\n", Text->text);
 
     return Text;
 }
