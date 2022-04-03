@@ -35,11 +35,9 @@ void main() {
     encontraCelula(lista, 8);
     getFirst(lista);
     getLast(lista);
-    getLenght(lista);
-    //getLenght(lista);
 
     printf("\n--- FILA CIRCULAR---\n");
-    Fila_Circular fila = criaFila(6);
+    Fila_Circular fila = criaFila(3);
 
     for (int j=30; j< 100; j=j+17){
         enfila_circ(fila, j);

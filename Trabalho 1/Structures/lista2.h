@@ -33,9 +33,6 @@ void getFirst(Lista l);
 void getLast(Lista l);
 //exibe o ultimo elemento da lista
 
-void getLenght(Lista l);
-//exibe a quantidade de elementos na lista
-
 Lista encontraCelula(Lista l, Item n);
 //dada a lista, percorre a mesma buscando o item n desejado 
 
