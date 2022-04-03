@@ -1,6 +1,6 @@
 EXEC = gcc
 CFLAGS = -std=c99 -fstack-protector-all -g
-PROJECT_NAME = ted
+PROJECT_NAME = testes
 
 clear: 
 	rm *.o
