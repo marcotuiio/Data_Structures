@@ -10,6 +10,3 @@ dor sofrimento e desgraça
 3- Nos arquivos de circulo, retangulo, linha e texto os valores extraidos do geo funcionam corretamente, fora dali fica tudo estranho
     * ver em geo.c
     * ver em svg.c (nas funções get)
-
-
-
