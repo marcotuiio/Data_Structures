@@ -8,7 +8,7 @@
 #define QUEUE_EMPTY INT_MIN
 
 struct queue{
-    Item value;
+    int *value;
     int head, tail, num_entries, size;
 };
 typedef struct queue fila_circ;
@@ -18,7 +18,7 @@ Fila_Circular criaFila(int max_size){
     fila_circ *q = calloc(1, sizeof(fila_circ*));
 
     q->size = max_size;
-    q->value = malloc(sizeof(fila_circ) * q->size);    
+    q->value = malloc(sizeof(Item) * max_size);    
     q->num_entries = 0;
     q->head = 0;
     q->tail = 0;
@@ -33,6 +33,7 @@ bool fila_vazia(Fila_Circular q){
 }
 
 bool fila_cheia(Fila_Circular q){
+    //printf("--- FILA CHEIA ---\n");
     fila_circ *fila = (fila_circ*) q;
 
     return (fila->num_entries == fila->size);
@@ -71,14 +72,13 @@ Item desenfila_circ(Fila_Circular q){
     result = fila->value[fila->head];
     fila->head = (fila->head + 1) % fila->size;
     fila->num_entries--;
-    //printf("%d - ", result);
     return result;
 }
 
 void printFila_circ(Fila_Circular q){
     fila_circ *fila = (fila_circ*) q;
     
-    int cq;  //Usar 'Item' pois essa fila deve armazar qualquer tipo de valor
+    Item cq;  //Usar 'ITEM' pois essa fila deve armazar qualquer tipo de valor
     printf("\n");
     while ((cq = desenfila_circ(fila)) != QUEUE_EMPTY){
         printf("q = %d\n", cq);
