@@ -171,20 +171,32 @@ void removeCelula(Lista l, Item n){
     free(celulaARemover);
 }
 
-Item getFirst(Lista l){
+Cell getFirst(Lista l){
     ImpList *lista = (ImpList*) l;
     celulaL *aux = lista->inicio;
 
     //printf("O primeiro elemento da lista é: %s\n", aux->value);
-    return aux->value;
+    return aux;
 }
 
-Item getLast(Lista l){
+Cell getLast(Lista l){
     ImpList *lista = (ImpList*) l;
     celulaL *aux = lista->fim;
 
     //printf("O ultimo elemento da lista é: %s\n", aux->value);
-    return aux->value;
+    return aux;
+}
+
+Cell getNext(Lista l, Cell at){
+    ImpList *aux = (ImpList*) l;
+    celulaL *lista = (celulaL*) at;
+
+    return lista->next;
+}
+
+Item getInfo(Cell x){
+    celulaL *node = (celulaL*) x;
+    return node->value;
 }
 
 void getLenght(Lista l){
@@ -198,22 +210,4 @@ void getLenght(Lista l){
     }
     printf("\nO tamanho da lista é de %d elementos\n", contador);
     free(aux);
-}
-
-Item getNext(Lista l, Item at){
-    ImpList *aux = (ImpList*) l;
-    celulaL *lista = aux->inicio;
-    celulaL *result = NULL;
-
-    while (lista != NULL){
-        if (lista->value == at){
-            result = lista;
-            return result->next->value;
-        }
-        lista = lista->next;
-    }
-    if(result == NULL){
-        printf("VALOR NÂO ENCONTRADO");
-        exit(1);
-    }
 }

@@ -6,7 +6,7 @@
 #include "list.h"
 
 struct circ{
-    char type;
+    char type[1];
     int id;
     double x;
     double y;
@@ -25,7 +25,7 @@ Item buildCircle(FILE *arq, Circle1 circ, char *infos[], char *eptr){
     printf("\nInicio Build Circle\n");
     Circulo *circle = (Circulo*) circ;
 
-    circle->type = infos[0];
+    strcpy(circle->type, infos);
 
     fscanf(arq, "%s", infos);
     circle->id = atoi(infos);

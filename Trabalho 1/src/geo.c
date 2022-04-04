@@ -45,7 +45,9 @@ Lista buildGeometricForms(FILE *arq) {
         }
     }
 
-    Rectangle1 aux = getFirst(listRETANGULO);
+    printf("\nTESTES DA GEO.C\n");
+    Cell node = getFirst(listRETANGULO);
+    Rectangle1 aux = getInfo(node);
     int id = getRectID(aux);
     printf("\nid %d\n", id);
     double x = getRectX(aux);

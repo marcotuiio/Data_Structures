@@ -6,7 +6,7 @@
 #include "line.h"
 
 struct line {
-    char type;
+    char type[1];
     int id;
     double x1;
     double y1;
@@ -25,7 +25,7 @@ Item buildLine(FILE *arq, Line1 l, char *infos[], char *eptr){
     printf("\nInicio Build Line\n");
     Linha *line = (Linha*) l;
 
-    line->type = infos[0];
+    strcpy(line->type, infos);
 
     fscanf(arq, "%s", infos);
     line->id = atoi(infos);

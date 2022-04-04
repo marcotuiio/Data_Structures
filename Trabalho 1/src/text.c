@@ -6,14 +6,14 @@
 #include "text.h"
 
 struct txt{
-    char type;
+    char type[1];
     int id;
     double x;
     double y;
     double anchor;
     char corp[15];
     char corb[15];
-    char text[50];
+    char text[100];
 };
 typedef struct txt Texto;
 
@@ -26,7 +26,7 @@ Item buildText(FILE *arq, Text1 txt, char *infos[], char *eptr){
     printf("\nInicio Build Text\n");
     Texto *Text = (Texto*) txt;
 
-    Text->type = infos[0];
+    strcpy(Text->type, infos);
 
     fscanf(arq, "%s", infos);
     Text->id = atoi(infos);
@@ -46,11 +46,8 @@ Item buildText(FILE *arq, Text1 txt, char *infos[], char *eptr){
     fscanf(arq, "%s", infos);
     strcpy(Text->corp, infos);
 
-    strcpy(infos, "");
     fscanf(arq, "%s", infos);
     strcpy(Text->text, infos);
-
-    //strcpy(infos, "");
 
     printf("\nid %d\n", Text->id);
     printf("x %lf\n", Text->x);

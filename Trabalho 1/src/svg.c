@@ -39,41 +39,41 @@ void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha){
 
     if (rect){
         printf("--- INICIO if rect---\n");
-        Item aux1 = getFirst(rect);
-        Item fim1 = getLast(rect);
-        while (rect->next != NULL){
-            drawRectangle(svg, aux1);
-            aux1 = getNext(rect, aux1);
+        Cell auxC1 = getFirst(rect);
+        while (auxC1 != NULL){
+            Item auxI1 = getInfo(auxC1);
+            drawRectangle(svg, auxI1);
+            auxC1 = getNext(rect, auxC1);
         }
     }
 
     if (circ){
         printf("--- INICIO if circ ---\n");
-        Item aux2 = getFirst(circ);
-        Item fim2 = getLast(circ);
-        while (aux2 != fim2){
-            drawCircle(svg, aux2);
-            aux2 = getNext(circ, aux2);
+        Cell auxC2 = getFirst(circ);
+        while (auxC2 != NULL){
+            Item auxI2 = getInfo(auxC2);
+            drawCircle(svg, auxI2);
+            auxC2 = getNext(circ, auxC2);
         }
     }
 
     if (txt){
         printf("--- INICIO if txt ---\n");
-        Item aux3 = getFirst(txt);
-        Item fim3 = getLast(circ);
-        while (aux3 != fim3){
-            drawText(svg, aux3);
-            aux3 = getNext(txt, aux3);
+        Cell auxC3 = getFirst(txt);
+        while (auxC3 != NULL){
+            Item auxI = getInfo(auxC3);
+            drawText(svg, auxI);
+            auxC3 = getNext(txt, auxC3);
         }
     }
 
     if (linha){
         printf("--- INICIO if linha ---\n");
-        Item aux4 = getFirst(linha);
-        Item fim4 = getLast(circ);
-        while (aux4 != fim4){
-            drawLine(svg, aux4);
-            aux4 = getNext(linha, aux4);
+        Cell auxC4 = getFirst(linha);
+        while (auxC4 != NULL){
+            Item auxI4 = getInfo(auxC4);
+            drawLine(svg, auxI4);
+            auxC4 = getNext(linha, auxC4);
         }
     }
     
@@ -97,7 +97,7 @@ void drawCircle(FILE * svg, Circle1 circ){
     strcpy(fill, getRectFILL(circ));
     strcpy(stroke, getRectEDGE(circ));
 
-    printf("id %d\n", id);
+    printf("\nid %d\n", id);
     printf("x %lf\n", x);
     printf("y %lf\n", y);
     printf("r %lf\n", radius);
@@ -143,7 +143,7 @@ void drawText(FILE * svg, Text1 txt){
     printf("--- INICIO DRAW TEXT ---\n");
     int id;
     double x, y, anchor;
-    char text[50], fill[15], stroke[15];
+    char text[100], fill[15], stroke[15];
 
     id = getTxtID(txt);
     x = getTxtX(txt);

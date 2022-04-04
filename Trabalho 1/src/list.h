@@ -9,6 +9,7 @@
 
 typedef void* Lista;
 typedef void* Item;
+typedef void* Cell;
 
 Lista criaLista(); //createList
 //Cria e retorna uma lista vazia;
@@ -35,12 +36,21 @@ void removeCelula(Lista l, Item n); //remove
 // comprimento da lista  ́e diminu ́ıdo de 1 elemento. O indicador n deixa de
 // indicar um elemento válido de L.
 
-Item getFirst(Lista l);
+Cell getFirst(Lista l);
 // * retorna o indicador do primeiro elemento de L. Se
 // length(L)=0, retorna NULL.
 
-Item getLast(Lista l);
+Cell getLast(Lista l);
 // * retorna o indicador do último elemento de L. Se
+// length(L)=0, retorna NULL.
+
+Cell getNext(Lista l, Item at);
+// * at deve indicar um elemento existente em L.
+// * retorna o indicador do elemento de L seguinte ao elemento
+// indicado por at. Se at for o  ́ultimo elemento da lista, retorna NULL.
+
+Item getInfo(Cell x);
+// * retorna o valor armazenado na célula de X. Se
 // length(L)=0, retorna NULL.
 
 void getLenght(Lista l);
@@ -49,10 +59,5 @@ void getLenght(Lista l);
 Item encontraCelula(Lista l, Item n); //get
 // * n deve indicar um elemento existente em L.
 // * retorna o valor do item da lista indicado por n.
-
-Item getNext(Lista l, Item at);
-// * at deve indicar um elemento existente em L.
-// * retorna o indicador do elemento de L seguinte ao elemento
-// indicado por at. Se at for o  ́ultimo elemento da lista, retorna NULL.
 
 #endif
