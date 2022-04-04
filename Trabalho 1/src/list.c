@@ -175,7 +175,6 @@ Cell getFirst(Lista l){
     ImpList *lista = (ImpList*) l;
     celulaL *aux = lista->inicio;
 
-    //printf("O primeiro elemento da lista é: %s\n", aux->value);
     return aux;
 }
 
@@ -183,7 +182,6 @@ Cell getLast(Lista l){
     ImpList *lista = (ImpList*) l;
     celulaL *aux = lista->fim;
 
-    //printf("O ultimo elemento da lista é: %s\n", aux->value);
     return aux;
 }
 
@@ -196,6 +194,7 @@ Cell getNext(Lista l, Cell at){
 
 Item getInfo(Cell x){
     celulaL *node = (celulaL*) x;
+
     return node->value;
 }
 

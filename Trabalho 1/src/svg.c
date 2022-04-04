@@ -84,7 +84,7 @@ void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha){
     free(txt);
 }
 
-void drawCircle(FILE * svg, Circle1 circ){
+void drawCircle(FILE * svg, Item circ){
     printf("--- INICIO DRAW CIRC ---\n");
     int id;
     double x, y, radius;
@@ -94,8 +94,8 @@ void drawCircle(FILE * svg, Circle1 circ){
     x = getCircX(circ);
     y = getCircY(circ);
     radius = getCircRADIUS(circ);
-    strcpy(fill, getRectFILL(circ));
-    strcpy(stroke, getRectEDGE(circ));
+    strcpy(fill, getCircFILL(circ));
+    strcpy(stroke, getcircEDGE(circ));
 
     printf("\nid %d\n", id);
     printf("x %lf\n", x);
@@ -106,7 +106,7 @@ void drawCircle(FILE * svg, Circle1 circ){
     fprintf(svg, "\t<circle id=\"%d\" cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\"/>\n", id, x, y, radius, stroke, fill);
 }
 
-void drawRectangle(FILE * svg, Rectangle1 rect){
+void drawRectangle(FILE * svg, Item rect){
     printf("--- INICIO DRAW RECT ---\n");
     int id;
     double x, y, height, width;
@@ -123,7 +123,7 @@ void drawRectangle(FILE * svg, Rectangle1 rect){
     fprintf(svg, "\t<rect id=\"%d\" x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"50%%\" />\n", id, x, y, width, height, stroke, fill);
 }
 
-void drawLine(FILE * svg, Line1 linha){
+void drawLine(FILE * svg, Item linha){
     printf("--- INICIO DRAW LINE ---\n");
     int id;
     double x1, y1, x2, y2;
@@ -134,12 +134,12 @@ void drawLine(FILE * svg, Line1 linha){
     y1 = getLineY(linha);
     x2 = getLineFINALX(linha);
     y2 = getLineFINALY(linha);
-    strcpy(stroke, getRectEDGE(linha));
+    strcpy(stroke, getLineCOLOR(linha));
 
     fprintf(svg, "\t<line id=\"%d\" x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" fill-opacity=\"50%%\" />\n", id, x1, y1, x2, y2, stroke);
 }
 
-void drawText(FILE * svg, Text1 txt){
+void drawText(FILE * svg, Item txt){
     printf("--- INICIO DRAW TEXT ---\n");
     int id;
     double x, y, anchor;
@@ -148,9 +148,10 @@ void drawText(FILE * svg, Text1 txt){
     id = getTxtID(txt);
     x = getTxtX(txt);
     y = getTxtY(txt);
-    strcpy(text, getRectFILL(txt));
-    strcpy(fill, getRectFILL(txt));
-    strcpy(stroke, getRectEDGE(txt));
+    anchor = getTxtANCHOR(txt);
+    strcpy(text, getTxtTEXT(txt));
+    strcpy(fill, getTxtFILL(txt));
+    strcpy(stroke, getTxtEDGE(txt));
 
     fprintf(svg, "\t<text id=\"%d\" x=\"%lf\" y=\"%lf\" text-anchor=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"50%%\" >\"%s\"</>\n", id, x, y, anchor, stroke, fill, text);
 }
