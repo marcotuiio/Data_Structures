@@ -39,34 +39,45 @@ void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha){
 
     if (rect){
         printf("--- INICIO if rect---\n");
-        Item aux = getFirst(rect);
-        
-        drawRectangle(svg, aux);
-        
+        Item aux1 = getFirst(rect);
+        while (aux1 != getLast(rect)){
+            drawRectangle(svg, aux1);
+            aux1 = getNext(rect, aux1);
+        }
     }
 
     if (circ){
         printf("--- INICIO if circ ---\n");
-        Item aux = getFirst(circ);
-
-        drawCircle(svg, aux);
+        Item aux2 = getFirst(circ);
+        while (aux2 != getLast(circ)){
+            drawCircle(svg, aux2);
+            aux2 = getNext(circ, aux2);
+        }
     }
 
     if (txt){
         printf("--- INICIO if txt ---\n");
-        Item aux = getFirst(txt);
-        
-        drawText(svg, aux);
+        Item aux3 = getFirst(txt);
+        while (aux3 != getLast(txt)){
+            drawText(svg, aux3);
+            aux3 = getNext(txt, aux3);
+        }
     }
 
     if (linha){
         printf("--- INICIO if linha ---\n");
-        Item aux = getFirst(linha);
-
-        drawLine(svg, aux);
+        Item aux4 = getFirst(linha);
+        while (aux4 != getLast(linha)){
+            drawLine(svg, aux4);
+            aux4 = getNext(linha, aux4);
+        }
     }
     
     killSvg(svg);
+    free(rect);
+    free(circ);
+    free(linha);
+    free(txt);
 }
 
 void drawCircle(FILE * svg, Circle1 circ){

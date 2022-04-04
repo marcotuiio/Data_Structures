@@ -15,7 +15,7 @@ typedef void* Line1;
 Line1 criaLinha();
 //cria uma nova linha para svg
 
-Item buildLine(FILE *arq, Line1 l, char infos[], char *eptr);
+Item buildLine(FILE *arq, Line1 l, char *infos[], char *eptr);
 //realiza leitura e extração dos dados da linha no .geo
 
 int getLineID(Line1 l);

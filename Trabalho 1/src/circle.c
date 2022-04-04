@@ -17,43 +17,35 @@ struct circ{
 typedef struct circ Circulo;
 
 Circle1 criaCirc(){
-    Circulo *new_circ = calloc(1, sizeof(Circulo*));
+    Circulo *new_circ = calloc(1, sizeof(Circulo));
     return new_circ;
 }
 
-Item buildCircle(FILE *arq, Circle1 circ, char infos[], char *eptr){
+Item buildCircle(FILE *arq, Circle1 circ, char *infos[], char *eptr){
     printf("\nInicio Build Circle\n");
     Circulo *circle = (Circulo*) circ;
 
     circle->type = infos[0];
 
-    strcpy(infos, "");
     fscanf(arq, "%s", infos);
     circle->id = atoi(infos);
 
-    strcpy(infos, "");
     fscanf(arq, "%s", infos);
     circle->x = strtod(infos, &eptr);
 
-    strcpy(infos, "");
     fscanf(arq, "%s", infos);
     circle->y = strtod(infos, &eptr);
 
-    strcpy(infos, "");
     fscanf(arq, "%s", infos);
     circle->radius = strtod(infos, &eptr);
 
-    strcpy(infos, "");
     fscanf(arq, "%s", infos );
     strcpy(circle->corb, infos);
-    //circle->corb = infos;
 
-    strcpy(infos, "");
     fscanf(arq, "%s", infos);
     strcpy(circle->corp, infos);
-    //circle->corp = infos;
 
-    strcpy(infos, "");
+    //strcpy(infos, "");
 
     printf("\nid %d\n", circle->id);
     printf("x %lf\n", circle->x);

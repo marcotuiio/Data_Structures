@@ -17,42 +17,35 @@ struct line {
 typedef struct line Linha;
 
 Line1 criaLinha(){
-    Linha *new_line = calloc(1, sizeof(Linha*));
+    Linha *new_line = calloc(1, sizeof(Linha));
     return new_line;
 }
 
-Item buildLine(FILE *arq, Line1 l, char infos[], char *eptr){
+Item buildLine(FILE *arq, Line1 l, char *infos[], char *eptr){
     printf("\nInicio Build Line\n");
     Linha *line = (Linha*) l;
 
     line->type = infos[0];
 
-    strcpy(infos, "");
     fscanf(arq, "%s", infos);
     line->id = atoi(infos);
 
-    strcpy(infos, "");
     fscanf(arq, "%s", infos);
     line->x1 = strtod(infos, &eptr);
 
-    strcpy(infos, "");
     fscanf(arq, "%s", infos);
     line->y1 = strtod(infos, &eptr);
 
-    strcpy(infos, "");
     fscanf(arq, "%s", infos);
     line->x2 = strtod(infos, &eptr);
 
-    strcpy(infos, "");
     fscanf(arq, "%s", infos);
     line->y2 = strtod(infos, &eptr);
 
-    strcpy(infos, "");
     fscanf(arq, "%s", infos);
     strcpy(line->color, infos);
-    //line->color = infos;
 
-    strcpy(infos, "");
+    //strcpy(infos, "");
 
     printf("\nid %d\n", line->id);
     printf("x %lf\n", line->x1);

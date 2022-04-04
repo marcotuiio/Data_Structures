@@ -15,7 +15,7 @@ typedef void* Text1;
 Text1 criaTxt();
 //cria um novo texto para svg
 
-Item buildText(FILE *arq, Text1 txt, char infos[], char *eptr);
+Item buildText(FILE *arq, Text1 txt, char *infos[], char *eptr);
 //realiza leitura e extração dos dados do texto no .geo
 
 int getTxtID(Text1 t);

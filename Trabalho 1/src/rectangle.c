@@ -6,7 +6,7 @@
 #include "list.h"
 
 struct rect{
-    char type;
+    char type[1];
     int id;
     double x;
     double y;
@@ -18,48 +18,39 @@ struct rect{
 typedef struct rect Retangulo;
 
 Rectangle1 criaRec(){
-    Retangulo *new_rec = calloc(1, sizeof(Retangulo*));
+    Retangulo *new_rec = calloc(1, sizeof(Retangulo));
     return new_rec;
 }
 
-Item buildRectangle(FILE *arq, Rectangle1 rec, char infos[], char *eptr){
+Item buildRectangle(FILE *arq, Rectangle1 rec, char *infos[], char *eptr){
     printf("\nInicio Build Rectangle\n");
     Retangulo *rectangle = (Retangulo*) rec;
 
-    rectangle->type = infos[0];
+    strcpy(rectangle->type, infos);
 
-    strcpy(infos, "");
     fscanf(arq, "%s", infos);
     rectangle->id = atoi(infos);
 
-    strcpy(infos, "");
     fscanf(arq, "%s", infos);
     rectangle->x = strtod(infos, &eptr);
 
-    strcpy(infos, "");
     fscanf(arq, "%s", infos);
     rectangle->y = strtod(infos, &eptr);
 
-    strcpy(infos, "");
     fscanf(arq, "%s", infos);
     rectangle->width = strtod(infos, &eptr);
 
-    strcpy(infos, "");
     fscanf(arq, "%s", infos);
     rectangle->height = strtod(infos, &eptr);
 
     //printf("deu arro aqui?\n");
-    strcpy(infos, "");
     fscanf(arq, "%s", infos);
     strcpy(rectangle->corb, infos);
-    //rectangle->corb = infos;
 
-    strcpy(infos, "");
     fscanf(arq, "%s", infos);
     strcpy(rectangle->corp, infos);
-    //rectangle->corp = infos;
 
-    strcpy(infos, "");
+    //strcpy(infos, "");
 
     printf("\nid %d\n", rectangle->id);
     printf("x %lf\n", rectangle->x);

@@ -18,48 +18,40 @@ struct txt{
 typedef struct txt Texto;
 
 Text1 criaTxt(){
-    Texto *new_txt = calloc(1, sizeof(Texto*));
+    Texto *new_txt = calloc(1, sizeof(Texto));
     return new_txt;
 }
 
-Item buildText(FILE *arq, Text1 txt, char infos[], char *eptr){
+Item buildText(FILE *arq, Text1 txt, char *infos[], char *eptr){
     printf("\nInicio Build Text\n");
     Texto *Text = (Texto*) txt;
 
     Text->type = infos[0];
 
-    strcpy(infos, "");
     fscanf(arq, "%s", infos);
     Text->id = atoi(infos);
 
-    strcpy(infos, "");
     fscanf(arq, "%s", infos);
     Text->x = strtod(infos, &eptr);
 
-    strcpy(infos, "");
     fscanf(arq, "%s", infos);
     Text->y = strtod(infos, &eptr);
 
-    strcpy(infos, "");
     fscanf(arq, "%s", infos);
     Text->anchor = strtod(infos, &eptr);
 
-    strcpy(infos, "");
     fscanf(arq, "%s", infos);
     strcpy(Text->corb, infos);
-    //Text->corb = infos;
 
-    strcpy(infos, "");
     fscanf(arq, "%s", infos);
     strcpy(Text->corp, infos);
-    //Text->corp = infos;
 
     strcpy(infos, "");
     fscanf(arq, "%s", infos);
     strcpy(Text->text, infos);
-    //Text->text = infos;
 
-    strcpy(infos, "");
+    //strcpy(infos, "");
+
     printf("\nid %d\n", Text->id);
     printf("x %lf\n", Text->x);
     printf("y %lf\n", Text->y);

@@ -14,7 +14,7 @@ typedef void* Circle1;
 Circle1 criaCirc();
 //cria um novo círculo para svg
 
-Item buildCircle(FILE *arq, Circle1 circ, char infos[], char *eptr);
+Item buildCircle(FILE *arq, Circle1 circ, char *infos[], char *eptr);
 //realiza leitura e extração dos dados do círculo no .geo
 
 int getCircID(Circle1 c);

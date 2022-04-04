@@ -22,35 +22,36 @@ Lista buildGeometricForms(FILE *arq) {
     Line1 line = criaLinha();
 
     while(!feof(arq)) {
-        char infos[10];
+        char *infos[10][30];
         char *eptr;
+
         fscanf(arq, "%s", infos);
 
-        if (infos[0] == 'c' && infos[1] == NULL){
-        Item item = buildCircle(arq, circle, infos, eptr);
+        if (strcmp (infos[0], "c") == 0){
+        Item item = buildCircle(arq, circle, *infos, eptr);
         insereFim(listCIRCULO, item);
 
-        }else if (infos[0] == 'r' && infos[1] == NULL){
-        Item item = buildRectangle(arq, rectangle, infos, eptr);
+        }else if (strcmp (infos[0], "r") == 0){
+        Item item = buildRectangle(arq, rectangle, *infos, eptr);
         insereFim(listRETANGULO, item);
 
-        }else if (infos[0] == 't' && infos[1] == NULL){
-        Item item = buildText(arq, text, infos, eptr);
+        }else if (strcmp (infos[0], "t") == 0){
+        Item item = buildText(arq, text, *infos, eptr);
         insereFim(listTEXTO, item);
 
-        }else if (infos[0] == 'l' && infos[1] == NULL){
-        Item item = buildLine(arq, line, infos, eptr);
+        }else if (strcmp (infos[0], "l") == 0){
+        Item item = buildLine(arq, line, *infos, eptr);
         insereFim(listLINHA, item); 
         }
     }
-    //aqui começam os erros!
-    //nao consigo extrair o valores corretamente
-    //Decobrir o que ta errado com as gets
+
     Rectangle1 aux = getFirst(listRETANGULO);
+    int id = getRectID(aux);
+    printf("\nid %d\n", id);
     double x = getRectX(aux);
-    printf("\ntestex %lf\n", x);
+    printf("testex %lf\n", x);
     double y = getRectY(aux);
-    printf("\ntestey %lf\n", y);
+    printf("testey %lf\n", y);
 
     getLenght(listCIRCULO);
     getLenght(listRETANGULO);
