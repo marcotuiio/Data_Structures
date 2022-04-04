@@ -40,7 +40,8 @@ void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha){
     if (rect){
         printf("--- INICIO if rect---\n");
         Item aux1 = getFirst(rect);
-        while (aux1 != getLast(rect)){
+        Item fim1 = getLast(rect);
+        while (aux1 != fim1){
             drawRectangle(svg, aux1);
             aux1 = getNext(rect, aux1);
         }
@@ -49,7 +50,8 @@ void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha){
     if (circ){
         printf("--- INICIO if circ ---\n");
         Item aux2 = getFirst(circ);
-        while (aux2 != getLast(circ)){
+        Item fim2 = getLast(circ);
+        while (aux2 != fim2){
             drawCircle(svg, aux2);
             aux2 = getNext(circ, aux2);
         }
@@ -58,7 +60,8 @@ void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha){
     if (txt){
         printf("--- INICIO if txt ---\n");
         Item aux3 = getFirst(txt);
-        while (aux3 != getLast(txt)){
+        Item fim3 = getLast(circ);
+        while (aux3 != fim3){
             drawText(svg, aux3);
             aux3 = getNext(txt, aux3);
         }
@@ -67,7 +70,8 @@ void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha){
     if (linha){
         printf("--- INICIO if linha ---\n");
         Item aux4 = getFirst(linha);
-        while (aux4 != getLast(linha)){
+        Item fim4 = getLast(circ);
+        while (aux4 != fim4){
             drawLine(svg, aux4);
             aux4 = getNext(linha, aux4);
         }
@@ -92,6 +96,12 @@ void drawCircle(FILE * svg, Circle1 circ){
     radius = getCircRADIUS(circ);
     strcpy(fill, getRectFILL(circ));
     strcpy(stroke, getRectEDGE(circ));
+
+    printf("id %d\n", id);
+    printf("x %lf\n", x);
+    printf("y %lf\n", y);
+    printf("r %lf\n", radius);
+    printf("fill %s\n", fill);
 
     fprintf(svg, "\t<circle id=\"%d\" cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\"/>\n", id, x, y, radius, stroke, fill);
 }
