@@ -177,7 +177,6 @@ Item getFirst(Lista l){
 
     //printf("O primeiro elemento da lista é: %s\n", aux->value);
     return aux->value;
-    free(aux);
 }
 
 Item getLast(Lista l){
@@ -186,7 +185,6 @@ Item getLast(Lista l){
 
     //printf("O ultimo elemento da lista é: %s\n", aux->value);
     return aux->value;
-    free(aux);
 }
 
 void getLenght(Lista l){

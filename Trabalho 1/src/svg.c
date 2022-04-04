@@ -41,7 +41,7 @@ void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha){
         printf("--- INICIO if rect---\n");
         Item aux1 = getFirst(rect);
         Item fim1 = getLast(rect);
-        while (aux1 != fim1){
+        while (rect->next != NULL){
             drawRectangle(svg, aux1);
             aux1 = getNext(rect, aux1);
         }
