@@ -37,44 +37,33 @@ void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha){
     FILE * svg = fopen("a.svg", "w");
     fprintf(svg, "<svg xmlns=\"http://www.w3.org/2000/svg\">\n");
 
-    if (rect){
-        printf("--- INICIO if rect---\n");
-        Cell auxC1 = getFirst(rect);
-        while (auxC1 != NULL){
-            Item auxI1 = getInfo(auxC1);
-            drawRectangle(svg, auxI1);
-            auxC1 = getNext(rect, auxC1);
-        }
+    for(Cell auxC1 = getFirst(rect); auxC1 != NULL; auxC1 = getNext(rect, auxC1)) {
+
+        Item auxI1 = getInfo(auxC1);
+        drawCircle(svg, auxI1);
+
     }
 
-    if (circ){
-        printf("--- INICIO if circ ---\n");
-        Cell auxC2 = getFirst(circ);
-        while (auxC2 != NULL){
-            Item auxI2 = getInfo(auxC2);
-            drawCircle(svg, auxI2);
-            auxC2 = getNext(circ, auxC2);
-        }
+    for(Cell auxC2 = getFirst(circ); auxC2 != NULL; auxC2 = getNext(circ, auxC2)) {
+
+        Item auxI2 = getInfo(auxC2);
+        printf("%p tem os atributos: id = %d || x = %lf || y =  %lf || r = %lf\n", auxI2, getCircID(auxI2), getCircX(auxI2), getCircY(auxI2), getCircRADIUS(auxI2));
+        drawCircle(svg, auxI2);
+
     }
 
-    if (txt){
-        printf("--- INICIO if txt ---\n");
-        Cell auxC3 = getFirst(txt);
-        while (auxC3 != NULL){
-            Item auxI = getInfo(auxC3);
-            drawText(svg, auxI);
-            auxC3 = getNext(txt, auxC3);
-        }
+    for(Cell auxC3 = getFirst(txt); auxC3 != NULL; auxC3 = getNext(rect, auxC3)) {
+
+        Item auxI3 = getInfo(auxC3);
+        drawCircle(svg, auxI3);
+
     }
 
-    if (linha){
-        printf("--- INICIO if linha ---\n");
-        Cell auxC4 = getFirst(linha);
-        while (auxC4 != NULL){
-            Item auxI4 = getInfo(auxC4);
-            drawLine(svg, auxI4);
-            auxC4 = getNext(linha, auxC4);
-        }
+    for(Cell auxC4 = getFirst(linha); auxC4 != NULL; auxC4 = getNext(rect, auxC4)) {
+
+        Item auxI4 = getInfo(auxC4);
+        drawCircle(svg, auxI4);
+
     }
     
     killSvg(svg);

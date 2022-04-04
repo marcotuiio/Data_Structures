@@ -61,7 +61,7 @@ void insereFim(Lista l, Item n){
     ImpList *lista = (ImpList*) l;
 
     //Cria celula
-    celulaL *novaCelula = calloc(1, sizeof(celulaL*));
+    celulaL *novaCelula = calloc(1, sizeof(celulaL));
 
     novaCelula->value = n;  //n pode ser int, char etc, recebido com void pointer
     novaCelula->next = NULL;
@@ -186,7 +186,7 @@ Cell getLast(Lista l){
 }
 
 Cell getNext(Lista l, Cell at){
-    ImpList *aux = (ImpList*) l;
+    //ImpList *aux = (ImpList*) l;
     celulaL *lista = (celulaL*) at;
 
     return lista->next;
