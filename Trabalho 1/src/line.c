@@ -1,9 +1,10 @@
+#include "line.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #include "list.h"
-#include "line.h"
 
 struct line {
     char type[1];
@@ -16,14 +17,14 @@ struct line {
 };
 typedef struct line Linha;
 
-Line1 criaLinha(){
+Line1 criaLinha() {
     Linha *new_line = calloc(1, sizeof(Linha));
     return new_line;
 }
 
-Item buildLine(FILE *arq, Line1 l, char *infos[], char *eptr){
+Item buildLine(FILE *arq, Line1 l, char *infos[], char *eptr) {
     printf("\nInicio Build Line\n");
-    Linha *line = (Linha*) l;
+    Linha *line = (Linha *)l;
 
     strcpy(line->type, infos);
 
@@ -45,7 +46,7 @@ Item buildLine(FILE *arq, Line1 l, char *infos[], char *eptr){
     fscanf(arq, "%s", infos);
     strcpy(line->color, infos);
 
-    //strcpy(infos, "");
+    // strcpy(infos, "");
 
     printf("\nid %d\n", line->id);
     printf("x %lf\n", line->x1);
@@ -57,38 +58,38 @@ Item buildLine(FILE *arq, Line1 l, char *infos[], char *eptr){
     return line;
 }
 
-int getLineID(Line1 l){
-    Linha *line = (Linha*) l;
+int getLineID(Line1 l) {
+    Linha *line = (Linha *)l;
 
     return line->id;
 }
 
-double getLineX(Line1 l){
-    Linha *line = (Linha*) l;
+double getLineX(Line1 l) {
+    Linha *line = (Linha *)l;
 
     return line->x1;
 }
 
-double getLineY(Line1 l){
-    Linha *line = (Linha*) l;
+double getLineY(Line1 l) {
+    Linha *line = (Linha *)l;
 
     return line->y1;
 }
 
-double getLineFINALX(Line1 l){
-    Linha *line = (Linha*) l;
+double getLineFINALX(Line1 l) {
+    Linha *line = (Linha *)l;
 
     return line->x2;
 }
 
-double getLineFINALY(Line1 l){
-    Linha *line = (Linha*) l;
+double getLineFINALY(Line1 l) {
+    Linha *line = (Linha *)l;
 
     return line->y2;
 }
 
-char *getLineCOLOR(Line1 l){
-    Linha *line = (Linha*) l;
+char *getLineCOLOR(Line1 l) {
+    Linha *line = (Linha *)l;
 
     return line->color;
 }

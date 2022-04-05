@@ -1,11 +1,12 @@
+#include "text.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #include "list.h"
-#include "text.h"
 
-struct txt{
+struct txt {
     char type[1];
     int id;
     double x;
@@ -17,14 +18,14 @@ struct txt{
 };
 typedef struct txt Texto;
 
-Text1 criaTxt(){
+Text1 criaTxt() {
     Texto *new_txt = calloc(1, sizeof(Texto));
     return new_txt;
 }
 
-Item buildText(FILE *arq, Text1 txt, char *infos[], char *eptr){
+Item buildText(FILE *arq, Text1 txt, char *infos[], char *eptr) {
     printf("\nInicio Build Text\n");
-    Texto *Text = (Texto*) txt;
+    Texto *Text = (Texto *)txt;
 
     strcpy(Text->type, infos);
 
@@ -60,44 +61,44 @@ Item buildText(FILE *arq, Text1 txt, char *infos[], char *eptr){
     return Text;
 }
 
-int getTxtID(Text1 t){
-    Texto *txt = (Texto*) t;
+int getTxtID(Text1 t) {
+    Texto *txt = (Texto *)t;
 
     return txt->id;
 }
 
-double getTxtX(Text1 t){
-    Texto *txt = (Texto*) t;
+double getTxtX(Text1 t) {
+    Texto *txt = (Texto *)t;
 
     return txt->x;
 }
 
-double getTxtY(Text1 t){
-    Texto *txt = (Texto*) t;
+double getTxtY(Text1 t) {
+    Texto *txt = (Texto *)t;
 
     return txt->y;
 }
 
-double getTxtANCHOR(Text1 t){
-    Texto *txt = (Texto*) t;
+double getTxtANCHOR(Text1 t) {
+    Texto *txt = (Texto *)t;
 
     return txt->anchor;
 }
 
-char *getTxtFILL(Text1 t){
-    Texto *txt = (Texto*) t;
+char *getTxtFILL(Text1 t) {
+    Texto *txt = (Texto *)t;
 
     return txt->corp;
 }
 
-char *getTxtEDGE(Text1 t){
-    Texto *txt = (Texto*) t;
+char *getTxtEDGE(Text1 t) {
+    Texto *txt = (Texto *)t;
 
     return txt->corb;
 }
 
-char *getTxtTEXT(Text1 t){
-    Texto *txt = (Texto*) t;
+char *getTxtTEXT(Text1 t) {
+    Texto *txt = (Texto *)t;
 
     return txt->text;
 }

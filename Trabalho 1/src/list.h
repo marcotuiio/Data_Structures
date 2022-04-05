@@ -44,7 +44,7 @@ Cell getLast(Lista l);
 // * retorna o indicador do último elemento de L. Se
 // length(L)=0, retorna NULL.
 
-Cell getNext(Lista l, Item at);
+Cell getNext(Lista l, Cell at);
 // * at deve indicar um elemento existente em L.
 // * retorna o indicador do elemento de L seguinte ao elemento
 // indicado por at. Se at for o  ́ultimo elemento da lista, retorna NULL.

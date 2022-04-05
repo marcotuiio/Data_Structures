@@ -1,11 +1,12 @@
+#include "circle.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "circle.h"
 #include "list.h"
 
-struct circ{
+struct circ {
     char type[1];
     int id;
     double x;
@@ -16,14 +17,14 @@ struct circ{
 };
 typedef struct circ Circulo;
 
-Circle1 criaCirc(){
+Circle1 criaCirc() {
     Circulo *new_circ = calloc(1, sizeof(Circulo));
     return new_circ;
 }
 
-Item buildCircle(FILE *arq, Circle1 circ, char *infos[], char *eptr){
+Item buildCircle(FILE *arq, Circle1 circ, char *infos[], char *eptr) {
     printf("\nInicio Build Circle\n");
-    Circulo *circle = (Circulo*) circ;
+    Circulo *circle = (Circulo *)circ;
 
     strcpy(circle->type, infos);
 
@@ -39,13 +40,13 @@ Item buildCircle(FILE *arq, Circle1 circ, char *infos[], char *eptr){
     fscanf(arq, "%s", infos);
     circle->radius = strtod(infos, &eptr);
 
-    fscanf(arq, "%s", infos );
+    fscanf(arq, "%s", infos);
     strcpy(circle->corb, infos);
 
     fscanf(arq, "%s", infos);
     strcpy(circle->corp, infos);
 
-    //strcpy(infos, "");
+    // strcpy(infos, "");
 
     printf("\nid %d\n", circle->id);
     printf("x %lf\n", circle->x);
@@ -57,38 +58,38 @@ Item buildCircle(FILE *arq, Circle1 circ, char *infos[], char *eptr){
     return circle;
 }
 
-int getCircID(Circle1 c){
-    Circulo *circ = (Circulo*) c;
+int getCircID(Circle1 c) {
+    Circulo *circ = (Circulo *)c;
 
     return circ->id;
 }
 
-double getCircX(Circle1 c){
-    Circulo *circ = (Circulo*) c;
+double getCircX(Circle1 c) {
+    Circulo *circ = (Circulo *)c;
 
     return circ->x;
 }
 
-double getCircY(Circle1 c){
-    Circulo *circ = (Circulo*) c;
+double getCircY(Circle1 c) {
+    Circulo *circ = (Circulo *)c;
 
     return circ->y;
 }
 
-double getCircRADIUS(Circle1 c){
-    Circulo *circ = (Circulo*) c;
+double getCircRADIUS(Circle1 c) {
+    Circulo *circ = (Circulo *)c;
 
     return circ->radius;
 }
 
-char *getCircFILL(Circle1 c){
-    Circulo *circ = (Circulo*) c;
+char *getCircFILL(Circle1 c) {
+    Circulo *circ = (Circulo *)c;
 
     return circ->corp;
 }
 
-char *getcircEDGE(Circle1 c){
-    Circulo *circ = (Circulo*) c;
+char *getcircEDGE(Circle1 c) {
+    Circulo *circ = (Circulo *)c;
 
     return circ->corb;
 }

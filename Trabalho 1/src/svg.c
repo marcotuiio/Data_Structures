@@ -1,15 +1,16 @@
+#include "svg.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "svg.h"
 #include "list.h"
 
-FILE *createSvg(char *svg_path){
+FILE *createSvg(char *svg_path) {
     printf("--- INICIO CREATE SVG ---\n");
     FILE *svg = fopen(svg_path, "rw");
 
-    if(!svg){
+    if (!svg) {
         printf("Erro na criacao do SVG!!\n");
         free(svg_path);
         exit(1);
@@ -19,9 +20,9 @@ FILE *createSvg(char *svg_path){
     return svg;
 }
 
-void killSvg(FILE * svg){
+void killSvg(FILE *svg) {
     printf("--- INICIO KILL SVG ---\n");
-    if(!svg){
+    if (!svg) {
         printf("Erro na finalizacao do SVG!!\n");
         exit(1);
     }
@@ -30,42 +31,33 @@ void killSvg(FILE * svg){
     fclose(svg);
 }
 
-void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha){
+void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha) {
     printf("\n--- INICIO WRITE SVG ---\n");
-    //FILE * svg = createSvg("/home/marcotuiio/Documents/ED/Trabalho 1/src/");
-    //arrumar aqui, passar o outputDir
-    FILE * svg = fopen("a.svg", "w");
+    // FILE * svg = createSvg("/home/marcotuiio/Documents/ED/Trabalho 1/src/");
+    // arrumar aqui, passar o outputDir
+    FILE *svg = fopen("a.svg", "w");
     fprintf(svg, "<svg xmlns=\"http://www.w3.org/2000/svg\">\n");
 
-    for(Cell auxC1 = getFirst(rect); auxC1 != NULL; auxC1 = getNext(rect, auxC1)) {
-
+    for (Cell auxC1 = getFirst(rect); auxC1 != NULL; auxC1 = getNext(rect, auxC1)) {
         Item auxI1 = getInfo(auxC1);
-        drawCircle(svg, auxI1);
-
+        drawRectangle(svg, auxI1);
     }
 
-    for(Cell auxC2 = getFirst(circ); auxC2 != NULL; auxC2 = getNext(circ, auxC2)) {
-
+    for (Cell auxC2 = getFirst(circ); auxC2 != NULL; auxC2 = getNext(circ, auxC2)) {
         Item auxI2 = getInfo(auxC2);
-        printf("%p tem os atributos: id = %d || x = %lf || y =  %lf || r = %lf\n", auxI2, getCircID(auxI2), getCircX(auxI2), getCircY(auxI2), getCircRADIUS(auxI2));
         drawCircle(svg, auxI2);
-
     }
 
-    for(Cell auxC3 = getFirst(txt); auxC3 != NULL; auxC3 = getNext(rect, auxC3)) {
-
+    for (Cell auxC3 = getFirst(txt); auxC3 != NULL; auxC3 = getNext(txt, auxC3)) {
         Item auxI3 = getInfo(auxC3);
-        drawCircle(svg, auxI3);
-
+        drawText(svg, auxI3);
     }
 
-    for(Cell auxC4 = getFirst(linha); auxC4 != NULL; auxC4 = getNext(rect, auxC4)) {
-
+    for (Cell auxC4 = getFirst(linha); auxC4 != NULL; auxC4 = getNext(txt, auxC4)) {
         Item auxI4 = getInfo(auxC4);
-        drawCircle(svg, auxI4);
-
+        drawLine(svg, auxI4);
     }
-    
+
     killSvg(svg);
     free(rect);
     free(circ);
@@ -73,7 +65,7 @@ void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha){
     free(txt);
 }
 
-void drawCircle(FILE * svg, Item circ){
+void drawCircle(FILE *svg, Item circ) {
     printf("--- INICIO DRAW CIRC ---\n");
     int id;
     double x, y, radius;
@@ -86,16 +78,10 @@ void drawCircle(FILE * svg, Item circ){
     strcpy(fill, getCircFILL(circ));
     strcpy(stroke, getcircEDGE(circ));
 
-    printf("\nid %d\n", id);
-    printf("x %lf\n", x);
-    printf("y %lf\n", y);
-    printf("r %lf\n", radius);
-    printf("fill %s\n", fill);
-
     fprintf(svg, "\t<circle id=\"%d\" cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\"/>\n", id, x, y, radius, stroke, fill);
 }
 
-void drawRectangle(FILE * svg, Item rect){
+void drawRectangle(FILE *svg, Item rect) {
     printf("--- INICIO DRAW RECT ---\n");
     int id;
     double x, y, height, width;
@@ -112,7 +98,7 @@ void drawRectangle(FILE * svg, Item rect){
     fprintf(svg, "\t<rect id=\"%d\" x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"50%%\" />\n", id, x, y, width, height, stroke, fill);
 }
 
-void drawLine(FILE * svg, Item linha){
+void drawLine(FILE *svg, Item linha) {
     printf("--- INICIO DRAW LINE ---\n");
     int id;
     double x1, y1, x2, y2;
@@ -128,7 +114,7 @@ void drawLine(FILE * svg, Item linha){
     fprintf(svg, "\t<line id=\"%d\" x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" fill-opacity=\"50%%\" />\n", id, x1, y1, x2, y2, stroke);
 }
 
-void drawText(FILE * svg, Item txt){
+void drawText(FILE *svg, Item txt) {
     printf("--- INICIO DRAW TEXT ---\n");
     int id;
     double x, y, anchor;
@@ -142,6 +128,5 @@ void drawText(FILE * svg, Item txt){
     strcpy(fill, getTxtFILL(txt));
     strcpy(stroke, getTxtEDGE(txt));
 
-    fprintf(svg, "\t<text id=\"%d\" x=\"%lf\" y=\"%lf\" text-anchor=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"50%%\" >\"%s\"</>\n", id, x, y, anchor, stroke, fill, text);
+    fprintf(svg, "\t<text id=\"%d\" x=\"%lf\" y=\"%lf\" text-anchor=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"50%%\" >\"%s\"</text>\n", id, x, y, anchor, stroke, fill, text);
 }
-

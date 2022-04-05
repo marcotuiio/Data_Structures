@@ -2,14 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "system.h"
-#include "files.h"
-#include "list.h"
-#include "svg.h"
-#include "geo.h"
-#include "rectangle.h"
 #include "circle.h"
+#include "files.h"
+#include "geo.h"
 #include "line.h"
+#include "list.h"
+#include "rectangle.h"
+#include "svg.h"
+#include "system.h"
 #include "text.h"
 
 void main(int argc, char **argv) {
@@ -24,14 +24,12 @@ void main(int argc, char **argv) {
     FILE *geoFile = loadFile(pathGeo);
 
     printf("main4\n");
-    if (geoFile == NULL){
+    if (geoFile == NULL) {
         printf("Geo File NULO\n");
         return;
     }
 
-    buildGeometricForms(geoFile);
+    char *outputDir = getOutputDir(param);
 
-    //char *aux_svg = makePathSvgFile(param);
-    //printf("path svg = %s\n", aux_svg);
-
+    buildGeometricForms(geoFile, outputDir);
 }
