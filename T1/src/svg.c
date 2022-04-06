@@ -8,14 +8,15 @@
 
 FILE *createSvg(char *svg_path) {
     printf("--- INICIO CREATE SVG ---\n");
-    FILE *svg = fopen(svg_path, "rw");
+    FILE * svg = fopen("/home/marcotuiio/ED1/EDor/T1/output/t1.svg", "w");
 
-    if (!svg) {
-        printf("Erro na criacao do SVG!!\n");
-        free(svg_path);
-        exit(1);
-    }
+    // if (!svg) {
+    //     printf("Erro ao criar SVG!!\n");
+    //     free(svg_path);
+    //     exit(1);
+    // }
 
+    printf("\nCriado com Sucesso: %s\n", svg_path);
     fprintf(svg, "<svg xmlns=\"http://www.w3.org/2000/svg\">\n");
     return svg;
 }
@@ -31,12 +32,13 @@ void killSvg(FILE *svg) {
     fclose(svg);
 }
 
-void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha) {
+void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha, char *svgoutput) {
     printf("\n--- INICIO WRITE SVG ---\n");
-    // FILE * svg = createSvg("/home/marcotuiio/Documents/ED/Trabalho 1/src/");
-    // arrumar aqui, passar o outputDir
-    FILE *svg = fopen("a.svg", "w");
-    fprintf(svg, "<svg xmlns=\"http://www.w3.org/2000/svg\">\n");
+    
+    FILE *svg = createSvg(svgoutput);
+    //printf("%s\n\n", svgoutput);
+    //FILE *svg = fopen(svgoutput, "w");
+    //fprintf(svg, "<svg xmlns=\"http://www.w3.org/2000/svg\">\n");
 
     for (Cell auxC1 = getFirst(rect); auxC1 != NULL; auxC1 = getNext(rect, auxC1)) {
         Item auxI1 = getInfo(auxC1);

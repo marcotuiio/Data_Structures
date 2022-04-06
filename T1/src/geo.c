@@ -9,7 +9,7 @@
 #include "svg.h"
 #include "text.h"
 
-Lista buildGeometricForms(FILE *arq, char *output) {
+Lista buildGeometricForms(FILE *arq, char *svgoutput) {
     printf("\nInicio Build GeoForms\n");
     Lista listRETANGULO = criaLista();
     Lista listCIRCULO = criaLista();
@@ -41,7 +41,7 @@ Lista buildGeometricForms(FILE *arq, char *output) {
         }
     }
 
-    writeSvg(listRETANGULO, listCIRCULO, listTEXTO, listLINHA);
+    writeSvg(listRETANGULO, listCIRCULO, listTEXTO, listLINHA, svgoutput);
 
     // free(listCIRCULO);
     // free(listRETANGULO);

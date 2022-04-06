@@ -13,7 +13,7 @@ FILE *createSvg(char *svg_path);
 
 void killSvg(FILE * svg);
 
-void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha);
+void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha, char *svgoutput);
 
 void drawCircle(FILE * svg, Item circ);
 

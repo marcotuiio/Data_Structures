@@ -14,3 +14,5 @@ dor sofrimento e desgraça
 3- Nos arquivos de circulo, retangulo, linha e texto os valores extraidos do geo funcionam corretamente, fora dali fica tudo estranho  ====> RESOLVIDO
     * ver em geo.c
     * ver em svg.c (nas funções get)
+
+./ted -e /home/marcotuiio/ED1/EDor/T1/input -f g.geo -o /home/marcotuiio/ED1/EDor/T1/output/t1.svg -q q.qry

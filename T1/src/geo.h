@@ -6,6 +6,6 @@
 #ifndef GEO_H
 #define GEO_H
 
-Lista buildGeometricForms(FILE *arq, char *output);
+Lista buildGeometricForms(FILE *arq, char *svgoutput);
 
 #endif
