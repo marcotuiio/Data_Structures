@@ -19,7 +19,7 @@ char *buildFilePath(char *directory, char *fileName) {
     return result;
 }
 
-FILE *loadFile(char path[]) {
+FILE *loadFile(char *path) {
     printf("\nInicio load file\n");
     printf("path: %s\n", path);
     FILE * arq = fopen("/home/marcotuiio/ED1/EDor/T1/input/g.geo", "r");
