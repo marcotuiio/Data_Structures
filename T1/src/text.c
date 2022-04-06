@@ -24,7 +24,7 @@ Text1 criaTxt() {
 }
 
 Item buildText(FILE *arq, Text1 txt, char *infos[], char *eptr) {
-    printf("\nInicio Build Text\n");
+    //printf("\nInicio Build Text\n");
     Texto *Text = (Texto *)txt;
 
     strcpy(Text->type, infos);
@@ -50,13 +50,13 @@ Item buildText(FILE *arq, Text1 txt, char *infos[], char *eptr) {
     fscanf(arq, "%s", infos);
     strcpy(Text->text, infos);
 
-    printf("\nid %d\n", Text->id);
-    printf("x %lf\n", Text->x);
-    printf("y %lf\n", Text->y);
-    printf("a %lf\n", Text->anchor);
-    printf("corb %s\n", Text->corb);
-    printf("corp %s\n", Text->corp);
-    printf("txt %s\n", Text->text);
+    // printf("\nid %d\n", Text->id);
+    // printf("x %lf\n", Text->x);
+    // printf("y %lf\n", Text->y);
+    // printf("a %lf\n", Text->anchor);
+    // printf("corb %s\n", Text->corb);
+    // printf("corp %s\n", Text->corp);
+    // printf("txt %s\n", Text->text);
 
     return Text;
 }

@@ -24,7 +24,7 @@ Rectangle1 criaRec() {
 }
 
 Item buildRectangle(FILE *arq, Rectangle1 rec, char *infos[], char *eptr) {
-    printf("\nInicio Build Rectangle\n");
+    //printf("\nInicio Build Rectangle\n");
     Retangulo *rectangle = (Retangulo *)rec;
 
     strcpy(rectangle->type, infos);
@@ -51,15 +51,13 @@ Item buildRectangle(FILE *arq, Rectangle1 rec, char *infos[], char *eptr) {
     fscanf(arq, "%s", infos);
     strcpy(rectangle->corp, infos);
 
-    // strcpy(infos, "");
-
-    printf("\nid %d\n", rectangle->id);
-    printf("x %lf\n", rectangle->x);
-    printf("y %lf\n", rectangle->y);
-    printf("w %lf\n", rectangle->width);
-    printf("h %lf\n", rectangle->height);
-    printf("corb %s\n", rectangle->corb);
-    printf("corp %s\n", rectangle->corp);
+    // printf("\nid %d\n", rectangle->id);
+    // printf("x %lf\n", rectangle->x);
+    // printf("y %lf\n", rectangle->y);
+    // printf("w %lf\n", rectangle->width);
+    // printf("h %lf\n", rectangle->height);
+    // printf("corb %s\n", rectangle->corb);
+    // printf("corp %s\n", rectangle->corp);
 
     return rectangle;
 }

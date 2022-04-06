@@ -67,7 +67,7 @@ void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha, char *svgoutput) {
 }
 
 void drawCircle(FILE *svg, Item circ) {
-    printf("--- INICIO DRAW CIRC ---\n");
+    //printf("--- INICIO DRAW CIRC ---\n");
     int id;
     double x, y, radius;
     char fill[15], stroke[15];
@@ -83,7 +83,7 @@ void drawCircle(FILE *svg, Item circ) {
 }
 
 void drawRectangle(FILE *svg, Item rect) {
-    printf("--- INICIO DRAW RECT ---\n");
+    //printf("--- INICIO DRAW RECT ---\n");
     int id;
     double x, y, height, width;
     char fill[15], stroke[15];
@@ -100,7 +100,7 @@ void drawRectangle(FILE *svg, Item rect) {
 }
 
 void drawLine(FILE *svg, Item linha) {
-    printf("--- INICIO DRAW LINE ---\n");
+    //printf("--- INICIO DRAW LINE ---\n");
     int id;
     double x1, y1, x2, y2;
     char stroke[15];
@@ -116,7 +116,7 @@ void drawLine(FILE *svg, Item linha) {
 }
 
 void drawText(FILE *svg, Item txt) {
-    printf("--- INICIO DRAW TEXT ---\n");
+    //printf("--- INICIO DRAW TEXT ---\n");
     int id;
     double x, y, anchor;
     char text[100], fill[15], stroke[15];

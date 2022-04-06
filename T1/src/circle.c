@@ -23,7 +23,7 @@ Circle1 criaCirc() {
 }
 
 Item buildCircle(FILE *arq, Circle1 circ, char *infos[], char *eptr) {
-    printf("\nInicio Build Circle\n");
+    //printf("\nInicio Build Circle\n");
     Circulo *circle = (Circulo *)circ;
 
     strcpy(circle->type, infos);
@@ -46,14 +46,12 @@ Item buildCircle(FILE *arq, Circle1 circ, char *infos[], char *eptr) {
     fscanf(arq, "%s", infos);
     strcpy(circle->corp, infos);
 
-    // strcpy(infos, "");
-
-    printf("\nid %d\n", circle->id);
-    printf("x %lf\n", circle->x);
-    printf("y %lf\n", circle->y);
-    printf("r %lf\n", circle->radius);
-    printf("corb %s\n", circle->corb);
-    printf("corp %s\n", circle->corp);
+    // printf("\nid %d\n", circle->id);
+    // printf("x %lf\n", circle->x);
+    // printf("y %lf\n", circle->y);
+    // printf("r %lf\n", circle->radius);
+    // printf("corb %s\n", circle->corb);
+    // printf("corp %s\n", circle->corp);
 
     return circle;
 }
