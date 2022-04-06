@@ -9,7 +9,7 @@
 FILE *createSvg(char *svg_path) {
     printf("--- INICIO CREATE SVG ---\n");
 
-    FILE * svg = fopen(svg_path, "w");
+    FILE *svg = fopen(svg_path, "w");
 
     // if (!svg) {
     //     printf("Erro ao criar SVG!!\n");
@@ -35,7 +35,7 @@ void killSvg(FILE *svg) {
 
 void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha, char *svgoutput) {
     printf("\n--- INICIO WRITE SVG ---\n");
-    
+
     FILE *svg = createSvg(svgoutput);
 
     for (Cell auxC1 = getFirst(rect); auxC1 != NULL; auxC1 = getNext(rect, auxC1)) {
@@ -59,6 +59,7 @@ void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha, char *svgoutput) {
     }
 
     killSvg(svg);
+    
     free(rect);
     free(circ);
     free(linha);
@@ -128,5 +129,5 @@ void drawText(FILE *svg, Item txt) {
     strcpy(fill, getTxtFILL(txt));
     strcpy(stroke, getTxtEDGE(txt));
 
-    fprintf(svg, "\t<text id=\"%d\" x=\"%lf\" y=\"%lf\" text-anchor=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"50%%\" >\"%s\"</text>\n", id, x, y, anchor, stroke, fill, text);
+    fprintf(svg, "\t<text id=\"%d\" x=\"%lf\" y=\"%lf\" text-anchor=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"50%%\" >\"\"%s\"\"</text>\n", id, x, y, anchor, stroke, fill, text);
 }

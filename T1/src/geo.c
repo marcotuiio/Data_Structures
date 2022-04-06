@@ -42,9 +42,4 @@ Lista buildGeometricForms(FILE *arq, char *svgoutput) {
     }
 
     writeSvg(listRETANGULO, listCIRCULO, listTEXTO, listLINHA, svgoutput);
-
-    // free(listCIRCULO);
-    // free(listRETANGULO);
-    // free(listTEXTO);
-    // free(listLINHA);
 }
