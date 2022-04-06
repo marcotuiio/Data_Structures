@@ -15,4 +15,8 @@ dor sofrimento e desgraça
     * ver em geo.c
     * ver em svg.c (nas funções get)
 
+ ====  Tudo funciona perfeitamente agora (menos concatenar geo e qrt para gerar svg) ====
+
+ * Próximo passo: começar a implementar o .qry ;-;
+
 ./ted -e /home/marcotuiio/ED1/EDor/T1/input -f g.geo -o /home/marcotuiio/ED1/EDor/T1/output/t1.svg -q q.qry
