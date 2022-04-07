@@ -118,16 +118,24 @@ void drawLine(FILE *svg, Item linha) {
 void drawText(FILE *svg, Item txt) {
     //printf("--- INICIO DRAW TEXT ---\n");
     int id;
-    double x, y, anchor;
-    char text[100], fill[15], stroke[15];
+    char aux_anchor;
+    double x, y;
+    char text[100], fill[15], stroke[15], anchor[10];
 
     id = getTxtID(txt);
     x = getTxtX(txt);
     y = getTxtY(txt);
-    anchor = getTxtANCHOR(txt);
+    aux_anchor = getTxtANCHOR(txt);
+    if (aux_anchor == 'i'){
+        strcpy (anchor, "start");
+    } else if (aux_anchor == 'm'){
+        strcpy (anchor, "middle");
+    }else if (aux_anchor == 'f'){
+        strcpy (anchor, "end");
+    }
     strcpy(text, getTxtTEXT(txt));
     strcpy(fill, getTxtFILL(txt));
     strcpy(stroke, getTxtEDGE(txt));
 
-    fprintf(svg, "\t<text id=\"%d\" x=\"%lf\" y=\"%lf\" text-anchor=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"50%%\" >\"\"%s\"\"</text>\n", id, x, y, anchor, stroke, fill, text);
+    fprintf(svg, "\t<text id=\"%d\" x=\"%lf\" y=\"%lf\" text-anchor=\"%s\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"50%%\" >\"\"%s\"\"</text>\n", id, x, y, anchor, stroke, fill, text);
 }

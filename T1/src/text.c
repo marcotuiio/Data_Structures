@@ -11,7 +11,7 @@ struct txt {
     int id;
     double x;
     double y;
-    double anchor;
+    double anchor;  // mudar para char anchor;
     char corp[15];
     char corb[15];
     char text[100];
@@ -24,7 +24,7 @@ Text1 criaTxt() {
 }
 
 Item buildText(FILE *arq, Text1 txt, char *infos[], char *eptr) {
-    //printf("\nInicio Build Text\n");
+    // printf("\nInicio Build Text\n");
     Texto *Text = (Texto *)txt;
 
     strcpy(Text->type, infos);
@@ -39,13 +39,13 @@ Item buildText(FILE *arq, Text1 txt, char *infos[], char *eptr) {
     Text->y = strtod(infos, &eptr);
 
     fscanf(arq, "%s", infos);
-    Text->anchor = strtod(infos, &eptr);
-
-    fscanf(arq, "%s", infos);
     strcpy(Text->corb, infos);
 
     fscanf(arq, "%s", infos);
     strcpy(Text->corp, infos);
+
+    fscanf(arq, "%s", infos);
+    Text->anchor = infos;
 
     fscanf(arq, "%s", infos);
     strcpy(Text->text, infos);
@@ -79,9 +79,9 @@ double getTxtY(Text1 t) {
     return txt->y;
 }
 
-double getTxtANCHOR(Text1 t) {
+char getTxtANCHOR(Text1 t) {
     Texto *txt = (Texto *)t;
-
+    
     return txt->anchor;
 }
 

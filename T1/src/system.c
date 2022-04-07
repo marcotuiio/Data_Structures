@@ -1,9 +1,10 @@
+#include "system.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 
-#include "system.h"
 #include "files.h"
 
 struct parameters {
@@ -17,9 +18,9 @@ typedef struct parameters ParamL;
 
 Parameters *setParameters(int argc, char **argv, Parameters p) {
     printf("\nInicio set param\n");
-    ParamL *param = (ParamL *) p;
+    ParamL *param = (ParamL *)p;
 
-    //printf("argc = %d\n", argc);
+    // printf("argc = %d\n", argc);
     if (argc < 0) {
         return NULL;
     }
@@ -69,7 +70,28 @@ char *makePathGeoFile(Parameters p) {
 
 char *getOutputDir(Parameters p) {
     printf("\nInicio getOutputDir\n");
-    ParamL *param = (ParamL*) p;
+    ParamL *param = (ParamL *)p;
+    char separator[] = "/";
+    char tok[] = ".";
+    char *geo_token = strtok (param->nameGeoFile, tok);
+    char type[] = ".svg";
+
+    if (param->nameQryFile == NULL) {
+        strcat (param->outputDir, separator);
+        strcat (param->outputDir, geo_token);
+        strcat (param->outputDir, type);
+
+        return param->outputDir;
+    }
+
+    char *qry_token = strtok(param->nameQryFile, tok);
+    char *new = malloc(sizeof(param->nameGeoFile) + 10);
+    strcpy(new, geo_token);
+    strcat(new, qry_token);
+
+    strcat(param->outputDir, separator);
+    strcat(param->outputDir, new);
+    strcat(param->outputDir, type);
 
     return param->outputDir;
 }

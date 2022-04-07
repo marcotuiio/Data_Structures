@@ -27,7 +27,7 @@ double getTxtX(Text1 t);
 double getTxtY(Text1 t);
 //retorna a coordenada y de determinado texto no svg
 
-double getTxtANCHOR(Text1 t);
+char getTxtANCHOR(Text1 t);
 //retorna a coordenada da âncora de determinado texto no svg
 
 char *getTxtFILL(Text1 t);

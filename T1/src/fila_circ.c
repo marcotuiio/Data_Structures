@@ -8,7 +8,7 @@
 #define QUEUE_EMPTY INT_MIN
 
 struct queue {
-    Item *value;  // 1 3 4 5
+    Item *value;  
     int head, tail, num_entries, size;
 };
 typedef struct queue fila_circ;
