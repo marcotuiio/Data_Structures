@@ -44,7 +44,6 @@ Item buildRectangle(FILE *arq, Rectangle1 rec, char *infos[], char *eptr) {
     fscanf(arq, "%s", infos);
     rectangle->height = strtod(infos, &eptr);
 
-    // printf("deu arro aqui?\n");
     fscanf(arq, "%s", infos);
     strcpy(rectangle->corb, infos);
 

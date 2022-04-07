@@ -1,40 +1,33 @@
-t 10 140.000000 65.000000 #FFFFFF #B30000 Dentre os grandes es o primeiro
-t 11 130.309230 93.181460 #08001A #000000 Clube bem amado
-t 12 109.767498 112.853355 #FFFFFF #CC2200 As tuas gloriasVem do passado
-t 13 83.795528 120.532777 #B30000 #FFFFFF Amado clube brasileiro
-t 14 58.529394 115.691312 #000000 #08001A As tuas gloriasVem do passado
-t 15 39.379496 100.620504 #08001A #08001A De Sao Paulo tens o nome
-t 16 29.872368 79.662856 #08001A #CC2200 Dentre os grandes es o primeiro
-t 17 31.023177 58.034755 #CC2200 #CC2200 Tu es forte, tu es grande
-t 18 41.344893 40.548134 #CC2200 #08001A Dentre os grandes es o primeiro
-t 19 57.441917 30.540323 #CC2200 #000000 De Sao Paulo tens o nome
-t 20 60.392856 36.331865 #B30000 #000000 De Sao Paulo tens o nome
-t 21 46.603503 44.368738 #000000 #B30000 Que ostentas dignamente
-t 22 37.443151 59.051579 #CC2200 #B30000 Dentre os grandes es o primeiro
-t 23 36.054236 77.654246 #FFFFFF #FFFFFF Que ostentas dignamente
-t 24 43.975690 96.024310 #FFFFFF #000000 De Sao Paulo tens o nome
-t 25 60.538005 109.509445 #000000 #FFFFFF Dentre os grandes es o primeiro
-t 26 82.778704 114.112803 #FFFFFF #08001A As tuas gloriasVem do passado
-t 27 105.946894 107.594745 #000000 #B30000 i Tu es forte, tu es grande
-t 28 124.517688 90.230522 #FFFFFF #CC2200 Clube bem amado
-t 29 133.500000 65.000000 #08001A #000000 Dentre os grandes es o primeiro
-t 30 310.000000 95.000000 #000000 #08001A De Sao Paulo tens o nome
-t 31 300.309230 123.181460 #FFFFFF #000000 Clube bem amado
-t 32 279.767498 142.853355 #CC2200 #B30000 Clube bem amado
-t 33 253.795528 150.532777 #B30000 #FFFFFF Dentre os grandes es o primeiro
-t 34 228.529394 145.691312 #FFFFFF #B30000 Tu es forte, tu es grande
-t 35 209.379496 130.620504 #CC2200 #CC2200 Dentre os grandes es o primeiro
-t 36 199.872368 109.662856 #CC2200 #08001A Tu es forte, tu es grande
-t 37 201.023177 88.034755 #CC2200 #08001A Sao teus guias brasileiros
-t 38 211.344893 70.548134 #08001A #FFFFFF Que ostentas dignamente
-t 39 227.441917 60.540323 #FFFFFF #000000 Que te amam eternamente
-t 40 230.392856 66.331865 #000000 #08001A Amado clube brasileiro
-t 41 216.603503 74.368738 #B30000 #08001A De Sao Paulo tens o nome
-t 42 207.443151 89.051579 #CC2200 #B30000 De Sao Paulo tens o nome
-t 43 206.054236 107.654246 #FFFFFF #000000 Clube bem amado
-t 44 213.975690 126.024310 #08001A #08001A Oh, Tricolor
-t 45 230.538005 139.509445 #08001A #CC2200 Sao teus guias brasileiros
-t 46 252.778704 144.112803 #000000 #B30000 De Sao Paulo tens o nome
-t 47 275.946894 137.594745 #000000 #B30000 De Sao Paulo tens o nome
-t 48 294.517688 120.230522 #FFFFFF #000000 Tu es forte, tu es grande
-t 49 303.500000 95.000000 #CC2200 #08001A Salve o tricolor paulista
+t 10 115.000000 60.000000 #FFFFFF #B30000 i Dentre os grandes es o primeiro
+t 11 114.006078 70.408818 #08001A #FFFFFF i De Sao Paulo tens o nome
+t 12 111.060236 80.441435 #CC2200 #B30000 i Salve o tricolor paulista
+t 13 106.268944 89.735245 #CC2200 #B30000 i Sao teus guias brasileiros
+t 14 99.805372 97.954346 #CC2200 #000000 i De Sao Paulo tens o nome
+t 15 91.903130 104.801677 #000000 #08001A i Que te amam eternamente
+t 16 82.847826 110.029760 #000000 #08001A i Amado clube brasileiro
+t 17 72.966741 113.449636 #B30000 #FFFFFF i Tu es forte, tu es grande
+t 18 62.617005 114.937704 #08001A #000000 i De Sao Paulo tens o nome
+t 19 52.172684 114.440179 #000000 #08001A i Que te amam eternamente
+t 20 42.011262 111.975045 #CC2200 #08001A i Que ostentas dignamente
+t 21 32.500000 107.631397 #000000 #B30000 i De Sao Paulo tens o nome
+t 22 23.982660 101.566227 #FFFFFF #CC2200 i Dentre os grandes es o primeiro
+t 23 16.767080 93.998744 #000000 #000000 i Dentre os grandes es o primeiro
+t 24 11.114050 85.202459 #FFFFFF #CC2200 i Clube bem amado
+t 25 7.227886 75.495291 #CC2200 #FFFFFF i Clube bem amado
+t 26 5.249044 65.228082 #08001A #B30000 i Tu es forte, tu es grande
+t 27 5.249044 54.771918 #CC2200 #CC2200 i Clube bem amado
+t 28 7.227886 44.504709 #08001A #B30000 i Tu es forte, tu es grande
+t 29 11.114050 34.797541 #B30000 #000000 i Que te amam eternamente
+t 30 16.767080 26.001256 #CC2200 #08001A i Clube bem amado
+t 31 23.982660 18.433773 #FFFFFF #000000 i Que te amam eternamente
+t 32 32.500000 12.368603 #08001A #B30000 i Que te amam eternamente
+t 33 42.011262 8.024955 #08001A #CC2200 i As tuas gloriasVem do passado
+t 34 52.172684 5.559821 #000000 #08001A i De Sao Paulo tens o nome
+t 35 62.617005 5.062296 #B30000 #CC2200 i Tu es forte, tu es grande
+t 36 72.966741 6.550364 #FFFFFF #FFFFFF i Que te amam eternamente
+t 37 82.847826 9.970240 #FFFFFF #CC2200 i Que ostentas dignamente
+t 38 91.903130 15.198323 #000000 #CC2200 i Oh, Tricolor
+t 39 99.805372 22.045654 #08001A #CC2200 i Dentre os grandes es o primeiro
+t 40 106.268944 30.264755 #FFFFFF #000000 i Dentre os grandes es o primeiro
+t 41 111.060236 39.558565 #B30000 #CC2200 i Tu es forte, tu es grande
+t 42 114.006078 49.591182 #B30000 #B30000 i Que te amam eternamente

@@ -11,7 +11,7 @@ struct txt {
     int id;
     double x;
     double y;
-    double anchor;  // mudar para char anchor;
+    char anchor[1];
     char corp[15];
     char corb[15];
     char text[100];
@@ -45,15 +45,15 @@ Item buildText(FILE *arq, Text1 txt, char *infos[], char *eptr) {
     strcpy(Text->corp, infos);
 
     fscanf(arq, "%s", infos);
-    Text->anchor = infos;
+    strcpy(Text->anchor, infos);
 
-    fscanf(arq, "%s", infos);
+    fscanf(arq, "%[^\n]", infos);
     strcpy(Text->text, infos);
 
     // printf("\nid %d\n", Text->id);
     // printf("x %lf\n", Text->x);
     // printf("y %lf\n", Text->y);
-    // printf("a %lf\n", Text->anchor);
+    // printf("a %s\n", Text->anchor);
     // printf("corb %s\n", Text->corb);
     // printf("corp %s\n", Text->corp);
     // printf("txt %s\n", Text->text);
@@ -79,12 +79,6 @@ double getTxtY(Text1 t) {
     return txt->y;
 }
 
-char getTxtANCHOR(Text1 t) {
-    Texto *txt = (Texto *)t;
-    
-    return txt->anchor;
-}
-
 char *getTxtFILL(Text1 t) {
     Texto *txt = (Texto *)t;
 
@@ -95,6 +89,12 @@ char *getTxtEDGE(Text1 t) {
     Texto *txt = (Texto *)t;
 
     return txt->corb;
+}
+
+char *getTxtANCHOR(Text1 t) {
+    Texto *txt = (Texto *)t;
+
+    return txt->anchor;
 }
 
 char *getTxtTEXT(Text1 t) {

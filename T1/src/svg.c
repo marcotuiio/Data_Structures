@@ -59,7 +59,7 @@ void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha, char *svgoutput) {
     }
 
     killSvg(svg);
-    
+
     free(rect);
     free(circ);
     free(linha);
@@ -67,7 +67,7 @@ void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha, char *svgoutput) {
 }
 
 void drawCircle(FILE *svg, Item circ) {
-    //printf("--- INICIO DRAW CIRC ---\n");
+    // printf("--- INICIO DRAW CIRC ---\n");
     int id;
     double x, y, radius;
     char fill[15], stroke[15];
@@ -83,7 +83,7 @@ void drawCircle(FILE *svg, Item circ) {
 }
 
 void drawRectangle(FILE *svg, Item rect) {
-    //printf("--- INICIO DRAW RECT ---\n");
+    // printf("--- INICIO DRAW RECT ---\n");
     int id;
     double x, y, height, width;
     char fill[15], stroke[15];
@@ -100,7 +100,7 @@ void drawRectangle(FILE *svg, Item rect) {
 }
 
 void drawLine(FILE *svg, Item linha) {
-    //printf("--- INICIO DRAW LINE ---\n");
+    // printf("--- INICIO DRAW LINE ---\n");
     int id;
     double x1, y1, x2, y2;
     char stroke[15];
@@ -116,26 +116,27 @@ void drawLine(FILE *svg, Item linha) {
 }
 
 void drawText(FILE *svg, Item txt) {
-    //printf("--- INICIO DRAW TEXT ---\n");
+    // printf("--- INICIO DRAW TEXT ---\n");
     int id;
-    char aux_anchor;
+    char aux_anchor[1];
     double x, y;
     char text[100], fill[15], stroke[15], anchor[10];
 
     id = getTxtID(txt);
     x = getTxtX(txt);
     y = getTxtY(txt);
-    aux_anchor = getTxtANCHOR(txt);
-    if (aux_anchor == 'i'){
-        strcpy (anchor, "start");
-    } else if (aux_anchor == 'm'){
-        strcpy (anchor, "middle");
-    }else if (aux_anchor == 'f'){
-        strcpy (anchor, "end");
-    }
     strcpy(text, getTxtTEXT(txt));
     strcpy(fill, getTxtFILL(txt));
     strcpy(stroke, getTxtEDGE(txt));
 
-    fprintf(svg, "\t<text id=\"%d\" x=\"%lf\" y=\"%lf\" text-anchor=\"%s\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"50%%\" >\"\"%s\"\"</text>\n", id, x, y, anchor, stroke, fill, text);
+    strcpy(aux_anchor, getTxtANCHOR(txt));
+    if (strcmp(aux_anchor, "i") == 0) {
+        strcpy(anchor, "start");
+    } else if (strcmp(aux_anchor, "m") == 0) {
+        strcpy(anchor, "middle");
+    } else if (strcmp(aux_anchor, "f") == 0) {
+        strcpy(anchor, "end");
+    }
+
+    fprintf(svg, "\t<text id=\"%d\" x=\"%lf\" y=\"%lf\" text-anchor=\"%s\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"50%%\" >\"%s\"</text>\n", id, x, y, anchor, stroke, fill, text);
 }

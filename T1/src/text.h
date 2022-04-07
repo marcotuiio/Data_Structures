@@ -27,14 +27,14 @@ double getTxtX(Text1 t);
 double getTxtY(Text1 t);
 //retorna a coordenada y de determinado texto no svg
 
-char getTxtANCHOR(Text1 t);
-//retorna a coordenada da âncora de determinado texto no svg
-
 char *getTxtFILL(Text1 t);
 //retorna a cor de preenchimento de determinado texto no svg
 
 char *getTxtEDGE(Text1 t);
 //retorna a cor de preenchimento de determinado texto no svg
+
+char *getTxtANCHOR(Text1 t);
+//retorna a posição da âncora de determinado texto no svg (inicio, meio ou fim)
 
 char *getTxtTEXT(Text1 t);
 //retorna o texto escrito propriamente dito de determinado texto no svg

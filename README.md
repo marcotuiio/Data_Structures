@@ -15,7 +15,9 @@ dor sofrimento e desgraça
     * ver em geo.c
     * ver em svg.c (nas funções get)
 
- ====  Tudo funciona perfeitamente agora (menos concatenar geo e qrt para gerar svg) ====
+4- Concatenação de geo e qry para gerar nome do svg ===> RESOLVIDO
+
+==================================================================================================
 
  * Próximo passo: começar a implementar o .qry ;-;
 
