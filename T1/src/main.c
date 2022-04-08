@@ -2,15 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "circle.h"
-#include "files.h"
 #include "geo.h"
-#include "line.h"
-#include "list.h"
-#include "rectangle.h"
-#include "svg.h"
 #include "system.h"
-#include "text.h"
+#include "qry.h"
 
 void main(int argc, char **argv) {
     char var[100];
@@ -27,7 +21,14 @@ void main(int argc, char **argv) {
     }
 
     char *outputDir = getOutputDir(param);
-    printf("output: %s\n", outputDir);
 
     buildGeometricForms(geoFile, outputDir);
+
+    if (qryExiste(param) == 1) {
+        char *pathQry = makePathQryFile(param);
+
+        FILE *qryFile = loadFile(pathQry);
+
+        readComands(qryFile);
+    }
 }

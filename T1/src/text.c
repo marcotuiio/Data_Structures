@@ -11,9 +11,9 @@ struct txt {
     int id;
     double x;
     double y;
-    char anchor[1];
     char corp[15];
     char corb[15];
+    char anchor[1];
     char text[100];
 };
 typedef struct txt Texto;

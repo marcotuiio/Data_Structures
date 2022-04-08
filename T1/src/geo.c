@@ -2,12 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "list.h"
 #include "circle.h"
 #include "line.h"
-#include "list.h"
+#include "text.h"
 #include "rectangle.h"
 #include "svg.h"
-#include "text.h"
 
 Lista buildGeometricForms(FILE *arq, char *svgoutput) {
     printf("\nInicio Build GeoForms\n");
@@ -41,7 +41,7 @@ Lista buildGeometricForms(FILE *arq, char *svgoutput) {
             Line1 line = criaLinha();
             Item item = buildLine(arq, line, *infos, eptr);
             insereFim(listLINHA, item);
-                }
+        }
     }
 
     writeSvg(listRETANGULO, listCIRCULO, listTEXTO, listLINHA, svgoutput);

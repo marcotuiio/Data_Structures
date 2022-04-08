@@ -6,35 +6,35 @@ clear:
 	rm *.o
 	rm $(PROJECT_NAME)
 
-$(PROJECT_NAME): main.o system.o files.o geo.o list.o rectangle.o circle.o line.o text.o svg.o
-	$(EXEC) $(CFLAGS) main.o system.o files.o geo.o list.o rectangle.o circle.o line.o text.o svg.o -o $(PROJECT_NAME)
+$(PROJECT_NAME): main.o system.o geo.o qry.o list.o rectangle.o circle.o line.o text.o svg.o
+	$(EXEC) $(CFLAGS) main.o system.o geo.o qry.o list.o rectangle.o circle.o line.o text.o svg.o -o $(PROJECT_NAME)
 
-svg.o: svg.c svg.h
+svg.o: svg.c svg.h list.h
 	$(EXEC) $(CFLAGS) -c svg.c
 
 list.o: list.c list.h
 	$(EXEC) $(CFLAGS) -c list.c
 
-rectangle.o: rectangle.c rectangle.h
+rectangle.o: rectangle.c rectangle.h list.h
 	$(EXEC)	$(CFLAGS) -c rectangle.c
 
-circle.o: circle.c circle.h
+circle.o: circle.c circle.h list.h
 	$(EXEC)	$(CFLAGS) -c circle.c			
 
-line.o: line.c line.h
+line.o: line.c line.h list.h
 	$(EXEC)	$(CFLAGS) -c line.c
 
-text.o: text.c text.h
+text.o: text.c text.h list.h
 	$(EXEC)	$(CFLAGS) -c text.c
 
-geo.o: geo.c geo.h list.h
+geo.o: geo.c geo.h list.h rectangle.h circle.h line.h text.h svg.h
 	$(EXEC) $(CFLAGS) -c geo.c
 
-files.o: files.c files.h
-	$(EXEC) $(CFLAGS) -c files.c
+qry.o: qry.c qry.h
+	$(EXEC) $(CFLAGS) -c qry.c	
 
 system.o: system.c system.h
 	$(EXEC) $(CFLAGS) -c system.c
 
-main.o: main.c system.h files.h geo.h
+main.o: main.c system.h geo.h 
 	$(EXEC) $(CFLAGS) -c main.c

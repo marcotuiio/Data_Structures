@@ -5,8 +5,6 @@
 #include <string.h>
 #include <unistd.h>
 
-#include "files.h"
-
 struct parameters {
     char *outputDir;
     char *inputDir;
@@ -56,7 +54,7 @@ Parameters *createParameters(int argc, char **argv) {
     param->nameQryFile = malloc(sizeof(char *));
 
     param->inputDir = getcwd(NULL, 0);
-    param->nameGeoFile = malloc(sizeof(char *));  
+    param->nameGeoFile = malloc(sizeof(char *));
     strcpy(param->nameQryFile, "nda");
 
     return setParameters(argc, argv, param);
@@ -69,6 +67,13 @@ char *makePathGeoFile(Parameters p) {
     return buildFilePath(param->inputDir, param->nameGeoFile);
 }
 
+char *makePathQryFile(Parameters p) {
+    printf("\nInicio path geo file\n");
+    ParamL *param = (ParamL *) p;
+
+    return buildFilePath(param->inputDir, param->nameQryFile);
+}
+
 char *getOutputDir(Parameters p) {
     printf("\nInicio getOutputDir\n");
     ParamL *param = (ParamL *)p;
@@ -77,12 +82,12 @@ char *getOutputDir(Parameters p) {
     char separator[] = "/";
     char tok[] = ".";
     char type[] = ".svg";
-    char *geo_token = strtok (param->nameGeoFile, tok);
+    char *geo_token = strtok(param->nameGeoFile, tok);
 
-    if (strcmp (param->nameQryFile, "nda") == 0) {
-        strcat (param->outputDir, separator);
-        strcat (param->outputDir, geo_token);
-        strcat (param->outputDir, type);
+    if (strcmp(param->nameQryFile, "nda") == 0) {
+        strcat(param->outputDir, separator);
+        strcat(param->outputDir, geo_token);
+        strcat(param->outputDir, type);
 
         printf("New output dir: %s\n", param->outputDir);
         return param->outputDir;
@@ -98,6 +103,43 @@ char *getOutputDir(Parameters p) {
     strcat(param->outputDir, new);
     strcat(param->outputDir, type);
 
-    printf("New output dir: %s\n", param->outputDir);
+    //printf("New output dir: %s\n", param->outputDir);
     return param->outputDir;
+}
+
+char *buildFilePath(char *directory, char *fileName) {
+    printf("\nInicio Build file path\n");
+    printf("Dir: %s - File Name: %s\n", directory, fileName);
+    char separator[] = "/";
+    char *result = malloc(strlen(directory) + strlen(fileName) + 1);
+
+    strcpy(result, directory);
+    strcat(result, separator);
+    strcat(result, fileName);
+
+    // printf("\nPath geo file: %s\n", result);
+    return result;
+}
+
+FILE *loadFile(char *path) {
+    printf("\nInicio load file\n");
+    printf("Path_QRY: %s\n", path);
+    FILE *arq = fopen(path, "r");
+
+    if (arq == NULL) {
+        printf("Problemas na criação do arquivo!\n");
+        return NULL;
+    }
+
+    return arq;
+}
+
+int qryExiste (Parameters p) {
+    ParamL *param = (ParamL *)p;
+
+    if (strcmp(param->nameQryFile, "nda") == 0) {
+        return 0;
+    }
+
+    return 1;
 }
