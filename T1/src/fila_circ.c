@@ -45,7 +45,7 @@ void destroi_fila(Fila_Circular q) {
     free(fila->value);
 }
 
-bool enfila_circ(Fila_Circular q, Item x) {
+bool enfila_circ(Fila_Circular q, Item x) { //add on tail
     fila_circ *fila = (fila_circ *)q;
     // Preencho uma nova celula
     if (fila_cheia(fila)) {
@@ -60,7 +60,7 @@ bool enfila_circ(Fila_Circular q, Item x) {
     return true;
 }
 
-Item desenfila_circ(Fila_Circular q) {
+Item desenfila_circ(Fila_Circular q) { //remove on head
     fila_circ *fila = (fila_circ *)q;
     fila_circ *result = NULL;
 

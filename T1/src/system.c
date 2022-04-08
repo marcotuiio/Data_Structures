@@ -71,6 +71,9 @@ char *makePathQryFile(Parameters p) {
     printf("\nInicio path geo file\n");
     ParamL *param = (ParamL *) p;
 
+    // printf("antes %s\n", param->nameQryFile);
+    strcat(param->nameQryFile, ".qry");
+    // printf("depois %s\n", param->nameQryFile);
     return buildFilePath(param->inputDir, param->nameQryFile);
 }
 
@@ -94,7 +97,7 @@ char *getOutputDir(Parameters p) {
     }
 
     char *qry_token = strtok(param->nameQryFile, tok);
-    char *new = malloc(sizeof(param->nameGeoFile) + 10);
+    char *new = malloc(strlen(geo_token) + strlen(qry_token) + 2);
     strcpy(new, geo_token);
     strcat(new, under);
     strcat(new, qry_token);

@@ -1,6 +1,8 @@
 #ifndef FILA_CIRC_H
 #define FILA_CIRC_H
 
+#include <stdbool.h>
+
 /*
  * Uma fila  ́e uma sequência de itens (Sequencia<<Item>> a partir da qual
  * podem-se eliminar itens numa extremidade (chamado in ́ıcio da fila e na
