@@ -10,6 +10,8 @@ typedef void* Text1;
  * Texto é uma forma simples, com propriedades como sua âncora, 
  * cor de borda e de preenchimento, além da menssagem de texto em si. 
  * Pode ser escrito no formato de svg, possuindo assim um x e y no plano
+ * O texto txto é o último parâmetro docomando. Pode incluir espaços  
+ * em branco e se estende até o final da linha.
 */
 
 Text1 criaTxt();

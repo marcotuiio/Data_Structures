@@ -1,9 +1,9 @@
 #include "qry.h"
 
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdbool.h>
 
 #include "fila_circ.h"
 
@@ -20,11 +20,11 @@ void readComands(FILE *qry_dir) {
 
         if (strcmp(comando, "inp") == 0) {  // Inserir no poligono (fila insere no fim)
             printf("\n%s\n", comando);
-            inp(qry_dir, comando);
+            inp(qry_dir, comando, poligono);
 
         } else if (strcmp(comando, "rmp") == 0) {  // Remove uma coordenada do poligono (primeira da fila)
             printf("\n%s\n", comando);
-            rmp(comando);
+            rmp(comando, poligono);
 
         } else if (strcmp(comando, "pol") == 0) {  // Produz um conjunto de linhas e insere no poligono
             printf("\n%s\n", comando);
@@ -32,7 +32,7 @@ void readComands(FILE *qry_dir) {
 
         } else if (strcmp(comando, "clp") == 0) {  // Remove todas as coordenadas
             printf("\n%s\n", comando);
-            clp();
+            clp(poligono);
 
         } else if (strcmp(comando, "sel") == 0) {  // Seleciona as figuras inteiramente dentro da regiao
             printf("\n%s\n", comando);
@@ -57,18 +57,22 @@ void readComands(FILE *qry_dir) {
     }
 }
 
-void inp(FILE *arq, char *infos[]) {
+void inp(FILE *arq, char *infos[], Fila_Circular q) {
     printf("--- INICIO INP ---\n");
     int i;
 
     fscanf(arq, "%s", infos);
     i = atoi(infos);
 
+    enfila_circ(q, i);
+
     printf("%d\n", i);
 }
 
-void rmp(char *infos[]) {  // colocar fila para remover primeiro elemento
+void rmp(char *infos[], Fila_Circular q) {
     printf("--- INICIO RMP ---\n");
+
+    desenfila_circ(q);
 }
 
 void pol(FILE *arq, char *infos[], char *eptr) {
@@ -99,8 +103,10 @@ void pol(FILE *arq, char *infos[], char *eptr) {
     printf("corp %s\n", corp);
 }
 
-void clp() {  // colocar fila para dar free
+void clp(Fila_Circular q) {  // colocar fila para dar free
     printf("--- INICIO CLP ---\n");
+
+    removeTudo(q);
 }
 
 void sel(FILE *arq, char *infos[], char *eptr) {

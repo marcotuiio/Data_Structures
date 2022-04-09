@@ -23,7 +23,7 @@ FILE *createSvg(char *svg_path) {
 }
 
 void killSvg(FILE *svg) {
-    printf("\n--- INICIO KILL SVG ---\n");
+    printf("--- INICIO KILL SVG ---\n");
     if (!svg) {
         printf("Erro na finalizacao do SVG!!\n");
         exit(1);

@@ -31,4 +31,5 @@ void main(int argc, char **argv) {
 
         readComands(qryFile);
     }
+    
 }

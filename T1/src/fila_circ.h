@@ -36,7 +36,7 @@ Item desenfila_circ(Fila_Circular q);
 // * Retorna Sequencia.reti(f). Isto  ́e, retira e retorna o
 // primeiro elemento da fila.
 
-void printFila_circ(Fila_Circular q);
+void removeTudo(Fila_Circular q);
 //remove os elementos da cabeça e exibi o valor deles
 
 #endif

@@ -75,12 +75,13 @@ Item desenfila_circ(Fila_Circular q) { //remove on head
     return result;
 }
 
-void printFila_circ(Fila_Circular q) {
+void removeTudo(Fila_Circular q) {
     fila_circ *fila = (fila_circ *)q;
 
     Item cq;  // Usar 'ITEM' pois essa fila deve armazar qualquer tipo de valor
     printf("\n");
     while ((cq = desenfila_circ(fila)) != QUEUE_EMPTY) {
-        printf("q = %d\n", cq);
+        //printf("q = %d\n", cq);
+        printf("Removed\n");
     }
 }
