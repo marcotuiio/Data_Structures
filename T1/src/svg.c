@@ -53,17 +53,13 @@ void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha, char *svgoutput) {
         drawText(svg, auxI3);
     }
 
-    for (Cell auxC4 = getFirst(linha); auxC4 != NULL; auxC4 = getNext(txt, auxC4)) {
+    for (Cell auxC4 = getFirst(linha); auxC4 != NULL; auxC4 = getNext(linha, auxC4)) {
         Item auxI4 = getInfo(auxC4);
         drawLine(svg, auxI4);
     }
 
     killSvg(svg);
 
-    free(rect);
-    free(circ);
-    free(linha);
-    free(txt);
 }
 
 void drawCircle(FILE *svg, Item circ) {

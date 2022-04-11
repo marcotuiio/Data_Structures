@@ -37,7 +37,7 @@ void clp(Fila_Circular q);
 //Remove todas as coordenadas do polígono
 //corrente
 
-void sel(FILE *arq, char *infos[], char *eptr);
+void sel(FILE *arq, char *infos[], char *eptr, Lista selec, Lista r, Lista c, Lista l, Lista t);
 //Seleciona as figuras inteiramente dentro da
 //região especificada pelos parâmetros.
 //(Desconsidera seleções anteriores)
