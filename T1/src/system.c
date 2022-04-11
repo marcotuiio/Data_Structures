@@ -69,7 +69,7 @@ char *makePathGeoFile(Parameters p) {
 
 char *makePathQryFile(Parameters p) {
     printf("\nInicio path geo file\n");
-    ParamL *param = (ParamL *) p;
+    ParamL *param = (ParamL *)p;
 
     // printf("antes %s\n", param->nameQryFile);
     strcat(param->nameQryFile, ".qry");
@@ -106,7 +106,7 @@ char *getOutputDir(Parameters p) {
     strcat(param->outputDir, new);
     strcat(param->outputDir, type);
 
-    //printf("New output dir: %s\n", param->outputDir);
+    // printf("New output dir: %s\n", param->outputDir);
     return param->outputDir;
 }
 
@@ -137,7 +137,7 @@ FILE *loadFile(char *path) {
     return arq;
 }
 
-int qryExiste (Parameters p) {
+int qryExiste(Parameters p) {
     ParamL *param = (ParamL *)p;
 
     if (strcmp(param->nameQryFile, "nda") == 0) {

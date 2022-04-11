@@ -3,12 +3,12 @@
 #include <string.h>
 
 #include "geo.h"
-#include "system.h"
 #include "qry.h"
+#include "system.h"
 
 void main(int argc, char **argv) {
     char var[100];
-    FILE *qryFile = NULL;
+    FILE *qryFile;
 
     Parameters param = createParameters(argc, argv);
 
@@ -29,8 +29,9 @@ void main(int argc, char **argv) {
         qryFile = loadFile(pathQry);
 
         buildGeometricForms(geoFile, outputDir, qryFile, 1);
+
     } else {
         buildGeometricForms(geoFile, outputDir, NULL, 0);
+
     }
-    
 }

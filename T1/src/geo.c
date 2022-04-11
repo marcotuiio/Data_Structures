@@ -2,13 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "list.h"
 #include "circle.h"
 #include "line.h"
-#include "text.h"
+#include "list.h"
+#include "qry.h"
 #include "rectangle.h"
 #include "svg.h"
-#include "qry.h"
+#include "text.h"
 
 Lista buildGeometricForms(FILE *arq, char *svgoutput, FILE *qry, int existe) {
     printf("\nInicio Build GeoForms\n");
@@ -44,10 +44,12 @@ Lista buildGeometricForms(FILE *arq, char *svgoutput, FILE *qry, int existe) {
             insereFim(listLINHA, item);
         }
     }
+    
+    fclose(arq);
 
     writeSvg(listRETANGULO, listCIRCULO, listTEXTO, listLINHA, svgoutput);
 
-    if(existe == 1){
-        readComands (qry, listRETANGULO, listCIRCULO, listLINHA, listTEXTO);
+    if (existe == 1) {
+        readComands(qry, listRETANGULO, listCIRCULO, listLINHA, listTEXTO);
     }
 }
