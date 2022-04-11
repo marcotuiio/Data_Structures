@@ -8,6 +8,7 @@
 
 void main(int argc, char **argv) {
     char var[100];
+    FILE *qryFile = NULL;
 
     Parameters param = createParameters(argc, argv);
 
@@ -22,14 +23,14 @@ void main(int argc, char **argv) {
 
     char *outputDir = getOutputDir(param);
 
-    buildGeometricForms(geoFile, outputDir);
-
     if (qryExiste(param) == 1) {
         char *pathQry = makePathQryFile(param);
 
-        FILE *qryFile = loadFile(pathQry);
+        qryFile = loadFile(pathQry);
 
-        readComands(qryFile);
+        buildGeometricForms(geoFile, outputDir, qryFile, 1);
+    } else {
+        buildGeometricForms(geoFile, outputDir, NULL, 0);
     }
     
 }
