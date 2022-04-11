@@ -6,10 +6,11 @@
 #include <string.h>
 
 #include "fila_circ.h"
+#include "list.h"
+#include "system.h"
 
-void readComands(FILE *qry_dir) {
+void readComands (FILE * qry_dir, Lista r, Lista c, Lista l, Lista t) {
     printf("\n--- INICIO READ QRY ---\n");
-
     Fila_Circular poligono = criaFila(200);
 
     while (!feof(qry_dir)) {
@@ -103,7 +104,7 @@ void pol(FILE *arq, char *infos[], char *eptr) {
     printf("corp %s\n", corp);
 }
 
-void clp(Fila_Circular q) {  // colocar fila para dar free
+void clp(Fila_Circular q) {  
     printf("--- INICIO CLP ---\n");
 
     removeTudo(q);
