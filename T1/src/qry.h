@@ -3,13 +3,14 @@
 
 #include <stdio.h>
 #include "fila_circ.h"
+#include "list.h"
 
 /*
  * Tratamento dos comandos do .qry. Leitura dos dados, identificação de 
  * comando e execução da determinada função
 */
 
-void readComands (FILE * qry_dir);
+void readComands (FILE * qry_dir, Lista r, Lista c, Lista l, Lista t);
 
 void inp(FILE *arq, char *infos[], Fila_Circular q);
 //Insere no polígono corrente as coordenadas
