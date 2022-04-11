@@ -8,8 +8,9 @@
 #include "text.h"
 #include "rectangle.h"
 #include "svg.h"
+#include "qry.h"
 
-Lista buildGeometricForms(FILE *arq, char *svgoutput) {
+Lista buildGeometricForms(FILE *arq, char *svgoutput, FILE *qry, int existe) {
     printf("\nInicio Build GeoForms\n");
     Lista listRETANGULO = criaLista();
     Lista listCIRCULO = criaLista();
@@ -45,4 +46,8 @@ Lista buildGeometricForms(FILE *arq, char *svgoutput) {
     }
 
     writeSvg(listRETANGULO, listCIRCULO, listTEXTO, listLINHA, svgoutput);
+
+    if(existe == 1){
+        readComands (qry, listRETANGULO, listCIRCULO, listLINHA, listTEXTO);
+    }
 }
