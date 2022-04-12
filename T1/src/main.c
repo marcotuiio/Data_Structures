@@ -32,6 +32,5 @@ void main(int argc, char **argv) {
 
     } else {
         buildGeometricForms(geoFile, outputDir, NULL, 0);
-
     }
 }

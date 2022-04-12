@@ -14,10 +14,12 @@
 #include "system.h"
 #include "text.h"
 
-void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg) {
+void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, char *diroutput) {
     printf("\n--- INICIO READ QRY ---\n");
     Fila_Circular poligono = criaFila(200);
     Lista BancoDeDados = criaLista();
+
+    FILE *txt = createTxt(diroutput);
 
     while (!feof(qry_dir)) {
         char *comando[10][30];
@@ -25,24 +27,24 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg) {
 
         fscanf(qry_dir, "%s", comando);
 
-        if (strcmp(comando, "inp") == 0) {  // Inserir no poligono (fila insere no fim) 
+        if (strcmp(comando, "inp") == 0) {  // Inserir no poligono (fila insere no fim)
             printf("\n%s\n", comando);      // *FEITO*
             inp(qry_dir, comando, poligono);
 
         } else if (strcmp(comando, "rmp") == 0) {  // Remove uma coordenada do poligono (primeira da fila)
-            printf("\n%s\n", comando);             // *FEITO* 
+            printf("\n%s\n", comando);             // *FEITO*
             rmp(comando, poligono);
 
         } else if (strcmp(comando, "pol") == 0) {  // Produz um conjunto de linhas e insere no poligono
-            printf("\n%s\n", comando);             
+            printf("\n%s\n", comando);
             pol(qry_dir, comando, eptr);
 
         } else if (strcmp(comando, "clp") == 0) {  // Remove todas as coordenadas
-            printf("\n%s\n", comando);             // *FEITO* 
+            printf("\n%s\n", comando);             // *FEITO*
             clp(poligono);
 
         } else if (strcmp(comando, "sel") == 0) {  // Seleciona as figuras inteiramente dentro da regiao
-            printf("\n%s\n", comando);             // *FEITO* 
+            printf("\n%s\n", comando);             // *FEITO*
             sel(svg, qry_dir, comando, eptr, BancoDeDados, r, c, l, t);
 
         } else if (strcmp(comando, "sel+") == 0) {  // bla bla
@@ -50,7 +52,7 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg) {
             selplus(qry_dir, comando, eptr);
 
         } else if (strcmp(comando, "dels") == 0) {  // Remove todas as figuras selecionadas
-            printf("\n%s\n", comando);              // *FEITO*    
+            printf("\n%s\n", comando);              // *FEITO*
             dels(BancoDeDados);
 
         } else if (strcmp(comando, "dps") == 0) {  // Cria novas formas e bla bla
@@ -64,6 +66,19 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg) {
     }
 
     fclose(qry_dir);
+}
+
+FILE *createTxt(char *output) {
+    char toRemove[] = ".svg";
+    char *txtdir = malloc(strlen(output));
+    stpcpy(txtdir, strtok(output, toRemove));
+    strcat(txtdir, ".txt");
+
+    FILE *txt = fopen(txtdir, "w");
+
+    printf("\nCriado txt com sucesso: %s\n", txtdir);
+
+    return txt;
 }
 
 void inp(FILE *arq, char *infos[], Fila_Circular q) {
@@ -198,7 +213,7 @@ void sel(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista selec, Lista r, 
                 insereFim(selec, auxI4);
 
                 fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", linX1, linY1, radius, stroke, fill);
-            }      
+            }
         }
     }
 

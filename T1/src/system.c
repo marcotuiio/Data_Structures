@@ -84,13 +84,13 @@ char *getOutputDir(Parameters p) {
     char under[] = "_";
     char separator[] = "/";
     char tok[] = ".";
-    char type[] = ".svg";
+    char type_svg[] = ".svg";
     char *geo_token = strtok(param->nameGeoFile, tok);
 
     if (strcmp(param->nameQryFile, "nda") == 0) {
         strcat(param->outputDir, separator);
         strcat(param->outputDir, geo_token);
-        strcat(param->outputDir, type);
+        strcat(param->outputDir, type_svg);
 
         printf("New output dir: %s\n", param->outputDir);
         return param->outputDir;
@@ -98,13 +98,15 @@ char *getOutputDir(Parameters p) {
 
     char *qry_token = strtok(param->nameQryFile, tok);
     char *new = malloc(strlen(geo_token) + strlen(qry_token) + 2);
-    strcpy(new, geo_token);
+    char *outputDirAux =
+
+        strcpy(new, geo_token);
     strcat(new, under);
     strcat(new, qry_token);
 
     strcat(param->outputDir, separator);
     strcat(param->outputDir, new);
-    strcat(param->outputDir, type);
+    strcat(param->outputDir, type_svg);
 
     // printf("New output dir: %s\n", param->outputDir);
     return param->outputDir;

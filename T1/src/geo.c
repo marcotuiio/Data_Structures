@@ -60,4 +60,3 @@ Lista buildGeometricForms(FILE *arq, char *svgoutput, FILE *qry, int existe) {
     free(listTEXTO);
 }
 
-//readComands(qry, listRETANGULO, listCIRCULO, listLINHA, listTEXTO, svgoutput);

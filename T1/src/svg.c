@@ -12,12 +12,6 @@ FILE *createSvg(char *svg_path) {
 
     FILE *svg = fopen(svg_path, "w");
 
-    // if (!svg) {
-    //     printf("Erro ao criar SVG!!\n");
-    //     free(svg_path);
-    //     exit(1);
-    // }
-
     printf("\nCriado com Sucesso: %s\n\n", svg_path);
     fprintf(svg, "<svg xmlns=\"http://www.w3.org/2000/svg\">\n");
     return svg;
@@ -34,11 +28,11 @@ void killSvg(FILE *svg) {
     fclose(svg);
 }
 
-void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha, char *svgoutput, FILE *qry, int existe) {
+void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha, char *diroutput, FILE *qry, int existe) {
     printf("\n--- INICIO WRITE SVG ---\n");
 
-    FILE *svg = createSvg(svgoutput);
-    
+    FILE *svg = createSvg(diroutput);
+
     for (Cell auxC1 = getFirst(rect); auxC1 != NULL; auxC1 = getNext(rect, auxC1)) {
         Item auxI1 = getInfo(auxC1);
         drawRectangle(svg, auxI1);
@@ -59,12 +53,11 @@ void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha, char *svgoutput, F
         drawLine(svg, auxI4);
     }
 
-    if(existe == 1){
-       readComands(qry, rect, circ, linha, txt, svg);
+    if (existe == 1) {
+        readComands(qry, rect, circ, linha, txt, svg, diroutput);
     }
 
     killSvg(svg);
-
 }
 
 void drawCircle(FILE *svg, Item circ) {
@@ -141,4 +134,3 @@ void drawText(FILE *svg, Item txt) {
 
     fprintf(svg, "\t<text id=\"%d\" x=\"%lf\" y=\"%lf\" text-anchor=\"%s\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"50%%\" >\"%s\"</text>\n", id, x, y, anchor, stroke, fill, text);
 }
-
