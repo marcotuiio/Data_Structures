@@ -145,8 +145,10 @@ void sel(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Li
         double recHeight = getRectHEIGHT(auxI1);
         double recWidth = getRectWIDTH(auxI1);
 
-        if ((x + w) >= (recX + recWidth) && (y + h) >= (recY + recHeight)) {
-            insereFim(sR, auxI1);
+        if ((x + w >= recX) && (recX >= x)) {
+            if (y + h >= recY) && (recY >= y)) {
+                insereFim(sR, auxI1);
+            }
         }
     }
 
@@ -156,7 +158,7 @@ void sel(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Li
         double circX = getCircX(auxI2);
         double circY = getCircY(auxI2);
         double circRadius = getCircRADIUS(auxI2);
-
+       
         if ((x + w) >= (circX + circRadius) && (x + w) >= (circX - circRadius)) {
             if ((y + h) >= (circY + circRadius) && (y + h) >= (circY - circRadius)) {
                 insereFim(sC, auxI2);
