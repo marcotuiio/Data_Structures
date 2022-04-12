@@ -20,6 +20,9 @@ dor sofrimento e desgraça
 ==================================================================================================
 
  * Próximo passo: começar a implementar o .qry ;-;
+    -> fazer os comandos DPS, UPS, POL, SEL+
+    -> descobrir e arrumar erros na criação do txt pós qry
+    -> fazer tudo referente a registrar no txt
 
 ./ted -e /home/marcotuiio/ED1/EDor/T1/input -f g.geo -o /home/marcotuiio/ED1/EDor/T1/output/t1.svg -q q.qry
 
