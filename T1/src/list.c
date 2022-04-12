@@ -207,3 +207,15 @@ void getLenght(Lista l) {
     printf("\nO tamanho da lista é de %d elementos\n", contador);
     free(aux);
 }
+
+void removeAll(Lista l) {
+    ImpList *lista = (ImpList *)l;
+    celulaL *head = lista->inicio;
+    celulaL *tmp;
+
+    while (head != NULL) {
+        tmp = head;
+        head = tmp->next;
+        free(tmp);
+    }
+}

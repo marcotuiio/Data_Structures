@@ -142,16 +142,3 @@ void drawText(FILE *svg, Item txt) {
     fprintf(svg, "\t<text id=\"%d\" x=\"%lf\" y=\"%lf\" text-anchor=\"%s\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"50%%\" >\"%s\"</text>\n", id, x, y, anchor, stroke, fill, text);
 }
 
-void drawAnchors(FILE *svg, Lista sR, Lista sC, Lista sL, Lista sT) {
-
-    for (Cell auxC1 = getFirst(sR); auxC1 != NULL; auxC1 = getNext(sR, auxC1)) {
-        Item auxI1 = getInfo(auxC1);
-
-        double recX = getRectX(auxI1);
-        double recY = getRectY(auxI1);
-
-        //fprintf(svg, "\t<circle id=\"%d\" cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\"/>\n", id, x, y, radius, stroke, fill);
-
-    }
-
-}

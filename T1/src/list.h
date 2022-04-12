@@ -60,4 +60,7 @@ Item encontraCelula(Lista l, Item n); //get
 // * n deve indicar um elemento existente em L.
 // * retorna o valor do item da lista indicado por n.
 
+void removeAll(Lista l);
+// * recebe uma list e remove todos seus elementos.
+
 #endif

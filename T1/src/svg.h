@@ -30,6 +30,4 @@ void drawLine(FILE * svg, Item linha);
 
 void drawText(FILE * svg, Item txt);
 
-void drawAnchors(FILE *svg, Lista sR, Lista sC, Lista sL, Lista sT);
-
 #endif
