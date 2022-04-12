@@ -25,24 +25,24 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg) {
 
         fscanf(qry_dir, "%s", comando);
 
-        if (strcmp(comando, "inp") == 0) {  // Inserir no poligono (fila insere no fim)
-            printf("\n%s\n", comando);
+        if (strcmp(comando, "inp") == 0) {  // Inserir no poligono (fila insere no fim) 
+            printf("\n%s\n", comando);      // *FEITO*
             inp(qry_dir, comando, poligono);
 
         } else if (strcmp(comando, "rmp") == 0) {  // Remove uma coordenada do poligono (primeira da fila)
-            printf("\n%s\n", comando);
+            printf("\n%s\n", comando);             // *FEITO* 
             rmp(comando, poligono);
 
         } else if (strcmp(comando, "pol") == 0) {  // Produz um conjunto de linhas e insere no poligono
-            printf("\n%s\n", comando);
+            printf("\n%s\n", comando);             
             pol(qry_dir, comando, eptr);
 
         } else if (strcmp(comando, "clp") == 0) {  // Remove todas as coordenadas
-            printf("\n%s\n", comando);
+            printf("\n%s\n", comando);             // *FEITO* 
             clp(poligono);
 
         } else if (strcmp(comando, "sel") == 0) {  // Seleciona as figuras inteiramente dentro da regiao
-            printf("\n%s\n", comando);
+            printf("\n%s\n", comando);             // *FEITO* 
             sel(svg, qry_dir, comando, eptr, BancoDeDados, r, c, l, t);
 
         } else if (strcmp(comando, "sel+") == 0) {  // bla bla
@@ -50,7 +50,7 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg) {
             selplus(qry_dir, comando, eptr);
 
         } else if (strcmp(comando, "dels") == 0) {  // Remove todas as figuras selecionadas
-            printf("\n%s\n", comando);
+            printf("\n%s\n", comando);              // *FEITO*    
             dels(BancoDeDados);
 
         } else if (strcmp(comando, "dps") == 0) {  // Cria novas formas e bla bla
@@ -137,6 +137,8 @@ void sel(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista selec, Lista r, 
     fscanf(arq, "%s", infos);
     h = strtod(infos, &eptr);
 
+    fprintf(svg, "\t<rect x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"3%%\" />\n", x, y, w, h, stroke, fill);
+
     for (Cell auxC1 = getFirst(r); auxC1 != NULL; auxC1 = getNext(r, auxC1)) {
         Item auxI1 = getInfo(auxC1);
 
@@ -149,7 +151,7 @@ void sel(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista selec, Lista r, 
             if ((y + recY + recHeight <= h) && recY >= y) {
                 insereFim(selec, auxI1);
 
-                fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"50%%\" />\n", recX, recY, radius, stroke, fill);
+                fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", recX, recY, radius, stroke, fill);
             }
         }
     }
@@ -165,7 +167,7 @@ void sel(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista selec, Lista r, 
             if ((y + h) >= (circY + circRadius) && (h - y) >= (circY - circRadius)) {
                 insereFim(selec, auxI2);
 
-                fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"50%%\" />\n", circX, circY, radius, stroke, fill);
+                fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", circX, circY, radius, stroke, fill);
             }
         }
     }
@@ -179,7 +181,7 @@ void sel(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista selec, Lista r, 
         if ((x + w) >= (txtX) && (y + h) >= (txtY)) {
             insereFim(selec, auxI3);
 
-            fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"50%%\" />\n", txtX, txtY, radius, stroke, fill);
+            fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", txtX, txtY, radius, stroke, fill);
         }
     }
 
@@ -195,7 +197,7 @@ void sel(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista selec, Lista r, 
             if ((x + w) >= (linX2) && (y + h) >= (linY2)) {
                 insereFim(selec, auxI4);
 
-                fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"50%%\" />\n", linX1, linY1, radius, stroke, fill);
+                fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", linX1, linY1, radius, stroke, fill);
             }      
         }
     }
