@@ -36,4 +36,13 @@ double getLineFINALY(Line1 l);
 char *getLineCOLOR(Line1 l);
 //retorna a cor de determinada linha no svg
 
+void setlineCOLOR(Line1 l, char *new_color);
+//altera a cor 
+
+void setlineX(Line1 l, double dx);
+//translada em x
+
+void setlineY(Line1 l, double dy);
+//translada em y
+
 #endif

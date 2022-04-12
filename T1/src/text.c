@@ -102,3 +102,27 @@ char *getTxtTEXT(Text1 t) {
 
     return txt->text;
 }
+
+void settxtFILL(Text1 t, char *new_corp) {
+    Texto *txt = (Texto *)t;
+
+    strcpy(txt->corp, new_corp);
+}
+
+void settxtEDGE(Text1 t, char *new_corb) {
+    Texto *txt = (Texto *)t;
+
+    strcpy(txt->corb, new_corb);
+}
+
+void settxtX(Text1 t, double dx) {
+    Texto *txt = (Texto *)t;
+
+    txt->x = getTxtX(t) + dx;
+}
+
+void settxtY(Text1 t, double dy) {
+    Texto *txt = (Texto *)t;
+
+    txt->y = getTxtY(t) + dy;
+}

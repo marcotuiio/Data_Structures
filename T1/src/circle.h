@@ -36,4 +36,16 @@ char *getCircFILL(Circle1 c);
 char *getcircEDGE(Circle1 c);
 //retorna a cor de borda de determinado círculo no svg
 
+void setcircFILL(Circle1 c, char *new_corp);
+//altera a cor de preenchimento
+
+void setcircEDGE(Circle1 c, char *new_corb);
+//altera a cor da borda
+
+void setcircX(Circle1 c, double dx);
+//transalada o x
+
+void setcircY(Circle1 c, double dy);
+//translada o y
+
 #endif

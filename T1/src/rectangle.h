@@ -39,4 +39,16 @@ char* getRectFILL(Rectangle1 r);
 char* getRectEDGE(Rectangle1 r);
 //retorna a cor de borda de determinado retângulo no svg
 
+void setrectFILL(Rectangle1 r, char *new_corp);
+//altera a cor de preenchimento
+
+void setrectEDGE(Rectangle1 r, char *new_corb);
+//altera a cor da borda
+
+void setrectX(Rectangle1 r, double dx);
+//translada o x
+
+void setrectY(Rectangle1 r, double dy);
+//translada o y
+
 #endif

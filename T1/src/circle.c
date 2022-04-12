@@ -23,7 +23,7 @@ Circle1 criaCirc() {
 }
 
 Item buildCircle(FILE *arq, Circle1 circ, char *infos[], char *eptr) {
-    //printf("\nInicio Build Circle\n");
+    // printf("\nInicio Build Circle\n");
     Circulo *circle = (Circulo *)circ;
 
     strcpy(circle->type, infos);
@@ -90,4 +90,28 @@ char *getcircEDGE(Circle1 c) {
     Circulo *circ = (Circulo *)c;
 
     return circ->corb;
+}
+
+void setcircFILL(Circle1 c, char *new_corp) {
+    Circulo *circ = (Circulo *)c;
+
+    strcpy(circ->corp, new_corp);
+}
+
+void setcircEDGE(Circle1 c, char *new_corb) {
+    Circulo *circ = (Circulo *)c;
+
+    strcpy(circ->corb, new_corb);
+}
+
+void setcircX(Circle1 c, double dx) {
+    Circulo *circ = (Circulo *)c;
+
+    circ->x = getCircX(c) + dx;
+}
+
+void setcircY(Circle1 c, double dy) {
+    Circulo *circ = (Circulo *)c;
+
+    circ->y = getCircY(c) + dy;
 }

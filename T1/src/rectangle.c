@@ -61,44 +61,68 @@ Item buildRectangle(FILE *arq, Rectangle1 rec, char *infos[], char *eptr) {
     return rectangle;
 }
 
-int getRectID(Item r) {
+int getRectID(Rectangle1 r) {
     Retangulo *rect = (Retangulo *)r;
 
     return rect->id;
 }
 
-double getRectX(Item r) {
+double getRectX(Rectangle1 r) {
     Retangulo *rect = (Retangulo *)r;
 
     return rect->x;
 }
 
-double getRectY(Item r) {
+double getRectY(Rectangle1 r) {
     Retangulo *rect = (Retangulo *)r;
 
     return rect->y;
 }
 
-double getRectWIDTH(Item r) {
+double getRectWIDTH(Rectangle1 r) {
     Retangulo *rect = (Retangulo *)r;
 
     return rect->width;
 }
 
-double getRectHEIGHT(Item r) {
+double getRectHEIGHT(Rectangle1 r) {
     Retangulo *rect = (Retangulo *)r;  // lista{ retangulo1(infos) retangulo2(infos) }
 
     return rect->height;
 }
 
-char *getRectFILL(Item r) {
+char *getRectFILL(Rectangle1 r) {
     Retangulo *rect = (Retangulo *)r;
 
     return rect->corp;
 }
 
-char *getRectEDGE(Item r) {
+char *getRectEDGE(Rectangle1 r) {
     Retangulo *rect = (Retangulo *)r;
 
     return rect->corb;
+}
+
+void setrectFILL(Rectangle1 r, char *new_corp) {
+    Retangulo *rect = (Retangulo *)r;
+
+    strcpy(rect->corp, new_corp);
+}
+
+void setrectEDGE(Rectangle1 r, char *new_corb) {
+    Retangulo *rect = (Retangulo *)r;
+
+    strcpy(rect->corb, new_corb);
+}
+
+void setrectX(Rectangle1 r, double dx) {
+    Retangulo *rect = (Retangulo *)r;
+
+    rect->x = getRectX(r) + dx;
+}
+
+void setrectY(Rectangle1 r, double dy) {
+    Retangulo *rect = (Retangulo *)r;
+
+    rect->y = getRectY(r) + dy;
 }

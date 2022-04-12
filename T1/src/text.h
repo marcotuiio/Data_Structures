@@ -41,4 +41,16 @@ char *getTxtANCHOR(Text1 t);
 char *getTxtTEXT(Text1 t);
 //retorna o texto escrito propriamente dito de determinado texto no svg
 
+void settxtFILL(Text1 t, char *new_corp);
+//altera a cor de preenchimento
+
+void settxtEDGE(Text1 t, char *new_corb);
+//altara a cor da borda
+
+void settxtX(Text1 t, double dx);
+//translada o x
+
+void settxtY(Text1 t, double dy);
+//translada o y
+
 #endif

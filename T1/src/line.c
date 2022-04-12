@@ -23,7 +23,7 @@ Line1 criaLinha() {
 }
 
 Item buildLine(FILE *arq, Line1 l, char *infos[], char *eptr) {
-    //printf("\nInicio Build Line\n");
+    // printf("\nInicio Build Line\n");
     Linha *line = (Linha *)l;
 
     strcpy(line->type, infos);
@@ -90,4 +90,22 @@ char *getLineCOLOR(Line1 l) {
     Linha *line = (Linha *)l;
 
     return line->color;
+}
+
+void setlineCOLOR(Line1 l, char *new_color) {
+    Linha *line = (Linha *)l;
+
+    strcpy(line->color, new_color);
+}
+
+void setlineX(Line1 l, double dx) {
+    Linha *line = (Linha *)l;
+
+    line->x1 = getLineX(l) + dx;
+}
+
+void setlineY(Line1 l, double dy) {
+    Linha *line = (Linha *)l;
+
+    line->y1 = getLineY(l) + dy;
 }
