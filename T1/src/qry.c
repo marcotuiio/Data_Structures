@@ -145,8 +145,8 @@ void sel(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Li
         double recHeight = getRectHEIGHT(auxI1);
         double recWidth = getRectWIDTH(auxI1);
 
-        if ((x + w >= recX) && (recX >= x)) {
-            if (y + h >= recY) && (recY >= y)) {
+        if ((x + recX) + recWidth =< w) && (recX >= x)) {
+            if (y + recY) + recHeight =< h) && (recY >= y)) {
                 insereFim(sR, auxI1);
             }
         }
