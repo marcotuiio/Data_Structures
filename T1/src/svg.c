@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "list.h"
+#include "qry.h"
 
 FILE *createSvg(char *svg_path) {
     printf("--- INICIO CREATE SVG ---\n");
@@ -33,11 +34,11 @@ void killSvg(FILE *svg) {
     fclose(svg);
 }
 
-void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha, char *svgoutput) {
+void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha, char *svgoutput, FILE *qry, int existe) {
     printf("\n--- INICIO WRITE SVG ---\n");
 
     FILE *svg = createSvg(svgoutput);
-
+    
     for (Cell auxC1 = getFirst(rect); auxC1 != NULL; auxC1 = getNext(rect, auxC1)) {
         Item auxI1 = getInfo(auxC1);
         drawRectangle(svg, auxI1);
@@ -56,6 +57,10 @@ void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha, char *svgoutput) {
     for (Cell auxC4 = getFirst(linha); auxC4 != NULL; auxC4 = getNext(linha, auxC4)) {
         Item auxI4 = getInfo(auxC4);
         drawLine(svg, auxI4);
+    }
+
+    if(existe == 1){
+       readComands(qry, rect, circ, linha, txt, svg);
     }
 
     killSvg(svg);
@@ -135,4 +140,18 @@ void drawText(FILE *svg, Item txt) {
     }
 
     fprintf(svg, "\t<text id=\"%d\" x=\"%lf\" y=\"%lf\" text-anchor=\"%s\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"50%%\" >\"%s\"</text>\n", id, x, y, anchor, stroke, fill, text);
+}
+
+void drawAnchors(FILE *svg, Lista sR, Lista sC, Lista sL, Lista sT) {
+
+    for (Cell auxC1 = getFirst(sR); auxC1 != NULL; auxC1 = getNext(sR, auxC1)) {
+        Item auxI1 = getInfo(auxC1);
+
+        double recX = getRectX(auxI1);
+        double recY = getRectY(auxI1);
+
+        //fprintf(svg, "\t<circle id=\"%d\" cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\"/>\n", id, x, y, radius, stroke, fill);
+
+    }
+
 }

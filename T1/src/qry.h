@@ -8,9 +8,9 @@
 /*
  * Tratamento dos comandos do .qry. Leitura dos dados, identificação de 
  * comando e execução da determinada função
-*/
+ */
 
-void readComands (FILE * qry_dir, Lista r, Lista c, Lista l, Lista t);
+void readComands (FILE * qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg);
 
 void inp(FILE *arq, char *infos[], Fila_Circular q);
 //Insere no polígono corrente as coordenadas
@@ -37,7 +37,7 @@ void clp(Fila_Circular q);
 //Remove todas as coordenadas do polígono
 //corrente
 
-void sel(FILE *arq, char *infos[], char *eptr, Lista selec, Lista r, Lista c, Lista l, Lista t);
+void sel(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, Lista l, Lista t);
 //Seleciona as figuras inteiramente dentro da
 //região especificada pelos parâmetros.
 //(Desconsidera seleções anteriores)

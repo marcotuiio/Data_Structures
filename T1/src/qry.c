@@ -7,16 +7,20 @@
 
 #include "fila_circ.h"
 #include "list.h"
+#include "svg.h"
 #include "system.h"
 #include "text.h"
 #include "circle.h"
 #include "line.h"
 #include "rectangle.h"
 
-void readComands (FILE * qry_dir, Lista r, Lista c, Lista l, Lista t) {
+void readComands (FILE * qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg) {
     printf("\n--- INICIO READ QRY ---\n");
     Fila_Circular poligono = criaFila(200);
-    Lista selec = criaLista();
+    Lista selecRec = criaLista();
+    Lista selecCirc = criaLista();
+    Lista selecLin = criaLista();
+    Lista selecTxt = criaLista();
 
     while (!feof(qry_dir)) {
         char *comando[10][30];
@@ -42,7 +46,7 @@ void readComands (FILE * qry_dir, Lista r, Lista c, Lista l, Lista t) {
 
         } else if (strcmp(comando, "sel") == 0) {  // Seleciona as figuras inteiramente dentro da regiao
             printf("\n%s\n", comando);
-            sel(qry_dir, comando, eptr, selec, r, c, l, t);
+            sel(svg, qry_dir, comando, eptr, selecRec, selecCirc, selecLin, selecTxt, r, c, l, t);
 
         } else if (strcmp(comando, "sel+") == 0) {  // bla bla
             printf("\n%s\n", comando);
@@ -117,7 +121,7 @@ void clp(Fila_Circular q) {
     removeTudo(q);
 }
 
-void sel(FILE *arq, char *infos[], char *eptr, Lista selec, Lista r, Lista c, Lista l, Lista t) {
+void sel(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, Lista l, Lista t) {
     printf("--- INICIO SEL ---\n");
     double x, y, w, h;
 
@@ -142,7 +146,7 @@ void sel(FILE *arq, char *infos[], char *eptr, Lista selec, Lista r, Lista c, Li
         double recWidth = getRectWIDTH(auxI1);
 
         if ((x + w) >= (recX + recWidth) && (y + h) >= (recY + recHeight)) {
-            insereFim(selec, auxI1);
+            insereFim(sR, auxI1);
         }
     }
 
@@ -155,7 +159,7 @@ void sel(FILE *arq, char *infos[], char *eptr, Lista selec, Lista r, Lista c, Li
 
         if ((x + w) >= (circX + circRadius) && (x + w) >= (circX - circRadius)) {
             if ((y + h) >= (circY + circRadius) && (y + h) >= (circY - circRadius)) {
-                insereFim(selec, auxI2);
+                insereFim(sC, auxI2);
             }
         }
     }
@@ -167,7 +171,7 @@ void sel(FILE *arq, char *infos[], char *eptr, Lista selec, Lista r, Lista c, Li
         double txtY = getTxtY(auxI3);
 
         if ((x + w) >= (txtX) && (y + h) >= (txtY)) {
-            insereFim(selec, auxI3);
+            insereFim(sL, auxI3);
         }
     }
 
@@ -180,9 +184,11 @@ void sel(FILE *arq, char *infos[], char *eptr, Lista selec, Lista r, Lista c, Li
         double linY2 = getLineFINALY(auxI4);
 
         if ((x + w) >= (linX1 + linX2) && (y + h) >= (linY1 + linY2)) {
-            insereFim(selec, auxI4);
+            insereFim(sT, auxI4);
         }
     }
+
+    //drawAnchors(svg, sR, sC, sL, sT);
 
     // printf("x %lf\n", x);
     // printf("y %lf\n", y);

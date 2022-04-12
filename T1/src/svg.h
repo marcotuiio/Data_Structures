@@ -9,11 +9,18 @@
 #include "list.h"
 #include "system.h"
 
+/*
+ * Criação e elaborção de um arquivo no formato svg, desenhando formas como 
+ * retângulos, círculos, linhas e textos no mesmo.
+ */
+
+// As funções tem nome autoexplicativo. Apenas desenham no svg a forma designada.
+
 FILE *createSvg(char *svg_path);
 
 void killSvg(FILE * svg);
 
-void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha, char *svgoutput);
+void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha, char *svgoutput, FILE *qry, int existe);
 
 void drawCircle(FILE * svg, Item circ);
 
@@ -22,5 +29,7 @@ void drawRectangle(FILE * svg, Item rect);
 void drawLine(FILE * svg, Item linha);
 
 void drawText(FILE * svg, Item txt);
+
+void drawAnchors(FILE *svg, Lista sR, Lista sC, Lista sL, Lista sT);
 
 #endif

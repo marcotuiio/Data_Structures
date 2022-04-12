@@ -5,7 +5,6 @@
 #include <string.h>
 
 #include "list.h"
-#include "qry.h"
 #include "svg.h"
 #include "text.h"
 #include "circle.h"
@@ -50,13 +49,15 @@ Lista buildGeometricForms(FILE *arq, char *svgoutput, FILE *qry, int existe) {
     fclose(arq);
 
     if (existe == 1) {
-        readComands(qry, listRETANGULO, listCIRCULO, listLINHA, listTEXTO);
+        writeSvg(listRETANGULO, listCIRCULO, listTEXTO, listLINHA, svgoutput, qry, 1);
+    } else {
+        writeSvg(listRETANGULO, listCIRCULO, listTEXTO, listLINHA, svgoutput, qry, 0);
     }
-
-    writeSvg(listRETANGULO, listCIRCULO, listTEXTO, listLINHA, svgoutput);
 
     free(listRETANGULO);
     free(listCIRCULO);
     free(listLINHA);
     free(listTEXTO);
 }
+
+//readComands(qry, listRETANGULO, listCIRCULO, listLINHA, listTEXTO, svgoutput);
