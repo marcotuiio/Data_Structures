@@ -40,7 +40,7 @@ void clp(Fila_Circular q);
 // Remove todas as coordenadas do polígono
 // corrente
 
-void sel(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista selec, Lista r, Lista c, Lista l, Lista t);
+void sel(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, Lista l, Lista t);
 // Seleciona as figuras inteiramente dentro da
 // região especificada pelos parâmetros.
 //(Desconsidera seleções anteriores)
@@ -56,7 +56,7 @@ void selplus(FILE *arq, char *infos[], char *eptr);
 // suceder (na lista) àquelas selecionadas por
 // comandos anteriores.
 
-void dels(Lista selec);
+void dels(Lista sR, Lista sC, Lista sL, Lista sT);
 // Remove do “banco de dados” todas as figuras
 // selecionadas.
 
@@ -66,7 +66,7 @@ void dps(FILE *arq, char *infos[], char *eptr);
 // cujos identificadores começam em i e são
 // incrementados sequencialmente .
 
-void ups(FILE *arq, char *infos[], char *eptr);
+void ups(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Lista sL, Lista sT);
 // Altera as cores e a posição de n figuras antes
 //(se n<0) ou depois (se n>0) da última figura
 // selecionada pelo último sel ou sel+. Atribui

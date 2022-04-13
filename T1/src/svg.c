@@ -32,6 +32,8 @@ void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha, char *diroutput, F
     printf("\n--- INICIO WRITE SVG ---\n");
 
     FILE *svg = createSvg(diroutput);
+    char *diraux = malloc(strlen(diroutput));
+    strcpy(diraux, diroutput);
 
     for (Cell auxC1 = getFirst(rect); auxC1 != NULL; auxC1 = getNext(rect, auxC1)) {
         Item auxI1 = getInfo(auxC1);
@@ -54,10 +56,11 @@ void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha, char *diroutput, F
     }
 
     if (existe == 1) {
-        readComands(qry, rect, circ, linha, txt, svg, diroutput);
+        readComands(qry, rect, circ, linha, txt, svg, diraux);
     }
 
     killSvg(svg);
+
 }
 
 void drawCircle(FILE *svg, Item circ) {

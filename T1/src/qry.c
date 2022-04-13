@@ -17,7 +17,10 @@
 void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, char *diroutput) {
     printf("\n--- INICIO READ QRY ---\n");
     Fila_Circular poligono = criaFila(200);
-    Lista BancoDeDados = criaLista();
+    Lista selecRec = criaLista();
+    Lista selecCirc = criaLista();
+    Lista selecLine = criaLista();
+    Lista selecTxt = criaLista();
 
     FILE *txt = createTxt(diroutput);
 
@@ -45,7 +48,7 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, c
 
         } else if (strcmp(comando, "sel") == 0) {  // Seleciona as figuras inteiramente dentro da regiao
             printf("\n%s\n", comando);             // *FEITO*
-            sel(svg, qry_dir, comando, eptr, BancoDeDados, r, c, l, t);
+            sel(svg, qry_dir, comando, eptr, selecRec, selecCirc, selecLine, selecTxt, r, c, l, t);
 
         } else if (strcmp(comando, "sel+") == 0) {  // bla bla
             printf("\n%s\n", comando);
@@ -53,7 +56,7 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, c
 
         } else if (strcmp(comando, "dels") == 0) {  // Remove todas as figuras selecionadas
             printf("\n%s\n", comando);              // *FEITO*
-            dels(BancoDeDados);
+            dels(selecRec, selecCirc, selecLine, selecTxt);
 
         } else if (strcmp(comando, "dps") == 0) {  // Cria novas formas e bla bla
             printf("\n%s\n", comando);
@@ -61,11 +64,16 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, c
 
         } else if (strcmp(comando, "ups") == 0) {  // Altera cor ou translada as figuras selcionadas
             printf("\n%s\n", comando);
-            ups(qry_dir, comando, eptr);
+            ups(svg, qry_dir, comando, eptr, selecRec, selecCirc, selecLine, selecTxt);
         }
     }
 
     fclose(qry_dir);
+    desenfila_circ(poligono);
+    free(selecRec);
+    free(selecCirc);
+    free(selecLine);
+    free(selecTxt);
 }
 
 FILE *createTxt(char *output) {
@@ -133,7 +141,7 @@ void clp(Fila_Circular q) {
     removeTudo(q);
 }
 
-void sel(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista selec, Lista r, Lista c, Lista l, Lista t) {
+void sel(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, Lista l, Lista t) {
     printf("--- INICIO SEL ---\n");
     double x, y, w, h;
     double radius = 1.75000;
@@ -164,7 +172,7 @@ void sel(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista selec, Lista r, 
 
         if ((x + recX + recWidth <= w) && (recX >= x)) {
             if ((y + recY + recHeight <= h) && recY >= y) {
-                insereFim(selec, auxI1);
+                insereFim(sR, auxI1);
 
                 fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", recX, recY, radius, stroke, fill);
             }
@@ -180,7 +188,7 @@ void sel(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista selec, Lista r, 
 
         if ((x + w) >= (circX + circRadius) && (w - x) >= (circX - circRadius)) {
             if ((y + h) >= (circY + circRadius) && (h - y) >= (circY - circRadius)) {
-                insereFim(selec, auxI2);
+                insereFim(sC, auxI2);
 
                 fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", circX, circY, radius, stroke, fill);
             }
@@ -194,7 +202,7 @@ void sel(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista selec, Lista r, 
         double txtY = getTxtY(auxI3);
 
         if ((x + w) >= (txtX) && (y + h) >= (txtY)) {
-            insereFim(selec, auxI3);
+            insereFim(sT, auxI3);
 
             fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", txtX, txtY, radius, stroke, fill);
         }
@@ -210,7 +218,7 @@ void sel(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista selec, Lista r, 
 
         if ((x + w) >= (linX1) && (y + h) >= (linY1)) {
             if ((x + w) >= (linX2) && (y + h) >= (linY2)) {
-                insereFim(selec, auxI4);
+                insereFim(sL, auxI4);
 
                 fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", linX1, linY1, radius, stroke, fill);
             }
@@ -245,9 +253,12 @@ void selplus(FILE *arq, char *infos[], char *eptr) {
     // printf("h %lf\n", h);
 }
 
-void dels(Lista selec) {
+void dels(Lista sR, Lista sC, Lista sL, Lista sT) {
     printf("--- INICIO DELS ---\n");
-    removeAll(selec);
+    removeAll(sR);
+    removeAll(sC);
+    removeAll(sL);
+    removeAll(sT);
 }
 
 void dps(FILE *arq, char *infos[], char *eptr) {
@@ -278,7 +289,7 @@ void dps(FILE *arq, char *infos[], char *eptr) {
     // printf("corp %s\n", corp);
 }
 
-void ups(FILE *arq, char *infos[], char *eptr) {
+void ups(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Lista sL, Lista sT) {
     printf("--- INICIO DPS ---\n");
     int n;
     double dx, dy;
@@ -298,6 +309,49 @@ void ups(FILE *arq, char *infos[], char *eptr) {
 
     fscanf(arq, "%s", infos);
     n = atoi(infos);
+
+    for (Cell auxC1 = getFirst(sR); auxC1 != NULL; auxC1 = getNext(sR, auxC1)) {
+        Item auxI1 = getInfo(auxC1);
+
+        setrectEDGE(auxI1, corb);
+        setrectFILL(auxI1, corp);
+        setrectX(auxI1, dx);
+        setrectY(auxI1, dy);
+
+        drawRectangle(svg, auxI1);
+    }
+
+    for (Cell auxC2 = getFirst(sC); auxC2 != NULL; auxC2 = getNext(sC, auxC2)) {
+        Item auxI2 = getInfo(auxC2);
+
+        setcircEDGE(auxI2, corb);
+        setcircFILL(auxI2, corp);
+        setcircX(auxI2, dx);
+        setcircY(auxI2, dy);
+
+        drawCircle(svg, auxI2);
+    }
+
+    for (Cell auxC3 = getFirst(sT); auxC3 != NULL; auxC3 = getNext(sT, auxC3)) {
+        Item auxI3 = getInfo(auxC3);
+
+        settxtEDGE(auxI3, corb);
+        settxtFILL(auxI3, corp);
+        settxtX(auxI3, dx);
+        settxtY(auxI3, dy);
+
+        drawText(svg, auxI3);
+    }
+
+    for (Cell auxC4 = getFirst(sL); auxC4 != NULL; auxC4 = getNext(sL, auxC4)) {
+        Item auxI4 = getInfo(auxC4);
+
+        setlineCOLOR(auxI4, corp);
+        setlineX(auxI4, dx);
+        setlineY(auxI4, dy);
+
+        drawLine(svg, auxI4);
+    }
 
     // printf("corb %s\n", corb);
     // printf("corp %s\n", corp);
