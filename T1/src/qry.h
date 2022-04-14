@@ -15,11 +15,15 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, c
 
 FILE *createTxt(char *output);
 
-void inp(FILE *arq, char *infos[], Fila_Circular q);
+void inp(FILE *arq, char *infos[], Fila_Circular q, Lista r, Lista c, Lista l, Lista t);
 // Insere no polígono corrente as coordenadas
 // da âncora da figura identificada por i. No
 // caso de linhas, insere a extremidade de menor
 // x (se empate, de menor y)
+
+Item criaPonto(double x, double y);
+// Função auxiliar para o comando inp, cria um ponto
+// com as coordenadas desejadas
 
 void rmp(char *infos[], Fila_Circular q);
 // Remove a coordenada mais antiga inserida no

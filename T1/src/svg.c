@@ -32,8 +32,9 @@ void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha, char *diroutput, F
     printf("\n--- INICIO WRITE SVG ---\n");
 
     FILE *svg = createSvg(diroutput);
-    char *diraux = malloc(strlen(diroutput));
+    char *diraux = malloc(strlen(diroutput) + 3);
     strcpy(diraux, diroutput);
+    //printf("txt %s\n", diraux);
 
     for (Cell auxC1 = getFirst(rect); auxC1 != NULL; auxC1 = getNext(rect, auxC1)) {
         Item auxI1 = getInfo(auxC1);

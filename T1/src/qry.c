@@ -14,6 +14,12 @@
 #include "system.h"
 #include "text.h"
 
+struct pg {
+    double x;
+    double y;
+};
+typedef struct pg Ponto;
+
 void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, char *diroutput) {
     printf("\n--- INICIO READ QRY ---\n");
     Fila_Circular poligono = criaFila(200);
@@ -31,8 +37,8 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, c
         fscanf(qry_dir, "%s", comando);
 
         if (strcmp(comando, "inp") == 0) {  // Inserir no poligono (fila insere no fim)
-            printf("\n%s\n", comando);      // *FEITO*
-            inp(qry_dir, comando, poligono);
+            printf("\n%s\n", comando);
+            inp(qry_dir, comando, poligono, r, c, l, t);
 
         } else if (strcmp(comando, "rmp") == 0) {  // Remove uma coordenada do poligono (primeira da fila)
             printf("\n%s\n", comando);             // *FEITO*
@@ -62,7 +68,7 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, c
             printf("\n%s\n", comando);
             dps(qry_dir, comando, eptr);
 
-        } else if (strcmp(comando, "ups") == 0) {  // Altera cor ou translada as figuras selcionadas
+        } else if (strcmp(comando, "ups") == 0) {  // Altera cor e translada as figuras selecionadas
             printf("\n%s\n", comando);
             ups(svg, qry_dir, comando, eptr, selecRec, selecCirc, selecLine, selecTxt);
         }
@@ -89,16 +95,79 @@ FILE *createTxt(char *output) {
     return txt;
 }
 
-void inp(FILE *arq, char *infos[], Fila_Circular q) {
+void inp(FILE *arq, char *infos[], Fila_Circular q, Lista r, Lista c, Lista l, Lista t) {
     printf("--- INICIO INP ---\n");
-    int i;
+    int i, id_aux;
+    double x, y;
+    Item pnt;
 
     fscanf(arq, "%s", infos);
     i = atoi(infos);
 
-    enfila_circ(q, i);
+    for (Cell auxC1 = getFirst(r); auxC1 != NULL; auxC1 = getNext(r, auxC1)) {
+        Item auxI1 = getInfo(auxC1);
 
+        id_aux = getRectID(auxI1);
+        if (i == id_aux) {
+            x = getRectX(auxI1);
+            y = getRectY(auxI1);
+            pnt = criaPonto(x, y);
+
+            enfila_circ(q, pnt);
+        }
+    }
+
+    for (Cell auxC2 = getFirst(c); auxC2 != NULL; auxC2 = getNext(c, auxC2)) {
+        Item auxI2 = getInfo(auxC2);
+
+        id_aux = getCircID(auxI2);
+        if (i == id_aux) {
+            x = getCircX(auxI2);
+            y = getCircY(auxI2);
+            pnt = criaPonto(x, y);
+
+            enfila_circ(q, pnt);
+        }
+    }
+
+    for (Cell auxC3 = getFirst(t); auxC3 != NULL; auxC3 = getNext(t, auxC3)) {
+        Item auxI3 = getInfo(auxC3);
+
+        id_aux = getTxtID(auxI3);
+        if (i == id_aux) {
+            x = getTxtX(auxI3);
+            y = getTxtY(auxI3);
+            pnt = criaPonto(x, y);
+
+            enfila_circ(q, pnt);
+        }
+    }
+
+    for (Cell auxC4 = getFirst(l); auxC4 != NULL; auxC4 = getNext(l, auxC4)) {
+        Item auxI4 = getInfo(auxC4);
+
+        id_aux = getLineID(auxI4);
+        if (i == id_aux) {
+            x = getLineX(auxI4);
+            y = getLineY(auxI4);
+            pnt = criaPonto(x, y);
+
+            enfila_circ(q, pnt);
+        }
+    }
     // printf("%d\n", i);
+}
+
+Item criaPonto(double x, double y) {
+    Ponto *new_point = calloc(1, sizeof(Ponto));
+    
+    new_point->x = x;
+    new_point->y = y;
+
+    printf("npx %lf\n", new_point->x);
+    printf("npy %lf\n", new_point->y);
+
+    return new_point;
 }
 
 void rmp(char *infos[], Fila_Circular q) {
@@ -137,7 +206,6 @@ void pol(FILE *arq, char *infos[], char *eptr) {
 
 void clp(Fila_Circular q) {
     printf("--- INICIO CLP ---\n");
-
     removeTudo(q);
 }
 
@@ -309,6 +377,9 @@ void ups(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Li
 
     fscanf(arq, "%s", infos);
     n = atoi(infos);
+
+    // INTEGRAR N NA FUNÇÃO, POIS NÃO DEVO ALTERAR TOAS AS FIGURAS NO BANCO DE DADOS
+    //  APENAS ALGUMAS COM RELAÇÃO A N
 
     for (Cell auxC1 = getFirst(sR); auxC1 != NULL; auxC1 = getNext(sR, auxC1)) {
         Item auxI1 = getInfo(auxC1);
