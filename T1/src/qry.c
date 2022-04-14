@@ -37,7 +37,7 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, c
         fscanf(qry_dir, "%s", comando);
 
         if (strcmp(comando, "inp") == 0) {  // Inserir no poligono (fila insere no fim)
-            printf("\n%s\n", comando);
+            printf("\n%s\n", comando);      // *FEITO*
             inp(qry_dir, comando, poligono, r, c, l, t);
 
         } else if (strcmp(comando, "rmp") == 0) {  // Remove uma coordenada do poligono (primeira da fila)
@@ -66,7 +66,7 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, c
 
         } else if (strcmp(comando, "dps") == 0) {  // Cria novas formas e bla bla
             printf("\n%s\n", comando);
-            dps(qry_dir, comando, eptr);
+            dps(qry_dir, comando, eptr, selecRec, selecCirc, selecLine, selecTxt);
 
         } else if (strcmp(comando, "ups") == 0) {  // Altera cor e translada as figuras selecionadas
             printf("\n%s\n", comando);
@@ -172,7 +172,6 @@ Item criaPonto(double x, double y) {
 
 void rmp(char *infos[], Fila_Circular q) {
     printf("--- INICIO RMP ---\n");
-
     desenfila_circ(q);
 }
 
@@ -329,11 +328,12 @@ void dels(Lista sR, Lista sC, Lista sL, Lista sT) {
     removeAll(sT);
 }
 
-void dps(FILE *arq, char *infos[], char *eptr) {
+void dps(FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Lista sL, Lista sT) {
     printf("--- INICIO DPS ---\n");
     int i;
     double dx, dy;
     char corb[15], corp[15];
+    int id_aux;
 
     fscanf(arq, "%s", infos);
     i = atoi(infos);
@@ -349,6 +349,50 @@ void dps(FILE *arq, char *infos[], char *eptr) {
 
     fscanf(arq, "%s", infos);
     strcpy(corp, infos);
+
+    for (Cell auxC1 = getFirst(sR); auxC1 != NULL; auxC1 = getNext(sR, auxC1)) {
+        Item auxI1 = getInfo(auxC1);
+
+        id_aux = getRectID(auxI1);
+        if(i == id_aux){
+            i++;
+            dx = getRectX(auxI1) + dx;
+            dy = getRectY(auxI1) + dy;
+        }
+    }
+
+    for (Cell auxC2 = getFirst(sC); auxC2 != NULL; auxC2 = getNext(sC, auxC2)) {
+        Item auxI2 = getInfo(auxC2);
+
+        id_aux = getCircID(auxI2);
+        if(i == id_aux){
+            i++;
+            dx = getCircX(auxI2) + dx;
+            dy = getCircY(auxI2) + dy;
+        }
+    }
+
+    for (Cell auxC3 = getFirst(sT); auxC3 != NULL; auxC3 = getNext(sT, auxC3)) {
+        Item auxI3 = getInfo(auxC3);
+
+        id_aux = getTxtID(auxI3);
+        if(i == id_aux){
+            i++;
+            dx = getTxtX(auxI3) + dx;
+            dy = getTxtY(auxI3) + dy;
+        }
+    }
+
+    for (Cell auxC4 = getFirst(sL); auxC4 != NULL; auxC4 = getNext(sL, auxC4)) {
+        Item auxI4 = getInfo(auxC4);
+
+        id_aux = getLineID(auxI4);
+        if(i == id_aux){
+            i++;
+            dx = getLineX(auxI4) + dx;
+            dy = getLineY(auxI4) + dy;
+        }
+    }
 
     // printf("id %d\n", i);
     // printf("dx %lf\n", dx);

@@ -64,7 +64,7 @@ void dels(Lista sR, Lista sC, Lista sL, Lista sT);
 // Remove do “banco de dados” todas as figuras
 // selecionadas.
 
-void dps(FILE *arq, char *infos[], char *eptr);
+void dps(FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Lista sL, Lista sT);
 // Cria novas formas, semelhantes às
 // selecionadas, porém, transladadas de dx e dy,
 // cujos identificadores começam em i e são
