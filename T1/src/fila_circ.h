@@ -37,6 +37,6 @@ Item desenfila_circ(Fila_Circular q);
 // primeiro elemento da fila.
 
 void removeTudo(Fila_Circular q);
-//remove os elementos da cabeça e exibi o valor deles
+// * remove todos os elementos da cabeça, até que a fila esteja vazia
 
 #endif

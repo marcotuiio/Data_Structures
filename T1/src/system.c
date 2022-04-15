@@ -46,15 +46,15 @@ Parameters *setParameters(int argc, char **argv, Parameters p) {
 
 Parameters *createParameters(int argc, char **argv) {
     printf("\nInicio create param\n");
-    ParamL *param = calloc(1, sizeof(ParamL *));
+    ParamL *param = calloc(1, sizeof(ParamL));
 
-    param->outputDir = malloc(sizeof(char *));
-    param->inputDir = malloc(200);
-    param->nameGeoFile = malloc(sizeof(char *));
-    param->nameQryFile = malloc(sizeof(char *));
+    param->outputDir = malloc(400);
+    param->inputDir = malloc(400);
+    param->nameGeoFile = malloc(100);
+    param->nameQryFile = malloc(100);
 
     param->inputDir = getcwd(NULL, 0);
-    param->nameGeoFile = malloc(sizeof(char *));
+    param->nameGeoFile = malloc(100);
     strcpy(param->nameQryFile, "nda");
 
     return setParameters(argc, argv, param);
@@ -71,9 +71,7 @@ char *makePathQryFile(Parameters p) {
     printf("\nInicio path geo file\n");
     ParamL *param = (ParamL *)p;
 
-    // printf("antes %s\n", param->nameQryFile);
     strcat(param->nameQryFile, ".qry");
-    // printf("depois %s\n", param->nameQryFile);
     return buildFilePath(param->inputDir, param->nameQryFile);
 }
 
@@ -98,9 +96,8 @@ char *getOutputDir(Parameters p) {
 
     char *qry_token = strtok(param->nameQryFile, tok);
     char *new = malloc(strlen(geo_token) + strlen(qry_token) + 2);
-    char *outputDirAux =
 
-        strcpy(new, geo_token);
+    strcpy(new, geo_token);
     strcat(new, under);
     strcat(new, qry_token);
 
@@ -108,7 +105,6 @@ char *getOutputDir(Parameters p) {
     strcat(param->outputDir, new);
     strcat(param->outputDir, type_svg);
 
-    // printf("New output dir: %s\n", param->outputDir);
     return param->outputDir;
 }
 
@@ -122,7 +118,6 @@ char *buildFilePath(char *directory, char *fileName) {
     strcat(result, separator);
     strcat(result, fileName);
 
-    // printf("\nPath geo file: %s\n", result);
     return result;
 }
 

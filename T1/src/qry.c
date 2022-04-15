@@ -29,6 +29,7 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, c
     Lista selecTxt = criaLista();
 
     FILE *txt = createTxt(diroutput);
+    //printf("\n\ntxt qry %s\n\n", diroutput);
 
     while (!feof(qry_dir)) {
         char *comando[10][30];
@@ -38,43 +39,44 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, c
 
         if (strcmp(comando, "inp") == 0) {  // Inserir no poligono (fila insere no fim)
             printf("\n%s\n", comando);      // *FEITO*
-            inp(qry_dir, comando, poligono, r, c, l, t);
+            inp(txt, qry_dir, comando, poligono, r, c, l, t);
 
         } else if (strcmp(comando, "rmp") == 0) {  // Remove uma coordenada do poligono (primeira da fila)
             printf("\n%s\n", comando);             // *FEITO*
-            rmp(comando, poligono);
+            rmp(txt, comando, poligono);
 
         } else if (strcmp(comando, "pol") == 0) {  // Produz um conjunto de linhas e insere no poligono
             printf("\n%s\n", comando);
-            pol(qry_dir, comando, eptr);
+            pol(txt, qry_dir, comando, eptr);
 
         } else if (strcmp(comando, "clp") == 0) {  // Remove todas as coordenadas
             printf("\n%s\n", comando);             // *FEITO*
-            clp(poligono);
+            clp(txt, poligono);
 
         } else if (strcmp(comando, "sel") == 0) {  // Seleciona as figuras inteiramente dentro da regiao
             printf("\n%s\n", comando);             // *FEITO*
-            sel(svg, qry_dir, comando, eptr, selecRec, selecCirc, selecLine, selecTxt, r, c, l, t);
+            sel(txt, svg, qry_dir, comando, eptr, selecRec, selecCirc, selecLine, selecTxt, r, c, l, t);
 
         } else if (strcmp(comando, "sel+") == 0) {  // bla bla
             printf("\n%s\n", comando);
-            selplus(qry_dir, comando, eptr);
+            selplus(txt, qry_dir, comando, eptr);
 
         } else if (strcmp(comando, "dels") == 0) {  // Remove todas as figuras selecionadas
             printf("\n%s\n", comando);              // *FEITO*
-            dels(selecRec, selecCirc, selecLine, selecTxt);
+            dels(txt, selecRec, selecCirc, selecLine, selecTxt);
 
         } else if (strcmp(comando, "dps") == 0) {  // Cria novas formas e bla bla
             printf("\n%s\n", comando);             // *FEITO* 
-            dps(svg, qry_dir, comando, eptr, selecRec, selecCirc, selecLine, selecTxt);
+            dps(txt, svg, qry_dir, comando, eptr, selecRec, selecCirc, selecLine, selecTxt);
 
         } else if (strcmp(comando, "ups") == 0) {  // Altera cor e translada as figuras selecionadas
             printf("\n%s\n", comando);
-            ups(svg, qry_dir, comando, eptr, selecRec, selecCirc, selecLine, selecTxt);
+            ups(txt, svg, qry_dir, comando, eptr, selecRec, selecCirc, selecLine, selecTxt);
         }
     }
 
     fclose(qry_dir);
+    fclose(txt);
     free(poligono);
     free(selecRec);
     free(selecCirc);
@@ -92,10 +94,11 @@ FILE *createTxt(char *output) {
 
     printf("\nCriado txt com sucesso: %s\n", txtdir);
 
+    free(output);
     return txt;
 }
 
-void inp(FILE *arq, char *infos[], Fila_Circular q, Lista r, Lista c, Lista l, Lista t) {
+void inp(FILE *txt, FILE *arq, char *infos[], Fila_Circular q, Lista r, Lista c, Lista l, Lista t) {
     printf("--- INICIO INP ---\n");
     int i, id_aux;
     double x, y;
@@ -103,6 +106,8 @@ void inp(FILE *arq, char *infos[], Fila_Circular q, Lista r, Lista c, Lista l, L
 
     fscanf(arq, "%s", infos);
     i = atoi(infos);
+
+    fprintf(txt, "\n[*] inp\n");
 
     for (Cell auxC1 = getFirst(r); auxC1 != NULL; auxC1 = getNext(r, auxC1)) {
         Item auxI1 = getInfo(auxC1);
@@ -114,6 +119,7 @@ void inp(FILE *arq, char *infos[], Fila_Circular q, Lista r, Lista c, Lista l, L
             pnt = criaPonto(x, y);
 
             enfila_circ(q, pnt);
+            fprintf(txt, "Inserido ponto em: x = %lf, y = %lf\n", x, y);
         }
     }
 
@@ -127,6 +133,7 @@ void inp(FILE *arq, char *infos[], Fila_Circular q, Lista r, Lista c, Lista l, L
             pnt = criaPonto(x, y);
 
             enfila_circ(q, pnt);
+            fprintf(txt, "Inserido ponto em: x = %lf, y = %lf\n", x, y);
         }
     }
 
@@ -140,6 +147,7 @@ void inp(FILE *arq, char *infos[], Fila_Circular q, Lista r, Lista c, Lista l, L
             pnt = criaPonto(x, y);
 
             enfila_circ(q, pnt);
+            fprintf(txt, "Inserido ponto em: x = %lf, y = %lf\n", x, y);
         }
     }
 
@@ -153,6 +161,7 @@ void inp(FILE *arq, char *infos[], Fila_Circular q, Lista r, Lista c, Lista l, L
             pnt = criaPonto(x, y);
 
             enfila_circ(q, pnt);
+            fprintf(txt, "Inserido ponto em: x = %lf, y = %lf\n", x, y);
         }
     }
     // printf("%d\n", i);
@@ -164,18 +173,21 @@ Item criaPonto(double x, double y) {
     new_point->x = x;
     new_point->y = y;
 
-    printf("npx %lf\n", new_point->x);
-    printf("npy %lf\n", new_point->y);
+    //printf("npx %lf\n", new_point->x);
+    //printf("npy %lf\n", new_point->y);
 
     return new_point;
 }
 
-void rmp(char *infos[], Fila_Circular q) {
+void rmp(FILE *txt, char *infos[], Fila_Circular q) {
     printf("--- INICIO RMP ---\n");
     desenfila_circ(q);
+
+    fprintf(txt, "\n[*] rmp\n");
+    fprintf(txt, "Ponto de coordenadas mais antigo removido\n");
 }
 
-void pol(FILE *arq, char *infos[], char *eptr) {
+void pol(FILE *txt, FILE *arq, char *infos[], char *eptr) {
     printf("--- INICIO POL ---\n");
     int i;
     double d, e;
@@ -196,6 +208,7 @@ void pol(FILE *arq, char *infos[], char *eptr) {
     fscanf(arq, "%s", infos);
     strcpy(corp, infos);
 
+    fprintf(txt, "\n[*] pol\n");
     // printf("id %d\n", i);
     // printf("d %lf\n", d);
     // printf("e %lf\n", e);
@@ -203,12 +216,14 @@ void pol(FILE *arq, char *infos[], char *eptr) {
     // printf("corp %s\n", corp);
 }
 
-void clp(Fila_Circular q) {
+void clp(FILE *txt, Fila_Circular q) {
     printf("--- INICIO CLP ---\n");
     removeTudo(q);
+    fprintf(txt, "\n[*] clp\n");
+    fprintf(txt, "Todas as coordenadas do polígono corrente removidas\n");
 }
 
-void sel(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, Lista l, Lista t) {
+void sel(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, Lista l, Lista t) {
     printf("--- INICIO SEL ---\n");
     double x, y, w, h;
     double radius = 1.75000;
@@ -228,6 +243,8 @@ void sel(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Li
     h = strtod(infos, &eptr);
 
     fprintf(svg, "\t<rect x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"3%%\" />\n", x, y, w, h, stroke, fill);
+    fprintf(txt, "\n[*] sel\n");
+    fprintf(txt, "Retângulo de seleção: x = %lf, y = %lf, h = %lf, w = %lf, stroke = %s\n", x, y, h, w, stroke);
 
     for (Cell auxC1 = getFirst(r); auxC1 != NULL; auxC1 = getNext(r, auxC1)) {
         Item auxI1 = getInfo(auxC1);
@@ -237,11 +254,12 @@ void sel(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Li
         double recHeight = getRectHEIGHT(auxI1);
         double recWidth = getRectWIDTH(auxI1);
 
-        if ((x + recX + recWidth <= w) && (recX >= x)) {
-            if ((y + recY + recHeight <= h) && recY >= y) {
+        if (((x + w) >= (recX + recWidth)) && (recX >= x)) {
+            if (((y + h) >= (recY + recHeight)) && (recY >= y)) {
                 insereFim(sR, auxI1);
 
                 fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", recX, recY, radius, stroke, fill);
+                fprintf(txt, "Selecionado: Retângulo x = %lf, y = %lf, height = %lf, width = %lf\n", recX, recY, recHeight, recWidth);
             }
         }
     }
@@ -253,11 +271,12 @@ void sel(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Li
         double circY = getCircY(auxI2);
         double circRadius = getCircRADIUS(auxI2);
 
-        if ((x + w) >= (circX + circRadius) && (w - x) >= (circX - circRadius)) {
-            if ((y + h) >= (circY + circRadius) && (h - y) >= (circY - circRadius)) {
+        if ((x + w) >= (circX + circRadius) && (x) <= (circX - circRadius)) {
+            if ((y + h) >= (circY + circRadius) && (y) <= (circY - circRadius)) {
                 insereFim(sC, auxI2);
 
                 fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", circX, circY, radius, stroke, fill);
+                fprintf(txt, "Selecionado: Círculo x = %lf, y = %lf, radius = %lf\n", circX, circY, circRadius);
             }
         }
     }
@@ -272,6 +291,7 @@ void sel(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Li
             insereFim(sT, auxI3);
 
             fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", txtX, txtY, radius, stroke, fill);
+            fprintf(txt, "Selecionado: Texto x = %lf, y = %lf\n", txtX, txtY);
         }
     }
 
@@ -288,6 +308,7 @@ void sel(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Li
                 insereFim(sL, auxI4);
 
                 fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", linX1, linY1, radius, stroke, fill);
+                fprintf(txt, "Selecionado: Linha x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf\n", linX1, linY1, linX2, linY2);
             }
         }
     }
@@ -298,7 +319,7 @@ void sel(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Li
     // printf("h %lf\n", h);
 }
 
-void selplus(FILE *arq, char *infos[], char *eptr) {
+void selplus(FILE *txt, FILE *arq, char *infos[], char *eptr) {
     printf("--- INICIO SEL+ ---\n");
     double x, y, w, h;
 
@@ -314,21 +335,25 @@ void selplus(FILE *arq, char *infos[], char *eptr) {
     fscanf(arq, "%s", infos);
     h = strtod(infos, &eptr);
 
+    fprintf(txt, "\n[*] sel+\n");
     // printf("x %lf\n", x);
     // printf("y %lf\n", y);
     // printf("w %lf\n", w);
     // printf("h %lf\n", h);
 }
 
-void dels(Lista sR, Lista sC, Lista sL, Lista sT) {
+void dels(FILE *txt, Lista sR, Lista sC, Lista sL, Lista sT) {
     printf("--- INICIO DELS ---\n");
     removeAll(sR);
     removeAll(sC);
     removeAll(sL);
     removeAll(sT);
+
+    fprintf(txt, "\n[*] dels\n");
+    fprintf(txt, "Removidas todas as figuras selecionadas do Banco de Dados\n");
 }
 
-void dps(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Lista sL, Lista sT) {
+void dps(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Lista sL, Lista sT) {
     printf("--- INICIO DPS ---\n");
     int i;
     double dx, dy, aux1, aux2;
@@ -350,6 +375,8 @@ void dps(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Li
     fscanf(arq, "%s", infos);
     strcpy(corp, infos);
 
+    fprintf(txt, "\n[*] dps\n");
+
     for (Cell auxC1 = getFirst(sR); auxC1 != NULL; auxC1 = getNext(sR, auxC1)) {
         Item auxI1 = getInfo(auxC1);
 
@@ -359,7 +386,8 @@ void dps(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Li
         aux2 = getRectWIDTH(auxI1);
 
         fprintf(svg, "\t<rect id=\"%d\" x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"40%%\" />\n", i, final_dx, final_dy, aux2, aux1, corb, corp);
-        
+        fprintf(txt, "Criado retângulo: id = %d, x = %lf, y = %lf, w = %lf, h = %lf, stroke = %s, fill = %s\n", i, final_dx, final_dy, aux2, aux1, corb, corp);
+
         i++;
     }
 
@@ -371,6 +399,7 @@ void dps(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Li
         aux1 = getCircRADIUS(auxI2);
         
         fprintf(svg, "\t<circle id=\"%d\" cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"40%%\" />\n", i, final_dx, final_dy, aux1, corb, corp);
+        fprintf(txt, "Criado Círculo: id = %d, x = %lf, y = %lf, r = %lf, stroke = %s, fill = %s\n", i, final_dx, final_dy, aux1, corb, corp);
 
         i++;
     }
@@ -384,6 +413,7 @@ void dps(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Li
         strcpy(aux4, getTxtANCHOR(auxI3));
 
         fprintf(svg, "\t<text id=\"%d\" x=\"%lf\" y=\"%lf\" text-anchor=\"%s\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"40%%\" >\"%s\"</text>\n", i, final_dx, final_dy, aux4, corb, corp, aux3);
+        fprintf(txt, "Criado Texto: id = %d, x = %lf, y = %lf, stroke = %s, fill = %s\n", i, final_dx, final_dy, corb, corp);
 
         i++;        
     }
@@ -397,6 +427,7 @@ void dps(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Li
         aux2 = getLineFINALY(auxI4) + dy;
 
         fprintf(svg, "\t<line id=\"%d\" x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" fill-opacity=\"50%%\" />\n", i, final_dx, final_dy, aux1, aux2, corb);
+        fprintf(txt, "Criada Linha: id = %d, x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf, color = %s\n", i, final_dx, final_dy, aux1, aux2, corb);
 
         i++;
     }
@@ -408,7 +439,7 @@ void dps(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Li
     // printf("corp %s\n", corp);
 }
 
-void ups(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Lista sL, Lista sT) {
+void ups(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Lista sL, Lista sT) {
     printf("--- INICIO DPS ---\n");
     int n;
     double dx, dy;
@@ -429,6 +460,8 @@ void ups(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Li
     fscanf(arq, "%s", infos);
     n = atoi(infos);
 
+    fprintf(txt, "\n[*] ups\n");
+
     // INTEGRAR N NA FUNÇÃO, POIS NÃO DEVO ALTERAR TOAS AS FIGURAS NO BANCO DE DADOS
     //  APENAS ALGUMAS COM RELAÇÃO A N
 
@@ -441,6 +474,7 @@ void ups(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Li
         setrectY(auxI1, dy);
 
         drawRectangle(svg, auxI1);
+        fprintf(txt, "Retângulo atualizado: dx = %lf, dy = %lf, stroke = %s, fill = %s\n", dx, dy, corb, corp);
     }
 
     for (Cell auxC2 = getFirst(sC); auxC2 != NULL; auxC2 = getNext(sC, auxC2)) {
@@ -452,6 +486,7 @@ void ups(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Li
         setcircY(auxI2, dy);
 
         drawCircle(svg, auxI2);
+        fprintf(txt, "Círculo atualizado: dx = %lf, dy = %lf, stroke = %s, fill = %s\n", dx, dy, corb, corp);
     }
 
     for (Cell auxC3 = getFirst(sT); auxC3 != NULL; auxC3 = getNext(sT, auxC3)) {
@@ -463,16 +498,18 @@ void ups(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Li
         settxtY(auxI3, dy);
 
         drawText(svg, auxI3);
+        fprintf(txt, "Texto atualizado: dx = %lf, dy = %lf, stroke = %s, fill = %s\n", dx, dy, corb, corp);
     }
 
     for (Cell auxC4 = getFirst(sL); auxC4 != NULL; auxC4 = getNext(sL, auxC4)) {
         Item auxI4 = getInfo(auxC4);
 
-        setlineCOLOR(auxI4, corp);
+        setlineCOLOR(auxI4, corb);
         setlineX(auxI4, dx);
         setlineY(auxI4, dy);
 
         drawLine(svg, auxI4);
+        fprintf(txt, "Linha atualizada: dx = %lf, dy = %lf, color = %s\n", dx, dy, corb);
     }
 
     // printf("corb %s\n", corb);

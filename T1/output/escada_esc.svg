@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+	<rect id="5" x="15.000000" y="15.000000" width="7.000000" height="2.000000" stroke="#00ff00" fill="#ff00ff" fill-opacity="50%" />
+	<rect id="6" x="22.000000" y="15.000000" width="7.000000" height="3.500000" stroke="#00ff00" fill="#ff00ff" fill-opacity="50%" />
+	<rect id="7" x="29.000000" y="15.000000" width="7.000000" height="5.000000" stroke="#00ff00" fill="#ff00ff" fill-opacity="50%" />
+	<rect id="8" x="36.000000" y="15.000000" width="7.000000" height="6.500000" stroke="#00ff00" fill="#ff00ff" fill-opacity="50%" />
+	<rect id="9" x="43.000000" y="15.000000" width="7.000000" height="8.000000" stroke="#00ff00" fill="#ff00ff" fill-opacity="50%" />
+	<rect id="10" x="50.000000" y="15.000000" width="7.000000" height="9.500000" stroke="#00ff00" fill="#ff00ff" fill-opacity="50%" />
+	<rect id="11" x="57.000000" y="15.000000" width="7.000000" height="11.000000" stroke="#00ff00" fill="#ff00ff" fill-opacity="50%" />
+	<rect id="12" x="64.000000" y="15.000000" width="7.000000" height="12.500000" stroke="#00ff00" fill="#ff00ff" fill-opacity="50%" />
+	<rect id="13" x="71.000000" y="15.000000" width="7.000000" height="14.000000" stroke="#00ff00" fill="#ff00ff" fill-opacity="50%" />
+	<rect id="14" x="78.000000" y="15.000000" width="7.000000" height="15.500000" stroke="#00ff00" fill="#ff00ff" fill-opacity="50%" />
+	<rect id="15" x="85.000000" y="15.000000" width="7.000000" height="17.000000" stroke="#00ff00" fill="#ff00ff" fill-opacity="50%" />
+	<rect id="16" x="92.000000" y="15.000000" width="7.000000" height="18.500000" stroke="#00ff00" fill="#ff00ff" fill-opacity="50%" />
+	<rect id="17" x="99.000000" y="15.000000" width="7.000000" height="20.000000" stroke="#00ff00" fill="#ff00ff" fill-opacity="50%" />
+	<rect id="18" x="106.000000" y="15.000000" width="7.000000" height="21.500000" stroke="#00ff00" fill="#ff00ff" fill-opacity="50%" />
+	<rect id="19" x="113.000000" y="15.000000" width="7.000000" height="23.000000" stroke="#00ff00" fill="#ff00ff" fill-opacity="50%" />
+	<rect id="20" x="120.000000" y="15.000000" width="7.000000" height="24.500000" stroke="#00ff00" fill="#ff00ff" fill-opacity="50%" />
+	<rect id="21" x="127.000000" y="15.000000" width="7.000000" height="26.000000" stroke="#00ff00" fill="#ff00ff" fill-opacity="50%" />
+	<rect id="22" x="134.000000" y="15.000000" width="7.000000" height="27.500000" stroke="#00ff00" fill="#ff00ff" fill-opacity="50%" />
+	<rect id="23" x="141.000000" y="15.000000" width="7.000000" height="29.000000" stroke="#00ff00" fill="#ff00ff" fill-opacity="50%" />
+	<rect id="24" x="148.000000" y="15.000000" width="7.000000" height="30.500000" stroke="#00ff00" fill="#ff00ff" fill-opacity="50%" />
+	<rect x="14.000000" y="14.000000" width="30.000000" height="10.000000" stroke="red" fill="white" fill-opacity="3%" />
+	<circle cx="15.000000" cy="15.000000" r="1.750000" stroke="red" fill="white" fill-opacity="25%" />
+	<circle cx="22.000000" cy="15.000000" r="1.750000" stroke="red" fill="white" fill-opacity="25%" />
+	<circle cx="29.000000" cy="15.000000" r="1.750000" stroke="red" fill="white" fill-opacity="25%" />
+	<circle cx="36.000000" cy="15.000000" r="1.750000" stroke="red" fill="white" fill-opacity="25%" />
+	<rect id="5" x="15.000000" y="27.000000" width="7.000000" height="2.000000" stroke="#004D33" fill="#80FFEA" fill-opacity="50%" />
+	<rect id="6" x="22.000000" y="27.000000" width="7.000000" height="3.500000" stroke="#004D33" fill="#80FFEA" fill-opacity="50%" />
+	<rect id="7" x="29.000000" y="27.000000" width="7.000000" height="5.000000" stroke="#004D33" fill="#80FFEA" fill-opacity="50%" />
+	<rect id="8" x="36.000000" y="27.000000" width="7.000000" height="6.500000" stroke="#004D33" fill="#80FFEA" fill-opacity="50%" />
+	<rect id="5" x="15.000000" y="45.000000" width="7.000000" height="2.000000" stroke="#004D33" fill="#80FFEA" fill-opacity="50%" />
+	<rect id="6" x="22.000000" y="45.000000" width="7.000000" height="3.500000" stroke="#004D33" fill="#80FFEA" fill-opacity="50%" />
+	<rect id="7" x="29.000000" y="45.000000" width="7.000000" height="5.000000" stroke="#004D33" fill="#80FFEA" fill-opacity="50%" />
+	<rect id="8" x="36.000000" y="45.000000" width="7.000000" height="6.500000" stroke="#004D33" fill="#80FFEA" fill-opacity="50%" />
+	<rect id="5" x="15.000000" y="69.000000" width="7.000000" height="2.000000" stroke="#004D33" fill="#80FFEA" fill-opacity="50%" />
+	<rect id="6" x="22.000000" y="69.000000" width="7.000000" height="3.500000" stroke="#004D33" fill="#80FFEA" fill-opacity="50%" />
+	<rect id="7" x="29.000000" y="69.000000" width="7.000000" height="5.000000" stroke="#004D33" fill="#80FFEA" fill-opacity="50%" />
+	<rect id="8" x="36.000000" y="69.000000" width="7.000000" height="6.500000" stroke="#004D33" fill="#80FFEA" fill-opacity="50%" />
+	<rect id="34" x="22.000000" y="71.000000" width="7.000000" height="2.000000" stroke="#800080" fill="#FF00FF" fill-opacity="40%" />
+	<rect id="35" x="29.000000" y="71.000000" width="7.000000" height="3.500000" stroke="#800080" fill="#FF00FF" fill-opacity="40%" />
+	<rect id="36" x="36.000000" y="71.000000" width="7.000000" height="5.000000" stroke="#800080" fill="#FF00FF" fill-opacity="40%" />
+	<rect id="37" x="43.000000" y="71.000000" width="7.000000" height="6.500000" stroke="#800080" fill="#FF00FF" fill-opacity="40%" />
+</svg>
