@@ -34,7 +34,7 @@ void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha, char *diroutput, F
     FILE *svg = createSvg(diroutput);
     char *diraux = malloc(strlen(diroutput) + 3);
     strcpy(diraux, diroutput);
-    //printf("txt %s\n", diraux);
+    // printf("txt %s\n", diraux);
 
     for (Cell auxC1 = getFirst(rect); auxC1 != NULL; auxC1 = getNext(rect, auxC1)) {
         Item auxI1 = getInfo(auxC1);
@@ -61,7 +61,6 @@ void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha, char *diroutput, F
     }
 
     killSvg(svg);
-
 }
 
 void drawCircle(FILE *svg, Item circ) {
@@ -77,7 +76,7 @@ void drawCircle(FILE *svg, Item circ) {
     strcpy(fill, getCircFILL(circ));
     strcpy(stroke, getcircEDGE(circ));
 
-    fprintf(svg, "\t<circle id=\"%d\" cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\"/>\n", id, x, y, radius, stroke, fill);
+    fprintf(svg, "\t<circle id=\"%d\" cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"50%%\" />\n", id, x, y, radius, stroke, fill);
 }
 
 void drawRectangle(FILE *svg, Item rect) {

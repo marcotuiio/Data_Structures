@@ -65,8 +65,8 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, c
             dels(selecRec, selecCirc, selecLine, selecTxt);
 
         } else if (strcmp(comando, "dps") == 0) {  // Cria novas formas e bla bla
-            printf("\n%s\n", comando);
-            dps(qry_dir, comando, eptr, selecRec, selecCirc, selecLine, selecTxt);
+            printf("\n%s\n", comando);             // *FEITO* 
+            dps(svg, qry_dir, comando, eptr, selecRec, selecCirc, selecLine, selecTxt);
 
         } else if (strcmp(comando, "ups") == 0) {  // Altera cor e translada as figuras selecionadas
             printf("\n%s\n", comando);
@@ -75,7 +75,7 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, c
     }
 
     fclose(qry_dir);
-    desenfila_circ(poligono);
+    free(poligono);
     free(selecRec);
     free(selecCirc);
     free(selecLine);
@@ -160,7 +160,7 @@ void inp(FILE *arq, char *infos[], Fila_Circular q, Lista r, Lista c, Lista l, L
 
 Item criaPonto(double x, double y) {
     Ponto *new_point = calloc(1, sizeof(Ponto));
-    
+
     new_point->x = x;
     new_point->y = y;
 
@@ -328,12 +328,12 @@ void dels(Lista sR, Lista sC, Lista sL, Lista sT) {
     removeAll(sT);
 }
 
-void dps(FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Lista sL, Lista sT) {
+void dps(FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Lista sL, Lista sT) {
     printf("--- INICIO DPS ---\n");
     int i;
-    double dx, dy;
-    char corb[15], corp[15];
-    int id_aux;
+    double dx, dy, aux1, aux2;
+    double final_dx, final_dy;
+    char corb[15], corp[15], aux3[100], aux4[1];
 
     fscanf(arq, "%s", infos);
     i = atoi(infos);
@@ -353,45 +353,52 @@ void dps(FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Lista sL, Lis
     for (Cell auxC1 = getFirst(sR); auxC1 != NULL; auxC1 = getNext(sR, auxC1)) {
         Item auxI1 = getInfo(auxC1);
 
-        id_aux = getRectID(auxI1);
-        if(i == id_aux){
-            i++;
-            dx = getRectX(auxI1) + dx;
-            dy = getRectY(auxI1) + dy;
-        }
+        final_dx = getRectX(auxI1) + dx;
+        final_dy = getRectY(auxI1) + dy;
+        aux1 = getRectHEIGHT(auxI1);
+        aux2 = getRectWIDTH(auxI1);
+
+        fprintf(svg, "\t<rect id=\"%d\" x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"40%%\" />\n", i, final_dx, final_dy, aux2, aux1, corb, corp);
+        
+        i++;
     }
 
     for (Cell auxC2 = getFirst(sC); auxC2 != NULL; auxC2 = getNext(sC, auxC2)) {
         Item auxI2 = getInfo(auxC2);
 
-        id_aux = getCircID(auxI2);
-        if(i == id_aux){
-            i++;
-            dx = getCircX(auxI2) + dx;
-            dy = getCircY(auxI2) + dy;
-        }
+        final_dx = getCircX(auxI2) + dx;
+        final_dy = getCircY(auxI2) + dy;
+        aux1 = getCircRADIUS(auxI2);
+        
+        fprintf(svg, "\t<circle id=\"%d\" cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"40%%\" />\n", i, final_dx, final_dy, aux1, corb, corp);
+
+        i++;
     }
 
     for (Cell auxC3 = getFirst(sT); auxC3 != NULL; auxC3 = getNext(sT, auxC3)) {
         Item auxI3 = getInfo(auxC3);
 
-        id_aux = getTxtID(auxI3);
-        if(i == id_aux){
-            i++;
-            dx = getTxtX(auxI3) + dx;
-            dy = getTxtY(auxI3) + dy;
-        }
+        final_dx = getTxtX(auxI3) + dx;
+        final_dy = getTxtY(auxI3) + dy;
+        strcpy(aux3, getTxtTEXT(auxI3));
+        strcpy(aux4, getTxtANCHOR(auxI3));
+
+        fprintf(svg, "\t<text id=\"%d\" x=\"%lf\" y=\"%lf\" text-anchor=\"%s\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"40%%\" >\"%s\"</text>\n", i, final_dx, final_dy, aux4, corb, corp, aux3);
+
+        i++;        
     }
 
     for (Cell auxC4 = getFirst(sL); auxC4 != NULL; auxC4 = getNext(sL, auxC4)) {
         Item auxI4 = getInfo(auxC4);
 
-        id_aux = getLineID(auxI4);
-        if(i == id_aux){
-            i++;
-            dx = getLineX(auxI4) + dx;
-            dy = getLineY(auxI4) + dy;
-        }
+        final_dx = getLineX(auxI4) + dx;
+        final_dy = getLineY(auxI4) + dy;
+        aux1 = getLineFINALX(auxI4) + dx;
+        aux2 = getLineFINALY(auxI4) + dy;
+
+        fprintf(svg, "\t<line id=\"%d\" x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" fill-opacity=\"50%%\" />\n", i, final_dx, final_dy, aux1, aux2, corb);
+
+        i++;
     }
 
     // printf("id %d\n", i);

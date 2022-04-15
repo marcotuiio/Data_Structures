@@ -4,12 +4,12 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "list.h"
-#include "svg.h"
-#include "text.h"
 #include "circle.h"
 #include "line.h"
+#include "list.h"
 #include "rectangle.h"
+#include "svg.h"
+#include "text.h"
 
 Lista buildGeometricForms(FILE *arq, char *svgoutput, FILE *qry, int existe) {
     printf("\nInicio Build GeoForms\n");
@@ -59,4 +59,3 @@ Lista buildGeometricForms(FILE *arq, char *svgoutput, FILE *qry, int existe) {
     free(listLINHA);
     free(listTEXTO);
 }
-
