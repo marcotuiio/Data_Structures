@@ -24,6 +24,14 @@ Inserido ponto em: x = 60.000000, y = 5.000000
 Inserido ponto em: x = 98.890873, y = 21.109127
 
 [*] pol
+Criada linha de borda: x1 = 115.000000, y1 = 60.000000, x2 = 98.890873, y2 = 98.890873, stroke = #002255
+Criada linha de borda: x1 = 98.890873, y1 = 98.890873, x2 = 60.000000, y2 = 115.000000, stroke = #002255
+Criada linha de borda: x1 = 60.000000, y1 = 115.000000, x2 = 21.109127, y2 = 98.890873, stroke = #002255
+Criada linha de borda: x1 = 21.109127, y1 = 98.890873, x2 = 5.000000, y2 = 60.000000, stroke = #002255
+Criada linha de borda: x1 = 5.000000, y1 = 60.000000, x2 = 21.109127, y2 = 21.109127, stroke = #002255
+Criada linha de borda: x1 = 21.109127, y1 = 21.109127, x2 = 60.000000, y2 = 5.000000, stroke = #002255
+Criada linha de borda: x1 = 60.000000, y1 = 5.000000, x2 = 98.890873, y2 = 21.109127, stroke = #002255
+Criada linha de borda: x1 = 98.890873, y1 = 21.109127, x2 = 115.000000, y2 = 60.000000, stroke = #002255
 
 [*] rmp
 Removido ponto de coordenadas: x = 115.000000, y = 60.000000
@@ -35,6 +43,11 @@ Removido ponto de coordenadas: x = 98.890873, y = 98.890873
 Removido ponto de coordenadas: x = 60.000000, y = 115.000000
 
 [*] pol
+Criada linha de borda: x1 = 115.000000, y1 = 60.000000, x2 = 98.890873, y2 = 98.890873, stroke = #FFCCAA
+Criada linha de borda: x1 = 98.890873, y1 = 98.890873, x2 = 60.000000, y2 = 115.000000, stroke = #FFCCAA
+Criada linha de borda: x1 = 60.000000, y1 = 115.000000, x2 = 21.109127, y2 = 98.890873, stroke = #FFCCAA
+Criada linha de borda: x1 = 21.109127, y1 = 98.890873, x2 = 5.000000, y2 = 60.000000, stroke = #FFCCAA
+Criada linha de borda: x1 = 5.000000, y1 = 60.000000, x2 = 115.000000, y2 = 60.000000, stroke = #FFCCAA
 
 [*] clp
 Todas as coordenadas do polígono corrente removidas

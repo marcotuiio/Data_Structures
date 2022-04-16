@@ -49,6 +49,11 @@ Cell getNext(Lista l, Cell at);
 // * retorna o indicador do elemento de L seguinte ao elemento
 // indicado por at. Se at for o  ́ultimo elemento da lista, retorna NULL.
 
+Cell getPrevious(Lista l, Cell at);
+// * at deve indicar um elemento existente em L.
+// * retorna o indicador do elemento de L anterior ao elemento
+// indicado por at. Se at for o primeiro elemento da lista, retorna NULL.
+
 Item getInfo(Cell x);
 // * retorna o valor armazenado na célula de X. Se
 // length(L)=0, retorna NULL.

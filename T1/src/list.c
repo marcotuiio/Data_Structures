@@ -189,6 +189,12 @@ Cell getNext(Lista l, Cell at) {
     return node->next;
 }
 
+Cell getPrevious(Lista l, Cell at) {
+    celulaL *node = (celulaL *)at;
+
+    return node->prev;
+}
+
 Item getInfo(Cell x) {
     celulaL *node = (celulaL *)x;
 

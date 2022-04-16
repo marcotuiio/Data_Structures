@@ -13,6 +13,7 @@
 
 typedef void* Fila_Circular;
 typedef void* Item;
+typedef void* Node;
 
 Fila_Circular criaFila(int max_size);
 // *Retorna Sequencia<<Item>>. Isto  ́e, cria uma fila vazia.
@@ -30,6 +31,14 @@ void destroi_fila(Fila_Circular q);
 
 bool enfila_circ(Fila_Circular q, Item x);
 //adiciona elementos no rabo fila circular
+
+Item getElement(Fila_Circular q, int n);
+// recebe a fila e um determinado indice e
+// retorna o valor naquele determinado indice
+
+int getSize(Fila_Circular q);
+// recebe uma fila e retorna a quantidade de 
+// valores que está armazenando
 
 Item desenfila_circ(Fila_Circular q);
 // * para executar, fila não pode estar vazia

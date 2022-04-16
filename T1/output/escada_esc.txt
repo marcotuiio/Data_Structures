@@ -10,26 +10,20 @@ Selecionado: Retângulo x = 36.000000, y = 15.000000, height = 6.500000, width =
 Retângulo atualizado: dx = 0.000000, dy = 12.000000, stroke = #004D33, fill = #80FFEA
 Retângulo atualizado: dx = 0.000000, dy = 12.000000, stroke = #004D33, fill = #80FFEA
 Retângulo atualizado: dx = 0.000000, dy = 12.000000, stroke = #004D33, fill = #80FFEA
-Retângulo atualizado: dx = 0.000000, dy = 12.000000, stroke = #004D33, fill = #80FFEA
 
 [*] sel+
 
 [*] ups
 Retângulo atualizado: dx = 0.000000, dy = 18.000000, stroke = #004D33, fill = #80FFEA
 Retângulo atualizado: dx = 0.000000, dy = 18.000000, stroke = #004D33, fill = #80FFEA
-Retângulo atualizado: dx = 0.000000, dy = 18.000000, stroke = #004D33, fill = #80FFEA
-Retângulo atualizado: dx = 0.000000, dy = 18.000000, stroke = #004D33, fill = #80FFEA
 
 [*] sel+
 
 [*] ups
-Retângulo atualizado: dx = 0.000000, dy = 24.000000, stroke = #004D33, fill = #80FFEA
-Retângulo atualizado: dx = 0.000000, dy = 24.000000, stroke = #004D33, fill = #80FFEA
-Retângulo atualizado: dx = 0.000000, dy = 24.000000, stroke = #004D33, fill = #80FFEA
 Retângulo atualizado: dx = 0.000000, dy = 24.000000, stroke = #004D33, fill = #80FFEA
 
 [*] dps
-Criado retângulo: id = 34, x = 22.000000, y = 71.000000, w = 7.000000, h = 2.000000, stroke = #800080, fill = #FF00FF
-Criado retângulo: id = 35, x = 29.000000, y = 71.000000, w = 7.000000, h = 3.500000, stroke = #800080, fill = #FF00FF
-Criado retângulo: id = 36, x = 36.000000, y = 71.000000, w = 7.000000, h = 5.000000, stroke = #800080, fill = #FF00FF
-Criado retângulo: id = 37, x = 43.000000, y = 71.000000, w = 7.000000, h = 6.500000, stroke = #800080, fill = #FF00FF
+Criado retângulo: id = 34, x = 22.000000, y = 113.000000, w = 7.000000, h = 2.000000, stroke = #800080, fill = #FF00FF
+Criado retângulo: id = 35, x = 29.000000, y = 17.000000, w = 7.000000, h = 3.500000, stroke = #800080, fill = #FF00FF
+Criado retângulo: id = 36, x = 36.000000, y = 17.000000, w = 7.000000, h = 5.000000, stroke = #800080, fill = #FF00FF
+Criado retângulo: id = 37, x = 43.000000, y = 17.000000, w = 7.000000, h = 6.500000, stroke = #800080, fill = #FF00FF

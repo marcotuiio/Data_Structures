@@ -40,11 +40,11 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
 
         } else if (strcmp(comando, "rmp") == 0) {  // Remove uma coordenada do poligono (primeira da fila)
             printf("\n%s\n", comando);             // *FEITO* mas adaptar para de fato remover do svg
-            rmp(txt, comando, poligono);
+            rmp(txt, svg, comando, poligono);
 
         } else if (strcmp(comando, "pol") == 0) {  // Produz um conjunto de linhas e insere no poligono
             printf("\n%s\n", comando);
-            pol(txt, qry_dir, comando, eptr);
+            pol(txt, svg, qry_dir, comando, eptr, poligono);
 
         } else if (strcmp(comando, "clp") == 0) {  // Remove todas as coordenadas
             printf("\n%s\n", comando);             // *FEITO*
@@ -63,7 +63,7 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
             dels(txt, selecRec, selecCirc, selecLine, selecTxt);
 
         } else if (strcmp(comando, "dps") == 0) {  // Cria novas formas e bla bla
-            printf("\n%s\n", comando);             // *FEITO* 
+            printf("\n%s\n", comando);             // *FEITO*
             dps(txt, svg, qry_dir, comando, eptr, selecRec, selecCirc, selecLine, selecTxt);
 
         } else if (strcmp(comando, "ups") == 0) {  // Altera cor e translada as figuras selecionadas
@@ -180,25 +180,42 @@ Item criaPonto(double x, double y) {
     new_point->x = x;
     new_point->y = y;
 
-    //printf("npx %lf\n", new_point->x);
-    //printf("npy %lf\n", new_point->y);
+    // printf("npx %lf\n", new_point->x);
+    // printf("npy %lf\n", new_point->y);
 
     return new_point;
 }
 
-void rmp(FILE *txt, char *infos[], Fila_Circular q) {
+void rmp(FILE *txt, FILE *svg, char *infos[], Fila_Circular q) {
     printf("--- INICIO RMP ---\n");
     Item aux = desenfila_circ(q);
-    Ponto *pnt = (Ponto*) aux;
-    double x, y;
-    x = pnt->x;
-    y = pnt->y;
+    Ponto *pnt = (Ponto *)aux;
+    // double radius = 1.00;
+    //char *stroke = "white";
+    //char *fill = "white";
+    //char *color = "#002255";
+    double rx, ry;
+    rx = pnt->x;
+    ry = pnt->y;
 
+    // Item p1, p2;
+    // int size = getSize(q);
+    // double x1, x2, y1, y2;
+    
+    // p2 = getElement(q, size);
+    // x2 = getpX(p2);
+    // y2 = getpY(p2);
+    // p1 = getElement(q, 1);
+    // x1 = getpX(p1);
+    // y1 = getpY(p1);
+    // fprintf(svg, "\t<line x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" />\n", x2, y2, x1, y1, color);
+    
     fprintf(txt, "\n[*] rmp\n");
-    fprintf(txt, "Removido ponto de coordenadas: x = %lf, y = %lf\n", x, y);
+    fprintf(txt, "Removido ponto de coordenadas: x = %lf, y = %lf\n", rx, ry);
+    // fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"1%%\" />\n", rx, ry, radius, stroke, fill);
 }
 
-void pol(FILE *txt, FILE *arq, char *infos[], char *eptr) {
+void pol(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Fila_Circular q) {
     printf("--- INICIO POL ---\n");
     int i;
     double d, e;
@@ -220,11 +237,49 @@ void pol(FILE *txt, FILE *arq, char *infos[], char *eptr) {
     strcpy(corp, infos);
 
     fprintf(txt, "\n[*] pol\n");
+
+    int size = getSize(q);
+    int aux = 0;
+    int aux2 = 1;
+    double x1, x2, y1, y2;
+    Item p1, p2;
+    while(aux2 != size) {
+        p1 = getElement(q, aux);  // 0 1 2 
+        p2 = getElement(q, aux2); // 1 2 3
+        aux = aux2;
+        aux2++;
+        x1 = getpX(p1);
+        x2 = getpX(p2);
+        y1 = getpY(p1);
+        y2 = getpY(p2);
+
+        fprintf(txt, "Criada linha de borda: x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf, stroke = %s\n", x1, y1, x2, y2, corb);
+        fprintf(svg, "\t<line id=\"%d\" x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" />\n", i, x1, y1, x2, y2, corb);
+        i++;
+    }
+    p1 = getElement(q, 0); 
+    x1 = getpX(p1);
+    y1 = getpY(p1);
+    fprintf(txt, "Criada linha de borda: x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf, stroke = %s\n", x2, y2, x1, y1, corb);
+    fprintf(svg, "\t<line id=\"%d\" x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" />\n", i, x2, y2, x1, y1, corb);
+
     // printf("id %d\n", i);
     // printf("d %lf\n", d);
     // printf("e %lf\n", e);
     // printf("corb %s\n", corb);
     // printf("corp %s\n", corp);
+}
+
+double getpX(Item n) {
+    Ponto *p1 = (Ponto *)n;
+
+    return p1->x;
+}
+
+double getpY(Item n) {
+    Ponto *p1 = (Ponto *)n;
+
+    return p1->y;
 }
 
 void clp(FILE *txt, Fila_Circular q) {
@@ -408,7 +463,7 @@ void dps(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, L
         final_dx = getCircX(auxI2) + dx;
         final_dy = getCircY(auxI2) + dy;
         aux1 = getCircRADIUS(auxI2);
-        
+
         fprintf(svg, "\t<circle id=\"%d\" cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"40%%\" />\n", i, final_dx, final_dy, aux1, corb, corp);
         fprintf(txt, "Criado Círculo: id = %d, x = %lf, y = %lf, r = %lf, stroke = %s, fill = %s\n", i, final_dx, final_dy, aux1, corb, corp);
 
@@ -426,7 +481,7 @@ void dps(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, L
         fprintf(svg, "\t<text id=\"%d\" x=\"%lf\" y=\"%lf\" text-anchor=\"%s\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"40%%\" >\"%s\"</text>\n", i, final_dx, final_dy, aux4, corb, corp, aux3);
         fprintf(txt, "Criado Texto: id = %d, x = %lf, y = %lf, stroke = %s, fill = %s\n", i, final_dx, final_dy, corb, corp);
 
-        i++;        
+        i++;
     }
 
     for (Cell auxC4 = getFirst(sL); auxC4 != NULL; auxC4 = getNext(sL, auxC4)) {
@@ -475,52 +530,111 @@ void ups(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, L
 
     // INTEGRAR N NA FUNÇÃO, POIS NÃO DEVO ALTERAR TOAS AS FIGURAS NO BANCO DE DADOS
     //  APENAS ALGUMAS COM RELAÇÃO A N
+    while (n != 0) {
+        if (n > 0) {
+            for (Cell auxC1 = getFirst(sR); auxC1 != NULL; auxC1 = getNext(sR, auxC1)) {
+                Item auxI1 = getInfo(auxC1);
 
-    for (Cell auxC1 = getFirst(sR); auxC1 != NULL; auxC1 = getNext(sR, auxC1)) {
-        Item auxI1 = getInfo(auxC1);
+                setrectEDGE(auxI1, corb);
+                setrectFILL(auxI1, corp);
+                setrectX(auxI1, dx);
+                setrectY(auxI1, dy);
 
-        setrectEDGE(auxI1, corb);
-        setrectFILL(auxI1, corp);
-        setrectX(auxI1, dx);
-        setrectY(auxI1, dy);
+                drawRectangle(svg, auxI1);
+                n--;
+                fprintf(txt, "Retângulo atualizado: dx = %lf, dy = %lf, stroke = %s, fill = %s\n", dx, dy, corb, corp);
+            }
 
-        drawRectangle(svg, auxI1);
-        fprintf(txt, "Retângulo atualizado: dx = %lf, dy = %lf, stroke = %s, fill = %s\n", dx, dy, corb, corp);
-    }
+            for (Cell auxC2 = getFirst(sC); auxC2 != NULL; auxC2 = getNext(sC, auxC2)) {
+                Item auxI2 = getInfo(auxC2);
 
-    for (Cell auxC2 = getFirst(sC); auxC2 != NULL; auxC2 = getNext(sC, auxC2)) {
-        Item auxI2 = getInfo(auxC2);
+                setcircEDGE(auxI2, corb);
+                setcircFILL(auxI2, corp);
+                setcircX(auxI2, dx);
+                setcircY(auxI2, dy);
 
-        setcircEDGE(auxI2, corb);
-        setcircFILL(auxI2, corp);
-        setcircX(auxI2, dx);
-        setcircY(auxI2, dy);
+                drawCircle(svg, auxI2);
+                n--;
+                fprintf(txt, "Círculo atualizado: dx = %lf, dy = %lf, stroke = %s, fill = %s\n", dx, dy, corb, corp);
+            }
 
-        drawCircle(svg, auxI2);
-        fprintf(txt, "Círculo atualizado: dx = %lf, dy = %lf, stroke = %s, fill = %s\n", dx, dy, corb, corp);
-    }
+            for (Cell auxC3 = getFirst(sT); auxC3 != NULL; auxC3 = getNext(sT, auxC3)) {
+                Item auxI3 = getInfo(auxC3);
 
-    for (Cell auxC3 = getFirst(sT); auxC3 != NULL; auxC3 = getNext(sT, auxC3)) {
-        Item auxI3 = getInfo(auxC3);
+                settxtEDGE(auxI3, corb);
+                settxtFILL(auxI3, corp);
+                settxtX(auxI3, dx);
+                settxtY(auxI3, dy);
 
-        settxtEDGE(auxI3, corb);
-        settxtFILL(auxI3, corp);
-        settxtX(auxI3, dx);
-        settxtY(auxI3, dy);
+                drawText(svg, auxI3);
+                n--;
+                fprintf(txt, "Texto atualizado: dx = %lf, dy = %lf, stroke = %s, fill = %s\n", dx, dy, corb, corp);
+            }
 
-        drawText(svg, auxI3);
-        fprintf(txt, "Texto atualizado: dx = %lf, dy = %lf, stroke = %s, fill = %s\n", dx, dy, corb, corp);
-    }
+            for (Cell auxC4 = getFirst(sL); auxC4 != NULL; auxC4 = getNext(sL, auxC4)) {
+                Item auxI4 = getInfo(auxC4);
 
-    for (Cell auxC4 = getFirst(sL); auxC4 != NULL; auxC4 = getNext(sL, auxC4)) {
-        Item auxI4 = getInfo(auxC4);
+                setlineCOLOR(auxI4, corb);
+                setlineX(auxI4, dx);
+                setlineY(auxI4, dy);
 
-        setlineCOLOR(auxI4, corb);
-        setlineX(auxI4, dx);
-        setlineY(auxI4, dy);
+                drawLine(svg, auxI4);
+                n--;
+                fprintf(txt, "Linha atualizada: dx = %lf, dy = %lf, color = %s\n", dx, dy, corb);
+            }
 
-        drawLine(svg, auxI4);
-        fprintf(txt, "Linha atualizada: dx = %lf, dy = %lf, color = %s\n", dx, dy, corb);
+        } else if (n < 0) {
+            for (Cell auxC1 = getFirst(sR); auxC1 != NULL; auxC1 = getPrevious(sR, auxC1)) {
+                Item auxI1 = getInfo(auxC1);
+
+                setrectEDGE(auxI1, corb);
+                setrectFILL(auxI1, corp);
+                setrectX(auxI1, dx);
+                setrectY(auxI1, dy);
+
+                drawRectangle(svg, auxI1);
+                n++;
+                fprintf(txt, "Retângulo atualizado: dx = %lf, dy = %lf, stroke = %s, fill = %s\n", dx, dy, corb, corp);
+            }
+
+            for (Cell auxC2 = getFirst(sC); auxC2 != NULL; auxC2 = getPrevious(sC, auxC2)) {
+                Item auxI2 = getInfo(auxC2);
+
+                setcircEDGE(auxI2, corb);
+                setcircFILL(auxI2, corp);
+                setcircX(auxI2, dx);
+                setcircY(auxI2, dy);
+
+                drawCircle(svg, auxI2);
+                n++;
+                fprintf(txt, "Círculo atualizado: dx = %lf, dy = %lf, stroke = %s, fill = %s\n", dx, dy, corb, corp);
+            }
+
+            for (Cell auxC3 = getFirst(sT); auxC3 != NULL; auxC3 = getPrevious(sT, auxC3)) {
+                Item auxI3 = getInfo(auxC3);
+
+                settxtEDGE(auxI3, corb);
+                settxtFILL(auxI3, corp);
+                settxtX(auxI3, dx);
+                settxtY(auxI3, dy);
+
+                drawText(svg, auxI3);
+                n++;
+                fprintf(txt, "Texto atualizado: dx = %lf, dy = %lf, stroke = %s, fill = %s\n", dx, dy, corb, corp);
+            }
+
+            for (Cell auxC4 = getFirst(sL); auxC4 != NULL; auxC4 = getPrevious(sL, auxC4)) {
+                Item auxI4 = getInfo(auxC4);
+
+                setlineCOLOR(auxI4, corb);
+                setlineX(auxI4, dx);
+                setlineY(auxI4, dy);
+
+                drawLine(svg, auxI4);
+                n++;
+                fprintf(txt, "Linha atualizada: dx = %lf, dy = %lf, color = %s\n", dx, dy, corb);
+            }
+        }
     }
 
     // printf("corb %s\n", corb);

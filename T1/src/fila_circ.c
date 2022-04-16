@@ -60,6 +60,18 @@ bool enfila_circ(Fila_Circular q, Item x) { //add on tail
     return true;
 }
 
+Item getElement(Fila_Circular q, int n) {
+    fila_circ *fila = (fila_circ *)q;
+
+    return fila->value[n];
+}
+
+int getSize(Fila_Circular q) {
+    fila_circ *fila = (fila_circ *)q;
+
+    return fila->num_entries;
+}
+
 Item desenfila_circ(Fila_Circular q) { //remove on head
     fila_circ *fila = (fila_circ *)q;
     fila_circ *result = NULL;

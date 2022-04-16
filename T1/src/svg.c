@@ -125,7 +125,7 @@ void drawLine(FILE *svg, Item linha) {
     y2 = getLineFINALY(linha);
     strcpy(stroke, getLineCOLOR(linha));
 
-    fprintf(svg, "\t<line id=\"%d\" x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" fill-opacity=\"50%%\" />\n", id, x1, y1, x2, y2, stroke);
+    fprintf(svg, "\t<line id=\"%d\" x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" />\n", id, x1, y1, x2, y2, stroke);
 }
 
 void drawText(FILE *svg, Item txt) {

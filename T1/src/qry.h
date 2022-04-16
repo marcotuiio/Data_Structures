@@ -23,11 +23,11 @@ Item criaPonto(double x, double y);
 // Função auxiliar para o comando inp, cria um ponto
 // com as coordenadas desejadas
 
-void rmp(FILE *txt, char *infos[], Fila_Circular q);
+void rmp(FILE *txt, FILE *svg, char *infos[], Fila_Circular q);
 // Remove a coordenada mais antiga inserida no
 // poligono corrente.
 
-void pol(FILE *txt, FILE *arq, char *infos[], char *eptr);
+void pol(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Fila_Circular q);
 // Produz um conjunto de linhas (e os insere no
 //“banco de dados”). As linhas produzidas
 // correspondem à borda do polígono e as linhas
@@ -37,6 +37,14 @@ void pol(FILE *txt, FILE *arq, char *infos[], char *eptr);
 // do preenchimento; e é a espessura da linhas;
 // corb a cor das linhas do polígono; corp, a cor
 // das linhas do preenchimento.
+
+double getpX(Item n);
+// função auxiliar para pol
+// retorna o x dos pontos para montar as linhas das bordas
+
+double getpY(Item n);
+// função auxiliar para pol
+// retorna o y dos pontos para montar as linhas das bordas
 
 void clp(FILE *txt, Fila_Circular q);
 // Remove todas as coordenadas do polígono
