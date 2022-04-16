@@ -17,14 +17,20 @@ dor sofrimento e desgraça
 
 4- Concatenação de geo e qry para gerar nome do svg ===> RESOLVIDO
 
+5- Descobrir e arrumar erros na criação do txt pós qry ==> RESOLVIDO
+
 ==================================================================================================
 
  * Próximo passo: continuar a implementar o .qry ;-;
+    -> arrumar os comandos que removem coordenadas do poligono corrente
     -> arrumar o comando UPS
     -> fazer os comandos: POL, SEL+
-    -> descobrir e arrumar erros na criação do txt pós qry ==> ERRO GRAVE!!!!
     -> implementar os comandos faltando e deixar o formato de escrita no txt pronto
 
-./ted -e /home/marcotuiio/ED1/EDor/T1/input -f g.geo -o /home/marcotuiio/ED1/EDor/T1/output/t1.svg -q q.qry
+./ted -e /home/marcotuiio/ED1/EDor/T1/input -f vaso.geo -o /home/marcotuiio/ED1/EDor/T1/output -q dpsvaso.qry
+
+./ted -e /home/marcotuiio/ED1/EDor/T1/input -f escada.geo -o /home/marcotuiio/ED1/EDor/T1/output -q esc.qry
+
+./ted -e /home/marcotuiio/ED1/EDor/T1/input -f casa.geo -o /home/marcotuiio/ED1/EDor/T1/output -q q2.qry
 
 

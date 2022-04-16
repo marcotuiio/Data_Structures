@@ -56,7 +56,7 @@ bool enfila_circ(Fila_Circular q, Item x) { //add on tail
     fila->value[fila->tail] = x;
     fila->num_entries++;
     fila->tail = (fila->tail + 1) % fila->size;
-    printf("Inserido com sucesso\n");
+    printf("Insert\n");
     return true;
 }
 

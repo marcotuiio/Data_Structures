@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+	<text id="10" x="115.000000" y="60.000000" text-anchor=" Que ostentas dignamente" stroke="#000000" fill="tas dignamente" fill-opacity="50%" >" Que ostentas dignamente"</text>
+	<text id="11" x="98.890873" y="98.890873" text-anchor=" Que te amam eternamente" stroke="#CC2200" fill="am eternamente" fill-opacity="50%" >" Que te amam eternamente"</text>
+	<text id="12" x="60.000000" y="115.000000" text-anchor=" Salve o tricolor paulista" stroke="a" fill="ricolor paulista" fill-opacity="50%" >" Salve o tricolor paulista"</text>
+	<text id="13" x="21.109127" y="98.890873" text-anchor=" Clube bem amado" stroke="#FFFFFF" fill=" amado" fill-opacity="50%" >" Clube bem amado"</text>
+	<text id="14" x="5.000000" y="60.000000" text-anchor=" Sao teus guias brasileiros" stroke="os" fill="guias brasileiros" fill-opacity="50%" >" Sao teus guias brasileiros"</text>
+	<text id="15" x="21.109127" y="21.109127" text-anchor=" Tu es forte, tu es grande" stroke="e" fill="te, tu es grande" fill-opacity="50%" >" Tu es forte, tu es grande"</text>
+	<text id="16" x="60.000000" y="5.000000" text-anchor=" De Sao Paulo tens o nome" stroke="" fill="ulo tens o nome" fill-opacity="50%" >" De Sao Paulo tens o nome"</text>
+	<text id="17" x="98.890873" y="21.109127" text-anchor=" Que ostentas dignamente" stroke="#CC2200" fill="tas dignamente" fill-opacity="50%" >" Que ostentas dignamente"</text>
+	<circle cx="115.000000" cy="60.000000" r="1.000000" stroke="red" fill="black" fill-opacity="75%" />
+	<circle cx="98.890873" cy="98.890873" r="1.000000" stroke="red" fill="black" fill-opacity="75%" />
+	<circle cx="60.000000" cy="115.000000" r="1.000000" stroke="red" fill="black" fill-opacity="75%" />
+	<circle cx="21.109127" cy="98.890873" r="1.000000" stroke="red" fill="black" fill-opacity="75%" />
+	<circle cx="5.000000" cy="60.000000" r="1.000000" stroke="red" fill="black" fill-opacity="75%" />
+	<circle cx="21.109127" cy="21.109127" r="1.000000" stroke="red" fill="black" fill-opacity="75%" />
+	<circle cx="60.000000" cy="5.000000" r="1.000000" stroke="red" fill="black" fill-opacity="75%" />
+	<circle cx="98.890873" cy="21.109127" r="1.000000" stroke="red" fill="black" fill-opacity="75%" />
+</svg>

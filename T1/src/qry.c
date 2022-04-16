@@ -36,7 +36,7 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
 
         if (strcmp(comando, "inp") == 0) {  // Inserir no poligono (fila insere no fim)
             printf("\n%s\n", comando);      // *FEITO* mas adaptar para de fato inserir no svg
-            inp(txt, qry_dir, comando, poligono, r, c, l, t);
+            inp(txt, svg, qry_dir, comando, poligono, r, c, l, t);
 
         } else if (strcmp(comando, "rmp") == 0) {  // Remove uma coordenada do poligono (primeira da fila)
             printf("\n%s\n", comando);             // *FEITO* mas adaptar para de fato remover do svg
@@ -75,16 +75,19 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
     fclose(qry_dir);
     fclose(txt);
     free(poligono);
-    // free(selecRec);
-    // free(selecCirc);
-    // free(selecLine);
-    // free(selecTxt);
+    free(selecRec);
+    free(selecCirc);
+    free(selecLine);
+    free(selecTxt);
 }
 
-void inp(FILE *txt, FILE *arq, char *infos[], Fila_Circular q, Lista r, Lista c, Lista l, Lista t) {
+void inp(FILE *txt, FILE *svg, FILE *arq, char *infos[], Fila_Circular q, Lista r, Lista c, Lista l, Lista t) {
     printf("--- INICIO INP ---\n");
     int i, id_aux;
     double x, y;
+    double radius = 1.00;
+    char *stroke = "red";
+    char *fill = "black";
     Item pnt;
 
     fscanf(arq, "%s", infos);
@@ -103,6 +106,7 @@ void inp(FILE *txt, FILE *arq, char *infos[], Fila_Circular q, Lista r, Lista c,
 
             enfila_circ(q, pnt);
             fprintf(txt, "Inserido ponto em: x = %lf, y = %lf\n", x, y);
+            fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"75%%\" />\n", x, y, radius, stroke, fill);
         }
     }
 
@@ -117,6 +121,7 @@ void inp(FILE *txt, FILE *arq, char *infos[], Fila_Circular q, Lista r, Lista c,
 
             enfila_circ(q, pnt);
             fprintf(txt, "Inserido ponto em: x = %lf, y = %lf\n", x, y);
+            fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"75%%\" />\n", x, y, radius, stroke, fill);
         }
     }
 
@@ -131,6 +136,7 @@ void inp(FILE *txt, FILE *arq, char *infos[], Fila_Circular q, Lista r, Lista c,
 
             enfila_circ(q, pnt);
             fprintf(txt, "Inserido ponto em: x = %lf, y = %lf\n", x, y);
+            fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"75%%\" />\n", x, y, radius, stroke, fill);
         }
     }
 
@@ -146,16 +152,20 @@ void inp(FILE *txt, FILE *arq, char *infos[], Fila_Circular q, Lista r, Lista c,
             if (x < x2) {
                 pnt = criaPonto(x, y);
                 fprintf(txt, "Inserido ponto em: x = %lf, y = %lf\n", x, y);
+                fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"75%%\" />\n", x, y, radius, stroke, fill);
             } else if (x2 < x) {
                 pnt = criaPonto(x2, y2);
                 fprintf(txt, "Inserido ponto em: x = %lf, y = %lf\n", x2, y2);
+                fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"75%%\" />\n", x2, y2, radius, stroke, fill);
             } else if (x == x2) {
                 if (y < y2) {
                     pnt = criaPonto(x, y);
                     fprintf(txt, "Inserido ponto em: x = %lf, y = %lf\n", x, y);
+                    fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"75%%\" />\n", x, y, radius, stroke, fill);
                 } else if (y2 < y) {
                     pnt = criaPonto(x2, y2);
                     fprintf(txt, "Inserido ponto em: x = %lf, y = %lf\n", x2, y2);
+                    fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"75%%\" />\n", x2, y2, radius, stroke, fill);
                 }
             }
             enfila_circ(q, pnt);

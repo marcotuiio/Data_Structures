@@ -29,3 +29,6 @@ Criada Linha: id = 67, x1 = 210.000000, y1 = 163.000000, x2 = 229.000000, y2 = 1
 Criada Linha: id = 68, x1 = 227.000000, y1 = 135.000000, x2 = 262.000000, y2 = 170.000000, color = #800080
 Criada Linha: id = 69, x1 = 259.000000, y1 = 131.000000, x2 = 222.000000, y2 = 138.000000, color = #800080
 Criada Linha: id = 70, x1 = 276.000000, y1 = 153.000000, x2 = 248.000000, y2 = 126.000000, color = #800080
+
+[*] dels
+Removidas todas as figuras selecionadas do Banco de Dados

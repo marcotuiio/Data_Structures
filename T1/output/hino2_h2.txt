@@ -1,0 +1,43 @@
+
+[*] inp
+Inserido ponto em: x = 115.000000, y = 60.000000
+
+[*] inp
+Inserido ponto em: x = 98.890873, y = 98.890873
+
+[*] inp
+Inserido ponto em: x = 60.000000, y = 115.000000
+
+[*] inp
+Inserido ponto em: x = 21.109127, y = 98.890873
+
+[*] inp
+Inserido ponto em: x = 5.000000, y = 60.000000
+
+[*] inp
+Inserido ponto em: x = 21.109127, y = 21.109127
+
+[*] inp
+Inserido ponto em: x = 60.000000, y = 5.000000
+
+[*] inp
+Inserido ponto em: x = 98.890873, y = 21.109127
+
+[*] pol
+
+[*] rmp
+Removido ponto de coordenadas: x = 115.000000, y = 60.000000
+
+[*] rmp
+Removido ponto de coordenadas: x = 98.890873, y = 98.890873
+
+[*] rmp
+Removido ponto de coordenadas: x = 60.000000, y = 115.000000
+
+[*] pol
+
+[*] clp
+Todas as coordenadas do polígono corrente removidas
+
+[*] clp
+Todas as coordenadas do polígono corrente removidas

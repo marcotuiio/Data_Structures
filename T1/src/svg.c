@@ -12,7 +12,7 @@ FILE *createSvg(char *svg_path) {
 
     FILE *svg = fopen(svg_path, "w");
 
-    printf("\nCriado com Sucesso: %s\n\n", svg_path);
+    printf("\nCriado com Sucesso: %s\n", svg_path);
     fprintf(svg, "<svg xmlns=\"http://www.w3.org/2000/svg\">\n");
     return svg;
 }
@@ -29,10 +29,12 @@ void killSvg(FILE *svg) {
 }
 
 FILE *createTxt(char *output) {
-    char toRemove[] = ".svg";
-    char *txtdir = malloc(strlen(output));
-    strcpy(txtdir, strtok(output, toRemove));
-    strcat(txtdir, ".txt");
+    char toRemove[] = ".";
+    char toAdd[] = ".txt";
+    char *txtdir = malloc(strlen(output) + 1);
+    char *aux = strtok(output, toRemove);
+    strcpy(txtdir, aux);
+    strcat(txtdir, toAdd);
 
     FILE *txt = fopen(txtdir, "w");
 

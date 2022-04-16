@@ -13,7 +13,7 @@
 
 void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, FILE *txt);
 
-void inp(FILE *txt, FILE *arq, char *infos[], Fila_Circular q, Lista r, Lista c, Lista l, Lista t);
+void inp(FILE *txt, FILE *svg, FILE *arq, char *infos[], Fila_Circular q, Lista r, Lista c, Lista l, Lista t);
 // Insere no polígono corrente as coordenadas
 // da âncora da figura identificada por i. No
 // caso de linhas, insere a extremidade de menor
