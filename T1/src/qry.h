@@ -11,9 +11,7 @@
  * comando e execução da determinada função
  */
 
-void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, char *diroutput);
-
-FILE *createTxt(char *output);
+void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, FILE *txt);
 
 void inp(FILE *txt, FILE *arq, char *infos[], Fila_Circular q, Lista r, Lista c, Lista l, Lista t);
 // Insere no polígono corrente as coordenadas

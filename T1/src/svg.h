@@ -20,6 +20,8 @@ FILE *createSvg(char *svg_path);
 
 void killSvg(FILE * svg);
 
+FILE *createTxt(char *output);
+
 void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha, char *diroutput, FILE *qry, int existe);
 
 void drawCircle(FILE * svg, Item circ);

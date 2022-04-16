@@ -20,16 +20,13 @@ struct pg {
 };
 typedef struct pg Ponto;
 
-void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, char *diroutput) {
+void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, FILE *txt) {
     printf("\n--- INICIO READ QRY ---\n");
     Fila_Circular poligono = criaFila(200);
     Lista selecRec = criaLista();
     Lista selecCirc = criaLista();
     Lista selecLine = criaLista();
     Lista selecTxt = criaLista();
-
-    FILE *txt = createTxt(diroutput);
-    //printf("\n\ntxt qry %s\n\n", diroutput);
 
     while (!feof(qry_dir)) {
         char *comando[10][30];
@@ -38,11 +35,11 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, c
         fscanf(qry_dir, "%s", comando);
 
         if (strcmp(comando, "inp") == 0) {  // Inserir no poligono (fila insere no fim)
-            printf("\n%s\n", comando);      // *FEITO*
+            printf("\n%s\n", comando);      // *FEITO* mas adaptar para de fato inserir no svg
             inp(txt, qry_dir, comando, poligono, r, c, l, t);
 
         } else if (strcmp(comando, "rmp") == 0) {  // Remove uma coordenada do poligono (primeira da fila)
-            printf("\n%s\n", comando);             // *FEITO*
+            printf("\n%s\n", comando);             // *FEITO* mas adaptar para de fato remover do svg
             rmp(txt, comando, poligono);
 
         } else if (strcmp(comando, "pol") == 0) {  // Produz um conjunto de linhas e insere no poligono
@@ -78,24 +75,10 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, c
     fclose(qry_dir);
     fclose(txt);
     free(poligono);
-    free(selecRec);
-    free(selecCirc);
-    free(selecLine);
-    free(selecTxt);
-}
-
-FILE *createTxt(char *output) {
-    char toRemove[] = ".svg";
-    char *txtdir = malloc(strlen(output));
-    stpcpy(txtdir, strtok(output, toRemove));
-    strcat(txtdir, ".txt");
-
-    FILE *txt = fopen(txtdir, "w");
-
-    printf("\nCriado txt com sucesso: %s\n", txtdir);
-
-    free(output);
-    return txt;
+    // free(selecRec);
+    // free(selecCirc);
+    // free(selecLine);
+    // free(selecTxt);
 }
 
 void inp(FILE *txt, FILE *arq, char *infos[], Fila_Circular q, Lista r, Lista c, Lista l, Lista t) {
@@ -158,10 +141,24 @@ void inp(FILE *txt, FILE *arq, char *infos[], Fila_Circular q, Lista r, Lista c,
         if (i == id_aux) {
             x = getLineX(auxI4);
             y = getLineY(auxI4);
-            pnt = criaPonto(x, y);
-
+            double x2 = getLineFINALX(auxI4);
+            double y2 = getLineFINALY(auxI4);
+            if (x < x2) {
+                pnt = criaPonto(x, y);
+                fprintf(txt, "Inserido ponto em: x = %lf, y = %lf\n", x, y);
+            } else if (x2 < x) {
+                pnt = criaPonto(x2, y2);
+                fprintf(txt, "Inserido ponto em: x = %lf, y = %lf\n", x2, y2);
+            } else if (x == x2) {
+                if (y < y2) {
+                    pnt = criaPonto(x, y);
+                    fprintf(txt, "Inserido ponto em: x = %lf, y = %lf\n", x, y);
+                } else if (y2 < y) {
+                    pnt = criaPonto(x2, y2);
+                    fprintf(txt, "Inserido ponto em: x = %lf, y = %lf\n", x2, y2);
+                }
+            }
             enfila_circ(q, pnt);
-            fprintf(txt, "Inserido ponto em: x = %lf, y = %lf\n", x, y);
         }
     }
     // printf("%d\n", i);
@@ -181,10 +178,14 @@ Item criaPonto(double x, double y) {
 
 void rmp(FILE *txt, char *infos[], Fila_Circular q) {
     printf("--- INICIO RMP ---\n");
-    desenfila_circ(q);
+    Item aux = desenfila_circ(q);
+    Ponto *pnt = (Ponto*) aux;
+    double x, y;
+    x = pnt->x;
+    y = pnt->y;
 
     fprintf(txt, "\n[*] rmp\n");
-    fprintf(txt, "Ponto de coordenadas mais antigo removido\n");
+    fprintf(txt, "Removido ponto de coordenadas: x = %lf, y = %lf\n", x, y);
 }
 
 void pol(FILE *txt, FILE *arq, char *infos[], char *eptr) {

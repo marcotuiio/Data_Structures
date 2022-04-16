@@ -28,9 +28,24 @@ void killSvg(FILE *svg) {
     fclose(svg);
 }
 
+FILE *createTxt(char *output) {
+    char toRemove[] = ".svg";
+    char *txtdir = malloc(strlen(output));
+    strcpy(txtdir, strtok(output, toRemove));
+    strcat(txtdir, ".txt");
+
+    FILE *txt = fopen(txtdir, "w");
+
+    printf("\nCriado txt com sucesso: %s\n", txtdir);
+
+    return txt;
+}
+
 void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha, char *diroutput, FILE *qry, int existe) {
     printf("\n--- INICIO WRITE SVG ---\n");
 
+    char *diraux = malloc(strlen(diroutput) + 5);
+    strcpy(diraux, diroutput);
     FILE *svg = createSvg(diroutput);
 
     for (Cell auxC1 = getFirst(rect); auxC1 != NULL; auxC1 = getNext(rect, auxC1)) {
@@ -54,12 +69,12 @@ void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha, char *diroutput, F
     }
 
     if (existe == 1) {
-        char *diraux = malloc(strlen(diroutput) + 5);
-        strcpy(diraux, diroutput);
-        readComands(qry, rect, circ, linha, txt, svg, diraux);
+        FILE *arq_txt = createTxt(diraux);
+        readComands(qry, rect, circ, linha, txt, svg, arq_txt);
     }
 
     killSvg(svg);
+    free(diraux);
 }
 
 void drawCircle(FILE *svg, Item circ) {
