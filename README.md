@@ -25,14 +25,17 @@ dor sofrimento e desgraça
     -> arrumar os comando UPS, POL, SEL+
       * em pol so falta fazer as linhas de preenchimento
       * em ups talvez esteja bem merda
-      * em sel+ ta igual a sel ???
+      * em sel+ ta igual a sel ??? Devo considerar as areas selecionadas anteriormente e comparar com um grandee retângulo
     -> arrumar seg fault em DELS (URGENTE!!!) e talvez remover as figuras selecionadas do svg
 
-./ted -e /home/marcotuiio/ED1/EDor/T1/input -f vaso.geo -o /home/marcotuiio/ED1/EDor/T1/output -q dpsvaso.qry
+./ted -e /home/marcotuiio/ED1/EDor/T1/input -f vaso.geo -o /home/marcotuiio/ED1/EDor/T1/output -q vas.qry
 
 ./ted -e /home/marcotuiio/ED1/EDor/T1/input -f escada.geo -o /home/marcotuiio/ED1/EDor/T1/output -q esc.qry
 
-./ted -e /home/marcotuiio/ED1/EDor/T1/input -f casa.geo -o /home/marcotuiio/ED1/EDor/T1/output -q q2.qry
+./ted -e /home/marcotuiio/ED1/EDor/T1/input -f casa.geo -o /home/marcotuiio/ED1/EDor/T1/output -q ca.qry
 
 ./ted -e /home/marcotuiio/ED1/EDor/T1/input -f hino2.geo -o /home/marcotuiio/ED1/EDor/T1/output -q h2.qry
 
+./ted -e /home/marcotuiio/ED1/EDor/T1/input -f espiralv2.geo -o /home/marcotuiio/ED1/EDor/T1/output -q esp002.qry
+
+./ted -e /home/marcotuiio/ED1/EDor/T1/input -f hino.geo -o /home/marcotuiio/ED1/EDor/T1/output -q h1.qry

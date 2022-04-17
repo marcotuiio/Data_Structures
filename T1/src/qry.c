@@ -43,7 +43,7 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
             rmp(txt, svg, comando, poligono);
 
         } else if (strcmp(comando, "pol") == 0) {  // Produz um conjunto de linhas e insere no poligono
-            printf("\n%s\n", comando);
+            printf("\n%s\n", comando);             // *fazer linhas de preenchimento*
             pol(txt, svg, qry_dir, comando, eptr, poligono);
 
         } else if (strcmp(comando, "clp") == 0) {  // Remove todas as coordenadas
@@ -54,12 +54,12 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
             printf("\n%s\n", comando);             // *FEITO*
             sel(txt, svg, qry_dir, comando, eptr, selecRec, selecCirc, selecLine, selecTxt, r, c, l, t);
 
-        } else if (strcmp(comando, "sel+") == 0) {  // bla bla
-            printf("\n%s\n", comando);
+        } else if (strcmp(comando, "sel+") == 0) {  // bla bla ta igual ao sel
+            printf("\n%s\n", comando);              // *FEITO????*
             selplus(txt, svg, qry_dir, comando, eptr, selecRec, selecCirc, selecLine, selecTxt, r, c, l, t);
 
         } else if (strcmp(comando, "dels") == 0) {  // Remove todas as figuras selecionadas
-            printf("\n%s\n", comando);              // *FEITO*
+            printf("\n%s\n", comando);              // *FEITO ARRUMARRRRR seg fault*
             dels(txt, selecRec, selecCirc, selecLine, selecTxt);
 
         } else if (strcmp(comando, "dps") == 0) {  // Cria novas formas e bla bla
@@ -67,7 +67,7 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
             dps(txt, svg, qry_dir, comando, eptr, selecRec, selecCirc, selecLine, selecTxt);
 
         } else if (strcmp(comando, "ups") == 0) {  // Altera cor e translada as figuras selecionadas
-            printf("\n%s\n", comando);             // *FEITO??*
+            printf("\n%s\n", comando);             // *FEITO?? parece q ta errado*
             ups(txt, svg, qry_dir, comando, eptr, selecRec, selecCirc, selecLine, selecTxt);
         }
     }
@@ -399,6 +399,8 @@ void sel(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, L
 void selplus(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, Lista l, Lista t) {
     printf("--- INICIO SEL+ ---\n");
     double x, y, w, h;
+    double selx, sely, selw, selh; //x y w h vindos do comando sel COMO?????????
+    double finalX, finalY, finalH, finalW;
     double radius = 1.75000;
     char stroke[] = "red";
     char fill[] = "white";
@@ -415,6 +417,31 @@ void selplus(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista s
     fscanf(arq, "%s", infos);
     h = strtod(infos, &eptr);
 
+    if (y == sely) {
+        finalW = selw + w;
+        finalH = h;
+        finalY = y;
+        if (x < selx) {
+            finalX = x;
+        } else {
+            finalX = selx;
+        }
+    } else if (x == selx) {
+        finalH = selh + h;
+        finalW = w;
+        finalX = x;
+        if (y < sely) {
+            finalY = y;
+        } else {
+            finalY = sely;
+        }
+    } else {
+        finalX = x;
+        finalY = y;
+        finalH = h;
+        finalW = w;
+    }
+
     fprintf(svg, "\t<rect x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"3%%\" />\n", x, y, w, h, stroke, fill);
     fprintf(txt, "\n[*] sel+\n");
     fprintf(txt, "Retângulo de seleção: x = %lf, y = %lf, h = %lf, w = %lf, stroke = %s\n", x, y, h, w, stroke);
@@ -428,9 +455,9 @@ void selplus(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista s
         double recHeight = getRectHEIGHT(auxI1);
         double recWidth = getRectWIDTH(auxI1);
 
-        if (((x + w) >= (recX + recWidth)) && (recX >= x)) {
-            if (((y + h) >= (recY + recHeight)) && (recY >= y)) {
-                if (x <= recX && y <=recY) {
+        if (((finalX + finalW) >= (recX + recWidth))) {
+            if (((finalY + finalH) >= (recY + recHeight))) {
+                if (finalX <= recX && finalY <= recY) {
                     insereFim(sR, auxI1);
 
                     fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", recX, recY, radius, stroke, fill);
@@ -448,9 +475,9 @@ void selplus(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista s
         double circY = getCircY(auxI2);
         double circRadius = getCircRADIUS(auxI2);
 
-        if ((x + w) >= (circX + circRadius) && (x) <= (circX - circRadius)) {
-            if ((y + h) >= (circY + circRadius) && (y) <= (circY - circRadius)) {
-                if(x < circX && y <= circY) {
+        if ((finalX + finalH) >= (circX + circRadius) && (finalX) <= (circX - circRadius)) {
+            if ((finalY + finalH) >= (circY + circRadius) && (finalY) <= (circY - circRadius)) {
+                if(finalX <= circX && finalY <= circY) {
                     insereFim(sC, auxI2);
 
                     fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", circX, circY, radius, stroke, fill);
@@ -467,8 +494,8 @@ void selplus(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista s
         double txtX = getTxtX(auxI3);
         double txtY = getTxtY(auxI3);
 
-        if ((x + w) >= (txtX) && (y + h) >= (txtY)) {
-            if (x <= txtX && y <= txtY) {
+        if ((finalX + finalW) >= (txtX) && (finalY + finalH) >= (txtY)) {
+            if (finalX <= txtX && finalY <= txtY) {
                 insereFim(sT, auxI3);
 
                 fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", txtX, txtY, radius, stroke, fill);
@@ -486,9 +513,9 @@ void selplus(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista s
         double linX2 = getLineFINALX(auxI4);
         double linY2 = getLineFINALY(auxI4);
 
-        if ((x + w) >= (linX1) && (y + h) >= (linY1)) {
-            if ((x + w) >= (linX2) && (y + h) >= (linY2)) {
-                if(x <= linX1 && y <= linY1 && x <= linX2 && y <= linY2) {
+        if ((finalX + finalW) >= (linX1) && (finalY + finalH) >= (linY1)) {
+            if ((finalW + finalW) >= (linX2) && (finalY + finalH) >= (linY2)) {
+                if(finalX <= linX1 && finalY <= linY1 && finalX <= linX2 && finalY <= linY2) {
                     insereFim(sL, auxI4);
 
                     fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", linX1, linY1, radius, stroke, fill);
