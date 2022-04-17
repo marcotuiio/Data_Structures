@@ -13,7 +13,6 @@
 
 typedef void* Fila_Circular;
 typedef void* Item;
-typedef void* Node;
 
 Fila_Circular criaFila(int max_size);
 // *Retorna Sequencia<<Item>>. Isto  ́e, cria uma fila vazia.

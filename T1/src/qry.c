@@ -35,11 +35,11 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
         fscanf(qry_dir, "%s", comando);
 
         if (strcmp(comando, "inp") == 0) {  // Inserir no poligono (fila insere no fim)
-            printf("\n%s\n", comando);      // *FEITO* mas adaptar para de fato inserir no svg
+            printf("\n%s\n", comando);      // *FEITO*
             inp(txt, svg, qry_dir, comando, poligono, r, c, l, t);
 
         } else if (strcmp(comando, "rmp") == 0) {  // Remove uma coordenada do poligono (primeira da fila)
-            printf("\n%s\n", comando);             // *FEITO* mas adaptar para de fato remover do svg
+            printf("\n%s\n", comando);             // *FEITO???*
             rmp(txt, svg, comando, poligono);
 
         } else if (strcmp(comando, "pol") == 0) {  // Produz um conjunto de linhas e insere no poligono
@@ -56,7 +56,7 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
 
         } else if (strcmp(comando, "sel+") == 0) {  // bla bla
             printf("\n%s\n", comando);
-            selplus(txt, qry_dir, comando, eptr);
+            selplus(txt, svg, qry_dir, comando, eptr, selecRec, selecCirc, selecLine, selecTxt, r, c, l, t);
 
         } else if (strcmp(comando, "dels") == 0) {  // Remove todas as figuras selecionadas
             printf("\n%s\n", comando);              // *FEITO*
@@ -67,7 +67,7 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
             dps(txt, svg, qry_dir, comando, eptr, selecRec, selecCirc, selecLine, selecTxt);
 
         } else if (strcmp(comando, "ups") == 0) {  // Altera cor e translada as figuras selecionadas
-            printf("\n%s\n", comando);
+            printf("\n%s\n", comando);             // *FEITO??*
             ups(txt, svg, qry_dir, comando, eptr, selecRec, selecCirc, selecLine, selecTxt);
         }
     }
@@ -190,29 +190,12 @@ void rmp(FILE *txt, FILE *svg, char *infos[], Fila_Circular q) {
     printf("--- INICIO RMP ---\n");
     Item aux = desenfila_circ(q);
     Ponto *pnt = (Ponto *)aux;
-    // double radius = 1.00;
-    //char *stroke = "white";
-    //char *fill = "white";
-    //char *color = "#002255";
     double rx, ry;
     rx = pnt->x;
     ry = pnt->y;
 
-    // Item p1, p2;
-    // int size = getSize(q);
-    // double x1, x2, y1, y2;
-    
-    // p2 = getElement(q, size);
-    // x2 = getpX(p2);
-    // y2 = getpY(p2);
-    // p1 = getElement(q, 1);
-    // x1 = getpX(p1);
-    // y1 = getpY(p1);
-    // fprintf(svg, "\t<line x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" />\n", x2, y2, x1, y1, color);
-    
     fprintf(txt, "\n[*] rmp\n");
     fprintf(txt, "Removido ponto de coordenadas: x = %lf, y = %lf\n", rx, ry);
-    // fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"1%%\" />\n", rx, ry, radius, stroke, fill);
 }
 
 void pol(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Fila_Circular q) {
@@ -239,13 +222,13 @@ void pol(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Fila_Circul
     fprintf(txt, "\n[*] pol\n");
 
     int size = getSize(q);
-    int aux = 0;
-    int aux2 = 1;
+    int aux = 0, aux2 = 1;
+    double menorY = 99999, maiorY = 0;
     double x1, x2, y1, y2;
     Item p1, p2;
-    while(aux2 != size) {
-        p1 = getElement(q, aux);  // 0 1 2 
-        p2 = getElement(q, aux2); // 1 2 3
+    while (aux2 != size) {
+        p1 = getElement(q, aux);   // 0 1 2
+        p2 = getElement(q, aux2);  // 1 2 3
         aux = aux2;
         aux2++;
         x1 = getpX(p1);
@@ -256,12 +239,28 @@ void pol(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Fila_Circul
         fprintf(txt, "Criada linha de borda: x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf, stroke = %s\n", x1, y1, x2, y2, corb);
         fprintf(svg, "\t<line id=\"%d\" x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" />\n", i, x1, y1, x2, y2, corb);
         i++;
+
+        if (y1 < menorY) {
+            menorY = y1;
+        }
+        if (y2 < menorY) {
+            menorY = y2;
+        }
+        if (y1 > maiorY) {
+            maiorY = y2;
+        }
+        if (y2 > maiorY) {
+            maiorY = y2;
+        }
     }
-    p1 = getElement(q, 0); 
+    p1 = getElement(q, 0);
     x1 = getpX(p1);
     y1 = getpY(p1);
     fprintf(txt, "Criada linha de borda: x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf, stroke = %s\n", x2, y2, x1, y1, corb);
     fprintf(svg, "\t<line id=\"%d\" x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" />\n", i, x2, y2, x1, y1, corb);
+
+    double Nlinhas = (maiorY - menorY) / d;
+    printf("Nlinhas %lf\n", Nlinhas);
 
     // printf("id %d\n", i);
     // printf("d %lf\n", d);
@@ -285,6 +284,7 @@ double getpY(Item n) {
 void clp(FILE *txt, Fila_Circular q) {
     printf("--- INICIO CLP ---\n");
     removeTudo(q);
+
     fprintf(txt, "\n[*] clp\n");
     fprintf(txt, "Todas as coordenadas do polígono corrente removidas\n");
 }
@@ -315,6 +315,7 @@ void sel(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, L
     for (Cell auxC1 = getFirst(r); auxC1 != NULL; auxC1 = getNext(r, auxC1)) {
         Item auxI1 = getInfo(auxC1);
 
+        int idR = getRectID(auxI1);
         double recX = getRectX(auxI1);
         double recY = getRectY(auxI1);
         double recHeight = getRectHEIGHT(auxI1);
@@ -322,10 +323,12 @@ void sel(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, L
 
         if (((x + w) >= (recX + recWidth)) && (recX >= x)) {
             if (((y + h) >= (recY + recHeight)) && (recY >= y)) {
-                insereFim(sR, auxI1);
+                if (x <= recX && y <=recY) {
+                    insereFim(sR, auxI1);
 
-                fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", recX, recY, radius, stroke, fill);
-                fprintf(txt, "Selecionado: Retângulo x = %lf, y = %lf, height = %lf, width = %lf\n", recX, recY, recHeight, recWidth);
+                    fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", recX, recY, radius, stroke, fill);
+                    fprintf(txt, "Selecionado: Retângulo id %d, x = %lf, y = %lf, height = %lf, width = %lf\n", idR, recX, recY, recHeight, recWidth);
+                }
             }
         }
     }
@@ -333,16 +336,19 @@ void sel(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, L
     for (Cell auxC2 = getFirst(c); auxC2 != NULL; auxC2 = getNext(c, auxC2)) {
         Item auxI2 = getInfo(auxC2);
 
+        int idC = getCircID(auxI2);
         double circX = getCircX(auxI2);
         double circY = getCircY(auxI2);
         double circRadius = getCircRADIUS(auxI2);
 
         if ((x + w) >= (circX + circRadius) && (x) <= (circX - circRadius)) {
             if ((y + h) >= (circY + circRadius) && (y) <= (circY - circRadius)) {
-                insereFim(sC, auxI2);
+                if (x <= circX && y <= circY) {
+                    insereFim(sC, auxI2);
 
-                fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", circX, circY, radius, stroke, fill);
-                fprintf(txt, "Selecionado: Círculo x = %lf, y = %lf, radius = %lf\n", circX, circY, circRadius);
+                    fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", circX, circY, radius, stroke, fill);
+                    fprintf(txt, "Selecionado: Círculo id %d, x = %lf, y = %lf, radius = %lf\n", idC, circX, circY, circRadius);
+                }
             }
         }
     }
@@ -350,20 +356,24 @@ void sel(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, L
     for (Cell auxC3 = getFirst(t); auxC3 != NULL; auxC3 = getNext(t, auxC3)) {
         Item auxI3 = getInfo(auxC3);
 
+        int idT = getTxtID(auxI3);
         double txtX = getTxtX(auxI3);
         double txtY = getTxtY(auxI3);
 
         if ((x + w) >= (txtX) && (y + h) >= (txtY)) {
-            insereFim(sT, auxI3);
+            if (x <= txtX && y <= txtY) {
+                insereFim(sT, auxI3);
 
-            fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", txtX, txtY, radius, stroke, fill);
-            fprintf(txt, "Selecionado: Texto x = %lf, y = %lf\n", txtX, txtY);
+                fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", txtX, txtY, radius, stroke, fill);
+                fprintf(txt, "Selecionado: Texto id %d,  x = %lf, y = %lf\n", idT, txtX, txtY);
+            }
         }
     }
 
     for (Cell auxC4 = getFirst(l); auxC4 != NULL; auxC4 = getNext(l, auxC4)) {
         Item auxI4 = getInfo(auxC4);
 
+        int idL = getLineID(auxI4);
         double linX1 = getLineX(auxI4);
         double linY1 = getLineY(auxI4);
         double linX2 = getLineFINALX(auxI4);
@@ -371,23 +381,27 @@ void sel(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, L
 
         if ((x + w) >= (linX1) && (y + h) >= (linY1)) {
             if ((x + w) >= (linX2) && (y + h) >= (linY2)) {
-                insereFim(sL, auxI4);
+                if (x <= linX1 && y <= linY1 && x <= linX2 && y <= linY2) {
+                    insereFim(sL, auxI4);
 
-                fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", linX1, linY1, radius, stroke, fill);
-                fprintf(txt, "Selecionado: Linha x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf\n", linX1, linY1, linX2, linY2);
+                    fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", linX1, linY1, radius, stroke, fill);
+                    fprintf(txt, "Selecionado: Linha id %d, x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf\n", idL, linX1, linY1, linX2, linY2);
+                }
             }
         }
     }
-
     // printf("x %lf\n", x);
     // printf("y %lf\n", y);
     // printf("w %lf\n", w);
     // printf("h %lf\n", h);
 }
 
-void selplus(FILE *txt, FILE *arq, char *infos[], char *eptr) {
+void selplus(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, Lista l, Lista t) {
     printf("--- INICIO SEL+ ---\n");
     double x, y, w, h;
+    double radius = 1.75000;
+    char stroke[] = "red";
+    char fill[] = "white";
 
     fscanf(arq, "%s", infos);
     x = strtod(infos, &eptr);
@@ -401,7 +415,88 @@ void selplus(FILE *txt, FILE *arq, char *infos[], char *eptr) {
     fscanf(arq, "%s", infos);
     h = strtod(infos, &eptr);
 
+    fprintf(svg, "\t<rect x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"3%%\" />\n", x, y, w, h, stroke, fill);
     fprintf(txt, "\n[*] sel+\n");
+    fprintf(txt, "Retângulo de seleção: x = %lf, y = %lf, h = %lf, w = %lf, stroke = %s\n", x, y, h, w, stroke);
+
+    for (Cell auxC1 = getFirst(r); auxC1 != NULL; auxC1 = getNext(r, auxC1)) {
+        Item auxI1 = getInfo(auxC1);
+
+        int idR = getRectID(auxI1);
+        double recX = getRectX(auxI1);
+        double recY = getRectY(auxI1);
+        double recHeight = getRectHEIGHT(auxI1);
+        double recWidth = getRectWIDTH(auxI1);
+
+        if (((x + w) >= (recX + recWidth)) && (recX >= x)) {
+            if (((y + h) >= (recY + recHeight)) && (recY >= y)) {
+                if (x <= recX && y <=recY) {
+                    insereFim(sR, auxI1);
+
+                    fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", recX, recY, radius, stroke, fill);
+                    fprintf(txt, "Selecionado: Retângulo id %d, x = %lf, y = %lf, height = %lf, width = %lf\n", idR, recX, recY, recHeight, recWidth);
+                }
+            }
+        }
+    }
+
+    for (Cell auxC2 = getFirst(c); auxC2 != NULL; auxC2 = getNext(c, auxC2)) {
+        Item auxI2 = getInfo(auxC2);
+
+        int idC = getCircID(auxI2);
+        double circX = getCircX(auxI2);
+        double circY = getCircY(auxI2);
+        double circRadius = getCircRADIUS(auxI2);
+
+        if ((x + w) >= (circX + circRadius) && (x) <= (circX - circRadius)) {
+            if ((y + h) >= (circY + circRadius) && (y) <= (circY - circRadius)) {
+                if(x < circX && y <= circY) {
+                    insereFim(sC, auxI2);
+
+                    fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", circX, circY, radius, stroke, fill);
+                    fprintf(txt, "Selecionado: Círculo id %d, x = %lf, y = %lf, radius = %lf\n", idC, circX, circY, circRadius);
+                }
+            }
+        }
+    }
+
+    for (Cell auxC3 = getFirst(t); auxC3 != NULL; auxC3 = getNext(t, auxC3)) {
+        Item auxI3 = getInfo(auxC3);
+
+        int idT = getTxtID(auxI3);
+        double txtX = getTxtX(auxI3);
+        double txtY = getTxtY(auxI3);
+
+        if ((x + w) >= (txtX) && (y + h) >= (txtY)) {
+            if (x <= txtX && y <= txtY) {
+                insereFim(sT, auxI3);
+
+                fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", txtX, txtY, radius, stroke, fill);
+                fprintf(txt, "Selecionado: Texto id %d,  x = %lf, y = %lf\n", idT, txtX, txtY);
+            }
+        }
+    }
+
+    for (Cell auxC4 = getFirst(l); auxC4 != NULL; auxC4 = getNext(l, auxC4)) {
+        Item auxI4 = getInfo(auxC4);
+
+        int idL = getLineID(auxI4);
+        double linX1 = getLineX(auxI4);
+        double linY1 = getLineY(auxI4);
+        double linX2 = getLineFINALX(auxI4);
+        double linY2 = getLineFINALY(auxI4);
+
+        if ((x + w) >= (linX1) && (y + h) >= (linY1)) {
+            if ((x + w) >= (linX2) && (y + h) >= (linY2)) {
+                if(x <= linX1 && y <= linY1 && x <= linX2 && y <= linY2) {
+                    insereFim(sL, auxI4);
+
+                    fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", linX1, linY1, radius, stroke, fill);
+                    fprintf(txt, "Selecionado: Linha id %d, x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf\n", idL, linX1, linY1, linX2, linY2);
+                }
+            }
+        }
+    }
     // printf("x %lf\n", x);
     // printf("y %lf\n", y);
     // printf("w %lf\n", w);
@@ -410,13 +505,57 @@ void selplus(FILE *txt, FILE *arq, char *infos[], char *eptr) {
 
 void dels(FILE *txt, Lista sR, Lista sC, Lista sL, Lista sT) {
     printf("--- INICIO DELS ---\n");
-    removeAll(sR);
-    removeAll(sC);
-    removeAll(sL);
-    removeAll(sT);
 
     fprintf(txt, "\n[*] dels\n");
-    fprintf(txt, "Removidas todas as figuras selecionadas do Banco de Dados\n");
+
+    for (Cell auxC1 = getFirst(sR); auxC1 != NULL; auxC1 = getNext(sR, auxC1)) {
+        Item auxI1 = getInfo(auxC1);
+
+        int idR = getRectID(auxI1);
+        double recX = getRectX(auxI1);
+        double recY = getRectY(auxI1);
+        double recHeight = getRectHEIGHT(auxI1);
+        double recWidth = getRectWIDTH(auxI1);
+        
+        removeCelula(sR, auxI1);
+        fprintf(txt, "Removido: Retângulo id %d, x = %lf, y = %lf, height = %lf, width = %lf\n", idR, recX, recY, recHeight, recWidth);
+    }
+
+    for (Cell auxC2 = getFirst(sC); auxC2 != NULL; auxC2 = getNext(sC, auxC2)) {
+        Item auxI2 = getInfo(auxC2);
+
+        int idC = getCircID(auxI2);
+        double circX = getCircX(auxI2);
+        double circY = getCircY(auxI2);
+        double circRadius = getCircRADIUS(auxI2);
+
+        removeCelula(sC, auxI2);
+        fprintf(txt, "Removido: Círculo id %d, x = %lf, y = %lf, radius = %lf\n", idC, circX, circY, circRadius);
+    }
+
+    for (Cell auxC3 = getFirst(sT); auxC3 != NULL; auxC3 = getNext(sT, auxC3)) {
+        Item auxI3 = getInfo(auxC3);
+
+        int idT = getTxtID(auxI3);
+        double txtX = getTxtX(auxI3);
+        double txtY = getTxtY(auxI3);
+
+        removeCelula(sT, auxI3);
+        fprintf(txt, "Removido: Texto id %d,  x = %lf, y = %lf\n", idT, txtX, txtY);
+    }
+
+    for (Cell auxC4 = getFirst(sL); auxC4 != NULL; auxC4 = getNext(sL, auxC4)) {
+        Item auxI4 = getInfo(auxC4);
+
+        int idL = getLineID(auxI4);
+        double linX1 = getLineX(auxI4);
+        double linY1 = getLineY(auxI4);
+        double linX2 = getLineFINALX(auxI4);
+        double linY2 = getLineFINALY(auxI4);
+
+        removeCelula(sL, auxI4);
+        fprintf(txt, "Removida: Linha id %d, x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf\n", idL, linX1, linY1, linX2, linY2);
+    }
 }
 
 void dps(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Lista sL, Lista sT) {

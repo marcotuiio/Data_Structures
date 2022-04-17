@@ -1,12 +1,12 @@
 
 [*] sel
 Retângulo de seleção: x = 12.000000, y = 12.000000, h = 34.050000, w = 48.500000, stroke = red
-Selecionado: Círculo x = 54.000000, y = 25.000000, radius = 5.000000
-Selecionado: Círculo x = 37.000000, y = 17.000000, radius = 5.000000
-Selecionado: Círculo x = 17.000000, y = 22.000000, radius = 5.000000
-Selecionado: Linha x1 = 41.100000, y1 = 42.400000, x2 = 53.900000, y2 = 25.100000
-Selecionado: Linha x1 = 37.100000, y1 = 40.600000, x2 = 37.600000, y2 = 22.300000
-Selecionado: Linha x1 = 32.100000, y1 = 40.800000, x2 = 20.700000, y2 = 26.800000
+Selecionado: Círculo id 5, x = 54.000000, y = 25.000000, radius = 5.000000
+Selecionado: Círculo id 6, x = 37.000000, y = 17.000000, radius = 5.000000
+Selecionado: Círculo id 7, x = 17.000000, y = 22.000000, radius = 5.000000
+Selecionado: Linha id 2, x1 = 41.100000, y1 = 42.400000, x2 = 53.900000, y2 = 25.100000
+Selecionado: Linha id 3, x1 = 37.100000, y1 = 40.600000, x2 = 37.600000, y2 = 22.300000
+Selecionado: Linha id 4, x1 = 32.100000, y1 = 40.800000, x2 = 20.700000, y2 = 26.800000
 
 [*] dps
 Criado Círculo: id = 17, x = 151.000000, y = 93.100000, r = 5.000000, stroke = #800080, fill = #FF00FF
@@ -15,3 +15,7 @@ Criado Círculo: id = 19, x = 114.000000, y = 90.100000, r = 5.000000, stroke = 
 Criada Linha: id = 20, x1 = 138.100000, y1 = 110.500000, x2 = 150.900000, y2 = 93.200000, color = #800080
 Criada Linha: id = 21, x1 = 134.100000, y1 = 108.700000, x2 = 134.600000, y2 = 90.400000, color = #800080
 Criada Linha: id = 22, x1 = 129.100000, y1 = 108.900000, x2 = 117.700000, y2 = 94.900000, color = #800080
+
+[*] sel+
+Retângulo de seleção: x = 60.500000, y = 46.050000, h = 68.100000, w = 97.000000, stroke = red
+Selecionado: Retângulo id 17, x = 80.800000, y = 51.100000, height = 29.000000, width = 14.000000

@@ -26,4 +26,6 @@
 	<line id="20" x1="138.100000" y1="110.500000" x2="150.900000" y2="93.200000" stroke="#800080" fill-opacity="50%" />
 	<line id="21" x1="134.100000" y1="108.700000" x2="134.600000" y2="90.400000" stroke="#800080" fill-opacity="50%" />
 	<line id="22" x1="129.100000" y1="108.900000" x2="117.700000" y2="94.900000" stroke="#800080" fill-opacity="50%" />
+	<rect x="60.500000" y="46.050000" width="97.000000" height="68.100000" stroke="red" fill="white" fill-opacity="3%" />
+	<circle cx="80.800000" cy="51.100000" r="1.750000" stroke="red" fill="white" fill-opacity="25%" />
 </svg>

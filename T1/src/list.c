@@ -141,7 +141,7 @@ void removeCelula(Lista l, Item n) {
     while (lista != NULL) {
         if (lista->value == n) {
             celulaARemover = lista;
-            break;
+            //break;
         }
         lista = lista->next;
     }

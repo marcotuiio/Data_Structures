@@ -58,7 +58,7 @@ void sel(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, L
 // vermelho em volta da âncora das figuras
 // selecionadas.
 
-void selplus(FILE *txt, FILE *arq, char *infos[], char *eptr);
+void selplus(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, Lista l, Lista t);
 // Semelhante à operação sel, porém, acrescenta
 //(união) as figuras selecionadas àquelas
 // anteriormente selecionadas. ATENÇÃO: as
