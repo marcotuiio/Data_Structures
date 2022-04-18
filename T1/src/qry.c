@@ -20,6 +20,11 @@ struct pg {
 };
 typedef struct pg Ponto;
 
+struct r {
+    double x, y, w, h;
+};
+typedef struct r Rec;
+
 void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, FILE *txt) {
     printf("\n--- INICIO READ QRY ---\n");
     Fila_Circular poligono = criaFila(200);
@@ -27,6 +32,7 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
     Lista selecCirc = criaLista();
     Lista selecLine = criaLista();
     Lista selecTxt = criaLista();
+    Lista selAux = criaLista();
 
     while (!feof(qry_dir)) {
         char *comando[10][30];
@@ -52,11 +58,11 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
 
         } else if (strcmp(comando, "sel") == 0) {  // Seleciona as figuras inteiramente dentro da regiao
             printf("\n%s\n", comando);             // *FEITO*
-            sel(txt, svg, qry_dir, comando, eptr, selecRec, selecCirc, selecLine, selecTxt, r, c, l, t);
+            sel(txt, svg, qry_dir, comando, eptr, selAux, selecRec, selecCirc, selecLine, selecTxt, r, c, l, t);
 
         } else if (strcmp(comando, "sel+") == 0) {  // bla bla ta igual ao sel
             printf("\n%s\n", comando);              // *FEITO????*
-            selplus(txt, svg, qry_dir, comando, eptr, selecRec, selecCirc, selecLine, selecTxt, r, c, l, t);
+            selplus(txt, svg, qry_dir, comando, eptr, selAux, selecRec, selecCirc, selecLine, selecTxt, r, c, l, t);
 
         } else if (strcmp(comando, "dels") == 0) {  // Remove todas as figuras selecionadas
             printf("\n%s\n", comando);              // *FEITO ARRUMARRRRR seg fault*
@@ -289,7 +295,7 @@ void clp(FILE *txt, Fila_Circular q) {
     fprintf(txt, "Todas as coordenadas do polígono corrente removidas\n");
 }
 
-void sel(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, Lista l, Lista t) {
+void sel(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista a, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, Lista l, Lista t) {
     printf("--- INICIO SEL ---\n");
     double x, y, w, h;
     double radius = 1.75000;
@@ -307,6 +313,8 @@ void sel(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, L
 
     fscanf(arq, "%s", infos);
     h = strtod(infos, &eptr);
+
+    criaRecaux(a, x, y, w, h);
 
     fprintf(svg, "\t<rect x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"3%%\" />\n", x, y, w, h, stroke, fill);
     fprintf(txt, "\n[*] sel\n");
@@ -396,7 +404,43 @@ void sel(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, L
     // printf("h %lf\n", h);
 }
 
-void selplus(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, Lista l, Lista t) {
+Item criaRecaux(Lista a, double x, double y, double w, double h) { //mais gambiarra
+    Rec *new_rec = calloc(1, sizeof(Rec));
+
+    new_rec->x = x;
+    new_rec->y = y;
+    new_rec->w = w;
+    new_rec->h = h;
+
+    insereFim(a, new_rec)
+    return new_rec;
+}
+
+double getrX(Item r) {
+    Rec *aux = (Rec *) r;
+
+    return aux->x;
+}
+
+double getrY(Item r) {
+    Rec *aux = (Rec *) r;
+
+    return aux->y;
+}
+
+double getrW(Item r) {
+    Rec *aux = (Rec *) r;
+
+    return aux->w;
+}
+
+double getrH(Item r) {
+    Rec *aux = (Rec *) r;
+
+    return aux->h;
+}
+
+void selplus(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista a, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, Lista l, Lista t) {
     printf("--- INICIO SEL+ ---\n");
     double x, y, w, h;
     double selx, sely, selw, selh; //x y w h vindos do comando sel COMO?????????
@@ -417,29 +461,43 @@ void selplus(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista s
     fscanf(arq, "%s", infos);
     h = strtod(infos, &eptr);
 
-    if (y == sely) {
-        finalW = selw + w;
-        finalH = h;
-        finalY = y;
-        if (x < selx) {
-            finalX = x;
-        } else {
-            finalX = selx;
-        }
-    } else if (x == selx) {
-        finalH = selh + h;
-        finalW = w;
-        finalX = x;
-        if (y < sely) {
+    for (Cell auxA1 = getFirst(a); auxC1 != NULL; auxA1 = getNext(a, auxA1)) { //gambiarraaaaa
+        Item auxB1 = getInfo(auxA1);
+
+        selx = getrX(auxA1);
+        sely = getrY(auxA1);
+        selw = getrW(auxA1);
+        selh = getrH(auxA1);
+
+        if (y == sely) {
+            finalW = selw + w;
+            finalH = h;
             finalY = y;
+            if (x < selx) {
+                finalX = x;
+            } else {
+                finalX = selx;
+            }
+            removeCelula(a, auxA1);
+            criaRecaux(a, finalX, finalY, finalH, finalH);
+        } else if (x == selx) {
+            finalH = selh + h;
+            finalW = w;
+            finalX = x;
+            if (y < sely) {
+                finalY = y;
+            } else {
+                finalY = sely;
+            }
+            removeCelula(a, auxA1);
+            criaRecaux(a, finalX, finalY, finalH, finalH);
         } else {
-            finalY = sely;
+            finalX = x;
+            finalY = y;
+            finalH = h;
+            finalW = w;
+            criaRecaux(a, finalX, finalY, finalH, finalH);
         }
-    } else {
-        finalX = x;
-        finalY = y;
-        finalH = h;
-        finalW = w;
     }
 
     fprintf(svg, "\t<rect x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"3%%\" />\n", x, y, w, h, stroke, fill);
