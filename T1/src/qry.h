@@ -58,7 +58,7 @@ void sel(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista a, Li
 // vermelho em volta da âncora das figuras
 // selecionadas.
 
-Item criaRecaux(Lista a, double x, double y, double w, double h);
+Item criaRecaux(double x, double y, double w, double h);
 // função auxiliar para os comandos SEL e SEL+, para controle da area de seleção
 
 double getrX(Item r);
