@@ -104,8 +104,8 @@ void setlineX(Line1 l, double dx) {
     line->x1 = getLineX(l) + dx;
 }
 
-void setlineY(Line1 l, double dy) {
+void setlineY(Line1 l, double dy, int n) {
     Linha *line = (Linha *)l;
 
-    line->y1 = getLineY(l) + dy;
+    line->y1 = getLineY(l) + n * dy;
 }

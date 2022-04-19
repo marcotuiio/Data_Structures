@@ -132,16 +132,16 @@ void insereDepois(Lista l, Item n, Item x) {
 }
 
 void removeCelula(Lista l, Item n) {
-    // printf("--- INICIO REMOVE CELULA ---\n");
+    printf("--- INICIO REMOVE CELULA ---\n");
     ImpList *aux = (ImpList *)l;
     celulaL *lista = aux->inicio;
     celulaL *celulaARemover = NULL;
 
     // Buscando a celula com valor desejado
     while (lista != NULL) {
-        if (lista->value == n) {
+        if (lista->next == n) {
             celulaARemover = lista;
-            //break;
+            printf("ok\n");
         }
         lista = lista->next;
     }

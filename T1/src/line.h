@@ -42,7 +42,7 @@ void setlineCOLOR(Line1 l, char *new_color);
 void setlineX(Line1 l, double dx);
 //translada em x
 
-void setlineY(Line1 l, double dy);
+void setlineY(Line1 l, double dy, int n);
 //translada em y
 
 #endif

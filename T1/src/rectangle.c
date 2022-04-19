@@ -121,8 +121,8 @@ void setrectX(Rectangle1 r, double dx) {
     rect->x = getRectX(r) + dx;
 }
 
-void setrectY(Rectangle1 r, double dy) {
+void setrectY(Rectangle1 r, double dy, int n) {
     Retangulo *rect = (Retangulo *)r;
 
-    rect->y = getRectY(r) + dy;
+    rect->y = getRectY(r) + n * dy;
 }

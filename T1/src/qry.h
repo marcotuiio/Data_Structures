@@ -50,7 +50,7 @@ void clp(FILE *txt, Fila_Circular q);
 // Remove todas as coordenadas do polígono
 // corrente
 
-void sel(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, Lista l, Lista t);
+void sel(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista a, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, Lista l, Lista t);
 // Seleciona as figuras inteiramente dentro da
 // região especificada pelos parâmetros.
 //(Desconsidera seleções anteriores)
@@ -58,7 +58,26 @@ void sel(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, L
 // vermelho em volta da âncora das figuras
 // selecionadas.
 
-void selplus(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, Lista l, Lista t);
+Item criaRecaux(double x, double y, double w, double h);
+// função auxiliar para os comandos SEL e SEL+, para controle da area de seleção
+
+double getrX(Item r);
+// função auxiliar para os comandos SEL e SEL+
+// retorna o X do retângulo de seleção
+
+double getrY(Item r);
+// função auxiliar para os comandos SEL e SEL+,
+// retorna o Y do retângulo de seleção
+
+double getrW(Item r);
+// função auxiliar para os comandos SEL e SEL+,
+// retorna o W do retângulo de seleção
+
+double getrH(Item r);
+// função auxiliar para os comandos SEL e SEL+,
+// retorna o H do retângulo de seleção
+
+void selplus(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista a, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, Lista l, Lista t);
 // Semelhante à operação sel, porém, acrescenta
 //(união) as figuras selecionadas àquelas
 // anteriormente selecionadas. ATENÇÃO: as

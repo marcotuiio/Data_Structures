@@ -121,8 +121,8 @@ void settxtX(Text1 t, double dx) {
     txt->x = getTxtX(t) + dx;
 }
 
-void settxtY(Text1 t, double dy) {
+void settxtY(Text1 t, double dy, int n) {
     Texto *txt = (Texto *)t;
 
-    txt->y = getTxtY(t) + dy;
+    txt->y = getTxtY(t) + n * dy;
 }

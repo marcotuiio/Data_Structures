@@ -45,7 +45,7 @@ void setcircEDGE(Circle1 c, char *new_corb);
 void setcircX(Circle1 c, double dx);
 //transalada o x
 
-void setcircY(Circle1 c, double dy);
+void setcircY(Circle1 c, double dy, int n);
 //translada o y
 
 #endif

@@ -48,7 +48,7 @@ void setrectEDGE(Rectangle1 r, char *new_corb);
 void setrectX(Rectangle1 r, double dx);
 //translada o x
 
-void setrectY(Rectangle1 r, double dy);
+void setrectY(Rectangle1 r, double dy, int n);
 //translada o y
 
 #endif

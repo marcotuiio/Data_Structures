@@ -110,8 +110,8 @@ void setcircX(Circle1 c, double dx) {
     circ->x = getCircX(c) + dx;
 }
 
-void setcircY(Circle1 c, double dy) {
+void setcircY(Circle1 c, double dy, int n) {
     Circulo *circ = (Circulo *)c;
 
-    circ->y = getCircY(c) + dy;
+    circ->y = getCircY(c) + n * dy;
 }

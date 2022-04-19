@@ -50,7 +50,7 @@ void settxtEDGE(Text1 t, char *new_corb);
 void settxtX(Text1 t, double dx);
 //translada o x
 
-void settxtY(Text1 t, double dy);
+void settxtY(Text1 t, double dy, int n);
 //translada o y
 
 #endif
