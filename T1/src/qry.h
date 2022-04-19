@@ -50,13 +50,21 @@ void clp(FILE *txt, Fila_Circular q);
 // Remove todas as coordenadas do polígono
 // corrente
 
-void sel(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista a, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, Lista l, Lista t);
+void sel(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista g, Lista a, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, Lista l, Lista t);
 // Seleciona as figuras inteiramente dentro da
 // região especificada pelos parâmetros.
 //(Desconsidera seleções anteriores)
 // SVG: desenhar região. Desenhar um anel
 // vermelho em volta da âncora das figuras
 // selecionadas.
+
+Item controleTipo(char *t);
+// função auxiliar para o comando ups saber quais
+// figuras foram as ultimas a entrar no banco de dados
+
+char *getTipo(Item t);
+// função auxiliar para ups,
+// retorna o tipo das figuras selecionadas
 
 Item criaRecaux(double x, double y, double w, double h);
 // função auxiliar para os comandos SEL e SEL+, para controle da area de seleção
@@ -77,7 +85,7 @@ double getrH(Item r);
 // função auxiliar para os comandos SEL e SEL+,
 // retorna o H do retângulo de seleção
 
-void selplus(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista a, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, Lista l, Lista t);
+void selplus(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista g, Lista a, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, Lista l, Lista t);
 // Semelhante à operação sel, porém, acrescenta
 //(união) as figuras selecionadas àquelas
 // anteriormente selecionadas. ATENÇÃO: as
@@ -95,7 +103,7 @@ void dps(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, L
 // cujos identificadores começam em i e são
 // incrementados sequencialmente .
 
-void ups(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Lista sL, Lista sT);
+void ups(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista g, Lista sR, Lista sC, Lista sL, Lista sT);
 // Altera as cores e a posição de n figuras antes
 //(se n<0) ou depois (se n>0) da última figura
 // selecionada pelo último sel ou sel+. Atribui
