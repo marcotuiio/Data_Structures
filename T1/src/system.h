@@ -13,7 +13,7 @@ typedef void* Parameters;
 
 Parameters *createParameters();
 
-Parameters *setParameters(int argc, char** argv, Parameters p);
+Parameters setParameters(int argc, char** argv, Parameters p);
 
 char *getOutputDir(Parameters p);
 

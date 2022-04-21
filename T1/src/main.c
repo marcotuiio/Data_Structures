@@ -6,8 +6,7 @@
 #include "qry.h"
 #include "system.h"
 
-void main(int argc, char **argv) {
-    char var[100];
+int main(int argc, char **argv) {
     FILE *qryFile;
 
     Parameters param = createParameters(argc, argv);
@@ -18,7 +17,7 @@ void main(int argc, char **argv) {
 
     if (geoFile == NULL) {
         printf("Geo File NULO\n");
-        return;
+        return 0;
     }
 
     char *outputDir = getOutputDir(param);
@@ -36,5 +35,7 @@ void main(int argc, char **argv) {
 
     free(param);
     free(pathGeo);
+
+    return 0;
     
 }

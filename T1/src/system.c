@@ -14,7 +14,7 @@ struct parameters {
 
 typedef struct parameters ParamL;
 
-Parameters *setParameters(int argc, char **argv, Parameters p) {
+Parameters setParameters(int argc, char **argv, Parameters p) {
     printf("\nInicio set param\n");
     ParamL *param = (ParamL *)p;
 

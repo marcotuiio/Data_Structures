@@ -19,14 +19,16 @@ dor sofrimento e desgraça
 
 5- Descobrir e arrumar erros na criação do txt pós qry ==> RESOLVIDO
 
+6- Quando roda com o qry exibir tambem o svg puro, junto com o svg pos qry e o txt  ==> RESOLVIDO
+
 ==================================================================================================
 
  * Próximo passo: continuar a implementar o .qry ;-;
     -> arrumar os comando UPS, POL, SEL+
-      * em pol so falta fazer as linhas de preenchimento
-      * em ups talvez esteja bem merda
-      * em sel+ ta igual a sel ??? Devo considerar as areas selecionadas anteriormente e comparar com um grandee retângulo
-    -> arrumar seg fault em DELS (URGENTE!!!) e talvez remover as figuras selecionadas do svg
+      * em pol "SO" falta fazer as linhas de preenchimento
+      * em ups talvez esteja bem merda  ==> Parece que funciona mas não confio muito nele
+      * em sel+ ta igual a sel ??? Devo considerar as areas selecionadas anteriormente e comparar com um grandee retângulo  ==> Parece que funciona mas não confio muito nele
+    -> arrumar seg fault em DELS (URGENTE!!!) e talvez remover as figuras selecionadas do svg 
 
 ./ted -e /home/marcotuiio/ED1/EDor/T1/input -f vaso.geo -o /home/marcotuiio/ED1/EDor/T1/output -q vas.qry
 

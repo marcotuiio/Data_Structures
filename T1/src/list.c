@@ -54,6 +54,7 @@ Item encontraCelula(Lista l, Item n) {
         printf("VALOR NÂO ENCONTRADO");
         exit(1);
     }
+    return NULL;
 }
 
 void insereFim(Lista l, Item n) {

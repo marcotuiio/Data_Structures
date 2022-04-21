@@ -23,7 +23,7 @@ Rectangle1 criaRec() {
     return new_rec;
 }
 
-Item buildRectangle(FILE *arq, Rectangle1 rec, char *infos[], char *eptr) {
+Item buildRectangle(FILE *arq, Rectangle1 rec, char *infos, char *eptr) {
     //printf("\nInicio Build Rectangle\n");
     Retangulo *rectangle = (Retangulo *)rec;
 

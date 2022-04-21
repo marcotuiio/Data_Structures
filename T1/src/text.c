@@ -23,7 +23,7 @@ Text1 criaTxt() {
     return new_txt;
 }
 
-Item buildText(FILE *arq, Text1 txt, char *infos[], char *eptr) {
+Item buildText(FILE *arq, Text1 txt, char *infos, char *eptr) {
     // printf("\nInicio Build Text\n");
     Texto *Text = (Texto *)txt;
 

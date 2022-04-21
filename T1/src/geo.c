@@ -11,7 +11,7 @@
 #include "svg.h"
 #include "text.h"
 
-Lista buildGeometricForms(FILE *arq, char *svgoutput, FILE *qry, int existe) {
+void buildGeometricForms(FILE *arq, char *svgoutput, FILE *qry, int existe) {
     printf("\nInicio Build GeoForms\n");
     Lista listRETANGULO = criaLista();
     Lista listCIRCULO = criaLista();
@@ -19,29 +19,29 @@ Lista buildGeometricForms(FILE *arq, char *svgoutput, FILE *qry, int existe) {
     Lista listLINHA = criaLista();
 
     while (!feof(arq)) {
-        char infos[200];
-        char *eptr;
+        char infos[10][200];
+        char *eptr = NULL;
 
-        fscanf(arq, "%s", infos);
+        fscanf(arq, "%s", *infos);
 
         if (strcmp(infos[0], "c") == 0) {
             Circle1 circle = criaCirc();
-            Item item = buildCircle(arq, circle, infos, eptr);
+            Item item = buildCircle(arq, circle, *infos, eptr);
             insereFim(listCIRCULO, item);
 
         } else if (strcmp(infos[0], "r") == 0) {
             Rectangle1 rectangle = criaRec();
-            Item item = buildRectangle(arq, rectangle, infos, eptr);
+            Item item = buildRectangle(arq, rectangle, *infos, eptr);
             insereFim(listRETANGULO, item);
 
         } else if (strcmp(infos[0], "t") == 0) {
             Text1 text = criaTxt();
-            Item item = buildText(arq, text, infos, eptr);
+            Item item = buildText(arq, text, *infos, eptr);
             insereFim(listTEXTO, item);
 
         } else if (strcmp(infos[0], "l") == 0) {
             Line1 line = criaLinha();
-            Item item = buildLine(arq, line, infos, eptr);
+            Item item = buildLine(arq, line, *infos, eptr);
             insereFim(listLINHA, item);
         }
     }

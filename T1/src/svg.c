@@ -46,7 +46,7 @@ FILE *createTxt(char *output) {
 void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha, char *diroutput, FILE *qry, int existe) {
     printf("\n--- INICIO WRITE SVG ---\n");
 
-    char *diraux = malloc(strlen(diroutput) + 5);
+    char *diraux = malloc(strlen(diroutput) + 10);
     strcpy(diraux, diroutput);
     FILE *svg = createSvg(diroutput);
 

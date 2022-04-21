@@ -22,7 +22,7 @@ Line1 criaLinha() {
     return new_line;
 }
 
-Item buildLine(FILE *arq, Line1 l, char *infos[], char *eptr) {
+Item buildLine(FILE *arq, Line1 l, char *infos, char *eptr) {
     // printf("\nInicio Build Line\n");
     Linha *line = (Linha *)l;
 

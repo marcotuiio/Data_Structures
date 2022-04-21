@@ -22,7 +22,7 @@ Circle1 criaCirc() {
     return new_circ;
 }
 
-Item buildCircle(FILE *arq, Circle1 circ, char *infos[], char *eptr) {
+Item buildCircle(FILE *arq, Circle1 circ, char *infos, char *eptr) {
     // printf("\nInicio Build Circle\n");
     Circulo *circle = (Circulo *)circ;
 

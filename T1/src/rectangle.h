@@ -15,7 +15,7 @@ typedef void* Rectangle1;
 Rectangle1 criaRec();
 //cria um novo retângulo para svg
 
-Item buildRectangle(FILE *arq, Rectangle1 rec, char *infos[], char *eptr);
+Item buildRectangle(FILE *arq, Rectangle1 rec, char *infos, char *eptr);
 //realiza leitura e extração dos dados do retângulo no .geo
 
 int getRectID(Rectangle1 r);

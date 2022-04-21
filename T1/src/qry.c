@@ -41,8 +41,8 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
     Lista selecGeral = criaLista();
 
     while (!feof(qry_dir)) {
-        char *comando[10][30];
-        char *eptr;
+        char comando[150];
+        char *eptr = NULL;
 
         fscanf(qry_dir, "%s", comando);
 
@@ -95,7 +95,7 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
     free(selecGeral);
 }
 
-void inp(FILE *txt, FILE *svg, FILE *arq, char *infos[], Fila_Circular q, Lista r, Lista c, Lista l, Lista t) {
+void inp(FILE *txt, FILE *svg, FILE *arq, char *infos, Fila_Circular q, Lista r, Lista c, Lista l, Lista t) {
     printf("--- INICIO INP ---\n");
     int i, id_aux;
     double x, y;
@@ -200,7 +200,7 @@ Item criaPonto(double x, double y) {
     return new_point;
 }
 
-void rmp(FILE *txt, FILE *svg, char *infos[], Fila_Circular q) {
+void rmp(FILE *txt, FILE *svg, char *infos, Fila_Circular q) {
     printf("--- INICIO RMP ---\n");
     Item aux = desenfila_circ(q);
     Ponto *pnt = (Ponto *)aux;
@@ -212,7 +212,7 @@ void rmp(FILE *txt, FILE *svg, char *infos[], Fila_Circular q) {
     fprintf(txt, "Removido ponto de coordenadas: x = %lf, y = %lf\n", rx, ry);
 }
 
-void pol(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Fila_Circular q) {
+void pol(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Fila_Circular q) {
     printf("--- INICIO POL ---\n");
     int i;
     double d, e;
@@ -278,11 +278,11 @@ void pol(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Fila_Circul
     double Nlinhas = (maiorY - menorY) / d;
     printf("Nlinhas %lf\n", Nlinhas);
 
-    // printf("id %d\n", i);
-    // printf("d %lf\n", d);
-    // printf("e %lf\n", e);
-    // printf("corb %s\n", corb);
-    // printf("corp %s\n", corp);
+    printf("id %d\n", i);
+    printf("d %lf\n", d);
+    printf("e %lf\n", e);
+    printf("corb %s\n", corb);
+    printf("corp %s\n", corp);
 }
 
 double getpX(Item n) {
@@ -305,7 +305,7 @@ void clp(FILE *txt, Fila_Circular q) {
     fprintf(txt, "Todas as coordenadas do polígono corrente removidas\n");
 }
 
-void sel(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista g, Lista a, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, Lista l, Lista t) {
+void sel(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, Lista a, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, Lista l, Lista t) {
     printf("--- INICIO SEL ---\n");
     double x, y, w, h;
     double radius = 1.75000;
@@ -430,9 +430,9 @@ void sel(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista g, Li
 Item controleTipo(char *t){
     Tipos *new = calloc(1, sizeof(Tipos));
 
-    printf("controle t %s\n", t);
+    //printf("controle t %s\n", t);
     strcpy(new->tipo, t);
-    printf("controle new %s\n", new->tipo);
+    //printf("controle new %s\n", new->tipo);
 
     return(new); 
 }
@@ -440,7 +440,7 @@ Item controleTipo(char *t){
 char *getTipo(Item t){
     Tipos *aux = (Tipos *) t;
 
-    printf("tipo get %s\n", aux->tipo);
+    //printf("tipo get %s\n", aux->tipo);
     return aux->tipo;
 }
 
@@ -483,7 +483,7 @@ double getrH(Item r) {
     return aux->h;
 }
 
-void selplus(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista g, Lista a, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, Lista l, Lista t) {
+void selplus(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, Lista a, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, Lista l, Lista t) {
     printf("--- INICIO SEL+ ---\n");
     double x, y, w, h;
     double selx, sely, selw, selh; //x y w h vindos do comando sel 
@@ -707,7 +707,7 @@ void dels(FILE *txt, Lista sR, Lista sC, Lista sL, Lista sT) {
     removeAll(sT);
 }
 
-void dps(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, Lista sC, Lista sL, Lista sT) {
+void dps(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista sR, Lista sC, Lista sL, Lista sT) {
     printf("--- INICIO DPS ---\n");
     int i;
     double dx, dy, aux1, aux2;
@@ -793,7 +793,7 @@ void dps(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista sR, L
     // printf("corp %s\n", corp);
 }
 
-void ups(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista g, Lista sR, Lista sC, Lista sL, Lista sT) {
+void ups(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, Lista sR, Lista sC, Lista sL, Lista sT) {
     printf("--- INICIO UPS ---\n");
     int n;
     double dx, dy;
@@ -830,10 +830,10 @@ void ups(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista g, Li
 
             char tipo[1];
             strcpy(tipo, getTipo(auxG2));
-            printf("tipo ups %s\n", tipo);
+            //printf("tipo ups %s\n", tipo);
 
             if (strcmp(tipo, "r") == 0) {
-                printf("ok rec\n");
+                //printf("ok rec\n");
                 Item auxI1 = getInfo(auxC1);
 
                 setrectEDGE(auxI1, corb);
@@ -852,7 +852,7 @@ void ups(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista g, Li
             } 
 
             if (strcmp(tipo, "c") == 0) {
-                printf("ok circ\n");
+                //printf("ok circ\n");
                 Item auxI2 = getInfo(auxC2);
 
                 setcircEDGE(auxI2, corb);
@@ -871,7 +871,7 @@ void ups(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista g, Li
             } 
 
             if (strcmp(tipo, "t") == 0) {
-                printf("ok txt\n");
+                //printf("ok txt\n");
                 Item auxI3 = getInfo(auxC3);
 
                 settxtEDGE(auxI3, corb);
@@ -890,7 +890,7 @@ void ups(FILE *txt, FILE *svg, FILE *arq, char *infos[], char *eptr, Lista g, Li
             }  
 
             if (strcmp(tipo, "l") == 0) {
-                printf("ok line\n");
+                //printf("ok line\n");
                 Item auxI4 = getInfo(auxC4);
                 
                 setlineCOLOR(auxI4, corb);
