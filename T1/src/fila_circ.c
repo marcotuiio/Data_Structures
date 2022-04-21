@@ -78,7 +78,7 @@ Item desenfila_circ(Fila_Circular q) { //remove on head
 
     if (fila_vazia(fila)) {
         // printf("Sua fila esta vazia\n");
-        return QUEUE_EMPTY;
+        return (Item *)QUEUE_EMPTY;
     }
 
     result = fila->value[fila->head];
@@ -92,7 +92,7 @@ void removeTudo(Fila_Circular q) {
 
     Item cq;  // Usar 'ITEM' pois essa fila deve armazar qualquer tipo de valor
     printf("\n");
-    while ((cq = desenfila_circ(fila)) != QUEUE_EMPTY) {
+    while ((cq = desenfila_circ(fila)) != (Item *)QUEUE_EMPTY) {
         //printf("q = %d\n", cq);
         printf("Removed\n");
     }

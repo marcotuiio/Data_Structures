@@ -38,6 +38,6 @@ dor sofrimento e desgraça
 
 ./ted -e /home/marcotuiio/ED1/EDor/T1/input -f hino2.geo -o /home/marcotuiio/ED1/EDor/T1/output -q h2.qry
 
-./ted -e /home/marcotuiio/ED1/EDor/T1/input -f espiralv2.geo -o /home/marcotuiio/ED1/EDor/T1/output -q esp002.qry
+./ted -e /home/marcotuiio/ED1/EDor/T1/input -f espiralv2.geo -o /home/marcotuiio/ED1/EDor/T1/output -q esp02.qry
 
 ./ted -e /home/marcotuiio/ED1/EDor/T1/input -f hino.geo -o /home/marcotuiio/ED1/EDor/T1/output -q h1.qry
