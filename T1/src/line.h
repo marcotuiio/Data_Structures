@@ -40,9 +40,15 @@ void setlineCOLOR(Line1 l, char *new_color);
 //altera a cor 
 
 void setlineX(Line1 l, double dx);
-//translada em x
+//translada em x x1
 
 void setlineY(Line1 l, double dy, int n);
-//translada em y
+//translada em y y1
+
+void setlineFinalX(Line1 l, double dx);
+//translada em x x2
+
+void setlineFinalY(Line1 l, double dy, int n);
+//translada em y y2
 
 #endif

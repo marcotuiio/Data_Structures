@@ -46,12 +46,12 @@ Item buildLine(FILE *arq, Line1 l, char *infos, char *eptr) {
     fscanf(arq, "%s", infos);
     strcpy(line->color, infos);
 
-    // printf("\nid %d\n", line->id);
-    // printf("x %lf\n", line->x1);
-    // printf("y %lf\n", line->y1);
-    // printf("x %lf\n", line->x2);
-    // printf("y %lf\n", line->y2);
-    // printf("corb %s\n", line->color);
+    printf("\nid %d\n", line->id);
+    printf("x %lf\n", line->x1);
+    printf("y %lf\n", line->y1);
+    printf("x %lf\n", line->x2);
+    printf("y %lf\n", line->y2);
+    printf("corb %s\n", line->color);
 
     return line;
 }
@@ -100,12 +100,28 @@ void setlineCOLOR(Line1 l, char *new_color) {
 
 void setlineX(Line1 l, double dx) {
     Linha *line = (Linha *)l;
+    double aux = getLineY(l);
 
-    line->x1 = getLineX(l) + dx;
+    line->x1 = aux + dx;
 }
 
 void setlineY(Line1 l, double dy, int n) {
     Linha *line = (Linha *)l;
+    double aux = getLineY(l);
 
-    line->y1 = getLineY(l) + n * dy;
+    line->y1 = aux + n * dy;
+}
+
+void setlineFinalX(Line1 l, double dx) {
+    Linha *line = (Linha *)l;
+    double aux = getLineFINALX(l);
+
+    line->x2 = aux + dx;
+}
+
+void setlineFinalY(Line1 l, double dy, int n) {
+    Linha *line = (Linha *)l;
+    double aux = getLineFINALY(l);
+
+    line->y2 = aux + n * dy;
 }
