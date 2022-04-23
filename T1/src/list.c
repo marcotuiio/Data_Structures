@@ -18,7 +18,7 @@ typedef struct ptrL ImpList;
 
 Lista criaLista() {
     // printf("--- INICIO CRIA LISTA ---\n");
-    ImpList *novaLista = calloc(1, sizeof(ImpList *));
+    ImpList *novaLista = calloc(1, sizeof(ImpList));
     novaLista->inicio = NULL;
     novaLista->fim = NULL;
 
