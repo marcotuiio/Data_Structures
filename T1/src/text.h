@@ -20,37 +20,40 @@ Text1 criaTxt();
 Item buildText(FILE *arq, Text1 txt, char *infos, char *eptr);
 //realiza leitura e extração dos dados do texto no .geo
 
-int getTxtID(Text1 t);
+int getTxtID(Item t);
 //retorna o id de determinado texto 
 
-double getTxtX(Text1 t);
+double getTxtX(Item t);
 //retorna a coordenada x de determinado texto no svg
 
-double getTxtY(Text1 t);
+double getTxtY(Item t);
 //retorna a coordenada y de determinado texto no svg
 
-char *getTxtFILL(Text1 t);
+char *getTxtFILL(Item t);
 //retorna a cor de preenchimento de determinado texto no svg
 
-char *getTxtEDGE(Text1 t);
+char *getTxtEDGE(Item t);
 //retorna a cor de preenchimento de determinado texto no svg
 
-char *getTxtANCHOR(Text1 t);
+char *getTxtANCHOR(Item t);
 //retorna a posição da âncora de determinado texto no svg (inicio, meio ou fim)
 
-char *getTxtTEXT(Text1 t);
+char *getTxtTEXT(Item t);
 //retorna o texto escrito propriamente dito de determinado texto no svg
 
-void settxtFILL(Text1 t, char *new_corp);
+char *getTxtTEXTAUX(Item t);
+//retorna o texto escrito propriamente dito de determinado texto no svg
+
+void settxtFILL(Item t, char *new_corp);
 //altera a cor de preenchimento
 
-void settxtEDGE(Text1 t, char *new_corb);
+void settxtEDGE(Item t, char *new_corb);
 //altara a cor da borda
 
-void settxtX(Text1 t, double dx);
+void settxtX(Item t, double dx);
 //translada o x
 
-void settxtY(Text1 t, double dy, int n);
+void settxtY(Item t, double dy, int n);
 //translada o y
 
 #endif

@@ -63,7 +63,7 @@ void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha, char *diroutput, F
 
     for (Cell auxC3 = getFirst(txt); auxC3 != NULL; auxC3 = getNext(txt, auxC3)) {
         Item auxI3 = getInfo(auxC3);
-        drawText(svg, auxI3);
+        drawText(svg, auxI3, existe);
     }
 
     for (Cell auxC4 = getFirst(linha); auxC4 != NULL; auxC4 = getNext(linha, auxC4)) {
@@ -129,7 +129,7 @@ void drawLine(FILE *svg, Item linha) {
     fprintf(svg, "\t<line id=\"%d\" x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" />\n", id, x1, y1, x2, y2, stroke);
 }
 
-void drawText(FILE *svg, Item txt) {
+void drawText(FILE *svg, Item txt, int e) {
     // printf("--- INICIO DRAW TEXT ---\n");
     int id;
     char aux_anchor[1];
@@ -139,7 +139,11 @@ void drawText(FILE *svg, Item txt) {
     id = getTxtID(txt);
     x = getTxtX(txt);
     y = getTxtY(txt);
-    strcpy(text, getTxtTEXT(txt));
+    if (e == 1) {
+        strcpy(text, getTxtTEXTAUX(txt));
+    } else {
+        strcpy(text, getTxtTEXT(txt));
+    }
     strcpy(fill, getTxtFILL(txt));
     strcpy(stroke, getTxtEDGE(txt));
 
@@ -151,6 +155,13 @@ void drawText(FILE *svg, Item txt) {
     } else if (strcmp(aux_anchor, "f") == 0) {
         strcpy(anchor, "end");
     }
+    printf("\nid %d\n", id);
+    printf("x %lf\n", x);
+    printf("y %lf\n", y);
+    printf("a %s\n", anchor);
+    printf("corb %s\n", stroke);
+    printf("corp %s\n", fill);
+    printf("txt %s\n", text);
 
     fprintf(svg, "\t<text id=\"%d\" x=\"%lf\" y=\"%lf\" text-anchor=\"%s\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"50%%\" >\"%s\"</text>\n", id, x, y, anchor, stroke, fill, text);
 }

@@ -39,6 +39,7 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
     Lista selecTxt = criaLista();
     Lista selAux = criaLista();
     Lista selecGeral = criaLista();
+    int check = 0;
 
     while (!feof(qry_dir)) {
         char comando[150];
@@ -72,6 +73,7 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
 
         } else if (strcmp(comando, "dels") == 0) {  // Remove todas as figuras selecionadas
             printf("\n%s\n", comando);              // *FEITO ARRUMARRRRR seg fault*
+            check = 1;
             dels(txt, selecRec, selecCirc, selecLine, selecTxt);
 
         } else if (strcmp(comando, "dps") == 0) {  // Cria novas formas e bla bla
@@ -88,6 +90,13 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
     fclose(txt);
     freeValue(poligono);
     free(poligono);
+
+    if (check == 0) {
+        removeAll(selecRec);
+        removeAll(selecCirc);
+        removeAll(selecLine);
+        removeAll(selecTxt);
+    }
     
     free(selecRec);
     free(selecCirc);
@@ -299,8 +308,10 @@ void pol(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Fila_Circular
     printf("Nlinhas %d\n", Nlinhas);
 
     while (cont <= Nlinhas) {
+        
         fprintf(txt, "Criada linha de preenchimento: x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf, stroke = %s\n", menorX, menorY, maiorX, menorY, corp);
         fprintf(svg, "\t<line id=\"%d\" x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" stroke-width=\"%lf\" />\n", i, menorX, menorY, maiorX, menorY, corp, e);
+        
         i++;
         menorY = menorY + d;
         cont++;
@@ -915,7 +926,7 @@ void ups(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, List
                 settxtX(auxI3, dx);
                 settxtY(auxI3, dy, n2);
 
-                drawText(svg, auxI3);
+                drawText(svg, auxI3, 1);
                 if (n2 > auxn || n >= 0) {
                     break;
                 }

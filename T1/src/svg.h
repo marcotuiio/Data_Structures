@@ -30,6 +30,6 @@ void drawRectangle(FILE * svg, Item rect);
 
 void drawLine(FILE * svg, Item linha);
 
-void drawText(FILE * svg, Item txt);
+void drawText(FILE * svg, Item txt, int e);
 
 #endif

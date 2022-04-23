@@ -15,6 +15,7 @@ struct txt {
     char corb[15];
     char anchor[1];
     char text[100];
+    char textaux[100];
 };
 typedef struct txt Texto;
 
@@ -50,6 +51,8 @@ Item buildText(FILE *arq, Text1 txt, char *infos, char *eptr) {
     fscanf(arq, "%[^\n]", infos);
     strcpy(Text->text, infos);
 
+    strcpy(Text->textaux, Text->text);
+    printf("txtaux %s\n", Text->textaux);
     // printf("\nid %d\n", Text->id);
     // printf("x %lf\n", Text->x);
     // printf("y %lf\n", Text->y);
@@ -61,67 +64,78 @@ Item buildText(FILE *arq, Text1 txt, char *infos, char *eptr) {
     return Text;
 }
 
-int getTxtID(Text1 t) {
+int getTxtID(Item t) {
     Texto *txt = (Texto *)t;
 
     return txt->id;
 }
 
-double getTxtX(Text1 t) {
+double getTxtX(Item t) {
     Texto *txt = (Texto *)t;
 
     return txt->x;
 }
 
-double getTxtY(Text1 t) {
+double getTxtY(Item t) {
     Texto *txt = (Texto *)t;
 
     return txt->y;
 }
 
-char *getTxtFILL(Text1 t) {
+char *getTxtFILL(Item t) {
     Texto *txt = (Texto *)t;
 
     return txt->corp;
 }
 
-char *getTxtEDGE(Text1 t) {
+char *getTxtEDGE(Item t) {
     Texto *txt = (Texto *)t;
 
     return txt->corb;
 }
 
-char *getTxtANCHOR(Text1 t) {
+char *getTxtANCHOR(Item t) {
     Texto *txt = (Texto *)t;
+    //printf("get anchor %s\n", txt->anchor);
+    strcpy(txt->anchor, strtok(txt->anchor, " "));
+    //printf("get anchor %s\n", txt->anchor);
 
     return txt->anchor;
 }
 
-char *getTxtTEXT(Text1 t) {
+char *getTxtTEXT(Item t) {
     Texto *txt = (Texto *)t;
+    printf("get txt %s\n", txt->text);
 
     return txt->text;
 }
 
-void settxtFILL(Text1 t, char *new_corp) {
+char *getTxtTEXTAUX(Item t) {
+    Texto *txt = (Texto *)t;
+    printf("get txt %s\n", txt->textaux);
+
+    return txt->textaux;
+}
+
+void settxtFILL(Item t, char *new_corp) {
     Texto *txt = (Texto *)t;
 
     strcpy(txt->corp, new_corp);
 }
 
-void settxtEDGE(Text1 t, char *new_corb) {
+void settxtEDGE(Item t, char *new_corb) {
     Texto *txt = (Texto *)t;
 
     strcpy(txt->corb, new_corb);
 }
 
-void settxtX(Text1 t, double dx) {
+void settxtX(Item t, double dx) {
     Texto *txt = (Texto *)t;
 
     txt->x = getTxtX(t) + dx;
 }
 
-void settxtY(Text1 t, double dy, int n) {
+void settxtY(Item t, double dy, int n) {
     Texto *txt = (Texto *)t;
 
     txt->y = getTxtY(t) + n * dy;
