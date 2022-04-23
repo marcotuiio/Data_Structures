@@ -55,9 +55,16 @@ void buildGeometricForms(FILE *arq, char *svgoutput, FILE *qry, int existe) {
         strcat(svgpuro, ".svg");
         writeSvg(listRETANGULO, listCIRCULO, listTEXTO, listLINHA, svgpuro, qry, 0);
         writeSvg(listRETANGULO, listCIRCULO, listTEXTO, listLINHA, svgoutput, qry, 1);
+        free(svgpuro);
+
     } else {
         writeSvg(listRETANGULO, listCIRCULO, listTEXTO, listLINHA, svgoutput, qry, 0);
     }
+
+    removeAll(listRETANGULO);
+    removeAll(listCIRCULO);
+    removeAll(listLINHA);
+    removeAll(listTEXTO);
 
     free(listRETANGULO);
     free(listCIRCULO);

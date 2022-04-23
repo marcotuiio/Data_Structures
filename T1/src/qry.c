@@ -67,7 +67,7 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
             sel(txt, svg, qry_dir, comando, eptr, selecGeral, selAux, selecRec, selecCirc, selecLine, selecTxt, r, c, l, t);
 
         } else if (strcmp(comando, "sel+") == 0) {  // bla bla ta igual ao sel
-            printf("\n%s\n", comando);              // *FEITO????* so vai funcionar em alguns casos
+            printf("\n%s\n", comando);              // *FEITO ??* so vai funcionar em alguns casos
             selplus(txt, svg, qry_dir, comando, eptr, selecGeral, selAux, selecRec, selecCirc, selecLine, selecTxt, r, c, l, t);
 
         } else if (strcmp(comando, "dels") == 0) {  // Remove todas as figuras selecionadas
@@ -79,20 +79,23 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
             dps(txt, svg, qry_dir, comando, eptr, selecRec, selecCirc, selecLine, selecTxt);
 
         } else if (strcmp(comando, "ups") == 0) {  // Altera cor e translada as figuras selecionadas
-            printf("\n%s\n", comando);             // *FEITO porra nenhuma*
+            printf("\n%s\n", comando);             // *FEITO ??*
             ups(txt, svg, qry_dir, comando, eptr, selecGeral, selecRec, selecCirc, selecLine, selecTxt);
         }
     }
 
     fclose(qry_dir);
     fclose(txt);
+    freeValue(poligono);
     free(poligono);
-    freeAll(poligono);
     
     free(selecRec);
     free(selecCirc);
     free(selecLine);
     free(selecTxt);
+
+    removeAll(selAux);
+    removeAll(selecGeral);
     free(selAux);
     free(selecGeral);
 }
@@ -102,8 +105,8 @@ void inp(FILE *txt, FILE *svg, FILE *arq, char *infos, Fila_Circular q, Lista r,
     int i, id_aux;
     double x, y;
     double radius = 1.00;
-    char *stroke = "red";
-    char *fill = "black";
+    char stroke[] = "red";
+    char fill[] = "black";
     Item pnt;
 
     fscanf(arq, "%s", infos);
@@ -799,10 +802,12 @@ void ups(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, List
     printf("--- INICIO UPS ---\n");
     int n;
     double dx, dy;
-    char corb[15], corp[15];
+    char corb[15], corp[15], auxcor[15];
 
     fscanf(arq, "%s", infos);
     strcpy(corb, infos);
+    strcpy(auxcor, corb);
+    printf("auxcor %s\n", auxcor);
 
     fscanf(arq, "%s", infos);
     strcpy(corp, infos);
@@ -815,6 +820,12 @@ void ups(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, List
 
     fscanf(arq, "%s", infos);
     n = atoi(infos);
+
+    printf("corb %s\n", corb);
+    printf("corp %s\n", corp);
+    printf("dx %lf\n", dx);
+    printf("dy %lf\n", dy);
+    printf("n %d\n", n);
 
     int n2 = 1;
     int auxn = n * (-1);
@@ -847,11 +858,11 @@ void ups(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, List
                 if (n2 > auxn || n >= 0) {
                     break;
                 }
+                fprintf(txt, "Retângulo atualizado: dx = %lf, dy = %lf, stroke = %s, fill = %s\n", dx, n2*dy, auxcor, corp);
                 n++;
                 n2++;
-                fprintf(txt, "Retângulo atualizado: dx = %lf, dy = %lf, stroke = %s, fill = %s\n", dx, n2*dy, corb, corp);
                 auxC1 = getPrevious(sR, auxC1);
-            } 
+            } else
 
             if (strcmp(tipo, "c") == 0) {
                 //printf("ok circ\n");
@@ -866,11 +877,11 @@ void ups(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, List
                 if (n2 > auxn || n >= 0) {
                     break;
                 }
+                fprintf(txt, "Círculo atualizado: dx = %lf, dy = %lf, stroke = %s, fill = %s\n", dx, n2*dy, auxcor, corp);
                 n++;
                 n2++;
-                fprintf(txt, "Círculo atualizado: dx = %lf, dy = %lf, stroke = %s, fill = %s\n", dx, n2*dy, corb, corp);
                 auxC2 = getPrevious(sC, auxC2);
-            } 
+            } else
 
             if (strcmp(tipo, "t") == 0) {
                 //printf("ok txt\n");
@@ -885,11 +896,11 @@ void ups(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, List
                 if (n2 > auxn || n >= 0) {
                     break;
                 }
+                fprintf(txt, "Texto atualizado: dx = %lf, dy = %lf, stroke = %s, fill = %s\n", dx, n2*dy, auxcor, corp);
                 n++;
                 n2++;
-                fprintf(txt, "Texto atualizado: dx = %lf, dy = %lf, stroke = %s, fill = %s\n", dx, n2*dy, corb, corp);
                 auxC3 = getPrevious(sT, auxC3);
-            }  
+            } else  
 
             if (strcmp(tipo, "l") == 0) {
                 //printf("ok line\n");
@@ -897,23 +908,19 @@ void ups(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, List
                 
                 setlineCOLOR(auxI4, corb);
                 setlineX(auxI4, dx);
+                setlineFinalX(auxI4, dx);
                 setlineY(auxI4, dy, n2);
+                setlineFinalY(auxI4, dy, n2);
 
                 drawLine(svg, auxI4);
                 if (n2 > auxn || n >= 0) {
                     break;
                 }
+                fprintf(txt, "Linha atualizada: dx = %lf, dy = %lf, color = %s\n", dx, n2*dy, auxcor);
                 n++;
                 n2++;
-                fprintf(txt, "Linha atualizada: dx = %lf, dy = %lf, color = %s\n", dx, n2*dy, corb);
                 auxC4 = getPrevious(sL, auxC4);
             }
         } 
     }
-
-    // printf("corb %s\n", corb);
-    // printf("corp %s\n", corp);
-    // printf("dx %lf\n", dx);
-    // printf("dy %lf\n", dy);
-    // printf("n %d\n", n);
 }

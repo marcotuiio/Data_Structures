@@ -53,7 +53,7 @@ Parameters *createParameters(int argc, char **argv) {
     param->nameGeoFile = malloc(100);
     param->nameQryFile = malloc(100);
 
-    param->inputDir = getcwd(NULL, 0);
+    //param->inputDir = getcwd(NULL, 0);
     param->nameGeoFile = malloc(100);
     strcpy(param->nameQryFile, "nda");
 
@@ -143,3 +143,13 @@ int qryExiste(Parameters p) {
 
     return 1;
 }
+
+// void freeParam(Parameters p) {
+//     ParamL *param = (ParamL *)p;
+    
+//     free(param->inputDir);
+//     free(param->nameGeoFile);
+//     free(param->nameQryFile);
+//     free(param->outputDir);
+//     free(param);
+// }

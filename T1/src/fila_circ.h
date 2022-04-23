@@ -25,9 +25,6 @@ bool fila_cheia(Fila_Circular q);
 // * Retorna Sequencia.cheia(f). Isto ́e, retorna verdadeiro se
 // f está cheia; falso, caso contrário.
 
-void destroi_fila(Fila_Circular q);
-//libera elementos para evitar vazamentos de memória
-
 bool enfila_circ(Fila_Circular q, Item x);
 //adiciona elementos no rabo fila circular
 
@@ -48,6 +45,6 @@ void removeTudo(Fila_Circular q);
 // * remove todos os elementos da cabeça, até que a fila esteja vazia
 
 void freeValue(Fila_Circular q);
-// * libera a memória do vetor da fila
+// * libera elementos para evitar vazamentos de memória
 
 #endif

@@ -40,28 +40,7 @@ Selecionado: Linha id 24, x1 = 127.000000, y1 = 123.000000, x2 = 107.000000, y2 
 Selecionado: Linha id 25, x1 = 104.000000, y1 = 104.000000, x2 = 135.000000, y2 = 69.000000
 
 [*] ups
-Linha atualizada: dx = 47.250000, dy = 270.000000, color = 
-Linha atualizada: dx = 47.250000, dy = 405.000000, color = 
-Linha atualizada: dx = 47.250000, dy = 540.000000, color = 
-Linha atualizada: dx = 47.250000, dy = 675.000000, color = 
-
-[*] dels
-Removida: Linha id 5, x1 = 24.000000, y1 = 38.000000, x2 = 60.000000, y2 = 39.000000
-Removida: Linha id 6, x1 = 22.000000, y1 = 37.000000, x2 = 40.000000, y2 = 28.000000
-Removida: Linha id 7, x1 = 43.000000, y1 = 27.000000, x2 = 82.000000, y2 = 27.000000
-Removida: Linha id 9, x1 = 65.000000, y1 = 38.000000, x2 = 83.000000, y2 = 27.000000
-Removida: Linha id 13, x1 = 26.000000, y1 = 46.000000, x2 = 26.000000, y2 = 57.000000
-Removida: Linha id 14, x1 = 37.000000, y1 = 57.000000, x2 = 27.000000, y2 = 56.000000
-Removida: Linha id 15, x1 = 37.000000, y1 = 55.000000, x2 = 37.000000, y2 = 46.000000
-Removida: Linha id 16, x1 = 25.000000, y1 = 45.000000, x2 = 37.000000, y2 = 45.000000
-Removida: Linha id 18, x1 = 45.000000, y1 = 55.000000, x2 = 57.000000, y2 = 55.000000
-Removida: Linha id 45, x1 = 21.000000, y1 = 38.000000, x2 = 40.000000, y2 = 13.000000
-Removida: Linha id 46, x1 = 38.000000, y1 = 10.000000, x2 = 73.000000, y2 = 45.000000
-Removida: Linha id 47, x1 = 70.000000, y1 = 6.000000, x2 = 33.000000, y2 = 13.000000
-Removida: Linha id 48, x1 = 87.000000, y1 = 28.000000, x2 = 59.000000, y2 = 1.000000
-Removida: Linha id 20, x1 = 144.000000, y1 = 71.000000, x2 = 166.000000, y2 = 82.000000
-Removida: Linha id 21, x1 = 208.250000, y1 = 749.000000, x2 = 174.000000, y2 = 105.000000
-Removida: Linha id 22, x1 = 219.250000, y1 = 632.000000, x2 = 158.000000, y2 = 118.000000
-Removida: Linha id 23, x1 = 216.250000, y1 = 518.000000, x2 = 127.000000, y2 = 116.000000
-Removida: Linha id 24, x1 = 174.250000, y1 = 393.000000, x2 = 107.000000, y2 = 91.000000
-Removida: Linha id 25, x1 = 151.250000, y1 = 239.000000, x2 = 135.000000, y2 = 69.000000
+Linha atualizada: dx = 47.250000, dy = 135.000000, color = #004D33
+Linha atualizada: dx = 47.250000, dy = 270.000000, color = #004D33
+Linha atualizada: dx = 47.250000, dy = 405.000000, color = #004D33
+Linha atualizada: dx = 47.250000, dy = 540.000000, color = #004D33

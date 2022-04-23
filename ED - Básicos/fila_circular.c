@@ -29,10 +29,6 @@ bool fila_cheia(fila_circ *q){
     return (q->num_entries == q->size);
 }
 
-void destoi_fila(fila_circ *q){
-    free(q->values);
-}
-
 bool enfila_circ(fila_circ *q, int x){
     //crio uma nova celula
     if (fila_cheia(q)){

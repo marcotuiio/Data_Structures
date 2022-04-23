@@ -21,9 +21,6 @@ bool fila_cheia(fila_circ *q);
 //confere se a fila está cheia, logo se é possível realizar
 //operações
 
-void destroi_fila(fila_circ *q);
-//libera elementos para evitar vazamentos de memória
-
 bool enfila_circ(fila_circ *q, int x);
 //adiciona elementos no rabo fila circular
 

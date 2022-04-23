@@ -39,12 +39,6 @@ bool fila_cheia(Fila_Circular q) {
     return (fila->num_entries == fila->size);
 }
 
-void destroi_fila(Fila_Circular q) {
-    fila_circ *fila = (fila_circ *)q;
-
-    free(fila->value);
-}
-
 bool enfila_circ(Fila_Circular q, Item x) { //add on tail
     fila_circ *fila = (fila_circ *)q;
     // Preencho uma nova celula

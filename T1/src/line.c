@@ -46,12 +46,12 @@ Item buildLine(FILE *arq, Line1 l, char *infos, char *eptr) {
     fscanf(arq, "%s", infos);
     strcpy(line->color, infos);
 
-    printf("\nid %d\n", line->id);
-    printf("x %lf\n", line->x1);
-    printf("y %lf\n", line->y1);
-    printf("x %lf\n", line->x2);
-    printf("y %lf\n", line->y2);
-    printf("corb %s\n", line->color);
+    // printf("\nid %d\n", line->id);
+    // printf("x %lf\n", line->x1);
+    // printf("y %lf\n", line->y1);
+    // printf("x %lf\n", line->x2);
+    // printf("y %lf\n", line->y2);
+    // printf("corb %s\n", line->color);
 
     return line;
 }

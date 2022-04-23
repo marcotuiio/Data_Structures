@@ -27,4 +27,6 @@ char *buildFilePath(char *directory, char *fileName);
 
 int qryExiste (Parameters p);
 
+// void freeParam(Parameters p);
+
 #endif

@@ -28,6 +28,7 @@ int main(int argc, char **argv) {
         qryFile = loadFile(pathQry);
 
         buildGeometricForms(geoFile, outputDir, qryFile, 1);
+        free(pathQry);
 
     } else {
         buildGeometricForms(geoFile, outputDir, NULL, 0);
@@ -35,7 +36,7 @@ int main(int argc, char **argv) {
 
     free(param);
     free(pathGeo);
+    free(outputDir);
 
     return 0;
-    
 }

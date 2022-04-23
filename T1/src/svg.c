@@ -39,6 +39,7 @@ FILE *createTxt(char *output) {
     FILE *txt = fopen(txtdir, "w");
 
     printf("\nCriado txt com sucesso: %s\n", txtdir);
+    free(txtdir);
 
     return txt;
 }
@@ -46,7 +47,7 @@ FILE *createTxt(char *output) {
 void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha, char *diroutput, FILE *qry, int existe) {
     printf("\n--- INICIO WRITE SVG ---\n");
 
-    char *diraux = malloc(strlen(diroutput) + 10);
+    char *diraux = malloc(strlen(diroutput) + 20);
     strcpy(diraux, diroutput);
     FILE *svg = createSvg(diroutput);
 
