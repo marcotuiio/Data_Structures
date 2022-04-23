@@ -97,3 +97,9 @@ void removeTudo(Fila_Circular q) {
         printf("Removed\n");
     }
 }
+
+void freeValue(Fila_Circular q) {
+    fila_circ *fila = (fila_circ *)q;
+
+    free(fila->value);
+}

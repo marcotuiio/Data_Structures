@@ -47,4 +47,7 @@ Item desenfila_circ(Fila_Circular q);
 void removeTudo(Fila_Circular q);
 // * remove todos os elementos da cabeça, até que a fila esteja vazia
 
+void freeValue(Fila_Circular q);
+// * libera a memória do vetor da fila
+
 #endif
