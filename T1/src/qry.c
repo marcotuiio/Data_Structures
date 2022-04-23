@@ -87,6 +87,8 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
     fclose(qry_dir);
     fclose(txt);
     free(poligono);
+    freeAll(poligono);
+    
     free(selecRec);
     free(selecCirc);
     free(selecLine);
