@@ -242,7 +242,8 @@ void pol(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Fila_Circular
 
     int size = getSize(q);
     int aux = 0, aux2 = 1;
-    double menorY = 99999, maiorY = 0;
+    double menorY = 99999, maiorY = -1;
+    double menorX = 99999, maiorX = -1;
     double x1, x2, y1, y2;
     Item p1, p2;
 
@@ -272,6 +273,19 @@ void pol(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Fila_Circular
         if (y2 > maiorY) {
             maiorY = y2;
         }
+
+        if (x1 < menorX) {
+            menorX = x1;
+        }
+        if (x2 < menorX) {
+            menorX = x2;
+        }
+        if (x1 > maiorX) {
+            maiorX = x2;
+        }
+        if (x2 > maiorX) {
+            maiorX = x2;
+        }
     }
     p1 = getElement(q, 0);
     x1 = getpX(p1);
@@ -280,8 +294,17 @@ void pol(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Fila_Circular
     fprintf(txt, "Criada linha de borda: x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf, stroke = %s\n", x2, y2, x1, y1, corb);
     fprintf(svg, "\t<line id=\"%d\" x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" />\n", i, x2, y2, x1, y1, corb);
 
-    double Nlinhas = (maiorY - menorY) / d;
-    printf("Nlinhas %lf\n", Nlinhas);
+    int Nlinhas = (maiorY - menorY) / d;
+    int cont = 0;
+    printf("Nlinhas %d\n", Nlinhas);
+
+    while (cont <= Nlinhas) {
+        fprintf(txt, "Criada linha de preenchimento: x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf, stroke = %s\n", menorX, menorY, maiorX, menorY, corp);
+        fprintf(svg, "\t<line id=\"%d\" x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" stroke-width=\"%lf\" />\n", i, menorX, menorY, maiorX, menorY, corp, e);
+        i++;
+        menorY = menorY + d;
+        cont++;
+    }
 
     printf("id %d\n", i);
     printf("d %lf\n", d);
