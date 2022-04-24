@@ -18,7 +18,7 @@ Fila_Circular criaFila(int max_size) {
     fila_circ *q = calloc(1, sizeof(fila_circ *));
 
     q->size = max_size;
-    q->value = malloc(sizeof(Item) * max_size);
+    q->value = (Item*)malloc(sizeof(Item) * max_size);
     q->num_entries = 0;
     q->head = 0;
     q->tail = 0;

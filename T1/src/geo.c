@@ -49,7 +49,7 @@ void buildGeometricForms(FILE *arq, char *svgoutput, FILE *qry, int existe) {
     fclose(arq);
 
     if (existe == 1) {
-        char *svgpuro = malloc(strlen(svgoutput));
+        char *svgpuro = (char*)malloc(strlen(svgoutput));
         strcpy(svgpuro, svgoutput);
         svgpuro = strtok(svgpuro, "_");
         strcat(svgpuro, ".svg");

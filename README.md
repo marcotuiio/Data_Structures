@@ -44,4 +44,6 @@ Colocar arquivos de Ed para facilitar estudos
 
 ./ted -e /home/marcotuiio/EDor/T1/input -f jog-sp.geo -o /home/marcotuiio/EDor/T1/output -q 007j.qry
 
+./ted -e /home/marcotuiio/EDor/T1/input -f hinotxt.geo -o /home/marcotuiio/EDor/T1/output 
+
 !!!PEDIR AJUDAR SEGUNDA PRO PROFESSOR EM POL(LINHAS INTERNAS), SEL+(TA CERTO?), UPS(TA CERTO?)!!!

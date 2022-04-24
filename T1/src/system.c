@@ -48,13 +48,13 @@ Parameters *createParameters(int argc, char **argv) {
     printf("\nInicio create param\n");
     ParamL *param = calloc(1, sizeof(ParamL));
 
-    param->outputDir = malloc(400);
-    param->inputDir = malloc(400);
-    param->nameGeoFile = malloc(100);
-    param->nameQryFile = malloc(100);
+    param->outputDir = (char*)malloc(400);
+    param->inputDir = (char*)malloc(400);
+    param->nameGeoFile = (char*)malloc(100);
+    param->nameQryFile = (char*)malloc(100);
 
     //param->inputDir = getcwd(NULL, 0);
-    param->nameGeoFile = malloc(100);
+    param->nameGeoFile = (char*)malloc(100);
     strcpy(param->nameQryFile, "nda");
 
     return setParameters(argc, argv, param);
@@ -95,7 +95,7 @@ char *getOutputDir(Parameters p) {
     }
 
     char *qry_token = strtok(param->nameQryFile, tok);
-    char *new = malloc(strlen(geo_token) + strlen(qry_token) + 2);
+    char *new = (char*)malloc(strlen(geo_token) + strlen(qry_token) + 2);
 
     strcpy(new, geo_token);
     strcat(new, under);
@@ -112,7 +112,7 @@ char *buildFilePath(char *directory, char *fileName) {
     printf("\nInicio Build file path\n");
     printf("Dir: %s - File Name: %s\n", directory, fileName);
     char separator[] = "/";
-    char *result = malloc(strlen(directory) + strlen(fileName) + 1);
+    char *result = (char*)malloc(strlen(directory) + strlen(fileName) + 1);
 
     strcpy(result, directory);
     strcat(result, separator);

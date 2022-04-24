@@ -47,7 +47,7 @@ FILE *createTxt(char *output) {
 void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha, char *diroutput, FILE *qry, int existe) {
     printf("\n--- INICIO WRITE SVG ---\n");
 
-    char *diraux = malloc(strlen(diroutput) + 20);
+    char *diraux = (char*)malloc(strlen(diroutput) + 20);
     strcpy(diraux, diroutput);
     FILE *svg = createSvg(diroutput);
 
@@ -155,13 +155,13 @@ void drawText(FILE *svg, Item txt, int e) {
     } else if (strcmp(aux_anchor, "f") == 0) {
         strcpy(anchor, "end");
     }
-    printf("\nid %d\n", id);
-    printf("x %lf\n", x);
-    printf("y %lf\n", y);
-    printf("a %s\n", anchor);
-    printf("corb %s\n", stroke);
-    printf("corp %s\n", fill);
-    printf("txt %s\n", text);
+    // printf("\nid %d\n", id);
+    // printf("x %lf\n", x);
+    // printf("y %lf\n", y);
+    // printf("a %s\n", anchor);
+    // printf("corb %s\n", stroke);
+    // printf("corp %s\n", fill);
+    // printf("txt %s\n", text);
 
     fprintf(svg, "\t<text id=\"%d\" x=\"%lf\" y=\"%lf\" text-anchor=\"%s\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"50%%\" >\"%s\"</text>\n", id, x, y, anchor, stroke, fill, text);
 }

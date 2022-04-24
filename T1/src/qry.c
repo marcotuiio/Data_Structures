@@ -73,7 +73,7 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
 
         } else if (strcmp(comando, "dels") == 0) {  // Remove todas as figuras selecionadas
             printf("\n%s\n", comando);              // *FEITO ARRUMARRRRR seg fault*
-            check = 1;
+            check = check + 1;
             dels(txt, selecRec, selecCirc, selecLine, selecTxt);
 
         } else if (strcmp(comando, "dps") == 0) {  // Cria novas formas e bla bla
@@ -92,21 +92,26 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
     free(poligono);
 
     if (check == 0) {
+        //printf("1\n");
         removeAll(selecRec);
         removeAll(selecCirc);
         removeAll(selecLine);
         removeAll(selecTxt);
+        //printf("2\n");
     }
     
+    //printf("3\n");
     free(selecRec);
     free(selecCirc);
     free(selecLine);
     free(selecTxt);
+    //printf("4\n");
 
     removeAll(selAux);
     removeAll(selecGeral);
     free(selAux);
     free(selecGeral);
+    //printf("5\n");
 }
 
 void inp(FILE *txt, FILE *svg, FILE *arq, char *infos, Fila_Circular q, Lista r, Lista c, Lista l, Lista t) {

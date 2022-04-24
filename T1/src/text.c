@@ -52,7 +52,8 @@ Item buildText(FILE *arq, Text1 txt, char *infos, char *eptr) {
     strcpy(Text->text, infos);
 
     strcpy(Text->textaux, Text->text);
-    printf("txtaux %s\n", Text->textaux);
+    
+    // printf("txtaux %s\n", Text->textaux);
     // printf("\nid %d\n", Text->id);
     // printf("x %lf\n", Text->x);
     // printf("y %lf\n", Text->y);
@@ -105,14 +106,14 @@ char *getTxtANCHOR(Item t) {
 
 char *getTxtTEXT(Item t) {
     Texto *txt = (Texto *)t;
-    printf("get txt %s\n", txt->text);
+    //printf("get txt %s\n", txt->text);
 
     return txt->text;
 }
 
 char *getTxtTEXTAUX(Item t) {
     Texto *txt = (Texto *)t;
-    printf("get txt %s\n", txt->textaux);
+    //printf("get txt %s\n", txt->textaux);
 
     return txt->textaux;
 }
