@@ -63,28 +63,61 @@ Parameters *createParameters(int argc, char **argv) {
 char *makePathGeoFile(Parameters p) {
     printf("\nInicio path geo file\n");
     ParamL *param = (ParamL *)p;
+    int len_dir = strlen(param->inputDir);
+    int len_geo = strlen(param->nameGeoFile);
+
+    if (param->inputDir[len_dir-1] == '/'){
+        param->inputDir[len_dir-1] = '\0';
+    }
+    // Removendo / no final do nome geo
+    if (param->nameGeoFile[len_geo-1] == '/') {
+        param->nameGeoFile[len_geo-1] = '\0';
+    }
+    // Removendo / no inicio do nome geo 
+    if (param->nameGeoFile[0] == '/') {
+        param->nameGeoFile = param->nameGeoFile + 1;
+    }
 
     return buildFilePath(param->inputDir, param->nameGeoFile);
 }
 
 char *makePathQryFile(Parameters p) {
-    printf("\nInicio path geo file\n");
+    printf("\nInicio path qry file\n");
     ParamL *param = (ParamL *)p;
+    int len_dir = strlen(param->inputDir);
+    int len_qry = strlen(param->nameQryFile);
 
+    if (param->inputDir[len_dir-1] == '/'){
+        param->inputDir[len_dir-1] = '\0';
+    }
+    // Removendo / no inicio do nome qry 
+    if (param->nameQryFile[len_qry-1] == '/') {
+        param->nameQryFile[len_qry-1] = '\0';
+    }
+    // Removendo / no inicio do nome qry 
+    if (param->nameQryFile[0] == '/') {
+        param->nameQryFile = param->nameQryFile + 1;
+    }
     strcat(param->nameQryFile, ".qry");
+
     return buildFilePath(param->inputDir, param->nameQryFile);
 }
 
 char *getOutputDir(Parameters p) {
     printf("\nInicio getOutputDir\n");
     ParamL *param = (ParamL *)p;
+    int len_dir = strlen(param->outputDir);
+
+    if (param->outputDir[len_dir-1] == '/'){
+        param->outputDir[len_dir-1] = '\0';
+    }
 
     char under[] = "_";
     char separator[] = "/";
     char tok[] = ".";
     char type_svg[] = ".svg";
     char *geo_token = strtok(param->nameGeoFile, tok);
-
+    
     if (strcmp(param->nameQryFile, "nda") == 0) {
         strcat(param->outputDir, separator);
         strcat(param->outputDir, geo_token);
@@ -92,8 +125,11 @@ char *getOutputDir(Parameters p) {
 
         printf("New output dir: %s\n", param->outputDir);
         return param->outputDir;
-    }
+    } 
 
+    if (param->nameQryFile[0] == '/') {
+        param->nameQryFile++;
+    }
     char *qry_token = strtok(param->nameQryFile, tok);
     char *new = (char*)malloc(strlen(geo_token) + strlen(qry_token) + 2);
 
@@ -113,6 +149,7 @@ char *buildFilePath(char *directory, char *fileName) {
     printf("Dir: %s - File Name: %s\n", directory, fileName);
     char separator[] = "/";
     char *result = (char*)malloc(strlen(directory) + strlen(fileName) + 1);
+    //printf("Last digit %c\n", directory[aux-1]);
 
     strcpy(result, directory);
     strcat(result, separator);
@@ -143,13 +180,3 @@ int qryExiste(Parameters p) {
 
     return 1;
 }
-
-// void freeParam(Parameters p) {
-//     ParamL *param = (ParamL *)p;
-    
-//     free(param->inputDir);
-//     free(param->nameGeoFile);
-//     free(param->nameQryFile);
-//     free(param->outputDir);
-//     free(param);
-// }

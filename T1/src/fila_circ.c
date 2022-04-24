@@ -15,7 +15,7 @@ typedef struct queue fila_circ;
 
 Fila_Circular criaFila(int max_size) {
     // Criando nova fila circular
-    fila_circ *q = calloc(1, sizeof(fila_circ *));
+    fila_circ *q = calloc(1, sizeof(fila_circ));
 
     q->size = max_size;
     q->value = (Item*)malloc(sizeof(Item) * max_size);
