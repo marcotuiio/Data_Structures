@@ -10,6 +10,7 @@
 #include "rectangle.h"
 #include "svg.h"
 #include "text.h"
+#include "qry.h"
 
 void buildGeometricForms(FILE *arq, char *svgoutput, FILE *qry, int existe) {
     printf("\nInicio Build GeoForms\n");
@@ -47,18 +48,30 @@ void buildGeometricForms(FILE *arq, char *svgoutput, FILE *qry, int existe) {
     }
 
     fclose(arq);
+    char *diraux = (char*)malloc(strlen(svgoutput) + 20);
+    strcpy(diraux, svgoutput);
 
     if (existe == 1) {
         char *svgpuro = (char*)malloc(strlen(svgoutput));
         strcpy(svgpuro, svgoutput);
         svgpuro = strtok(svgpuro, "_");
         strcat(svgpuro, ".svg");
-        writeSvg(listRETANGULO, listCIRCULO, listTEXTO, listLINHA, svgpuro, qry, 0);
-        writeSvg(listRETANGULO, listCIRCULO, listTEXTO, listLINHA, svgoutput, qry, 1);
+
+        FILE *svg1 = createSvg(svgpuro);
+        writeSvg(listRETANGULO, listCIRCULO, listTEXTO, listLINHA, svg1, 0);
+        killSvg(svg1);
+
+        FILE *arq_txt = createTxt(diraux);
+        FILE *svgQry = createSvg(svgoutput);
+
+        readComands(qry, listRETANGULO, listCIRCULO, listLINHA, listTEXTO, svgQry, arq_txt);
+        killSvg(svgQry);
         free(svgpuro);
 
     } else {
-        writeSvg(listRETANGULO, listCIRCULO, listTEXTO, listLINHA, svgoutput, qry, 0);
+        FILE *svg2 = createSvg(svgoutput);
+        writeSvg(listRETANGULO, listCIRCULO, listTEXTO, listLINHA, svg2, 0);
+        killSvg(svg2);
     }
 
     removeAll(listRETANGULO);
@@ -70,4 +83,44 @@ void buildGeometricForms(FILE *arq, char *svgoutput, FILE *qry, int existe) {
     free(listCIRCULO);
     free(listLINHA);
     free(listTEXTO);
+
+    free(diraux);
+
+}
+
+FILE *createTxt(char *output) {
+    char toRemove[] = ".";
+    char toAdd[] = ".txt";
+    char *txtdir = malloc(strlen(output) + 1);
+    char *aux = strtok(output, toRemove);
+    strcpy(txtdir, aux);
+    strcat(txtdir, toAdd);
+
+    FILE *txt = fopen(txtdir, "w");
+
+    printf("\nCriado txt com sucesso: %s\n", txtdir);
+    free(txtdir);
+
+    return txt;
+}
+
+FILE *createSvg(char *svg_path) {
+    printf("--- INICIO CREATE SVG ---\n");
+
+    FILE *svg = fopen(svg_path, "w");
+
+    printf("\nCriado com Sucesso: %s\n", svg_path);
+    fprintf(svg, "<svg xmlns=\"http://www.w3.org/2000/svg\">\n");
+    return svg;
+}
+
+void killSvg(FILE *svg) {
+    printf("\n--- INICIO ENCERRAR SVG ---\n");
+    if (!svg) {
+        printf("Erro na finalizacao do SVG!!\n");
+        exit(1);
+    }
+
+    fprintf(svg, "</svg>");
+    fclose(svg);
 }

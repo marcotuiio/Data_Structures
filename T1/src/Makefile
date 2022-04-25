@@ -30,7 +30,7 @@ line.o: line.c line.h list.h
 text.o: text.c text.h list.h
 	$(EXEC)	$(CFLAGS) -c text.c
 
-geo.o: geo.c geo.h list.h rectangle.h circle.h line.h text.h svg.h
+geo.o: geo.c geo.h list.h rectangle.h circle.h line.h text.h svg.h qry.h
 	$(EXEC) $(CFLAGS) -c geo.c
 
 qry.o: qry.c qry.h

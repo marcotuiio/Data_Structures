@@ -41,6 +41,8 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
     Lista selecGeral = criaLista();
     int check = 0;
 
+    writeSvg(r, c, t, l, svg, 1);
+
     while (!feof(qry_dir)) {
         char comando[150];
         char *eptr = NULL;
@@ -88,11 +90,13 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
 
     fclose(qry_dir);
     fclose(txt);
+    
     freeValue(poligono);
     free(poligono);
 
     if (check == 0) {
         //printf("1\n");
+        writeSvg(selecRec, selecCirc, selecTxt, selecTxt, svg, 1);
         removeAll(selecRec);
         removeAll(selecCirc);
         removeAll(selecLine);
@@ -549,8 +553,6 @@ void selplus(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, 
     fscanf(arq, "%s", infos);
     h = strtod(infos, &eptr);
 
-    // for (Cell auxA1 = getLast(a); auxA1 != NULL; auxA1 = getNext(a, auxA1)) {
-    //     Item auxB1 = getInfo(auxA1);
     Cell auxA1 = getLast(a); 
     Item auxB1 = getInfo(auxA1);
 
@@ -893,7 +895,7 @@ void ups(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, List
                 setrectX(auxI1, dx);
                 setrectY(auxI1, dy, n2);
 
-                drawRectangle(svg, auxI1);
+                //drawRectangle(svg, auxI1);
                 if (n2 > auxn || n >= 0) {
                     break;
                 }

@@ -46,4 +46,13 @@
 	<line id="121" x1="74.100000" y1="178.600000" x2="89.460000" y2="197.800000" stroke="#800080" fill-opacity="50%" />
 	<line id="122" x1="113.260000" y1="197.800000" x2="140.060000" y2="180.000000" stroke="#800080" fill-opacity="50%" />
 	<line id="123" x1="101.360000" y1="233.200000" x2="101.360000" y2="241.200000" stroke="#800080" fill-opacity="50%" />
+	<rect id="5" x="32.700000" y="42.000000" width="5.200000" height="10.600000" stroke="#c87137" fill="#ffb380" fill-opacity="50%" />
+	<rect id="5" x="32.700000" y="42.000000" width="5.200000" height="10.600000" stroke="#c87137" fill="#ffb380" fill-opacity="50%" />
+	<rect id="7" x="24.800000" y="50.000000" width="21.200000" height="37.200000" stroke="black" fill="white" fill-opacity="50%" />
+	<rect id="8" x="24.800000" y="87.200000" width="21.200000" height="17.200000" stroke="black" fill="white" fill-opacity="50%" />
+	<rect id="10" x="24.800000" y="61.100000" width="21.200000" height="4.500000" stroke="red" fill="red" fill-opacity="50%" />
+	<rect id="11" x="24.800000" y="68.000000" width="21.200000" height="4.500000" stroke="black" fill="black" fill-opacity="50%" />
+	<circle id="6" cx="35.300000" cy="28.300000" r="15.000000" stroke="#c87137" fill="#ffb380" fill-opacity="50%" />
+	<circle id="6" cx="35.300000" cy="28.300000" r="15.000000" stroke="#c87137" fill="#ffb380" fill-opacity="50%" />
+	<circle id="6" cx="35.300000" cy="28.300000" r="15.000000" stroke="#c87137" fill="#ffb380" fill-opacity="50%" />
 </svg>

@@ -7,49 +7,8 @@
 #include "list.h"
 #include "qry.h"
 
-FILE *createSvg(char *svg_path) {
-    printf("--- INICIO CREATE SVG ---\n");
-
-    FILE *svg = fopen(svg_path, "w");
-
-    printf("\nCriado com Sucesso: %s\n", svg_path);
-    fprintf(svg, "<svg xmlns=\"http://www.w3.org/2000/svg\">\n");
-    return svg;
-}
-
-void killSvg(FILE *svg) {
-    printf("\n--- INICIO ENCERRAR SVG ---\n");
-    if (!svg) {
-        printf("Erro na finalizacao do SVG!!\n");
-        exit(1);
-    }
-
-    fprintf(svg, "</svg>");
-    fclose(svg);
-}
-
-FILE *createTxt(char *output) {
-    char toRemove[] = ".";
-    char toAdd[] = ".txt";
-    char *txtdir = malloc(strlen(output) + 1);
-    char *aux = strtok(output, toRemove);
-    strcpy(txtdir, aux);
-    strcat(txtdir, toAdd);
-
-    FILE *txt = fopen(txtdir, "w");
-
-    printf("\nCriado txt com sucesso: %s\n", txtdir);
-    free(txtdir);
-
-    return txt;
-}
-
-void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha, char *diroutput, FILE *qry, int existe) {
+void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha, FILE *svg, int existe) {
     printf("\n--- INICIO WRITE SVG ---\n");
-
-    char *diraux = (char*)malloc(strlen(diroutput) + 20);
-    strcpy(diraux, diroutput);
-    FILE *svg = createSvg(diroutput);
 
     for (Cell auxC1 = getFirst(rect); auxC1 != NULL; auxC1 = getNext(rect, auxC1)) {
         Item auxI1 = getInfo(auxC1);
@@ -70,14 +29,6 @@ void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha, char *diroutput, F
         Item auxI4 = getInfo(auxC4);
         drawLine(svg, auxI4);
     }
-
-    if (existe == 1) {
-        FILE *arq_txt = createTxt(diraux);
-        readComands(qry, rect, circ, linha, txt, svg, arq_txt);
-    }
-
-    killSvg(svg);
-    free(diraux);
 }
 
 void drawCircle(FILE *svg, Item circ) {

@@ -16,13 +16,7 @@
 
 // As funções tem nome autoexplicativo. Apenas desenham no svg a forma designada.
 
-FILE *createSvg(char *svg_path);
-
-void killSvg(FILE * svg);
-
-FILE *createTxt(char *output);
-
-void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha, char *diroutput, FILE *qry, int existe);
+void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha, FILE *svg, int existe);
 
 void drawCircle(FILE * svg, Item circ);
 

@@ -19,6 +19,8 @@ Colocar arquivos de Ed para facilitar estudos
 
 6- Quando roda com o qry exibir tambem o svg puro, junto com o svg pos qry e o txt  ==> RESOLVIDO
 
+7- Arrumei os erros de concatenação dependendo de como os argumentos de entrada estão
+
 ==================================================================================================
 
  * Próximo passo: continuar a implementar o .qry ;-;
