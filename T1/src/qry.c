@@ -862,11 +862,11 @@ void ups(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, List
     fscanf(arq, "%s", infos);
     n = atoi(infos);
 
-    printf("corb %s\n", corb);
-    printf("corp %s\n", corp);
-    printf("dx %lf\n", dx);
-    printf("dy %lf\n", dy);
-    printf("n %d\n", n);
+    // printf("1corb %s\n", corb);
+    // printf("1corp %s\n", corp);
+    // printf("1dx %lf\n", dx);
+    // printf("1dy %lf\n", dy);
+    // printf("1n %d\n", n);
 
     int n2 = 1;
     int auxn = n * (-1);
@@ -890,7 +890,7 @@ void ups(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, List
                 //printf("ok rec\n");
                 Item auxI1 = getInfo(auxC1);
 
-                setrectEDGE(auxI1, corb);
+                setrectEDGE(auxI1, auxcor);
                 setrectFILL(auxI1, corp);
                 setrectX(auxI1, dx);
                 setrectY(auxI1, dy, n2);
@@ -903,13 +903,12 @@ void ups(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, List
                 n++;
                 n2++;
                 auxC1 = getPrevious(sR, auxC1);
-            } else
 
-            if (strcmp(tipo, "c") == 0) {
+            } else if (strcmp(tipo, "c") == 0) {
                 //printf("ok circ\n");
                 Item auxI2 = getInfo(auxC2);
 
-                setcircEDGE(auxI2, corb);
+                setcircEDGE(auxI2, auxcor);
                 setcircFILL(auxI2, corp);
                 setcircX(auxI2, dx);
                 setcircY(auxI2, dy, n2);
@@ -922,13 +921,12 @@ void ups(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, List
                 n++;
                 n2++;
                 auxC2 = getPrevious(sC, auxC2);
-            } else
 
-            if (strcmp(tipo, "t") == 0) {
+            } else if (strcmp(tipo, "t") == 0) {
                 //printf("ok txt\n");
                 Item auxI3 = getInfo(auxC3);
 
-                settxtEDGE(auxI3, corb);
+                settxtEDGE(auxI3, auxcor);
                 settxtFILL(auxI3, corp);
                 settxtX(auxI3, dx);
                 settxtY(auxI3, dy, n2);
@@ -941,13 +939,12 @@ void ups(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, List
                 n++;
                 n2++;
                 auxC3 = getPrevious(sT, auxC3);
-            } else  
 
-            if (strcmp(tipo, "l") == 0) {
+            } else if (strcmp(tipo, "l") == 0) {           
                 //printf("ok line\n");
                 Item auxI4 = getInfo(auxC4);
                 
-                setlineCOLOR(auxI4, corb);
+                setlineCOLOR(auxI4, auxcor);
                 setlineX(auxI4, dx);
                 setlineFinalX(auxI4, dx);
                 setlineY(auxI4, dy, n2);
