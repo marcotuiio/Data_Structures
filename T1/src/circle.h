@@ -43,9 +43,9 @@ void setcircEDGE(Circle1 c, char *new_corb);
 //altera a cor da borda
 
 void setcircX(Circle1 c, double dx);
-//transalada o x
+//transalada a coordenada x
 
 void setcircY(Circle1 c, double dy, int n);
-//translada o y
+//translada em DY vezes N a coordenada y
 
 #endif

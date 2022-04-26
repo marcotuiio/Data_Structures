@@ -66,6 +66,6 @@ Item encontraCelula(Lista l, Item n); //get
 // * retorna o valor do item da lista indicado por n.
 
 void removeAll(Lista l);
-// * recebe uma list e remove todos seus elementos.
+// * recebe uma lista e remove todos seus elementos.
 
 #endif

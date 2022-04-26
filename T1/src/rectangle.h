@@ -46,9 +46,9 @@ void setrectEDGE(Rectangle1 r, char *new_corb);
 //altera a cor da borda
 
 void setrectX(Rectangle1 r, double dx);
-//translada o x
+//translada a coordenada x
 
 void setrectY(Rectangle1 r, double dy, int n);
-//translada o y
-
+//translada DY vezes N a coordenada y
+ 
 #endif

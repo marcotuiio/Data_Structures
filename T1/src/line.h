@@ -37,18 +37,18 @@ char *getLineCOLOR(Line1 l);
 //retorna a cor de determinada linha no svg
 
 void setlineCOLOR(Line1 l, char *new_color);
-//altera a cor 
+//altera a cor da linha
 
 void setlineX(Line1 l, double dx);
-//translada em x x1
+//translada em X a coordenada x1
 
 void setlineY(Line1 l, double dy, int n);
-//translada em y y1
+//translada em DY vezes N a coordenada y1
 
 void setlineFinalX(Line1 l, double dx);
-//translada em x x2
+//translada em X a coordenada x2
 
 void setlineFinalY(Line1 l, double dy, int n);
-//translada em y y2
+//translada em DY vezes N a coordenada y2
 
 #endif

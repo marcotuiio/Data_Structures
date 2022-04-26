@@ -51,9 +51,9 @@ void settxtEDGE(Item t, char *new_corb);
 //altara a cor da borda
 
 void settxtX(Item t, double dx);
-//translada o x
+//translada a coordenada x
 
 void settxtY(Item t, double dy, int n);
-//translada o y
+//translada em DY vezes N a coordenada y
 
 #endif
