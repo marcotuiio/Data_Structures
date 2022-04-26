@@ -40,7 +40,7 @@ Colocar arquivos de Ed para facilitar estudos
 
 ./ted -e /home/marcotuiio/EDor/T1/input -f hinosp1.geo -o /home/marcotuiio/EDor/T1/output -q 008h.qry
 
-./ted -e /home/marcotuiio/EDor/T1/input -f hinosp2.geo -o /home/marcotuiio/EDor/T1/output -q 007h2.qry
+./ted -e /home/marcotuiio/EDor/T1/input -f hinosp2.geo -o /home/marcotuiio/EDor/T1/output -q 007h2s.qry
 
 ./ted -e /home/marcotuiio/EDor/T1/input -f vaso-flor.geo -o /home/marcotuiio/EDor/T1/output -q 006v.qry
 
