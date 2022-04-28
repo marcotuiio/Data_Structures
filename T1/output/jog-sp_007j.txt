@@ -15,14 +15,12 @@ Criado Círculo: id = 112, x = 101.260000, y = 165.500000, r = 15.000000, stroke
 
 [*] sel+
 Retângulo de seleção: x = 8.140000, y = 59.033333, h = 45.733333, w = 21.986667, stroke = red
-Selecionado: Círculo id 6, x = 35.300000, y = 28.300000, radius = 15.000000
 Selecionado: Linha id 1, x1 = 8.140000, y1 = 41.400000, x2 = 23.500000, y2 = 60.600000
 
 [*] dps
 Criado retângulo: id = 111, x = 98.660000, y = 179.200000, w = 5.200000, h = 10.600000, stroke = #800080, fill = #FF00FF
 Criado Círculo: id = 112, x = 101.260000, y = 165.500000, r = 15.000000, stroke = #800080, fill = #FF00FF
-Criado Círculo: id = 113, x = 101.260000, y = 165.500000, r = 15.000000, stroke = #800080, fill = #FF00FF
-Criada Linha: id = 114, x1 = 74.100000, y1 = 178.600000, x2 = 89.460000, y2 = 197.800000, color = #800080
+Criada Linha: id = 113, x1 = 74.100000, y1 = 178.600000, x2 = 89.460000, y2 = 197.800000, color = #800080
 
 [*] sel+
 Retângulo de seleção: x = 30.126667, y = 59.033333, h = 45.733333, w = 21.986667, stroke = red
@@ -33,7 +31,6 @@ Selecionado: Retângulo id 10, x = 24.800000, y = 61.100000, height = 4.500000, 
 Selecionado: Retângulo id 11, x = 24.800000, y = 68.000000, height = 4.500000, width = 21.200000
 Selecionado: Círculo id 6, x = 35.300000, y = 28.300000, radius = 15.000000
 Selecionado: Linha id 1, x1 = 8.140000, y1 = 41.400000, x2 = 23.500000, y2 = 60.600000
-Selecionado: Linha id 2, x1 = 47.300000, y1 = 60.600000, x2 = 74.100000, y2 = 42.800000
 Selecionado: Linha id 9, x1 = 35.400000, y1 = 96.000000, x2 = 35.400000, y2 = 104.000000
 
 [*] dps
@@ -45,8 +42,6 @@ Criado retângulo: id = 115, x = 90.760000, y = 198.300000, w = 21.200000, h = 4
 Criado retângulo: id = 116, x = 90.760000, y = 205.200000, w = 21.200000, h = 4.500000, stroke = #800080, fill = #FF00FF
 Criado Círculo: id = 117, x = 101.260000, y = 165.500000, r = 15.000000, stroke = #800080, fill = #FF00FF
 Criado Círculo: id = 118, x = 101.260000, y = 165.500000, r = 15.000000, stroke = #800080, fill = #FF00FF
-Criado Círculo: id = 119, x = 101.260000, y = 165.500000, r = 15.000000, stroke = #800080, fill = #FF00FF
+Criada Linha: id = 119, x1 = 74.100000, y1 = 178.600000, x2 = 89.460000, y2 = 197.800000, color = #800080
 Criada Linha: id = 120, x1 = 74.100000, y1 = 178.600000, x2 = 89.460000, y2 = 197.800000, color = #800080
-Criada Linha: id = 121, x1 = 74.100000, y1 = 178.600000, x2 = 89.460000, y2 = 197.800000, color = #800080
-Criada Linha: id = 122, x1 = 113.260000, y1 = 197.800000, x2 = 140.060000, y2 = 180.000000, color = #800080
-Criada Linha: id = 123, x1 = 101.360000, y1 = 233.200000, x2 = 101.360000, y2 = 241.200000, color = #800080
+Criada Linha: id = 121, x1 = 101.360000, y1 = 233.200000, x2 = 101.360000, y2 = 241.200000, color = #800080

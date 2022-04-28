@@ -392,7 +392,7 @@ void sel(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, List
 
         if (((x + w) >= (recX + recWidth))) {
             if (((y + h) >= (recY + recHeight))) {
-                if (x <= recX && y <=recY) {
+                if (x <= recX && y <= recY) {
                     insereFim(sR, auxI1);
                     insereFim(g, auxG1);
 
@@ -635,7 +635,7 @@ void selplus(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, 
         double circY = getCircY(auxI2);
         double circRadius = getCircRADIUS(auxI2);
 
-        if ((finalX + finalH) >= (circX + circRadius) && (finalX) <= (circX - circRadius)) {
+        if ((finalX + finalW) >= (circX + circRadius) && (finalX) <= (circX - circRadius)) {
             if ((finalY + finalH) >= (circY + circRadius) && (finalY) <= (circY - circRadius)) {
                 if(finalX <= circX && finalY <= circY) {
                     insereFim(sC, auxI2);
@@ -680,7 +680,7 @@ void selplus(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, 
         double linY2 = getLineFINALY(auxI4);
 
         if ((finalX + finalW) >= (linX1) && (finalY + finalH) >= (linY1)) {
-            if ((finalW + finalW) >= (linX2) && (finalY + finalH) >= (linY2)) {
+            if ((finalX + finalW) >= (linX2) && (finalY + finalH) >= (linY2)) {
                 if(finalX <= linX1 && finalY <= linY1 && finalX <= linX2 && finalY <= linY2) {
                     insereFim(sL, auxI4);
                     insereFim(g, auxG4);
@@ -848,7 +848,7 @@ void ups(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, List
     fscanf(arq, "%s", infos);
     strcpy(corb, infos);
     strcpy(auxcor, corb);
-    printf("auxcor %s\n", auxcor);
+    // printf("auxcor %s\n", auxcor);
 
     fscanf(arq, "%s", infos);
     strcpy(corp, infos);
