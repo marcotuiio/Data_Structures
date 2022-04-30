@@ -27,7 +27,7 @@ void rmp(FILE *txt, FILE *svg, char *infos, Fila_Circular q);
 // Remove a coordenada mais antiga inserida no
 // poligono corrente.
 
-void pol(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Fila_Circular q);
+void pol(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Fila_Circular q, Lista linhasPol);
 // Produz um conjunto de linhas (e os insere no
 //“banco de dados”). As linhas produzidas
 // correspondem à borda do polígono e as linhas

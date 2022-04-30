@@ -1,13 +1,13 @@
 #include "list.h"
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 #include "circle.h"
 #include "line.h"
 #include "rectangle.h"
 #include "text.h"
-
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 struct nodeL {
     Item value;
@@ -138,8 +138,8 @@ void insereDepois(Lista l, Item n, Item x) {
     celulaAnterior->next = novaCelula;
 }
 
-void removeCelula(Lista l, Item n, int id, char* tipo) {
-    //printf("--- INICIO REMOVE CELULA ---\n");
+void removeCelula(Lista l, Item n, int id, char *tipo) {
+    // printf("--- INICIO REMOVE CELULA ---\n");
     ImpList *aux = (ImpList *)l;
     celulaL *lista = aux->inicio;
     celulaL *celulaARemover = NULL;
@@ -151,7 +151,7 @@ void removeCelula(Lista l, Item n, int id, char* tipo) {
             info = getInfo(lista);
             if (getRectID(info) == id) {
                 celulaARemover = lista;
-                //printf("ok r\n");
+                // printf("ok r\n");
             }
             lista = lista->next;
         }
@@ -161,7 +161,7 @@ void removeCelula(Lista l, Item n, int id, char* tipo) {
             info = getInfo(lista);
             if (getCircID(info) == id) {
                 celulaARemover = lista;
-                //printf("ok c\n");
+                // printf("ok c\n");
             }
             lista = lista->next;
         }
@@ -171,7 +171,7 @@ void removeCelula(Lista l, Item n, int id, char* tipo) {
             info = getInfo(lista);
             if (getLineID(info) == id) {
                 celulaARemover = lista;
-                //printf("ok l\n");
+                // printf("ok l\n");
             }
             lista = lista->next;
         }
@@ -181,7 +181,7 @@ void removeCelula(Lista l, Item n, int id, char* tipo) {
             info = getInfo(lista);
             if (getTxtID(info) == id) {
                 celulaARemover = lista;
-                //printf("ok t\n");
+                // printf("ok t\n");
             }
             lista = lista->next;
         }
