@@ -41,8 +41,6 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
     Lista selecGeral = criaLista();
     int check = 0;
 
-    writeSvg(r, c, t, l, svg, 1);
-
     while (!feof(qry_dir)) {
         char comando[150];
         char *eptr = NULL;
@@ -76,7 +74,7 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
         } else if (strcmp(comando, "dels") == 0) {  // Remove todas as figuras selecionadas
             printf("\n%s\n", comando);              // *FEITO ARRUMARRRRR seg fault*
             check = check + 1;
-            dels(txt, selecRec, selecCirc, selecLine, selecTxt);
+            dels(txt, selecRec, selecCirc, selecLine, selecTxt, r, c, l, t);
 
         } else if (strcmp(comando, "dps") == 0) {  // Cria novas formas e bla bla
             printf("\n%s\n", comando);             // *FEITO*
@@ -84,7 +82,7 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
 
         } else if (strcmp(comando, "ups") == 0) {  // Altera cor e translada as figuras selecionadas
             printf("\n%s\n", comando);             // *FEITO ??*
-            ups(txt, svg, qry_dir, comando, eptr, selecGeral, selecRec, selecCirc, selecLine, selecTxt);
+            ups(txt, svg, qry_dir, comando, eptr, selecGeral, selecRec, selecCirc, selecLine, selecTxt, r, c, l, t);
         }
     }
 
@@ -93,6 +91,8 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
     
     freeValue(poligono);
     free(poligono);
+
+    writeSvg(r, c, t, l, svg, 1);
 
     if (check == 0) {
         //printf("1\n");
@@ -697,7 +697,7 @@ void selplus(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, 
     // printf("h %lf\n", h);
 }
 
-void dels(FILE *txt, Lista sR, Lista sC, Lista sL, Lista sT) {
+void dels(FILE *txt, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, Lista l, Lista t) {
     printf("--- INICIO DELS ---\n");
 
     fprintf(txt, "\n[*] dels\n");
@@ -710,6 +710,8 @@ void dels(FILE *txt, Lista sR, Lista sC, Lista sL, Lista sT) {
         double recY = getRectY(auxI1);
         double recHeight = getRectHEIGHT(auxI1);
         double recWidth = getRectWIDTH(auxI1);
+
+        removeCelula(r, auxI1, idR, "r");
         
         fprintf(txt, "Removido: Retângulo id %d, x = %lf, y = %lf, height = %lf, width = %lf\n", idR, recX, recY, recHeight, recWidth);
     }
@@ -722,6 +724,8 @@ void dels(FILE *txt, Lista sR, Lista sC, Lista sL, Lista sT) {
         double circY = getCircY(auxI2);
         double circRadius = getCircRADIUS(auxI2);
 
+        removeCelula(c, auxI2, idC, "c");
+
         fprintf(txt, "Removido: Círculo id %d, x = %lf, y = %lf, radius = %lf\n", idC, circX, circY, circRadius);
     }
 
@@ -731,6 +735,8 @@ void dels(FILE *txt, Lista sR, Lista sC, Lista sL, Lista sT) {
         int idT = getTxtID(auxI3);
         double txtX = getTxtX(auxI3);
         double txtY = getTxtY(auxI3);
+
+        removeCelula(t, auxI3, idT, "t");
 
         fprintf(txt, "Removido: Texto id %d,  x = %lf, y = %lf\n", idT, txtX, txtY);
     }
@@ -743,6 +749,8 @@ void dels(FILE *txt, Lista sR, Lista sC, Lista sL, Lista sT) {
         double linY1 = getLineY(auxI4);
         double linX2 = getLineFINALX(auxI4);
         double linY2 = getLineFINALY(auxI4);
+
+        removeCelula(l, auxI4, idL, "l");
 
         fprintf(txt, "Removida: Linha id %d, x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf\n", idL, linX1, linY1, linX2, linY2);
     }
@@ -839,11 +847,12 @@ void dps(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista sR, Lis
     // printf("corp %s\n", corp);
 }
 
-void ups(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, Lista sR, Lista sC, Lista sL, Lista sT) {
+void ups(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, Lista l, Lista t) {
     printf("--- INICIO UPS ---\n");
     int n;
     double dx, dy;
     char corb[15], corp[15], auxcor[15];
+    int id_aux;
 
     fscanf(arq, "%s", infos);
     strcpy(corb, infos);
@@ -903,6 +912,8 @@ void ups(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, List
                 n++;
                 n2++;
                 auxC1 = getPrevious(sR, auxC1);
+                id_aux = getRectID(auxI1);
+                removeCelula(r, auxI1, id_aux, tipo);
 
             } else if (strcmp(tipo, "c") == 0) {
                 //printf("ok circ\n");
@@ -921,6 +932,8 @@ void ups(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, List
                 n++;
                 n2++;
                 auxC2 = getPrevious(sC, auxC2);
+                id_aux = getCircID(auxI2);
+                removeCelula(c, auxI2, id_aux, tipo);
 
             } else if (strcmp(tipo, "t") == 0) {
                 //printf("ok txt\n");
@@ -939,6 +952,8 @@ void ups(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, List
                 n++;
                 n2++;
                 auxC3 = getPrevious(sT, auxC3);
+                id_aux = getTxtID(auxI3);
+                removeCelula(t, auxI3, id_aux, tipo);
 
             } else if (strcmp(tipo, "l") == 0) {           
                 //printf("ok line\n");
@@ -958,6 +973,8 @@ void ups(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, List
                 n++;
                 n2++;
                 auxC4 = getPrevious(sL, auxC4);
+                id_aux = getLineID(auxI4);
+                removeCelula(l, auxI4, id_aux, tipo);
             }
         } 
     }

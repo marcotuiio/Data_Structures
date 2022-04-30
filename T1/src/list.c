@@ -1,5 +1,11 @@
 #include "list.h"
 
+#include "circle.h"
+#include "line.h"
+#include "rectangle.h"
+#include "text.h"
+
+#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -132,20 +138,61 @@ void insereDepois(Lista l, Item n, Item x) {
     celulaAnterior->next = novaCelula;
 }
 
-void removeCelula(Lista l, Item n) {
-    printf("--- INICIO REMOVE CELULA ---\n");
+void removeCelula(Lista l, Item n, int id, char* tipo) {
+    //printf("--- INICIO REMOVE CELULA ---\n");
     ImpList *aux = (ImpList *)l;
     celulaL *lista = aux->inicio;
     celulaL *celulaARemover = NULL;
+    Item info = n;
 
     // Buscando a celula com valor desejado
-    while (lista != NULL) {
-        if (lista->next == n) {
-            celulaARemover = lista;
-            printf("ok\n");
+    if (strcmp(tipo, "r") == 0) {
+        while (lista != NULL) {
+            info = getInfo(lista);
+            if (getRectID(info) == id) {
+                celulaARemover = lista;
+                //printf("ok r\n");
+            }
+            lista = lista->next;
         }
-        lista = lista->next;
+
+    } else if (strcmp(tipo, "c") == 0) {
+        while (lista != NULL) {
+            info = getInfo(lista);
+            if (getCircID(info) == id) {
+                celulaARemover = lista;
+                //printf("ok c\n");
+            }
+            lista = lista->next;
+        }
+
+    } else if (strcmp(tipo, "l") == 0) {
+        while (lista != NULL) {
+            info = getInfo(lista);
+            if (getLineID(info) == id) {
+                celulaARemover = lista;
+                //printf("ok l\n");
+            }
+            lista = lista->next;
+        }
+
+    } else if (strcmp(tipo, "t") == 0) {
+        while (lista != NULL) {
+            info = getInfo(lista);
+            if (getTxtID(info) == id) {
+                celulaARemover = lista;
+                //printf("ok t\n");
+            }
+            lista = lista->next;
+        }
     }
+
+    // while (lista != NULL) {
+    //     if (lista->next == n) { //se n inteiro ou char
+    //         celulaARemover = lista;
+    //     }
+    //     lista = lista->next;
+    // }
 
     if (celulaARemover == NULL) {
         printf("ELEMENTO INEXISTENTE NA LISTA\n");

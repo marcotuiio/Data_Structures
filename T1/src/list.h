@@ -30,7 +30,7 @@ void insereDepois(Lista l, Item n, Item x); //insertAfter
 // * insere o item x na posição imediatamente posterior ao
 //item indicado por n. O comprimento da lista  ́e acrescido de 1 elemento.
 
-void removeCelula(Lista l, Item n); //remove
+void removeCelula(Lista l, Item n, int id, char* tipo); //remove
 // * n deve indicar um elemento existente em L.
 // * remove o elemento da lista indicado por n. O
 // comprimento da lista  ́e diminu ́ıdo de 1 elemento. O indicador n deixa de

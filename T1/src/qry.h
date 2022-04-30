@@ -93,7 +93,7 @@ void selplus(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, 
 // suceder (na lista) àquelas selecionadas por
 // comandos anteriores.
 
-void dels(FILE *txt, Lista sR, Lista sC, Lista sL, Lista sT);
+void dels(FILE *txt, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, Lista l, Lista t);
 // Remove do “banco de dados” todas as figuras
 // selecionadas.
 
@@ -103,7 +103,7 @@ void dps(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista sR, Lis
 // cujos identificadores começam em i e são
 // incrementados sequencialmente .
 
-void ups(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, Lista sR, Lista sC, Lista sL, Lista sT);
+void ups(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, Lista l, Lista t);
 // Altera as cores e a posição de n figuras antes
 //(se n<0) ou depois (se n>0) da última figura
 // selecionada pelo último sel ou sel+. Atribui
