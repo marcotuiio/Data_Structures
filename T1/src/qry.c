@@ -15,10 +15,15 @@
 #include "text.h"
 
 struct pg {
-    double x;
-    double y;
+    double x, y;
 };
 typedef struct pg Ponto;
+
+struct ln {
+    int id;
+    double x1, y1, x2, y2, stroke;
+};
+typedef struct ln Linha;
 
 struct r {
     double x, y, w, h;
@@ -32,7 +37,8 @@ typedef struct t Tipos;
 
 void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, FILE *txt) {
     printf("\n--- INICIO READ QRY ---\n");
-    Fila_Circular poligono = criaFila(200);
+    Fila_Circular poligono = criaFila(300);
+    Lista linhasPol = criaLista();
     Lista selecRec = criaLista();
     Lista selecCirc = criaLista();
     Lista selecLine = criaLista();
@@ -57,7 +63,7 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
 
         } else if (strcmp(comando, "pol") == 0) {  // Produz um conjunto de linhas e insere no poligono
             printf("\n%s\n", comando);             // *fazer linhas de preenchimento*
-            pol(txt, svg, qry_dir, comando, eptr, poligono);
+            pol(txt, svg, qry_dir, comando, eptr, poligono, linhasPol);
 
         } else if (strcmp(comando, "clp") == 0) {  // Remove todas as coordenadas
             printf("\n%s\n", comando);             // *FEITO*
@@ -95,27 +101,27 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
     writeSvg(r, c, t, l, svg, 1);
 
     if (check == 0) {
-        //printf("1\n");
+        //printf("Inicio\n");
         writeSvg(selecRec, selecCirc, selecTxt, selecTxt, svg, 1);
         removeAll(selecRec);
         removeAll(selecCirc);
         removeAll(selecLine);
         removeAll(selecTxt);
-        //printf("2\n");
     }
     
-    //printf("3\n");
     free(selecRec);
     free(selecCirc);
     free(selecLine);
     free(selecTxt);
-    //printf("4\n");
+    
+    removeAll(linhasPol);
+    free(linhasPol);
 
     removeAll(selAux);
     removeAll(selecGeral);
     free(selAux);
     free(selecGeral);
-    //printf("5\n");
+    //printf("Fim\n");
 }
 
 void inp(FILE *txt, FILE *svg, FILE *arq, char *infos, Fila_Circular q, Lista r, Lista c, Lista l, Lista t) {
@@ -217,9 +223,6 @@ Item criaPonto(double x, double y) {
     new_point->x = x;
     new_point->y = y;
 
-    // printf("npx %lf\n", new_point->x);
-    // printf("npy %lf\n", new_point->y);
-
     return new_point;
 }
 
@@ -235,7 +238,20 @@ void rmp(FILE *txt, FILE *svg, char *infos, Fila_Circular q) {
     fprintf(txt, "Removido ponto de coordenadas: x = %lf, y = %lf\n", rx, ry);
 }
 
-void pol(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Fila_Circular q) {
+Item criaLinhaBorda(int id, double x1, double y1, double x2, double y2, char *stroke) {
+    Linha *new_line = calloc(1, sizeof(Linha));
+
+    new_line->id = id;
+    new_line->x1 = x1;
+    new_line->y1 = y1;
+    new_line->x2 = x2;
+    new_line->y2 = y2;
+    new_line->stroke = stroke;
+
+    return new_line;
+}
+
+void pol(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Fila_Circular q, Lista linhasPol) {
     printf("--- INICIO POL ---\n");
     int i;
     double d, e;
@@ -264,6 +280,7 @@ void pol(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Fila_Circular
     double menorX = 99999, maiorX = -1;
     double x1, x2, y1, y2;
     Item p1, p2;
+    Item line;
 
     while (aux2 != size) {
         p1 = getElement(q, aux);   // 0 1 2
@@ -274,6 +291,9 @@ void pol(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Fila_Circular
         x2 = getpX(p2);
         y1 = getpY(p1);
         y2 = getpY(p2);
+        
+        line = criaLinhaBorda(i, x1, y1, x2, y2, corb);
+        insereFim(linhasPol, line);
 
         fprintf(txt, "Criada linha de borda: x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf, stroke = %s\n", x1, y1, x2, y2, corb);
         fprintf(svg, "\t<line id=\"%d\" x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" />\n", i, x1, y1, x2, y2, corb);
@@ -308,6 +328,9 @@ void pol(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Fila_Circular
     p1 = getElement(q, 0);
     x1 = getpX(p1);
     y1 = getpY(p1);
+    
+    line = criaLinhaBorda(i, x2, y2, x1, y1, corb);
+    insereFim(linhasPol, line);
 
     fprintf(txt, "Criada linha de borda: x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf, stroke = %s\n", x2, y2, x1, y1, corb);
     fprintf(svg, "\t<line id=\"%d\" x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" />\n", i, x2, y2, x1, y1, corb);
