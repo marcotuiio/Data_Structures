@@ -39,7 +39,7 @@ typedef struct t Tipos;
 void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, FILE *txt) {
     printf("\n--- INICIO READ QRY ---\n");
     Fila_Circular poligono = criaFila(300);
-    Lista linhasPol = criaLista();
+    Lista linhasPol = criaLista(); //BANCO DE DADOS LINHAS POL
     Lista selecRec = criaLista();
     Lista selecCirc = criaLista();
     Lista selecLine = criaLista();
@@ -350,11 +350,11 @@ void pol(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Fila_Circular
         cont++;
     }
 
-    printf("id %d\n", i);
-    printf("d %lf\n", d);
-    printf("e %lf\n", e);
-    printf("corb %s\n", corb);
-    printf("corp %s\n", corp);
+    // printf("id %d\n", i);
+    // printf("d %lf\n", d);
+    // printf("e %lf\n", e);
+    // printf("corb %s\n", corb);
+    // printf("corp %s\n", corp);
 }
 
 double getpX(Item n) {

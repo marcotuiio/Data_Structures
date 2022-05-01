@@ -114,5 +114,5 @@ void drawText(FILE *svg, Item txt, int e) {
     // printf("corp %s\n", fill);
     // printf("txt %s\n", text);
 
-    fprintf(svg, "\t<text id=\"%d\" x=\"%lf\" y=\"%lf\" text-anchor=\"%s\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"50%%\" >\"%s\"</text>\n", id, x, y, anchor, stroke, fill, text);
+    fprintf(svg, "\t<text id=\"%d\" x=\"%lf\" y=\"%lf\" text-anchor=\"%s\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"50%%\" >%s</text>\n", id, x, y, anchor, stroke, fill, text);
 }

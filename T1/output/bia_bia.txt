@@ -1,0 +1,100 @@
+
+[*] inp
+Inserido ponto em: x = 140.000000, y = 65.000000
+
+[*] inp
+Inserido ponto em: x = 130.309230, y = 93.181460
+
+[*] inp
+Inserido ponto em: x = 109.767498, y = 112.853355
+
+[*] inp
+Inserido ponto em: x = 83.795528, y = 120.532777
+
+[*] inp
+Inserido ponto em: x = 58.529394, y = 115.691312
+
+[*] inp
+Inserido ponto em: x = 39.379496, y = 100.620504
+
+[*] inp
+Inserido ponto em: x = 29.872368, y = 79.662856
+
+[*] inp
+Inserido ponto em: x = 31.023177, y = 58.034755
+
+[*] inp
+Inserido ponto em: x = 41.344893, y = 40.548134
+
+[*] inp
+Inserido ponto em: x = 57.441917, y = 30.540323
+
+[*] inp
+Inserido ponto em: x = 60.392856, y = 36.331865
+
+[*] inp
+Inserido ponto em: x = 46.603503, y = 44.368738
+
+[*] inp
+Inserido ponto em: x = 37.443151, y = 59.051579
+
+[*] inp
+Inserido ponto em: x = 36.054236, y = 77.654246
+
+[*] inp
+Inserido ponto em: x = 43.975690, y = 96.024310
+
+[*] inp
+Inserido ponto em: x = 60.538005, y = 109.509445
+
+[*] inp
+Inserido ponto em: x = 82.778704, y = 114.112803
+
+[*] inp
+Inserido ponto em: x = 105.946894, y = 107.594745
+
+[*] inp
+Inserido ponto em: x = 124.517688, y = 90.230522
+
+[*] inp
+Inserido ponto em: x = 133.500000, y = 65.000000
+
+[*] pol
+Criada linha de borda: x1 = 140.000000, y1 = 65.000000, x2 = 130.309230, y2 = 93.181460, stroke = #002255
+Criada linha de borda: x1 = 130.309230, y1 = 93.181460, x2 = 109.767498, y2 = 112.853355, stroke = #002255
+Criada linha de borda: x1 = 109.767498, y1 = 112.853355, x2 = 83.795528, y2 = 120.532777, stroke = #002255
+Criada linha de borda: x1 = 83.795528, y1 = 120.532777, x2 = 58.529394, y2 = 115.691312, stroke = #002255
+Criada linha de borda: x1 = 58.529394, y1 = 115.691312, x2 = 39.379496, y2 = 100.620504, stroke = #002255
+Criada linha de borda: x1 = 39.379496, y1 = 100.620504, x2 = 29.872368, y2 = 79.662856, stroke = #002255
+Criada linha de borda: x1 = 29.872368, y1 = 79.662856, x2 = 31.023177, y2 = 58.034755, stroke = #002255
+Criada linha de borda: x1 = 31.023177, y1 = 58.034755, x2 = 41.344893, y2 = 40.548134, stroke = #002255
+Criada linha de borda: x1 = 41.344893, y1 = 40.548134, x2 = 57.441917, y2 = 30.540323, stroke = #002255
+Criada linha de borda: x1 = 57.441917, y1 = 30.540323, x2 = 60.392856, y2 = 36.331865, stroke = #002255
+Criada linha de borda: x1 = 60.392856, y1 = 36.331865, x2 = 46.603503, y2 = 44.368738, stroke = #002255
+Criada linha de borda: x1 = 46.603503, y1 = 44.368738, x2 = 37.443151, y2 = 59.051579, stroke = #002255
+Criada linha de borda: x1 = 37.443151, y1 = 59.051579, x2 = 36.054236, y2 = 77.654246, stroke = #002255
+Criada linha de borda: x1 = 36.054236, y1 = 77.654246, x2 = 43.975690, y2 = 96.024310, stroke = #002255
+Criada linha de borda: x1 = 43.975690, y1 = 96.024310, x2 = 60.538005, y2 = 109.509445, stroke = #002255
+Criada linha de borda: x1 = 60.538005, y1 = 109.509445, x2 = 82.778704, y2 = 114.112803, stroke = #002255
+Criada linha de borda: x1 = 82.778704, y1 = 114.112803, x2 = 105.946894, y2 = 107.594745, stroke = #002255
+Criada linha de borda: x1 = 105.946894, y1 = 107.594745, x2 = 124.517688, y2 = 90.230522, stroke = #002255
+Criada linha de borda: x1 = 124.517688, y1 = 90.230522, x2 = 133.500000, y2 = 65.000000, stroke = #002255
+Criada linha de borda: x1 = 133.500000, y1 = 65.000000, x2 = 140.000000, y2 = 65.000000, stroke = #002255
+Criada linha de preenchimento: x1 = 29.872368, y1 = 30.540323, x2 = 133.500000, y2 = 30.540323, stroke = #FFCCAA
+Criada linha de preenchimento: x1 = 29.872368, y1 = 38.540323, x2 = 133.500000, y2 = 38.540323, stroke = #FFCCAA
+Criada linha de preenchimento: x1 = 29.872368, y1 = 46.540323, x2 = 133.500000, y2 = 46.540323, stroke = #FFCCAA
+Criada linha de preenchimento: x1 = 29.872368, y1 = 54.540323, x2 = 133.500000, y2 = 54.540323, stroke = #FFCCAA
+Criada linha de preenchimento: x1 = 29.872368, y1 = 62.540323, x2 = 133.500000, y2 = 62.540323, stroke = #FFCCAA
+Criada linha de preenchimento: x1 = 29.872368, y1 = 70.540323, x2 = 133.500000, y2 = 70.540323, stroke = #FFCCAA
+Criada linha de preenchimento: x1 = 29.872368, y1 = 78.540323, x2 = 133.500000, y2 = 78.540323, stroke = #FFCCAA
+Criada linha de preenchimento: x1 = 29.872368, y1 = 86.540323, x2 = 133.500000, y2 = 86.540323, stroke = #FFCCAA
+Criada linha de preenchimento: x1 = 29.872368, y1 = 94.540323, x2 = 133.500000, y2 = 94.540323, stroke = #FFCCAA
+Criada linha de preenchimento: x1 = 29.872368, y1 = 102.540323, x2 = 133.500000, y2 = 102.540323, stroke = #FFCCAA
+Criada linha de preenchimento: x1 = 29.872368, y1 = 110.540323, x2 = 133.500000, y2 = 110.540323, stroke = #FFCCAA
+Criada linha de preenchimento: x1 = 29.872368, y1 = 118.540323, x2 = 133.500000, y2 = 118.540323, stroke = #FFCCAA
+
+[*] clp
+Todas as coordenadas do polígono corrente removidas
+
+[*] clp
+Todas as coordenadas do polígono corrente removidas

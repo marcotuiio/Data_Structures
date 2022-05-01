@@ -48,3 +48,6 @@ Colocar arquivos de Ed para facilitar estudos
 
 ./ted -e /home/marcotuiio/EDor/T1/input -f hinotxt.geo -o /home/marcotuiio/EDor/T1/output 
 
+./ted -e /home/marcotuiio/EDor/T1/input -f triangulo-ttp.geo -o /home/marcotuiio/EDor/T1/output -q 001simples.qry
+
+
