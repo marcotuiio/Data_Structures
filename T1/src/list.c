@@ -89,7 +89,7 @@ void insereInicio(Lista l, Item n) {
     ImpList *lista = (ImpList *)l;
 
     // Cria celula
-    celulaL *novaCelula = calloc(1, sizeof(celulaL *));
+    celulaL *novaCelula = calloc(1, sizeof(celulaL));
 
     novaCelula->value = n;  // n pode ser int, char etc, recebido com void pointer
     novaCelula->next = NULL;
@@ -121,7 +121,7 @@ void insereDepois(Lista l, Item n, Item x) {
     }
 
     // Criando celula com valor x desejado
-    celulaL *novaCelula = (celulaL *)malloc(sizeof(celulaL));
+    celulaL *novaCelula = calloc(1, sizeof(celulaL));
 
     novaCelula->value = x;
     novaCelula->next = NULL;
@@ -207,11 +207,11 @@ void removeCelula(Lista l, Item n, int id, char *tipo) {
         aux->fim = celulaARemover->prev;
         celulaARemover->prev->next = NULL;
 
-    } else {
+    } else {   // ant -> remove -> next
         celulaARemover->prev->next = celulaARemover->next;
         if (celulaARemover->next != NULL) {
             celulaARemover->next->prev = celulaARemover->prev;
-        }  // ant -> remove -> next
+        }  
     }
 
     free(celulaARemover);
@@ -270,6 +270,7 @@ void removeAll(Lista l) {
     while (head != NULL) {
         tmp = head;
         head = tmp->next;
+        free(tmp->value);
         free(tmp);
     }
 }

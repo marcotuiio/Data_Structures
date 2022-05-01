@@ -103,12 +103,12 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
     // writeSvg(selecRec, selecCirc, selecTxt, selecTxt, svg, 1);
 
     if (check == 0) {
-        // printf("Inicio\n");
+        //printf("Inicioqry\n");
         writeSvg(selecRec, selecCirc, selecTxt, selecTxt, svg, 1);
-        removeAll(selecRec);
-        removeAll(selecCirc);
-        removeAll(selecLine);
-        removeAll(selecTxt);
+        // removeAll(selecRec);
+        // removeAll(selecCirc);
+        // removeAll(selecLine);
+        // removeAll(selecTxt);
     }
 
     free(selecRec);
@@ -123,7 +123,7 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
     removeAll(selecGeral);
     free(selAux);
     free(selecGeral);
-    // printf("Fim\n");
+    //printf("Fim\n");
 }
 
 void inp(FILE *txt, FILE *svg, FILE *arq, char *infos, Fila_Circular q, Lista r, Lista c, Lista l, Lista t) {
@@ -381,7 +381,7 @@ void clp(FILE *txt, Fila_Circular q) {
 void sel(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, Lista a, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, Lista l, Lista t) {
     printf("--- INICIO SEL ---\n");
     double x, y, w, h;
-    double radius = 1.75000;
+    double radius = 2.20000;
     char stroke[] = "red";
     char fill[] = "white";
 
@@ -561,10 +561,10 @@ void selplus(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, 
     double x, y, w, h;
     double selx, sely, selw, selh;  // x y w h vindos do comando sel
     double finalX, finalY, finalH, finalW;
-    double radius = 1.75000;
+    double radius = 2.20000;
     char stroke[] = "red";
     char fill[] = "white";
-    Item rec_aux;
+    Item rec_aux = NULL;
 
     fscanf(arq, "%s", infos);
     x = strtod(infos, &eptr);
@@ -579,48 +579,64 @@ void selplus(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, 
     h = strtod(infos, &eptr);
 
     Cell auxA1 = getLast(a);
-    Item auxB1 = getInfo(auxA1);
-
-    selx = getrX(auxB1);
-    sely = getrY(auxB1);
-    selw = getrW(auxB1);
-    selh = getrH(auxB1);
-
-    if (y == sely && w == selw) {
-        finalW = selw + w;
-        finalH = h;
-        finalY = y;
-        if (x < selx) {
-            finalX = x;
-        } else {
-            finalX = selx;
-        }
-        rec_aux = criaRecaux(finalX, finalY, finalW, finalH);
-        insereFim(a, rec_aux);
-    } else if (x == selx && h == selh) {
-        finalH = selh + h;
-        finalW = w;
+    if (auxA1 == NULL) {
         finalX = x;
-        if (y < sely) {
-            finalY = y;
-        } else {
-            finalY = sely;
-        }
+        finalY = y;
+        finalH = h;
+        finalW = w;
         rec_aux = criaRecaux(finalX, finalY, finalW, finalH);
         insereFim(a, rec_aux);
-    } else if (x + w == selx + selw || y + h == sely + selh) {
-        finalX = selx;
-        finalY = sely;
-        finalW = selw + w;
-        finalH = selh;
+
     } else {
-        finalX = x;
-        finalY = y;
-        finalH = h;
-        finalW = w;
-        rec_aux = criaRecaux(finalX, finalY, finalW, finalH);
-        insereFim(a, rec_aux);
+        Item auxB1 = getInfo(auxA1);
+
+        selx = getrX(auxB1);
+        sely = getrY(auxB1);
+        selw = getrW(auxB1);
+        selh = getrH(auxB1);
+
+        if (y == sely && w == selw) {
+            finalW = selw + w;
+            finalH = h;
+            finalY = y;
+            if (x < selx) {
+                finalX = x;
+            } else {
+                finalX = selx;
+            }
+            rec_aux = criaRecaux(finalX, finalY, finalW, finalH);
+            insereFim(a, rec_aux);
+
+        } else if (x == selx && h == selh) {
+            finalH = selh + h;
+            finalW = w;
+            finalX = x;
+            if (y < sely) {
+                finalY = y;
+            } else {
+                finalY = sely;
+            }
+            rec_aux = criaRecaux(finalX, finalY, finalW, finalH);
+            insereFim(a, rec_aux);
+
+        } else if (x + w == selx + selw || y + h == sely + selh) {
+            finalX = selx;
+            finalY = sely;
+            finalW = selw + w;
+            finalH = selh;
+            rec_aux = criaRecaux(finalX, finalY, finalW, finalH);
+            insereFim(a, rec_aux);
+
+        } else {
+            finalX = x;
+            finalY = y;
+            finalH = h;
+            finalW = w;
+            rec_aux = criaRecaux(finalX, finalY, finalW, finalH);
+            insereFim(a, rec_aux);
+        }
     }
+    
 
     fprintf(svg, "\t<rect x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"3%%\" />\n", x, y, w, h, stroke, fill);
     fprintf(txt, "\n[*] sel+ %lf %lf %lf %lf \n", x, y, w, h);
@@ -736,6 +752,9 @@ void dels(FILE *txt, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, L
         double recHeight = getRectHEIGHT(auxI1);
         double recWidth = getRectWIDTH(auxI1);
 
+        // printf("auxi %p\n", auxI1);
+        // printf("auxc %p\n", auxC1);
+        // printf("id %d\n", idR);
         removeCelula(r, auxI1, idR, "r");
 
         fprintf(txt, "Removido: Retângulo id %d, x = %lf, y = %lf, height = %lf, width = %lf\n", idR, recX, recY, recHeight, recWidth);

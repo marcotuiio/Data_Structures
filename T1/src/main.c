@@ -38,5 +38,7 @@ int main(int argc, char **argv) {
     free(pathGeo);
     free(outputDir);
 
+    printf("\n--- END OF MAIN SUCCESS ---\n");
+
     return 0;
 }

@@ -15,7 +15,7 @@ struct parameters {
 typedef struct parameters ParamL;
 
 Parameters setParameters(int argc, char **argv, Parameters p) {
-    printf("\nInicio set param\n");
+    printf("\n--- INICIO SET PARAM ---\n");
     ParamL *param = (ParamL *)p;
 
     // printf("argc = %d\n", argc);
@@ -45,23 +45,23 @@ Parameters setParameters(int argc, char **argv, Parameters p) {
 }
 
 Parameters *createParameters(int argc, char **argv) {
-    printf("\nInicio create param\n");
+    printf("\n--- INICIO CREATE PARAM ---\n");
     ParamL *param = calloc(1, sizeof(ParamL));
 
-    param->outputDir = (char*)malloc(400);
-    param->inputDir = (char*)malloc(400);
-    param->nameGeoFile = (char*)malloc(100);
-    param->nameQryFile = (char*)malloc(100);
+    param->outputDir = calloc(300, sizeof(char));
+    param->inputDir = calloc(300, sizeof(char));
+    param->nameGeoFile = calloc(100, sizeof(char));
+    param->nameQryFile = calloc(100, sizeof(char));
 
     //param->inputDir = getcwd(NULL, 0);
-    param->nameGeoFile = (char*)malloc(100);
+    param->nameGeoFile = calloc(100, sizeof(char));
     strcpy(param->nameQryFile, "nda");
 
     return setParameters(argc, argv, param);
 }
 
 char *makePathGeoFile(Parameters p) {
-    printf("\nInicio path geo file\n");
+    printf("\n--- PATH GEO FILE ---\n");
     ParamL *param = (ParamL *)p;
     int len_dir = strlen(param->inputDir);
     int len_geo = strlen(param->nameGeoFile);
@@ -82,7 +82,7 @@ char *makePathGeoFile(Parameters p) {
 }
 
 char *makePathQryFile(Parameters p) {
-    printf("\nInicio path qry file\n");
+    printf("\n--- PATH QRY FILE ---\n");
     ParamL *param = (ParamL *)p;
     int len_dir = strlen(param->inputDir);
     int len_qry = strlen(param->nameQryFile);
@@ -104,7 +104,7 @@ char *makePathQryFile(Parameters p) {
 }
 
 char *getOutputDir(Parameters p) {
-    printf("\nInicio getOutputDir\n");
+    printf("\n--- GET BSD ---\n");
     ParamL *param = (ParamL *)p;
     int len_dir = strlen(param->outputDir);
 
@@ -145,7 +145,7 @@ char *getOutputDir(Parameters p) {
 }
 
 char *buildFilePath(char *directory, char *fileName) {
-    printf("\nInicio Build file path\n");
+    printf("\n--- BUILD FILE PATH ---\n");
     printf("Dir: %s - File Name: %s\n", directory, fileName);
     char separator[] = "/";
     char *result = (char*)malloc(strlen(directory) + strlen(fileName) + 1);
@@ -159,8 +159,8 @@ char *buildFilePath(char *directory, char *fileName) {
 }
 
 FILE *loadFile(char *path) {
-    printf("\nInicio load file\n");
-    printf("Path_QRY: %s\n", path);
+    printf("\n--- LOAD FILE ---\n");
+    printf("Path Arq: %s\n", path);
     FILE *arq = fopen(path, "r");
 
     if (arq == NULL) {

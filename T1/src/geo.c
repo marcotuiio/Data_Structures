@@ -73,7 +73,7 @@ void buildGeometricForms(FILE *arq, char *svgoutput, FILE *qry, int existe) {
         writeSvg(listRETANGULO, listCIRCULO, listTEXTO, listLINHA, svg2, 0);
         killSvg(svg2);
     }
-
+    
     removeAll(listRETANGULO);
     removeAll(listCIRCULO);
     removeAll(listLINHA);
@@ -85,7 +85,6 @@ void buildGeometricForms(FILE *arq, char *svgoutput, FILE *qry, int existe) {
     free(listTEXTO);
 
     free(diraux);
-
 }
 
 FILE *createTxt(char *output) {
