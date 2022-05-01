@@ -1,29 +1,28 @@
 
-[*] inp
+[*] inp 10 
 Inserido ponto em: x = 115.000000, y = 60.000000
 
-[*] inp
+[*] inp 11 
 Inserido ponto em: x = 32.500000, y = 107.631397
 
-[*] inp
+[*] inp 12 
 Inserido ponto em: x = 32.500000, y = 12.368603
 
-[*] pol
-Criada linha de borda: x1 = 115.000000, y1 = 60.000000, x2 = 32.500000, y2 = 107.631397, stroke = #002255
-Criada linha de borda: x1 = 32.500000, y1 = 107.631397, x2 = 32.500000, y2 = 12.368603, stroke = #002255
-Criada linha de borda: x1 = 32.500000, y1 = 12.368603, x2 = 115.000000, y2 = 60.000000, stroke = #002255
-Criada linha de preenchimento: x1 = 32.500000, y1 = 12.368603, x2 = 32.500000, y2 = 12.368603, stroke = #FFCCAA
-Criada linha de preenchimento: x1 = 32.500000, y1 = 20.368603, x2 = 32.500000, y2 = 20.368603, stroke = #FFCCAA
-Criada linha de preenchimento: x1 = 32.500000, y1 = 28.368603, x2 = 32.500000, y2 = 28.368603, stroke = #FFCCAA
-Criada linha de preenchimento: x1 = 32.500000, y1 = 36.368603, x2 = 32.500000, y2 = 36.368603, stroke = #FFCCAA
-Criada linha de preenchimento: x1 = 32.500000, y1 = 44.368603, x2 = 32.500000, y2 = 44.368603, stroke = #FFCCAA
-Criada linha de preenchimento: x1 = 32.500000, y1 = 52.368603, x2 = 32.500000, y2 = 52.368603, stroke = #FFCCAA
-Criada linha de preenchimento: x1 = 32.500000, y1 = 60.368603, x2 = 32.500000, y2 = 60.368603, stroke = #FFCCAA
-Criada linha de preenchimento: x1 = 32.500000, y1 = 68.368603, x2 = 32.500000, y2 = 68.368603, stroke = #FFCCAA
-Criada linha de preenchimento: x1 = 32.500000, y1 = 76.368603, x2 = 32.500000, y2 = 76.368603, stroke = #FFCCAA
-Criada linha de preenchimento: x1 = 32.500000, y1 = 84.368603, x2 = 32.500000, y2 = 84.368603, stroke = #FFCCAA
-Criada linha de preenchimento: x1 = 32.500000, y1 = 92.368603, x2 = 32.500000, y2 = 92.368603, stroke = #FFCCAA
-Criada linha de preenchimento: x1 = 32.500000, y1 = 100.368603, x2 = 32.500000, y2 = 100.368603, stroke = #FFCCAA
+[*] pol 22 8.000000 1.500000 red blue
+Criada linha de borda: x1 = 115.000000, y1 = 60.000000, x2 = 32.500000, y2 = 107.631397, stroke = red
+Criada linha de borda: x1 = 32.500000, y1 = 107.631397, x2 = 32.500000, y2 = 12.368603, stroke = red
+Criada linha de borda: x1 = 32.500000, y1 = 12.368603, x2 = 115.000000, y2 = 60.000000, stroke = red
+Criada linha de preenchimento: x1 = 32.500000, y1 = 20.368603, x2 = 115.000000, y2 = 20.368603, stroke = blue
+Criada linha de preenchimento: x1 = 32.500000, y1 = 28.368603, x2 = 115.000000, y2 = 28.368603, stroke = blue
+Criada linha de preenchimento: x1 = 32.500000, y1 = 36.368603, x2 = 115.000000, y2 = 36.368603, stroke = blue
+Criada linha de preenchimento: x1 = 32.500000, y1 = 44.368603, x2 = 115.000000, y2 = 44.368603, stroke = blue
+Criada linha de preenchimento: x1 = 32.500000, y1 = 52.368603, x2 = 115.000000, y2 = 52.368603, stroke = blue
+Criada linha de preenchimento: x1 = 32.500000, y1 = 60.368603, x2 = 115.000000, y2 = 60.368603, stroke = blue
+Criada linha de preenchimento: x1 = 32.500000, y1 = 68.368603, x2 = 115.000000, y2 = 68.368603, stroke = blue
+Criada linha de preenchimento: x1 = 32.500000, y1 = 76.368603, x2 = 115.000000, y2 = 76.368603, stroke = blue
+Criada linha de preenchimento: x1 = 32.500000, y1 = 84.368603, x2 = 115.000000, y2 = 84.368603, stroke = blue
+Criada linha de preenchimento: x1 = 32.500000, y1 = 92.368603, x2 = 115.000000, y2 = 92.368603, stroke = blue
+Criada linha de preenchimento: x1 = 32.500000, y1 = 100.368603, x2 = 115.000000, y2 = 100.368603, stroke = blue
 
 [*] clp
 Todas as coordenadas do polígono corrente removidas

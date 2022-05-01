@@ -39,7 +39,7 @@ typedef struct t Tipos;
 void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, FILE *txt) {
     printf("\n--- INICIO READ QRY ---\n");
     Fila_Circular poligono = criaFila(300);
-    Lista linhasPol = criaLista(); //BANCO DE DADOS LINHAS POL
+    Lista linhasPol = criaLista();  // BANCO DE DADOS LINHAS POL
     Lista selecRec = criaLista();
     Lista selecCirc = criaLista();
     Lista selecLine = criaLista();
@@ -79,7 +79,7 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
             selplus(txt, svg, qry_dir, comando, eptr, selecGeral, selAux, selecRec, selecCirc, selecLine, selecTxt, r, c, l, t);
 
         } else if (strcmp(comando, "dels") == 0) {  // Remove todas as figuras selecionadas
-            printf("\n%s\n", comando);              // *FEITO ARRUMARRRRR seg fault*
+            printf("\n%s\n", comando);              // *FEITO !(ARRUMARRRRR seg fault)*
             check = check + 1;
             dels(txt, selecRec, selecCirc, selecLine, selecTxt, r, c, l, t);
 
@@ -138,7 +138,7 @@ void inp(FILE *txt, FILE *svg, FILE *arq, char *infos, Fila_Circular q, Lista r,
     fscanf(arq, "%s", infos);
     i = atoi(infos);
 
-    fprintf(txt, "\n[*] inp\n");
+    fprintf(txt, "\n[*] inp %d \n", i);
 
     for (Cell auxC1 = getFirst(r); auxC1 != NULL; auxC1 = getNext(r, auxC1)) {
         Item auxI1 = getInfo(auxC1);
@@ -274,12 +274,12 @@ void pol(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Fila_Circular
     fscanf(arq, "%s", infos);
     strcpy(corp, infos);
 
-    fprintf(txt, "\n[*] pol\n");
+    fprintf(txt, "\n[*] pol %d %lf %lf %s %s\n", i, d, e, corb, corp);
 
     int size = getSize(q);
     int aux = 0, aux2 = 1;
-    double menorY = 99999, maiorY = -1;
-    double menorX = 99999, maiorX = -1;
+    double menorY = 99999, maiorY = -10;
+    double menorX = 99999, maiorX = -10;
     double x1, x2, y1, y2;
     Item p1, p2;
     Item line;
@@ -321,7 +321,7 @@ void pol(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Fila_Circular
             menorX = x2;
         }
         if (x1 > maiorX) {
-            maiorX = x2;
+            maiorX = x1;
         }
         if (x2 > maiorX) {
             maiorX = x2;
@@ -337,6 +337,7 @@ void pol(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Fila_Circular
     fprintf(txt, "Criada linha de borda: x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf, stroke = %s\n", x2, y2, x1, y1, corb);
     fprintf(svg, "\t<line id=\"%d\" x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" />\n", i, x2, y2, x1, y1, corb);
 
+    menorY = menorY + d;
     int Nlinhas = (maiorY - menorY) / d;
     int cont = 0;
     printf("Nlinhas %d\n", Nlinhas);
@@ -400,8 +401,8 @@ void sel(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, List
     insereFim(a, rec_aux);
 
     fprintf(svg, "\t<rect x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"3%%\" />\n", x, y, w, h, stroke, fill);
-    fprintf(txt, "\n[*] sel\n");
-    fprintf(txt, "Retângulo de seleção: x = %lf, y = %lf, h = %lf, w = %lf, stroke = %s\n", x, y, h, w, stroke);
+    fprintf(txt, "\n[*] sel %lf %lf %lf %lf \n", x, y, w, h);
+    //fprintf(txt, "Retângulo de seleção: x = %lf, y = %lf, h = %lf, w = %lf, stroke = %s\n", x, y, h, w, stroke);
 
     for (Cell auxC1 = getFirst(r); auxC1 != NULL; auxC1 = getNext(r, auxC1)) {
         Item auxI1 = getInfo(auxC1);
@@ -622,8 +623,8 @@ void selplus(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, 
     }
 
     fprintf(svg, "\t<rect x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"3%%\" />\n", x, y, w, h, stroke, fill);
-    fprintf(txt, "\n[*] sel+\n");
-    fprintf(txt, "Retângulo de seleção: x = %lf, y = %lf, h = %lf, w = %lf, stroke = %s\n", x, y, h, w, stroke);
+    fprintf(txt, "\n[*] sel+ %lf %lf %lf %lf \n", x, y, w, h);
+    //fprintf(txt, "Retângulo de seleção: x = %lf, y = %lf, h = %lf, w = %lf, stroke = %s\n", x, y, h, w, stroke);
 
     for (Cell auxC1 = getFirst(r); auxC1 != NULL; auxC1 = getNext(r, auxC1)) {
         Item auxI1 = getInfo(auxC1);
@@ -807,7 +808,7 @@ void dps(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista sR, Lis
     fscanf(arq, "%s", infos);
     strcpy(corp, infos);
 
-    fprintf(txt, "\n[*] dps\n");
+    fprintf(txt, "\n[*] dps %d %lf %lf %s %s\n", i, dx, dy, corb, corp);
 
     for (Cell auxC1 = getFirst(sR); auxC1 != NULL; auxC1 = getNext(sR, auxC1)) {
         Item auxI1 = getInfo(auxC1);
@@ -909,7 +910,7 @@ void ups(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, List
     Cell auxC3 = getLast(sT);
     Cell auxC4 = getLast(sL);
 
-    fprintf(txt, "\n[*] ups\n");
+    fprintf(txt, "\n[*] ups %s %s %lf %lf %d \n", corb, corp, dx, dy, n);
 
     while (n < 0 && n2 <= auxn) {
         for (Cell auxG1 = getLast(g); auxG1 != NULL; auxG1 = getPrevious(g, auxG1)) {

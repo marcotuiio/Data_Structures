@@ -1,6 +1,5 @@
 
-[*] sel
-Retângulo de seleção: x = 5.000000, y = 5.000000, h = 74.200000, w = 581.633333, stroke = red
+[*] sel 5.000000 5.000000 581.633333 74.200000 
 Selecionado: Retângulo id 1, x = 11.700000, y = 5.000000, height = 6.000000, width = 6.000000
 Selecionado: Retângulo id 2, x = 18.400000, y = 5.000000, height = 6.000000, width = 6.000000
 Selecionado: Retângulo id 3, x = 25.100000, y = 5.000000, height = 6.000000, width = 6.000000
@@ -548,8 +547,7 @@ Removido: Retângulo id 773, x = 569.000000, y = 61.100000, height = 6.000000, w
 Removido: Retângulo id 774, x = 575.700000, y = 61.100000, height = 6.000000, width = 6.000000
 Removido: Retângulo id 781, x = 569.000000, y = 68.000000, height = 6.000000, width = 6.000000
 
-[*] sel+
-Retângulo de seleção: x = 586.633333, y = 5.000000, h = 74.200000, w = 581.633333, stroke = red
+[*] sel+ 586.633333 5.000000 581.633333 74.200000 
 Selecionado: Retângulo id 199, x = 582.400000, y = 5.000000, height = 6.000000, width = 6.000000
 Selecionado: Retângulo id 200, x = 589.100000, y = 5.000000, height = 6.000000, width = 6.000000
 Selecionado: Retângulo id 201, x = 595.800000, y = 5.000000, height = 6.000000, width = 6.000000
@@ -870,7 +868,7 @@ Selecionado: Retângulo id 1032, x = 1153.100000, y = 61.100000, height = 6.0000
 Selecionado: Retângulo id 1033, x = 1159.800000, y = 61.100000, height = 6.000000, width = 6.000000
 Selecionado: Retângulo id 1036, x = 1133.000000, y = 68.000000, height = 6.000000, width = 6.000000
 
-[*] ups
+[*] ups #004D33 #80FFEA 436.225000 232.600000 -100 
 Retângulo atualizado: dx = 436.225000, dy = 232.600000, stroke = #004D33, fill = #80FFEA
 Retângulo atualizado: dx = 436.225000, dy = 465.200000, stroke = #004D33, fill = #80FFEA
 Retângulo atualizado: dx = 436.225000, dy = 697.800000, stroke = #004D33, fill = #80FFEA
@@ -972,8 +970,7 @@ Retângulo atualizado: dx = 436.225000, dy = 22794.800000, stroke = #004D33, fil
 Retângulo atualizado: dx = 436.225000, dy = 23027.400000, stroke = #004D33, fill = #80FFEA
 Retângulo atualizado: dx = 436.225000, dy = 23260.000000, stroke = #004D33, fill = #80FFEA
 
-[*] sel+
-Retângulo de seleção: x = 5.000000, y = 79.200000, h = 74.200000, w = 581.633333, stroke = red
+[*] sel+ 5.000000 79.200000 581.633333 74.200000 
 Selecionado: Retângulo id 558, x = 5.000000, y = 74.900000, height = 6.000000, width = 6.000000
 Selecionado: Retângulo id 559, x = 51.900000, y = 74.900000, height = 6.000000, width = 6.000000
 Selecionado: Retângulo id 560, x = 5.000000, y = 81.800000, height = 6.000000, width = 6.000000
@@ -1282,8 +1279,7 @@ Selecionado: Retângulo id 1286, x = 575.700000, y = 137.900000, height = 6.0000
 Selecionado: Retângulo id 1289, x = 569.000000, y = 144.800000, height = 6.000000, width = 6.000000
 Selecionado: Retângulo id 1290, x = 575.700000, y = 144.800000, height = 6.000000, width = 6.000000
 
-[*] sel+
-Retângulo de seleção: x = 586.633333, y = 79.200000, h = 74.200000, w = 581.633333, stroke = red
+[*] sel+ 586.633333 79.200000 581.633333 74.200000 
 Selecionado: Retângulo id 199, x = 582.400000, y = 5.000000, height = 6.000000, width = 6.000000
 Selecionado: Retângulo id 200, x = 589.100000, y = 5.000000, height = 6.000000, width = 6.000000
 Selecionado: Retângulo id 201, x = 595.800000, y = 5.000000, height = 6.000000, width = 6.000000
@@ -2110,7 +2106,7 @@ Selecionado: Retângulo id 1473, x = 1146.400000, y = 144.800000, height = 6.000
 Selecionado: Retângulo id 1474, x = 1153.100000, y = 144.800000, height = 6.000000, width = 6.000000
 Selecionado: Retângulo id 1475, x = 1159.800000, y = 144.800000, height = 6.000000, width = 6.000000
 
-[*] ups
+[*] ups #004D33 #80FFEA 436.225000 232.600000 -100 
 Retângulo atualizado: dx = 436.225000, dy = 232.600000, stroke = #004D33, fill = #80FFEA
 Retângulo atualizado: dx = 436.225000, dy = 465.200000, stroke = #004D33, fill = #80FFEA
 Retângulo atualizado: dx = 436.225000, dy = 697.800000, stroke = #004D33, fill = #80FFEA
