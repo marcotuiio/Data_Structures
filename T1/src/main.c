@@ -22,14 +22,21 @@ int main(int argc, char **argv) {
 
     if (qryExiste(param) == 1) {
         char *pathQry = makePathQryFile(param);
-
+        int size = strlen(pathQry);
+        char *path_aux = malloc(size);
+        strcpy(path_aux, pathQry);
+        
         qryFile = loadFile(pathQry);
 
-        buildGeometricForms(geoFile, outputDir, qryFile, 1);
+        int q_size = countInp(path_aux);
+        printf("SIZE QUEUE %d\n", q_size);
+
+        buildGeometricForms(geoFile, outputDir, qryFile, 1, q_size);
+        free(path_aux);
         free(pathQry);
 
     } else {
-        buildGeometricForms(geoFile, outputDir, NULL, 0);
+        buildGeometricForms(geoFile, outputDir, NULL, 0, 0);
     }
 
     free(param);

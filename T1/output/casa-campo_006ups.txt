@@ -38,7 +38,7 @@ Selecionado: Linha id 24, x1 = 127.000000, y1 = 123.000000, x2 = 107.000000, y2 
 Selecionado: Linha id 25, x1 = 104.000000, y1 = 104.000000, x2 = 135.000000, y2 = 69.000000
 
 [*] ups #004D33 #80FFEA 47.250000 135.000000 -4 
-Linha atualizada: dx = 47.250000, dy = 135.000000, color = #004D33
-Linha atualizada: dx = 47.250000, dy = 270.000000, color = #004D33
-Linha atualizada: dx = 47.250000, dy = 405.000000, color = #004D33
-Linha atualizada: dx = 47.250000, dy = 540.000000, color = #004D33
+Linha atualizada: id= 25, dx = 47.250000, dy = 135.000000, color = #004D33
+Linha atualizada: id= 24, dx = 47.250000, dy = 270.000000, color = #004D33
+Linha atualizada: id= 23, dx = 47.250000, dy = 405.000000, color = #004D33
+Linha atualizada: id= 22, dx = 47.250000, dy = 540.000000, color = #004D33

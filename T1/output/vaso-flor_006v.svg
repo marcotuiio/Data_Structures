@@ -9,27 +9,27 @@
 	<circle id="17" cx="151.000000" cy="93.100000" r="5.000000" stroke="#800080" fill="#FF00FF" fill-opacity="40%" />
 	<circle id="18" cx="134.000000" cy="85.100000" r="5.000000" stroke="#800080" fill="#FF00FF" fill-opacity="40%" />
 	<circle id="19" cx="114.000000" cy="90.100000" r="5.000000" stroke="#800080" fill="#FF00FF" fill-opacity="40%" />
-	<line id="20" x1="138.100000" y1="110.500000" x2="150.900000" y2="93.200000" stroke="#800080" fill-opacity="50%" />
-	<line id="21" x1="134.100000" y1="108.700000" x2="134.600000" y2="90.400000" stroke="#800080" fill-opacity="50%" />
-	<line id="22" x1="129.100000" y1="108.900000" x2="117.700000" y2="94.900000" stroke="#800080" fill-opacity="50%" />
+	<line id="20" x1="138.100000" y1="110.500000" x2="150.900000" y2="93.200000" stroke="#800080" />
+	<line id="21" x1="134.100000" y1="108.700000" x2="134.600000" y2="90.400000" stroke="#800080" />
+	<line id="22" x1="129.100000" y1="108.900000" x2="117.700000" y2="94.900000" stroke="#800080" />
 	<rect x="60.500000" y="46.050000" width="97.000000" height="68.100000" stroke="red" fill="white" fill-opacity="3%" />
 	<circle cx="80.800000" cy="51.100000" r="2.200000" stroke="red" fill="white" fill-opacity="25%" />
-	<line id="4" x1="65.050000" y1="197.000000" x2="44.950000" y2="183.000000" stroke="#004D33" />
-	<line id="3" x1="64.850000" y1="274.900000" x2="61.850000" y2="256.600000" stroke="#004D33" />
-	<line id="2" x1="66.650000" y1="354.800000" x2="78.150000" y2="337.500000" stroke="#004D33" />
-	<circle id="7" cx="41.250000" cy="412.500000" r="5.000000" stroke="#004D33" fill="#80FFEA" fill-opacity="50%" />
-	<rect id="1" x="30.800000" y="41.100000" width="14.000000" height="29.000000" stroke="#800080" fill="#ff00ff" fill-opacity="50%" />
-	<circle id="5" cx="54.000000" cy="25.000000" r="5.000000" stroke="#FF00FF" fill="#FF0000" fill-opacity="50%" />
-	<circle id="6" cx="37.000000" cy="17.000000" r="5.000000" stroke="#FF00FF" fill="#FF0000" fill-opacity="50%" />
-	<circle id="7" cx="41.250000" cy="412.500000" r="5.000000" stroke="#004D33" fill="#80FFEA" fill-opacity="50%" />
-	<circle id="21" cx="104.000000" cy="35.000000" r="5.000000" stroke="#FF00FF" fill="#FF0000" fill-opacity="50%" />
-	<circle id="22" cx="87.000000" cy="27.000000" r="5.000000" stroke="#FF00FF" fill="#FF0000" fill-opacity="50%" />
-	<circle id="23" cx="67.000000" cy="32.000000" r="5.000000" stroke="#FF00FF" fill="#FF0000" fill-opacity="50%" />
+	<rect id="1" x="30.800000" y="41.100000" width="14.000000" height="29.000000" stroke="#800080" fill="#ff00ff" fill-opacity="25%" />
+	<rect id="17" x="177.800000" y="832.100000" width="14.000000" height="29.000000" stroke="#004D33" fill="#80FFEA" fill-opacity="25%" />
+	<circle id="5" cx="54.000000" cy="25.000000" r="5.000000" stroke="#FF00FF" fill="#FF0000" fill-opacity="25%" />
+	<circle id="6" cx="37.000000" cy="17.000000" r="5.000000" stroke="#FF00FF" fill="#FF0000" fill-opacity="25%" />
+	<circle id="7" cx="17.000000" cy="22.000000" r="5.000000" stroke="#FF00FF" fill="#FF0000" fill-opacity="25%" />
+	<circle id="21" cx="104.000000" cy="35.000000" r="5.000000" stroke="#FF00FF" fill="#FF0000" fill-opacity="25%" />
+	<circle id="22" cx="87.000000" cy="27.000000" r="5.000000" stroke="#FF00FF" fill="#FF0000" fill-opacity="25%" />
+	<circle id="23" cx="67.000000" cy="32.000000" r="5.000000" stroke="#FF00FF" fill="#FF0000" fill-opacity="25%" />
+	<line id="2" x1="41.100000" y1="42.400000" x2="53.900000" y2="25.100000" stroke="#008000" />
+	<line id="3" x1="37.100000" y1="40.600000" x2="37.600000" y2="22.300000" stroke="#008000" />
+	<line id="4" x1="32.100000" y1="40.800000" x2="20.700000" y2="26.800000" stroke="#008000" />
 	<line id="18" x1="91.100000" y1="52.400000" x2="103.900000" y2="35.100000" stroke="#008000" />
 	<line id="19" x1="87.100000" y1="50.600000" x2="87.600000" y2="32.300000" stroke="#008000" />
 	<line id="20" x1="82.100000" y1="50.800000" x2="70.700000" y2="36.800000" stroke="#008000" />
-	<rect id="17" x="105.050000" y="129.200000" width="14.000000" height="29.000000" stroke="#004D33" fill="#80FFEA" fill-opacity="50%" />
-	<circle id="5" cx="54.000000" cy="25.000000" r="5.000000" stroke="#FF00FF" fill="#FF0000" fill-opacity="50%" />
-	<circle id="6" cx="37.000000" cy="17.000000" r="5.000000" stroke="#FF00FF" fill="#FF0000" fill-opacity="50%" />
-	<circle id="7" cx="41.250000" cy="412.500000" r="5.000000" stroke="#004D33" fill="#80FFEA" fill-opacity="50%" />
+	<rect id="17" x="177.800000" y="832.100000" width="14.000000" height="29.000000" stroke="#004D33" fill="#80FFEA" fill-opacity="25%" />
+	<circle id="5" cx="54.000000" cy="25.000000" r="5.000000" stroke="#FF00FF" fill="#FF0000" fill-opacity="25%" />
+	<circle id="6" cx="37.000000" cy="17.000000" r="5.000000" stroke="#FF00FF" fill="#FF0000" fill-opacity="25%" />
+	<circle id="7" cx="17.000000" cy="22.000000" r="5.000000" stroke="#FF00FF" fill="#FF0000" fill-opacity="25%" />
 </svg>

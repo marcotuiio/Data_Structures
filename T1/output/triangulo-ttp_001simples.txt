@@ -26,6 +26,3 @@ Criada linha de preenchimento: x1 = 32.500000, y1 = 100.368603, x2 = 115.000000,
 
 [*] clp
 Todas as coordenadas do polígono corrente removidas
-
-[*] clp
-Todas as coordenadas do polígono corrente removidas

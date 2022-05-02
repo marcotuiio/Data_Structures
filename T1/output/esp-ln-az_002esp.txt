@@ -532,6 +532,3 @@ Criada linha de preenchimento: x1 = 351.139474, y1 = 532.393554, x2 = 820.000000
 
 [*] clp
 Todas as coordenadas do polígono corrente removidas
-
-[*] clp
-Todas as coordenadas do polígono corrente removidas

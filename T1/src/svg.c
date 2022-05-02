@@ -45,7 +45,7 @@ void drawCircle(FILE *svg, Item circ) {
     strcpy(fill, getCircFILL(circ));
     strcpy(stroke, getcircEDGE(circ));
 
-    fprintf(svg, "\t<circle id=\"%d\" cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"50%%\" />\n", id, x, y, radius, stroke, fill);
+    fprintf(svg, "\t<circle id=\"%d\" cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", id, x, y, radius, stroke, fill);
 }
 
 void drawRectangle(FILE *svg, Item rect) {
@@ -62,7 +62,7 @@ void drawRectangle(FILE *svg, Item rect) {
     strcpy(fill, getRectFILL(rect));
     strcpy(stroke, getRectEDGE(rect));
 
-    fprintf(svg, "\t<rect id=\"%d\" x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"50%%\" />\n", id, x, y, width, height, stroke, fill);
+    fprintf(svg, "\t<rect id=\"%d\" x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", id, x, y, width, height, stroke, fill);
 }
 
 void drawLine(FILE *svg, Item linha) {
@@ -115,5 +115,5 @@ void drawText(FILE *svg, Item txt, int e) {
     // printf("corp %s\n", fill);
     // printf("txt %s\n", text);
 
-    fprintf(svg, "\t<text id=\"%d\" x=\"%lf\" y=\"%lf\" text-anchor=\"%s\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"50%%\" >%s</text>\n", id, x, y, anchor, stroke, fill, text);
+    fprintf(svg, "\t<text id=\"%d\" x=\"%lf\" y=\"%lf\" text-anchor=\"%s\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"60%%\" >%s</text>\n", id, x, y, anchor, stroke, fill, text);
 }

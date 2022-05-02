@@ -8,7 +8,7 @@
  * como retângulos, círculos, linhas e textos.
  */
 
-void buildGeometricForms(FILE *arq, char *svgoutput, FILE *qry, int existe);
+void buildGeometricForms(FILE *arq, char *svgoutput, FILE *qry, int existe, int q_size);
 // Deve receber um arquivo .geo e um diretorio para criar o arquivo de saída
 // Pode receber um arquivo .qry, caso ele exista.
 // Após essa função, todas as informações do geo ja foram lidas e suas respectivas

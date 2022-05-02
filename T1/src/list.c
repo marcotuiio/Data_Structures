@@ -195,7 +195,11 @@ void removeCelula(Lista l, Item n, int id, char *tipo) {
         return;
     }
 
-    if (aux->inicio == celulaARemover) {  // celula a remover -> slkkefd
+    if (aux->inicio == celulaARemover && aux->fim == celulaARemover) {
+        aux->inicio = NULL;
+        aux->fim = NULL;
+    
+    } else if (aux->inicio == celulaARemover) {  // celula a remover -> slkkefd
         aux->inicio = celulaARemover->next;
         celulaARemover->next->prev = NULL;
 

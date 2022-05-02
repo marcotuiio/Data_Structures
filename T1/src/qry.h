@@ -11,7 +11,13 @@
  * comando e execução da determinada função
  */
 
-void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, FILE *txt);
+void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, FILE *txt, int q_size);
+// Leitura dos comando e delegação de tarefas para as
+// determinados comandos
+
+int countInp(char *qryaux);
+// Função auxiliar para criar a fila do tamanho 
+// adequado, sem dispercios de memória
 
 void inp(FILE *txt, FILE *svg, FILE *arq, char *infos, Fila_Circular q, Lista r, Lista c, Lista l, Lista t);
 // Insere no polígono corrente as coordenadas
@@ -105,11 +111,11 @@ void dps(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista sR, Lis
 
 void ups(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, Lista l, Lista t);
 // Altera as cores e a posição de n figuras antes
-//(se n<0) ou depois (se n>0) da última figura
-// selecionada pelo último sel ou sel+. Atribui
+// (se n<0) da última figura selecionada 
+// pelo último sel ou sel+. Atribui
 // corb à borda das figuras e corp ao
 // preenchimento. Translada a figura em dx
-// unidades na horizontal e incrementalmente dy
-// na vertical.
+// unidades na horizontal e incrementalmente
+// dy na vertical.
 
 #endif

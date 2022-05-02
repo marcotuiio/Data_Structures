@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg">
-	<circle cx="115.000000" cy="60.000000" r="1.000000" stroke="red" fill="black" fill-opacity="75%" />
-	<circle cx="32.500000" cy="107.631397" r="1.000000" stroke="red" fill="black" fill-opacity="75%" />
-	<circle cx="32.500000" cy="12.368603" r="1.000000" stroke="red" fill="black" fill-opacity="75%" />
+	<circle cx="115.000000" cy="60.000000" r="1.000000" stroke="red" fill="black" fill-opacity="30%" />
+	<circle cx="32.500000" cy="107.631397" r="1.000000" stroke="red" fill="black" fill-opacity="30%" />
+	<circle cx="32.500000" cy="12.368603" r="1.000000" stroke="red" fill="black" fill-opacity="30%" />
 	<line id="22" x1="115.000000" y1="60.000000" x2="32.500000" y2="107.631397" stroke="red" />
 	<line id="23" x1="32.500000" y1="107.631397" x2="32.500000" y2="12.368603" stroke="red" />
 	<line id="24" x1="32.500000" y1="12.368603" x2="115.000000" y2="60.000000" stroke="red" />
@@ -16,7 +16,7 @@
 	<line id="32" x1="32.500000" y1="84.368603" x2="115.000000" y2="84.368603" stroke="blue" stroke-width="1.500000" />
 	<line id="33" x1="32.500000" y1="92.368603" x2="115.000000" y2="92.368603" stroke="blue" stroke-width="1.500000" />
 	<line id="34" x1="32.500000" y1="100.368603" x2="115.000000" y2="100.368603" stroke="blue" stroke-width="1.500000" />
-	<text id="10" x="115.000000" y="60.000000" text-anchor="start" stroke="#000000" fill="#08001A" fill-opacity="50%" > Que ostentas dignamente</text>
-	<text id="11" x="32.500000" y="107.631397" text-anchor="start" stroke="#000000" fill="#FFFFFF" fill-opacity="50%" > Salve o tricolor paulista</text>
-	<text id="12" x="32.500000" y="12.368603" text-anchor="start" stroke="#000000" fill="#FFFFFF" fill-opacity="50%" > Que ostentas dignamente</text>
+	<text id="10" x="115.000000" y="60.000000" text-anchor="start" stroke="#000000" fill="#08001A" fill-opacity="60%" > Que ostentas dignamente</text>
+	<text id="11" x="32.500000" y="107.631397" text-anchor="start" stroke="#000000" fill="#FFFFFF" fill-opacity="60%" > Salve o tricolor paulista</text>
+	<text id="12" x="32.500000" y="12.368603" text-anchor="start" stroke="#000000" fill="#FFFFFF" fill-opacity="60%" > Que ostentas dignamente</text>
 </svg>

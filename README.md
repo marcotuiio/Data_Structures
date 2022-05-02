@@ -21,6 +21,9 @@ Colocar arquivos de Ed para facilitar estudos
 
 7- Arrumei os erros de concatenação dependendo de como os argumentos de entrada estão
 
+8- Olhar erros: * malloc(): invalid next size (unsorted) ex hinosp-1
+                * dels linha 819: por que dar free ali da problema?
+
 ==================================================================================================
 
  * Próximo passo: continuar a implementar o .qry ;-;
@@ -49,5 +52,3 @@ Colocar arquivos de Ed para facilitar estudos
 ./ted -e /home/marcotuiio/EDor/T1/input -f hinotxt.geo -o /home/marcotuiio/EDor/T1/output 
 
 ./ted -e /home/marcotuiio/EDor/T1/input -f triangulo-ttp.geo -o /home/marcotuiio/EDor/T1/output -q 001simples.qry
-
-

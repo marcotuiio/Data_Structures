@@ -8,7 +8,7 @@
 #include "svg.h"
 #include "text.h"
 
-void buildGeometricForms(FILE *arq, char *svgoutput, FILE *qry, int existe) {
+void buildGeometricForms(FILE *arq, char *svgoutput, FILE *qry, int existe, int q_size) {
     printf("\nInicio Build GeoForms\n");
     Lista listRETANGULO = criaLista();
     Lista listCIRCULO = criaLista();
@@ -44,15 +44,15 @@ void buildGeometricForms(FILE *arq, char *svgoutput, FILE *qry, int existe) {
     }
 
     fclose(arq);
-    char *diraux = (char *)malloc(strlen(svgoutput) + 20);
+    int auxsize = strlen(svgoutput);
+    char *diraux = calloc(1, auxsize + 20);
     strcpy(diraux, svgoutput);
 
     if (existe == 1) {
-        char *svgpuro = (char *)malloc(strlen(svgoutput));
+        char *svgpuro = calloc(1, auxsize);
         strcpy(svgpuro, svgoutput);
         svgpuro = strtok(svgpuro, "_");
         strcat(svgpuro, ".svg");
-
         FILE *svg1 = createSvg(svgpuro);
         writeSvg(listRETANGULO, listCIRCULO, listTEXTO, listLINHA, svg1, 0);
         killSvg(svg1);
@@ -60,7 +60,7 @@ void buildGeometricForms(FILE *arq, char *svgoutput, FILE *qry, int existe) {
         FILE *arq_txt = createTxt(diraux);
         FILE *svgQry = createSvg(svgoutput);
 
-        readComands(qry, listRETANGULO, listCIRCULO, listLINHA, listTEXTO, svgQry, arq_txt);
+        readComands(qry, listRETANGULO, listCIRCULO, listLINHA, listTEXTO, svgQry, arq_txt, q_size);
         killSvg(svgQry);
         free(svgpuro);
 
