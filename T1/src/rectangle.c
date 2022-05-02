@@ -1,9 +1,5 @@
 #include "rectangle.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 #include "list.h"
 
 struct rect {
@@ -24,7 +20,7 @@ Rectangle1 criaRec() {
 }
 
 Item buildRectangle(FILE *arq, Rectangle1 rec, char *infos, char *eptr) {
-    //printf("\nInicio Build Rectangle\n");
+    // printf("\nInicio Build Rectangle\n");
     Retangulo *rectangle = (Retangulo *)rec;
 
     strcpy(rectangle->type, infos);

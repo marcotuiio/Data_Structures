@@ -1,16 +1,12 @@
 #include "geo.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 #include "circle.h"
 #include "line.h"
 #include "list.h"
+#include "qry.h"
 #include "rectangle.h"
 #include "svg.h"
 #include "text.h"
-#include "qry.h"
 
 void buildGeometricForms(FILE *arq, char *svgoutput, FILE *qry, int existe) {
     printf("\nInicio Build GeoForms\n");
@@ -48,11 +44,11 @@ void buildGeometricForms(FILE *arq, char *svgoutput, FILE *qry, int existe) {
     }
 
     fclose(arq);
-    char *diraux = (char*)malloc(strlen(svgoutput) + 20);
+    char *diraux = (char *)malloc(strlen(svgoutput) + 20);
     strcpy(diraux, svgoutput);
 
     if (existe == 1) {
-        char *svgpuro = (char*)malloc(strlen(svgoutput));
+        char *svgpuro = (char *)malloc(strlen(svgoutput));
         strcpy(svgpuro, svgoutput);
         svgpuro = strtok(svgpuro, "_");
         strcat(svgpuro, ".svg");
@@ -73,7 +69,7 @@ void buildGeometricForms(FILE *arq, char *svgoutput, FILE *qry, int existe) {
         writeSvg(listRETANGULO, listCIRCULO, listTEXTO, listLINHA, svg2, 0);
         killSvg(svg2);
     }
-    
+
     removeAll(listRETANGULO);
     removeAll(listCIRCULO);
     removeAll(listLINHA);

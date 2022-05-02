@@ -1,36 +1,34 @@
+#include "libs.h"
+
 #ifndef LIST_H
 #define LIST_H
 
 /*
-* Uma lista  ́e uma coleção ordenada de itens em que seus elementos podem
-* ser acessados através de sua posição (tipo Posic). Uma lista sem nenhum
-* elemento (comprimento 0)  ́e denominada lista vazia.
-*/
+ * Uma lista  ́e uma coleção ordenada de itens em que seus elementos podem
+ * ser acessados através de sua posição (tipo Posic). Uma lista sem nenhum
+ * elemento (comprimento 0)  ́e denominada lista vazia.
+ */
 
-typedef void* Lista;
-typedef void* Item;
-typedef void* Cell;
-
-Lista criaLista(); //createList
-//Cria e retorna uma lista vazia;
+Lista criaLista();  // createList
+// Cria e retorna uma lista vazia;
 
 void printList(Lista l);
 // * Percorre a lista e exibe o valor de cada célula armazenada
 
-void insereFim(Lista l, Item n); //insert
+void insereFim(Lista l, Item n);  // insert
 // * Insere o item n no final da lista L. O comprimento da
-// lista  ́e acrescido de 1 elemento. 
+// lista  ́e acrescido de 1 elemento.
 
-void insereInicio(Lista l, Item n); 
+void insereInicio(Lista l, Item n);
 // * Insere o item n no inicio da lista L. O comprimento da
-// lista  ́e acrescido de 1 elemento. 
+// lista  ́e acrescido de 1 elemento.
 
-void insereDepois(Lista l, Item n, Item x); //insertAfter
+void insereDepois(Lista l, Item n, Item x);  // insertAfter
 // * n deve indicar um elemento existente em L.
 // * insere o item x na posição imediatamente posterior ao
-//item indicado por n. O comprimento da lista  ́e acrescido de 1 elemento.
+// item indicado por n. O comprimento da lista  ́e acrescido de 1 elemento.
 
-void removeCelula(Lista l, Item n, int id, char* tipo); //remove
+void removeCelula(Lista l, Item n, int id, char* tipo);  // remove
 // * n deve indicar um elemento existente em L.
 // * remove o elemento da lista indicado por n. O
 // comprimento da lista  ́e diminu ́ıdo de 1 elemento. O indicador n deixa de
@@ -61,7 +59,7 @@ Item getInfo(Cell x);
 void getLenght(Lista l);
 // * exibe a quantidade de elementos em L
 
-Item encontraCelula(Lista l, Item n); //get
+Item encontraCelula(Lista l, Item n);  // get
 // * n deve indicar um elemento existente em L.
 // * retorna o valor do item da lista indicado por n.
 

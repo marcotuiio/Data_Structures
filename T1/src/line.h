@@ -1,8 +1,7 @@
+#include "libs.h"
+
 #ifndef LINE_H
 #define LINE_H
-
-#include <stdio.h>
-#include "list.h"
 
 typedef void* Line1;
 

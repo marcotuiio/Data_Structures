@@ -1,9 +1,5 @@
 #include "text.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 #include "list.h"
 
 struct txt {
@@ -52,7 +48,7 @@ Item buildText(FILE *arq, Text1 txt, char *infos, char *eptr) {
     strcpy(Text->text, infos);
 
     strcpy(Text->textaux, Text->text);
-    
+
     // printf("txtaux %s\n", Text->textaux);
     // printf("\nid %d\n", Text->id);
     // printf("x %lf\n", Text->x);
@@ -97,23 +93,23 @@ char *getTxtEDGE(Item t) {
 
 char *getTxtANCHOR(Item t) {
     Texto *txt = (Texto *)t;
-    //printf("get anchor %s\n", txt->anchor);
+    // printf("get anchor %s\n", txt->anchor);
     strcpy(txt->anchor, strtok(txt->anchor, " "));
-    //printf("get anchor %s\n", txt->anchor);
+    // printf("get anchor %s\n", txt->anchor);
 
     return txt->anchor;
 }
 
 char *getTxtTEXT(Item t) {
     Texto *txt = (Texto *)t;
-    //printf("get txt %s\n", txt->text);
+    // printf("get txt %s\n", txt->text);
 
     return txt->text;
 }
 
 char *getTxtTEXTAUX(Item t) {
     Texto *txt = (Texto *)t;
-    //printf("get txt %s\n", txt->textaux);
+    // printf("get txt %s\n", txt->textaux);
 
     return txt->textaux;
 }

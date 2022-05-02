@@ -1,8 +1,7 @@
+#include "libs.h"
+
 #ifndef CIRCLE_H
 #define CIRCLE_H
-
-#include <stdio.h>
-#include "list.h"
 
 typedef void* Circle1;
 

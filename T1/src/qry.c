@@ -1,10 +1,5 @@
 #include "qry.h"
 
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 #include "circle.h"
 #include "fila_circ.h"
 #include "line.h"
@@ -103,7 +98,7 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
     // writeSvg(selecRec, selecCirc, selecTxt, selecTxt, svg, 1);
 
     if (check == 0) {
-        //printf("Inicioqry\n");
+        // printf("Inicioqry\n");
         writeSvg(selecRec, selecCirc, selecTxt, selecTxt, svg, 1);
         // removeAll(selecRec);
         // removeAll(selecCirc);
@@ -123,7 +118,7 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
     removeAll(selecGeral);
     free(selAux);
     free(selecGeral);
-    //printf("Fim\n");
+    // printf("Fim\n");
 }
 
 void inp(FILE *txt, FILE *svg, FILE *arq, char *infos, Fila_Circular q, Lista r, Lista c, Lista l, Lista t) {
@@ -402,7 +397,7 @@ void sel(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, List
 
     fprintf(svg, "\t<rect x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"3%%\" />\n", x, y, w, h, stroke, fill);
     fprintf(txt, "\n[*] sel %lf %lf %lf %lf \n", x, y, w, h);
-    //fprintf(txt, "Retângulo de seleção: x = %lf, y = %lf, h = %lf, w = %lf, stroke = %s\n", x, y, h, w, stroke);
+    // fprintf(txt, "Retângulo de seleção: x = %lf, y = %lf, h = %lf, w = %lf, stroke = %s\n", x, y, h, w, stroke);
 
     for (Cell auxC1 = getFirst(r); auxC1 != NULL; auxC1 = getNext(r, auxC1)) {
         Item auxI1 = getInfo(auxC1);
@@ -636,11 +631,10 @@ void selplus(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, 
             insereFim(a, rec_aux);
         }
     }
-    
 
     fprintf(svg, "\t<rect x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"3%%\" />\n", x, y, w, h, stroke, fill);
     fprintf(txt, "\n[*] sel+ %lf %lf %lf %lf \n", x, y, w, h);
-    //fprintf(txt, "Retângulo de seleção: x = %lf, y = %lf, h = %lf, w = %lf, stroke = %s\n", x, y, h, w, stroke);
+    // fprintf(txt, "Retângulo de seleção: x = %lf, y = %lf, h = %lf, w = %lf, stroke = %s\n", x, y, h, w, stroke);
 
     for (Cell auxC1 = getFirst(r); auxC1 != NULL; auxC1 = getNext(r, auxC1)) {
         Item auxI1 = getInfo(auxC1);

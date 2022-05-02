@@ -1,11 +1,12 @@
 #include "svg.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
+#include "circle.h"
+#include "line.h"
 #include "list.h"
 #include "qry.h"
+#include "rectangle.h"
+#include "system.h"
+#include "text.h"
 
 void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha, FILE *svg, int existe) {
     printf("\n--- INICIO WRITE SVG ---\n");

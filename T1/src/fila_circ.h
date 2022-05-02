@@ -1,7 +1,7 @@
+#include "libs.h"
+
 #ifndef FILA_CIRC_H
 #define FILA_CIRC_H
-
-#include <stdbool.h>
 
 /*
  * Uma fila  ́e uma sequência de itens (Sequencia<<Item>> a partir da qual
@@ -10,9 +10,6 @@
  * inserção e remoção de elementos numa fila segue a disciplina FIFO (first
  * in, first out). Uma fila sem elementos  ́e denominada fila vazia.
 */
-
-typedef void* Fila_Circular;
-typedef void* Item;
 
 Fila_Circular criaFila(int max_size);
 // *Retorna Sequencia<<Item>>. Isto  ́e, cria uma fila vazia.

@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "libs.h"
 
 #include "geo.h"
 #include "qry.h"

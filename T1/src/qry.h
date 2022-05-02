@@ -1,10 +1,10 @@
+#include "libs.h"
+
+#include "list.h"
+#include "fila_circ.h"
+
 #ifndef QRY_H
 #define QRY_H
-
-#include <stdio.h>
-
-#include "fila_circ.h"
-#include "list.h"
 
 /*
  * Tratamento dos comandos do .qry. Leitura dos dados, identificação de

@@ -1,9 +1,5 @@
 #include "list.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 #include "circle.h"
 #include "line.h"
 #include "rectangle.h"

@@ -1,14 +1,9 @@
 #include "fila_circ.h"
 
-#include <limits.h>
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
-
 #define QUEUE_EMPTY INT_MIN
 
 struct queue {
-    Item *value;  
+    Item *value;
     int head, tail, num_entries, size;
 };
 typedef struct queue fila_circ;
@@ -18,7 +13,7 @@ Fila_Circular criaFila(int max_size) {
     fila_circ *q = calloc(1, sizeof(fila_circ));
 
     q->size = max_size;
-    q->value = (Item*)malloc(sizeof(Item) * max_size);
+    q->value = (Item *)malloc(sizeof(Item) * max_size);
     q->num_entries = 0;
     q->head = 0;
     q->tail = 0;
@@ -39,7 +34,7 @@ bool fila_cheia(Fila_Circular q) {
     return (fila->num_entries == fila->size);
 }
 
-bool enfila_circ(Fila_Circular q, Item x) { //add on tail
+bool enfila_circ(Fila_Circular q, Item x) {  // add on tail
     fila_circ *fila = (fila_circ *)q;
     // Preencho uma nova celula
     if (fila_cheia(fila)) {
@@ -66,7 +61,7 @@ int getSize(Fila_Circular q) {
     return fila->num_entries;
 }
 
-Item desenfila_circ(Fila_Circular q) { //remove on head
+Item desenfila_circ(Fila_Circular q) {  // remove on head
     fila_circ *fila = (fila_circ *)q;
     fila_circ *result = NULL;
 
@@ -87,7 +82,7 @@ void removeTudo(Fila_Circular q) {
     Item cq;  // Usar 'ITEM' pois essa fila deve armazar qualquer tipo de valor
     printf("\n");
     while ((cq = desenfila_circ(fila)) != (Item *)QUEUE_EMPTY) {
-        //printf("q = %d\n", cq);
+        // printf("q = %d\n", cq);
         printf("Removed\n");
     }
 }

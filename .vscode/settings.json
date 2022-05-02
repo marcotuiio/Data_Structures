@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "fila_circ.h": "c"
+        "fila_circ.h": "c",
+        "libs.h": "c",
+        "list.h": "c"
     }
 }
