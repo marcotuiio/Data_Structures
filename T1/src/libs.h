@@ -8,11 +8,14 @@
 #define LIBS_H
 
 typedef void* Lista;
-typedef void* Item;
 typedef void* Cell;
+
+typedef void* Item;
 
 typedef void* Fila_Circular;
 
-// HEADER FILE AUXILIAR PARA IMPORTS DE LIBS DO C
+// HEADER FILE AUXILIAR PARA IMPORTS DE LIBS DO C;
+// Usado também para realizar typedefs de void*;
+// Deve ser importado em TODOS os .h do projeto!
 
 #endif

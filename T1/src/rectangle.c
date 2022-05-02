@@ -1,7 +1,5 @@
 #include "rectangle.h"
 
-#include "list.h"
-
 struct rect {
     char type[1];
     int id;

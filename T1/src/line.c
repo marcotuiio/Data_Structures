@@ -1,7 +1,5 @@
 #include "line.h"
 
-#include "list.h"
-
 struct line {
     char type[1];
     int id;

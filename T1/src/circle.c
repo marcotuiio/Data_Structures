@@ -1,7 +1,5 @@
 #include "circle.h"
 
-#include "list.h"
-
 struct circ {
     char type[1];
     int id;

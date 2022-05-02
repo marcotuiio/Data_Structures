@@ -1,7 +1,5 @@
 #include "text.h"
 
-#include "list.h"
-
 struct txt {
     char type[1];
     int id;
