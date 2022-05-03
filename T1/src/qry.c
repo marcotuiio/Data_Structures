@@ -100,10 +100,10 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
     if (check_dels == 0) {
         // printf("Inicioqry\n");
         writeSvg(selecRec, selecCirc, selecTxt, selecTxt, svg, 1);
-        // removeAll(selecRec);
-        // removeAll(selecCirc);
-        // removeAll(selecLine);
-        // removeAll(selecTxt);
+        removeAll(selecRec);
+        removeAll(selecCirc);
+        removeAll(selecLine);
+        removeAll(selecTxt);
     }
 
     free(selecRec);
@@ -115,7 +115,7 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
     free(linhasPol);
 
     removeAll(selAux);
-    removeAll(selecGeral);
+    // removeAll(selecGeral);
     free(selAux);
     free(selecGeral);
     // printf("Fim\n");
@@ -442,7 +442,7 @@ void sel(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, List
                 }
             }
         }
-        //free(auxG1);
+        free(auxG1);
     }
 
     for (Cell auxC2 = getFirst(c); auxC2 != NULL; auxC2 = getNext(c, auxC2)) {
@@ -466,7 +466,7 @@ void sel(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, List
                 }
             }
         }
-        // free(auxG2);
+        free(auxG2);
     }
 
     for (Cell auxC3 = getFirst(t); auxC3 != NULL; auxC3 = getNext(t, auxC3)) {
@@ -487,7 +487,7 @@ void sel(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, List
                 fprintf(txt, "Selecionado: Texto id %d,  x = %lf, y = %lf\n", idT, txtX, txtY);
             }
         }
-        //free(auxG3);
+        free(auxG3);
     }
 
     for (Cell auxC4 = getFirst(l); auxC4 != NULL; auxC4 = getNext(l, auxC4)) {
@@ -512,7 +512,7 @@ void sel(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, List
                 }
             }
         }
-        //free(auxG4);
+        free(auxG4);
     }
     // printf("x %lf\n", x);
     // printf("y %lf\n", y);
@@ -529,10 +529,10 @@ Item controleTipo(char *t) {
 }
 
 char *getTipo(Item t) {
-    Tipos *aux = (Tipos *)t;
+    char *aux = (char *)t;
 
     // printf("tipo get %s\n", aux->tipo);
-    return aux->tipo;
+    return aux;
 }
 
 Item criaRecaux(double x, double y, double w, double h) {  // mais gambiarra
@@ -966,7 +966,7 @@ void ups(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, List
                 return;
             }
 
-            char tipo[3];
+            char tipo[4];
             strcpy(tipo, getTipo(auxG2));
             // printf("tipo ups %s\n", tipo);
 

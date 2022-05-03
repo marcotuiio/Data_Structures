@@ -264,9 +264,13 @@ void getLenght(Lista l) {
 
 void removeAll(Lista l) {
     ImpList *lista = (ImpList *)l;
+    if (lista->inicio == NULL) {
+        return;
+    }
+
     celulaL *head = lista->inicio;
     celulaL *tmp;
-
+    
     while (head != NULL) {
         tmp = head;
         head = tmp->next;
