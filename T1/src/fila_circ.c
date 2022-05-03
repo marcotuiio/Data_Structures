@@ -45,7 +45,7 @@ bool enfila_circ(Fila_Circular q, Item x) {  // add on tail
     fila->value[fila->tail] = x;
     fila->num_entries++;
     fila->tail = (fila->tail + 1) % fila->size;
-    printf("Insert\n");
+    //printf("Insert\n");
     return true;
 }
 
@@ -80,10 +80,10 @@ void removeTudo(Fila_Circular q) {
     fila_circ *fila = (fila_circ *)q;
 
     Item cq;  // Usar 'ITEM' pois essa fila deve armazar qualquer tipo de valor
-    printf("\n");
+    //printf("\n");
     while ((cq = desenfila_circ(fila)) != (Item *)QUEUE_EMPTY) {
         // printf("q = %d\n", cq);
-        printf("Removed\n");
+        // printf("Removed\n");
     }
 }
 

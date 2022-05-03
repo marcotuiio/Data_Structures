@@ -27,12 +27,12 @@ struct r {
 typedef struct r Rec;
 
 struct t {
-    char tipo[1];
+    char tipo[3];
 };
 typedef struct t Tipos;
 
 void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, FILE *txt, int q_size) {
-    printf("\n--- INICIO READ QRY ---\n");
+    // printf("\n--- INICIO READ QRY ---\n");
     Fila_Circular poligono = criaFila(q_size);
     Lista linhasPol = criaLista();  // BANCO DE DADOS LINHAS POL
     Lista selecRec = criaLista();
@@ -50,40 +50,40 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
         fscanf(qry_dir, "%s", comando);
 
         if (strcmp(comando, "inp") == 0) {  // Inserir no poligono (fila insere no fim)
-            printf("\n%s\n", comando);      // *FEITO*
+            //printf("\n%s\n", comando);      // *FEITO*
             inp(txt, svg, qry_dir, comando, poligono, r, c, l, t);
 
         } else if (strcmp(comando, "rmp") == 0) {  // Remove uma coordenada do poligono (primeira da fila)
-            printf("\n%s\n", comando);             // *FEITO???*
+            //printf("\n%s\n", comando);             // *FEITO???*
             rmp(txt, svg, comando, poligono);
 
         } else if (strcmp(comando, "pol") == 0) {  // Produz um conjunto de linhas e insere no poligono
-            printf("\n%s\n", comando);             // *fazer linhas de preenchimento*
+            //printf("\n%s\n", comando);             // *fazer linhas de preenchimento*
             pol(txt, svg, qry_dir, comando, eptr, poligono, linhasPol);
 
         } else if (strcmp(comando, "clp") == 0) {  // Remove todas as coordenadas
-            printf("\n%s\n", comando);             // *FEITO*
+            //printf("\n%s\n", comando);             // *FEITO*
             clp(txt, poligono);
 
         } else if (strcmp(comando, "sel") == 0) {  // Seleciona as figuras inteiramente dentro da regiao
-            printf("\n%s\n", comando);             // *FEITO*
+            //printf("\n%s\n", comando);             // *FEITO*
             sel(txt, svg, qry_dir, comando, eptr, selecGeral, selAux, selecRec, selecCirc, selecLine, selecTxt, r, c, l, t);
 
         } else if (strcmp(comando, "sel+") == 0) {  // bla bla ta igual ao sel
-            printf("\n%s\n", comando);              // *FEITO ??* so vai funcionar em alguns casos
+            //printf("\n%s\n", comando);              // *FEITO ??* so vai funcionar em alguns casos
             selplus(txt, svg, qry_dir, comando, eptr, selecGeral, selAux, selecRec, selecCirc, selecLine, selecTxt, r, c, l, t);
 
         } else if (strcmp(comando, "dels") == 0) {  // Remove todas as figuras selecionadas
-            printf("\n%s\n", comando);              // *FEITO !(ARRUMARRRRR seg fault)*
+            //printf("\n%s\n", comando);              // *FEITO !(ARRUMARRRRR seg fault)*
             check_dels = check_dels + 1;
             dels(txt, selecRec, selecCirc, selecLine, selecTxt, r, c, l, t);
 
         } else if (strcmp(comando, "dps") == 0) {  // Cria novas formas e bla bla
-            printf("\n%s\n", comando);             // *FEITO*
+            //printf("\n%s\n", comando);             // *FEITO*
             dps(txt, svg, qry_dir, comando, eptr, selecRec, selecCirc, selecLine, selecTxt);
 
         } else if (strcmp(comando, "ups") == 0) {  // Altera cor e translada as figuras selecionadas
-            printf("\n%s\n", comando);             // *FEITO ??*
+            //printf("\n%s\n", comando);             // *FEITO ??*
             ups(txt, svg, qry_dir, comando, eptr, selecGeral, selecRec, selecCirc, selecLine, selecTxt, r, c, l, t);
         }
         strcpy(comando, " ");
@@ -96,7 +96,6 @@ void readComands(FILE *qry_dir, Lista r, Lista c, Lista l, Lista t, FILE *svg, F
     free(poligono);
 
     writeSvg(r, c, t, l, svg, 1);
-    // writeSvg(selecRec, selecCirc, selecTxt, selecTxt, svg, 1);
 
     if (check_dels == 0) {
         // printf("Inicioqry\n");
@@ -129,7 +128,7 @@ int countInp(char *qryaux) {
     FILE *qryf = fopen(qryaux, "r");
 
     if (qryf == NULL) {
-        printf("QRY NULO\n");
+        printf("QRY NULO (do contador)\n");
         exit(1);
     }
 
@@ -144,7 +143,7 @@ int countInp(char *qryaux) {
 }
 
 void inp(FILE *txt, FILE *svg, FILE *arq, char *infos, Fila_Circular q, Lista r, Lista c, Lista l, Lista t) {
-    printf("--- INICIO INP ---\n");
+    //printf("--- INICIO INP ---\n");
     int i, id_aux;
     double x, y;
     double radius = 1.00;
@@ -246,7 +245,7 @@ Item criaPonto(double x, double y) {
 }
 
 void rmp(FILE *txt, FILE *svg, char *infos, Fila_Circular q) {
-    printf("--- INICIO RMP ---\n");
+    //printf("--- INICIO RMP ---\n");
     Item aux = desenfila_circ(q);
     Ponto *pnt = (Ponto *)aux;
     double rx, ry;
@@ -271,7 +270,7 @@ Item criaLinhaBorda(int id, double x1, double y1, double x2, double y2, char *st
 }
 
 void pol(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Fila_Circular q, Lista linhasPol) {
-    printf("--- INICIO POL ---\n");
+    //printf("--- INICIO POL ---\n");
     int i;
     double d, e;
     char corb[15], corp[15];
@@ -357,7 +356,7 @@ void pol(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Fila_Circular
     menorY = menorY + d;
     int Nlinhas = (maiorY - menorY) / d;
     int cont = 0;
-    printf("Nlinhas %d\n", Nlinhas);
+    //printf("Nlinhas %d\n", Nlinhas);
 
     while (cont <= Nlinhas) {
         fprintf(txt, "Criada linha de preenchimento: x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf, stroke = %s\n", menorX, menorY, maiorX, menorY, corp);
@@ -388,7 +387,7 @@ double getpY(Item n) {
 }
 
 void clp(FILE *txt, Fila_Circular q) {
-    printf("--- INICIO CLP ---\n");
+    //printf("--- INICIO CLP ---\n");
     removeTudo(q);
 
     fprintf(txt, "\n[*] clp\n");
@@ -396,7 +395,7 @@ void clp(FILE *txt, Fila_Circular q) {
 }
 
 void sel(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, Lista a, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, Lista l, Lista t) {
-    printf("--- INICIO SEL ---\n");
+    //printf("--- INICIO SEL ---\n");
     double x, y, w, h;
     double radius = 2.20000;
     char stroke[] = "red";
@@ -443,6 +442,7 @@ void sel(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, List
                 }
             }
         }
+        //free(auxG1);
     }
 
     for (Cell auxC2 = getFirst(c); auxC2 != NULL; auxC2 = getNext(c, auxC2)) {
@@ -466,6 +466,7 @@ void sel(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, List
                 }
             }
         }
+        // free(auxG2);
     }
 
     for (Cell auxC3 = getFirst(t); auxC3 != NULL; auxC3 = getNext(t, auxC3)) {
@@ -486,6 +487,7 @@ void sel(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, List
                 fprintf(txt, "Selecionado: Texto id %d,  x = %lf, y = %lf\n", idT, txtX, txtY);
             }
         }
+        //free(auxG3);
     }
 
     for (Cell auxC4 = getFirst(l); auxC4 != NULL; auxC4 = getNext(l, auxC4)) {
@@ -510,6 +512,7 @@ void sel(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, List
                 }
             }
         }
+        //free(auxG4);
     }
     // printf("x %lf\n", x);
     // printf("y %lf\n", y);
@@ -520,9 +523,7 @@ void sel(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, List
 Item controleTipo(char *t) {
     Tipos *new = calloc(1, sizeof(Tipos));
 
-    // printf("controle t %s\n", t);
     strcpy(new->tipo, t);
-    // printf("controle new %s\n", new->tipo);
 
     return (new);
 }
@@ -574,7 +575,7 @@ double getrH(Item r) {
 }
 
 void selplus(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, Lista a, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, Lista l, Lista t) {
-    printf("--- INICIO SEL+ ---\n");
+    //printf("--- INICIO SEL+ ---\n");
     double x, y, w, h;
     double selx, sely, selw, selh;  // x y w h vindos do comando sel
     double finalX, finalY, finalH, finalW;
@@ -680,6 +681,7 @@ void selplus(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, 
                 }
             }
         }
+        // free(auxG1);
     }
 
     for (Cell auxC2 = getFirst(c); auxC2 != NULL; auxC2 = getNext(c, auxC2)) {
@@ -703,6 +705,7 @@ void selplus(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, 
                 }
             }
         }
+        // free(auxG2);
     }
 
     for (Cell auxC3 = getFirst(t); auxC3 != NULL; auxC3 = getNext(t, auxC3)) {
@@ -723,6 +726,7 @@ void selplus(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, 
                 fprintf(txt, "Selecionado: Texto id %d,  x = %lf, y = %lf\n", idT, txtX, txtY);
             }
         }
+        // free(auxG3);
     }
 
     for (Cell auxC4 = getFirst(l); auxC4 != NULL; auxC4 = getNext(l, auxC4)) {
@@ -747,6 +751,7 @@ void selplus(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, 
                 }
             }
         }
+        // free(auxG4);
     }
     // printf("x %lf\n", x);
     // printf("y %lf\n", y);
@@ -755,7 +760,7 @@ void selplus(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, 
 }
 
 void dels(FILE *txt, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, Lista l, Lista t) {
-    printf("--- INICIO DELS ---\n");
+    //printf("--- INICIO DELS ---\n");
 
     fprintf(txt, "\n[*] dels\n");
 
@@ -823,7 +828,7 @@ void dels(FILE *txt, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, L
 }
 
 void dps(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista sR, Lista sC, Lista sL, Lista sT) {
-    printf("--- INICIO DPS ---\n");
+    //printf("--- INICIO DPS ---\n");
     int i;
     double dx, dy, aux1, aux2;
     double final_dx, final_dy;
@@ -909,7 +914,7 @@ void dps(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista sR, Lis
 }
 
 void ups(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, Lista sR, Lista sC, Lista sL, Lista sT, Lista r, Lista c, Lista l, Lista t) {
-    printf("--- INICIO UPS ---\n");
+    // printf("--- INICIO UPS ---\n");
     int n;
     double dx, dy;
     char corb[15], corp[15], auxcor[15];
@@ -949,7 +954,6 @@ void ups(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, List
     fprintf(txt, "\n[*] ups %s %s %lf %lf %d \n", corb, corp, dx, dy, n);
 
     if (auxC1 == NULL && auxC2 == NULL && auxC3 == NULL && auxC4 == NULL) {
-        // printf("Nenhuma figura selecionada e transladada\n");
         fprintf(txt, "Nenhuma figura selecionada e transladada\n");
         return;
     } 
@@ -962,7 +966,7 @@ void ups(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, List
                 return;
             }
 
-            char tipo[1];
+            char tipo[3];
             strcpy(tipo, getTipo(auxG2));
             // printf("tipo ups %s\n", tipo);
 
@@ -1066,3 +1070,4 @@ void ups(FILE *txt, FILE *svg, FILE *arq, char *infos, char *eptr, Lista g, List
         }
     }
 }
+

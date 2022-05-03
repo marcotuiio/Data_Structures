@@ -32,10 +32,10 @@ void printList(Lista l) {
     celulaL *temporary = aux->inicio;
 
     while (temporary != NULL) {
-        printf("%p - ", temporary->value);
+        // printf("%p - ", temporary->value);
         temporary = temporary->next;
     }
-    printf("\n");
+    // printf("\n");
     free(temporary);
 }
 
@@ -191,7 +191,7 @@ void removeCelula(Lista l, Item n, int id, char *tipo) {
     // }
 
     if (celulaARemover == NULL) {
-        printf("ELEMENTO INEXISTENTE NA LISTA\n");
+        // printf("ELEMENTO INEXISTENTE NA LISTA\n");
         return;
     }
 

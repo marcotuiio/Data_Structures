@@ -18,18 +18,21 @@ int main(int argc, char **argv) {
         return 0;
     }
 
+    char *pathqryoriginal = calloc(strlen(getQryPath(param)) + 5, sizeof(char));
+    strcpy(pathqryoriginal, getQryPath(param));    
+    
     char *outputDir = getOutputDir(param);
 
     if (qryExiste(param) == 1) {
-        char *pathQry = makePathQryFile(param);
+        char *pathQry = makePathQryFile(param, pathqryoriginal);
         int size = strlen(pathQry);
-        char *path_aux = malloc(size);
+        char *path_aux = calloc(1, size + 1);
         strcpy(path_aux, pathQry);
-        
         qryFile = loadFile(pathQry);
+        // printf("out %s\n", outputDir);
 
         int q_size = countInp(path_aux);
-        printf("SIZE QUEUE %d\n", q_size);
+        // printf("SIZE QUEUE %d\n", q_size);
 
         buildGeometricForms(geoFile, outputDir, qryFile, 1, q_size);
         free(path_aux);
@@ -39,11 +42,12 @@ int main(int argc, char **argv) {
         buildGeometricForms(geoFile, outputDir, NULL, 0, 0);
     }
 
-    free(param);
+    freeParam(param);
     free(pathGeo);
-    free(outputDir);
+    free(pathqryoriginal);
+    //free(outputDir);
 
-    printf("\n--- END OF MAIN SUCCESS ---\n");
+    printf("\n--- SUCCESS ---\n");
 
     return 0;
 }

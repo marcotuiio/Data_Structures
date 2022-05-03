@@ -9,7 +9,7 @@
 #include "text.h"
 
 void writeSvg(Lista rect, Lista circ, Lista txt, Lista linha, FILE *svg, int existe) {
-    printf("\n--- INICIO WRITE SVG ---\n");
+    //printf("\n--- INICIO WRITE SVG ---\n");
 
     for (Cell auxC1 = getFirst(rect); auxC1 != NULL; auxC1 = getNext(rect, auxC1)) {
         Item auxI1 = getInfo(auxC1);

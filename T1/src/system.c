@@ -10,7 +10,7 @@ struct parameters {
 typedef struct parameters ParamL;
 
 Parameters setParameters(int argc, char **argv, Parameters p) {
-    printf("\n--- INICIO SET PARAM ---\n");
+    // printf("\n--- INICIO SET PARAM ---\n");
     ParamL *param = (ParamL *)p;
 
     // printf("argc = %d\n", argc);
@@ -20,20 +20,24 @@ Parameters setParameters(int argc, char **argv, Parameters p) {
 
     for (int index = 1; index < argc; index++) {
         if (!strcmp(argv[index], "-e")) {
-            param->inputDir = argv[index + 1];
-            printf("Dir Input: %s\n", param->inputDir);
+            // bed = calloc(strlen(argv[i]) + 1, sizeof(char)); usar no t2
+            strcpy(param->inputDir, argv[index + 1]);
+            // printf("Dir Input: %s\n", param->inputDir);
 
         } else if (!strcmp(argv[index], "-f")) {
+            // geofile = calloc(strlen(argv[i]) + 1, sizeof(char)); usar no t2
             strcpy(param->nameGeoFile, argv[index + 1]);
-            printf("Geo file name: %s\n", param->nameGeoFile);
+            // printf("Geo file name: %s\n", param->nameGeoFile);
 
         } else if (!strcmp(argv[index], "-q")) {
+            // qryfile = calloc(strlen(argv[i]) + 1, sizeof(char)); usar no t2
             strcpy(param->nameQryFile, argv[index + 1]);
-            printf("Qry file name: %s\n", param->nameQryFile);
+            // printf("Qry file name: %s\n", param->nameQryFile);
 
         } else if (!strcmp(argv[index], "-o")) {
+            // bsd = calloc(strlen(argv[i]) + 1, sizeof(char)); usar no t2
             strcpy(param->outputDir, argv[index + 1]);
-            printf("Dir Output: %s\n", param->outputDir);
+            // printf("Dir Output: %s\n", param->outputDir);
         }
     }
     return param;
@@ -43,20 +47,18 @@ Parameters *createParameters(int argc, char **argv) {
     printf("\n--- INICIO CREATE PARAM ---\n");
     ParamL *param = calloc(1, sizeof(ParamL));
 
-    param->outputDir = calloc(300, sizeof(char));
-    param->inputDir = calloc(300, sizeof(char));
-    param->nameGeoFile = calloc(100, sizeof(char));
-    param->nameQryFile = calloc(100, sizeof(char));
+    param->outputDir = (char *)calloc(300, sizeof(char));
+    param->inputDir = (char *)calloc(300, sizeof(char));
+    param->nameGeoFile = (char *)calloc(100, sizeof(char));
+    param->nameQryFile = (char *)calloc(100, sizeof(char));
 
-    // param->inputDir = getcwd(NULL, 0);
-    param->nameGeoFile = calloc(100, sizeof(char));
     strcpy(param->nameQryFile, "nda");
 
     return setParameters(argc, argv, param);
 }
 
 char *makePathGeoFile(Parameters p) {
-    printf("\n--- PATH GEO FILE ---\n");
+    // printf("\n--- PATH GEO FILE ---\n");
     ParamL *param = (ParamL *)p;
     int len_dir = strlen(param->inputDir);
     int len_geo = strlen(param->nameGeoFile);
@@ -76,30 +78,30 @@ char *makePathGeoFile(Parameters p) {
     return buildFilePath(param->inputDir, param->nameGeoFile);
 }
 
-char *makePathQryFile(Parameters p) {
-    printf("\n--- PATH QRY FILE ---\n");
+char *makePathQryFile(Parameters p, char* qryoriginal) {
+    // printf("\n--- PATH QRY FILE ---\n");
     ParamL *param = (ParamL *)p;
     int len_dir = strlen(param->inputDir);
-    int len_qry = strlen(param->nameQryFile);
+    int len_qry = strlen(qryoriginal);
 
     if (param->inputDir[len_dir - 1] == '/') {
         param->inputDir[len_dir - 1] = '\0';
     }
     // Removendo / no inicio do nome qry
-    if (param->nameQryFile[len_qry - 1] == '/') {
-        param->nameQryFile[len_qry - 1] = '\0';
+    if (qryoriginal[len_qry - 1] == '/') {
+        qryoriginal[len_qry - 1] = '\0';
     }
     // Removendo / no inicio do nome qry
-    if (param->nameQryFile[0] == '/') {
-        param->nameQryFile = param->nameQryFile + 1;
+    if (qryoriginal[0] == '/') {
+        qryoriginal = qryoriginal + 1;
     }
-    strcat(param->nameQryFile, ".qry");
+    // puts(qryoriginal);
 
-    return buildFilePath(param->inputDir, param->nameQryFile);
+    return buildFilePath(param->inputDir, qryoriginal);
 }
 
 char *getOutputDir(Parameters p) {
-    printf("\n--- GET BSD ---\n");
+    // printf("\n--- GET BSD ---\n");
     ParamL *param = (ParamL *)p;
     int len_dir = strlen(param->outputDir);
 
@@ -118,15 +120,21 @@ char *getOutputDir(Parameters p) {
         strcat(param->outputDir, geo_token);
         strcat(param->outputDir, type_svg);
 
-        printf("New output dir: %s\n", param->outputDir);
+        // printf("New output dir: %s\n", param->outputDir);
         return param->outputDir;
     }
 
     if (param->nameQryFile[0] == '/') {
         param->nameQryFile++;
     }
+
     char *qry_token = strtok(param->nameQryFile, tok);
     char *new = (char *)malloc(strlen(geo_token) + strlen(qry_token) + 2);
+
+    char *index = strrchr(param->nameQryFile, '/');
+    index++;
+    strcpy(param->nameQryFile, index);
+    // printf("nome qry %s\n", param->nameQryFile);
 
     strcpy(new, geo_token);
     strcat(new, under);
@@ -136,14 +144,21 @@ char *getOutputDir(Parameters p) {
     strcat(param->outputDir, new);
     strcat(param->outputDir, type_svg);
 
+    free(new);
     return param->outputDir;
 }
 
+char *getQryPath(Parameters p) {
+    ParamL *param = (ParamL *)p;
+
+    return param->nameQryFile;
+}
+
 char *buildFilePath(char *directory, char *fileName) {
-    printf("\n--- BUILD FILE PATH ---\n");
-    printf("Dir: %s - File Name: %s\n", directory, fileName);
+    // printf("\n--- BUILD FILE PATH ---\n");
+    // printf("Dir: %s - File Name: %s\n", directory, fileName);
     char separator[] = "/";
-    char *result = (char *)malloc(strlen(directory) + strlen(fileName) + 1);
+    char *result = malloc(strlen(directory) + strlen(fileName) + 5);
     // printf("Last digit %c\n", directory[aux-1]);
 
     strcpy(result, directory);
@@ -154,8 +169,8 @@ char *buildFilePath(char *directory, char *fileName) {
 }
 
 FILE *loadFile(char *path) {
-    printf("\n--- LOAD FILE ---\n");
-    printf("Path Arq: %s\n", path);
+    // printf("\n--- LOAD FILE ---\n");
+    // printf("Path Arq: %s\n", path);
     FILE *arq = fopen(path, "r");
 
     if (arq == NULL) {
@@ -175,3 +190,14 @@ int qryExiste(Parameters p) {
 
     return 1;
 }
+
+void freeParam(Parameters p) {
+    ParamL *param = (ParamL *)p;
+
+    free(param->inputDir);
+    free(param->outputDir);
+    free(param->nameGeoFile);
+    free(param->nameQryFile);
+    free(param);
+}
+
