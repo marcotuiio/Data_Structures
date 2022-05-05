@@ -274,6 +274,7 @@ void removeAll(Lista l) {
     while (head != NULL) {
         tmp = head;
         head = tmp->next;
+        
         free(tmp->value);
         free(tmp);
     }
