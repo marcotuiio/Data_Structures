@@ -7,10 +7,6 @@ struct nd {
 };
 typedef struct nd tree_node;
 
-int main() {
-
-}
-
 Tree createNode(Info value) {
     tree_node *new_node = calloc(1, sizeof(tree_node));
     if(new_node != NULL) {
@@ -25,27 +21,28 @@ void setLeft(Tree root, Tree toLeft) {
     tree_node *my_root = root;
     tree_node *my_child = toLeft;
 
-    my_child->left = toLeft;
+    my_root->left = my_child;
 }
 
 void setRight(Tree root, Tree toRight) {
     tree_node *my_root = root;
     tree_node *my_child = toRight;
 
-    my_child->right = toRight;
+    my_root->right = my_child;
 }
 
 void printTree(Tree root) {
     tree_node *my_root = root;
+
     if(my_root == NULL) {
         printf("EMPTY TREE\n");
         return;
     }
-    printf("\nleft -- ");  
+
     printf("value = %d\n", my_root->value);
+    printf("\nleft -- ");  
     printTree(my_root->left);
     printf("\nright -- ");  
-    printf("value = %d\n", my_root->value);
     printTree(my_root->right);
     printf("\ndone\n");
 }

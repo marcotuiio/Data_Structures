@@ -10,8 +10,14 @@ void main() {
 
     setLeft(n1, n2);
     setRight(n1, n3);
-    setLeft(n3, n3);
+    setLeft(n3, n4);
     setRight(n3, n5);
     
     printTree(n1);
+
+    free(n1);
+    free(n2);
+    free(n3);
+    free(n4);
+    free(n5);
 }
