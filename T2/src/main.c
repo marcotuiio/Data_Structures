@@ -1,11 +1,13 @@
 #include "libs.h"
-
 #include "paths.h"
 #include "system.h"
+#include "tree.h"
+#include "geo.h"
 
 int main(int argc, char** argv) {
-
     Paths my_paths = createAllPaths();
+    Tree my_tree = createTree();
+    setInfo(my_tree, 0);
 
     readParam(argc, argv, my_paths);
 
@@ -24,7 +26,10 @@ int main(int argc, char** argv) {
     puts(getBsdGeoQrySvg(my_paths));
     puts(getBsdGeoQryTxt(my_paths));
 
+    readGeo(getBedGeo(my_paths), my_tree);
+
     freePaths(my_paths);
+    freeTree(my_tree);
 
     return 0;
 }

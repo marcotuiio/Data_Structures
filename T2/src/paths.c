@@ -134,7 +134,11 @@ void setQryName(Paths path, char* qryname) {
     AllPaths* paths = path;
     char *index = strrchr(paths->qryarq, '/');
     index++;
-    paths->qryname = index;
+    char *aux = malloc(sizeof(index));
+    strcpy(aux, index);
+    char *name;
+    name = strtok(aux, ".qry");
+    paths->qryname = name;
 }
 
 char* getQryName(Paths path) {

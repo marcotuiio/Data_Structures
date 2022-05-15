@@ -12,12 +12,13 @@ void main() {
     setRight(n1, n3);
     setLeft(n3, n4);
     setRight(n3, n5);
-    
+    printf("\nfirst\n");
     printTree(n1);
 
-    free(n1);
-    free(n2);
-    free(n3);
-    free(n4);
-    free(n5);
+    removeNode(n3);
+    printf("\nafter remotion\n");
+    printTree(n1);
+
+    printf("\nfree\n");
+    freeTree(n1);
 }

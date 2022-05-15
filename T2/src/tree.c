@@ -9,14 +9,14 @@ struct nd {
 };
 typedef struct nd tree_node;
 
-Tree createNode(Info value) {
+Tree createTree(Info value) {
     tree_node *new_node = calloc(1, sizeof(tree_node));
     if (new_node != NULL) {
         new_node->left = NULL;
         new_node->right = NULL;
         new_node->center = NULL;
         new_node->prev = NULL;
-        new_node->value = value;
+        new_node->value = NULL;
     }
     return new_node;
 }
@@ -63,6 +63,11 @@ Tree getCenter(Tree root) {
     return my_node->center;
 }
 
+void setInfo(Tree root, Info x) {
+    tree_node *my_node = root;
+    my_node->value = x;   
+}
+
 Info getInfo(Tree root) {
     tree_node *my_node = root;
 
@@ -105,7 +110,7 @@ void removeNode(Tree node) {
             toRemove->prev->center = toRemove->left;
         }
 
-    } else if (toRemove->left == NULL && toRemove->center != NULL && toRemove->right == NULL) {  // só tem o filho da esquerda
+    } else if (toRemove->left == NULL && toRemove->center != NULL && toRemove->right == NULL) {  // só tem o filho do centro
         if (toRemove->prev->right == toRemove) {
             toRemove->prev->right = toRemove->center;
 
@@ -150,6 +155,8 @@ void printTree(Tree root) {
     printTree(my_root->left);
     printf("\nright -- ");
     printTree(my_root->right);
+    printf("\ncenter -- ");
+    printTree(my_root->center);
     printf("\ndone\n");
 }
 
@@ -161,8 +168,9 @@ void freeTree(Tree root) {
         return;
     }
 
-    printf("value = %d\n", my_root->value);
+    free(my_root->value);
     freeTree(my_root->left);
     freeTree(my_root->right);
+    freeTree(my_root->center);
     free(my_root);
 }
