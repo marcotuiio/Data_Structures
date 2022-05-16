@@ -14,7 +14,7 @@
 Info criaTxt();
 // cria um novo texto para svg
 
-void buildText(FILE *geo, Info t);
+void buildText(FILE *geo, Info t, Lista my_list);
 // realiza leitura e extração dos dados do texto no .geo
 
 int getTxtID(Info t);

@@ -16,7 +16,7 @@ Info criaCirc() {
     return new_circ;
 }
 
-void buildCircle(FILE *geo, Info c) {
+void buildCircle(FILE *geo, Info c, Lista my_list) {
     // printf("\nInicio Build Circle\n");
     Circulo *circle = c;
     
@@ -29,6 +29,7 @@ void buildCircle(FILE *geo, Info c) {
     fscanf(geo, "%s", circle->corb);
     fscanf(geo, "%s", circle->corp);
 
+    insereFim(my_list, circle, circle->x, circle->y);
     // printf("\nid %d\n", circle->id);
     // printf("x %lf\n", circle->x);
     // printf("y %lf\n", circle->y);

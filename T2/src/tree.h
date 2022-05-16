@@ -52,7 +52,7 @@ Info searchTree(Tree root, double x, double y);
 
 double getXT(Tree root);
 
-double getYT(Tree root)
+double getYT(Tree root);
 
 bool removeNode(Tree node);
 

@@ -1,4 +1,5 @@
 #include "line.h"
+#include "list.h"
 
 struct line {
     char type[3];
@@ -16,7 +17,7 @@ Info criaLinha() {
     return new_line;
 }
 
-void buildLine(FILE *geo, Info l) {
+void buildLine(FILE *geo, Info l, Lista my_list) {
     // printf("\nInicio Build Line\n");
     Linha *line = l;
 
@@ -27,8 +28,9 @@ void buildLine(FILE *geo, Info l) {
     fscanf(geo, "%lf", &line->y1);
     fscanf(geo, "%lf", &line->x2);
     fscanf(geo, "%lf", &line->y2);
-    fscanf(geo, "%s", &line->color);
+    fscanf(geo, "%s", line->color);
 
+    insereFim(my_list, line, line->x1, line->y1);
     // printf("\nid %d\n", line->id);
     // printf("x %lf\n", line->x1);
     // printf("y %lf\n", line->y1);

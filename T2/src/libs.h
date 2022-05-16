@@ -13,6 +13,9 @@ typedef void* Paths;
 typedef void* Tree;
 typedef void* Info;
 
+typedef void* Lista;
+typedef void* Cell;
+
 // HEADER FILE AUXILIAR PARA IMPORTS DE LIBS DO C;
 // Usado também para realizar typedefs de void*;
 // Deve ser importado em TODOS os .h do projeto!

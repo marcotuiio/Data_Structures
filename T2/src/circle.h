@@ -12,7 +12,7 @@
 Info criaCirc();
 //cria um novo círculo para svg
 
-void buildCircle(FILE *geo, Info c);
+void buildCircle(FILE *geo, Info c, Lista my_list);
 //realiza leitura e extração dos dados do círculo no .geo
 
 int getCircID(Info c);

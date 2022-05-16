@@ -1,4 +1,5 @@
 #include "rectangle.h"
+#include "list.h"
 
 struct rect {
     char type[3];
@@ -17,10 +18,9 @@ Info criaRec() {
     return new_rec;
 }
 
-void buildRectangle(FILE *geo, Info r) {
+void buildRectangle(FILE *geo, Info r, Lista my_list) {
     // printf("\nInicio Build Rectangle\n");
     Retangulo *rectangle = r;
-    char aux[20];
 
     strcpy(rectangle->type, "r");
 
@@ -32,6 +32,7 @@ void buildRectangle(FILE *geo, Info r) {
     fscanf(geo, "%s", rectangle->corb);
     fscanf(geo, "%s", rectangle->corp);
 
+    insereFim(my_list, rectangle, rectangle->x, rectangle->y);
     // printf("\nid %d\n", rectangle->id);
     // printf("x %lf\n", rectangle->x);
     // printf("y %lf\n", rectangle->y);

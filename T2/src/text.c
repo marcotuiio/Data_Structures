@@ -1,4 +1,5 @@
 #include "text.h"
+#include "list.h"
 
 struct txt {
     char type[3];
@@ -17,7 +18,7 @@ Info criaTxt() {
     return new_txt;
 }
 
-void buildText(FILE *geo, Info t) {
+void buildText(FILE *geo, Info t, Lista my_list) {
     // printf("\nInicio Build Text\n");
     Texto *txt = t;
 
@@ -31,6 +32,7 @@ void buildText(FILE *geo, Info t) {
     fscanf(geo, "%s", txt->anchor);
     fscanf(geo, "%[^\n]", txt->text);
 
+    insereFim(my_list, txt, txt->x, txt->y);
     // printf("txtaux %s\n", txt->textaux);
     // printf("\nid %d\n", txt->id);
     // printf("x %lf\n", txt->x);

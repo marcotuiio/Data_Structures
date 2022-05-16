@@ -161,19 +161,19 @@ void percursoProfundidadeAux(Tree root, char* buffer, int depth) {
 
     if (my_root) {
         // Percorrendo a sub-arvore da esquerda
-        percursoProfundidade(my_root->left, buffer, depth);
+        percursoProfundidadeAux(my_root->left, buffer, depth);
 
         buffer[depth] = getXT(my_root);
-        if(getCenter(my_root) == NULL && getRight(my_root) == NULL getLeft(my_root) == NULL) {
+        if(getCenter(my_root) == NULL && getRight(my_root) == NULL && getLeft(my_root) == NULL) {
             buffer[depth+1] = '\0';
             printf("%s\n", buffer);
         }
 
         // Percorrendo a sub-arvore central
-        percursoProfundidade(my_root->center, buffer depth+1);
+        percursoProfundidadeAux(my_root->center, buffer, depth+1);
 
         // Percorrendo a sub-arvore da direita
-        percursoProfundidade(my_root->right, buffer, depth);
+        percursoProfundidadeAux(my_root->right, buffer, depth);
     }
 }
 

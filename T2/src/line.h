@@ -12,7 +12,7 @@
 Info criaLinha();
 //cria uma nova linha para svg
 
-void buildLine(FILE *geo, Info l);
+void buildLine(FILE *geo, Info l, Lista my_list);
 //realiza leitura e extração dos dados da linha no .geo
 
 int getLineID(Info l);
