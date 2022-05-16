@@ -40,13 +40,9 @@ void setLeft(Tree root, Tree toLeft);
 
 void setRight(Tree root, Tree toRight);
 
-void setCenter(Tree root, Tree toCenter);
-
 Tree getLeft(Tree root);
 
 Tree getRight(Tree root);
-
-Tree getCenter(Tree root);
 
 void removeNode(Tree node);
 

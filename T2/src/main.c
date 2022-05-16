@@ -6,8 +6,7 @@
 
 int main(int argc, char** argv) {
     Paths my_paths = createAllPaths();
-    Tree my_tree = createTree();
-    setInfo(my_tree, 0);
+    //Tree my_tree = createTree(NULL, 0, 0);
 
     readParam(argc, argv, my_paths);
 

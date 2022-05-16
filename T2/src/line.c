@@ -107,3 +107,29 @@ void setlineFinalY(Info l, double dy, int n) {
 
     line->y2 = aux + n * dy;
 }
+
+double getLineLenght(Info l) {
+    Linha *line = l;
+    double x1, x2, y1, y2;
+    double lenght;
+
+    x1 = getLineX(line);
+    x2 = getLineFINALX(line);
+    y1 = getLineY(line);
+    y2 = getLineFINALY(line);
+
+    if (x1 == x2 && y1 != y2) {
+        lenght = y2 - y1;
+        return lenght;
+    } 
+    if (x1 != x2 && y1 == y2) {
+        lenght = x2 - x1;
+        return lenght;
+    }
+
+    double auxX = pow((x2 - x1), 2);
+    double auxY = pow((y2 - y1), 2);
+
+    lenght = sqrt(auxX + auxY);
+    return lenght;
+}
