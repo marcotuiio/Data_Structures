@@ -11,6 +11,7 @@
 typedef void* Paths;
 
 typedef void* Tree;
+typedef void* Node;
 typedef void* Info;
 
 typedef void* Lista;

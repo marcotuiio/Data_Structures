@@ -18,7 +18,7 @@ Info criaRec() {
     return new_rec;
 }
 
-void buildRectangle(FILE *geo, Info r, Lista my_list) {
+void buildRectangle(FILE *geo, Info r, Tree root) {
     // printf("\nInicio Build Rectangle\n");
     Retangulo *rectangle = r;
 
@@ -32,7 +32,8 @@ void buildRectangle(FILE *geo, Info r, Lista my_list) {
     fscanf(geo, "%s", rectangle->corb);
     fscanf(geo, "%s", rectangle->corp);
 
-    insereFim(my_list, rectangle, rectangle->x, rectangle->y);
+    Node rect = createNode(rectangle, rectangle->x, rectangle->y);
+    insert(root, rect, rectangle->x, rectangle->y, rectangle);
     // printf("\nid %d\n", rectangle->id);
     // printf("x %lf\n", rectangle->x);
     // printf("y %lf\n", rectangle->y);

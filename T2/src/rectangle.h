@@ -12,7 +12,7 @@
 Info criaRec();
 // cria um novo retângulo para svg
 
-void buildRectangle(FILE *geo, Info r, Lista my_list);
+void buildRectangle(FILE *geo, Info r, Tree root);
 // realiza leitura e extração dos dados do retângulo no .geo
 
 int getRectID(Info r);

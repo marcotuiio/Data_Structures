@@ -18,7 +18,7 @@ Info criaTxt() {
     return new_txt;
 }
 
-void buildText(FILE *geo, Info t, Lista my_list) {
+void buildText(FILE *geo, Info t, Tree root) {
     // printf("\nInicio Build Text\n");
     Texto *txt = t;
 
@@ -32,7 +32,8 @@ void buildText(FILE *geo, Info t, Lista my_list) {
     fscanf(geo, "%s", txt->anchor);
     fscanf(geo, "%[^\n]", txt->text);
 
-    insereFim(my_list, txt, txt->x, txt->y);
+    Node texto = createNode(txt, txt->x, txt->y);
+    insert(root, texto, txt->x, txt->y, txt);
     // printf("txtaux %s\n", txt->textaux);
     // printf("\nid %d\n", txt->id);
     // printf("x %lf\n", txt->x);

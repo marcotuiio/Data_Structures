@@ -30,43 +30,52 @@
 * Este limiar é definido no momento da criação da árvore.
 */
 
-Tree createTree(Info value, double x, double y);
+Tree createTree();
+/*
+* Cria uma árvore vazia e retorna um ponteiro para ela
+*/
+
+Node createNode(Info value, double x, double y);
 /*
 * Insere a informação i, associada à âncora (x,y) na árvore t.
 * Retorna um indicador do nó inserido.
 */
 
-void insert(Tree node, double x, double y, Info i);
+void insert(Tree root, Node *node, double x, double y, Info i);
 
-Tree getLeft(Tree root);
+Node getLeft(Node root);
 
-Tree getRight(Tree root);
+Node getRight(Node root);
 
-Tree getCenter(Tree root);
+Node getCenter(Node root);
 
-void setInfo(Tree root, Info i, double x, double y);
+void setInfo(Node root, Info i, double x, double y);
 
 Info getInfo(Tree root);
 
-Info searchTree(Tree root, double x, double y);
+Info searchTree(Node root, double x, double y);
 
-double getXT(Tree root);
-
-double getYT(Tree root);
-
-bool removeNode(Tree node);
+bool removeNode(Node node);
+void marcaRemovido(Node node);
+/*
+* Marca como removido o no' n. Caso, apos a remocao, o fator de degradacao
+* superar o limiar definido na criacao, a arvore e' recriada sem os no's delidos.
+*/
 
 void printTree(Tree root);
 
-void freeTree(Tree root);
-// Percorre toda a árvore, realizando a liberação da memória ocupada
-
-void percursoProfundidadeAux(Tree root, char* buffer, int depth);
+void percursoProfundidadeAux(Node root, char* buffer, int depth);
 void percursoProfundidade(Tree root);
 // Funções complementares, que percorrem a árvore em profundidade,
 // começando por um indice 0;
 
-//void percursoLargura(Tree root);
+void quicksort (double *arr, int left, int right);
+// Recebe um vetor de informações arr, a posição do primeiro elemento
+// e a posição do ultimo elemento
 
+void freeTree(Tree root);
+// Percorre toda a árvore, realizando a liberação da memória ocupada
+
+//void percursoLargura(Tree root);
 
 #endif

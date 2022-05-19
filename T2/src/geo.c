@@ -5,40 +5,34 @@
 #include "rectangle.h"
 #include "text.h"
 #include "tree.h"
-#include "list.h"
 
-void readGeo(char *bedGeo) {  // FAZER GEO RETORNAR UMA ARVORE ???/
+void readGeo(char *bedGeo, Tree my_tree) {  // FAZER GEO RETORNAR UMA ARVORE ???/
     FILE *geo = openGeo(bedGeo);
     char tipo[5];
-    Lista my_list = createList();
 
     while (!feof(geo)) {
         fscanf(geo, "%s", tipo);
 
         if (strcmp(tipo, "c") == 0) {
             Info circle = criaCirc();
-            buildCircle(geo, circle, my_list);            
+            buildCircle(geo, circle, my_tree);
 
         } else if (strcmp(tipo, "r") == 0) {
             Info rect = criaRec();
-            buildRectangle(geo, rect, my_list);
+            buildRectangle(geo, rect, my_tree);
 
         } else if (strcmp(tipo, "l") == 0) {
             Info line = criaLinha();
-            buildLine(geo, line, my_list);
+            buildLine(geo, line, my_tree);
 
         } else if (strcmp(tipo, "t") == 0) {
             Info text = criaTxt();
-            buildText(geo, text, my_list);
+            buildText(geo, text, my_tree);
         }
     }
     fclose(geo);
-    // TRANSFORMAR LISTA EM ARVORE
-    // Tree my_tree = createTree();
-    // function List-to-Tree(my_list, my_tree);
-    freeList(my_list);
 
-    // return my_tree
+
 }
 
 FILE *openGeo(char *bedGeo) {

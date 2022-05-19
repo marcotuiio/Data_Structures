@@ -17,7 +17,7 @@ Info criaLinha() {
     return new_line;
 }
 
-void buildLine(FILE *geo, Info l, Lista my_list) {
+void buildLine(FILE *geo, Info l, Tree root) {
     // printf("\nInicio Build Line\n");
     Linha *line = l;
 
@@ -30,7 +30,8 @@ void buildLine(FILE *geo, Info l, Lista my_list) {
     fscanf(geo, "%lf", &line->y2);
     fscanf(geo, "%s", line->color);
 
-    insereFim(my_list, line, line->x1, line->y1);
+    Node linha = createNode(line, line->x1, line->y1);
+    insert(root, linha, line->x1, line->y1, line);
     // printf("\nid %d\n", line->id);
     // printf("x %lf\n", line->x1);
     // printf("y %lf\n", line->y1);
