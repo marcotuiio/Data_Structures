@@ -13,14 +13,14 @@ typedef struct nd tree_node;
 
 struct rt {
     tree_node *root;
-    int num_remov;
+    int size;
 };
 typedef struct rt tree_root;
 
 Tree createTree() {
     tree_root *new_tree = calloc(1, sizeof(tree_root));
     new_tree->root = NULL;
-    new_tree->num_remov = 0;
+    new_tree->size = 0;
 
     return new_tree;
 }
@@ -50,6 +50,7 @@ void insert(Tree root, Node *node, double x, double y, Info i) {
         if(my_root->root == NULL) {
             my_root->root = my_node;
         }
+        my_root->size++;
         return;
     }
 
@@ -63,16 +64,17 @@ void insert(Tree root, Node *node, double x, double y, Info i) {
     if (x < my_node->x) {
         return insert(root, &(my_node->left), x, y, i);
 
-        // Se o x é maior igual que o do nó porém o y é menor,
-        // inserir no meio
+    // Se o x é maior igual que o do nó porém o y é menor,
+    // inserir no meio
     } else if (x >= my_node->x && y < my_node->y) {
         return insert(root, &(my_node->center), x, y, i);
 
-        // Se o x é maior igual que o do nó e o y também é maior igual que o do nó,
-        // inserir a direita
+    // Se o x é maior igual que o do nó e o y também é maior igual que o do nó,
+    // inserir a direita
     } else if (x >= my_node->x && y >= my_node->y) {
         return insert(root, &(my_node->right), x, y, i);
     }
+    my_root->size++;
 }
 
 Node getLeft(Node root) {
@@ -128,35 +130,109 @@ Info searchTree(Node root, double x, double y) {
     }
 }
 
-bool removeNode(Node node) {
+bool removeNode(Tree root, Node node) {
+    tree_root *my_root = root;
     tree_node *toRemove = node;
 
     if (searchTree(toRemove, getXT(toRemove), getYT(toRemove)) == NULL) {
         printf("ELEMENTO INEXISTENTE\n");
+        return false;
     }
 
-    if (toRemove->center && toRemove->left && toRemove->right) {
+    // se o elemento a remover for a raiz, resolvo de cara
+    if (toRemove == my_root->root) {
+        return marcaRemovido(root, toRemove);
+    }
+
+    // se o elemento for folha so bang
+    if (toRemove->center == NULL && toRemove->left == NULL && toRemove->right == NULL) { 
         if (toRemove->prev->center == toRemove) {
             toRemove->prev->center == NULL;
 
-        } else if (toRemove->prev->left == NULL) {
+        } else if (toRemove->prev->left == toRemove) {
             toRemove->prev->left == NULL;
 
-        } else if (toRemove->prev->right == NULL) {
+        } else if (toRemove->prev->right == toRemove) {
             toRemove->prev->right == NULL;
         }
         free(toRemove);
         return true;
 
+    // se não for folha mas tem garantido um unico filho
+    } else if (toRemove->left != NULL && toRemove->center == NULL && toRemove->right == NULL) {
+        toRemove->prev = toRemove->left;
+        free(toRemove);
+        return true;
+
+    } else if (toRemove->center != NULL && toRemove->left == NULL && toRemove->right == NULL) {
+        toRemove->prev = toRemove->center;
+        free(toRemove);
+        return true;
+
+    } else if (toRemove->right != NULL && toRemove->left == NULL && toRemove->center == NULL) {
+        toRemove->prev = toRemove->right;
+        free(toRemove);
+        return true;
+
+    // senão marca removido e organiza depois
     } else {
-        marcaRemovido(toRemove);
+        // !!!!! implementar limiar e fator degradação !!!!!!
+        return marcaRemovido(root, toRemove);
     }
 }
 
-void marcaRemovido(Node node) {
+bool marcaRemovido(Tree root, Node node) {
+    tree_root *my_root = root;
     tree_node *toRemove = node;
     
-    toRemove->removed = true;
+    if (toRemove != NULL) {
+        //implementar limiar
+        my_root->size--;
+        toRemove->removed = true;
+        return true;
+    }
+    return false;
+}
+
+void fixTree(Tree root) {
+    tree_root *my_root = root;
+    tree_node *my_node = my_root->root;
+
+    Node valid[15];
+    int ult = -1;
+
+    while (my_node) {
+        if (my_node->removed) {
+            ult++;
+            valid[ult] = my_node;
+        }
+
+        if (my_node->left) {
+            my_node = my_node->left;
+        } else if (my_node->center) {
+            my_node = my_node->center;
+        } else if (my_node->right) {
+            my_node = my_node->right;
+        } else {
+            break;
+        }
+
+        if (ult >= 14) {
+            reinsert(root, valid, ult);
+            ult = -1;
+        }
+    }
+
+    if (ult >= 0) {
+        reinsert(root, valid, ult);
+    }
+}
+
+void reinsert(Tree root, Node valid[15], int ult) {
+    // Node ndMeio = no' que esta' na metade do vetor;
+    // insereXyyT(t, getX(ndMeio), getY(ndMeio), getInfo(ndMeio);
+    // Invoca recursivamente reinsere na metade esquerda de nos validos;
+    // Invoca recursivamente reinsere na metade direito do vetor
 }
 
 void printTree(Tree root) {
@@ -186,7 +262,7 @@ void percursoProfundidadeAux(Node root, char *buffer, int depth) {
         percursoProfundidadeAux(my_root->left, buffer, depth);
 
         buffer[depth] = getXT(my_root);
-        if (getCenter(my_root) == NULL && getRight(my_root) == NULL && getLeft(my_root) == NULL) {
+        if (my_root->center == NULL && my_root->right == NULL && my_root->left == NULL) {
             buffer[depth + 1] = '\0';
             printf("%s\n", buffer);
         }

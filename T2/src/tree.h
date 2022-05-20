@@ -55,12 +55,21 @@ Info getInfo(Tree root);
 
 Info searchTree(Node root, double x, double y);
 
-bool removeNode(Node node);
-void marcaRemovido(Node node);
+bool removeNode(Tree root, Node node);
+bool marcaRemovido(Tree root, Node node);
 /*
 * Marca como removido o no' n. Caso, apos a remocao, o fator de degradacao
 * superar o limiar definido na criacao, a arvore e' recriada sem os no's delidos.
 */
+
+void fixTree(Tree root);
+void reinsert(Tree root, Node valid[15], int ult);
+/*
+* Funções complemetares que devem receber uma arvóre Xyy, percorrem todos os
+* nós dela e a organizam, removendo os nós removidos por comandos anteriores
+* e montando uma nova árvore consideravelmente melhor e mais distribuida
+*/
+
 
 void printTree(Tree root);
 

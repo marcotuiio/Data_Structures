@@ -31,8 +31,6 @@ void readGeo(char *bedGeo, Tree my_tree) {  // FAZER GEO RETORNAR UMA ARVORE ???
         }
     }
     fclose(geo);
-
-
 }
 
 FILE *openGeo(char *bedGeo) {
