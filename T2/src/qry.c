@@ -85,3 +85,116 @@ void be(FILE *qry, FILE *txt) {
 
     fprintf(txt, "tr %lf %lf %lf %lf \n", x, y, w, h);
 }
+
+void sel(Tree root, Info fig, double x, double y, double w, double h) {
+    // percorrer toda a arvore
+    bool check;
+
+    switch (getFigType(fig)) {
+    case 'c':
+        check = isInsideCirc(fig, x, y, w, h);
+        if (check) {
+            // ta dentro
+        }
+        break;
+
+    case 'r':
+        isInsideRect(fig, x, y, w, h);
+        if (check) {
+            // ta dentro
+        }
+        break;
+
+    case 'l':
+        check = isInsideLine(fig, x, y, w, h);
+        if (check) {
+            // ta dentro
+        }
+        break;
+    
+    case 't':
+        check = isInsideText(fig, x, y, w, h);
+        if (check) {
+            // ta dentro
+        }
+        break;
+
+    default:
+
+        break;
+    }
+}
+
+bool isInsideCirc(Info circ, x, y, w, h) {
+    int idC = getCircID(circ);
+    double circX = getCircX(circ);
+    double circY = getCircY(circ);
+    double circRadius = getCircRADIUS(circ);
+
+    if ((x + w) >= (circX + circRadius) && (x) <= (circX - circRadius)) {
+        if ((y + h) >= (circY + circRadius) && (y) <= (circY - circRadius)) {
+            if (x <= circX && y <= circY) {
+                insereFim(sC, auxI2);
+                insereFim(g, auxG2);
+
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool isInsideRect(Info rect, x, y, w, h) {
+    int idR = getRectID(rect);
+    double recX = getRectX(rect);
+    double recY = getRectY(rect);
+    double recHeight = getRectHEIGHT(rect);
+    double recWidth = getRectWIDTH(rect);
+
+    if (((x + w) >= (recX + recWidth))) {
+        if (((y + h) >= (recY + recHeight))) {
+            if (x <= recX && y <= recY) {
+                insereFim(sR, auxI1);
+                insereFim(g, auxG1);
+
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool isInsideLine(Info line, x, y, w, h) {
+    int idL = getLineID(line);
+    double linX1 = getLineX(line);
+    double linY1 = getLineY(line);
+    double linX2 = getLineFINALX(line);
+    double linY2 = getLineFINALY(line);
+
+    if ((x + w) >= (linX1) && (y + h) >= (linY1)) {
+        if ((x + w) >= (linX2) && (y + h) >= (linY2)) {
+            if (x <= linX1 && y <= linY1 && x <= linX2 && y <= linY2) {
+                insereFim(sL, auxI4);
+                insereFim(g, auxG4);
+
+                return true;
+            }
+        }
+    }
+    return true;
+}
+bool isInsideText(Info text, x, y, w, h) {
+    int idT = getTxtID(text);
+    double txtX = getTxtX(text);
+    double txtY = getTxtY(text);
+
+    if ((x + w) >= (txtX) && (y + h) >= (txtY)) {
+        if (x <= txtX && y <= txtY) {
+            insereFim(sT, auxI3);
+            insereFim(g, auxG3);
+
+            return true;
+        }
+    }
+    return false;
+}

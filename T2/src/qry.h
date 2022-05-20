@@ -47,4 +47,10 @@ void be(FILE *qry, FILE *txt);
 // Formas cujo nível de proteção atingir 0
 // devem ser removidas.
 
+void sel(Tree root, Info fig, double x, double y, double w, double h);
+bool isInsideCirc(Info circ, x, y, w, h);
+bool isInsideRect(Info rect, x, y, w, h);
+bool isInsideLine(Info line, x, y, w, h);
+bool isInsideText(Info text, x, y, w, h);
+
 #endif
