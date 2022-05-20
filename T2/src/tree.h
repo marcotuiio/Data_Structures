@@ -41,7 +41,7 @@ Node createNode(Info value, double x, double y);
 * Retorna um indicador do nó inserido.
 */
 
-void insert(Tree root, Node *node, double x, double y, Info i);
+Node insert(Tree root, Node *node, double x, double y, Info i);
 
 Node getLeft(Node root);
 

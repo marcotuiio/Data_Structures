@@ -40,7 +40,7 @@ Node createNode(Info value, double x, double y) {
     return new_node;
 }
 
-void insert(Tree root, Node *node, double x, double y, Info i) {
+Node insert(Tree root, Node *node, double x, double y, Info i) {
     tree_root *my_root = root;
     tree_node *my_node = *node;
 
@@ -51,7 +51,7 @@ void insert(Tree root, Node *node, double x, double y, Info i) {
             my_root->root = my_node;
         }
         my_root->size++;
-        return;
+        return my_node;
     }
 
     // Caso base 2: tentando inserir o mesmo elemento
@@ -62,19 +62,20 @@ void insert(Tree root, Node *node, double x, double y, Info i) {
     // Se o x é menor que o x da raiz,
     // inserir a esquerda
     if (x < my_node->x) {
-        return insert(root, &(my_node->left), x, y, i);
+        my_node->left = insert(root, &(my_node->left), x, y, i);
 
     // Se o x é maior igual que o do nó porém o y é menor,
     // inserir no meio
     } else if (x >= my_node->x && y < my_node->y) {
-        return insert(root, &(my_node->center), x, y, i);
+        my_node->center = insert(root, &(my_node->center), x, y, i);
 
     // Se o x é maior igual que o do nó e o y também é maior igual que o do nó,
     // inserir a direita
     } else if (x >= my_node->x && y >= my_node->y) {
-        return insert(root, &(my_node->right), x, y, i);
+        my_node->right = insert(root, &(my_node->right), x, y, i);
     }
     my_root->size++;
+    return my_node;
 }
 
 Node getLeft(Node root) {
