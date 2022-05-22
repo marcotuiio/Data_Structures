@@ -7,6 +7,7 @@ struct nd {
     struct nd *center;
     struct nd *prev;
     double x, y;
+    int crtl;
     bool removed;
 };
 typedef struct nd tree_node;
@@ -25,7 +26,7 @@ Tree createTree() {
     return new_tree;
 }
 
-Node createNode(Info value, double x, double y) {
+Node createNode(Info value, double x, double y, int ctrl) {
     tree_node *new_node = calloc(1, sizeof(tree_node));
     if (new_node != NULL) {
         new_node->left = NULL;
@@ -35,18 +36,20 @@ Node createNode(Info value, double x, double y) {
         new_node->value = value;
         new_node->x = x;
         new_node->y = y;
+        new_node->crtl = ctrl;
         new_node->removed = false;
     }
     return new_node;
 }
 
-Node insert(Tree root, Node *node, double x, double y, Info i) {
+// ponteiro pra ponteiro para alterar o endereço que a raiz aponta
+Node insertTree(Tree root, Node node, double x, double y, Info i, int ctrl) {
     tree_root *my_root = root;
-    tree_node *my_node = *node;
+    tree_node *my_node = node;
 
     // Caso base: árvore vazia
-    if (my_node->value == NULL) {
-        my_node = createNode(i, x, y);
+    if (my_node == NULL) {
+        my_node = createNode(i, x, y, ctrl);
         if(my_root->root == NULL) {
             my_root->root = my_node;
         }
@@ -56,26 +59,28 @@ Node insert(Tree root, Node *node, double x, double y, Info i) {
 
     // Caso base 2: tentando inserir o mesmo elemento
     if (my_node->x == x && my_node->y == y) {
-        return;
+        return NULL;
     }
 
     // Se o x é menor que o x da raiz,
     // inserir a esquerda
     if (x < my_node->x) {
-        my_node->left = insert(root, &(my_node->left), x, y, i);
+        my_node->left = insertTree(root, my_node->left, x, y, i, ctrl);
+        return my_node->left;
 
     // Se o x é maior igual que o do nó porém o y é menor,
     // inserir no meio
     } else if (x >= my_node->x && y < my_node->y) {
-        my_node->center = insert(root, &(my_node->center), x, y, i);
-
+        my_node->center = insertTree(root, my_node->center, x, y, i, ctrl);
+        return my_node->center;
+    
     // Se o x é maior igual que o do nó e o y também é maior igual que o do nó,
     // inserir a direita
     } else if (x >= my_node->x && y >= my_node->y) {
-        my_node->right = insert(root, &(my_node->right), x, y, i);
+        my_node->right = insertTree(root, my_node->right, x, y, i, ctrl);
+        return my_node->right;
     }
-    my_root->size++;
-    return my_node;
+    exit(0);
 }
 
 Node getLeft(Node root) {
@@ -94,6 +99,24 @@ Node getCenter(Node root) {
     tree_node *my_node = root;
 
     return my_node->center;
+}
+
+int getCtrl(Node root) {
+    tree_node *my_node = root;
+
+    return my_node->crtl;
+}
+
+Node getRoot(Tree tree) {
+    tree_root *my_tree = tree;
+
+    return my_tree->root;
+}
+
+int getSize(Tree tree) {
+    tree_root *my_tree = tree;
+
+    return my_tree->size;
 }
 
 void setInfo(Node root, Info i, double x, double y) {
@@ -129,13 +152,14 @@ Info searchTree(Node root, double x, double y) {
     } else if (x >= my_node->x && y >= my_node->y) {
         return searchTree(my_node->right, x, y);
     }
+    return (my_node->value);
 }
 
 bool removeNode(Tree root, Node node) {
     tree_root *my_root = root;
     tree_node *toRemove = node;
 
-    if (searchTree(toRemove, getXT(toRemove), getYT(toRemove)) == NULL) {
+    if (searchTree(toRemove, toRemove->x, toRemove->y) == NULL) {
         printf("ELEMENTO INEXISTENTE\n");
         return false;
     }
@@ -148,13 +172,13 @@ bool removeNode(Tree root, Node node) {
     // se o elemento for folha so bang
     if (toRemove->center == NULL && toRemove->left == NULL && toRemove->right == NULL) { 
         if (toRemove->prev->center == toRemove) {
-            toRemove->prev->center == NULL;
+            toRemove->prev->center = NULL;
 
         } else if (toRemove->prev->left == toRemove) {
-            toRemove->prev->left == NULL;
+            toRemove->prev->left = NULL;
 
         } else if (toRemove->prev->right == toRemove) {
-            toRemove->prev->right == NULL;
+            toRemove->prev->right = NULL;
         }
         free(toRemove);
         return true;
@@ -245,7 +269,7 @@ void printTree(Tree root) {
         return;
     }
 
-    printf("value = %d\n", my_root->value);
+    printf("value = %p\n", my_root->value);
     printf("\nleft -- ");
     printTree(my_root->left);
     printf("\nright -- ");
@@ -255,6 +279,18 @@ void printTree(Tree root) {
     printf("\ndone\n");
 }
 
+Node postOrder(Node root) {
+    tree_node *my_node = root;
+
+    if (my_node == NULL) {
+        return NULL;
+    }
+    postOrder(my_node->left);
+    postOrder(my_node->center);
+    postOrder(my_node->right);
+    return my_node->value;
+}
+
 void percursoProfundidadeAux(Node root, char *buffer, int depth) {
     tree_node *my_root = root;
 
@@ -262,7 +298,7 @@ void percursoProfundidadeAux(Node root, char *buffer, int depth) {
         // Percorrendo a sub-arvore da esquerda
         percursoProfundidadeAux(my_root->left, buffer, depth);
 
-        buffer[depth] = getXT(my_root);
+        buffer[depth] = my_root->x;
         if (my_root->center == NULL && my_root->right == NULL && my_root->left == NULL) {
             buffer[depth + 1] = '\0';
             printf("%s\n", buffer);

@@ -1,5 +1,5 @@
 #include "text.h"
-#include "list.h"
+#include "tree.h"
 
 struct txt {
     char type[3];
@@ -32,8 +32,8 @@ void buildText(FILE *geo, Info t, Tree root) {
     fscanf(geo, "%s", txt->anchor);
     fscanf(geo, "%[^\n]", txt->text);
 
-    Node texto = createNode(txt, txt->x, txt->y);
-    insert(root, texto, txt->x, txt->y, txt);
+    Node texto = createNode(txt, txt->x, txt->y, 4);
+    insertTree(root, texto, txt->x, txt->y, txt, 4);  // txt ctrl = 4;
     // printf("txtaux %s\n", txt->textaux);
     // printf("\nid %d\n", txt->id);
     // printf("x %lf\n", txt->x);

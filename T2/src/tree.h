@@ -35,13 +35,13 @@ Tree createTree();
 * Cria uma árvore vazia e retorna um ponteiro para ela
 */
 
-Node createNode(Info value, double x, double y);
+Node createNode(Info value, double x, double y, int ctrl);
 /*
 * Insere a informação i, associada à âncora (x,y) na árvore t.
 * Retorna um indicador do nó inserido.
 */
 
-Node insert(Tree root, Node *node, double x, double y, Info i);
+Node insertTree(Tree root, Node node, double x, double y, Info i, int ctrl);
 
 Node getLeft(Node root);
 
@@ -49,9 +49,15 @@ Node getRight(Node root);
 
 Node getCenter(Node root);
 
+int getCtrl(Node root);
+
+Node getRoot(Tree tree);
+
+int getSize(Tree tree);
+
 void setInfo(Node root, Info i, double x, double y);
 
-Info getInfo(Tree root);
+Info getInfo(Node root);
 
 Info searchTree(Node root, double x, double y);
 
@@ -72,6 +78,8 @@ void reinsert(Tree root, Node valid[15], int ult);
 
 
 void printTree(Tree root);
+
+Node postOrder(Node root);
 
 void percursoProfundidadeAux(Node root, char* buffer, int depth);
 void percursoProfundidade(Tree root);

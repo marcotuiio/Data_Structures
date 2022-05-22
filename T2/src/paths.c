@@ -7,7 +7,7 @@ struct param {
     char* geoarq;        // arq.geo
     char* geoname;       // only name (no .geo)
     char* bedqry;        // arq.qry com BED
-    char* qryarq;        // arq.qry
+    char* qryarq;        // testes/arq.qry
     char* qryname;       // only name (no .qry)
     char* bsdgeosvg;     // bsd/nomegeo.svg
     char* bsdgeoqrysvg;  // nomegeo_nomeqry.svg
@@ -134,7 +134,7 @@ void setQryName(Paths path, char* qryname) {
     AllPaths* paths = path;
     char *index = strrchr(paths->qryarq, '/');
     index++;
-    char *aux = malloc(sizeof(index));
+    char *aux = calloc(1, sizeof(index) + 24);
     strcpy(aux, index);
     char *name;
     name = strtok(aux, ".qry");

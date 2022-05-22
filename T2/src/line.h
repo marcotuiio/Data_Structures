@@ -49,6 +49,7 @@ void setlineFinalY(Info l, double dy, int n);
 //translada em DY vezes N a coordenada y2
 
 double getLineLenght(Info l);
+double sqroot(double num);
 // dada um determinada Linha l, calcula seu comprimento e o retorna
 // no formato de double
 

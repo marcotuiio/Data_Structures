@@ -7,25 +7,42 @@
 #include "system.h"
 #include "text.h"
 
-void writeSvg(char *bsdSvg) {
-    //printf("\n--- INICIO WRITE SVG ---\n");
+void writeSvg(char *bsdSvg, Tree my_tree) {
+    printf("\n--- INICIO WRITE SVG ---\n");
     FILE *svg = createSvg(bsdSvg);
+    Node my_root = getRoot(my_tree);
+    Info my_info;
+    int ctrl;
+    printf("\n size %d\n", getSize(my_tree));
+    while (my_root != NULL) {
+        printf("inicio while\n");
+        ctrl = getCtrl(my_root);
+        my_info = getInfo(my_root);
 
-    drawRectangle(svg);
-    drawCircle(svg);
-    drawText(svg);
-    drawLine(svg);
+        if (ctrl == 1) {
+            drawCircle(svg, my_info);
+
+        } else if (ctrl == 2) {
+            drawRectangle(svg, my_info);
+
+        } else if (ctrl == 3) {
+            drawLine(svg, my_info);
+
+        } else if (ctrl == 4) {
+            drawText(svg, my_info);
+        }
+        my_root = postOrder(my_root);
+        printf("fim while\n");
+    }
 
     killSvg(svg);
-    
 }
 
-void drawCircle(FILE *svg) {
+void drawCircle(FILE *svg, Info circ) {
     // printf("--- INICIO DRAW CIRC ---\n");
     int id;
     double x, y, radius;
     char fill[15], stroke[15];
-    Info circ;
 
     id = getCircID(circ);
     x = getCircX(circ);
@@ -37,12 +54,11 @@ void drawCircle(FILE *svg) {
     fprintf(svg, "\t<circle id=\"%d\" cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", id, x, y, radius, stroke, fill);
 }
 
-void drawRectangle(FILE *svg) {
+void drawRectangle(FILE *svg, Info rect) {
     // printf("--- INICIO DRAW RECT ---\n");
     int id;
     double x, y, height, width;
     char fill[15], stroke[15];
-    Info rect;
 
     id = getRectID(rect);
     x = getRectX(rect);
@@ -55,12 +71,11 @@ void drawRectangle(FILE *svg) {
     fprintf(svg, "\t<rect id=\"%d\" x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", id, x, y, width, height, stroke, fill);
 }
 
-void drawLine(FILE *svg) {
+void drawLine(FILE *svg, Info linha) {
     // printf("--- INICIO DRAW LINE ---\n");
     int id;
     double x1, y1, x2, y2;
     char stroke[15];
-    Info linha;
 
     id = getLineID(linha);
     x1 = getLineX(linha);
@@ -72,13 +87,12 @@ void drawLine(FILE *svg) {
     fprintf(svg, "\t<line id=\"%d\" x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" />\n", id, x1, y1, x2, y2, stroke);
 }
 
-void drawText(FILE *svg) {
+void drawText(FILE *svg, Info txt) {
     // printf("--- INICIO DRAW TEXT ---\n");
     int id;
     char aux_anchor[3];
     double x, y;
     char text[100], fill[15], stroke[15], anchor[10];
-    Info txt;
 
     id = getTxtID(txt);
     x = getTxtX(txt);
@@ -108,7 +122,7 @@ void drawText(FILE *svg) {
 FILE *createSvg(char *bsdSvg) {
     // printf("--- INICIO CREATE SVG ---\n");
     FILE *svg = fopen(bsdSvg, "w");
-    if(svg == NULL) {
+    if (svg == NULL) {
         printf("ERRO AO CRIAR SVG\n");
         exit(1);
     }

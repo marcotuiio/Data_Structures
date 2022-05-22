@@ -1,16 +1,16 @@
 EXEC = gcc
-CFLAGS = -std=c99 -fstack-protector-all -g -Wall
+CFLAGS = -std=c99 -fstack-protector-all -g -lm -Wall
 PROJECT_NAME = ted
 
 clear: 
 	rm *.o
 	rm $(PROJECT_NAME)
 
-$(PROJECT_NAME): main.o geo.o system.o paths.o rectangle.o circle.o line.o text.o tree.o
-	$(EXEC) $(CFLAGS) main.o geo.o system.o paths.o rectangle.o circle.o line.o text.o tree.o -o $(PROJECT_NAME)
+$(PROJECT_NAME): main.o svg.o geo.o system.o paths.o rectangle.o circle.o line.o text.o tree.o
+	$(EXEC) $(CFLAGS) main.o svg.o geo.o system.o paths.o rectangle.o circle.o line.o text.o tree.o -o $(PROJECT_NAME)
 
-# svg.o: svg.c svg.h 
-# 	$(EXEC) $(CFLAGS) -c svg.c
+svg.o: svg.c svg.h 
+	$(EXEC) $(CFLAGS) -c svg.c
 
 geo.o: geo.c geo.h 
 	$(EXEC) $(CFLAGS) -c geo.c

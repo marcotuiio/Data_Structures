@@ -6,7 +6,7 @@
 #include "text.h"
 #include "tree.h"
 
-void readGeo(char *bedGeo, Tree my_tree) {  // FAZER GEO RETORNAR UMA ARVORE ???/
+void readGeo(char *bedGeo, Tree my_tree) {  // FAZER GEO RETORNAR UMA ARVORE ???
     FILE *geo = openGeo(bedGeo);
     char tipo[5];
 
@@ -34,6 +34,7 @@ void readGeo(char *bedGeo, Tree my_tree) {  // FAZER GEO RETORNAR UMA ARVORE ???
 }
 
 FILE *openGeo(char *bedGeo) {
+    // printf("\nbedGeo %s\n", bedGeo);
     FILE *geo = fopen(bedGeo, "r");
     if (geo == NULL) {
         printf("ERRO NA CRIAÇÃO DO GEO\n");
