@@ -45,4 +45,6 @@ void setcircX(Info c, double dx);
 void setcircY(Info c, double dy, int n);
 //translada em DY vezes N a coordenada y
 
+void freeCirc(Info c); 
+
 #endif

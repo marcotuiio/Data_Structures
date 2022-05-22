@@ -111,6 +111,12 @@ void setlineFinalY(Info l, double dy, int n) {
     line->y2 = aux + n * dy;
 }
 
+void freeLine(Info l) {
+    Linha *line = l;
+
+    free(line);
+}
+
 double getLineLenght(Info l) {
     Linha *line = l;
     double x1, x2, y1, y2;

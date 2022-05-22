@@ -1,5 +1,10 @@
 #include "tree.h"
 
+#include "circle.h"
+#include "line.h"
+#include "rectangle.h"
+#include "text.h"
+
 struct nd {
     Info value;
     struct nd *left;
@@ -51,12 +56,12 @@ Node insertTree(Tree root, Node node, double x, double y, Info i, int ctrl) {
     // Caso base: árvore vazia
     if (my_node == NULL) {
         my_node = createNode(i, x, y, ctrl);
-        if(my_root->root == NULL) {
+        if (my_root->root == NULL) {
             my_root->root = my_node;
         }
         printf("x %lf\n", x);
         printf("nodeX %lf\n", my_node->x);
-        if(my_node) {
+        if (my_node) {
             my_root->size++;
             // printf("size %d\n", my_root->size);
             return my_node;
@@ -72,14 +77,14 @@ Node insertTree(Tree root, Node node, double x, double y, Info i, int ctrl) {
         printf("da esquerda\n");
         my_node->left = insertTree(root, my_node->left, x, y, i, ctrl);
 
-    // Se o x é maior igual que o do nó porém o y é menor,
-    // inserir no meio
+        // Se o x é maior igual que o do nó porém o y é menor,
+        // inserir no meio
     } else if (x >= (my_node->x) && y < (my_node->y)) {
         printf("do meio\n");
         my_node->center = insertTree(root, my_node->center, x, y, i, ctrl);
-    
-    // Se o x é maior igual que o do nó e o y também é maior igual que o do nó,
-    // inserir a direita
+
+        // Se o x é maior igual que o do nó e o y também é maior igual que o do nó,
+        // inserir a direita
     } else if (x >= (my_node->x) && y >= (my_node->y)) {
         printf("da direita\n");
         my_node->right = insertTree(root, my_node->right, x, y, i, ctrl);
@@ -174,7 +179,7 @@ bool removeNode(Tree root, Node node) {
     }
 
     // se o elemento for folha so bang
-    if (toRemove->center == NULL && toRemove->left == NULL && toRemove->right == NULL) { 
+    if (toRemove->center == NULL && toRemove->left == NULL && toRemove->right == NULL) {
         if (toRemove->prev->center == toRemove) {
             toRemove->prev->center = NULL;
 
@@ -187,7 +192,7 @@ bool removeNode(Tree root, Node node) {
         free(toRemove);
         return true;
 
-    // se não for folha mas tem garantido um unico filho
+        // se não for folha mas tem garantido um unico filho
     } else if (toRemove->left != NULL && toRemove->center == NULL && toRemove->right == NULL) {
         toRemove->prev = toRemove->left;
         free(toRemove);
@@ -203,7 +208,7 @@ bool removeNode(Tree root, Node node) {
         free(toRemove);
         return true;
 
-    // senão marca removido e organiza depois
+        // senão marca removido e organiza depois
     } else {
         // !!!!! implementar limiar e fator degradação !!!!!!
         return marcaRemovido(root, toRemove);
@@ -213,9 +218,9 @@ bool removeNode(Tree root, Node node) {
 bool marcaRemovido(Tree root, Node node) {
     tree_root *my_root = root;
     tree_node *toRemove = node;
-    
+
     if (toRemove != NULL) {
-        //implementar limiar
+        // implementar limiar
         my_root->size--;
         toRemove->removed = true;
         return true;
@@ -351,7 +356,18 @@ void freeTree(Node root, Tree tree) {
         // printf("TREE HAS BEEN FREED\n");
         return;
     }
-    free(my_root->value);
+    int ctrl = getCtrl(my_root);
+    printf("ctrl %d\n", ctrl);
+
+    if (ctrl == 1) {
+        freeCirc(my_root->value);
+    } else if (ctrl == 2) {
+        freeRect(my_root->value);
+    } else if (ctrl == 3) {
+        freeLine(my_root->value);
+    } else if (ctrl == 4) {
+        freeTxt(my_root->value);
+    }
     freeTree(my_root->left, tree);
     freeTree(my_root->right, tree);
     freeTree(my_root->center, tree);

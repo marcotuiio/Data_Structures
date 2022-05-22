@@ -48,4 +48,6 @@ void setrectX(Info r, double dx);
 void setrectY(Info r, double dy, int n);
 // translada DY vezes N a coordenada y
 
+void freeRect(Info r);
+
 #endif

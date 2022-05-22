@@ -108,3 +108,9 @@ void setrectY(Info r, double dy, int n) {
 
     rect->y = getRectY(r) + n * dy;
 }
+
+void freeRect(Info r) {
+    Retangulo *rect = r;
+
+    free(rect);
+}

@@ -99,3 +99,9 @@ void setcircY(Info c, double dy, int n) {
 
     circ->y = getCircY(c) + n * dy;
 }
+
+void freeCirc(Info c) {
+    Circulo *circ = c;
+
+    free(circ);
+}

@@ -53,4 +53,6 @@ void settxtX(Info t, double dx);
 void settxtY(Info t, double dy, int n);
 // translada em DY vezes N a coordenada y
 
+void freeTxt(Info t);
+
 #endif

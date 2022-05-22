@@ -111,3 +111,9 @@ void settxtY(Info t, double dy, int n) {
 
     txt->y = getTxtY(t) + n * dy;
 }
+
+void freeTxt(Info t) {
+    Texto *txt = t;
+
+    free(txt);
+}
