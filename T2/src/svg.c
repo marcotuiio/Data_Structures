@@ -8,34 +8,41 @@
 #include "text.h"
 
 void writeSvg(char *bsdSvg, Tree my_tree) {
-    printf("\n--- INICIO WRITE SVG ---\n");
+    // printf("\n--- INICIO WRITE SVG ---\n");
     FILE *svg = createSvg(bsdSvg);
     Node my_root = getRoot(my_tree);
-    Info my_info;
-    int ctrl;
     printf("\n size %d\n", getSize(my_tree));
-    while (my_root != NULL) {
-        printf("inicio while\n");
-        ctrl = getCtrl(my_root);
-        my_info = getInfo(my_root);
 
-        if (ctrl == 1) {
-            drawCircle(svg, my_info);
-
-        } else if (ctrl == 2) {
-            drawRectangle(svg, my_info);
-
-        } else if (ctrl == 3) {
-            drawLine(svg, my_info);
-
-        } else if (ctrl == 4) {
-            drawText(svg, my_info);
-        }
-        my_root = postOrder(my_root);
-        printf("fim while\n");
-    }
+    postOrder(my_root, svg);
 
     killSvg(svg);
+}
+
+void postOrder(Node root, FILE *svg) {
+    int ctrl;
+    Info my_info;
+
+    if (root == NULL) {
+        return;
+    }
+    
+    postOrder(getLeft(root), svg);
+    postOrder(getCenter(root), svg);
+    postOrder(getRight(root), svg);
+    ctrl = getCtrl(root);
+    my_info = getInfo(root);
+    if (ctrl == 1) {
+        drawCircle(svg, my_info);
+
+    } else if (ctrl == 2) {
+        drawRectangle(svg, my_info);
+
+    } else if (ctrl == 3) {
+        drawLine(svg, my_info);
+
+    } else if (ctrl == 4) {
+        drawText(svg, my_info);
+    }
 }
 
 void drawCircle(FILE *svg, Info circ) {

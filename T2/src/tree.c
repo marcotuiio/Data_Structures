@@ -27,6 +27,7 @@ Tree createTree() {
 }
 
 Node createNode(Info value, double x, double y, int ctrl) {
+    printf("Creating new node\n");
     tree_node *new_node = calloc(1, sizeof(tree_node));
     if (new_node != NULL) {
         new_node->left = NULL;
@@ -42,8 +43,8 @@ Node createNode(Info value, double x, double y, int ctrl) {
     return new_node;
 }
 
-// ponteiro pra ponteiro para alterar o endereço que a raiz aponta
 Node insertTree(Tree root, Node node, double x, double y, Info i, int ctrl) {
+    printf("Insertion\n");
     tree_root *my_root = root;
     tree_node *my_node = node;
 
@@ -53,28 +54,34 @@ Node insertTree(Tree root, Node node, double x, double y, Info i, int ctrl) {
         if(my_root->root == NULL) {
             my_root->root = my_node;
         }
-        my_root->size++;
-        return my_node;
+        printf("x %lf\n", x);
+        printf("nodeX %lf\n", my_node->x);
+        if(my_node) {
+            my_root->size++;
+            // printf("size %d\n", my_root->size);
+            return my_node;
+        }
     }
 
-    // Caso base 2: tentando inserir o mesmo elemento
-    if (my_node->x == x && my_node->y == y) {
-        return NULL;
-    }
+    printf("x %lf\n", x);
+    printf("nodeX %lf\n", my_node->x);
 
     // Se o x é menor que o x da raiz,
     // inserir a esquerda
-    if (x < my_node->x) {
+    if (x < (my_node->x)) {
+        printf("da esquerda\n");
         my_node->left = insertTree(root, my_node->left, x, y, i, ctrl);
 
     // Se o x é maior igual que o do nó porém o y é menor,
     // inserir no meio
-    } else if (x >= my_node->x && y < my_node->y) {
+    } else if (x >= (my_node->x) && y < (my_node->y)) {
+        printf("do meio\n");
         my_node->center = insertTree(root, my_node->center, x, y, i, ctrl);
     
     // Se o x é maior igual que o do nó e o y também é maior igual que o do nó,
     // inserir a direita
-    } else if (x >= my_node->x && y >= my_node->y) {
+    } else if (x >= (my_node->x) && y >= (my_node->y)) {
+        printf("da direita\n");
         my_node->right = insertTree(root, my_node->right, x, y, i, ctrl);
     }
     return my_node;
@@ -257,9 +264,8 @@ void reinsert(Tree root, Node valid[15], int ult) {
     // Invoca recursivamente reinsere na metade direito do vetor
 }
 
-void printTree(Tree root) {
-    tree_root *aux_root = root;
-    tree_node *my_root = aux_root->root;
+void printTree(Node root) {
+    tree_node *my_root = root;
 
     if (my_root == NULL) {
         printf("EMPTY TREE\n");
@@ -269,23 +275,11 @@ void printTree(Tree root) {
     printf("value = %p\n", my_root->value);
     printf("\nleft -- ");
     printTree(my_root->left);
-    printf("\nright -- ");
-    printTree(my_root->right);
     printf("\ncenter -- ");
     printTree(my_root->center);
+    printf("\nright -- ");
+    printTree(my_root->right);
     printf("\ndone\n");
-}
-
-Node postOrder(Node root) {
-    tree_node *my_node = root;
-
-    if (my_node == NULL) {
-        return NULL;
-    }
-    postOrder(my_node->left);
-    postOrder(my_node->center);
-    postOrder(my_node->right);
-    return my_node->value;
 }
 
 void percursoProfundidadeAux(Node root, char *buffer, int depth) {
@@ -349,19 +343,18 @@ void quicksort(double *arr, int left, int right) {
     }
 }
 
-void freeTree(Tree root) {
-    tree_root *aux_root = root;
-    tree_node *my_root = aux_root->root;
+void freeTree(Node root, Tree tree) {
+    tree_root *my_tree = tree;
+    tree_node *my_root = root;
 
     if (my_root == NULL) {
-        printf("TREE HAS BEEN FREED\n");
+        // printf("TREE HAS BEEN FREED\n");
         return;
     }
-
     free(my_root->value);
-    freeTree(my_root->left);
-    freeTree(my_root->right);
-    freeTree(my_root->center);
+    freeTree(my_root->left, tree);
+    freeTree(my_root->right, tree);
+    freeTree(my_root->center, tree);
     free(my_root);
-    free(aux_root);
+    free(my_tree);
 }

@@ -12,6 +12,7 @@ void readGeo(char *bedGeo, Tree my_tree) {  // FAZER GEO RETORNAR UMA ARVORE ???
 
     while (!feof(geo)) {
         fscanf(geo, "%s", tipo);
+        // printf("tipo %s\n", tipo);
 
         if (strcmp(tipo, "c") == 0) {
             Info circle = criaCirc();

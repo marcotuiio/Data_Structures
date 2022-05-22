@@ -31,8 +31,8 @@ void buildLine(FILE *geo, Info l, Tree root) {
     fscanf(geo, "%lf", &line->y2);
     fscanf(geo, "%s", line->color);
 
-    Node linha = createNode(line, line->x1, line->y1, 3);
-    insertTree(root, linha, line->x1, line->y1, line, 3);  // line ctrl = 3;
+    insertTree(root, NULL, line->x1, line->y1, line, 3);  // line ctrl = 3;
+    
     // printf("\nid %d\n", line->id);
     // printf("x %lf\n", line->x1);
     // printf("y %lf\n", line->y1);

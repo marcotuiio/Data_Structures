@@ -30,8 +30,8 @@ void buildCircle(FILE *geo, Info c, Tree root) {
     fscanf(geo, "%s", circle->corb);
     fscanf(geo, "%s", circle->corp);
 
-    Node circ = createNode(circle, circle->x, circle->y, 1);
-    insertTree(root, circ, circle->x, circle->y, circle, 1); //circ ctrl = 1;
+    insertTree(root, NULL, circle->x, circle->y, circle, 1); //circ ctrl = 1;
+    
     // printf("\nid %d\n", circle->id);
     // printf("x %lf\n", circle->x);
     // printf("y %lf\n", circle->y);

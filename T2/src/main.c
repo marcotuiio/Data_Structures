@@ -6,6 +6,7 @@
 #include "svg.h"
 
 int main(int argc, char** argv) {
+    printf("\n");
     Paths my_paths = createAllPaths();
     Tree my_tree = createTree();
 
@@ -25,14 +26,16 @@ int main(int argc, char** argv) {
     puts(getBsdGeoSvg(my_paths));
     puts(getBsdGeoQrySvg(my_paths));
     puts(getBsdGeoQryTxt(my_paths));
+    printf("\n");
 
     readGeo(getBedGeo(my_paths), my_tree); 
     printf("\ntree %p\n", getRoot(my_tree));
-    printTree(my_tree);
+    printTree(getRoot(my_tree));
 
     writeSvg(getBsdGeoSvg(my_paths), my_tree);
     printf("4\n");
 
+    freeTree(getRoot(my_tree), my_tree);
     freePaths(my_paths);
 
     return 0;

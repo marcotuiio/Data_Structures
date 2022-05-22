@@ -77,9 +77,7 @@ void reinsert(Tree root, Node valid[15], int ult);
 */
 
 
-void printTree(Tree root);
-
-Node postOrder(Node root);
+void printTree(Node root);
 
 void percursoProfundidadeAux(Node root, char* buffer, int depth);
 void percursoProfundidade(Tree root);
@@ -90,7 +88,7 @@ void quicksort (double *arr, int left, int right);
 // Recebe um vetor de informações arr, a posição do primeiro elemento
 // e a posição do ultimo elemento
 
-void freeTree(Tree root);
+void freeTree(Node root, Tree tree);
 // Percorre toda a árvore, realizando a liberação da memória ocupada
 
 //void percursoLargura(Tree root);

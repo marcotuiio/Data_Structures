@@ -1,5 +1,5 @@
 EXEC = gcc
-CFLAGS = -std=c99 -fstack-protector-all -g -lm -Wall
+CFLAGS = -std=c99 -fstack-protector-all -g -Wall
 PROJECT_NAME = ted
 
 clear: 

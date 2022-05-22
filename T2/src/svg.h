@@ -15,6 +15,8 @@ void writeSvg(char *bsdSvg, Tree my_tree);
 // Deve receber as estruturas que armazenam as formas lidas no geo, o aqruivo svg adequado
 // e a informação se existe ou não um arquivo de consulta qry.
 
+void postOrder(Node root, FILE *svg);
+
 void drawCircle(FILE *svg, Info circ);
 // Recebe o arquivo svg e o Info círculo
 // Extrai os dados tais quais encontrados no geo e imprimi os mesmo no formato SVG

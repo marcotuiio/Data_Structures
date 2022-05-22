@@ -32,8 +32,8 @@ void buildRectangle(FILE *geo, Info r, Tree root) {
     fscanf(geo, "%s", rectangle->corb);
     fscanf(geo, "%s", rectangle->corp);
 
-    Node rect = createNode(rectangle, rectangle->x, rectangle->y, 2);
-    insertTree(root, rect, rectangle->x, rectangle->y, rectangle, 2);  // rect ctrl = 2;
+    insertTree(root, NULL, rectangle->x, rectangle->y, rectangle, 2);  // rect ctrl = 2;
+    
     // printf("\nid %d\n", rectangle->id);
     // printf("x %lf\n", rectangle->x);
     // printf("y %lf\n", rectangle->y);

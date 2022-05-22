@@ -12,6 +12,7 @@ struct param {
     char* bsdgeosvg;     // bsd/nomegeo.svg
     char* bsdgeoqrysvg;  // nomegeo_nomeqry.svg
     char* bsdgeoqrytxt;  // nomegeo_nomeqry.txt
+    char* aux;
 };
 typedef struct param AllPaths;
 
@@ -134,10 +135,10 @@ void setQryName(Paths path, char* qryname) {
     AllPaths* paths = path;
     char *index = strrchr(paths->qryarq, '/');
     index++;
-    char *aux = calloc(1, sizeof(index) + 24);
-    strcpy(aux, index);
+    paths->aux = calloc(1, sizeof(index) + 24);
+    strcpy(paths->aux, index);
     char *name;
-    name = strtok(aux, ".qry");
+    name = strtok(paths->aux, ".qry");
     paths->qryname = name;
 }
 
@@ -189,5 +190,6 @@ void freePaths(Paths path) {
     free(paths->bsdgeoqrysvg);
     free(paths->bsdgeoqrytxt);
     free(paths->bsdgeosvg);
+    free(paths->aux);
     free(paths);
 }
