@@ -66,21 +66,18 @@ Node insertTree(Tree root, Node node, double x, double y, Info i, int ctrl) {
     // inserir a esquerda
     if (x < my_node->x) {
         my_node->left = insertTree(root, my_node->left, x, y, i, ctrl);
-        return my_node->left;
 
     // Se o x é maior igual que o do nó porém o y é menor,
     // inserir no meio
     } else if (x >= my_node->x && y < my_node->y) {
         my_node->center = insertTree(root, my_node->center, x, y, i, ctrl);
-        return my_node->center;
     
     // Se o x é maior igual que o do nó e o y também é maior igual que o do nó,
     // inserir a direita
     } else if (x >= my_node->x && y >= my_node->y) {
         my_node->right = insertTree(root, my_node->right, x, y, i, ctrl);
-        return my_node->right;
     }
-    exit(0);
+    return my_node;
 }
 
 Node getLeft(Node root) {
