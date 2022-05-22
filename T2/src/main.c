@@ -29,13 +29,12 @@ int main(int argc, char** argv) {
     printf("\n");
 
     readGeo(getBedGeo(my_paths), my_tree); 
-    printf("\ntree %p\n", getRoot(my_tree));
-    printTree(getRoot(my_tree));
 
     writeSvg(getBsdGeoSvg(my_paths), my_tree);
-    printf("4\n");
 
-    freeTree(getRoot(my_tree), my_tree);
+    freeTree(getRoot(my_tree));
+    free(getRoot(my_tree));
+    free(my_tree);
     freePaths(my_paths);
 
     return 0;

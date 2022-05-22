@@ -11,7 +11,7 @@ void writeSvg(char *bsdSvg, Tree my_tree) {
     // printf("\n--- INICIO WRITE SVG ---\n");
     FILE *svg = createSvg(bsdSvg);
     Node my_root = getRoot(my_tree);
-    printf("\n size %d\n", getSize(my_tree));
+    // printf("\n size %d\n", getSize(my_tree));
 
     postOrder(my_root, svg);
 

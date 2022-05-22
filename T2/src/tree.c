@@ -348,17 +348,14 @@ void quicksort(double *arr, int left, int right) {
     }
 }
 
-void freeTree(Node root, Tree tree) {
-    tree_root *my_tree = tree;
+void freeTree(Node root) {
     tree_node *my_root = root;
+    int ctrl;
 
     if (my_root == NULL) {
-        // printf("TREE HAS BEEN FREED\n");
         return;
     }
-    int ctrl = getCtrl(my_root);
-    printf("ctrl %d\n", ctrl);
-
+    ctrl = getCtrl(my_root);
     if (ctrl == 1) {
         freeCirc(my_root->value);
     } else if (ctrl == 2) {
@@ -368,9 +365,7 @@ void freeTree(Node root, Tree tree) {
     } else if (ctrl == 4) {
         freeTxt(my_root->value);
     }
-    freeTree(my_root->left, tree);
-    freeTree(my_root->right, tree);
-    freeTree(my_root->center, tree);
-    free(my_root);
-    free(my_tree);
+    freeTree(my_root->left);
+    freeTree(my_root->center);
+    freeTree(my_root->right);
 }

@@ -32,7 +32,7 @@ void buildText(FILE *geo, Info t, Tree root) {
     fscanf(geo, "%s", txt->anchor);
     fscanf(geo, "%[^\n]", txt->text);
 
-    insertTree(root, NULL, txt->x, txt->y, txt, 4);  // txt ctrl = 4;
+    insertTree(root, getRoot(root), txt->x, txt->y, txt, 4);  // txt ctrl = 4;
     
     // printf("txtaux %s\n", txt->textaux);
     // printf("\nid %d\n", txt->id);

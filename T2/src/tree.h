@@ -88,7 +88,7 @@ void quicksort (double *arr, int left, int right);
 // Recebe um vetor de informações arr, a posição do primeiro elemento
 // e a posição do ultimo elemento
 
-void freeTree(Node root, Tree tree);
+void freeTree(Node root);
 // Percorre toda a árvore, realizando a liberação da memória ocupada
 
 //void percursoLargura(Tree root);

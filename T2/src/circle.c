@@ -30,7 +30,7 @@ void buildCircle(FILE *geo, Info c, Tree root) {
     fscanf(geo, "%s", circle->corb);
     fscanf(geo, "%s", circle->corp);
 
-    insertTree(root, NULL, circle->x, circle->y, circle, 1); //circ ctrl = 1;
+    insertTree(root, getRoot(root), circle->x, circle->y, circle, 1); //circ ctrl = 1;
     
     // printf("\nid %d\n", circle->id);
     // printf("x %lf\n", circle->x);
@@ -103,5 +103,7 @@ void setcircY(Info c, double dy, int n) {
 void freeCirc(Info c) {
     Circulo *circ = c;
 
+    printf("\nCirc adress %p\n", circ);
     free(circ);
+    printf("? adress %p\n", circ);
 }
