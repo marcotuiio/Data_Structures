@@ -16,6 +16,9 @@ void writeSvg(char *bsdSvg, Tree my_tree);
 // e a informação se existe ou não um arquivo de consulta qry.
 
 void postOrder(Node root, FILE *svg);
+// Deve receber a raiz da árvore e o aqr svg 
+// Percorre todos os elementos e vai delegando funções corretas
+// para extrair dados dos nós e, consequentemente, escrever no svg
 
 void drawCircle(FILE *svg, Info circ);
 // Recebe o arquivo svg e o Info círculo

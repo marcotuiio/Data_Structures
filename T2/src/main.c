@@ -1,15 +1,16 @@
+#include "geo.h"
 #include "libs.h"
 #include "paths.h"
+#include "svg.h"
 #include "system.h"
 #include "tree.h"
-#include "geo.h"
-#include "svg.h"
 
 int main(int argc, char** argv) {
+    Controller my_ctrl = createController();
     Paths my_paths = createAllPaths();
     Tree my_tree = createTree();
 
-    readParam(argc, argv, my_paths);
+    readParam(argc, argv, my_paths, my_ctrl);
 
     // printf("\n");
     // puts(getBed(my_paths));
@@ -28,13 +29,22 @@ int main(int argc, char** argv) {
     // puts(getBsdGeoQryTxt(my_paths));
     // printf("\n");
 
-    readGeo(getBedGeo(my_paths), my_tree); 
+    if (checkBED(my_ctrl) && checkGEO(my_ctrl) && checkBSD(my_ctrl)) {
+        readGeo(getBedGeo(my_paths), my_tree);
 
-    writeSvg(getBsdGeoSvg(my_paths), my_tree);
+        writeSvg(getBsdGeoSvg(my_paths), my_tree);
+    } else {
+        return 0;  // ERRO!
+    }
+
+    // if (checkQRY(my_ctrl)) {
+    //     //executar qry
+    // }
 
     freeTree(getRoot(my_tree));
     free(my_tree);
     freePaths(my_paths);
+    freeCtrl(my_ctrl);
 
     return 0;
 }

@@ -8,6 +8,7 @@
 #define LIBS_H
 
 typedef void* Paths;
+typedef void* Controller;
 
 typedef void* Tree;
 typedef void* Node;
