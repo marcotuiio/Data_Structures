@@ -16,6 +16,7 @@ store data on tree DONE
 print svg DONE
 
 need to:
+   * fix problems on txt format (anchor and txt are not working...again)
    * fix memory leaks in the circle, rect, line and txt structs (IT SHOULD BE WORKING!!!!)
    * fix deletion function (see if it works)
    * make fuction to reorganize tree !! important !!
