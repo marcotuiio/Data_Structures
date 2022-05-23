@@ -61,7 +61,7 @@ Info getInfo(Node root);
 
 Info searchTree(Node root, double x, double y);
 
-bool removeNode(Tree root, Node node);
+Node removeNode(Tree root, Node node, double x, double y);
 bool marcaRemovido(Tree root, Node node);
 /*
 * Marca como removido o no' n. Caso, apos a remocao, o fator de degradacao
@@ -75,7 +75,6 @@ void reinsert(Tree root, Node valid[15], int ult);
 * nós dela e a organizam, removendo os nós removidos por comandos anteriores
 * e montando uma nova árvore consideravelmente melhor e mais distribuida
 */
-
 
 void printTree(Node root);
 

@@ -12,11 +12,14 @@ system DONE
 basic forms DONE
 read geo DONE
 read qry DONE
+store data on tree DONE
+print svg DONE
 
-need to write on svg
-   - how to get and return all elements in the tree ??
-need to find out how to store data in the tree)
-   - insert function or setChild(left,right,center) ??
+need to:
+   * fix memory leaks in the circle, rect, line and txt structs (IT SHOULD BE WORKING!!!!)
+   * fix deletion function (see if it works)
+   * make fuction to reorganize tree !! important !!
+   * start qry functions
 
 need to fix A LOT of stuff in my ternary tree 
 

@@ -10,7 +10,6 @@ struct nd {
     struct nd *left;
     struct nd *right;
     struct nd *center;
-    struct nd *prev;
     double x, y;
     int crtl;
     bool removed;
@@ -38,7 +37,6 @@ Node createNode(Info value, double x, double y, int ctrl) {
         new_node->left = NULL;
         new_node->right = NULL;
         new_node->center = NULL;
-        new_node->prev = NULL;
         new_node->value = value;
         new_node->x = x;
         new_node->y = y;
@@ -59,17 +57,12 @@ Node insertTree(Tree root, Node node, double x, double y, Info i, int ctrl) {
         if (my_root->root == NULL) {
             my_root->root = my_node;
         }
-        printf("x %lf\n", x);
-        printf("nodeX %lf\n", my_node->x);
         if (my_node) {
             my_root->size++;
             // printf("size %d\n", my_root->size);
             return my_node;
         }
     }
-
-    printf("x %lf\n", x);
-    printf("nodeX %lf\n", my_node->x);
 
     // Se o x é menor que o x da raiz,
     // inserir a esquerda
@@ -164,55 +157,36 @@ Info searchTree(Node root, double x, double y) {
     return (my_node->value);
 }
 
-bool removeNode(Tree root, Node node) {
+Node removeNode(Tree root, Node node, double x, double y) {
     tree_root *my_root = root;
-    tree_node *toRemove = node;
+    tree_node *my_node = node;
 
-    if (searchTree(toRemove, toRemove->x, toRemove->y) == NULL) {
+    if (searchTree(my_node, my_node->x, my_node->y) == NULL) {
         printf("ELEMENTO INEXISTENTE\n");
-        return false;
+        return NULL;
     }
 
     // se o elemento a remover for a raiz, resolvo de cara
-    if (toRemove == my_root->root) {
-        return marcaRemovido(root, toRemove);
+    if (my_node == my_root->root) {
+        marcaRemovido(root, my_node);
+        return NULL;
     }
 
-    // se o elemento for folha so bang
-    if (toRemove->center == NULL && toRemove->left == NULL && toRemove->right == NULL) {
-        if (toRemove->prev->center == toRemove) {
-            toRemove->prev->center = NULL;
+    if (x < my_node->x) {
+        my_node->left = removeNode(my_root, my_node->left, x, y);
+    
+    } else if (x >= my_node->x && y < my_node->y) {
+        my_node->center = removeNode(my_root, my_node->center, x, y);
 
-        } else if (toRemove->prev->left == toRemove) {
-            toRemove->prev->left = NULL;
-
-        } else if (toRemove->prev->right == toRemove) {
-            toRemove->prev->right = NULL;
-        }
-        free(toRemove);
-        return true;
-
-        // se não for folha mas tem garantido um unico filho
-    } else if (toRemove->left != NULL && toRemove->center == NULL && toRemove->right == NULL) {
-        toRemove->prev = toRemove->left;
-        free(toRemove);
-        return true;
-
-    } else if (toRemove->center != NULL && toRemove->left == NULL && toRemove->right == NULL) {
-        toRemove->prev = toRemove->center;
-        free(toRemove);
-        return true;
-
-    } else if (toRemove->right != NULL && toRemove->left == NULL && toRemove->center == NULL) {
-        toRemove->prev = toRemove->right;
-        free(toRemove);
-        return true;
+    } else if (x >= my_node->x && y >= my_node->y) {
+        my_node->right = removeNode(my_root, my_node->right, x, y);
 
         // senão marca removido e organiza depois
     } else {
         // !!!!! implementar limiar e fator degradação !!!!!!
-        return marcaRemovido(root, toRemove);
+        marcaRemovido(root, node);
     }
+    return my_node;
 }
 
 bool marcaRemovido(Tree root, Node node) {
