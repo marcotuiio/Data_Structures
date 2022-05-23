@@ -3,7 +3,7 @@
 void readQry(char *bedQry, char *bsdTxt) {
     FILE *qry = openQry(bedQry);
     FILE *txt = openTxt(bsdTxt);
-    char comando[4];
+    char comando[6];
 
     while(!feof(qry)) {
         fscanf(qry, "%s", comando);
@@ -20,6 +20,7 @@ void readQry(char *bedQry, char *bsdTxt) {
         } else if (strcmp(comando, "be") == 0) {
             be(qry, txt);
         }
+        strcpy(comando, " ");
     }
     fclose(qry);
 }
@@ -99,7 +100,7 @@ void sel(Tree root, Info fig, double x, double y, double w, double h) {
         break;
 
     case 'r':
-        isInsideRect(fig, x, y, w, h);
+        check = isInsideRect(fig, x, y, w, h);
         if (check) {
             // ta dentro
         }
@@ -125,7 +126,7 @@ void sel(Tree root, Info fig, double x, double y, double w, double h) {
     }
 }
 
-bool isInsideCirc(Info circ, x, y, w, h) {
+bool isInsideCirc(Info circ, double x, double y, double w, double h) {
     int idC = getCircID(circ);
     double circX = getCircX(circ);
     double circY = getCircY(circ);
@@ -134,9 +135,6 @@ bool isInsideCirc(Info circ, x, y, w, h) {
     if ((x + w) >= (circX + circRadius) && (x) <= (circX - circRadius)) {
         if ((y + h) >= (circY + circRadius) && (y) <= (circY - circRadius)) {
             if (x <= circX && y <= circY) {
-                insereFim(sC, auxI2);
-                insereFim(g, auxG2);
-
                 return true;
             }
         }
@@ -144,7 +142,7 @@ bool isInsideCirc(Info circ, x, y, w, h) {
     return false;
 }
 
-bool isInsideRect(Info rect, x, y, w, h) {
+bool isInsideRect(Info rect, double x, double y, double w, double h) {
     int idR = getRectID(rect);
     double recX = getRectX(rect);
     double recY = getRectY(rect);
@@ -154,9 +152,6 @@ bool isInsideRect(Info rect, x, y, w, h) {
     if (((x + w) >= (recX + recWidth))) {
         if (((y + h) >= (recY + recHeight))) {
             if (x <= recX && y <= recY) {
-                insereFim(sR, auxI1);
-                insereFim(g, auxG1);
-
                 return true;
             }
         }
@@ -164,7 +159,7 @@ bool isInsideRect(Info rect, x, y, w, h) {
     return false;
 }
 
-bool isInsideLine(Info line, x, y, w, h) {
+bool isInsideLine(Info line, double x, double y, double w, double h) {
     int idL = getLineID(line);
     double linX1 = getLineX(line);
     double linY1 = getLineY(line);
@@ -174,25 +169,19 @@ bool isInsideLine(Info line, x, y, w, h) {
     if ((x + w) >= (linX1) && (y + h) >= (linY1)) {
         if ((x + w) >= (linX2) && (y + h) >= (linY2)) {
             if (x <= linX1 && y <= linY1 && x <= linX2 && y <= linY2) {
-                insereFim(sL, auxI4);
-                insereFim(g, auxG4);
-
                 return true;
             }
         }
     }
     return true;
 }
-bool isInsideText(Info text, x, y, w, h) {
+bool isInsideText(Info text, double x, double y, double w, double h) {
     int idT = getTxtID(text);
     double txtX = getTxtX(text);
     double txtY = getTxtY(text);
 
     if ((x + w) >= (txtX) && (y + h) >= (txtY)) {
         if (x <= txtX && y <= txtY) {
-            insereFim(sT, auxI3);
-            insereFim(g, auxG3);
-
             return true;
         }
     }

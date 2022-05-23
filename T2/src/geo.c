@@ -30,6 +30,7 @@ void readGeo(char *bedGeo, Tree my_tree) {  // FAZER GEO RETORNAR UMA ARVORE ???
             Info text = criaTxt();
             buildText(geo, text, my_tree);
         }
+        strcpy(tipo, " ");
     }
     fclose(geo);
 }

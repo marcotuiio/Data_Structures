@@ -48,9 +48,9 @@ void be(FILE *qry, FILE *txt);
 // devem ser removidas.
 
 void sel(Tree root, Info fig, double x, double y, double w, double h);
-bool isInsideCirc(Info circ, x, y, w, h);
-bool isInsideRect(Info rect, x, y, w, h);
-bool isInsideLine(Info line, x, y, w, h);
-bool isInsideText(Info text, x, y, w, h);
+bool isInsideCirc(Info circ, double x, double y, double w, double h);
+bool isInsideRect(Info rect, double x, double y, double w, double h);
+bool isInsideLine(Info line, double x, double y, double w, double h);
+bool isInsideText(Info text, double x, double y, double w, double h);
 
 #endif
