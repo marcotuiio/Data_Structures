@@ -31,15 +31,11 @@
 */
 
 Tree createTree();
-/*
-* Cria uma árvore vazia e retorna um ponteiro para ela
-*/
+// Cria uma árvore vazia e retorna um ponteiro para ela
 
 Node createNode(Info value, double x, double y, int ctrl);
-/*
-* Insere a informação i, associada à âncora (x,y) na árvore t.
-* Retorna um indicador do nó inserido.
-*/
+// Insere a informação i, associada à âncora (x,y) na árvore t.
+// Retorna um indicador do nó inserido.
 
 Node insertTree(Tree root, Node node, double x, double y, Info i, int ctrl);
 
@@ -62,19 +58,16 @@ Info getInfo(Node root);
 Info searchTree(Node root, double x, double y);
 
 Node removeNode(Tree root, Node node, double x, double y);
-bool marcaRemovido(Tree root, Node node);
-/*
-* Marca como removido o no' n. Caso, apos a remocao, o fator de degradacao
-* superar o limiar definido na criacao, a arvore e' recriada sem os no's delidos.
-*/
+void marcaRemovido(Tree root, Node node);
+// Marca como removido o no' n. Caso, apos a remocao, o fator de degradacao
+// superar o limiar definido na criacao, a arvore e' recriada sem os no's delidos.
 
+bool calcFD(Tree root);
 void fixTree(Tree root);
 void reinsert(Tree root, Node valid[15], int ult);
-/*
-* Funções complemetares que devem receber uma arvóre Xyy, percorrem todos os
-* nós dela e a organizam, removendo os nós removidos por comandos anteriores
-* e montando uma nova árvore consideravelmente melhor e mais distribuida
-*/
+// Funções complemetares que devem receber uma arvóre Xyy, percorrem todos os
+// nós dela e a organizam, removendo os nós removidos por comandos anteriores
+// e montando uma nova árvore consideravelmente melhor e mais distribuida
 
 void printTree(Node root);
 

@@ -45,8 +45,8 @@ void setrectEDGE(Info r, char *new_corb);
 void setrectX(Info r, double dx);
 // translada a coordenada x
 
-void setrectY(Info r, double dy, int n);
-// translada DY vezes N a coordenada y
+void setrectY(Info r, double dy);
+// translada DY a coordenada y
 
 void freeRect(Info r);
 

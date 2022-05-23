@@ -39,14 +39,14 @@ void setlineCOLOR(Info l, char *new_color);
 void setlineX(Info l, double dx);
 //translada em X a coordenada x1
 
-void setlineY(Info l, double dy, int n);
-//translada em DY vezes N a coordenada y1
+void setlineY(Info l, double dy);
+//translada em DY a coordenada y1
 
 void setlineFinalX(Info l, double dx);
 //translada em X a coordenada x2
 
-void setlineFinalY(Info l, double dy, int n);
-//translada em DY vezes N a coordenada y2
+void setlineFinalY(Info l, double dy);
+//translada em DY a coordenada y2
 
 void freeLine(Info l);
 

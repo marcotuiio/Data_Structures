@@ -10,6 +10,7 @@ struct rect {
     double height;
     char corb[15];
     char corp[15];
+    double protec;
 };
 typedef struct rect Retangulo;
 
@@ -31,6 +32,7 @@ void buildRectangle(FILE *geo, Info r, Tree root) {
     fscanf(geo, "%lf", &rectangle->height);
     fscanf(geo, "%s", rectangle->corb);
     fscanf(geo, "%s", rectangle->corp);
+    rectangle->protec = 60.00;
 
     insertTree(root, getRoot(root), rectangle->x, rectangle->y, rectangle, 2);  // rect ctrl = 2;
     
@@ -103,10 +105,10 @@ void setrectX(Info r, double dx) {
     rect->x = getRectX(r) + dx;
 }
 
-void setrectY(Info r, double dy, int n) {
+void setrectY(Info r, double dy) {
     Retangulo *rect = (Retangulo *)r;
 
-    rect->y = getRectY(r) + n * dy;
+    rect->y = getRectY(r) + dy;
 }
 
 void freeRect(Info r) {

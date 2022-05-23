@@ -10,6 +10,7 @@ struct line {
     double x2;
     double y2;
     char color[15];
+    double protec;
 };
 typedef struct line Linha;
 
@@ -30,6 +31,7 @@ void buildLine(FILE *geo, Info l, Tree root) {
     fscanf(geo, "%lf", &line->x2);
     fscanf(geo, "%lf", &line->y2);
     fscanf(geo, "%s", line->color);
+    line->protec = 50.00;
 
     insertTree(root, getRoot(root), line->x1, line->y1, line, 3);  // line ctrl = 3;
     
@@ -90,11 +92,11 @@ void setlineX(Info l, double dx) {
     line->x1 = aux + dx;
 }
 
-void setlineY(Info l, double dy, int n) {
+void setlineY(Info l, double dy) {
     Linha *line = (Linha *)l;
     double aux = getLineY(l);
 
-    line->y1 = aux + n * dy;
+    line->y1 = aux + dy;
 }
 
 void setlineFinalX(Info l, double dx) {
@@ -104,11 +106,11 @@ void setlineFinalX(Info l, double dx) {
     line->x2 = aux + dx;
 }
 
-void setlineFinalY(Info l, double dy, int n) {
+void setlineFinalY(Info l, double dy) {
     Linha *line = (Linha *)l;
     double aux = getLineFINALY(l);
 
-    line->y2 = aux + n * dy;
+    line->y2 = aux + dy;
 }
 
 void freeLine(Info l) {

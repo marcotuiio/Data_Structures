@@ -10,6 +10,7 @@ struct txt {
     char corb[15];
     char anchor[3];
     char text[100];
+    double protec;
 };
 typedef struct txt Texto;
 
@@ -31,6 +32,7 @@ void buildText(FILE *geo, Info t, Tree root) {
     fscanf(geo, "%s", txt->corp);
     fscanf(geo, "%s", txt->anchor);
     fscanf(geo, "%[^\n]", txt->text);
+    txt->protec = 5.00;
 
     insertTree(root, getRoot(root), txt->x, txt->y, txt, 4);  // txt ctrl = 4;
     
@@ -105,10 +107,10 @@ void settxtX(Info t, double dx) {
     txt->x = getTxtX(t) + dx;
 }
 
-void settxtY(Info t, double dy, int n) {
+void settxtY(Info t, double dy) {
     Texto *txt = (Texto *)t;
 
-    txt->y = getTxtY(t) + n * dy;
+    txt->y = getTxtY(t) + dy;
 }
 
 void freeTxt(Info t) {

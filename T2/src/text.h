@@ -50,8 +50,8 @@ void settxtEDGE(Info t, char *new_corb);
 void settxtX(Info t, double dx);
 // translada a coordenada x
 
-void settxtY(Info t, double dy, int n);
-// translada em DY vezes N a coordenada y
+void settxtY(Info t, double dy);
+// translada em DY a coordenada y
 
 void freeTxt(Info t);
 

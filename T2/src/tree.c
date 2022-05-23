@@ -19,6 +19,8 @@ typedef struct nd tree_node;
 struct rt {
     tree_node *root;
     int size;
+    int qntdRemoved;
+    double LIMIAR;
 };
 typedef struct rt tree_root;
 
@@ -26,6 +28,8 @@ Tree createTree() {
     tree_root *new_tree = calloc(1, sizeof(tree_root));
     new_tree->root = NULL;
     new_tree->size = 0;
+    new_tree->qntdRemoved = 0;
+    new_tree->LIMIAR = 0.33;
 
     return new_tree;
 }
@@ -158,10 +162,10 @@ Node removeNode(Tree root, Node node, double x, double y) {
     tree_root *my_root = root;
     tree_node *my_node = node;
 
-    if (searchTree(my_node, my_node->x, my_node->y) == NULL) {
-        printf("ELEMENTO INEXISTENTE\n");
-        return NULL;
-    }
+    // if (searchTree(my_node, my_node->x, my_node->y) == NULL) { // usar dentro das funções do qry
+    //     printf("ELEMENTO INEXISTENTE\n");
+    //     return NULL;
+    // }
 
     // se o elemento a remover for a raiz, resolvo de cara
     if (my_node == my_root->root) {
@@ -178,22 +182,41 @@ Node removeNode(Tree root, Node node, double x, double y) {
     } else if (x >= my_node->x && y >= my_node->y) {
         my_node->right = removeNode(my_root, my_node->right, x, y);
 
-        // senão marca removido e organiza depois
+    // senão marca removido e organiza depois
     } else {
-        // !!!!! implementar limiar e fator degradação !!!!!!
-        marcaRemovido(root, node);
+        // if para remover folha
+        if (my_node->center == NULL && my_node->left == NULL && my_node->right == NULL) {
+            free(my_node);
+        } else {
+            // !!!!! implementar limiar e fator degradação !!!!!!
+            marcaRemovido(root, node);
+            
+        }
     }
     return my_node;
 }
 
-bool marcaRemovido(Tree root, Node node) {
+void marcaRemovido(Tree root, Node node) {
     tree_root *my_root = root;
     tree_node *toRemove = node;
 
     if (toRemove != NULL) {
         // implementar limiar
-        my_root->size--;
         toRemove->removed = true;
+        my_root->qntdRemoved++;
+        if (calcFD(my_root)) {
+            // fix tree 
+            printf("NEED TO FIX TREE");
+        }
+    }
+}
+
+bool calcFD(Tree root) {
+    tree_root *my_root = root;
+
+    double fd = my_root->qntdRemoved / my_root->size;
+
+    if (fd > my_root->LIMIAR) { // precisa refazer a arvore
         return true;
     }
     return false;
@@ -320,23 +343,26 @@ void quicksort(double *arr, int left, int right) {
 }
 
 void freeTree(Node root) {
-    tree_node *my_root = root;
+    tree_node *my_node = root;
     int ctrl;
 
-    if (my_root == NULL) {
+    if (my_node == NULL) {
         return;
     }
-    ctrl = getCtrl(my_root);
+    ctrl = getCtrl(my_node);
     if (ctrl == 1) {
-        freeCirc(my_root->value);
+        freeCirc(my_node->value);
     } else if (ctrl == 2) {
-        freeRect(my_root->value);
+        freeRect(my_node->value);
     } else if (ctrl == 3) {
-        freeLine(my_root->value);
+        freeLine(my_node->value);
     } else if (ctrl == 4) {
-        freeTxt(my_root->value);
+        freeTxt(my_node->value);
     }
-    freeTree(my_root->left);
-    freeTree(my_root->center);
-    freeTree(my_root->right);
+    freeTree(my_node->left);
+    freeTree(my_node->center);
+    freeTree(my_node->right);
+    if (my_node) {
+        free(my_node);
+    }
 }

@@ -9,6 +9,7 @@ struct circ {
     double radius;
     char corp[15];
     char corb[15];
+    double protec;
 };
 typedef struct circ Circulo;
 
@@ -29,6 +30,7 @@ void buildCircle(FILE *geo, Info c, Tree root) {
     fscanf(geo, "%lf", &circle->radius);
     fscanf(geo, "%s", circle->corb);
     fscanf(geo, "%s", circle->corp);
+    circle->protec = 60.00;
 
     insertTree(root, getRoot(root), circle->x, circle->y, circle, 1); //circ ctrl = 1;
     
@@ -94,16 +96,14 @@ void setcircX(Info c, double dx) {
     circ->x = getCircX(c) + dx;
 }
 
-void setcircY(Info c, double dy, int n) {
+void setcircY(Info c, double dy) {
     Circulo *circ = (Circulo *)c;
 
-    circ->y = getCircY(c) + n * dy;
+    circ->y = getCircY(c) + dy;
 }
 
 void freeCirc(Info c) {
     Circulo *circ = c;
 
-    // printf("\nCirc adress %p\n", circ);
     free(circ);
-    // printf("? adress %p\n", circ);
 }

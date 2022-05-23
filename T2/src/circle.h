@@ -42,8 +42,8 @@ void setcircEDGE(Info c, char *new_corb);
 void setcircX(Info c, double dx);
 //transalada a coordenada x
 
-void setcircY(Info c, double dy, int n);
-//translada em DY vezes N a coordenada y
+void setcircY(Info c, double dy);
+//translada em DY a coordenada y
 
 void freeCirc(Info c); 
 
