@@ -34,14 +34,13 @@ void buildText(FILE *geo, Info t, Tree root) {
 
     insertTree(root, getRoot(root), txt->x, txt->y, txt, 4);  // txt ctrl = 4;
     
-    // printf("txtaux %s\n", txt->textaux);
-    // printf("\nid %d\n", txt->id);
-    // printf("x %lf\n", txt->x);
-    // printf("y %lf\n", txt->y);
-    // printf("a %s\n", txt->anchor);
-    // printf("corb %s\n", txt->corb);
-    // printf("corp %s\n", txt->corp);
-    // printf("txt %s\n", txt->text);
+    printf("\nid %d\n", txt->id);
+    printf("x %lf\n", txt->x);
+    printf("y %lf\n", txt->y);
+    printf("a %s\n", txt->anchor);
+    printf("corb %s\n", txt->corb);
+    printf("corp %s\n", txt->corp);
+    printf("txt %s\n", txt->text);
 }
 
 int getTxtID(Info t) {

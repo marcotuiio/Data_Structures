@@ -31,7 +31,7 @@ Tree createTree() {
 }
 
 Node createNode(Info value, double x, double y, int ctrl) {
-    printf("Creating new node\n");
+    // printf("Creating new node\n");
     tree_node *new_node = calloc(1, sizeof(tree_node));
     if (new_node != NULL) {
         new_node->left = NULL;
@@ -47,7 +47,7 @@ Node createNode(Info value, double x, double y, int ctrl) {
 }
 
 Node insertTree(Tree root, Node node, double x, double y, Info i, int ctrl) {
-    printf("Insertion\n");
+    // printf("Insertion\n");
     tree_root *my_root = root;
     tree_node *my_node = node;
 
@@ -67,19 +67,16 @@ Node insertTree(Tree root, Node node, double x, double y, Info i, int ctrl) {
     // Se o x é menor que o x da raiz,
     // inserir a esquerda
     if (x < (my_node->x)) {
-        printf("da esquerda\n");
         my_node->left = insertTree(root, my_node->left, x, y, i, ctrl);
 
         // Se o x é maior igual que o do nó porém o y é menor,
         // inserir no meio
     } else if (x >= (my_node->x) && y < (my_node->y)) {
-        printf("do meio\n");
         my_node->center = insertTree(root, my_node->center, x, y, i, ctrl);
 
         // Se o x é maior igual que o do nó e o y também é maior igual que o do nó,
         // inserir a direita
     } else if (x >= (my_node->x) && y >= (my_node->y)) {
-        printf("da direita\n");
         my_node->right = insertTree(root, my_node->right, x, y, i, ctrl);
     }
     return my_node;

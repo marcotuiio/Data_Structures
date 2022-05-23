@@ -115,13 +115,16 @@ void drawText(FILE *svg, Info txt) {
     } else if (strcmp(aux_anchor, "f") == 0) {
         strcpy(anchor, "end");
     }
-    // printf("\nid %d\n", id);
-    // printf("x %lf\n", x);
-    // printf("y %lf\n", y);
-    // printf("a %s\n", anchor);
-    // printf("corb %s\n", stroke);
-    // printf("corp %s\n", fill);
-    // printf("txt %s\n", text);
+
+    strcpy(text, getTxtTEXT(txt));
+    
+    printf("\nid %d\n", id);
+    printf("x %lf\n", x);
+    printf("y %lf\n", y);
+    printf("a %s\n", anchor);
+    printf("corb %s\n", stroke);
+    printf("corp %s\n", fill);
+    printf("txt %s\n", text);
 
     fprintf(svg, "\t<text id=\"%d\" x=\"%lf\" y=\"%lf\" text-anchor=\"%s\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"60%%\" >%s</text>\n", id, x, y, anchor, stroke, fill, text);
 }

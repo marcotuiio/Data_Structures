@@ -103,7 +103,7 @@ void setcircY(Info c, double dy, int n) {
 void freeCirc(Info c) {
     Circulo *circ = c;
 
-    printf("\nCirc adress %p\n", circ);
+    // printf("\nCirc adress %p\n", circ);
     free(circ);
-    printf("? adress %p\n", circ);
+    // printf("? adress %p\n", circ);
 }
