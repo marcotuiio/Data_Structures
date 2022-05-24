@@ -50,7 +50,7 @@ void setlineFinalY(Info l, double dy);
 
 void freeLine(Info l);
 
-double getLineLenght(Info l);
+double getLineLenght(double x1, double y1, double x2, double y2);
 double sqroot(double num);
 // dada um determinada Linha l, calcula seu comprimento e o retorna
 // no formato de double

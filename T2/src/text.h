@@ -38,9 +38,6 @@ char *getTxtANCHOR(Info t);
 char *getTxtTEXT(Info t);
 // retorna o texto escrito propriamente dito de determinado texto no svg
 
-char *getTxtTEXTAUX(Info t);
-// retorna o texto escrito propriamente dito de determinado texto no svg
-
 void settxtFILL(Info t, char *new_corp);
 // altera a cor de preenchimento
 

@@ -28,8 +28,15 @@ void tp(Tree root, FILE *qry, FILE *txt);
 // Torpedo no ponto (x,y). Remover todas as
 // formas para as quais o ponto (x,y) é interno.
 
-void postOrderTp(Tree t, Node root, double x, double y);
-bool tpCircle(Info circ, double x, double y);
+void postOrderTp(FILE *txt, Tree t, Node root, double x, double y);
+bool tpCirc(FILE *txt, Info circ, double x, double y);
+bool tpRect(FILE *txt, Info rect, double x, double y);
+bool tpLine(FILE *txt, Info line, double x, double y)
+bool tpTxt(FILE *txt, Info text, double x, double y);
+// Funções complementares e auxiliares de TP, para percorrer a árvore
+// Recebem uma figura e as coordenadas do torpedo, 
+// verificam se o torpedo acertou a determinada figura.
+// Retorna verdadeiro se sim.
 
 void tr(FILE *qry, FILE *txt);
 // Torpedo replicante no ponto (x,y). Cria um

@@ -119,15 +119,8 @@ void freeLine(Info l) {
     free(line);
 }
 
-double getLineLenght(Info l) {
-    Linha *line = l;
-    double x1, x2, y1, y2;
+double getLineLenght(double x1, double y1, double x2, double y2) {
     double lenght;
-
-    x1 = getLineX(line);
-    x2 = getLineFINALX(line);
-    y1 = getLineY(line);
-    y2 = getLineFINALY(line);
 
     if (x1 == x2 && y1 != y2) {
         lenght = y2 - y1;
