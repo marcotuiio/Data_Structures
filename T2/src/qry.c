@@ -1,18 +1,24 @@
 #include "qry.h"
 
-void readQry(char *bedQry, char *bsdTxt) {
+#include "circle.h"
+#include "line.h"
+#include "rectangle.h"
+#include "text.h"
+#include "tree.h"
+
+void readQry(Tree root, char *bedQry, char *bsdSvgQry, char *bsdTxt) {
     FILE *qry = openQry(bedQry);
     FILE *txt = openTxt(bsdTxt);
     char comando[6];
 
-    while(!feof(qry)) {
+    while (!feof(qry)) {
         fscanf(qry, "%s", comando);
 
         if (strcmp(comando, "na") == 0) {
             na(qry, txt);
 
         } else if (strcmp(comando, "tp") == 0) {
-            tp(qry, txt);
+            tp(root, qry, txt);
 
         } else if (strcmp(comando, "tr") == 0) {
             tr(qry, txt);
@@ -49,10 +55,9 @@ void na(FILE *qry, FILE *txt) {
     fscanf(qry, "%lf", &v);
 
     fprintf(txt, "\nna %lf \n", v);
-
 }
 
-void tp(FILE *qry, FILE *txt) {
+void tp(Tree root, FILE *qry, FILE *txt) {
     double x, y;
 
     fscanf(qry, "%lf", &x);
@@ -60,6 +65,50 @@ void tp(FILE *qry, FILE *txt) {
 
     fprintf(txt, "tp %lf %lf \n", x, y);
 
+    postOrderTp(root, getRoot(root), x, y);
+}
+
+void postOrderTp(Tree t, Node root, double x, double y) {
+    int ctrl;
+    Info my_info;
+    bool marcador;
+
+    if (root == NULL) {
+        return;
+    }
+
+    postOrderTp(t, getLeft(root), x, y);
+    postOrderTp(t, getCenter(root), x, y);
+    postOrderTp(t, getRight(root), x, y);
+    ctrl = getCtrl(root);
+    my_info = getInfo(root);
+    if (ctrl == 1) {
+        marcador = tpCircle(my_info, x, y);
+        if (marcador) {
+            removeNode(t, root, getTX(root), getTY(root));
+        }
+        
+    } else if (ctrl == 2) {
+    } else if (ctrl == 3) {
+    } else if (ctrl == 4) {
+    }
+}
+
+bool tpCircle(Info circ, double x, double y) {
+    double cx, cy, cr;
+    double x_aux, y_aux, r_aux;
+    cx = getCircX(circ);
+    cy = getCircY(circ);
+    cr = getCircRADIUS(circ);
+
+    x_aux = (x - cx) * (x - cx);
+    y_aux = (y - cy) * (y - cy);
+    r_aux = cr * cr;
+
+    if (x_aux + y_aux <= r_aux) { // Está dentro do circulo
+        return true;
+    }
+    return false;
 }
 
 void tr(FILE *qry, FILE *txt) {
@@ -73,7 +122,6 @@ void tr(FILE *qry, FILE *txt) {
     fscanf(qry, "%d", &id);
 
     fprintf(txt, "tr %lf %lf %lf %lf %d \n", x, y, dx, dy, id);
-
 }
 
 void be(FILE *qry, FILE *txt) {
@@ -92,37 +140,37 @@ void sel(Tree root, Info fig, double x, double y, double w, double h) {
     bool check;
 
     switch (getFigType(fig)) {
-    case 'c':
-        check = isInsideCirc(fig, x, y, w, h);
-        if (check) {
-            // ta dentro
-        }
-        break;
+        case 'c':
+            check = isInsideCirc(fig, x, y, w, h);
+            if (check) {
+                // ta dentro
+            }
+            break;
 
-    case 'r':
-        check = isInsideRect(fig, x, y, w, h);
-        if (check) {
-            // ta dentro
-        }
-        break;
+        case 'r':
+            check = isInsideRect(fig, x, y, w, h);
+            if (check) {
+                // ta dentro
+            }
+            break;
 
-    case 'l':
-        check = isInsideLine(fig, x, y, w, h);
-        if (check) {
-            // ta dentro
-        }
-        break;
-    
-    case 't':
-        check = isInsideText(fig, x, y, w, h);
-        if (check) {
-            // ta dentro
-        }
-        break;
+        case 'l':
+            check = isInsideLine(fig, x, y, w, h);
+            if (check) {
+                // ta dentro
+            }
+            break;
 
-    default:
+        case 't':
+            check = isInsideText(fig, x, y, w, h);
+            if (check) {
+                // ta dentro
+            }
+            break;
 
-        break;
+        default:
+
+            break;
     }
 }
 

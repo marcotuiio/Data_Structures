@@ -8,7 +8,7 @@
 * comando e execução da determinada função
 */
 
-void readQry(char *bedQry, char *bsdTxt);
+void readQry(Tree root, char *bedQry, char* bsdSvgQry, char *bsdTxt);
 // Leitura dos comando e delegação de tarefas para as
 // determinados comandos
 
@@ -24,9 +24,12 @@ void na(FILE *qry, FILE *txt);
 // Atribui o nível de agressividade v (real) às
 // regiões de ataque
 
-void tp(FILE *qry, FILE *txt);
+void tp(Tree root, FILE *qry, FILE *txt);
 // Torpedo no ponto (x,y). Remover todas as
 // formas para as quais o ponto (x,y) é interno.
+
+void postOrderTp(Tree t, Node root, double x, double y);
+bool tpCircle(Info circ, double x, double y);
 
 void tr(FILE *qry, FILE *txt);
 // Torpedo replicante no ponto (x,y). Cria um

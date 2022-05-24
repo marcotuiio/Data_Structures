@@ -104,6 +104,18 @@ Node getCenter(Node root) {
     return my_node->center;
 }
 
+double getTX(Node root) {
+    tree_node *my_node = root;
+
+    return my_node->x;
+}
+
+double getTY(Node root) {
+    tree_node *my_node = root;
+
+    return my_node->y;
+}
+
 int getCtrl(Node root) {
     tree_node *my_node = root;
 
@@ -120,13 +132,6 @@ int getSize(Tree tree) {
     tree_root *my_tree = tree;
 
     return my_tree->size;
-}
-
-void setInfo(Node root, Info i, double x, double y) {
-    tree_node *my_node = root;
-    my_node->value = i;
-    my_node->x = x;
-    my_node->y = y;
 }
 
 Info getInfo(Node root) {

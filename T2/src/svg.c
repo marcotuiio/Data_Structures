@@ -2,7 +2,6 @@
 
 #include "circle.h"
 #include "line.h"
-// #include "qry.h"
 #include "rectangle.h"
 #include "system.h"
 #include "text.h"
@@ -13,12 +12,12 @@ void writeSvg(char *bsdSvg, Tree my_tree) {
     Node my_root = getRoot(my_tree);
     // printf("\n size %d\n", getSize(my_tree));
 
-    postOrder(my_root, svg);
+    postOrderPrint(my_root, svg);
 
     killSvg(svg);
 }
 
-void postOrder(Node root, FILE *svg) {
+void postOrderPrint(Node root, FILE *svg) {
     int ctrl;
     Info my_info;
 
@@ -26,9 +25,9 @@ void postOrder(Node root, FILE *svg) {
         return;
     }
     
-    postOrder(getLeft(root), svg);
-    postOrder(getCenter(root), svg);
-    postOrder(getRight(root), svg);
+    postOrderPrint(getLeft(root), svg);
+    postOrderPrint(getCenter(root), svg);
+    postOrderPrint(getRight(root), svg);
     ctrl = getCtrl(root);
     my_info = getInfo(root);
     if (ctrl == 1) {

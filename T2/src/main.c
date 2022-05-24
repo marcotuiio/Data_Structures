@@ -37,9 +37,9 @@ int main(int argc, char** argv) {
         return 0;  // ERRO!
     }
 
-    // if (checkQRY(my_ctrl)) {
-    //     //executar qry
-    // }
+    if (checkQRY(my_ctrl)) {
+        readQry(my_tree, getBedQry(my_paths), getBsdGeoQrySvg(my_paths), getBsdGeoQryTxt(my_paths));
+    }
 
     freeTree(getRoot(my_tree));
     free(my_tree);

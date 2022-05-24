@@ -40,29 +40,56 @@ Node createNode(Info value, double x, double y, int ctrl);
 Node insertTree(Tree root, Node node, double x, double y, Info i, int ctrl);
 
 Node getLeft(Node root);
+// Recebe um nó de uma árvore e retorna o filho esquerdo desse nó
+// Se o nó recebido for uma folha, retorna nulo
 
 Node getRight(Node root);
+// Recebe um nó de uma árvore e retorna o filho direito desse nó
+// Se o nó recebido for uma folha, retorna nulo
 
 Node getCenter(Node root);
+// Recebe um nó de uma árvore e retorna o filho central desse nó
+// Se o nó recebido for uma folha, retorna nulo
+
+double getTX(Node root);
+// Recebe um nó de uma árvore e retorna o valor de X
+// do respectivo nó
+
+double getTY(Node root);
+// Recebe um nó de uma árvore e retorna o valor de Y
+// do respectivo nó
 
 int getCtrl(Node root);
+// Recebe um nó de uma árvore e retorna o valor da unidade de controle
+// do respectivo nó
 
 Node getRoot(Tree tree);
+// Recebe uma árvore e retorna o nó referente a raiz dessa árvore
 
 int getSize(Tree tree);
-
-void setInfo(Node root, Info i, double x, double y);
+// Recebe uma árvore e retorna a quantidade de elementos que essa aŕvore
+// está armazenando
 
 Info getInfo(Node root);
+// Recebe um nó e retorna a informação armazenada nesse nó
 
 Info searchTree(Node root, double x, double y);
+// Recebe um nó de uma árvore (na primeira chamada esse nó deve ser a raiz), um x
+// e um y a serem procurados na árvore. 
 
 Node removeNode(Tree root, Node node, double x, double y);
+// Recebe a aŕvore e um nó dessa árvore, um x e um y referente ao nó
+// que deve ser deletado da árvore. Se o nó a ser deletado possui mais de um filho, 
+// a função marca removido é ativada
+
 void marcaRemovido(Tree root, Node node);
-// Marca como removido o no' n. Caso, apos a remocao, o fator de degradacao
-// superar o limiar definido na criacao, a arvore e' recriada sem os no's delidos.
+// Marca como removido o nó node. Caso, após a remoção ativa-se a função calcFD e se
+// o fator de degradação superar o limiar definido na criação, a árvore deve ser recriada.
 
 bool calcFD(Tree root);
+// Recebe uma árvore e analisa se o fator de degradação dessa árvore
+// supera o limiar definido na criação. Retorna verdadeiro se supera.
+
 void fixTree(Tree root);
 void reinsert(Tree root, Node valid[15], int ult);
 // Funções complemetares que devem receber uma arvóre Xyy, percorrem todos os
@@ -70,6 +97,8 @@ void reinsert(Tree root, Node valid[15], int ult);
 // e montando uma nova árvore consideravelmente melhor e mais distribuida
 
 void printTree(Node root);
+// Recebe um nó (na primeira chamada esse nó desse ser a raiz da árvore)
+// e percorre todos os nós, imprimindo o endereço de memória que armazenam 
 
 void percursoProfundidadeAux(Node root, char* buffer, int depth);
 void percursoProfundidade(Tree root);
