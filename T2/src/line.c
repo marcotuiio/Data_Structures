@@ -113,6 +113,26 @@ void setlineFinalY(Info l, double dy) {
     line->y2 = aux + dy;
 }
 
+void setProtecLine(Info l, double reduc) {
+    Linha *line = l;
+
+    line->protec = line->protec - reduc;
+}
+
+double getProtecLine(Info l){
+    Linha *line = l;
+
+    return line->protec;
+}
+
+double getLineArea(Info l) {
+    Linha *line = l;
+    double len = getLineLenght(line->x1, line->y1, line->x2, line->y2);
+    
+    double a = 0.1 * len;
+    return a;
+}
+
 void freeLine(Info l) {
     Linha *line = l;
 

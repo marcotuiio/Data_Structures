@@ -48,6 +48,16 @@ void setrectX(Info r, double dx);
 void setrectY(Info r, double dy);
 // translada DY a coordenada y
 
+void setProtecRect(Info r, double reduc);
+// atualiza o nivel de proteção da figuração, dada 
+// uma redução de um ataque
+
+double getProtecRect(Info r);
+// retorna a proteção atual do determinado navio
+
+double getRectArea(Info r);
+// dado um determinado retângulo, retorna a área do mesmo
+
 void freeRect(Info r);
 
 #endif

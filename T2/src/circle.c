@@ -102,6 +102,27 @@ void setcircY(Info c, double dy) {
     circ->y = getCircY(c) + dy;
 }
 
+void setProtecCirc(Info c, double reduc) {
+    Circulo *circ = c;
+
+    circ->protec = circ->protec - reduc;
+}
+
+double getProtecCirc(Info c) {
+    Circulo *circ = c;
+
+    return circ->protec;
+}
+
+double getCircArea(Info c) {
+    Circulo *circ = c;
+    double a, r;
+    r = circ->radius;
+
+    a = pi * r * r;
+    return a;
+}
+
 void freeCirc(Info c) {
     Circulo *circ = c;
 

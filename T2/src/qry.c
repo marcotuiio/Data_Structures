@@ -1,5 +1,6 @@
 #include "qry.h"
 
+#include "svg.h"    
 #include "circle.h"
 #include "line.h"
 #include "rectangle.h"
@@ -9,13 +10,15 @@
 void readQry(Tree root, char *bedQry, char *bsdSvgQry, char *bsdTxt) {
     FILE *qry = openQry(bedQry);
     FILE *txt = openTxt(bsdTxt);
+    FILE *svg = createSvg(bsdSvgQry);
     char comando[6];
+    double v = 0;  // agressividade do ataque
 
     while (!feof(qry)) {
         fscanf(qry, "%s", comando);
 
         if (strcmp(comando, "na") == 0) {
-            na(qry, txt);
+            v = na(qry, txt);
 
         } else if (strcmp(comando, "tp") == 0) {
             tp(root, qry, txt);
@@ -24,11 +27,13 @@ void readQry(Tree root, char *bedQry, char *bsdSvgQry, char *bsdTxt) {
             tr(qry, txt);
 
         } else if (strcmp(comando, "be") == 0) {
-            be(qry, txt);
+            be(root, qry, txt, svg, v);
         }
         strcpy(comando, " ");
     }
     fclose(qry);
+    fclose(txt);
+    killSvg(svg);
 }
 
 FILE *openQry(char *bedQry) {
@@ -40,7 +45,7 @@ FILE *openQry(char *bedQry) {
     return qry;
 }
 
-FILE *OpenTxt(char *bsdTxt) {
+FILE *openTxt(char *bsdTxt) {
     FILE *txt = fopen(bsdTxt, "w");
     if (txt == NULL) {
         printf("ERRO NA CRIAÇÃO DO TXT\n");
@@ -49,12 +54,14 @@ FILE *OpenTxt(char *bsdTxt) {
     return txt;
 }
 
-void na(FILE *qry, FILE *txt) {
+double na(FILE *qry, FILE *txt) {
     double v;
 
     fscanf(qry, "%lf", &v);
 
     fprintf(txt, "\n[*] na %lf \n", v);
+
+    return v;
 }
 
 void tp(Tree root, FILE *qry, FILE *txt) {
@@ -80,6 +87,7 @@ void postOrderTp(FILE *txt, Tree t, Node root, double x, double y) {
     postOrderTp(txt, t, getLeft(root), x, y);
     postOrderTp(txt, t, getCenter(root), x, y);
     postOrderTp(txt, t, getRight(root), x, y);
+
     ctrl = getCtrl(root);
     my_info = getInfo(root);
     if (ctrl == 1) {
@@ -115,8 +123,8 @@ bool tpCirc(FILE *txt, Info circ, double x, double y) {
     y_aux = (y - cy) * (y - cy);
     r_aux = cr * cr;
 
-    if (x_aux + y_aux <= r_aux) { // Está dentro do circulo
-        fprintf(txt, "Acertou Círculo x = %lf, y = %lf, r = %lf\n", cx, cy, cr);
+    if (x_aux + y_aux <= r_aux) {  // Está dentro do circulo
+        fprintf(txt, "Acertou Círculo id = %d, x = %lf, y = %lf, r = %lf\n", getCircID(circ), cx, cy, cr);
         return true;
     }
     return false;
@@ -129,9 +137,9 @@ bool tpRect(FILE *txt, Info rect, double x, double y) {
     h = getRectHEIGHT(rect);
     w = getRectWIDTH(rect);
 
-    if (x >= rx && x <= (rx + w)) {
-        if (y >= ry && y <= (ry + h)){
-            fprintf(txt, "Acertou Retângulo x = %lf, y = %lf, w = %lf, h = %lf\n", rx, ry, w, h);
+    if (x >= rx && x <= (rx + w)) {  // Está dentro do retangulo
+        if (y >= ry && y <= (ry + h)) {
+            fprintf(txt, "Acertou Retângulo id = %d, x = %lf, y = %lf, w = %lf, h = %lf\n", getRectID(rect), rx, ry, w, h);
             return true;
         }
     }
@@ -154,8 +162,8 @@ bool tpLine(FILE *txt, Info line, double x, double y) {
     lenCB = getLineLenght(x, y, lx2, ly2);
     lenAB = getLineLenght(lx1, ly1, lx2, ly2);
 
-    if (lenAC + lenCB == lenAB) {
-        fprintf(txt, "Acertou Linha x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf\n", lx1, ly1, lx2, ly2);
+    if (lenAC + lenCB == lenAB) {  // Está na linha
+        fprintf(txt, "Acertou Linha id = %d, x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf\n", getLineID(line), lx1, ly1, lx2, ly2);
         return true;
     }
     return false;
@@ -166,8 +174,8 @@ bool tpTxt(FILE *txt, Info text, double x, double y) {
     tx = getTxtX(text);
     ty = getTxtY(text);
 
-    if(tx == x && ty == y) {
-        fprintf(txt, "Acertou Texto x = %lf, y %lf, anchor = %s\n", tx, ty, getTxtANCHOR(text));
+    if (tx == x && ty == y) {  // é a própria âncora do texto
+        fprintf(txt, "Acertou Texto id = %d, x = %lf, y %lf, anchor = %s\n", getTxtID(text), tx, ty, getTxtANCHOR(text));
         return true;
     }
     return false;
@@ -186,7 +194,7 @@ void tr(FILE *qry, FILE *txt) {
     fprintf(txt, "\n[*] tr %lf %lf %lf %lf %d \n", x, y, dx, dy, id);
 }
 
-void be(FILE *qry, FILE *txt) {
+void be(Tree root, FILE *qry, FILE *txt, FILE *svg, double v) {
     double x, y, w, h;
 
     fscanf(qry, "%lf", &x);
@@ -195,49 +203,83 @@ void be(FILE *qry, FILE *txt) {
     fscanf(qry, "%lf", &h);
 
     fprintf(txt, "\n[*] be %lf %lf %lf %lf \n", x, y, w, h);
+    fprintf(svg, "<rect x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" fill=\"none\" stroke=\"red\" />\n", x, y, w, h);
+
+    postOrderBe(svg, txt, root, getRoot(root), x, y, w, h, v);
 }
 
-void sel(Tree root, Info fig, double x, double y, double w, double h) {
-    // percorrer toda a arvore
-    bool check;
+double calcReduc(double v, double areaEquip, double areaSel) {
+    double reduc;
+    reduc = v * areaEquip / areaSel;
 
-    switch (getFigType(fig)) {
-        case 'c':
+    return reduc;
+}
+
+double calcSelArea(double x, double y, double w, double h) {
+    double a;
+
+    a = (x + w) * (y + h);
+    return a;
+}
+
+void postOrderBe(FILE *svg, FILE *txt, Tree root, Node node, double x, double y, double w, double h, double v) {
+    bool check;
+    double reduc;
+    double selArea = calcSelArea(x, y, w, h);
+
+    if (!node) {
+        return;
+    }
+
+    postOrderBe(svg, txt, root, getLeft(node), x, y, w, h, v);
+    postOrderBe(svg, txt, root, getCenter(node), x, y, w, h, v);
+    postOrderBe(svg, txt, root, getRight(node), x, y, w, h, v);
+
+    Info fig = getInfo(node);
+    switch (getCtrl(node)) {
+        case 1:
             check = isInsideCirc(fig, x, y, w, h);
             if (check) {
-                // ta dentro
+                reduc = calcReduc(v, getCircArea(fig), selArea);
+                setProtecCirc(fig, reduc);
+                printReducCirc(svg, txt, fig);
             }
             break;
 
-        case 'r':
+        case 2:
             check = isInsideRect(fig, x, y, w, h);
             if (check) {
-                // ta dentro
+                reduc = calcReduc(v, getRectArea(fig), selArea);
+                setProtecRect(fig, reduc);
+                printReducRect(svg, txt, fig);
             }
             break;
 
-        case 'l':
+        case 3:
             check = isInsideLine(fig, x, y, w, h);
             if (check) {
-                // ta dentro
+                reduc = calcReduc(v, getLineArea(fig), selArea);
+                setProtecLine(fig, reduc);
+                printReducLine(svg, txt, fig);
             }
             break;
 
-        case 't':
+        case 4:
             check = isInsideText(fig, x, y, w, h);
             if (check) {
-                // ta dentro
+                reduc = calcReduc(v, 0.1, selArea);
+                setProtecTxt(fig, reduc);
+                printReducText(svg, txt, fig);
             }
             break;
 
         default:
-
+            printf("ERRO!!!!\n");
             break;
     }
 }
 
 bool isInsideCirc(Info circ, double x, double y, double w, double h) {
-    int idC = getCircID(circ);
     double circX = getCircX(circ);
     double circY = getCircY(circ);
     double circRadius = getCircRADIUS(circ);
@@ -252,8 +294,19 @@ bool isInsideCirc(Info circ, double x, double y, double w, double h) {
     return false;
 }
 
+void printReducCirc(FILE *svg, FILE *txt, Info circ) {
+    double r = 1.75;
+    char color[] = "red";
+    fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", getCircX(circ), getCircY(circ), r, color, color);
+    fprintf(txt, "Atingido Círculo id = %d, x = %lf, y = %lf, r = %lf, proteção = %lf ", getCircID(circ), getCircX(circ), getCircY(circ), getCircRADIUS(circ), getProtecCirc(circ));
+    if (getProtecCirc(circ) <= 0) {
+        fprintf(txt, "REMOVIDO\n");
+    } else {
+        fprintf(txt, "\n");
+    }
+}
+
 bool isInsideRect(Info rect, double x, double y, double w, double h) {
-    int idR = getRectID(rect);
     double recX = getRectX(rect);
     double recY = getRectY(rect);
     double recHeight = getRectHEIGHT(rect);
@@ -269,8 +322,19 @@ bool isInsideRect(Info rect, double x, double y, double w, double h) {
     return false;
 }
 
+void printReducRect(FILE *svg, FILE *txt, Info rect) {
+    double r = 1.75;
+    char color[] = "red";
+    fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", getRectX(rect), getRectY(rect), r, color, color);
+    fprintf(txt, "Atingido retângulo id = %d, x = %lf, y = %lf, w = %lf, h = %lf proteção = %lf ", getRectID(rect), getRectX(rect), getRectY(rect), getRectWIDTH(rect), getRectHEIGHT(rect), getProtecRect(rect));
+    if (getProtecRect <= 0) {
+        fprintf(txt, "REMOVIDO\n");
+    } else {
+        fprintf(txt, "\n");
+    }
+}
+
 bool isInsideLine(Info line, double x, double y, double w, double h) {
-    int idL = getLineID(line);
     double linX1 = getLineX(line);
     double linY1 = getLineY(line);
     double linX2 = getLineFINALX(line);
@@ -285,8 +349,20 @@ bool isInsideLine(Info line, double x, double y, double w, double h) {
     }
     return true;
 }
+
+void printReducLine(FILE *svg, FILE *txt, Info line) {
+    double r = 1.75;
+    char color[] = "red";
+    fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", getLineX(line), getLineY(line), r, color, color);
+    fprintf(txt, "Atingido linha id = %d, x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf proteção = %lf ", getLineID(line), getLineX(line), getLineY(line), getLineFINALX(line), getLineFINALY(line), getProtecLine(line));
+    if (getProtecLine(line) <= 0) {
+        fprintf(txt, "REMOVIDO\n");
+    } else {
+        fprintf(txt, "\n");
+    }
+}
+
 bool isInsideText(Info text, double x, double y, double w, double h) {
-    int idT = getTxtID(text);
     double txtX = getTxtX(text);
     double txtY = getTxtY(text);
 
@@ -296,4 +372,16 @@ bool isInsideText(Info text, double x, double y, double w, double h) {
         }
     }
     return false;
+}
+
+void printReducText(FILE *svg, FILE *txt, Info text) {
+    double r = 1.75;
+    char color[] = "red";
+    fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", getTxtX(text), getTxtY(text), r, color, color);
+    fprintf(txt, "Atingido texto id = %d, x = %lf, y = %lf, proteção = %lf ", getTxtID(text), getTxtX(text), getTxtY(text), getProtecTxt(text));
+    if (getProtecTxt(text) <= 0) {
+        fprintf(txt, "REMOVIDO\n");
+    } else {
+        fprintf(txt, "\n");
+    }
 }

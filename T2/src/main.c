@@ -4,6 +4,7 @@
 #include "svg.h"
 #include "system.h"
 #include "tree.h"
+#include "qry.h"
 
 int main(int argc, char** argv) {
     Controller my_ctrl = createController();

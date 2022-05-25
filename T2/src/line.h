@@ -4,49 +4,59 @@
 #define LINE_H
 
 /*
-* Linha é uma forma geometrica básica, com propriedades
-* como x inicial, y inicial, x final, y final e sua cor. Pode 
-* ser desenhado no formato de svg, possuindo assim um x e y no plano
-*/
+ * Linha é uma forma geometrica básica, com propriedades
+ * como x inicial, y inicial, x final, y final e sua cor. Pode
+ * ser desenhado no formato de svg, possuindo assim um x e y no plano
+ */
 
 Info criaLinha();
-//cria uma nova linha para svg
+// cria uma nova linha para svg
 
 void buildLine(FILE *geo, Info l, Tree root);
-//realiza leitura e extração dos dados da linha no .geo
+// realiza leitura e extração dos dados da linha no .geo
 
 int getLineID(Info l);
-//retorna o id de determinada linha
+// retorna o id de determinada linha
 
 double getLineX(Info l);
-//retorna a coordenada x inicial de determinada linha no svg
+// retorna a coordenada x inicial de determinada linha no svg
 
 double getLineY(Info l);
-//retorna a coordenada y inicial de determinada linha no svg
+// retorna a coordenada y inicial de determinada linha no svg
 
 double getLineFINALX(Info l);
-//retorna a coordenada x final de determinada linha no svg
+// retorna a coordenada x final de determinada linha no svg
 
 double getLineFINALY(Info l);
-//retorna a coordenada y final de determinada linha no svg
+// retorna a coordenada y final de determinada linha no svg
 
 char *getLineCOLOR(Info l);
-//retorna a cor de determinada linha no svg
+// retorna a cor de determinada linha no svg
 
 void setlineCOLOR(Info l, char *new_color);
-//altera a cor da linha
+// altera a cor da linha
 
 void setlineX(Info l, double dx);
-//translada em X a coordenada x1
+// translada em X a coordenada x1
 
 void setlineY(Info l, double dy);
-//translada em DY a coordenada y1
+// translada em DY a coordenada y1
 
 void setlineFinalX(Info l, double dx);
-//translada em X a coordenada x2
+// translada em X a coordenada x2
 
 void setlineFinalY(Info l, double dy);
-//translada em DY a coordenada y2
+// translada em DY a coordenada y2
+
+void setProtecLine(Info l, double reduc);
+// atualiza o nivel de proteção da figuração, dada
+// uma redução de um ataque
+
+double getProtecLine(Info l);
+// retorna a proteção atual do determinado navio
+
+double getLineArea(Info l);
+// dada uma determinada linha, retorna a área da mesma
 
 void freeLine(Info l);
 

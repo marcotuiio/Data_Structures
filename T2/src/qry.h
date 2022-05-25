@@ -16,11 +16,11 @@ FILE *openQry(char *bedQry);
 // Deve receber o diretório do arquivo .qry a ser criado
 // Retorna o arquivo .qry criado para leitura
 
-FILE *OpenTxt(char *bsdTxt);
+FILE *openTxt(char *bsdTxt);
 // Deve receber o diretório do arquivo .txt a ser criado
 // Retorna o arquivo .txt criado para registro do histórico solicitado
 
-void na(FILE *qry, FILE *txt);
+double na(FILE *qry, FILE *txt);
 // Atribui o nível de agressividade v (real) às
 // regiões de ataque
 
@@ -31,7 +31,7 @@ void tp(Tree root, FILE *qry, FILE *txt);
 void postOrderTp(FILE *txt, Tree t, Node root, double x, double y);
 bool tpCirc(FILE *txt, Info circ, double x, double y);
 bool tpRect(FILE *txt, Info rect, double x, double y);
-bool tpLine(FILE *txt, Info line, double x, double y)
+bool tpLine(FILE *txt, Info line, double x, double y);
 bool tpTxt(FILE *txt, Info text, double x, double y);
 // Funções complementares e auxiliares de TP, para percorrer a árvore
 // Recebem uma figura e as coordenadas do torpedo, 
@@ -48,7 +48,7 @@ void tr(FILE *qry, FILE *txt);
 // identificador dos clones devem começar no
 // valor id.
 
-void be(FILE *qry, FILE *txt);
+void be(Tree root, FILE *qry, FILE *txt, FILE *svg, double v);
 // Bomba de irradiação atingiu região
 // especificada nos parâmetros.
 // Formas inteiramente contidas na região
@@ -57,10 +57,25 @@ void be(FILE *qry, FILE *txt);
 // Formas cujo nível de proteção atingir 0
 // devem ser removidas.
 
-void sel(Tree root, Info fig, double x, double y, double w, double h);
+double calcReduc(double v, double areaEquip, double areaSel);
+// dado um valor de agressividade (v) para os ataques, a área da figura
+// atingida e a área total do ataque, retorna a redução causada
+
+double calcSelArea(double x, double y, double w, double h);
+// recebe as coordenadas de um ataque e retorna a área do mesmo (retangular)
+
+void postOrderBe(FILE *svg, FILE *txt, Tree root, Info fig, double x, double y, double w, double h, double v);
 bool isInsideCirc(Info circ, double x, double y, double w, double h);
+void printReducCirc(FILE *svg, FILE *txt, Info circ);
 bool isInsideRect(Info rect, double x, double y, double w, double h);
+void printReducRect(FILE *svg, FILE *txt, Info rect);
 bool isInsideLine(Info line, double x, double y, double w, double h);
+void printReducLine(FILE *svg, FILE *txt, Info line);
 bool isInsideText(Info text, double x, double y, double w, double h);
+void printReducText(FILE *svg, FILE *txt, Info text);
+// Funções axiliares e complementares que devem receber uma figura 
+// e coordadenas de uma área retangular atingida por um ataque, 
+// retornando verdadeiro se a figura está dentro da area em questão
+// Também realizam a atualização do histórico no arq txt de saída
 
 #endif

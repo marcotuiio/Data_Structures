@@ -50,6 +50,13 @@ void settxtX(Info t, double dx);
 void settxtY(Info t, double dy);
 // translada em DY a coordenada y
 
+void setProtecTxt(Info t, double reduc);
+// atualiza o nivel de proteção da figuração, dada 
+// uma redução de um ataque
+
+double getProtecTxt(Info t);
+// retorna a proteção atual do determinado navio
+
 void freeTxt(Info t);
 
 #endif

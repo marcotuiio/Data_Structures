@@ -113,6 +113,18 @@ void settxtY(Info t, double dy) {
     txt->y = getTxtY(t) + dy;
 }
 
+void setProtecTxt(Info t, double reduc) {
+    Texto *txt = t;
+
+    txt->protec = txt->protec - reduc;
+}
+
+double getProtecTxt(Info t) {
+    Texto *txt = t;
+
+    return txt->protec;
+}
+
 void freeTxt(Info t) {
     Texto *txt = t;
 

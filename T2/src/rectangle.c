@@ -111,6 +111,26 @@ void setrectY(Info r, double dy) {
     rect->y = getRectY(r) + dy;
 }
 
+void setProtecRect(Info r, double reduc) {
+    Retangulo *rect = r;
+
+    rect->protec = rect->protec - reduc;
+}
+
+double getProtecRect(Info r) {
+    Retangulo *rect = r;
+
+    return rect->protec;
+}
+
+double getRectArea(Info r) {
+    Retangulo *rect = r;
+    double a;
+
+    a = (rect->x + rect->width) * (rect->y * rect->height);
+    return a;
+}
+
 void freeRect(Info r) {
     Retangulo *rect = r;
 
