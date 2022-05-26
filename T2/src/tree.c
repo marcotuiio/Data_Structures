@@ -179,12 +179,12 @@ Node removeNode(Tree root, Node node, double x, double y) {
     } else if (x >= my_node->x && y < my_node->y) {
         my_node->center = removeNode(my_root, my_node->center, x, y);
 
-    } else if (x >= my_node->x && y >= my_node->y) {
+    } else if (x >= my_node->x && y > my_node->y) {
         my_node->right = removeNode(my_root, my_node->right, x, y);
 
     // senão marca removido e organiza depois
-    } else {
-        marcaRemovido(root, node); 
+    } else if(x == my_node->x && y == my_node->y){
+        marcaRemovido(root, my_node); 
         // if para remover folha
         // if (my_node->center == NULL && my_node->left == NULL && my_node->right == NULL) {
         //     free(my_node);
@@ -199,11 +199,11 @@ Node removeNode(Tree root, Node node, double x, double y) {
 bool getRemovedStatus(Node root) {
     tree_node *my_node = root;
 
-    if(my_node->removed) {
-        printf("TRUE\n");
-    } else {
-        printf("FALSE\n");
-    }
+    // if(my_node->removed) {
+    //     printf("TRUE\n");
+    // } else {
+    //     printf("FALSE\n");
+    // }
     return my_node->removed;
 }
 

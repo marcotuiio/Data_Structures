@@ -297,11 +297,11 @@ bool isInsideCirc(Info circ, double x, double y, double w, double h) {
 }
 
 void printReducCirc(FILE *svg, FILE *txt, Info circ, Tree root, Node node) {
-    // printf("Teste de circ\n");
     double r = 1.75;
     char color[] = "red";
     fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", getCircX(circ), getCircY(circ), r, color, color);
     fprintf(txt, "Atingido Círculo id = %d, x = %lf, y = %lf, r = %lf, proteção = %lf ", getCircID(circ), getCircX(circ), getCircY(circ), getCircRADIUS(circ), getProtecCirc(circ));
+    // printf("protec c %lf\n", getProtecCirc(circ));
     if (getProtecCirc(circ) <= 0) {
         removeNode(root, getRoot(root), getTX(node), getTY(node));
         fprintf(txt, "REMOVIDO\n");
@@ -327,12 +327,12 @@ bool isInsideRect(Info rect, double x, double y, double w, double h) {
 }
 
 void printReducRect(FILE *svg, FILE *txt, Info rect, Tree root, Node node) {
-    // printf("Teste de rect\n");
     double r = 1.75;
     char color[] = "red";
     fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", getRectX(rect), getRectY(rect), r, color, color);
     fprintf(txt, "Atingido retângulo id = %d, x = %lf, y = %lf, w = %lf, h = %lf proteção = %lf ", getRectID(rect), getRectX(rect), getRectY(rect), getRectWIDTH(rect), getRectHEIGHT(rect), getProtecRect(rect));
-    if (getProtecRect <= 0) {
+    // printf("protec r %lf\n", getProtecRect(rect));
+    if (getProtecRect(rect) <= 0) {
         removeNode(root, getRoot(root), getTX(node), getTY(node));
         fprintf(txt, "REMOVIDO\n");
     } else {
@@ -357,11 +357,11 @@ bool isInsideLine(Info line, double x, double y, double w, double h) {
 }
 
 void printReducLine(FILE *svg, FILE *txt, Info line, Tree root, Node node) {
-    // printf("Teste de linha\n");
     double r = 1.75;
     char color[] = "red";
     fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", getLineX(line), getLineY(line), r, color, color);
     fprintf(txt, "Atingido linha id = %d, x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf proteção = %lf ", getLineID(line), getLineX(line), getLineY(line), getLineFINALX(line), getLineFINALY(line), getProtecLine(line));
+    // printf("protec l %lf\n", getProtecLine(line));
     if (getProtecLine(line) <= 0) {
         removeNode(root, getRoot(root), getTX(node), getTY(node));
         fprintf(txt, "REMOVIDO\n");
@@ -383,11 +383,11 @@ bool isInsideText(Info text, double x, double y, double w, double h) {
 }
 
 void printReducText(FILE *svg, FILE *txt, Info text, Tree root, Node node) {
-    // printf("Teste de texto\n");
     double r = 1.75;
     char color[] = "red";
     fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", getTxtX(text), getTxtY(text), r, color, color);
     fprintf(txt, "Atingido texto id = %d, x = %lf, y = %lf, proteção = %lf ", getTxtID(text), getTxtX(text), getTxtY(text), getProtecTxt(text));
+    // printf("protec t %lf\n", getProtecTxt(text));
     if (getProtecTxt(text) <= 0) {
         removeNode(root, getRoot(root), getTX(node), getTY(node));
         fprintf(txt, "REMOVIDO\n");
