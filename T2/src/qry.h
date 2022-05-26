@@ -66,13 +66,13 @@ double calcSelArea(double x, double y, double w, double h);
 
 void postOrderBe(FILE *svg, FILE *txt, Tree root, Info fig, double x, double y, double w, double h, double v);
 bool isInsideCirc(Info circ, double x, double y, double w, double h);
-void printReducCirc(FILE *svg, FILE *txt, Info circ);
+void printReducCirc(FILE *svg, FILE *txt, Info circ, Tree root, Node node);
 bool isInsideRect(Info rect, double x, double y, double w, double h);
-void printReducRect(FILE *svg, FILE *txt, Info rect);
+void printReducRect(FILE *svg, FILE *txt, Info rect, Tree root, Node node);
 bool isInsideLine(Info line, double x, double y, double w, double h);
-void printReducLine(FILE *svg, FILE *txt, Info line);
+void printReducLine(FILE *svg, FILE *txt, Info line, Tree root, Node node);
 bool isInsideText(Info text, double x, double y, double w, double h);
-void printReducText(FILE *svg, FILE *txt, Info text);
+void printReducText(FILE *svg, FILE *txt, Info text, Tree root, Node node);
 // Funções axiliares e complementares que devem receber uma figura 
 // e coordadenas de uma área retangular atingida por um ataque, 
 // retornando verdadeiro se a figura está dentro da area em questão

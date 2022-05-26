@@ -74,7 +74,7 @@ void removeNode(Tree node) {
 
         } 
 
-    } else if (toRemove->left != NULL && toRemove->center == NULL && toRemove->right == NULL) {  // só tem o filho da esquerda
+    } else if (toRemove->left != NULL && toRemove->right == NULL) {  // só tem o filho da esquerda
         if (toRemove->prev->right == toRemove) {
             toRemove->prev->right = toRemove->left;
 

@@ -82,6 +82,9 @@ Node removeNode(Tree root, Node node, double x, double y);
 // que deve ser deletado da árvore. Se o nó a ser deletado possui mais de um filho, 
 // a função marca removido é ativada
 
+bool getRemovedStatus(Node root);
+// Recebe um nó e retorna o status de remoção do respectivo nó
+
 void marcaRemovido(Tree root, Node node);
 // Marca como removido o nó node. Caso, após a remoção ativa-se a função calcFD e se
 // o fator de degradação superar o limiar definido na criação, a árvore deve ser recriada.
@@ -90,8 +93,8 @@ bool calcFD(Tree root);
 // Recebe uma árvore e analisa se o fator de degradação dessa árvore
 // supera o limiar definido na criação. Retorna verdadeiro se supera.
 
-void fixTree(Tree root);
-void reinsert(Tree root, Node valid[15], int ult);
+// void fixTree(Tree root);
+// void reinsert(Tree root, Node valid[15], int ult);
 // Funções complemetares que devem receber uma arvóre Xyy, percorrem todos os
 // nós dela e a organizam, removendo os nós removidos por comandos anteriores
 // e montando uma nova árvore consideravelmente melhor e mais distribuida

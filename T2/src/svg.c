@@ -12,35 +12,37 @@ void writeSvg(char *bsdSvg, Tree my_tree) {
     Node my_root = getRoot(my_tree);
     // printf("\n size %d\n", getSize(my_tree));
 
-    postOrderPrint(my_root, svg);
+    postOrderSVG(my_root, svg);
 
     killSvg(svg);
 }
 
-void postOrderPrint(Node root, FILE *svg) {
+void postOrderSVG(Node root, FILE *svg) {
     int ctrl;
     Info my_info;
 
     if (root == NULL) {
         return;
     }
-    
-    postOrderPrint(getLeft(root), svg);
-    postOrderPrint(getCenter(root), svg);
-    postOrderPrint(getRight(root), svg);
+
+    postOrderSVG(getLeft(root), svg);
+    postOrderSVG(getCenter(root), svg);
+    postOrderSVG(getRight(root), svg);
     ctrl = getCtrl(root);
     my_info = getInfo(root);
-    if (ctrl == 1) {
-        drawCircle(svg, my_info);
+    if (getRemovedStatus(root) == false) {
+        if (ctrl == 1) {
+            drawCircle(svg, my_info);
 
-    } else if (ctrl == 2) {
-        drawRectangle(svg, my_info);
+        } else if (ctrl == 2) {
+            drawRectangle(svg, my_info);
 
-    } else if (ctrl == 3) {
-        drawLine(svg, my_info);
+        } else if (ctrl == 3) {
+            drawLine(svg, my_info);
 
-    } else if (ctrl == 4) {
-        drawText(svg, my_info);
+        } else if (ctrl == 4) {
+            drawText(svg, my_info);
+        }
     }
 }
 
@@ -116,7 +118,7 @@ void drawText(FILE *svg, Info txt) {
     }
 
     strcpy(text, getTxtTEXT(txt));
-    
+
     // printf("\nid %d\n", id);
     // printf("x %lf\n", x);
     // printf("y %lf\n", y);

@@ -167,11 +167,6 @@ Node removeNode(Tree root, Node node, double x, double y) {
     tree_root *my_root = root;
     tree_node *my_node = node;
 
-    // if (searchTree(my_node, my_node->x, my_node->y) == NULL) { // usar dentro das funções do qry
-    //     printf("ELEMENTO INEXISTENTE\n");
-    //     return NULL;
-    // }
-
     // se o elemento a remover for a raiz, resolvo de cara
     if (my_node == my_root->root) {
         marcaRemovido(root, my_node);
@@ -189,16 +184,27 @@ Node removeNode(Tree root, Node node, double x, double y) {
 
     // senão marca removido e organiza depois
     } else {
+        marcaRemovido(root, node); 
         // if para remover folha
-        if (my_node->center == NULL && my_node->left == NULL && my_node->right == NULL) {
-            free(my_node);
-        } else {
-            // !!!!! implementar limiar e fator degradação !!!!!!
-            marcaRemovido(root, node);
-            
-        }
+        // if (my_node->center == NULL && my_node->left == NULL && my_node->right == NULL) {
+        //     free(my_node);
+        //     // printf("%p\n", my_node);
+        // } else {
+        //     marcaRemovido(root, node); 
+        // }
     }
     return my_node;
+}
+
+bool getRemovedStatus(Node root) {
+    tree_node *my_node = root;
+
+    if(my_node->removed) {
+        printf("TRUE\n");
+    } else {
+        printf("FALSE\n");
+    }
+    return my_node->removed;
 }
 
 void marcaRemovido(Tree root, Node node) {
@@ -206,7 +212,6 @@ void marcaRemovido(Tree root, Node node) {
     tree_node *toRemove = node;
 
     if (toRemove != NULL) {
-        // implementar limiar
         toRemove->removed = true;
         my_root->qntdRemoved++;
         if (calcFD(my_root)) {
@@ -221,52 +226,52 @@ bool calcFD(Tree root) {
 
     double fd = my_root->qntdRemoved / my_root->size;
 
-    if (fd > my_root->LIMIAR) { // precisa refazer a arvore
+    if (fd >= my_root->LIMIAR) { // precisa refazer a arvore
         return true;
     }
     return false;
 }
 
-void fixTree(Tree root) {
-    tree_root *my_root = root;
-    tree_node *my_node = my_root->root;
+// void fixTree(Tree root) {
+//     tree_root *my_root = root;
+//     tree_node *my_node = my_root->root;
 
-    Node valid[15];
-    int ult = -1;
+//     Node valid[15];
+//     int ult = -1;
 
-    while (my_node) {
-        if (my_node->removed) {
-            ult++;
-            valid[ult] = my_node;
-        }
+//     while (my_node) {
+//         if (my_node->removed) {
+//             ult++;
+//             valid[ult] = my_node;
+//         }
 
-        if (my_node->left) {
-            my_node = my_node->left;
-        } else if (my_node->center) {
-            my_node = my_node->center;
-        } else if (my_node->right) {
-            my_node = my_node->right;
-        } else {
-            break;
-        }
+//         if (my_node->left) {
+//             my_node = my_node->left;
+//         } else if (my_node->center) {
+//             my_node = my_node->center;
+//         } else if (my_node->right) {
+//             my_node = my_node->right;
+//         } else {
+//             break;
+//         }
 
-        if (ult >= 14) {
-            reinsert(root, valid, ult);
-            ult = -1;
-        }
-    }
+//         if (ult >= 14) {
+//             reinsert(root, valid, ult);
+//             ult = -1;
+//         }
+//     }
 
-    if (ult >= 0) {
-        reinsert(root, valid, ult);
-    }
-}
+//     if (ult >= 0) {
+//         reinsert(root, valid, ult);
+//     }
+// }
 
-void reinsert(Tree root, Node valid[15], int ult) {
-    // Node ndMeio = no' que esta' na metade do vetor;
-    // insereXyyT(t, getX(ndMeio), getY(ndMeio), getInfo(ndMeio);
-    // Invoca recursivamente reinsere na metade esquerda de nos validos;
-    // Invoca recursivamente reinsere na metade direito do vetor
-}
+// void reinsert(Tree root, Node valid[15], int ult) {
+//     // Node ndMeio = no' que esta' na metade do vetor;
+//     // insereXyyT(t, getX(ndMeio), getY(ndMeio), getInfo(ndMeio);
+//     // Invoca recursivamente reinsere na metade esquerda de nos validos;
+//     // Invoca recursivamente reinsere na metade direito do vetor
+// }
 
 void printTree(Node root) {
     tree_node *my_root = root;

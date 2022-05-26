@@ -16,6 +16,8 @@ store data on tree DONE
 print svg DONE
 fix mem leaks DONE
 
+ARQUIVOS QUE NAO RODAM: 01-int-25, esquadra-alet-25, esquadra-grande-compacta
+
 need to:
    * make fuction to reorganize tree !! important !!
    * start qry functions

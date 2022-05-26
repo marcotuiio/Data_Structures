@@ -15,7 +15,7 @@ void writeSvg(char *bsdSvg, Tree my_tree);
 // Deve receber as estruturas que armazenam as formas lidas no geo, o aqruivo svg adequado
 // e a informação se existe ou não um arquivo de consulta qry.
 
-void postOrderPrint(Node root, FILE *svg);
+void postOrderSVG(Node root, FILE *svg);
 // Deve receber a raiz da árvore e o aqr svg 
 // Percorre todos os elementos e vai delegando funções corretas
 // para extrair dados dos nós e, consequentemente, escrever no svg
