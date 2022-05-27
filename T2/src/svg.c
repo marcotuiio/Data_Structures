@@ -18,7 +18,6 @@ void writeSvg(char *bsdSvg, Tree my_tree) {
 }
 
 void postOrderSVG(Node root, FILE *svg) {
-    int ctrl;
     Info my_info;
 
     if (root == NULL) {
@@ -28,23 +27,27 @@ void postOrderSVG(Node root, FILE *svg) {
     postOrderSVG(getLeft(root), svg);
     postOrderSVG(getCenter(root), svg);
     postOrderSVG(getRight(root), svg);
-    ctrl = getCtrl(root);
     my_info = getInfo(root);
+
     if (!getRemovedStatus(root)) {
-        if (ctrl == 1) {
-            drawCircle(svg, my_info);
 
-        } else if (ctrl == 2) {
-            drawRectangle(svg, my_info);
+        switch (getCtrl(root)) {
+            case 1:
+                drawCircle(svg, my_info);
+                break;
+            case 2:
+                drawRectangle(svg, my_info);
+                break;
+            case 3:
+                drawLine(svg, my_info);
+                break;
+            case 4:
+                drawText(svg, my_info);
+                break;
 
-        } else if (ctrl == 3) {
-            drawLine(svg, my_info);
-
-        } else if (ctrl == 4) {
-            drawText(svg, my_info);
+            default:
+                break;
         }
-    // } else {
-    //     // printf("FREED %p\n", root);
     }
 }
 
