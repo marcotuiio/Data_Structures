@@ -92,16 +92,20 @@ void postOrderTp(FILE *svg, FILE *txt, Tree t, Node root, double x, double y) {
     my_info = getInfo(root);
 
     if (!getRemovedStatus(root)) {
+
         switch (getCtrl(root)) {
             case 1:
                 marcador = tpCirc(txt, my_info, x, y);
                 break;
+
             case 2:
                 marcador = tpRect(txt, my_info, x, y);
                 break;
+
             case 3:
                 marcador = tpLine(txt, my_info, x, y);
                 break;
+
             case 4:
                 marcador = tpTxt(txt, my_info, x, y);
                 break;
@@ -115,6 +119,7 @@ void postOrderTp(FILE *svg, FILE *txt, Tree t, Node root, double x, double y) {
     // ou escrever um asterisco cinza em x, y se errou
     if (marcador) {
         removeNode(t, getRoot(t), getTX(root), getTY(root));
+        printf("entrei\n");
         fprintf(svg, "<text x=\"%lf\" y=\"%lf\" stroke=\"red\" fill=\"red\">*</text>\n", x, y);
     } else {
         fprintf(txt, "ÁGUA\n");

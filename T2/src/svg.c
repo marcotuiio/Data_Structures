@@ -35,12 +35,15 @@ void postOrderSVG(Node root, FILE *svg) {
             case 1:
                 drawCircle(svg, my_info);
                 break;
+
             case 2:
                 drawRectangle(svg, my_info);
                 break;
+
             case 3:
                 drawLine(svg, my_info);
                 break;
+
             case 4:
                 drawText(svg, my_info);
                 break;
@@ -48,7 +51,10 @@ void postOrderSVG(Node root, FILE *svg) {
             default:
                 break;
         }
+    } else {
+        printf("\n--- REMOVED %p ---\n", root);
     }
+    return;
 }
 
 void drawCircle(FILE *svg, Info circ) {

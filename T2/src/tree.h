@@ -108,6 +108,13 @@ void percursoProfundidade(Tree root);
 // Funções complementares, que percorrem a árvore em profundidade,
 // começando por um indice 0;
 
+// percurso em largura
+void printLevelOrder(Node root);
+void printGivenLevel(Node root, int level);
+int height(Node root);
+// funcções complementaras que dada uma árvore, 
+// imprimem os nós em nível, começando por um indice 0;
+
 void quicksort (double *arr, int left, int right);
 // Recebe um vetor de informações arr, a posição do primeiro elemento
 // e a posição do ultimo elemento

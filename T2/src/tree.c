@@ -184,6 +184,7 @@ Node removeNode(Tree root, Node node, double x, double y) {
 
     // senão marca removido e organiza depois
     } else if(x == my_node->x && y == my_node->y){
+        printf("Removing node\n");
         marcaRemovido(root, my_node); 
         // if para remover folha
         // if (my_node->center == NULL && my_node->left == NULL && my_node->right == NULL) {
@@ -200,7 +201,7 @@ bool getRemovedStatus(Node root) {
     tree_node *my_node = root;
 
     if(my_node->removed) {
-        // printf("TRUE %p\n", my_node);
+        printf("TRUE %p\n", my_node);
     } 
     return my_node->removed;
 }
@@ -211,7 +212,7 @@ void marcaRemovido(Tree root, Node node) {
 
     if (toRemove != NULL) {
         toRemove->removed = true;
-        // printf("elemento removido %p\n", toRemove);
+        printf("elemento removido %p\n", toRemove);
         my_root->qntdRemoved++;
         if (calcFD(my_root)) {
             // fix tree 
@@ -317,6 +318,53 @@ void percursoProfundidade(Tree root) {
 
     char buffer[200];
     percursoProfundidadeAux(my_root, buffer, 0);
+}
+
+void printLevelOrder(Node root) {
+    tree_node *my_root = root;
+
+    if (my_root == NULL) {
+        printf("EMPTY TREE\n");
+        return;
+    }
+
+    int maxLevel = height(my_root);
+    int i;
+    for (i = 1; i <= maxLevel; i++) {
+        printGivenLevel(my_root, i);
+    }
+}
+
+void printGivenLevel(Node root, int level) {
+    tree_node *my_root = root;
+
+    if (my_root == NULL) {
+        return;
+    }
+    if (level == 1) {
+        printf("%p ", my_root->value);
+    } else if (level > 1) {
+        printGivenLevel(my_root->left, level - 1);
+        printGivenLevel(my_root->center, level - 1);
+        printGivenLevel(my_root->right, level - 1);
+    }
+}
+
+int height(Node root) {
+    tree_node *my_root = root;
+
+    if (root == NULL) {
+        return 0;
+    }
+
+    int lheight = height(my_root->left);
+    int rheight = height(my_root->right);
+
+    if (lheight > rheight) {
+        return (lheight + 1);
+    } else {
+        return (rheight + 1);
+    }
 }
 
 void quicksort(double *arr, int left, int right) {
