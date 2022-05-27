@@ -17,6 +17,10 @@ Info criaTxt();
 void buildText(FILE *geo, Info t, Tree root);
 // realiza leitura e extração dos dados do texto no .geo
 
+void replicateTxt(Tree t, Info base_t, Info new_t, double dx, double dy, int id, FILE *txt);
+// dados um texto base, um no texto e um deslocamento, define as coordenadas do novo texto
+// e o inseri na árvore
+
 int getTxtID(Info t);
 // retorna o id de determinado texto
 
@@ -37,18 +41,6 @@ char *getTxtANCHOR(Info t);
 
 char *getTxtTEXT(Info t);
 // retorna o texto escrito propriamente dito de determinado texto no svg
-
-void settxtFILL(Info t, char *new_corp);
-// altera a cor de preenchimento
-
-void settxtEDGE(Info t, char *new_corb);
-// altara a cor da borda
-
-void settxtX(Info t, double dx);
-// translada a coordenada x
-
-void settxtY(Info t, double dy);
-// translada em DY a coordenada y
 
 void setProtecTxt(Info t, double reduc);
 // atualiza o nivel de proteção da figuração, dada 

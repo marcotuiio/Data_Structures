@@ -45,6 +45,25 @@ void buildRectangle(FILE *geo, Info r, Tree root) {
     // printf("corp %s\n", rectangle->corp);
 }
 
+void replicateRect(Tree t, Info base_r, Info new_r, double dx, double dy, int id, FILE *txt) {
+    Retangulo *rectangle = base_r;
+    Retangulo *new_rectangle = new_r;
+
+    new_rectangle->id = id;
+    new_rectangle->x = rectangle->x + dx;
+    new_rectangle->y = rectangle->y + dy;
+    new_rectangle->width = rectangle->width;
+    new_rectangle->height = rectangle->height;
+    strcpy(new_rectangle->corb, rectangle->corp);
+    strcpy(new_rectangle->corp, rectangle->corb);
+    new_rectangle->protec = 60.00;
+
+    insertTree(t, getRoot(t), new_rectangle->x, new_rectangle->y, new_rectangle, 2);
+    
+    fprintf(txt, "Retangulo Base id = %d, x = %lf, y = %lf, w = %lf, h = %lf, corb = %s, corp = %s\n", rectangle->id, rectangle->x, rectangle->y, rectangle->width, rectangle->height, rectangle->corb, rectangle->corp);
+    fprintf(txt, "Retangulo Replicado id = %d, x = %lf, y = %lf, w = %lf, h = %lf, corb = %s, corp = %s\n", new_rectangle->id, new_rectangle->x, new_rectangle->y, new_rectangle->width, new_rectangle->height, new_rectangle->corb, new_rectangle->corp);
+}
+
 int getRectID(Info r) {
     Retangulo *rect = (Retangulo *)r;
 
@@ -87,30 +106,6 @@ char *getRectEDGE(Info r) {
     return rect->corb;
 }
 
-void setrectFILL(Info r, char *new_corp) {
-    Retangulo *rect = (Retangulo *)r;
-
-    strcpy(rect->corp, new_corp);
-}
-
-void setrectEDGE(Info r, char *new_corb) {
-    Retangulo *rect = (Retangulo *)r;
-
-    strcpy(rect->corb, new_corb);
-}
-
-void setrectX(Info r, double dx) {
-    Retangulo *rect = (Retangulo *)r;
-
-    rect->x = getRectX(r) + dx;
-}
-
-void setrectY(Info r, double dy) {
-    Retangulo *rect = (Retangulo *)r;
-
-    rect->y = getRectY(r) + dy;
-}
-
 void setProtecRect(Info r, double reduc) {
     Retangulo *rect = r;
 
@@ -125,9 +120,11 @@ double getProtecRect(Info r) {
 
 double getRectArea(Info r) {
     Retangulo *rect = r;
-    double a;
+    double a, width, height;
+    width = rect->x + rect->width;
+    height = rect->y + rect->height;
 
-    a = (rect->x + rect->width) * (rect->y * rect->height);
+    a = width * height;
     return a;
 }
 

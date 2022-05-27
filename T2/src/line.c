@@ -43,6 +43,24 @@ void buildLine(FILE *geo, Info l, Tree root) {
     // printf("corb %s\n", line->color);
 }
 
+void replicateLine(Tree t, Info base_l, Info new_l, double dx, double dy, int id, FILE *txt) {
+    Linha *line = base_l;
+    Linha *new_line = new_l;
+
+    new_line->id = id;
+    new_line->x1 = line->x1 + dx;
+    new_line->y1 = line->y1 + dy;
+    new_line->x2 = line->x2 + dx;
+    new_line->y2 = line->y2 + dy;
+    strcpy(new_line->color, line->color);
+    new_line->protec = 50.00;
+
+    insertTree(t, getRoot(t), new_line->x1, new_line->y1, new_line, 3);
+    
+    fprintf(txt, "Linha Base id = %d, x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf, cor = %s\n", line->id, line->x1, line->y1, line->x2, line->y2, line->color);
+    fprintf(txt, "Linha Replicada id = %d, x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf, cor = %s\n", new_line->id, new_line->x1, new_line->y1, new_line->x2, new_line->y2, new_line->color);
+}
+
 int getLineID(Info l) {
     Linha *line = (Linha *)l;
 
@@ -77,40 +95,6 @@ char *getLineCOLOR(Info l) {
     Linha *line = (Linha *)l;
 
     return line->color;
-}
-
-void setlineCOLOR(Info l, char *new_color) {
-    Linha *line = (Linha *)l;
-
-    strcpy(line->color, new_color);
-}
-
-void setlineX(Info l, double dx) {
-    Linha *line = (Linha *)l;
-    double aux = getLineY(l);
-
-    line->x1 = aux + dx;
-}
-
-void setlineY(Info l, double dy) {
-    Linha *line = (Linha *)l;
-    double aux = getLineY(l);
-
-    line->y1 = aux + dy;
-}
-
-void setlineFinalX(Info l, double dx) {
-    Linha *line = (Linha *)l;
-    double aux = getLineFINALX(l);
-
-    line->x2 = aux + dx;
-}
-
-void setlineFinalY(Info l, double dy) {
-    Linha *line = (Linha *)l;
-    double aux = getLineFINALY(l);
-
-    line->y2 = aux + dy;
 }
 
 void setProtecLine(Info l, double reduc) {

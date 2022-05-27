@@ -17,6 +17,10 @@ Info criaCirc();
 void buildCircle(FILE *geo, Info c, Tree root);
 // realiza leitura e extração dos dados do círculo no .geo
 
+void replicateCirc(Tree t, Info base_c, Info new_c, double dx, double dy, int id, FILE *txt);
+// dado um circulo, um novo circulo e um deslocamento, define as coordenadas do novo círculo
+// e insere na árvore
+
 int getCircID(Info c);
 // retorna o id de determinado círculo
 
@@ -34,18 +38,6 @@ char *getCircFILL(Info c);
 
 char *getcircEDGE(Info c);
 // retorna a cor de borda de determinado círculo no svg
-
-void setcircFILL(Info c, char *new_corp);
-// altera a cor de preenchimento
-
-void setcircEDGE(Info c, char *new_corb);
-// altera a cor da borda
-
-void setcircX(Info c, double dx);
-// transalada a coordenada x
-
-void setcircY(Info c, double dy);
-// translada em DY a coordenada y
 
 void setProtecCirc(Info c, double reduc);
 // atualiza o nivel de proteção da figuração, dada 

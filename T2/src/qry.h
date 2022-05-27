@@ -24,11 +24,11 @@ double na(FILE *qry, FILE *txt);
 // Atribui o nível de agressividade v (real) às
 // regiões de ataque
 
-void tp(Tree root, FILE *qry, FILE *txt);
+void tp(Tree root, FILE *qry, FILE *svg, FILE *txt);
 // Torpedo no ponto (x,y). Remover todas as
 // formas para as quais o ponto (x,y) é interno.
 
-void postOrderTp(FILE *txt, Tree t, Node root, double x, double y);
+void postOrderTp(FILE *svg, FILE *txt, Tree t, Node root, double x, double y);
 bool tpCirc(FILE *txt, Info circ, double x, double y);
 bool tpRect(FILE *txt, Info rect, double x, double y);
 bool tpLine(FILE *txt, Info line, double x, double y);
@@ -38,7 +38,7 @@ bool tpTxt(FILE *txt, Info text, double x, double y);
 // verificam se o torpedo acertou a determinada figura.
 // Retorna verdadeiro se sim.
 
-void tr(FILE *qry, FILE *txt);
+void tr(Tree root, FILE *qry, FILE *svg, FILE *txt);
 // Torpedo replicante no ponto (x,y). Cria um
 // clone para cada uma das formas atingidas e
 // os posiciona transladados de (dx,dy) de seu
@@ -47,6 +47,8 @@ void tr(FILE *qry, FILE *txt);
 // são intercambiadas (se aplicável). O
 // identificador dos clones devem começar no
 // valor id.
+
+void postOrderTr(FILE *svg, FILE *txt, Tree t, Node root, double x, double y, double dx, double dy, int id);
 
 void be(Tree root, FILE *qry, FILE *txt, FILE *svg, double v);
 // Bomba de irradiação atingiu região

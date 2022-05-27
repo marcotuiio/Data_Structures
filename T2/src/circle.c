@@ -42,6 +42,24 @@ void buildCircle(FILE *geo, Info c, Tree root) {
     // printf("corp %s\n", circle->corp);
 }
 
+void replicateCirc(Tree t, Info base_c, Info new_c, double dx, double dy, int id, FILE *txt) {
+    Circulo *circ = base_c;
+    Circulo *new_circ = new_c;
+
+    new_circ->id = id;
+    new_circ->x = circ->x + dx;
+    new_circ->y = circ->y + dy;
+    new_circ->radius = circ->radius;
+    strcpy(new_circ->corb, circ->corp);
+    strcpy(new_circ->corp, circ->corb);
+    new_circ->protec = 60.00;
+
+    insertTree(t, getRoot(t), new_circ->x, new_circ->y, new_circ, 1);
+
+    fprintf(txt, "Círculo Base id = %d, x = %lf, y = %lf, r = %lf, corb = %s, corp = %s\n", circ->id, circ->x, circ->y, circ->radius, circ->corb, circ->corp);
+    fprintf(txt, "Círculo Replicado id = %d, x = %lf, y = %lf, r = %lf, corb = %s, corp = %s\n", new_circ->id, new_circ->x, new_circ->y, new_circ->radius, new_circ->corb, new_circ->corp); 
+}
+
 int getCircID(Info c) {
     Circulo *circ = (Circulo *)c;
 
@@ -76,30 +94,6 @@ char *getcircEDGE(Info c) {
     Circulo *circ = (Circulo *)c;
 
     return circ->corb;
-}
-
-void setcircFILL(Info c, char *new_corp) {
-    Circulo *circ = (Circulo *)c;
-
-    strcpy(circ->corp, new_corp);
-}
-
-void setcircEDGE(Info c, char *new_corb) {
-    Circulo *circ = (Circulo *)c;
-
-    strcpy(circ->corb, new_corb);
-}
-
-void setcircX(Info c, double dx) {
-    Circulo *circ = (Circulo *)c;
-
-    circ->x = getCircX(c) + dx;
-}
-
-void setcircY(Info c, double dy) {
-    Circulo *circ = (Circulo *)c;
-
-    circ->y = getCircY(c) + dy;
 }
 
 void setProtecCirc(Info c, double reduc) {

@@ -22,9 +22,27 @@ need to:
    * make fuction to reorganize tree !! important !!
    * start qry functions
       - need to think on how to remove and reorganize
-      - need to fix all writes on txt/svg on qry
-      - need to see how to print the final version of the svg       
+      - need to fix some writes on txt/svg on qry
       
-need to fix A LOT of stuff in my ternary tree 
+NEW TO DO: 
+   fix remove (even after removed, still shows up on svg)
+   make percursoProfundidade e percursoLargura
+   fix some datail after     
 
+So pra não perder;
+printf("\n");
+puts(getBed(my_paths));
+puts(getBsd(my_paths));
 
+puts(getBedGeo(my_paths));
+puts(getGeoArq(my_paths));
+puts(getGeoName(my_paths));
+
+puts(getBedQry(my_paths));
+puts(getQryArq(my_paths));
+puts(getQryName(my_paths));
+
+puts(getBsdGeoSvg(my_paths));
+puts(getBsdGeoQrySvg(my_paths));
+puts(getBsdGeoQryTxt(my_paths));
+printf("\n");

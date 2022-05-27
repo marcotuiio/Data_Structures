@@ -15,6 +15,10 @@ Info criaLinha();
 void buildLine(FILE *geo, Info l, Tree root);
 // realiza leitura e extração dos dados da linha no .geo
 
+void replicateLine(Tree t, Info base_l, Info new_l, double dx, double dy, int id, FILE *txt);
+// dada uma linha, uma nova linha e um deslocamento, define as coordenadas da nova linha e 
+// insere na árvore
+
 int getLineID(Info l);
 // retorna o id de determinada linha
 
@@ -32,21 +36,6 @@ double getLineFINALY(Info l);
 
 char *getLineCOLOR(Info l);
 // retorna a cor de determinada linha no svg
-
-void setlineCOLOR(Info l, char *new_color);
-// altera a cor da linha
-
-void setlineX(Info l, double dx);
-// translada em X a coordenada x1
-
-void setlineY(Info l, double dy);
-// translada em DY a coordenada y1
-
-void setlineFinalX(Info l, double dx);
-// translada em X a coordenada x2
-
-void setlineFinalY(Info l, double dy);
-// translada em DY a coordenada y2
 
 void setProtecLine(Info l, double reduc);
 // atualiza o nivel de proteção da figuração, dada

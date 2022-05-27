@@ -45,6 +45,23 @@ void buildText(FILE *geo, Info t, Tree root) {
     // printf("txt %s\n", txt->text);
 }
 
+void replicateTxt(Tree t, Info base_t, Info new_t, double dx, double dy, int id, FILE *txt) {
+    Texto *text = base_t;
+    Texto *new_txt = new_t;
+
+    new_txt->id = id;
+    new_txt->x = text->x + dx;
+    new_txt->y = text->y + dy;
+    strcpy(new_txt->corb, text->corp);
+    strcpy(new_txt->corp, text->corb);
+    strcpy(new_txt->anchor, text->anchor);
+    strcpy(new_txt->text, text->text);
+    new_txt->protec = 5.00;
+
+    fprintf(txt, "Texto Base id = %d, x = %lf, y = %lf, corb = %s, corp = %s, text = %s\n", text->id, text->x, text->y, text->corb, text->corp, text->text);
+    fprintf(txt, "Texto Replicado id = %d, x = %lf, y = %lf, corb = %s, corp = %s, text = %s\n", new_txt->id, new_txt->x, new_txt->y, new_txt->corb, new_txt->corp, new_txt->text);
+}
+
 int getTxtID(Info t) {
     Texto *txt = (Texto *)t;
 
@@ -87,30 +104,6 @@ char *getTxtTEXT(Info t) {
     // printf("get txt %s\n", txt->text);
 
     return txt->text;
-}
-
-void settxtFILL(Info t, char *new_corp) {
-    Texto *txt = (Texto *)t;
-
-    strcpy(txt->corp, new_corp);
-}
-
-void settxtEDGE(Info t, char *new_corb) {
-    Texto *txt = (Texto *)t;
-
-    strcpy(txt->corb, new_corb);
-}
-
-void settxtX(Info t, double dx) {
-    Texto *txt = (Texto *)t;
-
-    txt->x = getTxtX(t) + dx;
-}
-
-void settxtY(Info t, double dy) {
-    Texto *txt = (Texto *)t;
-
-    txt->y = getTxtY(t) + dy;
 }
 
 void setProtecTxt(Info t, double reduc) {

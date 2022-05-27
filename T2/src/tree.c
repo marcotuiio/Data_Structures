@@ -199,11 +199,9 @@ Node removeNode(Tree root, Node node, double x, double y) {
 bool getRemovedStatus(Node root) {
     tree_node *my_node = root;
 
-    // if(my_node->removed) {
-    //     printf("TRUE\n");
-    // } else {
-    //     printf("FALSE\n");
-    // }
+    if(my_node->removed) {
+        // printf("TRUE %p\n", my_node);
+    } 
     return my_node->removed;
 }
 
@@ -213,6 +211,7 @@ void marcaRemovido(Tree root, Node node) {
 
     if (toRemove != NULL) {
         toRemove->removed = true;
+        // printf("elemento removido %p\n", toRemove);
         my_root->qntdRemoved++;
         if (calcFD(my_root)) {
             // fix tree 

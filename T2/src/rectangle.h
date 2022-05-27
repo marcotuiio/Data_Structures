@@ -15,6 +15,10 @@ Info criaRec();
 void buildRectangle(FILE *geo, Info r, Tree root);
 // realiza leitura e extração dos dados do retângulo no .geo
 
+void replicateRect(Tree t, Info base_r, Info new_r, double dx, double dy, int id, FILE *txt);
+// dado um retângulo base, um novo retângulo e um deslocamento, define o novo retângulo 
+// e o insere a árvore
+
 int getRectID(Info r);
 // retorna o id de determinado retângulo
 
@@ -35,18 +39,6 @@ char *getRectFILL(Info r);
 
 char *getRectEDGE(Info r);
 // retorna a cor de borda de determinado retângulo no svg
-
-void setrectFILL(Info r, char *new_corp);
-// altera a cor de preenchimento
-
-void setrectEDGE(Info r, char *new_corb);
-// altera a cor da borda
-
-void setrectX(Info r, double dx);
-// translada a coordenada x
-
-void setrectY(Info r, double dy);
-// translada DY a coordenada y
 
 void setProtecRect(Info r, double reduc);
 // atualiza o nivel de proteção da figuração, dada 

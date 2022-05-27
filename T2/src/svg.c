@@ -30,7 +30,7 @@ void postOrderSVG(Node root, FILE *svg) {
     postOrderSVG(getRight(root), svg);
     ctrl = getCtrl(root);
     my_info = getInfo(root);
-    if (getRemovedStatus(root) == false) {
+    if (!getRemovedStatus(root)) {
         if (ctrl == 1) {
             drawCircle(svg, my_info);
 
@@ -43,6 +43,8 @@ void postOrderSVG(Node root, FILE *svg) {
         } else if (ctrl == 4) {
             drawText(svg, my_info);
         }
+    // } else {
+    //     // printf("FREED %p\n", root);
     }
 }
 
