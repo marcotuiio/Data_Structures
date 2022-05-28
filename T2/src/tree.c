@@ -232,7 +232,7 @@ Node removeNode(Tree root, Node node, double x, double y) {
         // }
 
         marcaRemovido(root, my_node);
-        printf("Removing node\n");
+        // printf("Removing node\n");
     }
     return my_node;
 }

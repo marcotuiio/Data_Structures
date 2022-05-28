@@ -92,7 +92,6 @@ void postOrderTp(FILE *svg, FILE *txt, Tree t, Node root, double x, double y) {
     my_info = getInfo(root);
 
     if (!getRemovedStatus(root)) {
-
         switch (getCtrl(root)) {
             case 1:
                 marcador = tpCirc(txt, my_info, x, y);
@@ -117,10 +116,10 @@ void postOrderTp(FILE *svg, FILE *txt, Tree t, Node root, double x, double y) {
 
     if (marcador) {
         removeNode(t, getRoot(t), getTX(root), getTY(root));
-        fprintf(svg, "<text x=\"%lf\" y=\"%lf\" stroke=\"red\" fill=\"red\">*</text>\n", x, y);
+        fprintf(svg, "<text x=\"%lf\" y=\"%lf\" stroke=\"red\" font-size=\"20\" fill=\"red\" >*</text>\n", x, y);
     } else {
         fprintf(txt, "ÁGUA\n");
-        fprintf(svg, "<text x=\"%lf\" y=\"%lf\" stroke=\"grey\" fill=\"grey\">*</text>\n", x, y);
+        fprintf(svg, "<text x=\"%lf\" y=\"%lf\" stroke=\"grey\" font-size=\"20\" fill=\"grey\">*</text>\n", x, y);
     }
 }
 
@@ -223,7 +222,6 @@ void postOrderTr(FILE *svg, FILE *txt, Tree t, Node root, double x, double y, do
     my_info = getInfo(root);
 
     if (!getRemovedStatus(root)) {
-
         switch (getCtrl(root)) {
             case 1:
                 marcador = tpCirc(txt, my_info, x, y);
@@ -231,7 +229,7 @@ void postOrderTr(FILE *svg, FILE *txt, Tree t, Node root, double x, double y, do
                     Info new_circ = criaCirc();
                     replicateCirc(t, my_info, new_circ, dx, dy, id, txt);
                     fprintf(svg, "<text x=\"%lf\" y=\"%lf\" fill=\"red\">@</text>\n", x, y);
-                    id++; 
+                    id++;
                 }
                 break;
 
@@ -264,7 +262,7 @@ void postOrderTr(FILE *svg, FILE *txt, Tree t, Node root, double x, double y, do
                     id++;
                 }
                 break;
-            
+
             default:
                 break;
         }
@@ -317,7 +315,6 @@ void postOrderBe(FILE *svg, FILE *txt, Tree root, Node node, double x, double y,
     Info fig = getInfo(node);
 
     if (!getRemovedStatus(node)) {
-
         switch (getCtrl(node)) {
             case 1:
                 check = isInsideCirc(fig, x, y, w, h);
