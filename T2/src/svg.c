@@ -54,7 +54,6 @@ void postOrderSVG(Node root, FILE *svg) {
     } else {
         printf("\n--- REMOVED %p ---\n", root);
     }
-    return;
 }
 
 void drawCircle(FILE *svg, Info circ) {

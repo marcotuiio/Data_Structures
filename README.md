@@ -15,6 +15,7 @@ read qry DONE
 store data on tree DONE
 print svg DONE
 fix mem leaks DONE
+percurso em largura DONE
 
 ARQUIVOS QUE NAO RODAM: 01-int-25, esquadra-alet-25, esquadra-grande-compacta
 
@@ -25,9 +26,9 @@ need to:
       - need to fix some writes on txt/svg on qry
       
 NEW TO DO: 
-   fix remove (even after removed, still shows up on svg)
-   make percursoProfundidade e percursoLargura
-   fix some datail after     
+   fix remove (even after removed, still shows up on svg) 
+   make TAD functions involving LIST
+   fix some datails after     
 
 So pra não perder;
 printf("\n");

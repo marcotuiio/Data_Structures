@@ -79,7 +79,7 @@ void tp(Tree root, FILE *qry, FILE *svg, FILE *txt) {
 
 void postOrderTp(FILE *svg, FILE *txt, Tree t, Node root, double x, double y) {
     Info my_info;
-    bool marcador;
+    bool marcador = false;
 
     if (root == NULL) {
         return;
@@ -115,11 +115,8 @@ void postOrderTp(FILE *svg, FILE *txt, Tree t, Node root, double x, double y) {
         }
     }
 
-    // Escrever um asterisco vermelho e a qntd de figuras que acertou no SVG em x, y
-    // ou escrever um asterisco cinza em x, y se errou
     if (marcador) {
         removeNode(t, getRoot(t), getTX(root), getTY(root));
-        printf("entrei\n");
         fprintf(svg, "<text x=\"%lf\" y=\"%lf\" stroke=\"red\" fill=\"red\">*</text>\n", x, y);
     } else {
         fprintf(txt, "ÁGUA\n");
