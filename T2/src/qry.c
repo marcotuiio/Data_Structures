@@ -89,9 +89,9 @@ void postOrderTp(FILE *svg, FILE *txt, Tree t, Node root, double x, double y) {
     postOrderTp(svg, txt, t, getCenter(root), x, y);
     postOrderTp(svg, txt, t, getRight(root), x, y);
 
-    my_info = getInfo(root);
-
     if (!getRemovedStatus(root)) {
+        my_info = getInfo(root);
+
         switch (getCtrl(root)) {
             case 1:
                 marcador = tpCirc(txt, my_info, x, y);
@@ -116,10 +116,10 @@ void postOrderTp(FILE *svg, FILE *txt, Tree t, Node root, double x, double y) {
 
     if (marcador) {
         removeNode(t, getRoot(t), getTX(root), getTY(root));
-        fprintf(svg, "<text x=\"%lf\" y=\"%lf\" stroke=\"red\" font-size=\"20\" fill=\"red\" >*</text>\n", x, y);
+        fprintf(svg, "<text x=\"%lf\" y=\"%lf\" stroke=\"black\" font-size=\"20\" fill=\"red\" >*</text>\n", x, y);
     } else {
         fprintf(txt, "ÁGUA\n");
-        fprintf(svg, "<text x=\"%lf\" y=\"%lf\" stroke=\"grey\" font-size=\"20\" fill=\"grey\">*</text>\n", x, y);
+        fprintf(svg, "<text x=\"%lf\" y=\"%lf\" stroke=\"black\" font-size=\"20\" fill=\"grey\">*</text>\n", x, y);
     }
 }
 
@@ -219,9 +219,9 @@ void postOrderTr(FILE *svg, FILE *txt, Tree t, Node root, double x, double y, do
     postOrderTr(svg, txt, t, getCenter(root), x, y, dx, dy, id);
     postOrderTr(svg, txt, t, getRight(root), x, y, dx, dy, id);
 
-    my_info = getInfo(root);
-
     if (!getRemovedStatus(root)) {
+        my_info = getInfo(root);
+
         switch (getCtrl(root)) {
             case 1:
                 marcador = tpCirc(txt, my_info, x, y);
@@ -300,6 +300,7 @@ double calcSelArea(double x, double y, double w, double h) {
 }
 
 void postOrderBe(FILE *svg, FILE *txt, Tree root, Node node, double x, double y, double w, double h, double v) {
+    Info fig;
     bool check;
     double reduc;
     double selArea = calcSelArea(x, y, w, h);
@@ -312,9 +313,9 @@ void postOrderBe(FILE *svg, FILE *txt, Tree root, Node node, double x, double y,
     postOrderBe(svg, txt, root, getCenter(node), x, y, w, h, v);
     postOrderBe(svg, txt, root, getRight(node), x, y, w, h, v);
 
-    Info fig = getInfo(node);
-
     if (!getRemovedStatus(node)) {
+        fig = getInfo(node);
+
         switch (getCtrl(node)) {
             case 1:
                 check = isInsideCirc(fig, x, y, w, h);

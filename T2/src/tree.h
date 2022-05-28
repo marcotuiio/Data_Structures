@@ -112,8 +112,24 @@ void percursoProfundidade(Tree root);
 void printLevelOrder(Node root);
 void printGivenLevel(Node root, int level);
 int height(Node root);
-// funcções complementaras que dada uma árvore, 
+// funções complementaras que dada uma árvore, 
 // imprimem os nós em nível, começando por um indice 0;
+
+Lista getNodesDentroRegiaoXyyT(Tree t, double x1, double y1, double x2, double y2);
+// Retorna uma lista dos nós da árvore t cujas ancoras estao dentro da região delimitada pelos
+// pontos (x1,y1) e (x2,y2)
+
+Lista getInfosDentroRegiaoXyyT (Tree t, double x1, double y1, double x2, double y2);
+// Retorna um lista dos nos cujas respectivas informacoes associadas estao dentro da regiao
+// delimitada pelos pontos (x1,y1) e (x2,y2). A funcao f é usada para determinar se uma informacao
+// armazenada na arvore esta' dentro da regiao.
+// Retorna uma lista vazia, caso não existam informacoes internas.
+ 
+Lista getInfosAtingidoPontoXyyT (Tree t, double x, double y);
+// Retorna uma lista dos nos para os quais o ponto (x,y) possa ser considerado
+// interno 'as  informacoes associadas ao nó. A funcao f e' invocada para determinar
+// se o ponto (x,y) é interno a uma informacao especifica.
+
 
 void quicksort (double *arr, int left, int right);
 // Recebe um vetor de informações arr, a posição do primeiro elemento

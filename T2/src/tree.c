@@ -184,50 +184,49 @@ Node removeNode(Tree root, Node node, double x, double y) {
     } else if (x == my_node->x && y == my_node->y) {
 
         // // Tem um filho ou é uma folha
-        // if (!(my_node->left) && !(my_node->center) && (my_node->right)) { // isso
-        //     if (!(my_node->left) && (my_node->center) && !(my_node->right)) { // OUUUU isso
-        //         if ((my_node->left) && !(my_node->center) && !(my_node->right)) { // OUUUUUUU isso
-        //             tree_node *aux = NULL;
+        // if ( ((!my_node->left) && (!my_node->center) && (my_node->right)) // isso
+        // || ((!my_node->left) && (my_node->center) && !(my_node->right)) // OUUUU isso
+        // || ((my_node->left) && !(my_node->center) && !(my_node->right)) ) { // OUUUUUUU isso
 
-        //             if (my_node->left) { // filho a esquerda
-        //                 aux = my_node->left;
+        //     tree_node *aux = NULL;
 
-        //             } else if (my_node->center) { // filho central
-        //                 aux = my_node->center;
+        //     if (my_node->left && (!my_node->center) && (!my_node->right)) { // filho a esquerda
+        //         aux = my_node->left;
 
-        //             } else if (my_node->right) { // filho a direita
-        //                 aux = my_node->right;
-        //             }
+        //     } else if (my_node->center && (!my_node->left) && (!my_node->right)) { // filho central
+        //         aux = my_node->center;
 
-        //             if (!aux) {  // se não tem filho, apenas remove o nó
-        //                 free(my_node->value);
-        //                 free(my_node);
-        //                 return aux;
+        //     } else if (my_node->right && (!my_node->left) && (!my_node->center)) { // filho a direita
+        //         aux = my_node->right;
+        //     }
 
-        //             } else if (!my_node->left && !my_node->center) { // se não tem filho a esquerda nem no meio
-        //                 tree_node *aux2 = my_node->right;
-        //                 free(my_node->value);
-        //                 free(my_node);
-        //                 return aux2;
+        //     if (!aux) {  // se não tem filho, apenas remove o nó
+        //         free(my_node->value);
+        //         free(my_node);
+        //         return aux;
 
-        //             } else if (!my_node->right && !my_node->center) { // se não tem filho a direita nem no meio
-        //                 tree_node *aux2 = my_node->left;
-        //                 free(my_node->value);
-        //                 free(my_node);
-        //                 return aux2;
+        //     } else if (!my_node->left && !my_node->center) { // se não tem filho a esquerda nem no meio
+        //         tree_node *aux2 = my_node->right;
+        //         free(my_node->value);
+        //         free(my_node);
+        //         return aux2;
 
-        //             } else if (!my_node->right && !my_node->left) { // se não tem filho a esquerda nem a direita
-        //                 tree_node *aux2 = my_node->center;
-        //                 free(my_node->value);
-        //                 free(my_node);
-        //                 return aux2;
+        //     } else if (!my_node->right && !my_node->center) { // se não tem filho a direita nem no meio
+        //         tree_node *aux2 = my_node->left;
+        //         free(my_node->value);
+        //         free(my_node);
+        //         return aux2;
 
-        //             } else {
-        //                 marcaRemovido(root, my_node);
-        //                 printf("Removing node\n");
-        //                 return my_node;
-        //             }
-        //         }
+        //     } else if (!my_node->right && !my_node->left) { // se não tem filho a esquerda nem a direita
+        //         tree_node *aux2 = my_node->center;
+        //         free(my_node->value);
+        //         free(my_node);
+        //         return aux2;
+
+        //     } else {
+        //         marcaRemovido(root, my_node);
+        //         printf("Removing node\n");
+        //         return my_node;
         //     }
         // }
 

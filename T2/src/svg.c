@@ -27,10 +27,10 @@ void postOrderSVG(Node root, FILE *svg) {
     postOrderSVG(getLeft(root), svg);
     postOrderSVG(getCenter(root), svg);
     postOrderSVG(getRight(root), svg);
-    my_info = getInfo(root);
 
     if (!getRemovedStatus(root)) {
-
+        my_info = getInfo(root);
+        
         switch (getCtrl(root)) {
             case 1:
                 drawCircle(svg, my_info);
