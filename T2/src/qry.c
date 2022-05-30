@@ -135,7 +135,9 @@ bool tpCirc(FILE *txt, Info circ, double x, double y) {
     r_aux = cr * cr;
 
     if (x_aux + y_aux <= r_aux) {  // Está dentro do circulo
-        fprintf(txt, "Acertou Círculo id = %d, x = %lf, y = %lf, r = %lf\n", getCircID(circ), cx, cy, cr);
+        if(txt) {
+            fprintf(txt, "Acertou Círculo id = %d, x = %lf, y = %lf, r = %lf\n", getCircID(circ), cx, cy, cr);
+        }
         return true;
     }
     return false;
@@ -150,7 +152,9 @@ bool tpRect(FILE *txt, Info rect, double x, double y) {
 
     if (x >= rx && x <= (rx + w)) {  // Está dentro do retangulo
         if (y >= ry && y <= (ry + h)) {
-            fprintf(txt, "Acertou Retângulo id = %d, x = %lf, y = %lf, w = %lf, h = %lf\n", getRectID(rect), rx, ry, w, h);
+            if (txt) {
+                fprintf(txt, "Acertou Retângulo id = %d, x = %lf, y = %lf, h = %lf, w = %lf\n", getRectID(rect), rx, ry, h, w);
+            }
             return true;
         }
     }
@@ -174,7 +178,9 @@ bool tpLine(FILE *txt, Info line, double x, double y) {
     lenAB = getLineLenght(lx1, ly1, lx2, ly2);
 
     if (lenAC + lenCB == lenAB) {  // Está na linha
-        fprintf(txt, "Acertou Linha id = %d, x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf\n", getLineID(line), lx1, ly1, lx2, ly2);
+        if (txt) {
+            fprintf(txt, "Acertou Linha id = %d, x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf\n", getLineID(line), lx1, ly1, lx2, ly2);
+        }
         return true;
     }
     return false;
@@ -186,7 +192,9 @@ bool tpTxt(FILE *txt, Info text, double x, double y) {
     ty = getTxtY(text);
 
     if (tx == x && ty == y) {  // é a própria âncora do texto
-        fprintf(txt, "Acertou Texto id = %d, x = %lf, y %lf, anchor = %s\n", getTxtID(text), tx, ty, getTxtANCHOR(text));
+        if (txt) {
+            fprintf(txt, "Acertou Texto id = %d, x = %lf, y = %lf\n", getTxtID(text), tx, ty);
+        }
         return true;
     }
     return false;

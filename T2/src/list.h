@@ -4,10 +4,10 @@
 #define LIST_H
 
 /*
- * Uma lista  ́e uma coleção ordenada de itens em que seus elementos podem
- * ser acessados através de sua posição (tipo Posic). Uma lista sem nenhum
- * elemento (comprimento 0)  ́e denominada lista vazia.
- */
+* Uma lista  ́e uma coleção ordenada de itens em que seus elementos podem
+* ser acessados através de sua posição (tipo Posic). Uma lista sem nenhum
+* elemento (comprimento 0)  ́e denominada lista vazia.
+*/
 
 Lista createList();  // createList
 // Cria e retorna uma lista vazia;
@@ -15,7 +15,7 @@ Lista createList();  // createList
 void printList(Lista l);
 // * Percorre a lista e exibe o valor de cada célula armazenada
 
-void insereFim(Lista l, Info n, double x, double y);  // insert
+void insereFim(Lista l, void* n, double x, double y);  // insert
 // * Insere o Info n no final da lista L. O comprimento da
 // lista  ́e acrescido de 1 elemento.
 
@@ -62,10 +62,6 @@ int getLenght(Lista l);
 Info encontraCelula(Lista l, Info n);  // get
 // * n deve indicar um elemento existente em L.
 // * retorna o valor do Info da lista indicado por n.
-
-// double* toArray(Lista l);
-// double getXL(Cell node);
-// double getYL(Cell node);
 
 void freeList(Lista l);
 // * recebe uma lista e remove todos seus elementos.

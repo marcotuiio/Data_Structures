@@ -99,14 +99,11 @@ bool calcFD(Tree root);
 // nós dela e a organizam, removendo os nós removidos por comandos anteriores
 // e montando uma nova árvore consideravelmente melhor e mais distribuida
 
-void printTree(Node root);
+// percurso em profundidade (pre order)
+void preOrderNodes(Lista my_list, Node root, double x1, double y1, double x2, double y2);
+void preOrderInfos(Lista my_list, Node root, double x1, double y1, double x2, double y2);
 // Recebe um nó (na primeira chamada esse nó desse ser a raiz da árvore)
-// e percorre todos os nós, imprimindo o endereço de memória que armazenam 
-
-void percursoProfundidadeAux(Node root, char* buffer, int depth);
-void percursoProfundidade(Tree root);
-// Funções complementares, que percorrem a árvore em profundidade,
-// começando por um indice 0;
+// e percorre todos os nós
 
 // percurso em largura
 void printLevelOrder(Node root);
@@ -115,9 +112,11 @@ int height(Node root);
 // funções complementaras que dada uma árvore, 
 // imprimem os nós em nível, começando por um indice 0;
 
+// Nesses funções, os pontos formam um retângulo
 Lista getNodesDentroRegiaoXyyT(Tree t, double x1, double y1, double x2, double y2);
 // Retorna uma lista dos nós da árvore t cujas ancoras estao dentro da região delimitada pelos
-// pontos (x1,y1) e (x2,y2)
+// pontos (x1,y1) e (x2,y2) 
+bool pointIsInside(Node node, double x1, double y1, double x2, double y2);
 
 Lista getInfosDentroRegiaoXyyT (Tree t, double x1, double y1, double x2, double y2);
 // Retorna um lista dos nos cujas respectivas informacoes associadas estao dentro da regiao
@@ -130,14 +129,11 @@ Lista getInfosAtingidoPontoXyyT (Tree t, double x, double y);
 // interno 'as  informacoes associadas ao nó. A funcao f e' invocada para determinar
 // se o ponto (x,y) é interno a uma informacao especifica.
 
-
 void quicksort (double *arr, int left, int right);
 // Recebe um vetor de informações arr, a posição do primeiro elemento
 // e a posição do ultimo elemento
 
 void freeTree(Node root);
 // Percorre toda a árvore, realizando a liberação da memória ocupada
-
-//void percursoLargura(Tree root);
 
 #endif

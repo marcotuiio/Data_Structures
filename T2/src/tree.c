@@ -1,9 +1,11 @@
 #include "tree.h"
 
 #include "circle.h"
+#include "list.h"
 #include "line.h"
 #include "rectangle.h"
 #include "text.h"
+#include "qry.h"
 
 struct nd {
     Info value;
@@ -312,51 +314,144 @@ bool calcFD(Tree root) {
 //     // Invoca recursivamente reinsere na metade direito do vetor
 // }
 
-void printTree(Node root) {
+void preOrderNodes(Lista my_list, Node root, double x1, double y1, double x2, double y2) {
     tree_node *my_root = root;
+    bool check;
 
     if (my_root == NULL) {
         printf("EMPTY TREE\n");
         return;
     }
 
-    printf("value = %p\n", my_root->value);
-    printf("\nleft -- ");
-    printTree(my_root->left);
-    printf("\ncenter -- ");
-    printTree(my_root->center);
-    printf("\nright -- ");
-    printTree(my_root->right);
-    printf("\ndone\n");
-}
-
-void percursoProfundidadeAux(Node root, char *buffer, int depth) {
-    tree_node *my_root = root;
-
-    if (my_root) {
-        // Percorrendo a sub-arvore da esquerda
-        percursoProfundidadeAux(my_root->left, buffer, depth);
-
-        buffer[depth] = my_root->x;
-        if (my_root->center == NULL && my_root->right == NULL && my_root->left == NULL) {
-            buffer[depth + 1] = '\0';
-            printf("%s\n", buffer);
+    // printf("value = %p\n", my_root->value);
+    if (!getRemovedStatus(my_root)) {
+        check = pointIsInside(my_root, x1, y1, x2, y2);
+        if (check) {
+            // printf("%p\n", my_root);
+            insereFim(my_list, my_root, my_root->x, my_root->y);
         }
-
-        // Percorrendo a sub-arvore central
-        percursoProfundidadeAux(my_root->center, buffer, depth + 1);
-
-        // Percorrendo a sub-arvore da direita
-        percursoProfundidadeAux(my_root->right, buffer, depth);
     }
+
+    preOrderNodes(my_list, my_root->left, x1, y1, x2, y2);
+    preOrderNodes(my_list, my_root->center, x1, y1, x2, y2);
+    preOrderNodes(my_list, my_root->right, x1, y1, x2, y2);
 }
 
-void percursoProfundidade(Tree root) {
-    tree_root *aux_root = root;
-    tree_node *my_root = aux_root->root;
+void preOrderInfos(Lista my_list, Node root, double x1, double y1, double x2, double y2) {
+    tree_node *my_root = root;
+    Info fig;
+    bool check;
 
-    char buffer[200];
-    percursoProfundidadeAux(my_root, buffer, 0);
+    if (my_root == NULL) {
+        printf("EMPTY TREE\n");
+        return;
+    }
+
+    // printf("value = %p\n", my_root->value);
+    if (!getRemovedStatus(my_root)) {
+        fig = getInfo(my_root);
+        
+        switch(getCtrl(my_root)) {
+            case 1:
+                check = inInsideCircle(fig, x1, y1, (x2-x1), (y2-y1));
+                if (check) {
+                    // printf("%p\n", my_root);
+                    insereFim(my_list, my_root->value, my_root->x, my_root->y);
+                }
+                break;
+
+            case 2:
+                check = inInsideRectangle(fig, x1, y1, (x2-x1), (y2-y1));
+                if (check) {
+                    // printf("%p\n", my_root);
+                    insereFim(my_list, my_root->value, my_root->x, my_root->y);
+                }
+                break;
+
+            case 3:
+                check = isInsideLine(fig, x1, y1, (x2-x1), (y2-y1));
+                if (check) {
+                    // printf("%p\n", my_root);
+                    insereFim(my_list, my_root->value, my_root->x, my_root->y);
+                }
+                break;
+
+            case 4:
+                check = isInsideText(fig, x1, y1, (x2-x1), (y2-y1));
+                if (check) {
+                    // printf("%p\n", my_root);
+                    insereFim(my_list, my_root->value, my_root->x, my_root->y);
+                }
+                break;
+
+            default:
+                break;
+
+        }
+    }
+
+    preOrderInfos(my_list, my_root->left, x1, y1, x2, y2);
+    preOrderInfos(my_list, my_root->center, x1, y1, x2, y2);
+    preOrderInfos(my_list, my_root->right, x1, y1, x2, y2);
+}
+
+void preOrderAtingidos(Lista my_list, Node root, double x1, double y1) {
+    tree_node *my_root = root;
+    Info fig;
+    bool check;
+
+    if (my_root == NULL) {
+        printf("EMPTY TREE\n");
+        return;
+    }
+
+    // printf("value = %p\n", my_root->value);
+    if (!getRemovedStatus(my_root)) {
+        fig = getInfo(my_root);
+
+        switch(getCtrl(my_root)) {
+            case 1:
+                check = tpCirc(NULL, fig, x1, y1);
+                if (check) {
+                    // printf("%p\n", my_root);
+                    insereFim(my_list, my_root->value, my_root->x, my_root->y);
+                }
+                break;
+
+            case 2:
+                check = tpRect(NULL, fig, x1, y1);
+                if (check) {
+                    // printf("%p\n", my_root);
+                    insereFim(my_list, my_root->value, my_root->x, my_root->y);
+                }
+                break;
+
+            case 3:
+                check = tpLine(NULL, fig, x1, y1);
+                if (check) {
+                    // printf("%p\n", my_root);
+                    insereFim(my_list, my_root->value, my_root->x, my_root->y);
+                }
+                break;
+
+            case 4:
+                check = tpTxt(NULL, fig, x1, y1);
+                if (check) {
+                    // printf("%p\n", my_root);
+                    insereFim(my_list, my_root->value, my_root->x, my_root->y);
+                }
+                break;
+
+            default:
+                break;
+
+        }
+        
+    }
+
+    preOrderAtingidos(my_list, my_root->left, x1, y1);
+    preOrderAtingidos(my_list, my_root->center, x1, y1);
+    preOrderAtingidos(my_list, my_root->right, x1, y1);
 }
 
 void printLevelOrder(Node root) {
@@ -382,6 +477,7 @@ void printGivenLevel(Node root, int level) {
     }
     if (level == 1) {
         printf("%p ", my_root->value);
+
     } else if (level > 1) {
         printGivenLevel(my_root->left, level - 1);
         printGivenLevel(my_root->center, level - 1);
@@ -404,6 +500,52 @@ int height(Node root) {
     } else {
         return (rheight + 1);
     }
+}
+
+Lista getNodesDentroRegiaoXyyT(Tree t, double x1, double y1, double x2, double y2) {
+    tree_root *my_root = t;
+    tree_node *my_node = my_root->root;
+
+    Lista my_listNodes = createList();
+
+    preOrderNodes(my_listNodes, my_node, x1, y1, (x2-x1), (y2-y1));
+
+    return my_listNodes;
+}
+
+bool pointIsInside(Node node, double x1, double y1, double x2, double y2) {
+    tree_node *my_node = node;
+    double w = x2 - x1;
+    double h = y2 - y1;
+
+    if ((x1 + w) >= (my_node->x) && (y1 + h) >= (my_node->y)) {
+        if (x1 <= my_node->x && y1 <= my_node->y) {
+            return true;
+        }
+    }
+    return false;
+}
+
+Lista getInfosDentroRegiaoXyyT (Tree t, double x1, double y1, double x2, double y2) {
+    tree_root *my_root = t;
+    tree_node *my_node = my_root->root;
+
+    Lista my_listInfos = createList();
+
+    preOrderInfos(my_listInfos, my_node, x1, y1, (x2-x1), (y2-y1));
+
+    return my_listInfos;
+}
+
+Lista getInfosAtingidoPontoXyyT (Tree t, double x, double y) {
+    tree_root *my_root = t;
+    tree_node *my_node = my_root->root;
+
+    Lista my_listAtingidos = createList();
+
+    preOrderAtingidos(my_listAtingidos, my_node, x, y);
+
+    return my_listAtingidos;
 }
 
 void quicksort(double *arr, int left, int right) {

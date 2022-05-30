@@ -55,9 +55,9 @@ Info encontraCelula(Lista l, Info n) {
     return NULL;
 }
 
-void insereFim(Lista l, Info n, double x, double y) {
+void insereFim(Lista l, void* n, double x, double y) {
     // printf("--- INICIO INSERE FIM ---\n");
-    ImpList *lista = (ImpList *)l;
+    ImpList *lista = l;
 
     // Cria celula
     celulaL *novaCelula = calloc(1, sizeof(celulaL));
@@ -72,6 +72,7 @@ void insereFim(Lista l, Info n, double x, double y) {
         novaCelula->prev = lista->fim;
         novaCelula->prev->next = novaCelula;
         lista->fim = novaCelula;
+
     } else {  // lista vazia
         lista->fim = novaCelula;
         lista->inicio = novaCelula;
@@ -218,32 +219,6 @@ int getLenght(Lista l) {
     free(aux);
     return contador;
 }
-
-// double *toArray(Lista l) {
-//     ImpList *lista = l;
-
-//     int size = getLenght(lista);
-//     double arr_x[size];
-//     void* arr_infos[size];
-//     double x, y;
-
-//     for (Cell node = getFirst(lista); node; node = getNext(lista)) {
-//         x = getXL(node);
-        
-//     }
-// }
-
-// double getXL(Cell node) {
-//     celulaL *my_node = node;
-
-//     return my_node->x;
-// }
-
-// double getYL(Cell node) {
-//     celulaL *my_node = node;
-
-//     return my_node->y;
-// }
 
 void freeList(Lista l) {
     ImpList *lista = (ImpList *)l;
