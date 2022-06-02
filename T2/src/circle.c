@@ -42,7 +42,7 @@ void buildCircle(FILE *geo, Info c, Tree root) {
     // printf("corp %s\n", circle->corp);
 }
 
-void replicateCirc(Tree t, Info base_c, Info new_c, double dx, double dy, int id, FILE *txt) {
+void replicateCirc(Tree t, Info base_c, Info new_c, double dx, double dy, int id) {
     Circulo *circ = base_c;
     Circulo *new_circ = new_c;
 
@@ -55,9 +55,6 @@ void replicateCirc(Tree t, Info base_c, Info new_c, double dx, double dy, int id
     new_circ->protec = 60.00;
 
     insertTree(t, getRoot(t), new_circ->x, new_circ->y, new_circ, 1);
-
-    fprintf(txt, "Círculo Base id = %d, x = %lf, y = %lf, r = %lf, corb = %s, corp = %s\n", circ->id, circ->x, circ->y, circ->radius, circ->corb, circ->corp);
-    fprintf(txt, "Círculo Replicado id = %d, x = %lf, y = %lf, r = %lf, corb = %s, corp = %s\n", new_circ->id, new_circ->x, new_circ->y, new_circ->radius, new_circ->corb, new_circ->corp); 
 }
 
 int getCircID(Info c) {

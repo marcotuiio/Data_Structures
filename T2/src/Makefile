@@ -6,8 +6,8 @@ clear:
 	rm *.o
 	rm $(PROJECT_NAME)
 
-$(PROJECT_NAME): main.o svg.o geo.o qry.o system.o paths.o rectangle.o circle.o line.o text.o tree.o
-	$(EXEC) $(CFLAGS) main.o svg.o geo.o qry.o system.o paths.o rectangle.o circle.o line.o text.o tree.o -o $(PROJECT_NAME)
+$(PROJECT_NAME): main.o svg.o geo.o qry.o system.o paths.o rectangle.o circle.o line.o text.o list.o tree.o
+	$(EXEC) $(CFLAGS) main.o svg.o geo.o qry.o system.o paths.o rectangle.o circle.o line.o text.o list.o tree.o -o $(PROJECT_NAME)
 
 svg.o: svg.c svg.h 
 	$(EXEC) $(CFLAGS) -c svg.c
@@ -37,7 +37,10 @@ text.o: text.c text.h
 	$(EXEC)	$(CFLAGS) -c text.c
 	
 tree.o: tree.c tree.h 
-	$(EXEC)	$(CFLAGS) -c tree.c	
+	$(EXEC)	$(CFLAGS) -c tree.c
+
+list.o: list.c list.h 
+	$(EXEC)	$(CFLAGS) -c list.c
 
 main.o: main.c system.h paths.h
 	$(EXEC) $(CFLAGS) -c main.c

@@ -17,7 +17,7 @@ Info criaCirc();
 void buildCircle(FILE *geo, Info c, Tree root);
 // realiza leitura e extração dos dados do círculo no .geo
 
-void replicateCirc(Tree t, Info base_c, Info new_c, double dx, double dy, int id, FILE *txt);
+void replicateCirc(Tree t, Info base_c, Info new_c, double dx, double dy, int id);
 // dado um circulo, um novo circulo e um deslocamento, define as coordenadas do novo círculo
 // e insere na árvore
 

@@ -43,7 +43,7 @@ void buildLine(FILE *geo, Info l, Tree root) {
     // printf("corb %s\n", line->color);
 }
 
-void replicateLine(Tree t, Info base_l, Info new_l, double dx, double dy, int id, FILE *txt) {
+void replicateLine(Tree t, Info base_l, Info new_l, double dx, double dy, int id) {
     Linha *line = base_l;
     Linha *new_line = new_l;
 
@@ -56,9 +56,6 @@ void replicateLine(Tree t, Info base_l, Info new_l, double dx, double dy, int id
     new_line->protec = 50.00;
 
     insertTree(t, getRoot(t), new_line->x1, new_line->y1, new_line, 3);
-    
-    fprintf(txt, "Linha Base id = %d, x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf, cor = %s\n", line->id, line->x1, line->y1, line->x2, line->y2, line->color);
-    fprintf(txt, "Linha Replicada id = %d, x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf, cor = %s\n", new_line->id, new_line->x1, new_line->y1, new_line->x2, new_line->y2, new_line->color);
 }
 
 int getLineID(Info l) {

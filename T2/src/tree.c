@@ -1,11 +1,11 @@
 #include "tree.h"
 
 #include "circle.h"
-#include "list.h"
 #include "line.h"
+#include "list.h"
+#include "qry.h"
 #include "rectangle.h"
 #include "text.h"
-#include "qry.h"
 
 struct nd {
     Info value;
@@ -182,9 +182,8 @@ Node removeNode(Tree root, Node node, double x, double y) {
     } else if (x >= my_node->x && y > my_node->y) {
         my_node->right = removeNode(my_root, my_node->right, x, y);
 
-    // Chegamos no nó que queremos remover
+        // Chegamos no nó que queremos remover
     } else if (x == my_node->x && y == my_node->y) {
-
         // // Tem um filho ou é uma folha
         // if ( ((!my_node->left) && (!my_node->center) && (my_node->right)) // isso
         // || ((!my_node->left) && (my_node->center) && !(my_node->right)) // OUUUU isso
@@ -256,7 +255,7 @@ void marcaRemovido(Tree root, Node node) {
         // printf("elemento removido %p\n", toRemove);
         my_root->qntdRemoved++;
         if (calcFD(my_root)) {
-            // fix tree
+            my_root = printLevelOrder(my_root->root);
             printf("NEED TO FIX TREE");
         }
     }
@@ -272,47 +271,6 @@ bool calcFD(Tree root) {
     }
     return false;
 }
-
-// void fixTree(Tree root) {
-//     tree_root *my_root = root;
-//     tree_node *my_node = my_root->root;
-
-//     Node valid[15];
-//     int ult = -1;
-
-//     while (my_node) {
-//         if (my_node->removed) {
-//             ult++;
-//             valid[ult] = my_node;
-//         }
-
-//         if (my_node->left) {
-//             my_node = my_node->left;
-//         } else if (my_node->center) {
-//             my_node = my_node->center;
-//         } else if (my_node->right) {
-//             my_node = my_node->right;
-//         } else {
-//             break;
-//         }
-
-//         if (ult >= 14) {
-//             reinsert(root, valid, ult);
-//             ult = -1;
-//         }
-//     }
-
-//     if (ult >= 0) {
-//         reinsert(root, valid, ult);
-//     }
-// }
-
-// void reinsert(Tree root, Node valid[15], int ult) {
-//     // Node ndMeio = no' que esta' na metade do vetor;
-//     // insereXyyT(t, getX(ndMeio), getY(ndMeio), getInfo(ndMeio);
-//     // Invoca recursivamente reinsere na metade esquerda de nos validos;
-//     // Invoca recursivamente reinsere na metade direito do vetor
-// }
 
 void preOrderNodes(Lista my_list, Node root, double x1, double y1, double x2, double y2) {
     tree_node *my_root = root;
@@ -350,10 +308,10 @@ void preOrderInfos(Lista my_list, Node root, double x1, double y1, double x2, do
     // printf("value = %p\n", my_root->value);
     if (!getRemovedStatus(my_root)) {
         fig = getInfo(my_root);
-        
-        switch(getCtrl(my_root)) {
+
+        switch (getCtrl(my_root)) {
             case 1:
-                check = inInsideCircle(fig, x1, y1, (x2-x1), (y2-y1));
+                check = isInsideCirc(fig, x1, y1, (x2 - x1), (y2 - y1));
                 if (check) {
                     // printf("%p\n", my_root);
                     insereFim(my_list, my_root->value, my_root->x, my_root->y);
@@ -361,7 +319,7 @@ void preOrderInfos(Lista my_list, Node root, double x1, double y1, double x2, do
                 break;
 
             case 2:
-                check = inInsideRectangle(fig, x1, y1, (x2-x1), (y2-y1));
+                check = isInsideRect(fig, x1, y1, (x2 - x1), (y2 - y1));
                 if (check) {
                     // printf("%p\n", my_root);
                     insereFim(my_list, my_root->value, my_root->x, my_root->y);
@@ -369,7 +327,7 @@ void preOrderInfos(Lista my_list, Node root, double x1, double y1, double x2, do
                 break;
 
             case 3:
-                check = isInsideLine(fig, x1, y1, (x2-x1), (y2-y1));
+                check = isInsideLine(fig, x1, y1, (x2 - x1), (y2 - y1));
                 if (check) {
                     // printf("%p\n", my_root);
                     insereFim(my_list, my_root->value, my_root->x, my_root->y);
@@ -377,7 +335,7 @@ void preOrderInfos(Lista my_list, Node root, double x1, double y1, double x2, do
                 break;
 
             case 4:
-                check = isInsideText(fig, x1, y1, (x2-x1), (y2-y1));
+                check = isInsideText(fig, x1, y1, (x2 - x1), (y2 - y1));
                 if (check) {
                     // printf("%p\n", my_root);
                     insereFim(my_list, my_root->value, my_root->x, my_root->y);
@@ -386,7 +344,6 @@ void preOrderInfos(Lista my_list, Node root, double x1, double y1, double x2, do
 
             default:
                 break;
-
         }
     }
 
@@ -409,7 +366,7 @@ void preOrderAtingidos(Lista my_list, Node root, double x1, double y1) {
     if (!getRemovedStatus(my_root)) {
         fig = getInfo(my_root);
 
-        switch(getCtrl(my_root)) {
+        switch (getCtrl(my_root)) {
             case 1:
                 check = tpCirc(NULL, fig, x1, y1);
                 if (check) {
@@ -444,9 +401,7 @@ void preOrderAtingidos(Lista my_list, Node root, double x1, double y1) {
 
             default:
                 break;
-
         }
-        
     }
 
     preOrderAtingidos(my_list, my_root->left, x1, y1);
@@ -454,34 +409,60 @@ void preOrderAtingidos(Lista my_list, Node root, double x1, double y1) {
     preOrderAtingidos(my_list, my_root->right, x1, y1);
 }
 
-void printLevelOrder(Node root) {
+Tree printLevelOrder(Node root) {
     tree_node *my_root = root;
+    Tree new_tree = createTree();
 
     if (my_root == NULL) {
         printf("EMPTY TREE\n");
-        return;
+        exit(0);
     }
 
     int maxLevel = height(my_root);
     int i;
     for (i = 1; i <= maxLevel; i++) {
-        printGivenLevel(my_root, i);
+        printGivenLevel(my_root, new_tree, i);
     }
+
+    freeTree(my_root);
+
+    return new_tree;
 }
 
-void printGivenLevel(Node root, int level) {
+void printGivenLevel(Node root, Tree new, int level) {
     tree_node *my_root = root;
 
     if (my_root == NULL) {
         return;
     }
     if (level == 1) {
-        printf("%p ", my_root->value);
+        if (!getRemovedStatus(my_root)) {
+            switch (getCtrl(my_root)) {
+                case 1:
+                    insertTree(new, getRoot(new), my_root->x, my_root->y, my_root->value, 1);
+                    break;
+
+                case 2:
+                    insertTree(new, getRoot(new), my_root->x, my_root->y, my_root->value, 2);
+                    break;
+
+                case 3:
+                    insertTree(new, getRoot(new), my_root->x, my_root->y, my_root->value, 3);
+                    break;
+
+                case 4:
+                    insertTree(new, getRoot(new), my_root->x, my_root->y, my_root->value, 4);
+                    break;
+
+                default:
+                    break;
+            }
+        }
 
     } else if (level > 1) {
-        printGivenLevel(my_root->left, level - 1);
-        printGivenLevel(my_root->center, level - 1);
-        printGivenLevel(my_root->right, level - 1);
+        printGivenLevel(my_root->left, new, level - 1);
+        printGivenLevel(my_root->center, new, level - 1);
+        printGivenLevel(my_root->right, new, level - 1);
     }
 }
 
@@ -508,7 +489,7 @@ Lista getNodesDentroRegiaoXyyT(Tree t, double x1, double y1, double x2, double y
 
     Lista my_listNodes = createList();
 
-    preOrderNodes(my_listNodes, my_node, x1, y1, (x2-x1), (y2-y1));
+    preOrderNodes(my_listNodes, my_node, x1, y1, (x2 - x1), (y2 - y1));
 
     return my_listNodes;
 }
@@ -526,18 +507,18 @@ bool pointIsInside(Node node, double x1, double y1, double x2, double y2) {
     return false;
 }
 
-Lista getInfosDentroRegiaoXyyT (Tree t, double x1, double y1, double x2, double y2) {
+Lista getInfosDentroRegiaoXyyT(Tree t, double x1, double y1, double x2, double y2) {
     tree_root *my_root = t;
     tree_node *my_node = my_root->root;
 
     Lista my_listInfos = createList();
 
-    preOrderInfos(my_listInfos, my_node, x1, y1, (x2-x1), (y2-y1));
+    preOrderInfos(my_listInfos, my_node, x1, y1, (x2 - x1), (y2 - y1));
 
     return my_listInfos;
 }
 
-Lista getInfosAtingidoPontoXyyT (Tree t, double x, double y) {
+Lista getInfosAtingidoPontoXyyT(Tree t, double x, double y) {
     tree_root *my_root = t;
     tree_node *my_node = my_root->root;
 
@@ -546,38 +527,6 @@ Lista getInfosAtingidoPontoXyyT (Tree t, double x, double y) {
     preOrderAtingidos(my_listAtingidos, my_node, x, y);
 
     return my_listAtingidos;
-}
-
-void quicksort(double *arr, int left, int right) {
-    double x, y;
-    int i, j;
-
-    i = left;
-    j = right;
-    x = arr[(left + right) / 2];
-
-    while (i <= j) {
-        while (arr[i] < x && i < right) {
-            i++;
-        }
-        while (arr[j] > x && j > left) {
-            j--;
-        }
-        if (i <= j) {
-            y = arr[i];
-            arr[i] = arr[j];
-            arr[j] = y;
-            i++;
-            j--;
-        }
-    }
-
-    if (j > left) {
-        quicksort(arr, left, j);
-    }
-    if (i < right) {
-        quicksort(arr, i, right);
-    }
 }
 
 void freeTree(Node root) {

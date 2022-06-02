@@ -138,7 +138,6 @@ void removeCelula(Lista l, Info n, int id, char *tipo) {
     ImpList *aux = (ImpList *)l;
     celulaL *lista = aux->inicio;
     celulaL *celulaARemover = NULL;
-    Info info = n;
 
     while (lista != NULL) {
         if (lista->next == n) {  // se n inteiro ou char
@@ -200,7 +199,7 @@ Cell getPrevious(Cell at) {
     return node->prev;
 }
 
-Info getInfo(Cell x) {
+Info getInfoList(Cell x) {
     celulaL *node = (celulaL *)x;
 
     return node->value;

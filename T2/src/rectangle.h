@@ -15,7 +15,7 @@ Info criaRec();
 void buildRectangle(FILE *geo, Info r, Tree root);
 // realiza leitura e extração dos dados do retângulo no .geo
 
-void replicateRect(Tree t, Info base_r, Info new_r, double dx, double dy, int id, FILE *txt);
+void replicateRect(Tree t, Info base_r, Info new_r, double dx, double dy, int id);
 // dado um retângulo base, um novo retângulo e um deslocamento, define o novo retângulo 
 // e o insere a árvore
 

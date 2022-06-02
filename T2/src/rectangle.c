@@ -45,7 +45,7 @@ void buildRectangle(FILE *geo, Info r, Tree root) {
     // printf("corp %s\n", rectangle->corp);
 }
 
-void replicateRect(Tree t, Info base_r, Info new_r, double dx, double dy, int id, FILE *txt) {
+void replicateRect(Tree t, Info base_r, Info new_r, double dx, double dy, int id) {
     Retangulo *rectangle = base_r;
     Retangulo *new_rectangle = new_r;
 
@@ -59,9 +59,6 @@ void replicateRect(Tree t, Info base_r, Info new_r, double dx, double dy, int id
     new_rectangle->protec = 60.00;
 
     insertTree(t, getRoot(t), new_rectangle->x, new_rectangle->y, new_rectangle, 2);
-    
-    fprintf(txt, "Retangulo Base id = %d, x = %lf, y = %lf, w = %lf, h = %lf, corb = %s, corp = %s\n", rectangle->id, rectangle->x, rectangle->y, rectangle->width, rectangle->height, rectangle->corb, rectangle->corp);
-    fprintf(txt, "Retangulo Replicado id = %d, x = %lf, y = %lf, w = %lf, h = %lf, corb = %s, corp = %s\n", new_rectangle->id, new_rectangle->x, new_rectangle->y, new_rectangle->width, new_rectangle->height, new_rectangle->corb, new_rectangle->corp);
 }
 
 int getRectID(Info r) {

@@ -52,7 +52,7 @@ Cell getPrevious(Cell at);
 // * retorna o indicador do elemento de L anterior ao elemento
 // indicado por at. Se at for o primeiro elemento da lista, retorna NULL.
 
-Info getInfo(Cell x);
+Info getInfoList(Cell x);
 // * retorna o valor armazenado na célula de X. Se
 // length(L)=0, retorna NULL.
 

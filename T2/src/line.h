@@ -15,7 +15,7 @@ Info criaLinha();
 void buildLine(FILE *geo, Info l, Tree root);
 // realiza leitura e extração dos dados da linha no .geo
 
-void replicateLine(Tree t, Info base_l, Info new_l, double dx, double dy, int id, FILE *txt);
+void replicateLine(Tree t, Info base_l, Info new_l, double dx, double dy, int id);
 // dada uma linha, uma nova linha e um deslocamento, define as coordenadas da nova linha e 
 // insere na árvore
 

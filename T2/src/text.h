@@ -17,7 +17,7 @@ Info criaTxt();
 void buildText(FILE *geo, Info t, Tree root);
 // realiza leitura e extração dos dados do texto no .geo
 
-void replicateTxt(Tree t, Info base_t, Info new_t, double dx, double dy, int id, FILE *txt);
+void replicateTxt(Tree t, Info base_t, Info new_t, double dx, double dy, int id);
 // dados um texto base, um no texto e um deslocamento, define as coordenadas do novo texto
 // e o inseri na árvore
 

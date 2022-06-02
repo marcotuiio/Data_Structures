@@ -45,7 +45,7 @@ void buildText(FILE *geo, Info t, Tree root) {
     // printf("txt %s\n", txt->text);
 }
 
-void replicateTxt(Tree t, Info base_t, Info new_t, double dx, double dy, int id, FILE *txt) {
+void replicateTxt(Tree t, Info base_t, Info new_t, double dx, double dy, int id) {
     Texto *text = base_t;
     Texto *new_txt = new_t;
 
@@ -59,9 +59,6 @@ void replicateTxt(Tree t, Info base_t, Info new_t, double dx, double dy, int id,
     new_txt->protec = 5.00;
 
     insertTree(t, getRoot(t), new_txt->x, new_txt->y, new_txt, 4);
-
-    fprintf(txt, "Texto Base id = %d, x = %lf, y = %lf, corb = %s, corp = %s, text = %s\n", text->id, text->x, text->y, text->corb, text->corp, text->text);
-    fprintf(txt, "Texto Replicado id = %d, x = %lf, y = %lf, corb = %s, corp = %s, text = %s\n", new_txt->id, new_txt->x, new_txt->y, new_txt->corb, new_txt->corp, new_txt->text);
 }
 
 int getTxtID(Info t) {

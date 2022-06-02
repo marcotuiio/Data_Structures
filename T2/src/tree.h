@@ -106,8 +106,8 @@ void preOrderInfos(Lista my_list, Node root, double x1, double y1, double x2, do
 // e percorre todos os nós
 
 // percurso em largura
-void printLevelOrder(Node root);
-void printGivenLevel(Node root, int level);
+Tree printLevelOrder(Node root);
+void printGivenLevel(Node root, Tree new, int level);
 int height(Node root);
 // funções complementaras que dada uma árvore, 
 // imprimem os nós em nível, começando por um indice 0;
@@ -128,10 +128,6 @@ Lista getInfosAtingidoPontoXyyT (Tree t, double x, double y);
 // Retorna uma lista dos nos para os quais o ponto (x,y) possa ser considerado
 // interno 'as  informacoes associadas ao nó. A funcao f e' invocada para determinar
 // se o ponto (x,y) é interno a uma informacao especifica.
-
-void quicksort (double *arr, int left, int right);
-// Recebe um vetor de informações arr, a posição do primeiro elemento
-// e a posição do ultimo elemento
 
 void freeTree(Node root);
 // Percorre toda a árvore, realizando a liberação da memória ocupada
