@@ -58,9 +58,9 @@ Node insertTree(Tree root, Node node, double x, double y, Info i, int ctrl) {
     tree_node *my_node = node;
 
     // Caso base: árvore vazia
-    if (my_node == NULL) {
+    if (!my_node) {
         my_node = createNode(i, x, y, ctrl);
-        if (my_root->root == NULL) {
+        if (!my_root->root) {
             my_root->root = my_node;
         }
         if (my_node) {
@@ -165,6 +165,27 @@ Info searchTree(Node root, double x, double y) {
     return (my_node->value);
 }
 
+Node setNodeAux(Node root, Node aux) {
+    tree_node *my_node = root;
+    tree_node *my_aux = aux;
+
+    if (my_node == NULL) {
+        my_aux = NULL;
+    }
+
+    if (my_node->left && (!my_node->center) && (!my_node->right)) {  // filho a esquerda
+        my_aux = my_node->left;
+
+    } else if (my_node->center && (!my_node->left) && (!my_node->right)) {  // filho central
+        my_aux = my_node->center;
+
+    } else if (my_node->right && (!my_node->left) && (!my_node->center)) {  // filho a direita
+        my_aux = my_node->right;
+    }
+
+    return my_aux;
+}
+
 Node removeNode(Tree root, Node node, double x, double y) {
     tree_root *my_root = root;
     tree_node *my_node = node;
@@ -182,53 +203,28 @@ Node removeNode(Tree root, Node node, double x, double y) {
     } else if (x >= my_node->x && y > my_node->y) {
         my_node->right = removeNode(my_root, my_node->right, x, y);
 
-        // Chegamos no nó que queremos remover
+    // Chegamos no nó que queremos remover
     } else if (x == my_node->x && y == my_node->y) {
-        // // Tem um filho ou é uma folha
-        // if ( ((!my_node->left) && (!my_node->center) && (my_node->right)) // isso
-        // || ((!my_node->left) && (my_node->center) && !(my_node->right)) // OUUUU isso
-        // || ((my_node->left) && !(my_node->center) && !(my_node->right)) ) { // OUUUUUUU isso
+        // tree_node *aux = NULL;
+        // if (my_node->left && !my_node->right && !my_node->center) {
+        //     aux = setNodeAux(my_node->left, aux);
+        
+        // } else if (my_node->center && !my_node->left && !my_node->right) {
+        //     aux = setNodeAux(my_node->center, aux);
+        
+        // } else if (my_node->right && !my_node->left && !my_node->center) {
+        //     aux = setNodeAux(my_node->right, aux);
+        // }
 
-        //     tree_node *aux = NULL;
+        // if (!aux) {  // se não tem filho, apenas remove o nó
+        //     free(my_node->value);
+        //     free(my_node);
+        //     return aux;
 
-        //     if (my_node->left && (!my_node->center) && (!my_node->right)) { // filho a esquerda
-        //         aux = my_node->left;
-
-        //     } else if (my_node->center && (!my_node->left) && (!my_node->right)) { // filho central
-        //         aux = my_node->center;
-
-        //     } else if (my_node->right && (!my_node->left) && (!my_node->center)) { // filho a direita
-        //         aux = my_node->right;
-        //     }
-
-        //     if (!aux) {  // se não tem filho, apenas remove o nó
-        //         free(my_node->value);
-        //         free(my_node);
-        //         return aux;
-
-        //     } else if (!my_node->left && !my_node->center) { // se não tem filho a esquerda nem no meio
-        //         tree_node *aux2 = my_node->right;
-        //         free(my_node->value);
-        //         free(my_node);
-        //         return aux2;
-
-        //     } else if (!my_node->right && !my_node->center) { // se não tem filho a direita nem no meio
-        //         tree_node *aux2 = my_node->left;
-        //         free(my_node->value);
-        //         free(my_node);
-        //         return aux2;
-
-        //     } else if (!my_node->right && !my_node->left) { // se não tem filho a esquerda nem a direita
-        //         tree_node *aux2 = my_node->center;
-        //         free(my_node->value);
-        //         free(my_node);
-        //         return aux2;
-
-        //     } else {
-        //         marcaRemovido(root, my_node);
-        //         printf("Removing node\n");
-        //         return my_node;
-        //     }
+        // } else {
+        //     marcaRemovido(root, my_node);
+        //     printf("Removing node\n");
+        //     return my_node;
         // }
 
         marcaRemovido(root, my_node);
@@ -256,6 +252,7 @@ void marcaRemovido(Tree root, Node node) {
         my_root->qntdRemoved++;
         if (calcFD(my_root)) {
             my_root = printLevelOrder(my_root->root);
+            my_root->qntdRemoved = 0;
             printf("NEED TO FIX TREE");
         }
     }

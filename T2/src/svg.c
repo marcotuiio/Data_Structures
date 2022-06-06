@@ -52,7 +52,7 @@ void postOrderSVG(Node root, FILE *svg) {
                 break;
         }
     } else {
-        // printf("\n--- REMOVED %p ---\n", root);
+        printf("\n--- REMOVED %p ---\n", root);
     }
 }
 
