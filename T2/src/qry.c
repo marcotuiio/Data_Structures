@@ -240,8 +240,6 @@ void postOrderTr(FILE *svg, FILE *txt, Tree t, Node root, double x, double y, do
                     fprintf(txt, "Círculo Base id = %d, x = %lf, y = %lf, r = %lf, corb = %s, corp = %s\n", getCircID(my_info), getCircX(my_info), getCircY(my_info), getCircRADIUS(my_info), getcircEDGE(my_info), getCircFILL(my_info));
                     fprintf(txt, "Círculo Replicado id = %d, x = %lf, y = %lf, r = %lf, corb = %s, corp = %s\n", getCircID(new_circ), getCircX(new_circ), getCircY(new_circ), getCircRADIUS(new_circ), getcircEDGE(new_circ), getCircFILL(new_circ)); 
                     id++;
-                } else {
-                    fprintf(txt, "ÁGUA\n");
                 }
                 break;
 
@@ -254,8 +252,6 @@ void postOrderTr(FILE *svg, FILE *txt, Tree t, Node root, double x, double y, do
                     fprintf(txt, "Retangulo Base id = %d, x = %lf, y = %lf, w = %lf, h = %lf, corb = %s, corp = %s\n", getRectID(my_info), getRectX(my_info), getRectY(my_info), getRectWIDTH(my_info), getRectHEIGHT(my_info), getRectEDGE(my_info), getRectFILL(my_info));
                     fprintf(txt, "Retangulo Replicado id = %d, x = %lf, y = %lf, w = %lf, h = %lf, corb = %s, corp = %s\n", getRectID(new_rect), getRectX(new_rect), getRectY(new_rect), getRectWIDTH(new_rect), getRectHEIGHT(new_rect), getRectEDGE(new_rect), getRectFILL(new_rect));
                     id++;
-                } else {
-                    fprintf(txt, "ÁGUA\n");
                 }
                 break;
 
@@ -268,8 +264,6 @@ void postOrderTr(FILE *svg, FILE *txt, Tree t, Node root, double x, double y, do
                     fprintf(txt, "Linha Base id = %d, x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf, cor = %s\n", getLineID(my_info), getLineX(my_info), getLineY(my_info), getLineFINALX(my_info), getLineFINALY(my_info), getLineCOLOR(my_info));
                     fprintf(txt, "Linha Replicada id = %d, x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf, cor = %s\n", getLineID(new_line), getLineX(new_line), getLineY(new_line), getLineFINALX(my_info), getLineFINALY(new_line), getLineCOLOR(new_line));
                     id++;
-                } else {
-                    fprintf(txt, "ÁGUA\n");
                 }
                 break;
 
@@ -282,9 +276,7 @@ void postOrderTr(FILE *svg, FILE *txt, Tree t, Node root, double x, double y, do
                     fprintf(txt, "Texto Base id = %d, x = %lf, y = %lf, corb = %s, corp = %s, text = %s\n", getTxtID(my_info), getTxtX(my_info), getTxtY(my_info), getTxtEDGE(my_info), getTxtFILL(my_info), getTxtTEXT(my_info));
                     fprintf(txt, "Texto Replicado id = %d, x = %lf, y = %lf, corb = %s, corp = %s, text = %s\n", getTxtID(new_text), getTxtX(new_text), getTxtY(new_text), getTxtEDGE(new_text), getTxtFILL(new_text), getTxtTEXT(new_text));
                     id++;
-                } else {
-                    fprintf(txt, "ÁGUA\n");
-                }
+                } 
                 break;
 
             default:
