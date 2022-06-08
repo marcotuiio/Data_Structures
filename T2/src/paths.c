@@ -3,15 +3,15 @@
 struct param {
     char* bed;           // path - diretŕoio base de entrada (BED)
     char* bsd;           // path - diretŕoio base de saída (BSD)
-    char* bedgeo;        // arq.geo com BED
-    char* geoarq;        // arq.geo
+    char* bedgeo;        // bed/arq.geo 
+    char* geoarq;        // pasta/arq.geo
     char* geoname;       // only name (no .geo)
-    char* bedqry;        // arq.qry com BED
+    char* bedqry;        // bed/pasta/arq.qry 
     char* qryarq;        // testes/arq.qry
     char* qryname;       // only name (no .qry)
     char* bsdgeosvg;     // bsd/nomegeo.svg
-    char* bsdgeoqrysvg;  // nomegeo_nomeqry.svg
-    char* bsdgeoqrytxt;  // nomegeo_nomeqry.txt
+    char* bsdgeoqrysvg;  // bsd/nomegeo_nomeqry.svg
+    char* bsdgeoqrytxt;  // bsd/nomegeo_nomeqry.txt
     char* aux;
 };
 typedef struct param AllPaths;
@@ -26,7 +26,7 @@ char* prepareDir(char* dir) {
         dir = realloc(dir, strlen(dir) + 2);
         strcat(dir, "/");
     }
-    return dir;  // padrao de sempre ter barra no fim
+    return dir;  // manter / no final dos diretorios
 }
 
 void prepareDoc(char* asread, char* onlyname) {
