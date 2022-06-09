@@ -165,27 +165,6 @@ Info searchTree(Node root, double x, double y) {
     return (my_node->value);
 }
 
-Node setNodeAux(Node root, Node aux) {
-    tree_node *my_node = root;
-    tree_node *my_aux = aux;
-
-    if (my_node == NULL) {
-        my_aux = NULL;
-    }
-
-    if (my_node->left && (!my_node->center) && (!my_node->right)) {  // filho a esquerda
-        my_aux = my_node->left;
-
-    } else if (my_node->center && (!my_node->left) && (!my_node->right)) {  // filho central
-        my_aux = my_node->center;
-
-    } else if (my_node->right && (!my_node->left) && (!my_node->center)) {  // filho a direita
-        my_aux = my_node->right;
-    }
-
-    return my_aux;
-}
-
 Node removeNode(Tree root, Node node, double x, double y) {
     tree_root *my_root = root;
     tree_node *my_node = node;
@@ -205,27 +184,29 @@ Node removeNode(Tree root, Node node, double x, double y) {
 
     // Chegamos no nó que queremos remover
     } else if (x == my_node->x && y == my_node->y) {
-        // tree_node *aux = NULL;
-        // if (my_node->left && !my_node->right && !my_node->center) {
-        //     aux = setNodeAux(my_node->left, aux);
+        if (!my_node->left && !my_node->right && !my_node->center) {
+            free(my_node);
+            my_node = NULL;
         
-        // } else if (my_node->center && !my_node->left && !my_node->right) {
-        //     aux = setNodeAux(my_node->center, aux);
+        } else if (my_node->left && !my_node->center && !my_node->right) {
+            tree_node *temp = my_node;
+            my_node = my_node->left;
+            free(temp);   
         
-        // } else if (my_node->right && !my_node->left && !my_node->center) {
-        //     aux = setNodeAux(my_node->right, aux);
-        // }
+        } else if (my_node->right && !my_node->left && !my_node->center) {
+            tree_node *temp = my_node;
+            my_node = my_node->right;
+            free(temp);
+        
+        } else if (my_node->center && !my_node->left && !my_node->right) {
+            tree_node *temp = my_node;
+            my_node = my_node->center;
+            free(temp);
 
-        // if (!aux) {  // se não tem filho, apenas remove o nó
-        //     free(my_node->value);
-        //     free(my_node);
-        //     return aux;
-
-        // } else {
-        //     marcaRemovido(root, my_node);
-        //     printf("Removing node\n");
-        //     return my_node;
-        // }
+        } else {
+            marcaRemovido(root, my_node);
+            printf("Removing node\n");
+        }
 
         marcaRemovido(root, my_node);
         // printf("Removing node\n");
