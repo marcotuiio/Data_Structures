@@ -77,7 +77,6 @@ Info searchTree(Node root, double x, double y);
 // Recebe um nó de uma árvore (na primeira chamada esse nó deve ser a raiz), um x
 // e um y a serem procurados na árvore. 
 
-Node setNodeAux(Node root, Node aux);
 Node removeNode(Tree root, Node node, double x, double y);
 // Recebe a aŕvore e um nó dessa árvore, um x e um y referente ao nó
 // que deve ser deletado da árvore. Se o nó a ser deletado possui mais de um filho, 
