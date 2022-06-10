@@ -184,29 +184,32 @@ Node removeNode(Tree root, Node node, double x, double y) {
 
     // Chegamos no nó que queremos remover
     } else if (x == my_node->x && y == my_node->y) {
-        if (!my_node->left && !my_node->right && !my_node->center) {
-            free(my_node);
-            my_node = NULL;
+        // if (!my_node->left && !my_node->right && !my_node->center) {
+        //     free(my_node);
+        //     my_root->size--;
+        //     my_node = NULL;
         
-        } else if (my_node->left && !my_node->center && !my_node->right) {
-            tree_node *temp = my_node;
-            my_node = my_node->left;
-            free(temp);   
+        // } else if (my_node->left && !my_node->center && !my_node->right) {
+        //     tree_node *temp = my_node;
+        //     my_node = my_node->left;
+        //     free(temp);   
+        //     my_root->size--;
         
-        } else if (my_node->right && !my_node->left && !my_node->center) {
-            tree_node *temp = my_node;
-            my_node = my_node->right;
-            free(temp);
+        // } else if (my_node->right && !my_node->left && !my_node->center) {
+        //     tree_node *temp = my_node;
+        //     my_node = my_node->right;
+        //     free(temp);
+        //     my_root->size--;
         
-        } else if (my_node->center && !my_node->left && !my_node->right) {
-            tree_node *temp = my_node;
-            my_node = my_node->center;
-            free(temp);
+        // } else if (my_node->center && !my_node->left && !my_node->right) {
+        //     tree_node *temp = my_node;
+        //     my_node = my_node->center;
+        //     free(temp);
+        //     my_root->size--;
 
-        } else {
-            marcaRemovido(root, my_node);
-            printf("Removing node\n");
-        }
+        // } else {
+        //     marcaRemovido(root, my_node);
+        // }
 
         marcaRemovido(root, my_node);
         // printf("Removing node\n");
@@ -226,6 +229,10 @@ bool getRemovedStatus(Node root) {
 void marcaRemovido(Tree root, Node node) {
     tree_root *my_root = root;
     tree_node *toRemove = node;
+
+    if (toRemove->removed) {
+        return;
+    }
 
     if (toRemove != NULL) {
         toRemove->removed = true;
@@ -346,7 +353,7 @@ void preOrderAtingidos(Lista my_list, Node root, double x1, double y1) {
 
         switch (getCtrl(my_root)) {
             case 1:
-                check = tpCirc(NULL, fig, x1, y1);
+                check = tpCirc(fig, x1, y1);
                 if (check) {
                     // printf("%p\n", my_root);
                     insereFim(my_list, my_root->value, my_root->x, my_root->y);
@@ -354,7 +361,7 @@ void preOrderAtingidos(Lista my_list, Node root, double x1, double y1) {
                 break;
 
             case 2:
-                check = tpRect(NULL, fig, x1, y1);
+                check = tpRect(fig, x1, y1);
                 if (check) {
                     // printf("%p\n", my_root);
                     insereFim(my_list, my_root->value, my_root->x, my_root->y);
@@ -362,7 +369,7 @@ void preOrderAtingidos(Lista my_list, Node root, double x1, double y1) {
                 break;
 
             case 3:
-                check = tpLine(NULL, fig, x1, y1);
+                check = tpLine(fig, x1, y1);
                 if (check) {
                     // printf("%p\n", my_root);
                     insereFim(my_list, my_root->value, my_root->x, my_root->y);
@@ -370,7 +377,7 @@ void preOrderAtingidos(Lista my_list, Node root, double x1, double y1) {
                 break;
 
             case 4:
-                check = tpTxt(NULL, fig, x1, y1);
+                check = tpTxt(fig, x1, y1);
                 if (check) {
                     // printf("%p\n", my_root);
                     insereFim(my_list, my_root->value, my_root->x, my_root->y);

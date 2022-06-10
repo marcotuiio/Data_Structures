@@ -94,36 +94,60 @@ void postOrderTp(FILE *svg, FILE *txt, Tree t, Node root, double x, double y) {
 
         switch (getCtrl(root)) {
             case 1:
-                marcador = tpCirc(txt, my_info, x, y);
+                marcador = tpCirc(my_info, x, y);
+                if(marcador) {
+                    fprintf(txt, "Acertou Círculo id = %d, x = %lf, y = %lf, r = %lf\n", getCircID(my_info), getCircX(my_info), getCircY(my_info), getCircRADIUS(my_info));
+                    removeNode(t, getRoot(t), getTX(root), getTY(root));
+                    fprintf(svg, "\t<text x=\"%lf\" y=\"%lf\" stroke=\"red\" font-size=\"20\" fill=\"red\" >*</text>\n", x, y);
+                } else {
+                    fprintf(txt, "ÁGUA\n");
+                    fprintf(svg, "\t<text x=\"%lf\" y=\"%lf\" stroke=\"black\" font-size=\"20\" fill=\"grey\">*</text>\n", x, y);
+                }
                 break;
 
             case 2:
-                marcador = tpRect(txt, my_info, x, y);
+                marcador = tpRect(my_info, x, y);
+                if(marcador) {
+                    fprintf(txt, "Acertou Retângulo id = %d, x = %lf, y = %lf, w = %lf, h = %lf\n", getRectID(my_info), getRectX(my_info), getRectY(my_info), getRectWIDTH(my_info), getRectHEIGHT(my_info));
+                    removeNode(t, getRoot(t), getTX(root), getTY(root));
+                    fprintf(svg, "\t<text x=\"%lf\" y=\"%lf\" stroke=\"red\" font-size=\"20\" fill=\"red\" >*</text>\n", x, y);
+                } else {
+                    fprintf(txt, "ÁGUA\n");
+                    fprintf(svg, "\t<text x=\"%lf\" y=\"%lf\" stroke=\"black\" font-size=\"20\" fill=\"grey\">*</text>\n", x, y);
+                }
                 break;
 
             case 3:
-                marcador = tpLine(txt, my_info, x, y);
+                marcador = tpLine(my_info, x, y);
+                if (marcador) {
+                    fprintf(txt, "Acertou Linha id = %d, x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf\n", getLineID(my_info), getLineX(my_info), getLineY(my_info), getLineFINALX(my_info), getLineFINALY(my_info));
+                    removeNode(t, getRoot(t), getTX(root), getTY(root));
+                    fprintf(svg, "\t<text x=\"%lf\" y=\"%lf\" stroke=\"red\" font-size=\"20\" fill=\"red\" >*</text>\n", x, y);
+                } else {
+                    fprintf(txt, "ÁGUA\n");
+                    fprintf(svg, "\t<text x=\"%lf\" y=\"%lf\" stroke=\"black\" font-size=\"20\" fill=\"grey\">*</text>\n", x, y);
+                }
                 break;
 
             case 4:
-                marcador = tpTxt(txt, my_info, x, y);
+                marcador = tpTxt(my_info, x, y);
+                if (marcador) {
+                    fprintf(txt, "Acertou Texto id = %d, x = %lf, y = %lf, txt = %s\n", getTxtID(my_info), getTxtX(my_info), getTxtY(my_info), getTxtTEXT(my_info));
+                    removeNode(t, getRoot(t), getTX(root), getTY(root));
+                    fprintf(svg, "\t<text x=\"%lf\" y=\"%lf\" stroke=\"red\" font-size=\"20\" fill=\"red\" >*</text>\n", x, y);
+                } else {
+                    fprintf(txt, "ÁGUA\n");
+                    fprintf(svg, "\t<text x=\"%lf\" y=\"%lf\" stroke=\"black\" font-size=\"20\" fill=\"grey\">*</text>\n", x, y);
+                }
                 break;
 
             default:
                 break;
-        }
-    }
-
-    if (marcador) {
-        removeNode(t, getRoot(t), getTX(root), getTY(root));
-        fprintf(svg, "<text x=\"%lf\" y=\"%lf\" stroke=\"black\" font-size=\"20\" fill=\"red\" >*</text>\n", x, y);
-    } else {
-        fprintf(txt, "ÁGUA\n");
-        fprintf(svg, "<text x=\"%lf\" y=\"%lf\" stroke=\"black\" font-size=\"20\" fill=\"grey\">*</text>\n", x, y);
+        }  
     }
 }
 
-bool tpCirc(FILE *txt, Info circ, double x, double y) {
+bool tpCirc(Info circ, double x, double y) {
     double cx, cy, cr;
     double x_aux, y_aux, r_aux;
     cx = getCircX(circ);
@@ -135,15 +159,12 @@ bool tpCirc(FILE *txt, Info circ, double x, double y) {
     r_aux = cr * cr;
 
     if (x_aux + y_aux <= r_aux) {  // Está dentro do circulo
-        if(txt) {
-            fprintf(txt, "Acertou Círculo id = %d, x = %lf, y = %lf, r = %lf\n", getCircID(circ), cx, cy, cr);
-        }
         return true;
     }
     return false;
 }
 
-bool tpRect(FILE *txt, Info rect, double x, double y) {
+bool tpRect(Info rect, double x, double y) {
     double rx, ry, h, w;
     rx = getRectX(rect);
     ry = getRectY(rect);
@@ -152,16 +173,13 @@ bool tpRect(FILE *txt, Info rect, double x, double y) {
 
     if (x >= rx && x <= (rx + w)) {  // Está dentro do retangulo
         if (y >= ry && y <= (ry + h)) {
-            if (txt) {
-                fprintf(txt, "Acertou Retângulo id = %d, x = %lf, y = %lf, h = %lf, w = %lf\n", getRectID(rect), rx, ry, h, w);
-            }
             return true;
         }
     }
     return false;
 }
 
-bool tpLine(FILE *txt, Info line, double x, double y) {
+bool tpLine(Info line, double x, double y) {
     double lx1, lx2, ly1, ly2;
     double lenAC, lenCB, lenAB;
     // lenAC = distancia do x1,y1 da linha até o torpedo
@@ -178,23 +196,17 @@ bool tpLine(FILE *txt, Info line, double x, double y) {
     lenAB = getLineLenght(lx1, ly1, lx2, ly2);
 
     if (lenAC + lenCB == lenAB) {  // Está na linha
-        if (txt) {
-            fprintf(txt, "Acertou Linha id = %d, x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf\n", getLineID(line), lx1, ly1, lx2, ly2);
-        }
         return true;
     }
     return false;
 }
 
-bool tpTxt(FILE *txt, Info text, double x, double y) {
+bool tpTxt(Info text, double x, double y) {
     double tx, ty;
     tx = getTxtX(text);
     ty = getTxtY(text);
 
     if (tx == x && ty == y) {  // é a própria âncora do texto
-        if (txt) {
-            fprintf(txt, "Acertou Texto id = %d, x = %lf, y = %lf\n", getTxtID(text), tx, ty);
-        }
         return true;
     }
     return false;
@@ -232,51 +244,51 @@ void postOrderTr(FILE *svg, FILE *txt, Tree t, Node root, double x, double y, do
 
         switch (getCtrl(root)) {
             case 1:
-                marcador = tpCirc(NULL, my_info, x, y);
+                marcador = tpCirc(my_info, x, y);
                 if (marcador) {
                     Info new_circ = criaCirc();
                     replicateCirc(t, my_info, new_circ, dx, dy, id);
                     fprintf(svg, "<text x=\"%lf\" y=\"%lf\" fill=\"red\">@</text>\n", x, y);
                     fprintf(txt, "Círculo Base id = %d, x = %lf, y = %lf, r = %lf, corb = %s, corp = %s\n", getCircID(my_info), getCircX(my_info), getCircY(my_info), getCircRADIUS(my_info), getcircEDGE(my_info), getCircFILL(my_info));
-                    fprintf(txt, "Círculo Replicado id = %d, x = %lf, y = %lf, r = %lf, corb = %s, corp = %s\n", getCircID(new_circ), getCircX(new_circ), getCircY(new_circ), getCircRADIUS(new_circ), getcircEDGE(new_circ), getCircFILL(new_circ)); 
+                    fprintf(txt, "Círculo Replicado id = %d, x = %lf, y = %lf, r = %lf, corb = %s, corp = %s\n", getCircID(new_circ), getCircX(new_circ), getCircY(new_circ), getCircRADIUS(new_circ), getcircEDGE(new_circ), getCircFILL(new_circ));
                     id++;
                 }
                 break;
 
             case 2:
-                marcador = tpRect(txt, my_info, x, y);
+                marcador = tpRect(my_info, x, y);
                 if (marcador) {
                     Info new_rect = criaRec();
                     replicateRect(t, my_info, new_rect, dx, dy, id);
                     fprintf(svg, "<text x=\"%lf\" y=\"%lf\" fill=\"red\">@</text>\n", x, y);
-                    fprintf(txt, "Retangulo Base id = %d, x = %lf, y = %lf, w = %lf, h = %lf, corb = %s, corp = %s\n", getRectID(my_info), getRectX(my_info), getRectY(my_info), getRectWIDTH(my_info), getRectHEIGHT(my_info), getRectEDGE(my_info), getRectFILL(my_info));
+                    // fprintf(txt, "Retangulo Base id = %d, x = %lf, y = %lf, w = %lf, h = %lf, corb = %s, corp = %s\n", getRectID(my_info), getRectX(my_info), getRectY(my_info), getRectWIDTH(my_info), getRectHEIGHT(my_info), getRectEDGE(my_info), getRectFILL(my_info));
                     fprintf(txt, "Retangulo Replicado id = %d, x = %lf, y = %lf, w = %lf, h = %lf, corb = %s, corp = %s\n", getRectID(new_rect), getRectX(new_rect), getRectY(new_rect), getRectWIDTH(new_rect), getRectHEIGHT(new_rect), getRectEDGE(new_rect), getRectFILL(new_rect));
                     id++;
                 }
                 break;
 
             case 3:
-                marcador = tpLine(txt, my_info, x, y);
+                marcador = tpLine(my_info, x, y);
                 if (marcador) {
                     Info new_line = criaLinha();
                     replicateLine(t, my_info, new_line, dx, dy, id);
                     fprintf(svg, "<text x=\"%lf\" y=\"%lf\" fill=\"red\">@</text>\n", x, y);
-                    fprintf(txt, "Linha Base id = %d, x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf, cor = %s\n", getLineID(my_info), getLineX(my_info), getLineY(my_info), getLineFINALX(my_info), getLineFINALY(my_info), getLineCOLOR(my_info));
+                    // fprintf(txt, "Linha Base id = %d, x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf, cor = %s\n", getLineID(my_info), getLineX(my_info), getLineY(my_info), getLineFINALX(my_info), getLineFINALY(my_info), getLineCOLOR(my_info));
                     fprintf(txt, "Linha Replicada id = %d, x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf, cor = %s\n", getLineID(new_line), getLineX(new_line), getLineY(new_line), getLineFINALX(my_info), getLineFINALY(new_line), getLineCOLOR(new_line));
                     id++;
                 }
                 break;
 
             case 4:
-                marcador = tpTxt(txt, my_info, x, y);
+                marcador = tpTxt(my_info, x, y);
                 if (marcador) {
                     Info new_text = criaTxt();
                     replicateTxt(t, my_info, new_text, dx, dy, id);
                     fprintf(svg, "<text x=\"%lf\" y=\"%lf\" fill=\"red\">@</text>\n", x, y);
-                    fprintf(txt, "Texto Base id = %d, x = %lf, y = %lf, corb = %s, corp = %s, text = %s\n", getTxtID(my_info), getTxtX(my_info), getTxtY(my_info), getTxtEDGE(my_info), getTxtFILL(my_info), getTxtTEXT(my_info));
+                    // fprintf(txt, "Texto Base id = %d, x = %lf, y = %lf, corb = %s, corp = %s, text = %s\n", getTxtID(my_info), getTxtX(my_info), getTxtY(my_info), getTxtEDGE(my_info), getTxtFILL(my_info), getTxtTEXT(my_info));
                     fprintf(txt, "Texto Replicado id = %d, x = %lf, y = %lf, corb = %s, corp = %s, text = %s\n", getTxtID(new_text), getTxtX(new_text), getTxtY(new_text), getTxtEDGE(new_text), getTxtFILL(new_text), getTxtTEXT(new_text));
                     id++;
-                } 
+                }
                 break;
 
             default:
