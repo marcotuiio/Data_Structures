@@ -184,30 +184,30 @@ Node removeNode(Tree root, Node node, double x, double y) {
 
     // Chegamos no nó que queremos remover
     } else if (x == my_node->x && y == my_node->y) {
-        // if (!my_node->left && !my_node->right && !my_node->center) {
+        // if (!my_node->left && !my_node->right && !my_node->center) { // FOLHA
         //     free(my_node);
         //     my_root->size--;
-        //     my_node = NULL;
+        //     return NULL;
         
-        // } else if (my_node->left && !my_node->center && !my_node->right) {
-        //     tree_node *temp = my_node;
-        //     my_node = my_node->left;
-        //     free(temp);   
+        // } else if (my_node->left && !my_node->center && !my_node->right) { // SO FILHO ESQUERDO
+        //     tree_node *temp = my_node->left;
+        //     free(my_node);   
         //     my_root->size--;
+        //     return temp;
         
         // } else if (my_node->right && !my_node->left && !my_node->center) {
-        //     tree_node *temp = my_node;
-        //     my_node = my_node->right;
-        //     free(temp);
+        //     tree_node *temp = my_node->right;
+        //     free(my_node);
         //     my_root->size--;
+        //     return temp;
         
         // } else if (my_node->center && !my_node->left && !my_node->right) {
-        //     tree_node *temp = my_node;
-        //     my_node = my_node->center;
-        //     free(temp);
+        //     tree_node *temp = my_node->center;
+        //     free(my_node);
         //     my_root->size--;
+        //     return temp;
 
-        // } else {
+        // } else { // MAIS DE UM FILHO
         //     marcaRemovido(root, my_node);
         // }
 
