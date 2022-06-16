@@ -12,21 +12,17 @@ void writeSvg(char *bsdSvg, Tree my_tree) {
     Node my_root = getRoot(my_tree);
     // printf("\n size %d\n", getSize(my_tree));
 
-    postOrderSVG(my_root, svg);
+    preOrderSVG(my_root, svg);
 
     killSvg(svg);
 }
 
-void postOrderSVG(Node root, FILE *svg) {
+void preOrderSVG(Node root, FILE *svg) {
     Info my_info;
 
     if (root == NULL) {
         return;
     }
-
-    postOrderSVG(getLeft(root), svg);
-    postOrderSVG(getCenter(root), svg);
-    postOrderSVG(getRight(root), svg);
 
     if (!getRemovedStatus(root)) {
         my_info = getInfo(root);
@@ -54,6 +50,10 @@ void postOrderSVG(Node root, FILE *svg) {
     } else {
         // printf("\n--- REMOVED %p ---\n", root);
     }
+
+    preOrderSVG(getLeft(root), svg);
+    preOrderSVG(getCenter(root), svg);
+    preOrderSVG(getRight(root), svg);
 }
 
 void drawCircle(FILE *svg, Info circ) {

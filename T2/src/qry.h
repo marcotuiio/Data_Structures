@@ -28,7 +28,7 @@ void tp(Tree root, FILE *qry, FILE *svg, FILE *txt);
 // Torpedo no ponto (x,y). Remover todas as
 // formas para as quais o ponto (x,y) é interno.
 
-void postOrderTp(FILE *svg, FILE *txt, Tree t, Node root, double x, double y);
+void preOrderTp(FILE *txt, Tree t, Node root, double x, double y, char *check);
 bool tpCirc(Info circ, double x, double y);
 bool tpRect(Info rect, double x, double y);
 bool tpLine(Info line, double x, double y);
@@ -48,7 +48,7 @@ void tr(Tree root, FILE *qry, FILE *svg, FILE *txt);
 // identificador dos clones devem começar no
 // valor id.
 
-void postOrderTr(FILE *svg, FILE *txt, Tree t, Node root, double x, double y, double dx, double dy, int id);
+void preOrderTr(FILE *txt, Tree t, Node root, double x, double y, double dx, double dy, int id, char *check);
 
 void be(Tree root, FILE *qry, FILE *txt, FILE *svg, double v);
 // Bomba de irradiação atingiu região
@@ -66,7 +66,7 @@ double calcReduc(double v, double areaEquip, double areaSel);
 double calcSelArea(double x, double y, double w, double h);
 // recebe as coordenadas de um ataque e retorna a área do mesmo (retangular)
 
-void postOrderBe(FILE *svg, FILE *txt, Tree root, Info fig, double x, double y, double w, double h, double v);
+void preOrderBe(FILE *svg, FILE *txt, Tree root, Info fig, double x, double y, double w, double h, double v);
 bool isInsideCirc(Info circ, double x, double y, double w, double h);
 void printReducCirc(FILE *svg, FILE *txt, Info circ, Tree root, Node node);
 bool isInsideRect(Info rect, double x, double y, double w, double h);
