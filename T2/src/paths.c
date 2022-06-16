@@ -4,15 +4,14 @@ struct param {
     char* bed;           // path - diretŕoio base de entrada (BED)
     char* bsd;           // path - diretŕoio base de saída (BSD)
     char* bedgeo;        // bed/arq.geo 
-    char* geoarq;        // pasta/arq.geo
+    char* geoarq;        // arq.geo
     char* geoname;       // only name (no .geo)
     char* bedqry;        // bed/pasta/arq.qry 
-    char* qryarq;        // testes/arq.qry
+    char* qryarq;        // pasta/arq.qry
     char* qryname;       // only name (no .qry)
     char* bsdgeosvg;     // bsd/nomegeo.svg
     char* bsdgeoqrysvg;  // bsd/nomegeo_nomeqry.svg
     char* bsdgeoqrytxt;  // bsd/nomegeo_nomeqry.txt
-    char* aux;
 };
 typedef struct param AllPaths;
 
@@ -21,7 +20,7 @@ Paths createAllPaths() {
     return aux;
 }
 
-char* prepareDir(char* dir) {
+char* fixDir(char* dir) {
     if (dir[strlen(dir) - 1] != '/') {
         dir = realloc(dir, strlen(dir) + 2);
         strcat(dir, "/");
@@ -29,35 +28,17 @@ char* prepareDir(char* dir) {
     return dir;  // manter / no final dos diretorios
 }
 
-void prepareDoc(char* asread, char* onlyname) {
-    int index = 0, pos = 0;
-    bool found = false;
+void fixDoc(char* asread, char* onlyname) {
+    char *index = strrchr(asread, '/');
 
-    for (int i = strlen(asread) - 1; i >= 0; i--) {
-        if (asread[i] == '/') {
-            index = i;
-            found = true;
-            break;
-        }
-    }
+    if (index) {
+        index++;
+        char *tok = strtok(index, ".");
+        strcpy(onlyname, tok);
 
-    if (found) {
-        for (int i = index + 1; i < strlen(asread); i++) {
-            if (asread[i] == '.') {
-                onlyname[pos] = '\0';
-                break;
-            } else {
-                onlyname[pos] = asread[i];
-                pos++;
-            }
-        }
     } else {
         strcpy(onlyname, asread);
-        for (int i = 0; i < strlen(onlyname); i++) {
-            if (onlyname[i] == '.') {
-                onlyname[i] = '\0';
-            }
-        }
+        strtok(onlyname, ".");
     }
 }
 
@@ -123,6 +104,7 @@ char* getBedQry(Paths path) {
 
 void setQryArq(Paths path, char* qryarq) {
     AllPaths* paths = path;
+    strcat(qryarq, ".qry");
     paths->qryarq = qryarq;
 }
 
@@ -133,12 +115,7 @@ char* getQryArq(Paths path) {
 
 void setQryName(Paths path, char* qryname) {
     AllPaths* paths = path;
-    char *index = strrchr(paths->qryarq, '/');
-    index++;
-    paths->aux = calloc(1, sizeof(index) + 128); // TOMAR CUIDADO COM ESSE TRECHO
-    strcpy(paths->aux, index);
-    char *name = strtok(paths->aux, ".");
-    paths->qryname = name;
+    paths->qryname = qryname;
 }
 
 char* getQryName(Paths path) {
@@ -185,10 +162,10 @@ void freePaths(Paths path) {
     free(paths->bedqry);
     free(paths->geoname);
     free(paths->geoarq);
+    free(paths->qryname);
     free(paths->qryarq);
     free(paths->bsdgeoqrysvg);
     free(paths->bsdgeoqrytxt);
     free(paths->bsdgeosvg);
-    free(paths->aux);
     free(paths);
 }

@@ -106,8 +106,8 @@ void preOrderInfos(Lista my_list, Node root, double x1, double y1, double x2, do
 // e percorre todos os nós
 
 // percurso em largura
-Tree printLevelOrder(Node root);
-void printGivenLevel(Node root, Tree new, int level);
+Tree rebuildTree(Node root);
+void rebuildGivenLevel(Node root, Tree new, int level);
 int height(Node root);
 // funções complementaras que dada uma árvore, 
 // imprimem os nós em nível, começando por um indice 0;

@@ -20,7 +20,7 @@ void readParam(int argc, char** argv, Paths paths, Controller ctrl) {
             strcpy(bed, argv[i]);
             help->readbed = true;
 
-            bed = prepareDir(bed);
+            bed = fixDir(bed);
 
             setBed(paths, bed);
 
@@ -32,7 +32,7 @@ void readParam(int argc, char** argv, Paths paths, Controller ctrl) {
             strcpy(geofull, argv[i]);
             help->readgeo = true;
 
-            prepareDoc(geofull, geoname);
+            fixDoc(geofull, geoname);
 
             strcpy(geoarq, geoname);
             strcat(geoarq, ".geo");
@@ -46,7 +46,7 @@ void readParam(int argc, char** argv, Paths paths, Controller ctrl) {
             strcpy(bsd, argv[i]);
             help->readbsd = true;
 
-            bsd = prepareDir(bsd);
+            bsd = fixDir(bsd);
 
             setBsd(paths, bsd);
 
@@ -57,12 +57,10 @@ void readParam(int argc, char** argv, Paths paths, Controller ctrl) {
             strcpy(qryarq, argv[i]);
             help->readqry = true;
 
-            setQryArq(paths, qryarq);
+            fixDoc(qryarq, qryname);
 
-            strcpy(qryname, qryarq);
+            setQryArq(paths, qryarq);
             setQryName(paths, qryname);
-            prepareDoc(qryarq, qryname);
-            free(qryname);
         }
     }
 

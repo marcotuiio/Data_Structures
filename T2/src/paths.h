@@ -11,10 +11,10 @@
 Paths createAllPaths();
 // Aloca memória para todas as possiveis variaveis de entrada
 
-char* prepareDir(char* dir);
+char* fixDir(char* dir);
 // Tratamento dos diretorios, para garantir que sejam válidos
 
-void prepareDoc(char* asread, char* onlyname);
+void fixDoc(char* asread, char* onlyname);
 // Tratamentos dos nomes, para evitar falhas de concatenação
 
 void setBed(Paths path, char* bed);

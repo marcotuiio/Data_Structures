@@ -29,10 +29,10 @@
 	<text x="55.000000" y="47.500000" stroke="black" font-size="20" fill="grey">*</text>
 	<text x="55.000000" y="47.500000" stroke="black" font-size="20" fill="grey">*</text>
 	<text x="55.000000" y="47.500000" stroke="black" font-size="20" fill="grey">*</text>
-	<text x="55.000000" y="47.500000" stroke="black" font-size="20" fill="red" >*</text>
-	<text x="55.000000" y="47.500000" stroke="black" font-size="20" fill="red" >*</text>
-	<text x="55.000000" y="47.500000" stroke="black" font-size="20" fill="red" >*</text>
-	<text x="55.000000" y="47.500000" stroke="black" font-size="20" fill="red" >*</text>
+	<text x="55.000000" y="47.500000" stroke="red" font-size="20" fill="red" >*</text>
+	<text x="55.000000" y="47.500000" stroke="red" font-size="20" fill="red" >*</text>
+	<text x="55.000000" y="47.500000" stroke="red" font-size="20" fill="red" >*</text>
+	<text x="55.000000" y="47.500000" stroke="red" font-size="20" fill="red" >*</text>
 	<text x="180.000000" y="47.500000" stroke="black" font-size="20" fill="grey">*</text>
 	<text x="180.000000" y="47.500000" stroke="black" font-size="20" fill="grey">*</text>
 	<text x="180.000000" y="47.500000" stroke="black" font-size="20" fill="grey">*</text>
@@ -135,12 +135,12 @@
 	<text x="430.000000" y="47.500000" stroke="black" font-size="20" fill="grey">*</text>
 	<text x="430.000000" y="47.500000" stroke="black" font-size="20" fill="grey">*</text>
 	<text x="430.000000" y="47.500000" stroke="black" font-size="20" fill="grey">*</text>
-	<text x="55.000000" y="157.500000" stroke="black" font-size="20" fill="red" >*</text>
-	<text x="55.000000" y="157.500000" stroke="black" font-size="20" fill="red" >*</text>
+	<text x="55.000000" y="157.500000" stroke="red" font-size="20" fill="red" >*</text>
+	<text x="55.000000" y="157.500000" stroke="red" font-size="20" fill="red" >*</text>
 	<text x="55.000000" y="157.500000" stroke="black" font-size="20" fill="grey">*</text>
-	<text x="55.000000" y="157.500000" stroke="black" font-size="20" fill="red" >*</text>
-	<text x="55.000000" y="157.500000" stroke="black" font-size="20" fill="red" >*</text>
-	<text x="55.000000" y="157.500000" stroke="black" font-size="20" fill="red" >*</text>
+	<text x="55.000000" y="157.500000" stroke="red" font-size="20" fill="red" >*</text>
+	<text x="55.000000" y="157.500000" stroke="red" font-size="20" fill="red" >*</text>
+	<text x="55.000000" y="157.500000" stroke="red" font-size="20" fill="red" >*</text>
 	<text x="55.000000" y="157.500000" stroke="black" font-size="20" fill="grey">*</text>
 	<text x="55.000000" y="157.500000" stroke="black" font-size="20" fill="grey">*</text>
 	<text x="55.000000" y="157.500000" stroke="black" font-size="20" fill="grey">*</text>
@@ -213,10 +213,10 @@
 	<text x="305.000000" y="157.500000" stroke="black" font-size="20" fill="grey">*</text>
 	<text x="305.000000" y="157.500000" stroke="black" font-size="20" fill="grey">*</text>
 	<text x="305.000000" y="157.500000" stroke="black" font-size="20" fill="grey">*</text>
-	<text x="305.000000" y="157.500000" stroke="black" font-size="20" fill="red" >*</text>
-	<text x="305.000000" y="157.500000" stroke="black" font-size="20" fill="red" >*</text>
-	<text x="305.000000" y="157.500000" stroke="black" font-size="20" fill="red" >*</text>
-	<text x="305.000000" y="157.500000" stroke="black" font-size="20" fill="red" >*</text>
+	<text x="305.000000" y="157.500000" stroke="red" font-size="20" fill="red" >*</text>
+	<text x="305.000000" y="157.500000" stroke="red" font-size="20" fill="red" >*</text>
+	<text x="305.000000" y="157.500000" stroke="red" font-size="20" fill="red" >*</text>
+	<text x="305.000000" y="157.500000" stroke="red" font-size="20" fill="red" >*</text>
 	<text x="305.000000" y="157.500000" stroke="black" font-size="20" fill="grey">*</text>
 	<text x="305.000000" y="157.500000" stroke="black" font-size="20" fill="grey">*</text>
 	<text x="305.000000" y="157.500000" stroke="black" font-size="20" fill="grey">*</text>

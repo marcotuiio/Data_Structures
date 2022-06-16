@@ -99,6 +99,7 @@ void postOrderTp(FILE *svg, FILE *txt, Tree t, Node root, double x, double y) {
                     fprintf(txt, "Acertou Círculo id = %d, x = %lf, y = %lf, r = %lf\n", getCircID(my_info), getCircX(my_info), getCircY(my_info), getCircRADIUS(my_info));
                     removeNode(t, getRoot(t), getTX(root), getTY(root));
                     fprintf(svg, "\t<text x=\"%lf\" y=\"%lf\" stroke=\"red\" font-size=\"20\" fill=\"red\" >*</text>\n", x, y);
+                
                 } else {
                     fprintf(txt, "ÁGUA\n");
                     fprintf(svg, "\t<text x=\"%lf\" y=\"%lf\" stroke=\"black\" font-size=\"20\" fill=\"grey\">*</text>\n", x, y);
@@ -111,6 +112,7 @@ void postOrderTp(FILE *svg, FILE *txt, Tree t, Node root, double x, double y) {
                     fprintf(txt, "Acertou Retângulo id = %d, x = %lf, y = %lf, w = %lf, h = %lf\n", getRectID(my_info), getRectX(my_info), getRectY(my_info), getRectWIDTH(my_info), getRectHEIGHT(my_info));
                     removeNode(t, getRoot(t), getTX(root), getTY(root));
                     fprintf(svg, "\t<text x=\"%lf\" y=\"%lf\" stroke=\"red\" font-size=\"20\" fill=\"red\" >*</text>\n", x, y);
+                
                 } else {
                     fprintf(txt, "ÁGUA\n");
                     fprintf(svg, "\t<text x=\"%lf\" y=\"%lf\" stroke=\"black\" font-size=\"20\" fill=\"grey\">*</text>\n", x, y);
@@ -123,6 +125,7 @@ void postOrderTp(FILE *svg, FILE *txt, Tree t, Node root, double x, double y) {
                     fprintf(txt, "Acertou Linha id = %d, x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf\n", getLineID(my_info), getLineX(my_info), getLineY(my_info), getLineFINALX(my_info), getLineFINALY(my_info));
                     removeNode(t, getRoot(t), getTX(root), getTY(root));
                     fprintf(svg, "\t<text x=\"%lf\" y=\"%lf\" stroke=\"red\" font-size=\"20\" fill=\"red\" >*</text>\n", x, y);
+                
                 } else {
                     fprintf(txt, "ÁGUA\n");
                     fprintf(svg, "\t<text x=\"%lf\" y=\"%lf\" stroke=\"black\" font-size=\"20\" fill=\"grey\">*</text>\n", x, y);
@@ -135,6 +138,7 @@ void postOrderTp(FILE *svg, FILE *txt, Tree t, Node root, double x, double y) {
                     fprintf(txt, "Acertou Texto id = %d, x = %lf, y = %lf, txt = %s\n", getTxtID(my_info), getTxtX(my_info), getTxtY(my_info), getTxtTEXT(my_info));
                     removeNode(t, getRoot(t), getTX(root), getTY(root));
                     fprintf(svg, "\t<text x=\"%lf\" y=\"%lf\" stroke=\"red\" font-size=\"20\" fill=\"red\" >*</text>\n", x, y);
+                
                 } else {
                     fprintf(txt, "ÁGUA\n");
                     fprintf(svg, "\t<text x=\"%lf\" y=\"%lf\" stroke=\"black\" font-size=\"20\" fill=\"grey\">*</text>\n", x, y);

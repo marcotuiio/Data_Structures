@@ -185,24 +185,28 @@ Node removeNode(Tree root, Node node, double x, double y) {
     // Chegamos no nó que queremos remover
     } else if (x == my_node->x && y == my_node->y) {
         // if (!my_node->left && !my_node->right && !my_node->center) { // FOLHA
+        //     free(my_node->value);
         //     free(my_node);
         //     my_root->size--;
         //     return NULL;
         
         // } else if (my_node->left && !my_node->center && !my_node->right) { // SO FILHO ESQUERDO
         //     tree_node *temp = my_node->left;
+        //     free(my_node->value);
         //     free(my_node);   
         //     my_root->size--;
         //     return temp;
         
         // } else if (my_node->right && !my_node->left && !my_node->center) {
         //     tree_node *temp = my_node->right;
+        //     free(my_node->value);
         //     free(my_node);
         //     my_root->size--;
         //     return temp;
         
         // } else if (my_node->center && !my_node->left && !my_node->right) {
         //     tree_node *temp = my_node->center;
+        //     free(my_node->value);
         //     free(my_node);
         //     my_root->size--;
         //     return temp;
@@ -237,9 +241,19 @@ void marcaRemovido(Tree root, Node node) {
     if (toRemove != NULL) {
         toRemove->removed = true;
         // printf("elemento removido %p\n", toRemove);
+        int ctrl = getCtrl(toRemove);
+        if (ctrl == 1) {
+            freeCirc(toRemove->value);
+        } else if (ctrl == 2) {
+            freeRect(toRemove->value);
+        } else if (ctrl == 3) {
+            freeLine(toRemove->value);
+        } else if (ctrl == 4) {
+            freeTxt(toRemove->value);
+        }
         my_root->qntdRemoved++;
         if (calcFD(my_root)) {
-            my_root = printLevelOrder(my_root->root);
+            my_root = rebuildTree(my_root->root);
             my_root->qntdRemoved = 0;
             printf("NEED TO FIX TREE");
         }
@@ -394,7 +408,7 @@ void preOrderAtingidos(Lista my_list, Node root, double x1, double y1) {
     preOrderAtingidos(my_list, my_root->right, x1, y1);
 }
 
-Tree printLevelOrder(Node root) {
+Tree rebuildTree(Node root) {  // percurso em largura (printLevelOrder)
     tree_node *my_root = root;
     Tree new_tree = createTree();
 
@@ -406,7 +420,7 @@ Tree printLevelOrder(Node root) {
     int maxLevel = height(my_root);
     int i;
     for (i = 1; i <= maxLevel; i++) {
-        printGivenLevel(my_root, new_tree, i);
+        rebuildGivenLevel(my_root, new_tree, i);
     }
 
     freeTree(my_root);
@@ -414,7 +428,7 @@ Tree printLevelOrder(Node root) {
     return new_tree;
 }
 
-void printGivenLevel(Node root, Tree new, int level) {
+void rebuildGivenLevel(Node root, Tree new, int level) {
     tree_node *my_root = root;
 
     if (my_root == NULL) {
@@ -445,9 +459,9 @@ void printGivenLevel(Node root, Tree new, int level) {
         }
 
     } else if (level > 1) {
-        printGivenLevel(my_root->left, new, level - 1);
-        printGivenLevel(my_root->center, new, level - 1);
-        printGivenLevel(my_root->right, new, level - 1);
+        rebuildGivenLevel(my_root->left, new, level - 1);
+        rebuildGivenLevel(my_root->center, new, level - 1);
+        rebuildGivenLevel(my_root->right, new, level - 1);
     }
 }
 
@@ -521,16 +535,19 @@ void freeTree(Node root) {
     if (my_node == NULL) {
         return;
     }
-    ctrl = getCtrl(my_node);
-    if (ctrl == 1) {
-        freeCirc(my_node->value);
-    } else if (ctrl == 2) {
-        freeRect(my_node->value);
-    } else if (ctrl == 3) {
-        freeLine(my_node->value);
-    } else if (ctrl == 4) {
-        freeTxt(my_node->value);
+    if(!my_node->removed) {
+        ctrl = getCtrl(my_node);
+        if (ctrl == 1) {
+            freeCirc(my_node->value);
+        } else if (ctrl == 2) {
+            freeRect(my_node->value);
+        } else if (ctrl == 3) {
+            freeLine(my_node->value);
+        } else if (ctrl == 4) {
+            freeTxt(my_node->value);
+        }
     }
+    
     freeTree(my_node->left);
     freeTree(my_node->center);
     freeTree(my_node->right);
