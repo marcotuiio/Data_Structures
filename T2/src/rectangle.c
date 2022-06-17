@@ -117,11 +117,9 @@ double getProtecRect(Info r) {
 
 double getRectArea(Info r) {
     Retangulo *rect = r;
-    double a, width, height;
-    width = rect->x + rect->width;
-    height = rect->y + rect->height;
+    double a;
 
-    a = width * height;
+    a = rect->width * rect->height;
     return a;
 }
 

@@ -63,7 +63,7 @@ double calcReduc(double v, double areaEquip, double areaSel);
 // dado um valor de agressividade (v) para os ataques, a área da figura
 // atingida e a área total do ataque, retorna a redução causada
 
-double calcSelArea(double x, double y, double w, double h);
+double calcSelArea(double w, double h);
 // recebe as coordenadas de um ataque e retorna a área do mesmo (retangular)
 
 void preOrderBe(FILE *svg, FILE *txt, Tree root, Info fig, double x, double y, double w, double h, double v);

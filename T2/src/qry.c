@@ -323,12 +323,10 @@ double calcReduc(double v, double areaEquip, double areaSel) {
     return reduc;
 }
 
-double calcSelArea(double x, double y, double w, double h) {
-    double a, width, height;
-    width = x + w;
-    height = y + h;
+double calcSelArea(double w, double h) {
+    double a;
 
-    a = width * height;
+    a = w * h;
     return a;
 }
 
@@ -336,7 +334,7 @@ void preOrderBe(FILE *svg, FILE *txt, Tree root, Node node, double x, double y, 
     Info fig;
     bool marcador;
     double reduc;
-    double selArea = calcSelArea(x, y, w, h);
+    double selArea = calcSelArea(w, h);
 
     if (!node) {
         return;
