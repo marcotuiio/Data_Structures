@@ -77,15 +77,16 @@ Info searchTree(Node root, double x, double y);
 // Recebe um nó de uma árvore (na primeira chamada esse nó deve ser a raiz), um x
 // e um y a serem procurados na árvore. 
 
-Node removeNode(Tree root, Node node, double x, double y);
+Node removeNode(Tree root, Node node, double x, double y, int id);
 // Recebe a aŕvore e um nó dessa árvore, um x e um y referente ao nó
 // que deve ser deletado da árvore. Se o nó a ser deletado possui mais de um filho, 
 // a função marca removido é ativada
+int analyseNode(Node root);
 
 bool getRemovedStatus(Node root);
 // Recebe um nó e retorna o status de remoção do respectivo nó
 
-void marcaRemovido(Tree root, Node node);
+void markRemoved(Tree root, Node node);
 // Marca como removido o nó node. Caso, após a remoção ativa-se a função calcFD e se
 // o fator de degradação superar o limiar definido na criação, a árvore deve ser recriada.
 

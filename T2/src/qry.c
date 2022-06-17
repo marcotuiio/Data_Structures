@@ -101,8 +101,8 @@ void preOrderTp(FILE *txt, Tree t, Node root, double x, double y, char *check) {
                 marcador = tpCirc(my_info, x, y);
                 if(marcador) {
                     fprintf(txt, "Acertou Círculo id = %d, x = %lf, y = %lf, r = %lf\n", getCircID(my_info), getCircX(my_info), getCircY(my_info), getCircRADIUS(my_info));
-                    // removeNode(t, getRoot(t), getTX(root), getTY(root));
-                    marcaRemovido(t, root);
+                    // removeNode(t, getRoot(t), getTX(root), getTY(root), getCircID(my_info));
+                    markRemoved(t, root);
                     strcpy(check, "CHEIO");
                 } 
                 break;
@@ -111,8 +111,8 @@ void preOrderTp(FILE *txt, Tree t, Node root, double x, double y, char *check) {
                 marcador = tpRect(my_info, x, y);
                 if(marcador) {
                     fprintf(txt, "Acertou Retângulo id = %d, x = %lf, y = %lf, w = %lf, h = %lf\n", getRectID(my_info), getRectX(my_info), getRectY(my_info), getRectWIDTH(my_info), getRectHEIGHT(my_info));
-                    // removeNode(t, getRoot(t), getTX(root), getTY(root));
-                    marcaRemovido(t, root);
+                    // removeNode(t, getRoot(t), getTX(root), getTY(root), getRectID(my_info));
+                    markRemoved(t, root);
                     strcpy(check, "CHEIO");
                 } 
                 break;
@@ -121,8 +121,8 @@ void preOrderTp(FILE *txt, Tree t, Node root, double x, double y, char *check) {
                 marcador = tpLine(my_info, x, y);
                 if (marcador) {
                     fprintf(txt, "Acertou Linha id = %d, x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf\n", getLineID(my_info), getLineX(my_info), getLineY(my_info), getLineFINALX(my_info), getLineFINALY(my_info));
-                    // removeNode(t, getRoot(t), getTX(root), getTY(root));
-                    marcaRemovido(t, root);
+                    // removeNode(t, getRoot(t), getTX(root), getTY(root), getLineID(my_info));
+                    markRemoved(t, root);
                     strcpy(check, "CHEIO");
                 } 
                 break;
@@ -131,8 +131,8 @@ void preOrderTp(FILE *txt, Tree t, Node root, double x, double y, char *check) {
                 marcador = tpTxt(my_info, x, y);
                 if (marcador) {
                     fprintf(txt, "Acertou Texto id = %d, x = %lf, y = %lf, txt = %s\n", getTxtID(my_info), getTxtX(my_info), getTxtY(my_info), getTxtTEXT(my_info));
-                    // removeNode(t, getRoot(t), getTX(root), getTY(root));
-                    marcaRemovido(t, root);
+                    // removeNode(t, getRoot(t), getTX(root), getTY(root), getTxtID(my_info));
+                    markRemoved(t, root);
                     strcpy(check, "CHEIO");
                 } 
                 break;
@@ -428,8 +428,8 @@ void printReducCirc(FILE *svg, FILE *txt, Info circ, Tree root, Node node) {
     // printf("protec c %lf\n", getProtecCirc(circ));
 
     if (getProtecCirc(circ) <= 0) {
-        // removeNode(root, getRoot(root), getTX(node), getTY(node));
-        marcaRemovido(root, node);
+        // removeNode(root, getRoot(root), getTX(node), getTY(node), getCircID(circ));
+        markRemoved(root, node);
         fprintf(txt, "REMOVIDO\n");
     } else {
         fprintf(txt, "\n");
@@ -465,8 +465,8 @@ void printReducRect(FILE *svg, FILE *txt, Info rect, Tree root, Node node) {
     // printf("protec r %lf\n", getProtecRect(rect));
 
     if (getProtecRect(rect) <= 0) {
-        // removeNode(root, getRoot(root), getTX(node), getTY(node));
-        marcaRemovido(root, node);
+        // removeNode(root, getRoot(root), getTX(node), getTY(node), getRectID(rect));
+        markRemoved(root, node);
         fprintf(txt, "REMOVIDO\n");
     } else {
         fprintf(txt, "\n");
@@ -502,8 +502,8 @@ void printReducLine(FILE *svg, FILE *txt, Info line, Tree root, Node node) {
     // printf("protec l %lf\n", getProtecLine(line));
 
     if (getProtecLine(line) <= 0) {
-        // removeNode(root, getRoot(root), getTX(node), getTY(node));
-        marcaRemovido(root, node);
+        // removeNode(root, getRoot(root), getTX(node), getTY(node), getLineID(line));
+        markRemoved(root, node);
         fprintf(txt, "REMOVIDO\n");
     } else {
         fprintf(txt, "\n");
@@ -535,8 +535,8 @@ void printReducText(FILE *svg, FILE *txt, Info text, Tree root, Node node) {
     // printf("protec t %lf\n", getProtecTxt(text));
 
     if (getProtecTxt(text) <= 0) {
-        // removeNode(root, getRoot(root), getTX(node), getTY(node));
-        marcaRemovido(root, node);
+        // removeNode(root, getRoot(root), getTX(node), getTY(node), getTxtID(text));
+        markRemoved(root, node);
         fprintf(txt, "REMOVIDO\n");
     } else {
         fprintf(txt, "\n");
