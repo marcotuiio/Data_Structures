@@ -7,7 +7,6 @@
 #include "text.h"
 
 void writeSvg(char *bsdSvg, Tree my_tree) {
-    // printf("\n--- INICIO WRITE SVG ---\n");
     FILE *svg = createSvg(bsdSvg);
     Node my_root = getRoot(my_tree);
     // printf("\n size %d\n", getSize(my_tree));
@@ -20,7 +19,7 @@ void writeSvg(char *bsdSvg, Tree my_tree) {
 void preOrderSVG(Node root, FILE *svg) {
     Info my_info;
 
-    if (root == NULL) {
+    if (!root) {
         return;
     }
 
@@ -128,14 +127,6 @@ void drawText(FILE *svg, Info txt) {
     }
 
     strcpy(text, getTxtTEXT(txt));
-
-    // printf("\nid %d\n", id);
-    // printf("x %lf\n", x);
-    // printf("y %lf\n", y);
-    // printf("a %s\n", anchor);
-    // printf("corb %s\n", stroke);
-    // printf("corp %s\n", fill);
-    // printf("txt %s\n", text);
 
     fprintf(svg, "\t<text id=\"%d\" x=\"%lf\" y=\"%lf\" text-anchor=\"%s\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"60%%\" >%s</text>\n", id, x, y, anchor, stroke, fill, text);
 }
