@@ -66,28 +66,28 @@ FILE *openTxt(char *bsdTxt) {
     return txt;
 }
 
-Pontos createPontos() {
+Score createScore() {
     game_points *new_pnts = calloc(1, sizeof(game_points));
     new_pnts->pt_destr = 0;
     new_pnts->pt_inativ = 0;
     return new_pnts;
 }
 
-void updateDestr(Pontos pnts, double pt_destr) {
+void updateDestr(Score pnts, double pt_destr) {
     game_points *my_pnts = pnts;
     double aux = my_pnts->pt_destr + pt_destr;
 
     my_pnts->pt_destr = aux;
 }
 
-void updateInativ(Pontos pnts, double pt_inativ) {
+void updateInativ(Score pnts, double pt_inativ) {
     game_points *my_pnts = pnts;
     double aux = my_pnts->pt_inativ + pt_inativ;
 
     my_pnts->pt_inativ = aux;
 }
 
-void printPoints(Pontos pnts, FILE *txt) {
+void printPoints(Score pnts, FILE *txt) {
     game_points *my_pnts = pnts;
 
     fprintf(txt, "\n>> RESULTADOS FINAIS DO JOGO:\n");
@@ -106,7 +106,7 @@ double na(FILE *qry, FILE *txt) {
     return v;
 }
 
-void tp(Pontos pnts, Tree root, FILE *qry, FILE *svg, FILE *txt) {
+void tp(Score pnts, Tree root, FILE *qry, FILE *svg, FILE *txt) {
     double x, y;
     int cont = 0;
     int *p = &cont;
@@ -127,7 +127,7 @@ void tp(Pontos pnts, Tree root, FILE *qry, FILE *svg, FILE *txt) {
     }
 }
 
-void preOrderTp(Pontos pnts, FILE *txt, Tree t, Node root, double x, double y, int *cont) {
+void preOrderTp(Score pnts, FILE *txt, Tree t, Node root, double x, double y, int *cont) {
     Info my_info;
     bool marcador = false;
 
@@ -350,7 +350,7 @@ void preOrderTr(FILE *txt, Tree t, Node root, double x, double y, double dx, dou
     preOrderTr(txt, t, getRight(root), x, y, dx, dy, id, cont);
 }
 
-void be(Pontos pnts, Tree root, FILE *qry, FILE *txt, FILE *svg, double v) {
+void be(Score pnts, Tree root, FILE *qry, FILE *txt, FILE *svg, double v) {
     double x, y, w, h;
 
     fscanf(qry, "%lf", &x);
@@ -378,7 +378,7 @@ double calcSelArea(double w, double h) {
     return a;
 }
 
-void preOrderBe(Pontos pnts, FILE *svg, FILE *txt, Tree root, Node node, double x, double y, double w, double h, double v) {
+void preOrderBe(Score pnts, FILE *svg, FILE *txt, Tree root, Node node, double x, double y, double w, double h, double v) {
     Info fig;
     bool marcador;
     double reduc;
@@ -461,7 +461,7 @@ bool isInsideCirc(Info circ, double x, double y, double w, double h) {
     return false;
 }
 
-void printReducCirc(Pontos pnts, FILE *svg, FILE *txt, Info circ, Tree root, Node node) {
+void printReducCirc(Score pnts, FILE *svg, FILE *txt, Info circ, Tree root, Node node) {
     double r = 3.50;
     char color[] = "red";
 
@@ -499,7 +499,7 @@ bool isInsideRect(Info rect, double x, double y, double w, double h) {
     return false;
 }
 
-void printReducRect(Pontos pnts, FILE *svg, FILE *txt, Info rect, Tree root, Node node) {
+void printReducRect(Score pnts, FILE *svg, FILE *txt, Info rect, Tree root, Node node) {
     double r = 2.05;
     char color[] = "red";
 
@@ -537,7 +537,7 @@ bool isInsideLine(Info line, double x, double y, double w, double h) {
     return false;
 }
 
-void printReducLine(Pontos pnts, FILE *svg, FILE *txt, Info line, Tree root, Node node) {
+void printReducLine(Score pnts, FILE *svg, FILE *txt, Info line, Tree root, Node node) {
     double r = 2.05;
     char color[] = "red";
 
@@ -571,7 +571,7 @@ bool isInsideText(Info text, double x, double y, double w, double h) {
     return false;
 }
 
-void printReducText(Pontos pnts, FILE *svg, FILE *txt, Info text, Tree root, Node node) {
+void printReducText(Score pnts, FILE *svg, FILE *txt, Info text, Tree root, Node node) {
     double r = 2.05;
     char color[] = "red";
 
