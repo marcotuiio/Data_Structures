@@ -15,9 +15,12 @@ void readQry(Tree root, char *bedQry, char* bsdSvgQry, char *bsdTxt);
 Score createScore();
 void updateDestr(Score pnts, double pt_destr);
 void updateInativ(Score pnts, double pt_inativ);
+void updateAtaq(Score pnts, int at);
 void printScore(Score pnts, FILE *txt);
-// Funções com o intuito de manter a table de placar 
-// do jogo contando e atualizada
+// Funções com o intuito de manter a tabela de placar 
+// do jogo contando e atualizada. Pontuação máxima, quantidade
+// de ataques e proporção de pontos por ataques são 
+// controladas por meio dessas
 
 FILE *openQry(char *bedQry);
 // Deve receber o diretório do arquivo .qry a ser criado
