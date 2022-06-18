@@ -14,6 +14,8 @@ typedef void* Tree;
 typedef void* Node;
 typedef void* Info;
 
+typedef void* Pontos;
+
 typedef void* Lista;
 typedef void* Cell;
 

@@ -12,6 +12,13 @@ void readQry(Tree root, char *bedQry, char* bsdSvgQry, char *bsdTxt);
 // Leitura dos comando e delegação de tarefas para as
 // determinados comandos
 
+Pontos createPontos();
+void updateDestr(Pontos pnts, double pt_destr);
+void updateInativ(Pontos pnts, double pt_inativ);
+void printPoints(Pontos pnts, FILE *txt);
+// Funções com o intuito de manter a table de placar 
+// do jogo contando e atualizada
+
 FILE *openQry(char *bedQry);
 // Deve receber o diretório do arquivo .qry a ser criado
 // Retorna o arquivo .qry criado para leitura
@@ -24,11 +31,11 @@ double na(FILE *qry, FILE *txt);
 // Atribui o nível de agressividade v (real) às
 // regiões de ataque
 
-void tp(Tree root, FILE *qry, FILE *svg, FILE *txt);
+void tp(Pontos pnts, Tree root, FILE *qry, FILE *svg, FILE *txt);
 // Torpedo no ponto (x,y). Remover todas as
 // formas para as quais o ponto (x,y) é interno.
 
-void preOrderTp(FILE *txt, Tree t, Node root, double x, double y, char *check);
+void preOrderTp(Pontos pnts, FILE *txt, Tree t, Node root, double x, double y, char *check);
 bool tpCirc(Info circ, double x, double y);
 bool tpRect(Info rect, double x, double y);
 bool tpLine(Info line, double x, double y);
@@ -50,7 +57,7 @@ void tr(Tree root, FILE *qry, FILE *svg, FILE *txt);
 
 void preOrderTr(FILE *txt, Tree t, Node root, double x, double y, double dx, double dy, int id, char *check);
 
-void be(Tree root, FILE *qry, FILE *txt, FILE *svg, double v);
+void be(Pontos pnts, Tree root, FILE *qry, FILE *txt, FILE *svg, double v);
 // Bomba de irradiação atingiu região
 // especificada nos parâmetros.
 // Formas inteiramente contidas na região
@@ -66,15 +73,15 @@ double calcReduc(double v, double areaEquip, double areaSel);
 double calcSelArea(double w, double h);
 // recebe as coordenadas de um ataque e retorna a área do mesmo (retangular)
 
-void preOrderBe(FILE *svg, FILE *txt, Tree root, Info fig, double x, double y, double w, double h, double v);
+void preOrderBe(Pontos pnts, FILE *svg, FILE *txt, Tree root, Info fig, double x, double y, double w, double h, double v);
 bool isInsideCirc(Info circ, double x, double y, double w, double h);
-void printReducCirc(FILE *svg, FILE *txt, Info circ, Tree root, Node node);
+void printReducCirc(Pontos pnts, FILE *svg, FILE *txt, Info circ, Tree root, Node node);
 bool isInsideRect(Info rect, double x, double y, double w, double h);
-void printReducRect(FILE *svg, FILE *txt, Info rect, Tree root, Node node);
+void printReducRect(Pontos pnts, FILE *svg, FILE *txt, Info rect, Tree root, Node node);
 bool isInsideLine(Info line, double x, double y, double w, double h);
-void printReducLine(FILE *svg, FILE *txt, Info line, Tree root, Node node);
+void printReducLine(Pontos pnts, FILE *svg, FILE *txt, Info line, Tree root, Node node);
 bool isInsideText(Info text, double x, double y, double w, double h);
-void printReducText(FILE *svg, FILE *txt, Info text, Tree root, Node node);
+void printReducText(Pontos pnts, FILE *svg, FILE *txt, Info text, Tree root, Node node);
 // Funções axiliares e complementares que devem receber uma figura 
 // e coordadenas de uma área retangular atingida por um ataque, 
 // retornando verdadeiro se a figura está dentro da area em questão
