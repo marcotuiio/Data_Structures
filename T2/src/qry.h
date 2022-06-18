@@ -16,6 +16,7 @@ Score createScore();
 void updateDestr(Score pnts, double pt_destr);
 void updateInativ(Score pnts, double pt_inativ);
 void updateAtaq(Score pnts, int at);
+void calcMaxPts(Score pnts, Node root);
 void printScore(Score pnts, FILE *txt);
 // Funções com o intuito de manter a tabela de placar 
 // do jogo contando e atualizada. Pontuação máxima, quantidade
@@ -48,7 +49,7 @@ bool tpTxt(Info text, double x, double y);
 // verificam se o torpedo acertou a determinada figura.
 // Retorna verdadeiro se sim.
 
-void tr(Tree root, FILE *qry, FILE *svg, FILE *txt);
+void tr(Score pnts, Tree root, FILE *qry, FILE *svg, FILE *txt);
 // Torpedo replicante no ponto (x,y). Cria um
 // clone para cada uma das formas atingidas e
 // os posiciona transladados de (dx,dy) de seu

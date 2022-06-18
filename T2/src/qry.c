@@ -10,6 +10,7 @@
 struct pnts {
     double pt_destr;
     double pt_inativ;
+    double max_pts;
     int qnt_ataques;
 };
 typedef struct pnts game_points;
@@ -23,6 +24,8 @@ void readQry(Tree root, char *bedQry, char *bsdSvgQry, char *bsdTxt) {
     char comando[6];
     double v = 0;  // agressividade do ataque
 
+    calcMaxPts(my_points, getRoot(root));
+
     while (!feof(qry)) {
         fscanf(qry, "%s", comando);
 
@@ -33,7 +36,7 @@ void readQry(Tree root, char *bedQry, char *bsdSvgQry, char *bsdTxt) {
             tp(my_points, root, qry, svg, txt);
 
         } else if (strcmp(comando, "tr") == 0) {
-            tr(root, qry, svg, txt);
+            tr(my_points, root, qry, svg, txt);
 
         } else if (strcmp(comando, "be") == 0) {
             be(my_points, root, qry, txt, svg, v);
@@ -72,6 +75,7 @@ Score createScore() {
     new_pnts->pt_destr = 0;
     new_pnts->pt_inativ = 0;
     new_pnts->qnt_ataques = 0;
+    new_pnts->max_pts = 0;
     return new_pnts;
 }
 
@@ -96,14 +100,53 @@ void updateAtaq(Score pnts, int at) {
     my_pnts->qnt_ataques = aux;
 }
 
+void calcMaxPts(Score pnts, Node root) {
+    game_points *my_pnts = pnts;
+    double auxdr = 0;
+    Info my_info;
+
+    if (!root) {
+        return;
+    }
+
+    my_info = getInfo(root);
+    switch (getCtrl(root)) {
+        case 1: 
+            auxdr = getCircArea(my_info) / 5;
+            my_pnts->max_pts = my_pnts->max_pts + (75 / auxdr);
+            break;
+
+        case 2:
+            auxdr = getRectArea(my_info) / 5;
+            my_pnts->max_pts = my_pnts->max_pts + (90 / auxdr);
+            break;
+
+        case 3:
+            my_pnts->max_pts = my_pnts->max_pts + 150;
+            break;
+
+        case 4:
+            my_pnts->max_pts = my_pnts->max_pts + 500;
+            break;
+
+        default:
+            break;
+    }
+
+    calcMaxPts(my_pnts, getLeft(root));
+    calcMaxPts(my_pnts, getCenter(root));
+    calcMaxPts(my_pnts, getRight(root));
+}
+
 void printScore(Score pnts, FILE *txt) {
     game_points *my_pnts = pnts;
 
     fprintf(txt, "\n>> RESULTADOS FINAIS DO JOGO:\n");
     fprintf(txt, "\tPontos de destruição = %.2f\n", my_pnts->pt_destr);
     fprintf(txt, "\tPontos de inatividade = %.2f\n", my_pnts->pt_inativ);
-    fprintf(txt, "\tPontuação Total = %.2f\n", my_pnts->pt_destr + my_pnts->pt_inativ);
-    fprintf(txt, "\tProporção Pontos / Ataques = %.2f\n", (my_pnts->pt_dest + my_pnts->pt_inativ) / my_pnts->qnt_ataques);
+    fprintf(txt, "\tPontuação Total = %.4f\n", my_pnts->pt_destr + my_pnts->pt_inativ);
+    fprintf(txt, "\tProporção Pontuação Total / Ataques = %lf\n", (my_pnts->pt_destr + my_pnts->pt_inativ) / my_pnts->qnt_ataques);
+    fprintf(txt, "\tProporção Pontuação Total / Pontuação Máxima = %lf\n", (my_pnts->pt_destr + my_pnts->pt_inativ) / my_pnts->max_pts);
 }
 
 double na(FILE *qry, FILE *txt) {
@@ -131,7 +174,7 @@ void tp(Score pnts, Tree root, FILE *qry, FILE *svg, FILE *txt) {
     
     if (!cont) {
         fprintf(txt, "ÁGUA\n");
-        fprintf(svg, "\t<text x=\"%lf\" y=\"%lf\" stroke=\"black\" font-size=\"14\" fill=\"grey\">*</text>\n", x, y);  
+        fprintf(svg, "\t<text x=\"%lf\" y=\"%lf\" stroke=\"grey\" font-size=\"16\" fill=\"grey\">*</text>\n", x, y);  
    
     } else {
         fprintf(svg, "\t<text x=\"%lf\" y=\"%lf\" stroke=\"red\" font-size=\"20\" fill=\"red\" >* %d</text>\n", x, y, cont);
@@ -271,7 +314,7 @@ bool tpTxt(Info text, double x, double y) {
     return false;
 }
 
-void tr(Tree root, FILE *qry, FILE *svg, FILE *txt) {
+void tr(Score pnts, Tree root, FILE *qry, FILE *svg, FILE *txt) {
     double x, y, dx, dy;
     int id, cont = 0;
     int *p = &cont;
@@ -283,11 +326,15 @@ void tr(Tree root, FILE *qry, FILE *svg, FILE *txt) {
     fscanf(qry, "%d", &id);
 
     fprintf(txt, "\n[*] tr %lf %lf %lf %lf %d \n", x, y, dx, dy, id);
-    fprintf(svg, "<text x=\"%lf\" y=\"%lf\" font-weight=\"bold\" fill=\"red\">@</text>\n", x, y);
 
+    updateAtaq(pnts, 1);
     preOrderTr(txt, root, getRoot(root), x, y, dx, dy, id, p);
     if (!cont) {
         fprintf(txt, "ÁGUA\n");
+        fprintf(svg, "<text x=\"%lf\" y=\"%lf\" font-weight=\"bold\" fill=\"grey\">@</text>\n", x, y);
+    
+    } else {
+        fprintf(svg, "<text x=\"%lf\" y=\"%lf\" font-weight=\"bold\" fill=\"red\">@</text>\n", x, y);
     }
 }
 
