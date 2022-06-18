@@ -10,6 +10,7 @@
 struct pnts {
     double pt_destr;
     double pt_inativ;
+    int qnt_ataques;
 };
 typedef struct pnts game_points;
 
@@ -70,6 +71,7 @@ Score createScore() {
     game_points *new_pnts = calloc(1, sizeof(game_points));
     new_pnts->pt_destr = 0;
     new_pnts->pt_inativ = 0;
+    new_pnts->qnt_ataques = 0;
     return new_pnts;
 }
 
@@ -87,6 +89,13 @@ void updateInativ(Score pnts, double pt_inativ) {
     my_pnts->pt_inativ = aux;
 }
 
+void updateAtaq(Score pnts, int at) {
+    game_points *my_pnts = pnts;
+    int aux = my_pnts->qnt_ataques + at;
+
+    my_pnts->qnt_ataques = aux;
+}
+
 void printScore(Score pnts, FILE *txt) {
     game_points *my_pnts = pnts;
 
@@ -94,6 +103,7 @@ void printScore(Score pnts, FILE *txt) {
     fprintf(txt, "\tPontos de destruição = %.2f\n", my_pnts->pt_destr);
     fprintf(txt, "\tPontos de inatividade = %.2f\n", my_pnts->pt_inativ);
     fprintf(txt, "\tPontuação Total = %.2f\n", my_pnts->pt_destr + my_pnts->pt_inativ);
+    fprintf(txt, "\tProporção Pontos / Ataques = %.2f\n", (my_pnts->pt_dest + my_pnts->pt_inativ) / my_pnts->qnt_ataques);
 }
 
 double na(FILE *qry, FILE *txt) {
@@ -115,7 +125,8 @@ void tp(Score pnts, Tree root, FILE *qry, FILE *svg, FILE *txt) {
     fscanf(qry, "%lf", &y);
 
     fprintf(txt, "\n[*] tp %lf %lf \n", x, y);
-
+ 
+    updateAtaq(pnts, 1);
     preOrderTp(pnts, txt, root, getRoot(root), x, y, p);
     
     if (!cont) {
@@ -361,6 +372,7 @@ void be(Score pnts, Tree root, FILE *qry, FILE *txt, FILE *svg, double v) {
     fprintf(txt, "\n[*] be %lf %lf %lf %lf \n", x, y, w, h);
     fprintf(svg, "<rect x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" fill=\"none\" stroke=\"red\" />\n", x, y, w, h);
 
+    updateAtaq(pnts, 1);
     preOrderBe(pnts, svg, txt, root, getRoot(root), x, y, w, h, v);
 }
 
