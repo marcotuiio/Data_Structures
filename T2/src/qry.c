@@ -108,24 +108,26 @@ double na(FILE *qry, FILE *txt) {
 
 void tp(Pontos pnts, Tree root, FILE *qry, FILE *svg, FILE *txt) {
     double x, y;
-    char check[] = "VAZIO";
+    int cont = 0;
+    int *p = &cont;
 
     fscanf(qry, "%lf", &x);
     fscanf(qry, "%lf", &y);
 
     fprintf(txt, "\n[*] tp %lf %lf \n", x, y);
 
-    preOrderTp(pnts, txt, root, getRoot(root), x, y, check);
-    if (!strcmp(check, "VAZIO")) {
+    preOrderTp(pnts, txt, root, getRoot(root), x, y, p);
+    
+    if (!cont) {
         fprintf(txt, "ÁGUA\n");
         fprintf(svg, "\t<text x=\"%lf\" y=\"%lf\" stroke=\"black\" font-size=\"14\" fill=\"grey\">*</text>\n", x, y);  
    
     } else {
-        fprintf(svg, "\t<text x=\"%lf\" y=\"%lf\" stroke=\"red\" font-size=\"20\" fill=\"red\" >*</text>\n", x, y);
+        fprintf(svg, "\t<text x=\"%lf\" y=\"%lf\" stroke=\"red\" font-size=\"20\" fill=\"red\" >* %d</text>\n", x, y, cont);
     }
 }
 
-void preOrderTp(Pontos pnts, FILE *txt, Tree t, Node root, double x, double y, char *check) {
+void preOrderTp(Pontos pnts, FILE *txt, Tree t, Node root, double x, double y, int *cont) {
     Info my_info;
     bool marcador = false;
 
@@ -145,7 +147,7 @@ void preOrderTp(Pontos pnts, FILE *txt, Tree t, Node root, double x, double y, c
                     updateDestr(pnts, 75 / auxdr);
                     // removeNode(t, getRoot(t), getTX(root), getTY(root), getCircID(my_info));
                     markRemoved(t, root);
-                    strcpy(check, "CHEIO");
+                    (*cont)++;
                 } 
                 break;
 
@@ -157,7 +159,7 @@ void preOrderTp(Pontos pnts, FILE *txt, Tree t, Node root, double x, double y, c
                     updateDestr(pnts, 90 / auxdr);
                     // removeNode(t, getRoot(t), getTX(root), getTY(root), getRectID(my_info));
                     markRemoved(t, root);
-                    strcpy(check, "CHEIO");
+                    (*cont)++;
                 } 
                 break;
 
@@ -168,7 +170,7 @@ void preOrderTp(Pontos pnts, FILE *txt, Tree t, Node root, double x, double y, c
                     updateDestr(pnts, 150);
                     // removeNode(t, getRoot(t), getTX(root), getTY(root), getLineID(my_info));
                     markRemoved(t, root);
-                    strcpy(check, "CHEIO");
+                    (*cont)++;
                 } 
                 break;
 
@@ -179,7 +181,7 @@ void preOrderTp(Pontos pnts, FILE *txt, Tree t, Node root, double x, double y, c
                     updateDestr(pnts, 500);
                     // removeNode(t, getRoot(t), getTX(root), getTY(root), getTxtID(my_info));
                     markRemoved(t, root);
-                    strcpy(check, "CHEIO");
+                    (*cont)++;
                 } 
                 break;
 
@@ -188,9 +190,9 @@ void preOrderTp(Pontos pnts, FILE *txt, Tree t, Node root, double x, double y, c
         } 
     }
 
-    preOrderTp(pnts, txt, t, getLeft(root), x, y, check);
-    preOrderTp(pnts, txt, t, getCenter(root), x, y, check);
-    preOrderTp(pnts, txt, t, getRight(root), x, y, check);
+    preOrderTp(pnts, txt, t, getLeft(root), x, y, cont);
+    preOrderTp(pnts, txt, t, getCenter(root), x, y, cont);
+    preOrderTp(pnts, txt, t, getRight(root), x, y, cont);
 }
 
 bool tpCirc(Info circ, double x, double y) {
@@ -260,8 +262,8 @@ bool tpTxt(Info text, double x, double y) {
 
 void tr(Tree root, FILE *qry, FILE *svg, FILE *txt) {
     double x, y, dx, dy;
-    int id;
-    char check[] = "VAZIO";
+    int id, cont = 0;
+    int *p = &cont;
 
     fscanf(qry, "%lf", &x);
     fscanf(qry, "%lf", &y);
@@ -270,15 +272,15 @@ void tr(Tree root, FILE *qry, FILE *svg, FILE *txt) {
     fscanf(qry, "%d", &id);
 
     fprintf(txt, "\n[*] tr %lf %lf %lf %lf %d \n", x, y, dx, dy, id);
-    fprintf(svg, "<text x=\"%lf\" y=\"%lf\" fill=\"red\">@</text>\n", x, y);
+    fprintf(svg, "<text x=\"%lf\" y=\"%lf\" font-weight=\"bold\" fill=\"red\">@</text>\n", x, y);
 
-    preOrderTr(txt, root, getRoot(root), x, y, dx, dy, id, check);
-    if (!strcmp(check, "VAZIO")) {
+    preOrderTr(txt, root, getRoot(root), x, y, dx, dy, id, p);
+    if (!cont) {
         fprintf(txt, "ÁGUA\n");
     }
 }
 
-void preOrderTr(FILE *txt, Tree t, Node root, double x, double y, double dx, double dy, int id, char *check) {
+void preOrderTr(FILE *txt, Tree t, Node root, double x, double y, double dx, double dy, int id, int *cont) {
     Info my_info;
     bool marcador;
 
@@ -298,7 +300,7 @@ void preOrderTr(FILE *txt, Tree t, Node root, double x, double y, double dx, dou
                     fprintf(txt, "Círculo Base id = %d, x = %lf, y = %lf, r = %lf, corb = %s, corp = %s\n", getCircID(my_info), getCircX(my_info), getCircY(my_info), getCircRADIUS(my_info), getcircEDGE(my_info), getCircFILL(my_info));
                     fprintf(txt, "Círculo Replicado id = %d, x = %lf, y = %lf, r = %lf, corb = %s, corp = %s\n", getCircID(new_circ), getCircX(new_circ), getCircY(new_circ), getCircRADIUS(new_circ), getcircEDGE(new_circ), getCircFILL(new_circ));
                     id++;
-                    strcpy(check, "CHEIO");
+                    (*cont)++;
                 } 
                 break;
 
@@ -310,7 +312,7 @@ void preOrderTr(FILE *txt, Tree t, Node root, double x, double y, double dx, dou
                     fprintf(txt, "Retangulo Base id = %d, x = %lf, y = %lf, w = %lf, h = %lf, corb = %s, corp = %s\n", getRectID(my_info), getRectX(my_info), getRectY(my_info), getRectWIDTH(my_info), getRectHEIGHT(my_info), getRectEDGE(my_info), getRectFILL(my_info));
                     fprintf(txt, "Retangulo Replicado id = %d, x = %lf, y = %lf, w = %lf, h = %lf, corb = %s, corp = %s\n", getRectID(new_rect), getRectX(new_rect), getRectY(new_rect), getRectWIDTH(new_rect), getRectHEIGHT(new_rect), getRectEDGE(new_rect), getRectFILL(new_rect));
                     id++;
-                    strcpy(check, "CHEIO");
+                    (*cont)++;
                 } 
                 break;
 
@@ -322,7 +324,7 @@ void preOrderTr(FILE *txt, Tree t, Node root, double x, double y, double dx, dou
                     fprintf(txt, "Linha Base id = %d, x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf, cor = %s\n", getLineID(my_info), getLineX(my_info), getLineY(my_info), getLineFINALX(my_info), getLineFINALY(my_info), getLineCOLOR(my_info));
                     fprintf(txt, "Linha Replicada id = %d, x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf, cor = %s\n", getLineID(new_line), getLineX(new_line), getLineY(new_line), getLineFINALX(my_info), getLineFINALY(new_line), getLineCOLOR(new_line));
                     id++;
-                    strcpy(check, "CHEIO");
+                    (*cont)++;
                 } 
                 break;
 
@@ -334,7 +336,7 @@ void preOrderTr(FILE *txt, Tree t, Node root, double x, double y, double dx, dou
                     fprintf(txt, "Texto Base id = %d, x = %lf, y = %lf, corb = %s, corp = %s, text = %s\n", getTxtID(my_info), getTxtX(my_info), getTxtY(my_info), getTxtEDGE(my_info), getTxtFILL(my_info), getTxtTEXT(my_info));
                     fprintf(txt, "Texto Replicado id = %d, x = %lf, y = %lf, corb = %s, corp = %s, text = %s\n", getTxtID(new_text), getTxtX(new_text), getTxtY(new_text), getTxtEDGE(new_text), getTxtFILL(new_text), getTxtTEXT(new_text));
                     id++;
-                    strcpy(check, "CHEIO");
+                    (*cont)++;
                 } 
                 break;
 
@@ -343,9 +345,9 @@ void preOrderTr(FILE *txt, Tree t, Node root, double x, double y, double dx, dou
         }
     }
 
-    preOrderTr(txt, t, getLeft(root), x, y, dx, dy, id, check);
-    preOrderTr(txt, t, getCenter(root), x, y, dx, dy, id, check);
-    preOrderTr(txt, t, getRight(root), x, y, dx, dy, id, check);
+    preOrderTr(txt, t, getLeft(root), x, y, dx, dy, id, cont);
+    preOrderTr(txt, t, getCenter(root), x, y, dx, dy, id, cont);
+    preOrderTr(txt, t, getRight(root), x, y, dx, dy, id, cont);
 }
 
 void be(Pontos pnts, Tree root, FILE *qry, FILE *txt, FILE *svg, double v) {

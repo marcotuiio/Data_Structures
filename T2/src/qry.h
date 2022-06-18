@@ -35,7 +35,7 @@ void tp(Pontos pnts, Tree root, FILE *qry, FILE *svg, FILE *txt);
 // Torpedo no ponto (x,y). Remover todas as
 // formas para as quais o ponto (x,y) é interno.
 
-void preOrderTp(Pontos pnts, FILE *txt, Tree t, Node root, double x, double y, char *check);
+void preOrderTp(Pontos pnts, FILE *txt, Tree t, Node root, double x, double y, int *cont);
 bool tpCirc(Info circ, double x, double y);
 bool tpRect(Info rect, double x, double y);
 bool tpLine(Info line, double x, double y);
@@ -55,7 +55,7 @@ void tr(Tree root, FILE *qry, FILE *svg, FILE *txt);
 // identificador dos clones devem começar no
 // valor id.
 
-void preOrderTr(FILE *txt, Tree t, Node root, double x, double y, double dx, double dy, int id, char *check);
+void preOrderTr(FILE *txt, Tree t, Node root, double x, double y, double dx, double dy, int id, int *cont);
 
 void be(Pontos pnts, Tree root, FILE *qry, FILE *txt, FILE *svg, double v);
 // Bomba de irradiação atingiu região
