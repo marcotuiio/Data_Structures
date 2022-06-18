@@ -18,7 +18,7 @@ void readQry(Tree root, char *bedQry, char *bsdSvgQry, char *bsdTxt) {
     FILE *qry = openQry(bedQry);
     FILE *txt = openTxt(bsdTxt);
     FILE *svg = createSvg(bsdSvgQry);
-    Pontos my_points = createPontos();
+    Score my_points = createScore();
     char comando[6];
     double v = 0;  // agressividade do ataque
 
@@ -40,7 +40,7 @@ void readQry(Tree root, char *bedQry, char *bsdSvgQry, char *bsdTxt) {
         strcpy(comando, " ");
     }
     preOrderSVG(getRoot(root), svg);
-    printPoints(my_points, txt);
+    printScore(my_points, txt);
     
     fclose(qry);
     fclose(txt);
@@ -87,7 +87,7 @@ void updateInativ(Score pnts, double pt_inativ) {
     my_pnts->pt_inativ = aux;
 }
 
-void printPoints(Score pnts, FILE *txt) {
+void printScore(Score pnts, FILE *txt) {
     game_points *my_pnts = pnts;
 
     fprintf(txt, "\n>> RESULTADOS FINAIS DO JOGO:\n");
