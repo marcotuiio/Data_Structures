@@ -1,4 +1,5 @@
 #include "text.h"
+
 #include "tree.h"
 
 struct txt {
@@ -35,7 +36,7 @@ void buildText(FILE *geo, Info t, Tree root) {
     txt->protec = 5.00;
 
     insertTree(root, getRoot(root), txt->x, txt->y, txt, 4);  // txt ctrl = 4;
-    
+
     // printf("\nid %d\n", txt->id);
     // printf("x %lf\n", txt->x);
     // printf("y %lf\n", txt->y);

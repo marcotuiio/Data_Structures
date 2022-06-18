@@ -6,7 +6,7 @@
 #include "text.h"
 #include "tree.h"
 
-void readGeo(char *bedGeo, Tree my_tree) {  
+void readGeo(char *bedGeo, Tree my_tree) {
     FILE *geo = openGeo(bedGeo);
     char tipo[5];
 

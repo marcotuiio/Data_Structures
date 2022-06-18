@@ -4,11 +4,11 @@
 #define QRY_H
 
 /*
-* Tratamento dos comandos do .qry. Leitura dos dados, identificação de
-* comando e execução da determinada função
-*/
+ * Tratamento dos comandos do .qry. Leitura dos dados, identificação de
+ * comando e execução da determinada função
+ */
 
-void readQry(Tree root, char *bedQry, char* bsdSvgQry, char *bsdTxt);
+void readQry(Tree root, char *bedQry, char *bsdSvgQry, char *bsdTxt);
 // Leitura dos comando e delegação de tarefas para as
 // determinados comandos
 
@@ -18,9 +18,9 @@ void updateInativ(Score pnts, double pt_inativ);
 void updateAtaq(Score pnts, int at);
 void calcMaxPts(Score pnts, Node root);
 void printScore(Score pnts, FILE *txt);
-// Funções com o intuito de manter a tabela de placar 
+// Funções com o intuito de manter a tabela de placar
 // do jogo contando e atualizada. Pontuação máxima, quantidade
-// de ataques e proporção de pontos por ataques são 
+// de ataques e proporção de pontos por ataques são
 // controladas por meio dessas
 
 FILE *openQry(char *bedQry);
@@ -45,7 +45,7 @@ bool tpRect(Info rect, double x, double y);
 bool tpLine(Info line, double x, double y);
 bool tpTxt(Info text, double x, double y);
 // Funções complementares e auxiliares de TP, para percorrer a árvore
-// Recebem uma figura e as coordenadas do torpedo, 
+// Recebem uma figura e as coordenadas do torpedo,
 // verificam se o torpedo acertou a determinada figura.
 // Retorna verdadeiro se sim.
 
@@ -86,8 +86,8 @@ bool isInsideLine(Info line, double x, double y, double w, double h);
 void printReducLine(Score pnts, FILE *svg, FILE *txt, Info line, Tree root, Node node);
 bool isInsideText(Info text, double x, double y, double w, double h);
 void printReducText(Score pnts, FILE *svg, FILE *txt, Info text, Tree root, Node node);
-// Funções axiliares e complementares que devem receber uma figura 
-// e coordadenas de uma área retangular atingida por um ataque, 
+// Funções axiliares e complementares que devem receber uma figura
+// e coordadenas de uma área retangular atingida por um ataque,
 // retornando verdadeiro se a figura está dentro da area em questão
 // Também realizam a atualização do histórico no arq txt de saída
 

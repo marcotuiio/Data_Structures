@@ -182,33 +182,32 @@ Node removeNode(Tree root, Node node, double x, double y, int id) {
     } else if (x >= my_node->x && y >= my_node->y) {
         my_node->right = removeNode(my_root, my_node->right, x, y, id);
 
-    // Chegamos no nó que queremos remover if (analyseNode(my_node) == id && x == my_node->x && y == my_node->y)
+        // Chegamos no nó que queremos remover if (analyseNode(my_node) == id && x == my_node->x && y == my_node->y)
     } else if (analyseNode(my_node) == id && x == my_node->x && y == my_node->y) {
-
-        if (!my_node->left && !my_node->right && !my_node->center) { // FOLHA
+        if (!my_node->left && !my_node->right && !my_node->center) {  // FOLHA
             // printf("Folha\n");
             free(my_node->value);
             free(my_node);
             my_root->size--;
             return my_node;
-        
-        } else if (my_node->left && !my_node->center && !my_node->right) { // SO FILHO ESQUERDO
+
+        } else if (my_node->left && !my_node->center && !my_node->right) {  // SO FILHO ESQUERDO
             // printf("Filho esquerdo\n");
             tree_node *temp = my_node->left;
             free(my_node->value);
-            free(my_node);   
+            free(my_node);
             my_root->size--;
             return temp;
-        
-        } else if (my_node->right && !my_node->left && !my_node->center) { // SO FILHO DIREITO
+
+        } else if (my_node->right && !my_node->left && !my_node->center) {  // SO FILHO DIREITO
             // printf("Filho direito\n");
             tree_node *temp = my_node->right;
             free(my_node->value);
             free(my_node);
             my_root->size--;
             return temp;
-        
-        } else if (my_node->center && !my_node->left && !my_node->right) { // SO FILHO CENTRO
+
+        } else if (my_node->center && !my_node->left && !my_node->right) {  // SO FILHO CENTRO
             // printf("Filho centro\n");
             tree_node *temp = my_node->center;
             free(my_node->value);
@@ -216,10 +215,10 @@ Node removeNode(Tree root, Node node, double x, double y, int id) {
             my_root->size--;
             return temp;
 
-        } else { // MAIS DE UM FILHO
+        } else {  // MAIS DE UM FILHO
             markRemoved(root, my_node);
             // printf("Removing node %p\n", my_node);
-        }         
+        }
     }
     return my_node;
 }
@@ -238,7 +237,7 @@ int analyseNode(Node root) {
         case 2:
             return getRectID(my_node->value);
             break;
-        
+
         case 3:
             return getLineID(my_node->value);
             break;
@@ -246,7 +245,7 @@ int analyseNode(Node root) {
         case 4:
             return getTxtID(my_node->value);
             break;
-        
+
         default:
             break;
     }
@@ -567,7 +566,7 @@ void freeTree(Node root) {
     if (my_node == NULL) {
         return;
     }
-    if(!my_node->removed) {
+    if (!my_node->removed) {
         ctrl = getCtrl(my_node);
         if (ctrl == 1) {
             freeCirc(my_node->value);
@@ -579,7 +578,7 @@ void freeTree(Node root) {
             freeTxt(my_node->value);
         }
     }
-    
+
     freeTree(my_node->left);
     freeTree(my_node->center);
     freeTree(my_node->right);

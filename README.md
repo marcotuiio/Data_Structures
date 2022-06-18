@@ -16,18 +16,11 @@ store data on tree DONE
 print svg DONE
 fix mem leaks DONE
 percurso em largura DONE
-
-ARQUIVOS QUE NAO RODAM: 01-int-25, esquadra-alet-25, esquadra-grande-compacta
-
-need to:
-   * make fuction to reorganize tree !! important !!
-   * start qry functions
-      - need to think on how to remove and reorganize
-      - need to fix some writes on txt/svg on qry
+score DONE
+be approved LOADING
       
 NEW TO DO: 
-   fix remove (even after removed, still shows up on svg) 
-   make TAD functions involving LIST
+   fix TAD functions involving LIST
    fix some datails after     
 
 So pra não perder;

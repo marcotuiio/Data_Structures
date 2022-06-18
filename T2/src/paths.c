@@ -1,12 +1,12 @@
 #include "paths.h"
 
 struct param {
-    char* bed;           // path - diretŕoio base de entrada (BED)
-    char* bsd;           // path - diretŕoio base de saída (BSD)
-    char* bedgeo;        // bed/arq.geo 
+    char* bed;           // diretório base de entrada (BED)
+    char* bsd;           // diretório base de saída (BSD)
+    char* bedgeo;        // bed/arq.geo
     char* geoarq;        // arq.geo
     char* geoname;       // only name (no .geo)
-    char* bedqry;        // bed/pasta/arq.qry 
+    char* bedqry;        // bed/pasta/arq.qry
     char* qryarq;        // pasta/arq.qry
     char* qryname;       // only name (no .qry)
     char* bsdgeosvg;     // bsd/nomegeo.svg
@@ -28,17 +28,17 @@ char* fixDir(char* dir) {
     return dir;  // manter / no final dos diretorios
 }
 
-void fixDoc(char* asread, char* onlyname) {
-    char *index = strrchr(asread, '/');
+void fixDoc(char* from_param, char* arq_name) {
+    char* index = strrchr(from_param, '/');
 
     if (index) {
         index++;
-        char *tok = strtok(index, ".");
-        strcpy(onlyname, tok);
+        char* tok = strtok(index, ".");
+        strcpy(arq_name, tok);
 
     } else {
-        strcpy(onlyname, asread);
-        strtok(onlyname, ".");
+        strcpy(arq_name, from_param);
+        strtok(arq_name, ".");
     }
 }
 

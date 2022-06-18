@@ -11,8 +11,8 @@ struct checks {
 typedef struct checks Sauron;
 
 void readParam(int argc, char** argv, Paths paths, Controller ctrl) {
-    Sauron *help = ctrl;
-    
+    Sauron* help = ctrl;
+
     for (int i = 1; i < argc; i++) {
         if (!strcmp(argv[i], "-e")) {  // path - diretŕoio base de entrada (BED)
             i++;
@@ -107,8 +107,8 @@ void readParam(int argc, char** argv, Paths paths, Controller ctrl) {
 }
 
 Controller createController() {
-    Sauron *help = calloc(1, sizeof(Sauron));
-    
+    Sauron* help = calloc(1, sizeof(Sauron));
+
     help->readbed = false;
     help->readbsd = false;
     help->readgeo = false;
@@ -118,31 +118,31 @@ Controller createController() {
 }
 
 bool checkBED(Controller ctrl) {
-    Sauron *help = ctrl;
+    Sauron* help = ctrl;
 
     return help->readbed;
 }
 
 bool checkBSD(Controller ctrl) {
-    Sauron *help = ctrl;
+    Sauron* help = ctrl;
 
     return help->readbsd;
 }
 
 bool checkGEO(Controller ctrl) {
-    Sauron *help = ctrl;
+    Sauron* help = ctrl;
 
     return help->readgeo;
 }
 
 bool checkQRY(Controller ctrl) {
-    Sauron *help = ctrl;
+    Sauron* help = ctrl;
 
     return help->readqry;
 }
 
 void freeCtrl(Controller ctrl) {
-    Sauron *help = ctrl;
+    Sauron* help = ctrl;
 
     free(help);
 }

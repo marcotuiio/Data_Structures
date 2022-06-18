@@ -34,7 +34,7 @@ void buildLine(FILE *geo, Info l, Tree root) {
     line->protec = 50.00;
 
     insertTree(root, getRoot(root), line->x1, line->y1, line, 3);  // line ctrl = 3;
-    
+
     // printf("\nid %d\n", line->id);
     // printf("x %lf\n", line->x1);
     // printf("y %lf\n", line->y1);
@@ -100,7 +100,7 @@ void setProtecLine(Info l, double reduc) {
     line->protec = line->protec - reduc;
 }
 
-double getProtecLine(Info l){
+double getProtecLine(Info l) {
     Linha *line = l;
 
     return line->protec;
@@ -109,7 +109,7 @@ double getProtecLine(Info l){
 double getLineArea(Info l) {
     Linha *line = l;
     double len = getLineLenght(line->x1, line->y1, line->x2, line->y2);
-    
+
     double a = 0.1 * len;
     return a;
 }

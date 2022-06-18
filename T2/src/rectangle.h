@@ -4,10 +4,10 @@
 #define RECTANGLE_H
 
 /*
-* Retângulo é uma figura geometrica básica, com propriedades
-* como altura, largura, cor de borda e de preenchimento. Pode ser desenhado
-* no formato de svg, possuindo assim um x e y no plano.
-*/
+ * Retângulo é uma figura geometrica básica, com propriedades
+ * como altura, largura, cor de borda e de preenchimento. Pode ser desenhado
+ * no formato de svg, possuindo assim um x e y no plano.
+ */
 
 Info criaRec();
 // cria um novo retângulo para svg
@@ -16,7 +16,7 @@ void buildRectangle(FILE *geo, Info r, Tree root);
 // realiza leitura e extração dos dados do retângulo no .geo
 
 void replicateRect(Tree t, Info base_r, Info new_r, double dx, double dy, int id);
-// dado um retângulo base, um novo retângulo e um deslocamento, define o novo retângulo 
+// dado um retângulo base, um novo retângulo e um deslocamento, define o novo retângulo
 // e o insere a árvore
 
 int getRectID(Info r);
@@ -41,7 +41,7 @@ char *getRectEDGE(Info r);
 // retorna a cor de borda de determinado retângulo no svg
 
 void setProtecRect(Info r, double reduc);
-// atualiza o nivel de proteção da figuração, dada 
+// atualiza o nivel de proteção da figuração, dada
 // uma redução de um ataque
 
 double getProtecRect(Info r);

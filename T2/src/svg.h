@@ -5,9 +5,9 @@
 #define SVG_H
 
 /*
-* Criação e elaborção de um arquivo no formato svg, desenhando formas como
-* retângulos, círculos, linhas e textos no mesmo.
-*/
+ * Criação e elaborção de um arquivo no formato svg, desenhando formas como
+ * retângulos, círculos, linhas e textos no mesmo.
+ */
 
 // As funções tem nome autoexplicativo. Apenas desenham no svg a forma designada.
 
@@ -16,7 +16,7 @@ void writeSvg(char *bsdSvg, Tree my_tree);
 // e a informação se existe ou não um arquivo de consulta qry.
 
 void preOrderSVG(Node root, FILE *svg);
-// Deve receber a raiz da árvore e o aqr svg 
+// Deve receber a raiz da árvore e o aqr svg
 // Percorre todos os elementos e vai delegando funções corretas
 // para extrair dados dos nós e, consequentemente, escrever no svg
 

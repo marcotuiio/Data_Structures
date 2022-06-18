@@ -55,7 +55,7 @@ Info encontraCelula(Lista l, Info n) {
     return NULL;
 }
 
-void insereFim(Lista l, void* n, double x, double y) {
+void insereFim(Lista l, void *n, double x, double y) {
     // printf("--- INICIO INSERE FIM ---\n");
     ImpList *lista = l;
 

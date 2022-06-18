@@ -1,4 +1,5 @@
 #include "circle.h"
+
 #include "tree.h"
 
 struct circ {
@@ -21,7 +22,7 @@ Info criaCirc() {
 void buildCircle(FILE *geo, Info c, Tree root) {
     // printf("\nInicio Build Circle\n");
     Circulo *circle = c;
-    
+
     strcpy(circle->type, "c");
 
     fscanf(geo, "%d", &circle->id);
@@ -32,8 +33,8 @@ void buildCircle(FILE *geo, Info c, Tree root) {
     fscanf(geo, "%s", circle->corp);
     circle->protec = 60.00;
 
-    insertTree(root, getRoot(root), circle->x, circle->y, circle, 1); //circ ctrl = 1;
-    
+    insertTree(root, getRoot(root), circle->x, circle->y, circle, 1);  // circ ctrl = 1;
+
     // printf("\nid %d\n", circle->id);
     // printf("x %lf\n", circle->x);
     // printf("y %lf\n", circle->y);

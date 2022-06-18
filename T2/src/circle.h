@@ -40,7 +40,7 @@ char *getcircEDGE(Info c);
 // retorna a cor de borda de determinado círculo no svg
 
 void setProtecCirc(Info c, double reduc);
-// atualiza o nivel de proteção da figuração, dada 
+// atualiza o nivel de proteção da figuração, dada
 // uma redução de um ataque
 
 double getProtecCirc(Info c);

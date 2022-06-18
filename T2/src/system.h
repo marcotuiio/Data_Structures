@@ -4,12 +4,12 @@
 #define SYSTEM_H
 
 /*
-* Tratamentos dos paramêtros de entrada , via argc e argv
-* Leitura dos dados, e atribuição dos determinados diretórios
-*/
+ * Tratamentos dos paramêtros de entrada , via argc e argv
+ * Leitura dos dados, e atribuição dos determinados diretórios
+ */
 
 void readParam(int argc, char** argv, Paths paths, Controller ctrl);
-// Recebe os parâmetros de entrada e a media que os lê, faz o devido 
+// Recebe os parâmetros de entrada e a media que os lê, faz o devido
 // tratamento e organização desses dados
 
 Controller createController();
@@ -18,8 +18,8 @@ bool checkBSD(Controller ctrl);
 bool checkGEO(Controller ctrl);
 bool checkQRY(Controller ctrl);
 void freeCtrl(Controller ctrl);
-// Funções complementares que recebem dados confirmando ou não 
-// a leitura de determinados parâmetros para que o projeto 
-// possa continuar 
+// Funções complementares que recebem dados confirmando ou não
+// a leitura de determinados parâmetros para que o projeto
+// possa continuar
 
 #endif

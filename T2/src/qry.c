@@ -15,7 +15,6 @@ struct pnts {
 };
 typedef struct pnts game_points;
 
-
 void readQry(Tree root, char *bedQry, char *bsdSvgQry, char *bsdTxt) {
     FILE *qry = openQry(bedQry);
     FILE *txt = openTxt(bsdTxt);
@@ -45,7 +44,7 @@ void readQry(Tree root, char *bedQry, char *bsdSvgQry, char *bsdTxt) {
     }
     preOrderSVG(getRoot(root), svg);
     printScore(my_points, txt);
-    
+
     fclose(qry);
     fclose(txt);
     killSvg(svg);
@@ -111,7 +110,7 @@ void calcMaxPts(Score pnts, Node root) {
 
     my_info = getInfo(root);
     switch (getCtrl(root)) {
-        case 1: 
+        case 1:
             auxdr = getCircArea(my_info) / 5;
             my_pnts->max_pts = my_pnts->max_pts + (75 / auxdr);
             break;
@@ -168,14 +167,14 @@ void tp(Score pnts, Tree root, FILE *qry, FILE *svg, FILE *txt) {
     fscanf(qry, "%lf", &y);
 
     fprintf(txt, "\n[*] tp %lf %lf \n", x, y);
- 
+
     updateAtaq(pnts, 1);
     preOrderTp(pnts, txt, root, getRoot(root), x, y, p);
-    
+
     if (!cont) {
         fprintf(txt, "ÁGUA\n");
-        fprintf(svg, "\t<text x=\"%lf\" y=\"%lf\" stroke=\"grey\" font-size=\"16\" fill=\"grey\">*</text>\n", x, y);  
-   
+        fprintf(svg, "\t<text x=\"%lf\" y=\"%lf\" stroke=\"grey\" font-size=\"16\" fill=\"grey\">*</text>\n", x, y);
+
     } else {
         fprintf(svg, "\t<text x=\"%lf\" y=\"%lf\" stroke=\"red\" font-size=\"20\" fill=\"red\" >* %d</text>\n", x, y, cont);
     }
@@ -188,33 +187,33 @@ void preOrderTp(Score pnts, FILE *txt, Tree t, Node root, double x, double y, in
     if (!root) {
         return;
     }
-    
+
     if (!getRemovedStatus(root)) {
         my_info = getInfo(root);
 
         switch (getCtrl(root)) {
             case 1:
                 marcador = tpCirc(my_info, x, y);
-                if(marcador) {
+                if (marcador) {
                     fprintf(txt, "Acertou Círculo id = %d, x = %lf, y = %lf, r = %lf\n", getCircID(my_info), getCircX(my_info), getCircY(my_info), getCircRADIUS(my_info));
                     double auxdr = getCircArea(my_info) / 5;
                     updateDestr(pnts, 75 / auxdr);
                     // removeNode(t, getRoot(t), getTX(root), getTY(root), getCircID(my_info));
                     markRemoved(t, root);
                     (*cont)++;
-                } 
+                }
                 break;
 
             case 2:
                 marcador = tpRect(my_info, x, y);
-                if(marcador) {
+                if (marcador) {
                     fprintf(txt, "Acertou Retângulo id = %d, x = %lf, y = %lf, w = %lf, h = %lf\n", getRectID(my_info), getRectX(my_info), getRectY(my_info), getRectWIDTH(my_info), getRectHEIGHT(my_info));
                     double auxdr = getRectArea(my_info) / 5;
                     updateDestr(pnts, 90 / auxdr);
                     // removeNode(t, getRoot(t), getTX(root), getTY(root), getRectID(my_info));
                     markRemoved(t, root);
                     (*cont)++;
-                } 
+                }
                 break;
 
             case 3:
@@ -225,7 +224,7 @@ void preOrderTp(Score pnts, FILE *txt, Tree t, Node root, double x, double y, in
                     // removeNode(t, getRoot(t), getTX(root), getTY(root), getLineID(my_info));
                     markRemoved(t, root);
                     (*cont)++;
-                } 
+                }
                 break;
 
             case 4:
@@ -236,12 +235,12 @@ void preOrderTp(Score pnts, FILE *txt, Tree t, Node root, double x, double y, in
                     // removeNode(t, getRoot(t), getTX(root), getTY(root), getTxtID(my_info));
                     markRemoved(t, root);
                     (*cont)++;
-                } 
+                }
                 break;
 
             default:
                 break;
-        } 
+        }
     }
 
     preOrderTp(pnts, txt, t, getLeft(root), x, y, cont);
@@ -332,7 +331,7 @@ void tr(Score pnts, Tree root, FILE *qry, FILE *svg, FILE *txt) {
     if (!cont) {
         fprintf(txt, "ÁGUA\n");
         fprintf(svg, "<text x=\"%lf\" y=\"%lf\" font-weight=\"bold\" fill=\"grey\">@</text>\n", x, y);
-    
+
     } else {
         fprintf(svg, "<text x=\"%lf\" y=\"%lf\" font-weight=\"bold\" fill=\"red\">@</text>\n", x, y);
     }
@@ -359,7 +358,7 @@ void preOrderTr(FILE *txt, Tree t, Node root, double x, double y, double dx, dou
                     fprintf(txt, "Círculo Replicado id = %d, x = %lf, y = %lf, r = %lf, corb = %s, corp = %s\n", getCircID(new_circ), getCircX(new_circ), getCircY(new_circ), getCircRADIUS(new_circ), getcircEDGE(new_circ), getCircFILL(new_circ));
                     id++;
                     (*cont)++;
-                } 
+                }
                 break;
 
             case 2:
@@ -371,7 +370,7 @@ void preOrderTr(FILE *txt, Tree t, Node root, double x, double y, double dx, dou
                     fprintf(txt, "Retangulo Replicado id = %d, x = %lf, y = %lf, w = %lf, h = %lf, corb = %s, corp = %s\n", getRectID(new_rect), getRectX(new_rect), getRectY(new_rect), getRectWIDTH(new_rect), getRectHEIGHT(new_rect), getRectEDGE(new_rect), getRectFILL(new_rect));
                     id++;
                     (*cont)++;
-                } 
+                }
                 break;
 
             case 3:
@@ -383,7 +382,7 @@ void preOrderTr(FILE *txt, Tree t, Node root, double x, double y, double dx, dou
                     fprintf(txt, "Linha Replicada id = %d, x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf, cor = %s\n", getLineID(new_line), getLineX(new_line), getLineY(new_line), getLineFINALX(my_info), getLineFINALY(new_line), getLineCOLOR(new_line));
                     id++;
                     (*cont)++;
-                } 
+                }
                 break;
 
             case 4:
@@ -395,7 +394,7 @@ void preOrderTr(FILE *txt, Tree t, Node root, double x, double y, double dx, dou
                     fprintf(txt, "Texto Replicado id = %d, x = %lf, y = %lf, corb = %s, corp = %s, text = %s\n", getTxtID(new_text), getTxtX(new_text), getTxtY(new_text), getTxtEDGE(new_text), getTxtFILL(new_text), getTxtTEXT(new_text));
                     id++;
                     (*cont)++;
-                } 
+                }
                 break;
 
             default:

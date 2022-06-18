@@ -4,12 +4,12 @@
 #define TEXT_H
 
 /*
-* Texto é uma forma simples, com propriedades como sua âncora,
-* cor de borda e de preenchimento, além da menssagem de texto em si.
-* Pode ser escrito no formato de svg, possuindo assim um x e y no plano
-* O texto é o último parâmetro do comando. Pode incluir espaços
-* em branco e se estende até o final da linha.
-*/
+ * Texto é uma forma simples, com propriedades como sua âncora,
+ * cor de borda e de preenchimento, além da menssagem de texto em si.
+ * Pode ser escrito no formato de svg, possuindo assim um x e y no plano
+ * O texto é o último parâmetro do comando. Pode incluir espaços
+ * em branco e se estende até o final da linha.
+ */
 
 Info criaTxt();
 // cria um novo texto para svg
@@ -43,7 +43,7 @@ char *getTxtTEXT(Info t);
 // retorna o texto escrito propriamente dito de determinado texto no svg
 
 void setProtecTxt(Info t, double reduc);
-// atualiza o nivel de proteção da figuração, dada 
+// atualiza o nivel de proteção da figuração, dada
 // uma redução de um ataque
 
 double getProtecTxt(Info t);

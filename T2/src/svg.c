@@ -25,7 +25,7 @@ void preOrderSVG(Node root, FILE *svg) {
 
     if (!getRemovedStatus(root)) {
         my_info = getInfo(root);
-        
+
         switch (getCtrl(root)) {
             case 1:
                 drawCircle(svg, my_info);

@@ -1,4 +1,5 @@
 #include "rectangle.h"
+
 #include "tree.h"
 
 struct rect {
@@ -35,7 +36,7 @@ void buildRectangle(FILE *geo, Info r, Tree root) {
     rectangle->protec = 60.00;
 
     insertTree(root, getRoot(root), rectangle->x, rectangle->y, rectangle, 2);  // rect ctrl = 2;
-    
+
     // printf("\nid %d\n", rectangle->id);
     // printf("x %lf\n", rectangle->x);
     // printf("y %lf\n", rectangle->y);
@@ -86,7 +87,7 @@ double getRectWIDTH(Info r) {
 }
 
 double getRectHEIGHT(Info r) {
-    Retangulo *rect = (Retangulo *)r;  
+    Retangulo *rect = (Retangulo *)r;
 
     return rect->height;
 }
