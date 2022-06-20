@@ -80,7 +80,7 @@ char *getCircFILL(Circle1 c) {
     return circ->corp;
 }
 
-char *getcircEDGE(Circle1 c) {
+char *getCircEDGE(Circle1 c) {
     Circulo *circ = (Circulo *)c;
 
     return circ->corb;

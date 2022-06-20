@@ -57,7 +57,7 @@ void replicateRect(Tree t, Info base_r, Info new_r, double dx, double dy, int id
     new_rectangle->height = rectangle->height;
     strcpy(new_rectangle->corb, rectangle->corp);
     strcpy(new_rectangle->corp, rectangle->corb);
-    new_rectangle->protec = 60.00;
+    new_rectangle->protec = rectangle->protec;
 
     insertTree(t, getRoot(t), new_rectangle->x, new_rectangle->y, new_rectangle, 2);
 }
@@ -110,7 +110,7 @@ void setProtecRect(Info r, double reduc) {
     rect->protec = rect->protec - reduc;
 }
 
-double getProtecRect(Info r) {
+double getRectPROTEC(Info r) {
     Retangulo *rect = r;
 
     return rect->protec;

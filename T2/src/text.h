@@ -46,7 +46,7 @@ void setProtecTxt(Info t, double reduc);
 // atualiza o nivel de proteção da figuração, dada
 // uma redução de um ataque
 
-double getProtecTxt(Info t);
+double getTxtPROTEC(Info t);
 // retorna a proteção atual do determinado navio
 
 void freeTxt(Info t);

@@ -41,7 +41,7 @@ void setProtecLine(Info l, double reduc);
 // atualiza o nivel de proteção da figuração, dada
 // uma redução de um ataque
 
-double getProtecLine(Info l);
+double getLinePROTEC(Info l);
 // retorna a proteção atual do determinado navio
 
 double getLineArea(Info l);

@@ -44,7 +44,7 @@ void setProtecRect(Info r, double reduc);
 // atualiza o nivel de proteção da figuração, dada
 // uma redução de um ataque
 
-double getProtecRect(Info r);
+double getRectPROTEC(Info r);
 // retorna a proteção atual do determinado navio
 
 double getRectArea(Info r);

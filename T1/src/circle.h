@@ -32,7 +32,7 @@ double getCircRADIUS(Circle1 c);
 char *getCircFILL(Circle1 c);
 //retorna a cor de preenchimento de determinado círculo no svg
 
-char *getcircEDGE(Circle1 c);
+char *getCircEDGE(Circle1 c);
 //retorna a cor de borda de determinado círculo no svg
 
 void setcircFILL(Circle1 c, char *new_corp);

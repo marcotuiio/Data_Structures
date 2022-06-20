@@ -195,7 +195,7 @@ void preOrderTp(Score pnts, FILE *txt, Tree t, Node root, double x, double y, in
             case 1:
                 marcador = tpCirc(my_info, x, y);
                 if (marcador) {
-                    fprintf(txt, "Acertou Círculo id = %d, x = %lf, y = %lf, r = %lf\n", getCircID(my_info), getCircX(my_info), getCircY(my_info), getCircRADIUS(my_info));
+                    fprintf(txt, "Acertou Círculo id = %d, x = %lf, y = %lf, r = %lf, corb = %s, corp = %s\n", getCircID(my_info), getCircX(my_info), getCircY(my_info), getCircRADIUS(my_info), getCircEDGE(my_info), getCircFILL(my_info));
                     double auxdr = getCircArea(my_info) / 5;
                     updateDestr(pnts, 75 / auxdr);
                     // removeNode(t, getRoot(t), getTX(root), getTY(root), getCircID(my_info));
@@ -207,7 +207,7 @@ void preOrderTp(Score pnts, FILE *txt, Tree t, Node root, double x, double y, in
             case 2:
                 marcador = tpRect(my_info, x, y);
                 if (marcador) {
-                    fprintf(txt, "Acertou Retângulo id = %d, x = %lf, y = %lf, w = %lf, h = %lf\n", getRectID(my_info), getRectX(my_info), getRectY(my_info), getRectWIDTH(my_info), getRectHEIGHT(my_info));
+                    fprintf(txt, "Acertou Retângulo id = %d, x = %lf, y = %lf, w = %lf, h = %lf, corb = %s, corp = %s\n", getRectID(my_info), getRectX(my_info), getRectY(my_info), getRectWIDTH(my_info), getRectHEIGHT(my_info), getRectEDGE(my_info), getRectFILL(my_info));
                     double auxdr = getRectArea(my_info) / 5;
                     updateDestr(pnts, 90 / auxdr);
                     // removeNode(t, getRoot(t), getTX(root), getTY(root), getRectID(my_info));
@@ -219,7 +219,7 @@ void preOrderTp(Score pnts, FILE *txt, Tree t, Node root, double x, double y, in
             case 3:
                 marcador = tpLine(my_info, x, y);
                 if (marcador) {
-                    fprintf(txt, "Acertou Linha id = %d, x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf\n", getLineID(my_info), getLineX(my_info), getLineY(my_info), getLineFINALX(my_info), getLineFINALY(my_info));
+                    fprintf(txt, "Acertou Linha id = %d, x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf, cor = %s\n", getLineID(my_info), getLineX(my_info), getLineY(my_info), getLineFINALX(my_info), getLineFINALY(my_info), getLineCOLOR(my_info));
                     updateDestr(pnts, 150);
                     // removeNode(t, getRoot(t), getTX(root), getTY(root), getLineID(my_info));
                     markRemoved(t, root);
@@ -230,7 +230,7 @@ void preOrderTp(Score pnts, FILE *txt, Tree t, Node root, double x, double y, in
             case 4:
                 marcador = tpTxt(my_info, x, y);
                 if (marcador) {
-                    fprintf(txt, "Acertou Texto id = %d, x = %lf, y = %lf, txt = %s\n", getTxtID(my_info), getTxtX(my_info), getTxtY(my_info), getTxtTEXT(my_info));
+                    fprintf(txt, "Acertou Texto id = %d, x = %lf, y = %lf, corb = %s, corp = %s, txt = %s\n", getTxtID(my_info), getTxtX(my_info), getTxtY(my_info), getTxtEDGE(my_info), getTxtFILL(my_info), getTxtTEXT(my_info));
                     updateDestr(pnts, 500);
                     // removeNode(t, getRoot(t), getTX(root), getTY(root), getTxtID(my_info));
                     markRemoved(t, root);
@@ -354,8 +354,8 @@ void preOrderTr(FILE *txt, Tree t, Node root, double x, double y, double dx, dou
                 if (marcador) {
                     Info new_circ = criaCirc();
                     replicateCirc(t, my_info, new_circ, dx, dy, id);
-                    fprintf(txt, "Círculo Base id = %d, x = %lf, y = %lf, r = %lf, corb = %s, corp = %s\n", getCircID(my_info), getCircX(my_info), getCircY(my_info), getCircRADIUS(my_info), getcircEDGE(my_info), getCircFILL(my_info));
-                    fprintf(txt, "Círculo Replicado id = %d, x = %lf, y = %lf, r = %lf, corb = %s, corp = %s\n", getCircID(new_circ), getCircX(new_circ), getCircY(new_circ), getCircRADIUS(new_circ), getcircEDGE(new_circ), getCircFILL(new_circ));
+                    fprintf(txt, "Círculo Base id = %d, x = %lf, y = %lf, r = %lf, corb = %s, corp = %s, proteção = %lf\n", getCircID(my_info), getCircX(my_info), getCircY(my_info), getCircRADIUS(my_info), getCircEDGE(my_info), getCircFILL(my_info), getCircPROTEC(my_info));
+                    fprintf(txt, "Círculo Replicado id = %d, x = %lf, y = %lf, r = %lf, corb = %s, corp = %s, proteção = %lf\n", getCircID(new_circ), getCircX(new_circ), getCircY(new_circ), getCircRADIUS(new_circ), getCircEDGE(new_circ), getCircFILL(new_circ), getCircPROTEC(new_circ));
                     id++;
                     (*cont)++;
                 }
@@ -366,8 +366,8 @@ void preOrderTr(FILE *txt, Tree t, Node root, double x, double y, double dx, dou
                 if (marcador) {
                     Info new_rect = criaRec();
                     replicateRect(t, my_info, new_rect, dx, dy, id);
-                    fprintf(txt, "Retangulo Base id = %d, x = %lf, y = %lf, w = %lf, h = %lf, corb = %s, corp = %s\n", getRectID(my_info), getRectX(my_info), getRectY(my_info), getRectWIDTH(my_info), getRectHEIGHT(my_info), getRectEDGE(my_info), getRectFILL(my_info));
-                    fprintf(txt, "Retangulo Replicado id = %d, x = %lf, y = %lf, w = %lf, h = %lf, corb = %s, corp = %s\n", getRectID(new_rect), getRectX(new_rect), getRectY(new_rect), getRectWIDTH(new_rect), getRectHEIGHT(new_rect), getRectEDGE(new_rect), getRectFILL(new_rect));
+                    fprintf(txt, "Retangulo Base id = %d, x = %lf, y = %lf, w = %lf, h = %lf, corb = %s, corp = %s, proteção = %lf\n", getRectID(my_info), getRectX(my_info), getRectY(my_info), getRectWIDTH(my_info), getRectHEIGHT(my_info), getRectEDGE(my_info), getRectFILL(my_info), getRectPROTEC(my_info));
+                    fprintf(txt, "Retangulo Replicado id = %d, x = %lf, y = %lf, w = %lf, h = %lf, corb = %s, corp = %s, proteção = %lf\n", getRectID(new_rect), getRectX(new_rect), getRectY(new_rect), getRectWIDTH(new_rect), getRectHEIGHT(new_rect), getRectEDGE(new_rect), getRectFILL(new_rect), getRectPROTEC(new_rect));
                     id++;
                     (*cont)++;
                 }
@@ -378,8 +378,8 @@ void preOrderTr(FILE *txt, Tree t, Node root, double x, double y, double dx, dou
                 if (marcador) {
                     Info new_line = criaLinha();
                     replicateLine(t, my_info, new_line, dx, dy, id);
-                    fprintf(txt, "Linha Base id = %d, x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf, cor = %s\n", getLineID(my_info), getLineX(my_info), getLineY(my_info), getLineFINALX(my_info), getLineFINALY(my_info), getLineCOLOR(my_info));
-                    fprintf(txt, "Linha Replicada id = %d, x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf, cor = %s\n", getLineID(new_line), getLineX(new_line), getLineY(new_line), getLineFINALX(my_info), getLineFINALY(new_line), getLineCOLOR(new_line));
+                    fprintf(txt, "Linha Base id = %d, x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf, cor = %s, proteção = %lf\n", getLineID(my_info), getLineX(my_info), getLineY(my_info), getLineFINALX(my_info), getLineFINALY(my_info), getLineCOLOR(my_info), getLinePROTEC(my_info));
+                    fprintf(txt, "Linha Replicada id = %d, x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf, cor = %s, proteção = %lf\n", getLineID(new_line), getLineX(new_line), getLineY(new_line), getLineFINALX(my_info), getLineFINALY(new_line), getLineCOLOR(new_line), getLinePROTEC(new_line));
                     id++;
                     (*cont)++;
                 }
@@ -390,8 +390,8 @@ void preOrderTr(FILE *txt, Tree t, Node root, double x, double y, double dx, dou
                 if (marcador) {
                     Info new_text = criaTxt();
                     replicateTxt(t, my_info, new_text, dx, dy, id);
-                    fprintf(txt, "Texto Base id = %d, x = %lf, y = %lf, corb = %s, corp = %s, text = %s\n", getTxtID(my_info), getTxtX(my_info), getTxtY(my_info), getTxtEDGE(my_info), getTxtFILL(my_info), getTxtTEXT(my_info));
-                    fprintf(txt, "Texto Replicado id = %d, x = %lf, y = %lf, corb = %s, corp = %s, text = %s\n", getTxtID(new_text), getTxtX(new_text), getTxtY(new_text), getTxtEDGE(new_text), getTxtFILL(new_text), getTxtTEXT(new_text));
+                    fprintf(txt, "Texto Base id = %d, x = %lf, y = %lf, corb = %s, corp = %s, text = %s, proteção = %lf\n", getTxtID(my_info), getTxtX(my_info), getTxtY(my_info), getTxtEDGE(my_info), getTxtFILL(my_info), getTxtTEXT(my_info), getTxtPROTEC(my_info));
+                    fprintf(txt, "Texto Replicado id = %d, x = %lf, y = %lf, corb = %s, corp = %s, text = %s, proteção = %lf\n", getTxtID(new_text), getTxtX(new_text), getTxtY(new_text), getTxtEDGE(new_text), getTxtFILL(new_text), getTxtTEXT(new_text), getTxtPROTEC(new_text));
                     id++;
                     (*cont)++;
                 }
@@ -454,7 +454,7 @@ void preOrderBe(Score pnts, FILE *svg, FILE *txt, Tree root, Node node, double x
                 marcador = isInsideCirc(fig, x, y, w, h);
                 if (marcador) {
                     reduc = calcReduc(v, getCircArea(fig), selArea);
-                    if (getProtecCirc(fig) > 0) {
+                    if (getCircPROTEC(fig) > 0) {
                         setProtecCirc(fig, reduc);
                     }
                     printReducCirc(pnts, svg, txt, fig, root, node);
@@ -465,7 +465,7 @@ void preOrderBe(Score pnts, FILE *svg, FILE *txt, Tree root, Node node, double x
                 marcador = isInsideRect(fig, x, y, w, h);
                 if (marcador) {
                     reduc = calcReduc(v, getRectArea(fig), selArea);
-                    if (getProtecRect(fig) > 0) {
+                    if (getRectPROTEC(fig) > 0) {
                         setProtecRect(fig, reduc);
                     }
                     printReducRect(pnts, svg, txt, fig, root, node);
@@ -476,7 +476,7 @@ void preOrderBe(Score pnts, FILE *svg, FILE *txt, Tree root, Node node, double x
                 marcador = isInsideLine(fig, x, y, w, h);
                 if (marcador) {
                     reduc = calcReduc(v, getLineArea(fig), selArea);
-                    if (getProtecLine(fig) > 0) {
+                    if (getLinePROTEC(fig) > 0) {
                         setProtecLine(fig, reduc);
                     }
                     printReducLine(pnts, svg, txt, fig, root, node);
@@ -487,7 +487,7 @@ void preOrderBe(Score pnts, FILE *svg, FILE *txt, Tree root, Node node, double x
                 marcador = isInsideText(fig, x, y, w, h);
                 if (marcador) {
                     reduc = calcReduc(v, 0.1, selArea);
-                    if (getProtecTxt(fig) > 0) {
+                    if (getTxtPROTEC(fig) > 0) {
                         setProtecTxt(fig, reduc);
                     }
                     printReducText(pnts, svg, txt, fig, root, node);
@@ -528,10 +528,10 @@ void printReducCirc(Score pnts, FILE *svg, FILE *txt, Info circ, Tree root, Node
     }
 
     fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", getCircX(circ), getCircY(circ), r, color, color);
-    fprintf(txt, "Atingido Círculo id = %d, x = %lf, y = %lf, r = %lf, proteção = %lf ", getCircID(circ), getCircX(circ), getCircY(circ), getCircRADIUS(circ), getProtecCirc(circ));
-    // printf("protec c %lf\n", getProtecCirc(circ));
+    fprintf(txt, "Atingido Círculo id = %d, x = %lf, y = %lf, r = %lf, corb = %s, corp = %s, proteção = %lf ", getCircID(circ), getCircX(circ), getCircY(circ), getCircRADIUS(circ), getCircEDGE(circ), getCircFILL(circ), getCircPROTEC(circ));
+    // printf("protec c %lf\n", getCircPROTEC(circ));
 
-    if (getProtecCirc(circ) <= 0) {
+    if (getCircPROTEC(circ) <= 0) {
         updateInativ(pnts, 75);
         // removeNode(root, getRoot(root), getTX(node), getTY(node), getCircID(circ));
         markRemoved(root, node);
@@ -566,10 +566,10 @@ void printReducRect(Score pnts, FILE *svg, FILE *txt, Info rect, Tree root, Node
     }
 
     fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", getRectX(rect), getRectY(rect), r, color, color);
-    fprintf(txt, "Atingido retângulo id = %d, x = %lf, y = %lf, w = %lf, h = %lf proteção = %lf ", getRectID(rect), getRectX(rect), getRectY(rect), getRectWIDTH(rect), getRectHEIGHT(rect), getProtecRect(rect));
-    // printf("protec r %lf\n", getProtecRect(rect));
+    fprintf(txt, "Atingido retângulo id = %d, x = %lf, y = %lf, w = %lf, h = %lf, corb = %s, corp = %s, proteção = %lf ", getRectID(rect), getRectX(rect), getRectY(rect), getRectWIDTH(rect), getRectHEIGHT(rect), getRectEDGE(rect), getRectFILL(rect), getRectPROTEC(rect));
+    // printf("protec r %lf\n", getRectPROTEC(rect));
 
-    if (getProtecRect(rect) <= 0) {
+    if (getRectPROTEC(rect) <= 0) {
         updateInativ(pnts, 90);
         // removeNode(root, getRoot(root), getTX(node), getTY(node), getRectID(rect));
         markRemoved(root, node);
@@ -604,10 +604,10 @@ void printReducLine(Score pnts, FILE *svg, FILE *txt, Info line, Tree root, Node
     }
 
     fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", getLineX(line), getLineY(line), r, color, color);
-    fprintf(txt, "Atingido linha id = %d, x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf proteção = %lf ", getLineID(line), getLineX(line), getLineY(line), getLineFINALX(line), getLineFINALY(line), getProtecLine(line));
-    // printf("protec l %lf\n", getProtecLine(line));
+    fprintf(txt, "Atingido linha id = %d, x1 = %lf, y1 = %lf, x2 = %lf, y2 = %lf, cor = %s, proteção = %lf ", getLineID(line), getLineX(line), getLineY(line), getLineFINALX(line), getLineFINALY(line), getLineCOLOR(line), getLinePROTEC(line));
+    // printf("protec l %lf\n", getLinePROTEC(line));
 
-    if (getProtecLine(line) <= 0) {
+    if (getLinePROTEC(line) <= 0) {
         updateInativ(pnts, 50);
         // removeNode(root, getRoot(root), getTX(node), getTY(node), getLineID(line));
         markRemoved(root, node);
@@ -638,10 +638,10 @@ void printReducText(Score pnts, FILE *svg, FILE *txt, Info text, Tree root, Node
     }
 
     fprintf(svg, "\t<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", getTxtX(text), getTxtY(text), r, color, color);
-    fprintf(txt, "Atingido texto id = %d, x = %lf, y = %lf, proteção = %lf ", getTxtID(text), getTxtX(text), getTxtY(text), getProtecTxt(text));
-    // printf("protec t %lf\n", getProtecTxt(text));
+    fprintf(txt, "Atingido texto id = %d, x = %lf, y = %lf, corb = %s, corp = %s, proteção = %lf ", getTxtID(text), getTxtX(text), getTxtY(text), getTxtEDGE(text), getTxtFILL(text), getTxtPROTEC(text));
+    // printf("protec t %lf\n", getTxtPROTEC(text));
 
-    if (getProtecTxt(text) <= 0) {
+    if (getTxtPROTEC(text) <= 0) {
         updateInativ(pnts, 30);
         // removeNode(root, getRoot(root), getTX(node), getTY(node), getTxtID(text));
         markRemoved(root, node);

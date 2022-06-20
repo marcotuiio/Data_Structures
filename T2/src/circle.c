@@ -53,7 +53,7 @@ void replicateCirc(Tree t, Info base_c, Info new_c, double dx, double dy, int id
     new_circ->radius = circ->radius;
     strcpy(new_circ->corb, circ->corp);
     strcpy(new_circ->corp, circ->corb);
-    new_circ->protec = 60.00;
+    new_circ->protec = circ->protec;
 
     insertTree(t, getRoot(t), new_circ->x, new_circ->y, new_circ, 1);
 }
@@ -88,7 +88,7 @@ char *getCircFILL(Info c) {
     return circ->corp;
 }
 
-char *getcircEDGE(Info c) {
+char *getCircEDGE(Info c) {
     Circulo *circ = (Circulo *)c;
 
     return circ->corb;
@@ -100,7 +100,7 @@ void setProtecCirc(Info c, double reduc) {
     circ->protec = circ->protec - reduc;
 }
 
-double getProtecCirc(Info c) {
+double getCircPROTEC(Info c) {
     Circulo *circ = c;
 
     return circ->protec;

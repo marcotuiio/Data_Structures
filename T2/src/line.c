@@ -53,7 +53,7 @@ void replicateLine(Tree t, Info base_l, Info new_l, double dx, double dy, int id
     new_line->x2 = line->x2 + dx;
     new_line->y2 = line->y2 + dy;
     strcpy(new_line->color, line->color);
-    new_line->protec = 50.00;
+    new_line->protec = line->protec;
 
     insertTree(t, getRoot(t), new_line->x1, new_line->y1, new_line, 3);
 }
@@ -100,7 +100,7 @@ void setProtecLine(Info l, double reduc) {
     line->protec = line->protec - reduc;
 }
 
-double getProtecLine(Info l) {
+double getLinePROTEC(Info l) {
     Linha *line = l;
 
     return line->protec;

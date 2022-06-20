@@ -57,7 +57,7 @@ void replicateTxt(Tree t, Info base_t, Info new_t, double dx, double dy, int id)
     strcpy(new_txt->corp, text->corb);
     strcpy(new_txt->anchor, text->anchor);
     strcpy(new_txt->text, text->text);
-    new_txt->protec = 5.00;
+    new_txt->protec = text->protec;
 
     insertTree(t, getRoot(t), new_txt->x, new_txt->y, new_txt, 4);
 }
@@ -112,7 +112,7 @@ void setProtecTxt(Info t, double reduc) {
     txt->protec = txt->protec - reduc;
 }
 
-double getProtecTxt(Info t) {
+double getTxtPROTEC(Info t) {
     Texto *txt = t;
 
     return txt->protec;

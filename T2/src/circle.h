@@ -36,14 +36,14 @@ double getCircRADIUS(Info c);
 char *getCircFILL(Info c);
 // retorna a cor de preenchimento de determinado círculo no svg
 
-char *getcircEDGE(Info c);
+char *getCircEDGE(Info c);
 // retorna a cor de borda de determinado círculo no svg
 
 void setProtecCirc(Info c, double reduc);
 // atualiza o nivel de proteção da figuração, dada
 // uma redução de um ataque
 
-double getProtecCirc(Info c);
+double getCircPROTEC(Info c);
 // retorna a proteção atual do determinado navio
 
 double getCircArea(Info c);

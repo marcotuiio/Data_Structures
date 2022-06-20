@@ -66,7 +66,7 @@ void drawCircle(FILE *svg, Info circ) {
     y = getCircY(circ);
     radius = getCircRADIUS(circ);
     strcpy(fill, getCircFILL(circ));
-    strcpy(stroke, getcircEDGE(circ));
+    strcpy(stroke, getCircEDGE(circ));
 
     fprintf(svg, "\t<circle id=\"%d\" cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" />\n", id, x, y, radius, stroke, fill);
 }
