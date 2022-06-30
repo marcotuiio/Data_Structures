@@ -30,7 +30,7 @@
  * Este limiar é definido no momento da criação da árvore.
  */
 
-typedef void (*FvisitaNo) (Info i, double x, double y, void *aux);
+typedef void (*FvisitaNo) (Info i, void *aux);
 /*
     Processa a informacao i associada a um nó da arvore, cuja ancora
     é o ponto (x,y). O parâmetro aux aponta para conjunto de dados 
