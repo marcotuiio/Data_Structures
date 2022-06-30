@@ -30,6 +30,14 @@
  * Este limiar é definido no momento da criação da árvore.
  */
 
+typedef void (*FvisitaNo) (Info i, double x, double y, void *aux);
+/*
+    Processa a informacao i associada a um nó da arvore, cuja ancora
+    é o ponto (x,y). O parâmetro aux aponta para conjunto de dados 
+    (provavelmente um registro) que sao compartilhados entre as 
+    sucessivas invocacoes a esta funcao.
+*/
+
 Tree createTree();
 // Cria uma árvore vazia e retorna um ponteiro para ela
 
@@ -93,6 +101,11 @@ void markRemoved(Tree root, Node node);
 bool calcFD(Tree root);
 // Recebe uma árvore e analisa se o fator de degradação dessa árvore
 // supera o limiar definido na criação. Retorna verdadeiro se supera.
+
+void visitaProfundidadeYxxT (YxxTree t, FvisitaNo f, void *aux);                        
+// Percorre a arvore em profundidade. Invoca a funcao f em cada no visitado.
+// O apontador aux é parametro em cada invocacao de f; assim alguns
+// dados podem ser compartilhados entre as diversas invocacoes de f.
 
 // void fixTree(Tree root);
 // void reinsert(Tree root, Node valid[15], int ult);
