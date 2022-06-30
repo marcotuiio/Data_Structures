@@ -52,6 +52,8 @@ Node createNode(Info value, double x, double y, int ctrl) {
     return new_node;
 }
 
+void visitaProfundidadeYxxTAux(Node no, FvisitaNo f, void* aux);
+
 Node insertTree(Tree root, Node node, double x, double y, Info i, int ctrl) {
     // printf("Insertion\n");
     tree_root *my_root = root;
@@ -289,6 +291,21 @@ void markRemoved(Tree root, Node node) {
             printf("NEED TO FIX TREE");
         }
     }
+}
+
+void visitaProfundidadeYxxT(Tree t, FvisitaNo f, void* aux) {
+    visitaProfundidadeYxxTAux(getRoot(t), f, aux);
+}
+
+void visitaProfundidadeYxxTAux(Node no, FvisitaNo f, void* aux) {
+    if (!no) {
+        return;
+    }
+
+    f(getInfo(NULL, no), 0, 0, aux);
+    visitaProfundidadeYxxTAux(getLeft(no), f, aux);
+    visitaProfundidadeYxxTAux(getCenter(no), f, aux);
+    visitaProfundidadeYxxTAux(getRight(no), f, aux);
 }
 
 bool calcFD(Tree root) {
