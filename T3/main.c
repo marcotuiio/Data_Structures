@@ -1,8 +1,8 @@
-#include "geo.h"
+// #include "geo.h"
 #include "libs.h"
 #include "paths.h"
-#include "qry.h"
-#include "svg.h"
+// #include "qry.h"
+// #include "svg.h"
 #include "system.h"
 
 int main(int argc, char** argv) {

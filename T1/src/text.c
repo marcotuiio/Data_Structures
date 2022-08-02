@@ -1,13 +1,13 @@
 #include "text.h"
 
 struct txt {
-    char type[1];
+    char type[3];
     int id;
     double x;
     double y;
     char corp[15];
     char corb[15];
-    char anchor[1];
+    char anchor[3];
     char text[100];
     char textaux[100];
 };
@@ -92,8 +92,8 @@ char *getTxtEDGE(Item t) {
 char *getTxtANCHOR(Item t) {
     Texto *txt = (Texto *)t;
     // printf("get anchor %s\n", txt->anchor);
-    strcpy(txt->anchor, strtok(txt->anchor, " "));
-    // printf("get anchor %s\n", txt->anchor);
+    // strcpy(txt->anchor, strtok(txt->anchor, " "));
+    // printf("get anchor %s\n", strtok(txt->anchor, " "));
 
     return txt->anchor;
 }

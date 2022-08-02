@@ -4,20 +4,20 @@ import time
 import datetime
 
 # BED = Path BED (pasta de testes do Evandro):
-BED = '/home/marcotuiio/inputs'
+BED = '/home/marcotuiio/Desktop/exame/entradas'
 
 # BSD = Path de saída:
-BSD = '/home/marcotuiio/outputs'
+BSD = '/home/marcotuiio/Desktop/exame/saidas'
 
 # src = Path da pasta SRC:
-src = '/home/marcotuiio/ED1/T2/src'
+src = '/home/marcotuiio/Desktop/src'
 
 ini = datetime.datetime.now()
 
 os.chdir(src)
 
 # Ative a função abaixo caso tenha alguma coisa no Makefile que limpe todos os *.o
-subprocess.call(["make", "clear"])  
+subprocess.call(["make", "clean"])  
 
 # Observação, quem tiver o executável diferente de 'ted', mude no código todo para o nome certo
 subprocess.call(["make", "ted"])
