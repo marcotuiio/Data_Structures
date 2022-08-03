@@ -293,20 +293,20 @@ void markRemoved(Tree root, Node node) {
     }
 }
 
-void visitaProfundidadeYxxT(Tree t, FvisitaNo f, void* aux) {
-    visitaProfundidadeYxxTAux(getRoot(t), f, aux);
-}
+// void visitaProfundidadeYxxT(Tree t, FvisitaNo f, void* aux) {
+//     visitaProfundidadeYxxTAux(getRoot(t), f, aux);
+// }
 
-void visitaProfundidadeYxxTAux(Node no, FvisitaNo f, void* aux) {
-    if (!no) {
-        return;
-    }
+// void visitaProfundidadeYxxTAux(Node no, FvisitaNo f, void* aux) {
+//     if (!no) {
+//         return;
+//     }
 
-    f(getInfo(NULL, no), 0, 0, aux);
-    visitaProfundidadeYxxTAux(getLeft(no), f, aux);
-    visitaProfundidadeYxxTAux(getCenter(no), f, aux);
-    visitaProfundidadeYxxTAux(getRight(no), f, aux);
-}
+//     f(getInfo(NULL, no), 0, 0, aux);
+//     visitaProfundidadeYxxTAux(getLeft(no), f, aux);
+//     visitaProfundidadeYxxTAux(getCenter(no), f, aux);
+//     visitaProfundidadeYxxTAux(getRight(no), f, aux);
+// }
 
 bool calcFD(Tree root) {
     tree_root *my_root = root;

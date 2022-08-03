@@ -1,7 +1,7 @@
 #include "avl_tree.h"
 
 struct node {
-    Info value;
+    int value;
     struct node *left;
     struct node *right;
     int height;
@@ -11,6 +11,7 @@ typedef struct node Avl_Node;
 struct tree {
     Avl_Node *root;
     int size;
+
 };
 typedef struct tree Avl_Root;
 
@@ -22,7 +23,7 @@ Tree newTree() {
     return new_tree;
 }
 
-Node newNode(Info i) {
+Node newNode(int i) {
     Avl_Node *new_node = calloc(1, sizeof(Avl_Node));
     new_node->value = i;
     new_node->left = NULL;
@@ -32,7 +33,7 @@ Node newNode(Info i) {
     return new_node;
 }
 
-Node insertTree(Tree t, Node n, Info i) {
+Node insertTree(Tree t, Node n, int i) {
     Avl_Root *avl_tree = t;
     Avl_Node *new_node = n;
 
@@ -93,7 +94,7 @@ int height(Node n) {
     return avl_node->height;
 }
 
-double max(double a, double b) {
+double max(int a, int b) {
     return a > b ? a : b;  // se a > b, retorna a, senão retorna b
 }
 
@@ -115,7 +116,7 @@ Node rotateLeft(Node n) {
 
     node->height = max(height(node->left), height(node->right)) + 1;
     aux1->height = max(height(aux1->left), height(aux1->right)) + 1;
-
+    
     return aux1;
 }
 
@@ -147,4 +148,18 @@ void traverseAux(Node root, ToDoNode f, void *aux) {
     f(node->value, aux);
     traverseAux(node->left, f, aux);
     traverseAux(node->right, f, aux);
+}
+
+void print(int i, void *aux) {
+    printf("%d ", i);
+}
+
+Node getRoot(Tree t) {
+    Avl_Root *avl_tree = t;
+    return avl_tree->root;
+}
+
+void printSize(Tree t) {
+    Avl_Root *avl_tree = t;
+    printf("%d\n", avl_tree->size);
 }
