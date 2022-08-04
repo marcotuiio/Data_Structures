@@ -35,11 +35,28 @@ Node rotateLeft(Node n);
 Node rotateRight(Node n);
 // Recebe um nó e rotaciona o nó para a direita
 
-void traversePreOrder(Tree t, ToDoNode f, void *aux);
-// Recebe uma árvore, uma função f definida previamente e um ponteiro auxiliar.
+Node removeNode(Tree t, Node n, int i);
+// Remove o nó n da árvore t.
 
+Node getLargestLeft(Node n);
+// Recebe uma subarvore esquerda e retorna o maior valor associado
+// a essa subarvore
+
+Node getSmallestRight(Node n);
+// Recebe uma subarvore direita e retorna o menor valor associado
+// a essa subarvore
+
+Node getNode(Tree t, double x, double y, double epsilon);
+Node searchNode(Node n, double x, double y, double epsilon);
+// Recebe uma árvore e um ponto (x,y) e retorna o nó que contém o ponto.
+
+void traversePreOrder(Tree t, ToDoNode f, void *aux);
 void traverseAux(Node root, ToDoNode f, void *aux);
-// Percorre recurssivamente no percurso pré-ordem a árvore e realizada a função
-// f para cada nó da árvore.
+// Recebe uma árvore, uma função f definida previamente e um ponteiro auxiliar e 
+// a percorre no percurso pre-ordem.
+
+void freeTree(Tree t);
+void freeAux(Node root);
+// Recebe uma árvore e libera toda a memória alocada para ela.
 
 #endif

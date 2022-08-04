@@ -6,20 +6,25 @@ int main () {
     void *aux = NULL;
 
     insertTree(t, getRoot(t), 10);
-    insertTree(t, getRoot(t), 11); //colocar um valor maior logo depois ta quebrando
+    insertTree(t, getRoot(t), 11);
     insertTree(t, getRoot(t), 8);
-    insertTree(t, getRoot(t), 13);
+    insertTree(t, getRoot(t), 14);
     insertTree(t, getRoot(t), 7);
     insertTree(t, getRoot(t), 16);
+    insertTree(t, getRoot(t), 12);
     insertTree(t, getRoot(t), 102);
-    insertTree(t, getRoot(t), 102);
+    insertTree(t, getRoot(t), 105);
     insertTree(t, getRoot(t), 1);
 
     printf("\n");
     traversePreOrder(t, print, aux);
     printf("\n");
-    printSize(t);
+    removeNode(t, getRoot(t), 10);
+    traversePreOrder(t, print, aux);
+    printf("\n");
 
-    return 0;
+    freeTree(getRoot(t));
+    free(t);
     
+    return 0;
 }

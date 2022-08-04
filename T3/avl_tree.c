@@ -64,20 +64,20 @@ Node insertTree(Tree t, Node n, Info i) {
 
     int balance = getBalance(new_node);
 
-    if (balance > 1 && i < new_node->left->value) {
-        return rotateRight(new_node);
+    if (balance > 1 && i < new_node->left->value) { // desbalanceada para a esquerda
+        return rotateRight(new_node); 
     }
 
-    if (balance < -1 && i > new_node->right->value) {
+    if (balance < -1 && i > new_node->right->value) { // desbalanceada para a direita
         return rotateLeft(new_node);
     }
 
-    if (balance > 1 && i > new_node->left->value) {
+    if (balance > 1 && i > new_node->left->value) { // desbalanceada para a esquerda e a direita
         new_node->left = rotateLeft(new_node->left);
         return rotateRight(new_node);
     }
 
-    if (balance < -1 && i < new_node->right->value) {
+    if (balance < -1 && i < new_node->right->value) { // desbalanceada para a direita e a esquerda
         new_node->right = rotateRight(new_node->right);
         return rotateLeft(new_node);
     }
@@ -90,11 +90,11 @@ int height(Node n) {
     if (!avl_node) {
         return 0;
     }
-    return avl_node->height;
+    return max(height(avl_node->left), height(avl_node->right)) + 1;
 }
 
 double max(double a, double b) {
-    return a > b ? a : b;  // se a > b, retorna a, senão retorna b
+    return (a > b) ? a : b;  // se a > b, retorna a, senão retorna b
 }
 
 int getBalance(Node n) {
@@ -106,31 +106,141 @@ int getBalance(Node n) {
 }
 
 Node rotateLeft(Node n) {
-    Avl_Node *node = n;
-    Avl_Node *aux1 = node->right;
-    Avl_Node *aux2 = aux1->left;
+    Avl_Node *node = n; // a; 
+    Avl_Node *aux1 = node->right; // b; 
+    Avl_Node *aux2 = aux1->left; // null; 
 
-    aux1->left = node;
-    node->right = aux2;
+    aux1->left = node; // esquerda de b é a; 
+    node->right = aux2; // direita de a é null
+    // note que o filho direiro de b continua o mesmo que antes de rotacionar;
+    // observar imagens para compreender melhor:  
+    // www.tutorialspoint.com/data_structures_algorithms/avl_tree_algorithm.htm#:~:text=A%20left%20rotation%20is%20performed,The%20tree%20is%20now%20balanced.
 
-    node->height = max(height(node->left), height(node->right)) + 1;
-    aux1->height = max(height(aux1->left), height(aux1->right)) + 1;
+    node->height = height(node);
+    aux1->height = height(aux1);
 
     return aux1;
 }
 
 Node rotateRight(Node n) {
-    Avl_Node *node = n;
-    Avl_Node *aux1 = node->left;
-    Avl_Node *aux2 = aux1->right;
+    Avl_Node *node = n; // c
+    Avl_Node *aux1 = node->left; // b
+    Avl_Node *aux2 = aux1->right; // null
 
-    aux1->right = node;
-    node->left = aux2;
+    aux1->right = node; // direita de b é c
+    node->left = aux2; // esquerda de c é null
+    // note que o filho esquerdo de b continua o mesmo que antes de rotacionar;
+    // observar imagens para compreender melhor:  
+    // www.tutorialspoint.com/data_structures_algorithms/avl_tree_algorithm.htm#:~:text=A%20left%20rotation%20is%20performed,The%20tree%20is%20now%20balanced.
 
-    node->height = max(height(node->left), height(node->right)) + 1;
-    aux1->height = max(height(aux1->left), height(aux1->right)) + 1;
+    node->height = height(node);
+    aux1->height = height(aux1);
     
     return aux1;
+}
+
+Node removeNode(Tree t, Node n, int i) {
+    Avl_Root *avl_tree = t;
+    Avl_Node *avl_node = n;
+
+    if (!avl_node) {
+        return avl_node;
+    }
+
+    if (i < avl_node->value) {
+        avl_node->left = removeNode(avl_tree, avl_node->left, i);
+
+    } else if (i > avl_node->value) {
+        avl_node->right = removeNode(avl_tree, avl_node->right, i);
+
+    } else if (i == avl_node->value) {
+        Avl_Node *aux = NULL;
+        if (!avl_node->left && !avl_node->right) {
+            free(avl_node);
+            avl_tree->size--;
+            return NULL;
+
+        } else if (!avl_node->left) {  // somente direita
+            aux = avl_node->right;
+            free(avl_node);
+            avl_tree->size--;
+            return aux;
+
+        } else if (!avl_node->right) {  // somente esquerda
+            aux = avl_node->left;
+            free(avl_node);
+            avl_tree->size--;
+            return aux;
+        
+        } else if (avl_node->left && avl_node->right) {  // tem dois filhos
+            aux = getLargestLeft(avl_node->left);
+            avl_node->value = aux->value;
+            avl_node->left = removeNode(avl_tree, avl_node->left, aux->value);
+        }
+    }
+    
+    avl_node->height = height(avl_node);
+
+    int balance = getBalance(avl_node);
+
+    if (balance > 1 && i < avl_node->left->value) {
+        return rotateRight(avl_node);
+    }
+
+    if (balance < -1 && i > avl_node->right->value) {
+        return rotateLeft(avl_node);
+    }
+
+    if (balance > 1 && i > avl_node->left->value) {
+        avl_node->left = rotateLeft(avl_node->left);
+        return rotateRight(avl_node);
+    }
+
+    if (balance < -1 && i < avl_node->right->value) {
+        avl_node->right = rotateRight(avl_node->right);
+        return rotateLeft(avl_node);
+    }
+
+    return avl_node;
+}
+
+Node getLargestLeft(Node n) {
+    Avl_Node *node = n;
+    while (node->right) {
+        node = node->right;
+    }
+    return node;
+}
+
+Node getSmallestRight(Node n) {
+    Avl_Node *node = n;
+    while (node->left) {
+        node = node->left;
+    }
+    return node;
+}
+
+Node getNode(Tree t, double x, double y, double epsilon) {
+    Avl_Root *avl_tree = t;
+    Node my_node = searchNode(avl_tree->root, x, y, epsilon);
+    return (my_node);
+}
+
+Node searchNode(Node n, double x, double y, double epsilon) {
+    Avl_Node *node = n;
+    double aux1, aux2;
+    if (!node) {
+        return NULL;
+    } 
+    if (fabs(aux1 - x) <= epsilon && fabs(aux2 - y) <= epsilon) {
+        return node;
+    } 
+    
+    if (y < aux2) {
+        return searchNode(node->left, x, y, epsilon);
+    } else if (x < aux1) {
+        return searchNode(node->right, x, y, epsilon);
+    } 
 }
 
 void traversePreOrder(Tree t, ToDoNode f, void *aux) {
@@ -147,4 +257,25 @@ void traverseAux(Node root, ToDoNode f, void *aux) {
     f(node->value, aux);
     traverseAux(node->left, f, aux);
     traverseAux(node->right, f, aux);
+}
+
+void freeTree(Tree t) {
+    Avl_Root *avl_tree = t;
+    freeAux(avl_tree->root);
+    free(avl_tree);
+}
+
+void freeAux(Node root) {
+    Avl_Node *my_node = root;
+
+    if (!my_node) {
+        return;
+    }
+    // free(my_node->value);
+
+    freeTree(my_node->left);
+    freeTree(my_node->right);
+    if (my_node) {
+        free(my_node);
+    }
 }

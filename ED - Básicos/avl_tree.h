@@ -35,6 +35,10 @@ Node rotateLeft(Node n);
 Node rotateRight(Node n);
 // Recebe um nó e rotaciona o nó para a direita
 
+Node removeNode(Tree t, Node n, int i);
+Node getLargestLeft(Node n);
+Node getSmallestRight(Node n);
+
 void traversePreOrder(Tree t, ToDoNode f, void *aux);
 // Recebe uma árvore, uma função f definida previamente e um ponteiro auxiliar.
 
@@ -46,6 +50,10 @@ void print(int i, void *aux);
 
 Node getRoot(Tree t);
 
+int getValue(Node n);
+
 void printSize(Tree t);
+
+void freeTree(Node root); 
 
 #endif
