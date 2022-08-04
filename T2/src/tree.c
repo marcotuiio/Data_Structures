@@ -301,7 +301,6 @@ void markRemoved(Tree root, Node node) {
 //     if (!no) {
 //         return;
 //     }
-
 //     f(getInfo(NULL, no), 0, 0, aux);
 //     visitaProfundidadeYxxTAux(getLeft(no), f, aux);
 //     visitaProfundidadeYxxTAux(getCenter(no), f, aux);
