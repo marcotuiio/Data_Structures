@@ -14,11 +14,12 @@ typedef void (*ToDoNode) (Info i, void *aux);
 Tree newTree();
 // Cria uma árvore vazia e retorna um ponteiro para ela
 
-Node newNode(Info i);
+Node newNode(Info i, double x);
 // Insere a informação i, associada à âncora (x,y) na árvore t.
 // Retorna um indicador do nó inserido.
 
-Node insertTree(Tree t, Node n, Info i);
+void insertTree(Tree t, Info i, double x);
+Node insertAux(Tree t, Node n, Info i, double x);
 
 int height(Node n);
 // Recebe um nó e retorna a altura desse nó
@@ -35,7 +36,8 @@ Node rotateLeft(Node n);
 Node rotateRight(Node n);
 // Recebe um nó e rotaciona o nó para a direita
 
-Node removeNode(Tree t, Node n, int i);
+void removeNode(Tree t, double x);
+Node removeAux(Tree t, Node n, double i);
 // Remove o nó n da árvore t.
 
 Node getLargestLeft(Node n);
@@ -47,7 +49,7 @@ Node getSmallestRight(Node n);
 // a essa subarvore
 
 Node getNode(Tree t, double x, double y, double epsilon);
-Node searchNode(Node n, double x, double y, double epsilon);
+Node searchNode(Node n, double x, double epsilon);
 // Recebe uma árvore e um ponto (x,y) e retorna o nó que contém o ponto.
 
 void traversePreOrder(Tree t, ToDoNode f, void *aux);

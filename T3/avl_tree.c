@@ -4,6 +4,7 @@ struct node {
     Info value;
     struct node *left;
     struct node *right;
+    double x;
     int height;
 };
 typedef struct node Avl_Node;
@@ -22,25 +23,30 @@ Tree newTree() {
     return new_tree;
 }
 
-Node newNode(Info i) {
+Node newNode(Info i, double x) {
     Avl_Node *new_node = calloc(1, sizeof(Avl_Node));
     new_node->value = i;
     new_node->left = NULL;
     new_node->right = NULL;
     new_node->height = 1;
+    new_node->x = x;
 
     return new_node;
 }
 
-Node insertTree(Tree t, Node n, Info i) {
+void insertTree(Tree t, Info i, double x) {
+    Avl_Root *avl_tree = t;
+    insertAux(avl_tree, avl_tree->root, i, x);
+}
+
+Node insertAux(Tree t, Node n, Info i, double x) {
     Avl_Root *avl_tree = t;
     Avl_Node *new_node = n;
 
     if (!new_node) {
-        new_node = newNode(i);
+        new_node = newNode(i, x);
         if (!avl_tree->root) {
             avl_tree->root = new_node;
-            printf("root %d\n", new_node->value);
         }
         if (new_node) {
             avl_tree->size++;
@@ -48,13 +54,11 @@ Node insertTree(Tree t, Node n, Info i) {
         }
     }
 
-    if (i < new_node->value) { // menores a esquerda
-        new_node->left = insertTree(avl_tree, new_node->left, i);
-        printf("test left %d\n", new_node->left->value);
+    if (x < new_node->x) { // menores a esquerda
+        new_node->left = insertAux(avl_tree, new_node->left, i, x);
 
-    } else if (i > new_node->value) { // maiores a direita
-        new_node->right = insertTree(avl_tree, new_node->right, i);
-        printf("test right %d\n", new_node->right->value);
+    } else if (x > new_node->x) { // maiores a direita
+        new_node->right = insertAux(avl_tree, new_node->right, i, x);
 
     } else { // repetidos não são inseridos
         return new_node;
@@ -64,20 +68,20 @@ Node insertTree(Tree t, Node n, Info i) {
 
     int balance = getBalance(new_node);
 
-    if (balance > 1 && i < new_node->left->value) { // desbalanceada para a esquerda
+    if (balance > 1 && x < new_node->left->x) { // desbalanceada para a esquerda
         return rotateRight(new_node); 
     }
 
-    if (balance < -1 && i > new_node->right->value) { // desbalanceada para a direita
+    if (balance < -1 && x > new_node->right->x) { // desbalanceada para a direita
         return rotateLeft(new_node);
     }
 
-    if (balance > 1 && i > new_node->left->value) { // desbalanceada para a esquerda e a direita
+    if (balance > 1 && x > new_node->left->x) { // desbalanceada para a esquerda e a direita
         new_node->left = rotateLeft(new_node->left);
         return rotateRight(new_node);
     }
 
-    if (balance < -1 && i < new_node->right->value) { // desbalanceada para a direita e a esquerda
+    if (balance < -1 && x < new_node->right->x) { // desbalanceada para a direita e a esquerda
         new_node->right = rotateRight(new_node->right);
         return rotateLeft(new_node);
     }
@@ -139,7 +143,12 @@ Node rotateRight(Node n) {
     return aux1;
 }
 
-Node removeNode(Tree t, Node n, int i) {
+void removeNode(Tree t, double x) {
+    Avl_Root *avl_tree = t;
+    removeAux(avl_tree, avl_tree->root, x);
+}
+
+Node removeAux(Tree t, Node n, double x) {
     Avl_Root *avl_tree = t;
     Avl_Node *avl_node = n;
 
@@ -147,27 +156,30 @@ Node removeNode(Tree t, Node n, int i) {
         return avl_node;
     }
 
-    if (i < avl_node->value) {
-        avl_node->left = removeNode(avl_tree, avl_node->left, i);
+    if (x < avl_node->x) {
+        avl_node->left = removeAux(avl_tree, avl_node->left, x);
 
-    } else if (i > avl_node->value) {
-        avl_node->right = removeNode(avl_tree, avl_node->right, i);
+    } else if (x > avl_node->x) {
+        avl_node->right = removeAux(avl_tree, avl_node->right, x);
 
-    } else if (i == avl_node->value) {
+    } else if (x == avl_node->x) {
         Avl_Node *aux = NULL;
         if (!avl_node->left && !avl_node->right) {
+            free(avl_node->value);
             free(avl_node);
             avl_tree->size--;
             return NULL;
 
         } else if (!avl_node->left) {  // somente direita
             aux = avl_node->right;
+            free(avl_node->value);
             free(avl_node);
             avl_tree->size--;
             return aux;
 
         } else if (!avl_node->right) {  // somente esquerda
             aux = avl_node->left;
+            free(avl_node->value);
             free(avl_node);
             avl_tree->size--;
             return aux;
@@ -175,7 +187,8 @@ Node removeNode(Tree t, Node n, int i) {
         } else if (avl_node->left && avl_node->right) {  // tem dois filhos
             aux = getLargestLeft(avl_node->left);
             avl_node->value = aux->value;
-            avl_node->left = removeNode(avl_tree, avl_node->left, aux->value);
+            avl_node->x = aux->x;
+            avl_node->left = removeAux(avl_tree, avl_node->left, aux->x);
         }
     }
     
@@ -183,20 +196,20 @@ Node removeNode(Tree t, Node n, int i) {
 
     int balance = getBalance(avl_node);
 
-    if (balance > 1 && i < avl_node->left->value) {
+    if (balance > 1 && x < avl_node->left->x) {
         return rotateRight(avl_node);
     }
 
-    if (balance < -1 && i > avl_node->right->value) {
+    if (balance < -1 && x > avl_node->right->x) {
         return rotateLeft(avl_node);
     }
 
-    if (balance > 1 && i > avl_node->left->value) {
+    if (balance > 1 && x > avl_node->left->x) {
         avl_node->left = rotateLeft(avl_node->left);
         return rotateRight(avl_node);
     }
 
-    if (balance < -1 && i < avl_node->right->value) {
+    if (balance < -1 && x < avl_node->right->x) {
         avl_node->right = rotateRight(avl_node->right);
         return rotateLeft(avl_node);
     }
@@ -222,30 +235,31 @@ Node getSmallestRight(Node n) {
 
 Node getNode(Tree t, double x, double y, double epsilon) {
     Avl_Root *avl_tree = t;
-    Node my_node = searchNode(avl_tree->root, x, y, epsilon);
+    Node my_node = searchNode(avl_tree->root, x, epsilon);
     return (my_node);
 }
 
-Node searchNode(Node n, double x, double y, double epsilon) {
+Node searchNode(Node n, double x, double epsilon) {
     Avl_Node *node = n;
-    double aux1, aux2;
     if (!node) {
         return NULL;
     } 
-    if (fabs(aux1 - x) <= epsilon && fabs(aux2 - y) <= epsilon) {
+    if (fabs(node->x - x) <= epsilon) {
         return node;
     } 
     
-    if (y < aux2) {
-        return searchNode(node->left, x, y, epsilon);
-    } else if (x < aux1) {
-        return searchNode(node->right, x, y, epsilon);
+    if (x < node->x) {
+        return searchNode(node->left, x, epsilon);
+    } else if (x > node->x) {
+        return searchNode(node->right, x, epsilon);
     } 
+    return NULL;
 }
 
 void traversePreOrder(Tree t, ToDoNode f, void *aux) {
     Avl_Root *avl_tree = t;
     traverseAux(avl_tree->root, f, aux);
+    printf("SIZE = %d\n", avl_tree->size);
 }
 
 void traverseAux(Node root, ToDoNode f, void *aux) {
@@ -266,16 +280,16 @@ void freeTree(Tree t) {
 }
 
 void freeAux(Node root) {
-    Avl_Node *my_node = root;
+    Avl_Node *avl_node = root;
 
-    if (!my_node) {
+    if (!avl_node) {
         return;
     }
-    // free(my_node->value);
-
-    freeTree(my_node->left);
-    freeTree(my_node->right);
-    if (my_node) {
-        free(my_node);
+    free(avl_node->value);
+    
+    freeAux(avl_node->left);
+    freeAux(avl_node->right);
+    if (avl_node) {
+        free(avl_node);
     }
 }

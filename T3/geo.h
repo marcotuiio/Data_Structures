@@ -1,5 +1,6 @@
 #include "libs.h"
 #include "paths.h"
+#include "shapes.h"
 
 #ifndef GEO_H
 #define GEO_H

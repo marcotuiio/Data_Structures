@@ -12,12 +12,12 @@ struct fig {
 };
 typedef struct fig Shapes;
 
-Info newForm() {
+Info newShape() {
     Shapes *new_form = calloc(1, sizeof(Shapes));
     return new_form;
 }
 
-void setCircle(FILE *geo, Info f) {
+void setCircle(FILE *geo, Tree t, Info f) {
     Shapes *shape = f;
 
     strcpy(shape->type, "c");
@@ -32,9 +32,11 @@ void setCircle(FILE *geo, Info f) {
     shape->w = shape->h = shape->x2 = shape->y2 = 0;
     strcpy(shape->anchor, "0");
     strcpy(shape->text, "0");
+
+    insertTree(t, shape, shape->x);
 }
 
-void setRectangle(FILE *geo, Info f) {
+void setRectangle(FILE *geo, Tree t, Info f) {
     Shapes *shape = f;
 
     strcpy(shape->type, "r");
@@ -50,9 +52,11 @@ void setRectangle(FILE *geo, Info f) {
     shape->r = shape->x2 = shape->y2 = 0;
     strcpy(shape->anchor, "0");
     strcpy(shape->text, "0");
+
+    insertTree(t, shape, shape->x);
 }
 
-void setLine(FILE *geo, Info f) {
+void setLine(FILE *geo, Tree t, Info f) {
     Shapes *shape = f;
 
     strcpy(shape->type, "l");
@@ -68,9 +72,11 @@ void setLine(FILE *geo, Info f) {
     strcpy(shape->anchor, "0");
     strcpy(shape->text, "0");
     strcpy(shape->fill, "none");
+
+    insertTree(t, shape, shape->x);
 }
 
-void setText(FILE *geo, Info f) {
+void setText(FILE *geo, Tree t, Info f) {
     Shapes *shape = f;
 
     strcpy(shape->type, "t");
@@ -84,6 +90,23 @@ void setText(FILE *geo, Info f) {
     fscanf(geo, "%[^\n]", shape->text);
 
     shape->w = shape->h = shape->r = shape->x2 = shape->y2 = 0;
+
+    insertTree(t, shape, shape->x);
+}
+
+int getType(Info f) {
+    Shapes *shape = f;
+    int type;
+    if (!strcmp(shape->type, "c")) {
+        type = 1;
+    } else if (!strcmp(shape->type, "r")) {
+        type = 2;
+    } else if (!strcmp(shape->type, "l")) {
+        type = 3;
+    } else if (!strcmp(shape->type, "t")) {
+        type = 4;
+    }
+    return type;
 }
 
 int getId(Info f) {
