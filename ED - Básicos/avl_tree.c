@@ -253,17 +253,22 @@ void printSize(Tree t) {
     printf("%d\n", avl_tree->size);
 }
 
-void freeTree(Node root) {
-    Avl_Node *my_node = root;
+void freeTree(Tree t) {
+    Avl_Root *avl_tree = t;
+    freeAux(avl_tree->root);
+    free(avl_tree);
+}
 
-    if (!my_node) {
+void freeAux(Node root) {
+    Avl_Node *avl_node = root;
+
+    if (!avl_node) {
         return;
     }
-    // free(my_node->value);
-
-    freeTree(my_node->left);
-    freeTree(my_node->right);
-    if (my_node) {
-        free(my_node);
+    
+    freeAux(avl_node->left);
+    freeAux(avl_node->right);
+    if (avl_node) {
+        free(avl_node);
     }
 }

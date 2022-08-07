@@ -23,8 +23,7 @@ int main () {
     traversePreOrder(t, print, aux);
     printf("\n");
 
-    freeTree(getRoot(t));
-    free(t);
+    freeTree(t);
     
     return 0;
 }

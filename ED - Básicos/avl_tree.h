@@ -54,6 +54,7 @@ int getValue(Node n);
 
 void printSize(Tree t);
 
-void freeTree(Node root); 
+void freeTree(Tree t); 
+void freeAux(Node root);
 
 #endif

@@ -25,7 +25,6 @@ int main(int argc, char** argv) {
     // if (checkQRY(my_ctrl)) {
     //     readQry(my_tree, getBedQry(my_paths), getBsdGeoQrySvg(my_paths), getBsdGeoQryTxt(my_paths));
     // }
-
     freeTree(my_tree);
     freePaths(my_paths);
     freeCtrl(my_ctrl);

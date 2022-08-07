@@ -233,7 +233,7 @@ Node getSmallestRight(Node n) {
     return node;
 }
 
-Node getNode(Tree t, double x, double y, double epsilon) {
+Node getNode(Tree t, double x, double epsilon) {
     Avl_Root *avl_tree = t;
     Node my_node = searchNode(avl_tree->root, x, epsilon);
     return (my_node);
@@ -259,7 +259,6 @@ Node searchNode(Node n, double x, double epsilon) {
 void traversePreOrder(Tree t, ToDoNode f, void *aux) {
     Avl_Root *avl_tree = t;
     traverseAux(avl_tree->root, f, aux);
-    printf("SIZE = %d\n", avl_tree->size);
 }
 
 void traverseAux(Node root, ToDoNode f, void *aux) {
@@ -293,3 +292,4 @@ void freeAux(Node root) {
         free(avl_node);
     }
 }
+

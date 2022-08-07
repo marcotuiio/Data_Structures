@@ -48,7 +48,7 @@ Node getSmallestRight(Node n);
 // Recebe uma subarvore direita e retorna o menor valor associado
 // a essa subarvore
 
-Node getNode(Tree t, double x, double y, double epsilon);
+Node getNode(Tree t, double x, double epsilon);
 Node searchNode(Node n, double x, double epsilon);
 // Recebe uma árvore e um ponto (x,y) e retorna o nó que contém o ponto.
 
