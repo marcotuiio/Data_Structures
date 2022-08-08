@@ -93,7 +93,7 @@ int height(Node n) {
     return max(height(avl_node->left), height(avl_node->right)) + 1;
 }
 
-double max(int a, int b) {
+int max(int a, int b) {
     return (a > b) ? a : b;  // se a > b, retorna a, senão retorna b
 }
 

@@ -34,12 +34,12 @@ Node newNode(Info i, double x) {
     return new_node;
 }
 
-void insertTree(Tree t, Info i, double x) {
-    Avl_Root *avl_tree = t;
-    insertAux(avl_tree, avl_tree->root, i, x);
+Node getRoot(Tree t) {
+    Avl_Root *tree = t
+    return tree->root;
 }
 
-Node insertAux(Tree t, Node n, Info i, double x) {
+Node insertTree(Tree t, Node n, Info i, double x) {
     Avl_Root *avl_tree = t;
     Avl_Node *new_node = n;
 
@@ -97,7 +97,7 @@ int height(Node n) {
     return max(height(avl_node->left), height(avl_node->right)) + 1;
 }
 
-double max(double a, double b) {
+int max(int a, int b) {
     return (a > b) ? a : b;  // se a > b, retorna a, senão retorna b
 }
 
@@ -143,12 +143,7 @@ Node rotateRight(Node n) {
     return aux1;
 }
 
-void removeNode(Tree t, double x) {
-    Avl_Root *avl_tree = t;
-    removeAux(avl_tree, avl_tree->root, x);
-}
-
-Node removeAux(Tree t, Node n, double x) {
+Node removeTree(Tree t, Node n, double x) {
     Avl_Root *avl_tree = t;
     Avl_Node *avl_node = n;
 

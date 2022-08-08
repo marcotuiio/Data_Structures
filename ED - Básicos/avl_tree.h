@@ -23,7 +23,7 @@ Node insertTree(Tree t, Node n, int i);
 int height(Node n);
 // Recebe um nó e retorna a altura desse nó
 
-double max(int a, int b);
+int max(int a, int b);
 // Recebe dois valores e retorna o maior deles
 
 int getBalance(Node n);

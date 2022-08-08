@@ -18,13 +18,16 @@ Node newNode(Info i, double x);
 // Insere a informação i, associada à âncora (x,y) na árvore t.
 // Retorna um indicador do nó inserido.
 
-void insertTree(Tree t, Info i, double x);
-Node insertAux(Tree t, Node n, Info i, double x);
+Node getRoot(Tree t);
+// Retorna o nó raiz da árvore t.
+
+Node insertTree(Tree t, Node n, Info i, double x);
+// Insere a informação i, associada à âncora (x,y) na árvore t.
 
 int height(Node n);
 // Recebe um nó e retorna a altura desse nó
 
-double max(double a, double b);
+int max(int a, int b);
 // Recebe dois valores e retorna o maior deles
 
 int getBalance(Node n);
@@ -36,8 +39,7 @@ Node rotateLeft(Node n);
 Node rotateRight(Node n);
 // Recebe um nó e rotaciona o nó para a direita
 
-void removeNode(Tree t, double x);
-Node removeAux(Tree t, Node n, double i);
+Node removeTree(Tree t, Node n, double i);
 // Remove o nó n da árvore t.
 
 Node getLargestLeft(Node n);

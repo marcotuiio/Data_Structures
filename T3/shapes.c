@@ -33,7 +33,7 @@ void setCircle(FILE *geo, Tree t, Info f) {
     strcpy(shape->anchor, "0");
     strcpy(shape->text, "0");
 
-    insertTree(t, shape, shape->x);
+    insertTree(t, getRoot(t), shape, shape->x);
 }
 
 void setRectangle(FILE *geo, Tree t, Info f) {
@@ -53,7 +53,7 @@ void setRectangle(FILE *geo, Tree t, Info f) {
     strcpy(shape->anchor, "0");
     strcpy(shape->text, "0");
 
-    insertTree(t, shape, shape->x);
+    insertTree(t, getRoot(t), shape, shape->x);
 }
 
 void setLine(FILE *geo, Tree t, Info f) {
@@ -73,7 +73,7 @@ void setLine(FILE *geo, Tree t, Info f) {
     strcpy(shape->text, "0");
     strcpy(shape->fill, "none");
 
-    insertTree(t, shape, shape->x);
+    insertTree(t, getRoot(t), shape, shape->x);
 }
 
 void setText(FILE *geo, Tree t, Info f) {
@@ -91,7 +91,7 @@ void setText(FILE *geo, Tree t, Info f) {
 
     shape->w = shape->h = shape->r = shape->x2 = shape->y2 = 0;
 
-    insertTree(t, shape, shape->x);
+    insertTree(t, getRoot(t), shape, shape->x);
 }
 
 int getType(Info f) {
