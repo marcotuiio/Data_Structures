@@ -6,7 +6,6 @@
 //(ordem de chegada) e caso deseja remover um elemento, removerei 
 //o primeiro que foi adicionado e assim por diante
 
-//Descobrir como remover struct da .h
 struct nodeF{
     int value;
     struct nodeF *next;

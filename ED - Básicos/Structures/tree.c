@@ -81,9 +81,7 @@ void removeNode(Tree node) {
         } else if (toRemove->prev->left == toRemove) {
             toRemove->prev->left == toRemove->left;
 
-        } else if(toRemove == toRemove ==toRemove->center) {
-            toRemove->prev->center = toRemove->left;
-        }
+        } 
 
     } else if (toRemove->left != NULL && toRemove->right != NULL) {  // tem os dois filhos
         tree_node *aux = getLeft(toRemove);
