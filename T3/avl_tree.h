@@ -54,8 +54,7 @@ Node getNode(Tree t, double x, double epsilon);
 Node searchNode(Node n, double x, double epsilon);
 // Recebe uma árvore e um ponto (x,y) e retorna o nó que contém o ponto.
 
-void traversePreOrder(Tree t, ToDoNode f, void *aux);
-void traverseAux(Node root, ToDoNode f, void *aux);
+void traversePreOrder(Tree t, Node root, ToDoNode f, void *aux);
 // Recebe uma árvore, uma função f definida previamente e um ponteiro auxiliar e 
 // a percorre no percurso pre-ordem.
 

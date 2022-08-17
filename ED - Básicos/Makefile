@@ -6,17 +6,11 @@ clear:
 	rm *.o
 	rm $(PROJECT_NAME)
 
-$(PROJECT_NAME): main.o hash_table.o
-	$(EXEC) $(CFLAGS) main.o hash_table.o -o $(PROJECT_NAME)
+$(PROJECT_NAME): main.o red_black_tree.o
+	$(EXEC) $(CFLAGS) main.o red_black_tree.o -o $(PROJECT_NAME)
 
-# avl_tree.o: avl_tree.c avl_tree.h
-# 	$(EXEC) $(CFLAGS) -c avl_tree.c
-
-# hash_table.o: hash_table_enderecamento.c hash_table.h
-# 	$(EXEC) $(CFLAGS) -c hash_table_enderecamento.c
-
-hash_table.o: hash_table_lists.c hash_table.h
-	$(EXEC) $(CFLAGS) -c hash_table_lists.c
+red_black_tree.o: red_black_tree.c red_black_tree.h
+	$(EXEC) $(CFLAGS) -c red_black_tree.c
 
 main.o: main.c 
 	$(EXEC) $(CFLAGS) -c main.c

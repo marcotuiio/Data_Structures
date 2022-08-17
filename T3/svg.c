@@ -6,7 +6,7 @@
 void writeSvg(char *bsdSvg, Tree my_tree) {
     FILE *svg = createSvg(bsdSvg);
 
-    traversePreOrder(my_tree, writeAux, svg);
+    traversePreOrder(my_tree, getRoot(my_tree), writeAux, svg);
 
     killSvg(svg);
 }

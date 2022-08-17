@@ -35,7 +35,7 @@ Node newNode(Info i, double x) {
 }
 
 Node getRoot(Tree t) {
-    Avl_Root *tree = t
+    Avl_Root *tree = t;
     return tree->root;
 }
 
@@ -55,10 +55,10 @@ Node insertTree(Tree t, Node n, Info i, double x) {
     }
 
     if (x < new_node->x) { // menores a esquerda
-        new_node->left = insertAux(avl_tree, new_node->left, i, x);
+        new_node->left = insertTree(avl_tree, new_node->left, i, x);
 
     } else if (x > new_node->x) { // maiores a direita
-        new_node->right = insertAux(avl_tree, new_node->right, i, x);
+        new_node->right = insertTree(avl_tree, new_node->right, i, x);
 
     } else { // repetidos não são inseridos
         return new_node;
@@ -152,10 +152,10 @@ Node removeTree(Tree t, Node n, double x) {
     }
 
     if (x < avl_node->x) {
-        avl_node->left = removeAux(avl_tree, avl_node->left, x);
+        avl_node->left = removeTree(avl_tree, avl_node->left, x);
 
     } else if (x > avl_node->x) {
-        avl_node->right = removeAux(avl_tree, avl_node->right, x);
+        avl_node->right = removeTree(avl_tree, avl_node->right, x);
 
     } else if (x == avl_node->x) {
         Avl_Node *aux = NULL;
@@ -183,7 +183,7 @@ Node removeTree(Tree t, Node n, double x) {
             aux = getLargestLeft(avl_node->left);
             avl_node->value = aux->value;
             avl_node->x = aux->x;
-            avl_node->left = removeAux(avl_tree, avl_node->left, aux->x);
+            avl_node->left = removeTree(avl_tree, avl_node->left, aux->x);
         }
     }
     
