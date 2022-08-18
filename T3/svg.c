@@ -3,10 +3,10 @@
 #include "shapes.h"
 #include "system.h"
 
-void writeSvg(char *bsdSvg, Tree my_tree) {
+void writeSvg(char *bsdSvg, SRBTree my_tree) {
     FILE *svg = createSvg(bsdSvg);
 
-    traversePreOrder(my_tree, getRoot(my_tree), writeAux, svg);
+    // fazer percurso para percorre e imprimir no svg
 
     killSvg(svg);
 }

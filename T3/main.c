@@ -2,14 +2,14 @@
 #include "libs.h"
 #include "paths.h"
 // #include "qry.h"
-#include "avl_tree.h"
+#include "srb_tree.h"
 #include "svg.h"
 #include "system.h"
 
 int main(int argc, char** argv) {
     Controller my_ctrl = createController();
     Paths my_paths = createAllPaths();
-    Tree my_tree = newTree();
+    SRBTree my_tree = createSRB(0);
 
     readParam(argc, argv, my_paths, my_ctrl);
 
@@ -25,7 +25,7 @@ int main(int argc, char** argv) {
     // if (checkQRY(my_ctrl)) {
     //     readQry(my_tree, getBedQry(my_paths), getBsdGeoQrySvg(my_paths), getBsdGeoQryTxt(my_paths));
     // }
-    freeTree(my_tree);
+    killSRB(my_tree);
     freePaths(my_paths);
     freeCtrl(my_ctrl);
 

@@ -17,7 +17,7 @@ Info newShape() {
     return new_form;
 }
 
-void setCircle(FILE *geo, Tree t, Info f) {
+void setCircle(FILE *geo, SRBTree t, Info f) {
     Shapes *shape = f;
 
     strcpy(shape->type, "c");
@@ -33,10 +33,10 @@ void setCircle(FILE *geo, Tree t, Info f) {
     strcpy(shape->anchor, "0");
     strcpy(shape->text, "0");
 
-    insertTree(t, getRoot(t), shape, shape->x);
+    // fazer insert na arvore
 }
 
-void setRectangle(FILE *geo, Tree t, Info f) {
+void setRectangle(FILE *geo, SRBTree t, Info f) {
     Shapes *shape = f;
 
     strcpy(shape->type, "r");
@@ -53,10 +53,10 @@ void setRectangle(FILE *geo, Tree t, Info f) {
     strcpy(shape->anchor, "0");
     strcpy(shape->text, "0");
 
-    insertTree(t, getRoot(t), shape, shape->x);
+    // fazer insert na arvore
 }
 
-void setLine(FILE *geo, Tree t, Info f) {
+void setLine(FILE *geo, SRBTree t, Info f) {
     Shapes *shape = f;
 
     strcpy(shape->type, "l");
@@ -73,10 +73,10 @@ void setLine(FILE *geo, Tree t, Info f) {
     strcpy(shape->text, "0");
     strcpy(shape->fill, "none");
 
-    insertTree(t, getRoot(t), shape, shape->x);
+    // fazer insert na arvore
 }
 
-void setText(FILE *geo, Tree t, Info f) {
+void setText(FILE *geo, SRBTree t, Info f) {
     Shapes *shape = f;
 
     strcpy(shape->type, "t");
@@ -91,7 +91,7 @@ void setText(FILE *geo, Tree t, Info f) {
 
     shape->w = shape->h = shape->r = shape->x2 = shape->y2 = 0;
 
-    insertTree(t, getRoot(t), shape, shape->x);
+    // fazer insert na arvore
 }
 
 int getType(Info f) {

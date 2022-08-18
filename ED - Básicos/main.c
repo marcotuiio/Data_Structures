@@ -4,8 +4,8 @@
 int main () {
     Tree t = newTree();
 
-    int a[7] = {47, 8, 12, 3, 5, 9, 10};
-    for (int i = 0; i < 7; i++) {
+    int a[15] = {20, 12, 23, 3, 5, 9, 10, 90, 19, 100, 81, 8, 2, 1, 4};
+    for (int i = 0; i < 15; i++) {
         insertTree(t, a[i]);
     }
 
