@@ -1,4 +1,4 @@
-#include "avl_tree.h"
+#include "libs.h"
 
 struct node {
     int value;
@@ -218,21 +218,21 @@ Node getSmallestRight(Node n) {
     return node;
 }
 
-void traversePreOrder(Tree t, ToDoNode f, void *aux) {
-    Avl_Root *avl_tree = t;
-    traverseAux(avl_tree->root, f, aux);
-}
+// void traversePreOrder(Tree t, ToDoNode f, void *aux) {
+//     Avl_Root *avl_tree = t;
+//     traverseAux(avl_tree->root, f, aux);
+// }
 
-void traverseAux(Node root, ToDoNode f, void *aux) {
-    Avl_Node *node = root;
-    if (!node) {
-        return;
-    }
+// void traverseAux(Node root, ToDoNode f, void *aux) {
+//     Avl_Node *node = root;
+//     if (!node) {
+//         return;
+//     }
 
-    f(node->value, aux);
-    traverseAux(node->left, f, aux);
-    traverseAux(node->right, f, aux);
-}
+//     f(node->value, aux);
+//     traverseAux(node->left, f, aux);
+//     traverseAux(node->right, f, aux);
+// }
 
 void print(int i, void *aux) {
     printf("%d ", i);

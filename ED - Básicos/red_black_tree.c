@@ -38,7 +38,7 @@ void insertTree(Tree t, int i) {
     Red_Black_Root *red_black_tree = t;
     insertAux(t, red_black_tree->root, i);
     Red_Black_Node *new_node = searchNode(t, red_black_tree->root, i);
-    fixTree(t, red_black_tree->root, new_node);
+    fixRBinsert(t, red_black_tree->root, new_node);
 }
 
 Node insertAux(Tree t, Node n, int i) {
@@ -71,8 +71,7 @@ Node insertAux(Tree t, Node n, int i) {
     return new_node;
 }
 
-void fixTree(Tree t, Node rt, Node n) {
-    // Red_Black_Root *red_black_tree = t;
+void fixRBinsert(Tree t, Node rt, Node n) {
     Red_Black_Node *root = rt;
     Red_Black_Node *new = n;
     Red_Black_Node *parent_new = NULL;
@@ -96,7 +95,7 @@ void fixTree(Tree t, Node rt, Node n) {
             } else {
                 // CASO 2A: tio preto, new é filho a direita de seu pai, precisa rotacionar para a esquerda
                 if (new == parent_new->right) {
-                    rotateLeft(t, parent_new); 
+                    rotateLeft(t, parent_new);
                     new = parent_new;
                     parent_new = new->parent;
                 }
@@ -234,6 +233,63 @@ Node searchNode(Tree t, Node n, int i) {
     }
 }
 
+Node removeTree(Tree t, Node n, int i) {
+    Red_Black_Root *red_black_tree = t;
+    Red_Black_Node *rb_node = n;
+    if (!rb_node) {
+        return rb_node;
+    }
+
+    if (i < rb_node->value) {
+        rb_node->left = removeNode(red_black_tree, rb_node->left, i);
+
+    } else if (i > rb_node->value) {
+        rb_node->right = removeNode(red_black_tree, rb_node->right, i);
+
+    } else if (i == rb_node->value) {
+        Red_Black_Node *aux = NULL;
+        if (!rb_node->left && !rb_node->right) {
+            free(rb_node);
+            red_black_tree->size--;
+            return NULL;
+
+        } else if (!rb_node->left) {  // somente direita
+            aux = rb_node->right;
+            free(rb_node);
+            red_black_tree->size--;
+            return aux;
+
+        } else if (!rb_node->right) {  // somente esquerda
+            aux = rb_node->left;
+            free(rb_node);
+            red_black_tree->size--;
+            return aux;
+
+        } else if (rb_node->left && rb_node->right) {  // tem dois filhos
+            aux = getLargestLeft(rb_node->left);
+            rb_node->value = aux->value;
+            rb_node->left = removeNode(red_black_tree, rb_node->left, aux->value);
+        }
+    }
+    // TO DO : recolorir e rotacionar
+}
+
+Node getLargestLeft(Node n) {
+    Red_Black_Node *node = n;
+    while (node->right) {
+        node = node->right;
+    }
+    return node;
+}
+
+Node getSmallestRight(Node n) {
+    Red_Black_Node *node = n;
+    while (node->left) {
+        node = node->left;
+    }
+    return node;
+}
+
 Node getRoot(Tree t) {
     Red_Black_Root *red_black_tree = t;
     return red_black_tree->root;
@@ -255,15 +311,15 @@ void traverseAux(Node root, ToDoNode f, void *aux) {
     traverseAux(node->right, f, aux);
 }
 
-void levelOrder(Tree t, ToDoNode f, void *aux) {
+void levelOrder(Tree t) {
     Red_Black_Root *br_tree = t;
-    int h = height(br_tree->root);
+    int h = heightOfLevel(br_tree->root);
     for (int i = 0; i <= h; i++) {
-        levelOrderAux(br_tree->root, f, i);
+        levelOrderAux(br_tree->root, i);
     }
 }
 
-void levelOrderAux(Node root, ToDoNode f, int level) {
+void levelOrderAux(Node root, int level) {
     Red_Black_Node *node = root;
     if (!node) {
         return;
@@ -280,18 +336,18 @@ void levelOrderAux(Node root, ToDoNode f, int level) {
             printf("P=%d\n", node->parent->value);
         }
     } else if (level > 1) {
-        levelOrderAux(node->left, f, level - 1);
-        levelOrderAux(node->right, f, level - 1);
+        levelOrderAux(node->left, level - 1);
+        levelOrderAux(node->right, level - 1);
     }
 }
 
-int height(Node n) {
+int heightOfLevel(Node n) {
     Red_Black_Node *node = n;
     if (!node) {
         return 0;
     }
-    int left_height = height(node->left);
-    int right_height = height(node->right);
+    int left_height = heightOfLevel(node->left);
+    int right_height = heightOfLevel(node->right);
     if (left_height > right_height) {
         return (left_height + 1);
     } else {

@@ -12,7 +12,7 @@ int main () {
     printf("\n");
     traversePreOrder(t, print, NULL);
     printf("\n");
-    levelOrder(t, print, NULL);
+    levelOrder(t);
 
     freeTree(t);
 
