@@ -1,4 +1,4 @@
-#include "avl_tree.h"
+#include "avl_tree_void.h"
 
 struct node {
     Info value;
