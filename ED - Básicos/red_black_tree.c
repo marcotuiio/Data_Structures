@@ -247,6 +247,7 @@ Node removeTree(Tree t, Node n, int i) {
 
         } else if (!rb_node->left) {  // somente direita
             aux = rb_node->right;
+            aux->parent = rb_node->parent;
             fixRBdelete(red_black_tree, red_black_tree->root, rb_node);
             free(rb_node);
             red_black_tree->size--;
@@ -254,6 +255,7 @@ Node removeTree(Tree t, Node n, int i) {
 
         } else if (!rb_node->right) {  // somente esquerda
             aux = rb_node->left;
+            aux->parent = rb_node->parent;
             fixRBdelete(red_black_tree, red_black_tree->root, rb_node);
             free(rb_node);
             red_black_tree->size--;
