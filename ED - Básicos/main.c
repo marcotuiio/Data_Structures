@@ -13,10 +13,10 @@ int main () {
     traversePreOrder(t, print, NULL);
     printf("\n");
     levelOrder(t);
-    printf("\t\nREMOVIDO\n");
-    removeTree(t, getRoot(t), 3);
 
-    levelOrder(t);
+    // printf("\t\nREMOVIDO\n");
+    // removeTree(t, getRoot(t), 8);
+    // levelOrder(t);
 
     freeTree(t);
 
