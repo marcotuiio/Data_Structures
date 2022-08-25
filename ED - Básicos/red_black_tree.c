@@ -52,8 +52,13 @@ Node insertAux(Tree t, Node n, int i) {
 
     if (!new_node) {
         new_node = newNode(i);
+        // PASSAR POR REFERENCIA
+        // *inserted = new_node;
+        // new_node->left = nil;
+        // new_node->right = nil;
         if (!red_black_tree->root) {
             red_black_tree->root = new_node;
+            paintBlack(new_node);
         }
         if (new_node) {
             red_black_tree->size++;
@@ -77,72 +82,61 @@ Node insertAux(Tree t, Node n, int i) {
 
 void fixRBinsert(Tree t, Node n) {
     Red_Black_Root *rb_tree = t;
-    Red_Black_Node *nil = rb_tree->nil;
     Red_Black_Node *root = rb_tree->root;
     Red_Black_Node *z = n;
+    Red_Black_Node *uncle_z = NULL;
 
     while ((z != root) && (isRed(z)) && (isRed(z->parent))) {
-        Red_Black_Node *parent_z = nil;
-        Red_Black_Node *grandpa_z = nil;
-        Red_Black_Node *uncle_z = nil;
-
-        if (z->parent->parent) {
-            grandpa_z = z->parent->parent;
-        } 
-        if (z->parent) {
-            parent_z = z->parent;
-        } 
-
         // CASO A: pai de z é filho a esquerda do avô de z
-        if (parent_z == grandpa_z->left) {
-            if (grandpa_z->right) {
-                uncle_z = grandpa_z->right;
+        if (z->parent == z->parent->parent->left) {
+            if (z->parent->parent->right) {
+                uncle_z = z->parent->parent->right;
             } 
 
             // CASO 1A: o tio de z é vermelho, precisa recolorir
             if (uncle_z && isRed(uncle_z)) {
-                paintRed(grandpa_z);
-                paintBlack(parent_z);
+                paintRed(z->parent->parent);
+                paintBlack(z->parent);
                 paintBlack(uncle_z);
-                z = grandpa_z;
+                z = z->parent->parent;
 
             } else {
                 // CASO 2A: tio preto, z é filho a direita de seu pai, precisa rotacionar para a esquerda
-                if (z == parent_z->right) {
-                    rotateLeft(t, parent_z);
+                if (z == z->parent->right) {
+                    z = z->parent;
+                    rotateLeft(t, z);
                 }
 
                 // CASO 3A: tio preto, z é filho a esquerda de seu pai, precisa rotacionar para a direita
-                paintBlack(parent_z);
-                paintRed(grandpa_z);
-                rotateRight(t, grandpa_z);
-                z = parent_z;
+                paintBlack(z->parent);
+                paintRed(z->parent->parent);
+                rotateRight(t, z->parent->parent);
             }
 
             // CASO B: o pai de z é o filho direito do avô de z
-        } else if (parent_z == grandpa_z->right) {
-            if (grandpa_z->left) {
-                uncle_z = grandpa_z->left;
+        } else if (z->parent && z->parent == z->parent->parent->right) {
+            if (z->parent->parent->left) {
+                uncle_z = z->parent->parent->left;
             } 
 
             // CASO 1B: o tio de z é vermelho, precisa recolorir
             if (uncle_z && isRed(uncle_z)) {
-                paintRed(grandpa_z);
-                paintBlack(parent_z);
+                paintRed(z->parent->parent);
+                paintBlack(z->parent);
                 paintBlack(uncle_z);
-                z = grandpa_z;
+                z = z->parent->parent;
 
             } else {
                 // CASO 2B: tio preto, z é filho a esquerda de seu pai, precisa rotacionar para a direita
-                if (z == parent_z->left) {
-                    rotateRight(t, parent_z);
+                if (z == z->parent->left) {
+                    z = z->parent;
+                    rotateRight(t, z);
                 }
 
                 // CASO 3B: z é filho a direita de seu pai, precisa rotacionar para a esquerda
-                paintBlack(parent_z);
-                paintRed(grandpa_z);
-                rotateLeft(t, grandpa_z);
-                z = parent_z;
+                paintBlack(z->parent);
+                paintRed(z->parent->parent);
+                rotateLeft(t, z->parent->parent);
             }
         }
     }
@@ -151,10 +145,10 @@ void fixRBinsert(Tree t, Node n) {
 
 void rotateLeft(Tree t, Node n) {
     Red_Black_Root *red_black_tree = t;
-    Red_Black_Node *node = n;                   // avô
-    Red_Black_Node *right_child = node->right;  // pai (direita)
-
-    node->right = right_child->left;
+    Red_Black_Node *node = n;                   // avô 2 
+    Red_Black_Node *right_child = node->right;  // pai (direita) 7
+    
+    node->right = right_child->left; 
     if (node->right) {
         node->right->parent = node;
     }
@@ -179,7 +173,7 @@ void rotateRight(Tree t, Node n) {
     Red_Black_Node *node = n;                 // recebo o AVÔ
     Red_Black_Node *left_child = node->left;  // pai
 
-    node->left = left_child->right;  // esqueda do avô aponta para direita do pai
+    node->left = left_child->right;  // esqueda do avô aponta para direita do pai 
     if (node->left) {
         node->left->parent = node;
     }
