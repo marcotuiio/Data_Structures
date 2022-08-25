@@ -9,14 +9,15 @@ int main () {
         insertTree(t, a[i]);
     }
 
-    printf("\n");
-    traversePreOrder(t, print, NULL);
-    printf("\n");
-    levelOrder(t);
-
-    // printf("\t\nREMOVIDO\n");
-    // removeTree(t, getRoot(t), 8);
+    // printf("\n");
+    // traversePreOrder(t, print, NULL);
+    // printf("\n");
     // levelOrder(t);
+
+    printf("\n\tREMOVIDO\n");
+    removeTree(t, getRoot(t), 20);
+    removeTree(t, getRoot(t), 99);
+    levelOrder(t);
 
     freeTree(t);
 
