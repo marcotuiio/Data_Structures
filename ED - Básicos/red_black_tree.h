@@ -44,7 +44,10 @@ Node searchNode(Tree t, Node n, int i);
 Node removeTree(Tree t, Node n, int i);
 // Remove o nó com o valor i da árvore t.
 
-void fixRBdelete(Tree t, Node rt, Node n);
+void transplantRB(Tree t, Node n, Node n2);
+// Transplanta n2 para n.
+
+void fixRBdelete(Tree t, Node n);
 // Corrige a propriedade de cores da árvore após a remoção de n.
 
 Node getLargestLeft(Node n);
