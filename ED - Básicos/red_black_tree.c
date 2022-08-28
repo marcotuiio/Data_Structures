@@ -20,6 +20,7 @@ Tree newTree() {
     Red_Black_Root *new_tree = calloc(1, sizeof(Red_Black_Root));
     new_tree->nil = calloc(1, sizeof(Red_Black_Node));
     paintBlack(new_tree->nil);
+    new_tree->nil->value = INT_MAX;
     new_tree->root = NULL;
     new_tree->size = 0;
 
@@ -50,7 +51,6 @@ Node insertAux(Tree t, Node n, int i) {
 
     if (!new_node) {
         new_node = newNode(i);
-        // PASSAR POR REFERENCIA
         if (!red_black_tree->root) {
             red_black_tree->root = new_node;
             paintBlack(new_node);
@@ -86,7 +86,7 @@ void fixRBinsert(Tree t, Node n) {
         if (z->parent == z->parent->parent->left) {
             if (z->parent->parent->right) {
                 uncle_z = z->parent->parent->right;
-            } 
+            }
 
             // CASO 1A: o tio de z é vermelho, precisa recolorir
             if (uncle_z && isRed(uncle_z)) {
@@ -112,7 +112,7 @@ void fixRBinsert(Tree t, Node n) {
         } else if (z->parent && z->parent == z->parent->parent->right) {
             if (z->parent->parent->left) {
                 uncle_z = z->parent->parent->left;
-            } 
+            }
 
             // CASO 1B: o tio de z é vermelho, precisa recolorir
             if (uncle_z && isRed(uncle_z)) {
@@ -140,10 +140,10 @@ void fixRBinsert(Tree t, Node n) {
 
 void rotateLeft(Tree t, Node n) {
     Red_Black_Root *red_black_tree = t;
-    Red_Black_Node *node = n;                   // avô 2 
+    Red_Black_Node *node = n;                   // avô 2
     Red_Black_Node *right_child = node->right;  // pai (direita) 7
-    
-    node->right = right_child->left; 
+
+    node->right = right_child->left;
     if (node->right) {
         node->right->parent = node;
     }
@@ -168,7 +168,7 @@ void rotateRight(Tree t, Node n) {
     Red_Black_Node *node = n;                 // recebo o AVÔ
     Red_Black_Node *left_child = node->left;  // pai
 
-    node->left = left_child->right;  // esqueda do avô aponta para direita do pai 
+    node->left = left_child->right;  // esqueda do avô aponta para direita do pai
     if (node->left) {
         node->left->parent = node;
     }
@@ -230,163 +230,207 @@ Node searchNode(Tree t, Node n, int i) {
     }
 }
 
-Node removeTree(Tree t, Node n, int i) {
+void removeTree(Tree t, int i) {
     Red_Black_Root *red_black_tree = t;
-    Red_Black_Node *rb_node = n;
+    Red_Black_Node *rb_node = searchNode(red_black_tree, red_black_tree->root, i);
+    Red_Black_Node *nil = red_black_tree->nil;
     if (!rb_node) {
-        return rb_node;
+        printf("NO NODE FOUND\n");
+        return;
     }
 
-    if (i < rb_node->value) {
-        rb_node->left = removeTree(red_black_tree, rb_node->left, i);
+    if (i == rb_node->value) {
+        Red_Black_Node *y = rb_node;
+        Red_Black_Node *x = NULL;
+        char y_original_color[10];
+        strcpy(y_original_color, y->color);
 
-    } else if (i > rb_node->value) {
-        rb_node->right = removeTree(red_black_tree, rb_node->right, i);
-
-    } else if (i == rb_node->value) {
-        Red_Black_Node *aux = NULL;
-        if (!rb_node->left && !rb_node->right) { // é folha
-            fixRBdelete(red_black_tree, rb_node); 
-            free(rb_node);
-            red_black_tree->size--;
-            return NULL;
-
-        } else if (!rb_node->left) {  // somente direita
-            aux = rb_node->right;
-            aux->parent = rb_node->parent;
-            if (rb_node->parent) {
-                if (rb_node == rb_node->parent->left) {
-                    rb_node->parent->left = aux;
-                } else if (rb_node == rb_node->parent->right) {
-                    rb_node->parent->right = aux;
-                }
+        if (!rb_node->left && !rb_node->right && isRed(rb_node)) {
+            printf("folha vermelha %d\n", rb_node->value);
+            if (rb_node == rb_node->parent->left) {
+                rb_node->parent->left = NULL;
             } else {
-                red_black_tree->root = aux;
+                rb_node->parent->right = NULL;
             }
-
-            fixRBdelete(red_black_tree, rb_node);
             free(rb_node);
-            red_black_tree->size--;
-            return aux;
+            return;
 
-        } else if (!rb_node->right) {  // somente esquerda
-            aux = rb_node->left;
-            aux->parent = rb_node->parent;
-            if (rb_node->parent) {
-                if (rb_node == rb_node->parent->left) {
-                    rb_node->parent->left = aux;
-                } else if (rb_node == rb_node->parent->right) {
-                    rb_node->parent->right = aux;
-                }
+        } else if (!rb_node->left && !rb_node->right && isBlack(rb_node)) {
+            Red_Black_Node *aux_p = rb_node->parent;
+            int i = -1;
+            if (rb_node == rb_node->parent->left) {
+                i = 0;
             } else {
-                red_black_tree->root = aux;
+                i = 1;
             }
             
             fixRBdelete(red_black_tree, rb_node);
+            if (i == 0) {
+                aux_p->left = nil;
+            } else if (i == 1) { 
+                aux_p->right = nil;
+            }
+            removeNils(red_black_tree, red_black_tree->root);
             free(rb_node);
-            red_black_tree->size--;
-            return aux;
+            return;
+        }
 
-        } else if (rb_node->left && rb_node->right) {  // tem dois filhos
-            aux = getLargestLeft(rb_node->left);
-            rb_node->value = aux->value;
-            rb_node->left = removeTree(red_black_tree, rb_node->left, aux->value);
+        if (!rb_node->left && rb_node->right) {
+            printf("dentro sem left %d\n", rb_node->value);
+            x = rb_node->right;
+            transplantRB(red_black_tree, rb_node, rb_node->right);
+
+        } else if (!rb_node->right && rb_node->left) {
+            printf("dentro sem right %d\n", rb_node->value);
+            x = rb_node->left;
+            transplantRB(red_black_tree, rb_node, rb_node->left);
+
+        } else if (rb_node->left && rb_node->right) {
+            printf("dentro com left e right %d\n", rb_node->value);
+            y = getLargestLeft(rb_node->left);
+            strcpy(y_original_color, y->color);
+            if (!y->left) {
+                x = nil;
+                nil->parent = y;
+            } else {
+                x = y->left;
+            }
+            printf("\nnil %p\n", nil);
+            printf("y %d %p\n", y->value, y);
+            printf("x %d %p\n", x->value, x);
+            printf("y->parent %d %p == rb %p\n", y->parent->value, y->parent, rb_node);
+            if (y->parent == rb_node) {
+                printf("x->parent %d %p\n", x->parent->value, x->parent);
+                x->parent = y;
+            } else {
+                transplantRB(red_black_tree, y, y->left);
+                y->left = rb_node->left;
+                y->left->parent = y;
+            }
+            printf("y %d, rb_node %d\n", y->value, rb_node->value);
+            if (!y->right) {
+                y->right = nil;
+                nil->parent = y;
+            }
+            if (!y->left) {
+                y->left = nil;
+                nil->parent = y;
+            }
+            transplantRB(red_black_tree, rb_node, y);
+            y->right = rb_node->right;
+            y->right->parent = y;
+            strcpy(y->color, rb_node->color);
+            printf("y %d y->left %d y->right %d x %d\n", y->value, y->left->value, y->right->value, x->value);
+        }
+
+        if (!strcmp(y_original_color, "BLACK")) {
+            fixRBdelete(red_black_tree, x);
         }
     }
-    return rb_node;
+    if (rb_node) {
+        free(rb_node);
+    }
+    removeNils(red_black_tree, red_black_tree->root);
+}
+
+void transplantRB(Tree t, Node n, Node n2) {
+    Red_Black_Root *red_black_tree = t;
+    Red_Black_Node *u = n;
+    Red_Black_Node *v = n2;
+
+    if (!u->parent) {  // u é raiz
+        red_black_tree->root = v;
+
+    } else if (u == u->parent->left) {  // u é filho da esquerda
+        u->parent->left = v;
+    } else {  // u é filho da direita
+        u->parent->right = v;
+    }
+    if (v) {
+        v->parent = u->parent;
+    }
 }
 
 void fixRBdelete(Tree t, Node n) {
-    Red_Black_Root *tree = t;
+    Red_Black_Root *rb_tree = t;
     Red_Black_Node *rb_node = n;
-    Red_Black_Node *root = tree->root;
-    Red_Black_Node *nil = tree->nil;
-    
-    while (root != rb_node && isBlack(rb_node) && root->parent) {
-        Red_Black_Node *aux = NULL;
-        Red_Black_Node *sibiling = NULL;
+    Red_Black_Node *root = rb_tree->root;
+    Red_Black_Node *nil = rb_tree->nil;
+    Red_Black_Node *w = NULL;
 
+    while (root != rb_node && isBlack(rb_node)) {
         if (rb_node && rb_node == rb_node->parent->left) {
-            sibiling = rb_node->parent->right;
-        } else if (rb_node && rb_node == rb_node->parent->right) {
-            sibiling = rb_node->parent->left;
-        }
-
-        if (!sibiling->left) {
-            sibiling->left = nil;
-        }
-        if (!sibiling->right) {
-            sibiling->right = nil;
-        }
-
-        if (rb_node && rb_node->left) {  // Aux é o filho a ser religado
-            aux = rb_node->left;
-        } else if (rb_node && rb_node->right) {
-            aux = rb_node->right;
-        }
-
-        // CASO 1: No a ser removido ou no substituto são vermelhos 
-        if ((aux && isRed(aux) && isBlack(rb_node)) || (aux && isRed(rb_node) && isBlack(aux))) {
-            if (isRed(aux)) {
-                paintBlack(aux);
+            w = rb_node->parent->right;
+            if (!w->left) {
+                w->left = nil;
             }
-            rb_node = rb_node->parent;
-
-         // os dois sao pretos e ao menos um filho do irmao é vermelho
-        } else if (sibiling && isBlack(rb_node) && isBlack(sibiling)) { 
-            paintBlack(rb_node->parent);
-            paintRed(sibiling);
-            
-            // Left left case
-            if (sibiling->left && (rb_node->parent->left == sibiling) && isRed(sibiling->left)) {  
-                paintBlack(sibiling->left);             // sibiling->left é filho vermelho
-                // paintBlack(rb_node->parent);         // sibiling é filho esquerdo
-                rotateRight(t, rb_node->parent);                
-           
-            // Left Right case
-            } else if (sibiling->right && (rb_node->parent->left == sibiling) && isRed(sibiling->right)) {  
-                paintBlack(sibiling->right);           // sibiling->right é filho vermelho
-                // paintRed(sibiling);                 // sibiling é filho esquerdo        
-                Red_Black_Node *aux_p = rb_node->parent;                                   
-                rotateLeft(t, aux_p);
-                rotateRight(t, aux_p);
-            
-            // Right Right case
-            } else if (sibiling->right && (rb_node->parent->right == sibiling) && isRed(sibiling->right)) { 
-                paintBlack(sibiling->right);          // sibiling->right é filho vermelho
-                // paintBlack(rb_node->parent);       // sibiling é filho direito
-                rotateLeft(t, sibiling->parent);               
-            
-            // Right Left case
-            } else if (sibiling->left && (rb_node->parent->right == sibiling) && isRed(sibiling->left)) {
-                paintBlack(sibiling->left);          // sibiling->left é filho vermelho
-                // paintRed(sibiling);               // sibiling é filho direito
-                Red_Black_Node *aux_p = rb_node->parent;
-                rotateRight(t, aux_p);
-                rotateLeft(t, aux_p);
+            if (!w->right) {
+                w->right = nil;
             }
 
-            // irmao e sobrinhos pretos
-             if (sibiling && isBlack(sibiling->left) && isBlack(sibiling->right)) {
-                paintRed(sibiling);
-                rb_node = rb_node->parent;
-            }
-            
-        
-        // o irmao é vermelho e os sobrinhos pretos
-        } else if (sibiling && isBlack(rb_node) && isRed(sibiling)) {
-            if (rb_node->parent->left == sibiling) {
-                paintBlack(sibiling);
+            // Caso 1A: irmão w é vermelho
+            if (w && isRed(w)) {
+                printf("Caso 1a\n");
                 paintRed(rb_node->parent);
-                rotateRight(t, sibiling->parent);
-            } else {
-                paintBlack(sibiling);
-                paintRed(rb_node->parent);
+                paintBlack(w);
                 rotateLeft(t, rb_node->parent);
+                w = rb_node->parent->right;
             }
-            rb_node = sibiling;
+
+            // Caso 2A: Ambos os filhos do irmão w são pretos
+            if (isBlack(w) && (isBlack(w->left) && isBlack(w->right))) {
+                printf("caso 2a\n");
+                printf("w %d w->left %d w->right %d\n", w->value, w->left->value, w->right->value);
+                paintRed(w);
+                rb_node = rb_node->parent;
+
+            // Caso 3A: Filho direito do irmão é vermelho Caso Right right
+            } else if ((w->right && isRed(w->right))) {
+                printf("1 w->parent %d w %d w->left %d w->right %d\n", w->parent->value, w->value, w->left->value, w->right->value);
+                rotateLeft(t, w->parent);
+                paintRed(w);
+                paintBlack(w->right);
+                paintBlack(w->left);
+                
+                printf("2 w->parent %d w %d w->left %d w->right %d\n", w->parent->value, w->value, w->left->value, w->right->value);
+                // printf("rb_node %d rb_node->parent %d\n", rb_node->value, rb_node->parent->value);
+                printf("3 rb_node->parent->left %d rb_node->parent->right %d\n", rb_node->parent->left->value, rb_node->parent->right->value);
+                rb_node = w;
+                printf("4 rb_node->parent->left %d rb_node->parent->right %d\n", rb_node->parent->left->value, rb_node->parent->right->value);
+                printf("rb_node %d rb_node->parent %d\n", rb_node->value, rb_node->parent->value);
+            }
+
+        } else if (rb_node && rb_node == rb_node->parent->right) {
+            w = rb_node->parent->left;
+            if (!w->left) {
+                w->left = nil;
+            }
+            if (!w->right) {
+                w->right = nil;
+            }
+
+            // Caso 1B: irmão w é vermelho
+            if (w && isRed(w)) {
+                paintRed(rb_node->parent);
+                paintBlack(w);
+                rotateRight(t, rb_node->parent);
+                w = rb_node->parent->left;
+            }
+            // Caso 2B: Ambos os filhos do irmão w são pretos
+            if ((isBlack(w->left) && isBlack(w->right))) {
+                paintRed(w);
+                rb_node = rb_node->parent;
+
+                // Caso 3B: Filho esquerdo do irmão é vermelho caso Left left
+            } else if ((w->left && isRed(w->left))) {
+                paintBlack(w->left);
+                rotateRight(t, w->parent);
+                paintRed(w);
+                paintBlack(w->left);
+                paintBlack(w->right);
+                rb_node = w;
+            }
         }
-        // rb_node = rb_node->parent;
     }
 }
 
@@ -479,8 +523,8 @@ void print(int i, void *aux) {
 
 void freeTree(Tree t) {
     Red_Black_Root *red_black_tree = t;
-    freeAux(red_black_tree->root);
     free(red_black_tree->nil);
+    freeAux(red_black_tree->root);
     free(red_black_tree);
 }
 
@@ -495,4 +539,21 @@ void freeAux(Node root) {
     if (node) {
         free(node);
     }
+}
+
+void removeNils(Tree t, Node root) {
+    Red_Black_Root *tree = t;
+    Red_Black_Node *node = root;
+    Red_Black_Node *nil = tree->nil;
+    if (!node) {
+        return;
+    }
+    if (node->left == nil) {
+        node->left = NULL;
+    }
+    if (node->right == nil) {
+        node->right = NULL;
+    }
+    removeNils(t, node->left);
+    removeNils(t, node->right);
 }

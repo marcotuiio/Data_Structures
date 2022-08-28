@@ -41,7 +41,7 @@ void paintRed(Node n);
 Node searchNode(Tree t, Node n, int i);
 // Busca o nó com o valor i na árvore t.
 
-Node removeTree(Tree t, Node n, int i);
+void removeTree(Tree t, int i);
 // Remove o nó com o valor i da árvore t.
 
 void transplantRB(Tree t, Node n, Node n2);
@@ -73,5 +73,7 @@ void print(int i, void *aux);
 void freeTree(Tree t);
 void freeAux(Node n);
 // Libera a memória alocada para a árvore t.
+
+void removeNils(Tree t, Node root);
 
 #endif
