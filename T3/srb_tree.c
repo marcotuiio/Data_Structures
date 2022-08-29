@@ -106,11 +106,11 @@ Node insertAux(SRBTree t, Node n, double x, double y, double mbbX1, double mbbY1
         }
     }
 
-    if (x < new_node->x) {
+    if ((x < new_node->x) || (x == new_node->x && y < new_node->y)) {
         new_node->left = insertAux(red_black_tree, new_node->left, x, y, mbbX1, mbbY1, mbbX2, mbbY2, info);
         new_node->left->parent = new_node;
 
-    } else if (x == new_node->x && y < new_node->y) {
+    } else if (x != new_node->x || y != new_node->y) {
         new_node->right = insertAux(red_black_tree, new_node->right, x, y, mbbX1, mbbY1, mbbX2, mbbY2, info);
         new_node->right->parent = new_node;
     }
@@ -352,12 +352,13 @@ Node searchNode(SRBTree t, Node n, double xa, double ya, double *mbbX1, double *
         return new_node;
     }
 
-    if (xa < new_node->x) {
+    if ((xa < new_node->x) || (xa == new_node->x && ya < new_node->y)) {
         return searchNode(t, new_node->left, xa, ya, mbbX1, mbbY1, mbbX2, mbbY2);
     
-    } else if (xa == new_node->x && ya < new_node->y) {
-        return searchNode(t, new_node->left, xa, ya, mbbX1, mbbY1, mbbX2, mbbY2);
+    } else if (xa != new_node->x && ya != new_node->y) {
+        return searchNode(t, new_node->right, xa, ya, mbbX1, mbbY1, mbbX2, mbbY2);
     } else {
+        printf("Node not found\n");
         return NULL;
     }
 }
@@ -609,19 +610,19 @@ void levelOrderAux(Node root, int level) {
     }
     if (level == 1) {
         if (node->parent) {
-            printf("P=%lf %lf\n", node->parent->x, node->parent->y);
-            printf("\t |\n");
+            printf("\n\n\n\t%.2lf %.2lf %s\n", node->parent->x, node->parent->y, node->parent->color);
+            printf("\t      |\n");
         }
 
-        printf("\n%lf %lf %s\n", node->x, node->y, node->color);
+        printf("\t%.2lf %.2lf %s\n", node->x, node->y, node->color);
 
         if (node->left) {
-            printf("\t /\n");
-            printf("L=%lf %lf\n", node->left->x, node->left->y);
+            printf("\t /");
+            printf("\t    \\\n");
+            printf("%.2lf %.2lf %s", node->left->x, node->left->y, node->left->color);
         }
         if (node->right) {
-            printf("\t \\\n");
-            printf("R=%lf %lf\n", node->right->x, node->right->y);
+            printf("  %.2lf %.2lf %s", node->right->x, node->right->y, node->right->color);
         }
 
     } else if (level > 1) {
