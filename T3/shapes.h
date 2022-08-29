@@ -1,5 +1,5 @@
 #include "libs.h"
-#include "avl_tree.h"
+#include "srb_tree.h"
 
 #ifndef SHAPES_H
 #define SHAPES_H
@@ -57,5 +57,29 @@ char *getAnchor(Info f);
 
 char *getText(Info f);
 // Recebe uma forma e retorna seu texto
+
+double getLineLenght(Info line) {
+    double x1 = getX(line);
+    double y1 = getY(line);
+    double x2 = getX2(line);
+    double y2 = getY2(line); 
+    double lenght;
+
+    if (x1 == x2 && y1 != y2) {
+        lenght = y2 - y1;
+        return lenght;
+    }
+    if (x1 != x2 && y1 == y2) {
+        lenght = x2 - x1;
+        return lenght;
+    }
+
+    double auxX = pow((x2 - x1), 2);
+    double auxY = pow((y2 - y1), 2);
+    double auxL = auxX + auxY;
+
+    lenght = sqrt(auxL);
+    return lenght;
+}
 
 #endif

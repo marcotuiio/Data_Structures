@@ -11,8 +11,6 @@ Tree newTree();
 Node newNode(int i);
 // Cria um novo nó com o valor i.
 
-void createNIL(Node n);
-
 void insertTree(Tree t, int i);
 Node insertAux(Tree t, Node n, int i);
 // Insere o nó com o valor i na árvore t.

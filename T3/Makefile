@@ -6,7 +6,7 @@ clear:
 	rm *.o
 	rm $(PROJECT_NAME)
 
-$(PROJECT_NAME): main.o shapes.o avl_tree.o svg.o geo.o system.o paths.o 
+$(PROJECT_NAME): main.o shapes.o srb_tree.o svg.o geo.o system.o paths.o 
 	$(EXEC) $(CFLAGS) main.o shapes.o avl_tree.o svg.o geo.o system.o paths.o -o $(PROJECT_NAME) -lm
 
 svg.o: svg.c svg.h 
@@ -18,8 +18,8 @@ geo.o: geo.c geo.h
 shapes.o: shapes.c shapes.h 
 	$(EXEC)	$(CFLAGS) -c shapes.c
 	
-avl_tree.o: avl_tree.c avl_tree.h 
-	$(EXEC)	$(CFLAGS) -c avl_tree.c
+srb_tree.o: srb_tree.c srb_tree.h 
+	$(EXEC)	$(CFLAGS) -c srb_tree.c
 
 # qry.o: qry.c qry.h
 # 	$(EXEC) $(CFLAGS) -c qry.c	
