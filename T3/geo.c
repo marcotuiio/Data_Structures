@@ -1,6 +1,6 @@
 #include "geo.h"
 
-void readGeo(char *bedGeo, Tree my_tree) {
+void readGeo(char *bedGeo, SRBTree t) {
     FILE *geo = openGeo(bedGeo);
     char tipo[5];
 
@@ -9,19 +9,19 @@ void readGeo(char *bedGeo, Tree my_tree) {
 
         if (!strcmp(tipo, "c")) {
             Info circle = newShape();
-            setCircle(geo, my_tree, circle);
+            setCircle(geo, t, circle);
 
         } else if (!strcmp(tipo, "r")) {
             Info rect = newShape();
-            setRectangle(geo, my_tree, rect);
+            setRectangle(geo, t, rect);
 
         } else if (!strcmp(tipo, "l")) {
             Info line = newShape();
-            setLine(geo, my_tree, line);
+            setLine(geo, t, line);
 
         } else if (!strcmp(tipo, "t")) {
             Info text = newShape();
-            setText(geo, my_tree, text);
+            setText(geo, t, text);
         }
         strcpy(tipo, " ");
     }

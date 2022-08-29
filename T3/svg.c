@@ -3,15 +3,15 @@
 #include "shapes.h"
 #include "system.h"
 
-void writeSvg(char *bsdSvg, SRBTree my_tree) {
+void writeSvg(char *bsdSvg, SRBTree t) {
     FILE *svg = createSvg(bsdSvg);
 
-    // fazer percurso para percorre e imprimir no svg
+    percursoProfundidade(t, writeAux, svg);
 
     killSvg(svg);
 }
 
-void writeAux(Info i, void *aux) {
+void writeAux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, void *aux) {
     FILE *svg = aux;
     switch (getType(i)) {
         case 1:

@@ -2,33 +2,33 @@ EXEC = gcc
 CFLAGS = -std=c99 -fstack-protector-all -g -Wall
 PROJECT_NAME = ted
 
-clear: 
+clear:
 	rm *.o
 	rm $(PROJECT_NAME)
 
-$(PROJECT_NAME): main.o shapes.o srb_tree.o svg.o geo.o system.o paths.o 
-	$(EXEC) $(CFLAGS) main.o shapes.o avl_tree.o svg.o geo.o system.o paths.o -o $(PROJECT_NAME) -lm
+$(PROJECT_NAME): main.o geo.o list.o paths.o shapes.o srb_tree.o svg.o system.o 
+	$(EXEC) $(CFLAGS) main.o geo.o list.o paths.o shapes.o srb_tree.o svg.o system.o -o $(PROJECT_NAME) -lm
 
-svg.o: svg.c svg.h 
-	$(EXEC) $(CFLAGS) -c svg.c
+main.o: main.c
+	$(EXEC) $(CFLAGS) -c main.c
 
-geo.o: geo.c geo.h 
+geo.o: geo.c geo.h
 	$(EXEC) $(CFLAGS) -c geo.c
 
-shapes.o: shapes.c shapes.h 
-	$(EXEC)	$(CFLAGS) -c shapes.c
-	
-srb_tree.o: srb_tree.c srb_tree.h 
-	$(EXEC)	$(CFLAGS) -c srb_tree.c
-
-# qry.o: qry.c qry.h
-# 	$(EXEC) $(CFLAGS) -c qry.c	
-
-system.o: system.c system.h
-	$(EXEC) $(CFLAGS) -c system.c
+list.o: list.c list.h
+	$(EXEC) $(CFLAGS) -c list.c
 
 paths.o: paths.c paths.h
 	$(EXEC) $(CFLAGS) -c paths.c
 
-main.o: main.c
-	$(EXEC) $(CFLAGS) -c main.c
+shapes.o: shapes.c shapes.h
+	$(EXEC) $(CFLAGS) -c shapes.c
+
+srb_tree.o: srb_tree.c srb_tree.h
+	$(EXEC) $(CFLAGS) -c srb_tree.c
+
+svg.o: svg.c svg.h
+	$(EXEC) $(CFLAGS) -c svg.c
+
+system.o: system.c system.h
+	$(EXEC) $(CFLAGS) -c system.c

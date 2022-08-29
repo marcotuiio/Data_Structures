@@ -10,11 +10,11 @@
 
 // As funções tem nome autoexplicativo. Apenas desenham no svg a forma designada.
 
-void writeSvg(char *bsdSvg, SRBTree my_tree);
+void writeSvg(char *bsdSvg, SRBTree t);
 // Deve receber as estruturas que armazenam as formas lidas no geo, o aqruivo svg adequado
 // e a informação se existe ou não um arquivo de consulta qry.
 
-void writeAux(Info i, void *aux);
+void writeAux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, void *aux);;
 // Deve receber a raiz da árvore e o aqr svg
 // Percorre todos os elementos e vai delegando funções corretas
 // para extrair dados dos nós e, consequentemente, escrever no svg

@@ -13,8 +13,8 @@ struct fig {
 typedef struct fig Shapes;
 
 Info newShape() {
-    Shapes *new_form = calloc(1, sizeof(Shapes));
-    return new_form;
+    Shapes *new_shape = calloc(1, sizeof(Shapes));
+    return new_shape;
 }
 
 void setCircle(FILE *geo, SRBTree t, Info f) {
@@ -33,7 +33,7 @@ void setCircle(FILE *geo, SRBTree t, Info f) {
     strcpy(shape->anchor, "0");
     strcpy(shape->text, "0");
 
-    // fazer insert na arvore
+    insertSRB(t, shape->x, shape->y, 0, 0, 0, 0, shape);
 }
 
 void setRectangle(FILE *geo, SRBTree t, Info f) {
@@ -53,7 +53,7 @@ void setRectangle(FILE *geo, SRBTree t, Info f) {
     strcpy(shape->anchor, "0");
     strcpy(shape->text, "0");
 
-    // fazer insert na arvore
+    insertSRB(t, shape->x, shape->y, 0, 0, 0, 0, shape);
 }
 
 void setLine(FILE *geo, SRBTree t, Info f) {
@@ -73,7 +73,7 @@ void setLine(FILE *geo, SRBTree t, Info f) {
     strcpy(shape->text, "0");
     strcpy(shape->fill, "none");
 
-    // fazer insert na arvore
+    insertSRB(t, shape->x, shape->y, 0, 0, 0, 0, shape);
 }
 
 void setText(FILE *geo, SRBTree t, Info f) {
@@ -91,7 +91,7 @@ void setText(FILE *geo, SRBTree t, Info f) {
 
     shape->w = shape->h = shape->r = shape->x2 = shape->y2 = 0;
 
-    // fazer insert na arvore
+    insertSRB(t, shape->x, shape->y, 0, 0, 0, 0, shape);
 }
 
 int getType(Info f) {
@@ -168,3 +168,88 @@ char *getText(Info f) {
     Shapes *shape = f;
     return shape->text;
 }
+
+double getLineLength(Info line) {
+    double x1 = getX(line);
+    double y1 = getY(line);
+    double x2 = getX2(line);
+    double y2 = getY2(line); 
+    double length;
+
+    if (x1 == x2 && y1 != y2) {
+        length = y2 - y1;
+        return length;
+    }
+    if (x1 != x2 && y1 == y2) {
+        length = x2 - x1;
+        return length;
+    }
+
+    double auxX = pow((x2 - x1), 2);
+    double auxY = pow((y2 - y1), 2);
+    double auxL = auxX + auxY;
+
+    length = sqrt(auxL);
+    return length;
+}
+
+// void isFullyInside(Info i, void *aux) {
+//     Extras *extras = aux;
+//     double X = extras->x;
+//     double Y = extras->y;
+//     double W = extras->w;
+//     double H = extras->h;
+//     double x1 = getX(i);
+//     double y1 = getY(i);
+
+//     switch (getType(i)) {
+//         case 1:
+//             double r = getR(i);
+//             if ((X + W) >= (x1 + r) && (X) <= (x1 - r)) {
+//                 if ((Y + H) >= (y1 + r) && (y) <= (y1 - r)) {
+//                     if (X <= x1 && Y <= y1) {
+//                         *is_fully_inside = true;
+//                     }
+//                 }
+//             }
+//             *is_fully_inside = false;
+//             break;
+
+//         case 2:
+//             double w = getW(i);
+//             double h = getH(i);
+//             if (((X + W) >= (x1 + w))) {
+//                 if (((Y + H) >= (y1 + H))) {
+//                     if (X <= x1 && Y <= y1) {
+//                         *is_fully_inside = true;
+//                     }
+//                 }
+//             }
+//             *is_fully_inside = false;
+//             break;
+
+//         case 3:
+//             double x2 = getX2(i);
+//             double y2 = getY2(i);
+//             if (((X + W) >= (x1)) && ((Y + H) >= (y1))) {
+//                 if (((X + W) >= (x2)) && ((Y + H) >= (y2))) {
+//                     if (X <= x1 && Y <= y1 && X <= x2 && Y <= y2) {
+//                         *is_fully_inside = true;
+//                     }
+//                 }
+//             }
+//             *is_fully_inside = false;
+//             break;
+
+//         case 4:
+//             if ((X + W) >= (x1) && (Y + H) >= (y1)) {
+//                 if (X <= x1 && Y <= y1) {
+//                     *is_fully_inside = true;
+//                 }
+//             }
+//             *is_fully_inside = false;
+
+//         default:
+//             break;
+//     }
+// }

@@ -32,10 +32,11 @@ bool isBlack(Node n);
 void paintBlack(Node n);
 bool isRed(Node n);
 void paintRed(Node n);
+void rectangleOverlaps(Node n, double x, double y, double w, double h, Lista resultado);
 void mbbFullyInside(Node n, double x, double y, double w, double h, Lista resultado);
-Info searchInfo(SRBTree t, Node n, double xa, double ya, double *mbbX1, double *mbbY1, double *mbbX2, double *mbbY2);
 Node searchNode(SRBTree t, Node n, double xa, double ya, double *mbbX1, double *mbbY1, double *mbbX2, double *mbbY2);
 void transplantRB(SRBTree t, Node n, Node n2);
+void fixRBdelete(SRBTree t, Node n); 
 Node getLargestLeft(Node n);
 Node getSmallestRight(Node n);
 void traverseAux(Node root, FvisitaNo f, void *aux);
@@ -52,7 +53,7 @@ SRBTree createSRB(double epsilon) {
 
     new_tree->nil = calloc(1, sizeof(Red_Black_Node));
     paintBlack(new_tree->nil);
-    new_tree->nil->value = INT_MAX;
+    new_tree->nil->value = NULL;
 
     new_tree->epislon = epsilon;
     new_tree->root = NULL;
@@ -83,6 +84,7 @@ Node insertSRB(SRBTree t, double x, double y, double mbbX1, double mbbY1, double
     insertAux(t, red_black_tree->root, x, y, mbbX1, mbbY1, mbbX2, mbbY2, info);
     Red_Black_Node *new_node = getNodeSRB(t, x, y, &mbbX1, &mbbY1, &mbbX2, &mbbY2);
     fixRBinsert(t, new_node);
+    return new_node;
 }
 
 Node insertAux(SRBTree t, Node n, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, Info info) {
@@ -257,8 +259,43 @@ void paintRed(Node n) {
     strcpy(node->color, "RED");
 }
 
-// TODO
-// void getBBPartSRB(SRBTree t, double x, double y, double w, double h, Lista resultado) {}  // Ponto dentro de retangulo
+void getBBPartSRB(SRBTree t, double x, double y, double w, double h, Lista resultado) { // MBB do node e retangulo tem alguma intersecção
+    Red_Black_Root *tree = t;
+    rectangleOverlaps(tree->root, x, y, w, h, resultado);
+}  
+
+void rectangleOverlaps(Node n, double x, double y, double w, double h, Lista resultado) {
+    Red_Black_Node *node = n;
+    double l1x = node->mbbX1;
+    double l1y = node->mbbY1;
+    double r1x = node->mbbX2; 
+    double r1y = node->mbbY2;
+    double l2x = x;
+    double l2y = y;
+    double r2x = x + w;
+    double r2y = y + h;
+    int i = 0;
+
+    if (!node) {
+        return;
+    }
+
+    if (l1x == r1x || l1y == r1y || r2x == l2x || l2y == r2y) {
+        i++;
+    }
+    if (l1x > r2x || l2x > r1x) {
+        i++;
+    }
+    if (r1y > l2y || r2y > l1y) {
+        i++;
+    }
+    if (i == 0) {
+        insereFim(resultado, node);
+    }
+
+    rectangleOverlaps(node->left, x, y, w, h, resultado);
+    rectangleOverlaps(node->right, x, y, w, h, resultado);
+}
 
 void getBBSRB(SRBTree t, double x, double y, double w, double h, Lista resultado) { // MBB completamente dentro do retangulo
     Red_Black_Root *red_black_tree = t;
@@ -267,6 +304,9 @@ void getBBSRB(SRBTree t, double x, double y, double w, double h, Lista resultado
 
 void mbbFullyInside(Node n, double x, double y, double w, double h, Lista resultado) {
     Red_Black_Node *node = n;
+    if (!node) {
+        return;
+    }
     double x1 = node->mbbX1;
     double y1 = node->mbbY1;
     double w1 = node->mbbX2 - x1;
@@ -283,30 +323,12 @@ void mbbFullyInside(Node n, double x, double y, double w, double h, Lista result
 }
 
 Info getInfoSRB(SRBTree t, Node n, double xa, double ya, double *mbbX1, double *mbbY1, double *mbbX2, double *mbbY2) {
-    Red_Black_Root *rb_tree = t;
-    Info *i = searchInfo(rb_tree, rb_tree->root, xa, ya, mbbX1, mbbY1, mbbX2, mbbY2);
-    return i;
-}
-
-Info searchInfo(SRBTree t, Node n, double xa, double ya, double *mbbX1, double *mbbY1, double *mbbX2, double *mbbY2) {
-    Red_Black_Root *red_black_tree = t;
-    Red_Black_Node *new_node = n;
-    if (!new_node) {
-        return NULL;
-    }
-    if (fabs(new_node->x - xa) <= red_black_tree->epislon && fabs(new_node->y - ya) <= red_black_tree->epislon) {
-        *mbbX1 = new_node->mbbX1;
-        *mbbY1 = new_node->mbbY1;
-        *mbbX2 = new_node->mbbX2;
-        *mbbY2 = new_node->mbbY2;
-        return new_node->value;
-    }
-
-    if (xa < new_node->x) {
-        return searchInfo(t, new_node->left, xa, ya, mbbX1, mbbY1, mbbX2, mbbY2);
-    } else if (xa == new_node->x && ya < new_node->y) {
-        return searchInfo(t, new_node->left, xa, ya, mbbX1, mbbY1, mbbX2, mbbY2);
-    }
+    Red_Black_Node *node = n;
+    *mbbX1 = node->mbbX1;
+    *mbbY1 = node->mbbY1;
+    *mbbX2 = node->mbbX2;
+    *mbbY2 = node->mbbY2;
+    return node->value;
 }
 
 Node getNodeSRB(SRBTree t, double xa, double ya, double *mbbX1, double *mbbY1, double *mbbX2, double *mbbY2) {
@@ -321,6 +343,7 @@ Node searchNode(SRBTree t, Node n, double xa, double ya, double *mbbX1, double *
     if (!new_node) {
         return NULL;
     }
+
     if (fabs(new_node->x - xa) <= red_black_tree->epislon && fabs(new_node->y - ya) <= red_black_tree->epislon) {
         *mbbX1 = new_node->mbbX1;
         *mbbY1 = new_node->mbbY1;
@@ -331,13 +354,26 @@ Node searchNode(SRBTree t, Node n, double xa, double ya, double *mbbX1, double *
 
     if (xa < new_node->x) {
         return searchNode(t, new_node->left, xa, ya, mbbX1, mbbY1, mbbX2, mbbY2);
+    
     } else if (xa == new_node->x && ya < new_node->y) {
         return searchNode(t, new_node->left, xa, ya, mbbX1, mbbY1, mbbX2, mbbY2);
+    } else {
+        return NULL;
     }
 }
 
-// TODO
-// void updateInfoSRB(SRBTree t, Node n, Info i) {}
+void updateInfoSRB(SRBTree t, Node n, Info i) {
+    Red_Black_Root *red_black_tree = t;
+    Red_Black_Node *node = n;
+    double x = getX(i);
+    double y = getY(i);
+    if (fabs(node->x - x) <= red_black_tree->epislon && fabs(node->y - y) <= red_black_tree->epislon) {
+        node->value = i;
+        printf("Sucesso ao atualizar a info\n");
+    } else {
+        printf("Não foi possivel atualizar a info\n");
+    }
+}
 
 // Cases and algorithm of deletion: https://www.geeksforgeeks.org/red-black-tree-set-3-delete-2/
 void removeSRB(SRBTree t, double xa, double ya, double *mbbX1, double *mbbY1, double *mbbX2, double *mbbY2) {
@@ -640,7 +676,7 @@ void removeNils(SRBTree t, Node root) {
     removeNils(t, node->right);
 }
 
-void killTree(SRBTree t) {
+void killSRB(SRBTree t) {
     Red_Black_Root *red_black_tree = t;
     free(red_black_tree->nil);
     freeAux(red_black_tree->root);
@@ -653,71 +689,9 @@ void freeAux(Node root) {
         return;
     }
 
-    f(node->value);
     freeAux(node->left);
     freeAux(node->right);
     if (node) {
         free(node);
     }
 }
-
-// void isFullyInside(Info i, void *aux) {
-//     Extras *extras = aux;
-//     double X = extras->x;
-//     double Y = extras->y;
-//     double W = extras->w;
-//     double H = extras->h;
-//     double x1 = getX1(i);
-//     double y1 = getY1(i);
-
-//     switch (getType(i)) {
-//         case 1:
-//             double r = getR(i);
-//             if ((X + W) >= (x1 + r) && (X) <= (x1 - r)) {
-//                 if ((Y + H) >= (y1 + r) && (y) <= (y1 - r)) {
-//                     if (X <= x1 && Y <= y1) {
-//                         *is_fully_inside = true;
-//                     }
-//                 }
-//             }
-//             *is_fully_inside = false;
-//             break;
-
-//         case 2:
-//             double w = getW(i);
-//             double h = getH(i);
-//             if (((X + W) >= (x1 + w))) {
-//                 if (((Y + H) >= (y1 + H))) {
-//                     if (X <= x1 && Y <= y1) {
-//                         *is_fully_inside = true;
-//                     }
-//                 }
-//             }
-//             *is_fully_inside = false;
-//             break;
-
-//         case 3:
-//             double x2 = getX2(i);
-//             double y2 = getY2(i);
-//             if (((X + W) >= (x1)) && ((Y + H) >= (y1))) {
-//                 if (((X + W) >= (x2)) && ((Y + H) >= (y2))) {
-//                     if (X <= x1 && Y <= y1 && X <= x2 && Y <= y2) {
-//                         *is_fully_inside = true;
-//                     }
-//                 }
-//             }
-//             *is_fully_inside = false;
-//             break;
-
-//         case 4:
-//             if ((X + W) >= (x1) && (Y + H) >= (y1)) {
-//                 if (X <= x1 && Y <= y1) {
-//                     *is_fully_inside = true;
-//                 }
-//             }
-//             *is_fully_inside = false;
-
-//         default:
-//             break;
-//     }
-// }

@@ -14,7 +14,6 @@ struct ptrL {
 typedef struct ptrL ImpList;
 
 Lista criaLista() {
-    // printf("--- INICIO CRIA LISTA ---\n");
     ImpList *novaLista = calloc(1, sizeof(ImpList));
     novaLista->inicio = NULL;
     novaLista->fim = NULL;
@@ -27,10 +26,8 @@ void printList(Lista l) {
     celulaL *temporary = aux->inicio;
 
     while (temporary != NULL) {
-        // printf("%p - ", temporary->value);
         temporary = temporary->next;
     }
-    // printf("\n");
     free(temporary);
 }
 
@@ -42,7 +39,6 @@ void* encontraCelula(Lista l, void* n) {
     while (lista != NULL) {
         if (lista->value == n) {
             result = lista;
-            // printf("Valor encontrado -> %s", result->value);
             return result;
         }
         lista = lista->next;
@@ -55,7 +51,6 @@ void* encontraCelula(Lista l, void* n) {
 }
 
 void insereFim(Lista l, void* n) {
-    // printf("--- INICIO INSERE FIM ---\n");
     ImpList *lista = (ImpList *)l;
 
     // Cria celula
@@ -76,7 +71,6 @@ void insereFim(Lista l, void* n) {
 }
 
 void insereInicio(Lista l, void* n) {
-    // printf("--- INICIO INSERE INICIO ---\n");
     ImpList *lista = (ImpList *)l;
 
     // Cria celula
@@ -97,7 +91,6 @@ void insereInicio(Lista l, void* n) {
 }
 
 void insereDepois(Lista l, void* n, void* x) {
-    // printf("--- INICIO INSERE DEPOIS ---\n");
     ImpList *aux = (ImpList *)l;
     celulaL *lista = aux->inicio;
     celulaL *celulaAnterior;
@@ -130,11 +123,9 @@ void insereDepois(Lista l, void* n, void* x) {
 }
 
 void removeCelula(Lista l, void* n, int id, char *tipo) {
-    // printf("--- INICIO REMOVE CELULA ---\n");
     ImpList *aux = (ImpList *)l;
     celulaL *lista = aux->inicio;
     celulaL *celulaARemover = NULL;
-    void* info = n;
 
     // Buscando a celula com valor desejado
 
