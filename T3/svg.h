@@ -10,7 +10,7 @@
 
 // As funções tem nome autoexplicativo. Apenas desenham no svg a forma designada.
 
-void writeSvg(char *bsdSvg, SRBTree t);
+void writeSvg(FILE *svg, SRBTree t);
 // Deve receber as estruturas que armazenam as formas lidas no geo, o aqruivo svg adequado
 // e a informação se existe ou não um arquivo de consulta qry.
 

@@ -4,7 +4,7 @@ struct fig {
     char type[3];               // geral
     int id;                     // geral
     double x, y;                // geral
-    double w, h;                // retangulo
+    double w, h, energy;        // retangulo
     double r;                   // circulo
     double x2, y2;              // linha
     char anchor[3], text[100];  // texto
@@ -29,6 +29,7 @@ void setCircle(FILE *geo, SRBTree t, Info f) {
     fscanf(geo, "%s", shape->stroke);
     fscanf(geo, "%s", shape->fill);
 
+    shape->energy = -1;
     shape->w = shape->h = shape->x2 = shape->y2 = 0;
     strcpy(shape->anchor, "0");
     strcpy(shape->text, "0");
@@ -48,6 +49,7 @@ void setRectangle(FILE *geo, SRBTree t, Info f) {
     fscanf(geo, "%lf", &shape->h);
     fscanf(geo, "%s", shape->stroke);
     fscanf(geo, "%s", shape->fill);
+    shape->energy = 0;
 
     shape->r = shape->x2 = shape->y2 = 0;
     strcpy(shape->anchor, "0");
@@ -67,7 +69,8 @@ void setLine(FILE *geo, SRBTree t, Info f) {
     fscanf(geo, "%lf", &shape->x2);
     fscanf(geo, "%lf", &shape->y2);
     fscanf(geo, "%s", shape->stroke);
-
+    
+    shape->energy = -1;
     shape->w = shape->h = shape->r = 0;
     strcpy(shape->anchor, "0");
     strcpy(shape->text, "0");
@@ -88,7 +91,8 @@ void setText(FILE *geo, SRBTree t, Info f) {
     fscanf(geo, "%s", shape->fill);
     fscanf(geo, "%s", shape->anchor);
     fscanf(geo, "%[^\n]", shape->text);
-
+    
+    shape->energy = -1;
     shape->w = shape->h = shape->r = shape->x2 = shape->y2 = 0;
 
     insertSRB(t, shape->x, shape->y, 0, 0, 0, 0, shape);
@@ -173,7 +177,7 @@ double getLineLength(Info line) {
     double x1 = getX(line);
     double y1 = getY(line);
     double x2 = getX2(line);
-    double y2 = getY2(line); 
+    double y2 = getY2(line);
     double length;
 
     if (x1 == x2 && y1 != y2) {

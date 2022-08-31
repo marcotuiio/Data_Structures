@@ -2,6 +2,7 @@
     "files.associations": {
         "fila_circ.h": "c",
         "libs.h": "c",
-        "list.h": "c"
+        "list.h": "c",
+        "rectangle.h": "c"
     }
 }

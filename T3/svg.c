@@ -3,8 +3,7 @@
 #include "shapes.h"
 #include "system.h"
 
-void writeSvg(char *bsdSvg, SRBTree t) {
-    FILE *svg = createSvg(bsdSvg);
+void writeSvg(FILE *svg, SRBTree t) {
 
     percursoProfundidade(t, writeAux, svg);
 

@@ -110,7 +110,7 @@ Node insertAux(SRBTree t, Node n, double x, double y, double mbbX1, double mbbY1
         new_node->left = insertAux(red_black_tree, new_node->left, x, y, mbbX1, mbbY1, mbbX2, mbbY2, info);
         new_node->left->parent = new_node;
 
-    } else if (x != new_node->x || y != new_node->y) {
+    } else {
         new_node->right = insertAux(red_black_tree, new_node->right, x, y, mbbX1, mbbY1, mbbX2, mbbY2, info);
         new_node->right->parent = new_node;
     }
@@ -355,12 +355,9 @@ Node searchNode(SRBTree t, Node n, double xa, double ya, double *mbbX1, double *
     if ((xa < new_node->x) || (xa == new_node->x && ya < new_node->y)) {
         return searchNode(t, new_node->left, xa, ya, mbbX1, mbbY1, mbbX2, mbbY2);
     
-    } else if (xa != new_node->x && ya != new_node->y) {
-        return searchNode(t, new_node->right, xa, ya, mbbX1, mbbY1, mbbX2, mbbY2);
     } else {
-        printf("Node not found\n");
-        return NULL;
-    }
+        return searchNode(t, new_node->right, xa, ya, mbbX1, mbbY1, mbbX2, mbbY2);
+    } 
 }
 
 void updateInfoSRB(SRBTree t, Node n, Info i) {
@@ -598,6 +595,7 @@ void traverseAux(Node root, FvisitaNo f, void *aux) {
 void percursoLargura(SRBTree t, FvisitaNo f, void *aux) {
     Red_Black_Root *rb_tree = t;
     int h = heightOfLevel(rb_tree->root);
+    printf("\n\tTamanho da árvore: %d\n\n", rb_tree->size);
     for (int i = 0; i <= h; i++) {
         levelOrderAux(rb_tree->root, i);
     }
@@ -615,10 +613,10 @@ void levelOrderAux(Node root, int level) {
         }
 
         printf("\t%.2lf %.2lf %s\n", node->x, node->y, node->color);
+        printf("\t /");
+        printf("\t    \\\n");
 
         if (node->left) {
-            printf("\t /");
-            printf("\t    \\\n");
             printf("%.2lf %.2lf %s", node->left->x, node->left->y, node->left->color);
         }
         if (node->right) {
