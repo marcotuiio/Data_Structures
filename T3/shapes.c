@@ -69,7 +69,7 @@ void setLine(FILE *geo, SRBTree t, Info f) {
     fscanf(geo, "%lf", &shape->x2);
     fscanf(geo, "%lf", &shape->y2);
     fscanf(geo, "%s", shape->stroke);
-    
+
     shape->energy = -1;
     shape->w = shape->h = shape->r = 0;
     strcpy(shape->anchor, "0");
@@ -91,7 +91,7 @@ void setText(FILE *geo, SRBTree t, Info f) {
     fscanf(geo, "%s", shape->fill);
     fscanf(geo, "%s", shape->anchor);
     fscanf(geo, "%[^\n]", shape->text);
-    
+
     shape->energy = -1;
     shape->w = shape->h = shape->r = shape->x2 = shape->y2 = 0;
 
@@ -197,63 +197,101 @@ double getLineLength(Info line) {
     return length;
 }
 
-// void isFullyInside(Info i, void *aux) {
-//     Extras *extras = aux;
-//     double X = extras->x;
-//     double Y = extras->y;
-//     double W = extras->w;
-//     double H = extras->h;
-//     double x1 = getX(i);
-//     double y1 = getY(i);
+void setEnergy(Info rect, double energy) {
+    Shapes *shape = rect;
+    shape->energy = energy;
+}
 
-//     switch (getType(i)) {
-//         case 1:
-//             double r = getR(i);
-//             if ((X + W) >= (x1 + r) && (X) <= (x1 - r)) {
-//                 if ((Y + H) >= (y1 + r) && (y) <= (y1 - r)) {
-//                     if (X <= x1 && Y <= y1) {
-//                         *is_fully_inside = true;
-//                     }
-//                 }
-//             }
-//             *is_fully_inside = false;
-//             break;
+double getEnergy(Info rect) {
+    Shapes *shape = rect;
+    return shape->energy;
+}
 
-//         case 2:
-//             double w = getW(i);
-//             double h = getH(i);
-//             if (((X + W) >= (x1 + w))) {
-//                 if (((Y + H) >= (y1 + H))) {
-//                     if (X <= x1 && Y <= y1) {
-//                         *is_fully_inside = true;
-//                     }
-//                 }
-//             }
-//             *is_fully_inside = false;
-//             break;
+void setX(Info f, double dx) {
+    Shapes *shape = f;
+    shape->x = shape->x + dx;
+}
 
-//         case 3:
-//             double x2 = getX2(i);
-//             double y2 = getY2(i);
-//             if (((X + W) >= (x1)) && ((Y + H) >= (y1))) {
-//                 if (((X + W) >= (x2)) && ((Y + H) >= (y2))) {
-//                     if (X <= x1 && Y <= y1 && X <= x2 && Y <= y2) {
-//                         *is_fully_inside = true;
-//                     }
-//                 }
-//             }
-//             *is_fully_inside = false;
-//             break;
+void setY(Info f, double dy) {
+    Shapes *shape = f;
+    shape->y = shape->y + dy;
+}
 
-//         case 4:
-//             if ((X + W) >= (x1) && (Y + H) >= (y1)) {
-//                 if (X <= x1 && Y <= y1) {
-//                     *is_fully_inside = true;
-//                 }
-//             }
-//             *is_fully_inside = false;
+bool hitRectangle(Info i, double xt, double yt) {
+    double rx = getX(i);
+    double ry = getY(i);
+    double w = getW(i);
+    double h = getH(i);
 
-//         default:
-//             break;
-//     }
-// }
+    if (xt >= rx && xt <= (rx + w)) {  // Está dentro do retangulo
+        if (yt >= ry && yt <= (ry + h)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool insideNetAll(Info i, double xr, double yr, double w, double h) {
+    bool inside = false;
+    double x1 = getX(i);
+    double y1 = getY(i);
+
+    switch (getType(i)) {
+        case 1:
+            double r = getR(i);
+            if ((xr + w) >= (x1 + r) && (xr) <= (x1 - r)) {
+                if ((yr + h) >= (y1 + r) && (yr) <= (yr - r)) {
+                    if (xr <= x1 && yr <= y1) {
+                        inside = true;
+                    }
+                }
+            }
+            inside = false;
+            break;
+
+        case 2:
+            break;
+
+        case 3:
+            double x2 = getX2(i);
+            double y2 = getY2(i);
+            if (((xr + w) >= (x1)) && ((yr + h) >= (y1))) {
+                if (((xr + w) >= (x2)) && ((yr + h) >= (y2))) {
+                    if (xr <= x1 && yr <= y1 && xr <= x2 && yr <= y2) {
+                        inside = true;
+                    }
+                }
+            }
+            inside = false;
+            break;
+
+        case 4:
+            if ((xr + w) >= (x1) && (yr + h) >= (y1)) {
+                if (xr <= x1 && yr <= y1) {
+                    inside = true;
+                }
+            }
+            inside = false;
+
+        default:
+            break;
+    }
+    return inside;
+}
+
+bool fishInside(Info i, double x, double y, double w, double h) {
+    bool inside = false;
+    double x1 = getX(i);
+    double y1 = getY(i);
+
+    if (getType(i) == 1) {
+        double r = getR(i);
+        if ((x + w) >= (x1 + r) && (x) <= (x1 - r)) {
+            if ((y + h) >= (y1 + r) && (y) <= (y - r)) {
+                inside = true;
+            }
+        }
+        inside = false;
+    }
+    return inside;
+}

@@ -1,5 +1,47 @@
 #include "qry.h"
 
+struct aux1 {
+    double e;
+    FILE *txt;
+};
+typedef struct aux1 AUXE;
+
+struct aux2 {
+    int i;
+    double dx, dy;
+    FILE *txt;
+    SRBTree t;
+};
+typedef struct aux2 AUXMV;
+
+struct aux3 {
+    int i;
+    char lado[4];
+    double w, h, d;
+    FILE *txt;
+    Info nau;
+    SRBTree t;
+};
+typedef struct aux3 AUXLR;
+
+struct aux4 {
+    int i;
+    char lado[4];
+    double d;
+    FILE *txt;
+    Info nau;
+    SRBTree t;
+};
+typedef struct aux4 AUXD;
+
+struct aux5 {
+    double dx, dy, x, y, w, h;
+    FILE *txt;
+    SRBTree t;
+};
+typedef struct aux5 AUXMC;
+
+// PP frente, EB esquerda, BB direita, PR trás
 void readQry(SRBTree t, char *bedQry, char *bsdSvgQry, char *bsdTxt) {
     FILE *qry = openQry(bedQry);
     FILE *txt = openTxt(bsdTxt);
@@ -21,7 +63,7 @@ void readQry(SRBTree t, char *bedQry, char *bsdSvgQry, char *bsdTxt) {
 
         } else if (!strcmp(comando, "d")) {
             d(qry, txt, t);
-        
+
         } else if (!strcmp(comando, "mc")) {
             mc(qry, txt, t);
         }
@@ -52,14 +94,38 @@ FILE *openTxt(char *bsdTxt) {
     return txt;
 }
 
-double e(FILE *qry, FILE *txt) {
+Info find_id(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, void *aux) {
+    AUXLR *aux0 = aux;
+    int id = aux0->i;
+
+    if (getId(i) == id) {
+        aux0->nau = i;
+    }
+}
+
+void e(FILE *qry, FILE *txt, SRBTree t) {
     double e;
 
     fscanf(qry, "%lf", &e);
 
     fprintf(txt, "\n[*] e %lf \n", e);
 
-    return e;
+    AUXE *aux = calloc(1, sizeof(AUXE));
+    aux->e = e;
+    aux->txt = txt;
+
+    percursoProfundidade(t, e_aux, aux);
+    free(aux);
+}
+void e_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, void *aux) {
+    AUXE *data = aux;
+    FILE *txt = data->txt;
+    double e = data->e;
+
+    if (getType(i) == 2) {
+        setEnergy(i, e);
+        fprintf(txt, "id = %d, x = %lf, y = %lf, e = %lf\n", getId(i), getX(i), getY(i), e);
+    }
 }
 
 void mv(FILE *qry, FILE *txt, SRBTree t) {
@@ -71,10 +137,39 @@ void mv(FILE *qry, FILE *txt, SRBTree t) {
     fscanf(qry, "%lf", &dy);
 
     fprintf(txt, "\n[*] mv %d %lf %lf \n", i, dx, dy);
+
+    AUXMV *aux = calloc(1, sizeof(AUXMV));
+    aux->i = i;
+    aux->dx = dx;
+    aux->dy = dy;
+    aux->txt = txt;
+    aux->t = t;
+
+    percursoProfundidade(t, mv_aux, aux);
+    free(aux);
+}
+
+void mv_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, void *aux) {
+    AUXMV *data = aux;
+    FILE *txt = data->txt;
+    int id = data->i;
+    double dx = data->dx;
+    double dy = data->dy;
+    SRBTree t = data->t;
+
+    // Fazer funçoes para cuidar da MBB e energia de deslocamento !!!!
+    if (getId(i) == id) {
+        fprintf(txt, "id = %d, xi = %lf, yi = %lf, ", getId(i), getX(i), getY(i));
+        removeSRB(t, getX(i), getY(i), NULL, NULL, NULL, NULL);
+        setX(i, x + dx);
+        setY(i, y + dy);
+        fprintf(txt, "xf = %lf, yf = %lf\n", getX(i), getY(i));
+        insertSRB(t, x + dx, y + dy, 0, 0, 0, 0, i);
+    }
 }
 
 void lr(FILE *qry, FILE *txt, SRBTree t) {
-    int i; 
+    int i;
     char lado[4];
     double d, w, h;
 
@@ -85,6 +180,56 @@ void lr(FILE *qry, FILE *txt, SRBTree t) {
     fscanf(qry, "%lf", &h);
 
     fprintf(txt, "\n[*] lr %d %s %lf %lf %lf \n", i, lado, d, w, h);
+
+    AUXLR *aux = calloc(1, sizeof(AUXLR));
+    aux->i = i;
+    strcpy(aux->lado, lado);
+    aux->w = w;
+    aux->h = h;
+    aux->d = d;
+    aux->txt = txt;
+    aux->t = t;
+    Info nau = NULL;
+    aux->nau = nau;
+    percursoProfundidade(t, find_id, aux);
+
+    percursoProfundidade(t, lr_aux, aux);
+    free(aux);
+}
+
+void lr_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, void *aux) {
+    AUXLR *data = aux;
+    FILE *txt = data->txt;
+    int id = data->i;
+    char lado[4];
+    strcpy(lado, data->lado);
+    double w = data->w;
+    double h = data->h;
+    double d = data->d;
+    Info nau = data->nau;
+    SRBTree t = data->t;
+    double xr, yr;
+
+    // olhar energia para jogar rede, ver o que ta dentro, remover e atribuir as recompensas
+    // redes são lançadas a partir da ancora do retangulo (nau)
+    if (getId(i) != id) {
+        if (!strcmp(lado, "PP")) {  // lado da frente, lado a ancora, rede para cima
+            xr = getX(nau);
+            yr = getY(nau) - h - d;
+
+        } else if (!strcmp(lado, "EB")) {  // esquerda, lado a ancora, rede para esquerda
+            xr = getX(nau) - w - d;
+            yr = getY(nau);
+
+        } else if (!strcmp(lado, "BB")) {  // direita, lado ancora+largura, rede para direita
+            xr = getX(nau) + getW(nau) + d;
+            yr = getY(nau);
+
+        } else if (!strcmp(lado, "PR")) {  // baixo, lado da ancora+altura, rede para baixo
+            xr = getX(nau);
+            yr = getY(nau) + getH(nau) + d;
+        }
+    }
 }
 
 void d(FILE *qry, FILE *txt, SRBTree t) {
@@ -97,6 +242,58 @@ void d(FILE *qry, FILE *txt, SRBTree t) {
     fscanf(qry, "%lf", &d);
 
     fprintf(txt, "\n[*] d %d %s %lf \n", i, lado, d);
+
+    AUXD *aux = calloc(1, sizeof(AUXD));
+    aux->i = i;
+    strcpy(aux->lado, lado);
+    aux->d = d;
+    aux->txt = txt;
+    aux->t = t;
+    Info nau = NULL;
+    aux->nau = nau;
+    percursoProfundidade(t, find_id, aux);
+
+    percursoProfundidade(t, d_aux, aux);
+    free(aux);
+}
+
+void d_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, void *aux) {
+    AUXD *data = aux;
+    FILE *txt = data->txt;
+    int id = data->i;
+    char lado[4];
+    strcpy(lado, data->lado);
+    double d = data->d;
+    Info nau = data->nau;
+    SRBTree t = data->t;
+    double xt, yt;
+    // fazer os calculos de energia para tiro e reportar txt!!
+
+    // o tiro é lançado na parte central do lado definido do retangulo (nau)
+    bool shot = false;
+    if (getId(i) != id) {
+        if (!strcmp(lado, "PP")) {  // lado da frente, tiro para cima
+            xt = getX(nau) + getW(nau) / 2;
+            yt = getY(nau) - d;
+
+        } else if (!strcmp(lado, "EB")) {  // esquerda, lado a ancora, rede para esquerda
+            xt = getX(nau) - d;
+            yt = getY(nau) + getH(nau) / 2;
+
+        } else if (!strcmp(lado, "BB")) {  // direita, lado ancora+largura, rede para direita
+            xt = getX(nau) + getW(nau) + d;
+            yt = getY(nau) + getH(nau) / 2;
+
+        } else if (!strcmp(lado, "PR")) {  // baixo, lado da ancora+altura, rede para baixo
+            xt = getX(nau) + getW(nau) / 2;
+            yt = getY(nau) + getH(nau) + d;
+        }
+        bool shot = hitRectangle(i, xt, yt);
+        if (shot) {
+            // arrumar MBB !!
+            removeSRB(t, getX(i), getY(i), NULL, NULL, NULL, NULL);
+        }
+    }
 }
 
 void mc(FILE *qry, FILE *txt, SRBTree t) {
@@ -107,7 +304,43 @@ void mc(FILE *qry, FILE *txt, SRBTree t) {
     fscanf(qry, "%lf", &x);
     fscanf(qry, "%lf", &y);
     fscanf(qry, "%lf", &w);
-    fscanf(qry, "%lf", &h); 
+    fscanf(qry, "%lf", &h);
 
     fprintf(txt, "\n[*] mc %lf %lf %lf %lf %lf %lf \n", dx, dy, x, y, w, h);
+
+    AUXMC *aux = calloc(1, sizeof(AUXMC));
+    aux->dx = dx;
+    aux->dy = dy;
+    aux->x = x;
+    aux->y = y;
+    aux->w = w;
+    aux->h = h;
+    aux->txt = txt;
+    aux->t = t;
+    percursoProfundidade(t, mc_aux, aux);
+    free(aux);
+}
+
+void mc_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, void *aux) {
+    AUXMC *data = aux;
+    FILE *txt = data->txt;
+    double dx = data->dx;
+    double dy = data->dy;
+    double x1 = data->x;
+    double y1 = data->y;
+    double w = data->w;
+    double h = data->h;
+    SRBTree t = data->t;
+
+    // arrumar MBB !!
+    if (getType(i) == 1) {
+        if (fishInside(i, x1, y1, w, h)) {
+            fprintf(txt, "id = %d, xi = %lf, yi = %lf, ", getId(i), getX(i), getY(i));
+            removeSRB(t, getX(i), getY(i), NULL, NULL, NULL, NULL);
+            setX(i, x + dx);
+            setY(i, y + dy);
+            fprintf(txt, "xf = %lf, yf = %lf\n", getX(i), getY(i));
+            insertSRB(t, x + dx, y + dy, 0, 0, 0, 0, i);
+        }
+    }
 }

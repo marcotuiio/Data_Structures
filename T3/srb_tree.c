@@ -1,4 +1,5 @@
 #include "srb_tree.h"
+
 #include "list.h"
 #include "shapes.h"
 
@@ -36,12 +37,13 @@ void rectangleOverlaps(Node n, double x, double y, double w, double h, Lista res
 void mbbFullyInside(Node n, double x, double y, double w, double h, Lista resultado);
 Node searchNode(SRBTree t, Node n, double xa, double ya, double *mbbX1, double *mbbY1, double *mbbX2, double *mbbY2);
 void transplantRB(SRBTree t, Node n, Node n2);
-void fixRBdelete(SRBTree t, Node n); 
+void fixRBdelete(SRBTree t, Node n);
 Node getLargestLeft(Node n);
 Node getSmallestRight(Node n);
 void traverseAux(Node root, FvisitaNo f, void *aux);
 void levelOrderAux(Node root, int level);
-int heightOfLevel(Node n);void mbbFullyInside(Node n, double x, double y, double w, double h, Lista resultado);
+int heightOfLevel(Node n);
+void mbbFullyInside(Node n, double x, double y, double w, double h, Lista resultado);
 void traverseSim(Node root, FvisitaNo f, void *aux);
 void removeNils(SRBTree t, Node root);
 void freeAux(Node n);
@@ -259,16 +261,16 @@ void paintRed(Node n) {
     strcpy(node->color, "RED");
 }
 
-void getBBPartSRB(SRBTree t, double x, double y, double w, double h, Lista resultado) { // MBB do node e retangulo tem alguma intersecção
+void getBBPartSRB(SRBTree t, double x, double y, double w, double h, Lista resultado) {  // MBB do node e retangulo tem alguma intersecção
     Red_Black_Root *tree = t;
     rectangleOverlaps(tree->root, x, y, w, h, resultado);
-}  
+}
 
 void rectangleOverlaps(Node n, double x, double y, double w, double h, Lista resultado) {
     Red_Black_Node *node = n;
     double l1x = node->mbbX1;
     double l1y = node->mbbY1;
-    double r1x = node->mbbX2; 
+    double r1x = node->mbbX2;
     double r1y = node->mbbY2;
     double l2x = x;
     double l2y = y;
@@ -297,10 +299,10 @@ void rectangleOverlaps(Node n, double x, double y, double w, double h, Lista res
     rectangleOverlaps(node->right, x, y, w, h, resultado);
 }
 
-void getBBSRB(SRBTree t, double x, double y, double w, double h, Lista resultado) { // MBB completamente dentro do retangulo
+void getBBSRB(SRBTree t, double x, double y, double w, double h, Lista resultado) {  // MBB completamente dentro do retangulo
     Red_Black_Root *red_black_tree = t;
     mbbFullyInside(red_black_tree->root, x, y, w, h, resultado);
-} 
+}
 
 void mbbFullyInside(Node n, double x, double y, double w, double h, Lista resultado) {
     Red_Black_Node *node = n;
@@ -354,10 +356,10 @@ Node searchNode(SRBTree t, Node n, double xa, double ya, double *mbbX1, double *
 
     if ((xa < new_node->x) || (xa == new_node->x && ya < new_node->y)) {
         return searchNode(t, new_node->left, xa, ya, mbbX1, mbbY1, mbbX2, mbbY2);
-    
+
     } else {
         return searchNode(t, new_node->right, xa, ya, mbbX1, mbbY1, mbbX2, mbbY2);
-    } 
+    }
 }
 
 void updateInfoSRB(SRBTree t, Node n, Info i) {
@@ -374,7 +376,7 @@ void updateInfoSRB(SRBTree t, Node n, Info i) {
 }
 
 // Cases and algorithm of deletion: https://www.geeksforgeeks.org/red-black-tree-set-3-delete-2/
-void removeSRB(SRBTree t, double xa, double ya, double *mbbX1, double *mbbY1, double *mbbX2, double *mbbY2) {
+Info removeSRB(SRBTree t, double xa, double ya, double *mbbX1, double *mbbY1, double *mbbX2, double *mbbY2) {
     Red_Black_Root *tree = t;
     Red_Black_Node *rb_node = getNodeSRB(tree, xa, ya, mbbX1, mbbY1, mbbX2, mbbY2);
     Red_Black_Node *nil = tree->nil;
@@ -395,7 +397,9 @@ void removeSRB(SRBTree t, double xa, double ya, double *mbbX1, double *mbbY1, do
             } else {
                 rb_node->parent->right = NULL;
             }
+            Info aux = rb_node->value;
             free(rb_node);
+            return (aux);
             return;
 
         } else if (!rb_node->left && !rb_node->right && isBlack(rb_node)) {
@@ -414,7 +418,9 @@ void removeSRB(SRBTree t, double xa, double ya, double *mbbX1, double *mbbY1, do
                 aux_p->right = nil;
             }
             removeNils(tree, tree->root);
+            Info aux = rb_node->value;
             free(rb_node);
+            return (aux);
             return;
         }
 
@@ -460,10 +466,12 @@ void removeSRB(SRBTree t, double xa, double ya, double *mbbX1, double *mbbY1, do
             fixRBdelete(tree, x);
         }
     }
+    Info aux = rb_node->value;
     if (rb_node) {
         free(rb_node);
     }
     removeNils(tree, tree->root);
+    return (aux);
 }
 
 void transplantRB(SRBTree t, Node n, Node n2) {
@@ -688,6 +696,7 @@ void freeAux(Node root) {
         return;
     }
 
+    free(node->value);
     freeAux(node->left);
     freeAux(node->right);
     if (node) {
