@@ -7,6 +7,12 @@ clear:
 	rm *.o
 	rm $(PROJECT_NAME)
 
+pack: $(PROJECT_NAME)
+	rm -f ../$(ALUNO).zip
+	echo $(ALUNO)
+	date >> .entrega
+	cd ..; zip $(ALUNO).zip -r src/*.c src/*.h src/Makefile LEIA-ME.txt .entrega
+
 $(PROJECT_NAME): main.o geo.o list.o paths.o qry.o shapes.o srb_tree.o svg.o system.o 
 	$(EXEC) $(CFLAGS) main.o geo.o list.o paths.o qry.o shapes.o srb_tree.o svg.o system.o -o $(PROJECT_NAME) -lm
 
@@ -36,9 +42,3 @@ svg.o: svg.c svg.h
 
 system.o: system.c system.h
 	$(EXEC) $(CFLAGS) -c system.c
-
-pack: $(PROJ_NAME)
-	rm -f ../$(ALUNO).zip
-	echo $(ALUNO)
-	date >> .entrega
-	cd ..; zip $(ALUNO).zip -r src/*.c src/*.h src/Makefile LEIA-ME.txt .entrega
