@@ -120,7 +120,8 @@ Node insertAux(SRBTree t, Node n, double x, double y, double mbbX1, double mbbY1
 }
 
 Node insertBBSRB(SRBTree t, double mbbX1, double mbbY1, double mbbX2, double mbbY2, Info info) {
-    insertSRB(t, mbbX1, mbbY1, mbbX1, mbbY1, mbbX2, mbbY2, info);
+    return insertSRB(t, mbbX1, mbbY1, mbbX1, mbbY1, mbbX2, mbbY2, info);
+
 }
 
 void fixRBinsert(SRBTree t, Node n) {

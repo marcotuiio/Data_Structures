@@ -321,8 +321,8 @@ void d_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2,
             if (shot) {
                 // arrumar MBB !!
                 addGold(nau, getGold(i));
+                fprintf(txt, "\t Acertou e destrui nau id = %d, x = %lf, y = %lf, gold = %lf\n", getId(i), getX(i), getY(i), getGold(i));
                 removeSRB(t, getX(i), getY(i), getX(i), getY(i), getX(i)+getW(i), getY(i)+getH(i));
-                fprintf(txt, "\t Acertou e destrui nau id = %d, x = %lf, y = %lf, gold = %lf\n", getId(i), getX(i), getY(i), fetGold(i));
             }
         }
     }
