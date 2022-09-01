@@ -94,7 +94,7 @@ FILE *openTxt(char *bsdTxt) {
     return txt;
 }
 
-Info find_id(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, void *aux) {
+void find_id(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, void *aux) {
     AUXLR *aux0 = aux;
     int id = aux0->i;
 
@@ -159,12 +159,14 @@ void mv_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2
 
     // Fazer funçoes para cuidar da MBB e energia de deslocamento !!!!
     if (getId(i) == id) {
-        fprintf(txt, "id = %d, xi = %lf, yi = %lf, ", getId(i), getX(i), getY(i));
-        removeSRB(t, getX(i), getY(i), NULL, NULL, NULL, NULL);
-        setX(i, x + dx);
-        setY(i, y + dy);
-        fprintf(txt, "xf = %lf, yf = %lf\n", getX(i), getY(i));
-        insertSRB(t, x + dx, y + dy, 0, 0, 0, 0, i);
+        if (energyDeslocamento(i, dx)) {
+            fprintf(txt, "id = %d, xi = %lf, yi = %lf, ", getId(i), getX(i), getY(i));
+            removeSRB(t, getX(i), getY(i), getX(i), getY(i), getX(i)+getW(i), getY(i)+getH(i));
+            setX(i, x + dx);
+            setY(i, y + dy);
+            fprintf(txt, "xf = %lf, yf = %lf\n", getX(i), getY(i));
+            insertSRB(t, x + dx, y + dy, getX(i), getY(i), getX(i)+getW(i), getY(i)+getH(i), i);
+        }
     }
 }
 
@@ -207,27 +209,53 @@ void lr_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2
     double h = data->h;
     double d = data->d;
     Info nau = data->nau;
-    SRBTree t = data->t;
-    double xr, yr;
 
     // olhar energia para jogar rede, ver o que ta dentro, remover e atribuir as recompensas
     // redes são lançadas a partir da ancora do retangulo (nau)
     if (getId(i) != id) {
-        if (!strcmp(lado, "PP")) {  // lado da frente, lado a ancora, rede para cima
-            xr = getX(nau);
-            yr = getY(nau) - h - d;
+        if (energyArremesso(nau, d, w * h)) {
+            double xr, yr;
+            if (!strcmp(lado, "PP")) {  // lado da frente, lado a ancora, rede para cima
+                xr = getX(nau);
+                yr = getY(nau) - h - d;
 
-        } else if (!strcmp(lado, "EB")) {  // esquerda, lado a ancora, rede para esquerda
-            xr = getX(nau) - w - d;
-            yr = getY(nau);
+            } else if (!strcmp(lado, "EB")) {  // esquerda, lado a ancora, rede para esquerda
+                xr = getX(nau) - w - d;
+                yr = getY(nau);
 
-        } else if (!strcmp(lado, "BB")) {  // direita, lado ancora+largura, rede para direita
-            xr = getX(nau) + getW(nau) + d;
-            yr = getY(nau);
+            } else if (!strcmp(lado, "BB")) {  // direita, lado ancora+largura, rede para direita
+                xr = getX(nau) + getW(nau) + d;
+                yr = getY(nau);
 
-        } else if (!strcmp(lado, "PR")) {  // baixo, lado da ancora+altura, rede para baixo
-            xr = getX(nau);
-            yr = getY(nau) + getH(nau) + d;
+            } else if (!strcmp(lado, "PR")) {  // baixo, lado da ancora+altura, rede para baixo
+                xr = getX(nau);
+                yr = getY(nau) + getH(nau) + d;
+            }
+
+            bool pescou = insideNet(i, xr, yr, w, h);
+            if (pescou) {
+                // remover e fazer tabela de recompensa para energia
+                char recompensa[20];
+                if (getType(i) == 1) {
+                    strcpy(recompensa, "PEIXE");
+                    addGold(nau, 5);
+                } else if (getType(i) == 3) {
+                    strcpy(recompensa, "CAMARÃO");
+                    addGold(nau, 10);
+                } else if (getType(i) == 4) {
+                    if (!strcmp(getText(i), "$")) {
+                        strcpy(recompensa, "MOEDA");
+                        setEnergy(nau, getEnergy(nau) + 0.5);
+                    } else if (!strcmp(getText(i), ">-|-<")) {
+                        strcpy(recompensa, "LAGOSTA");
+                        addGold(nau, 20);
+                    } else {
+                        strcpy(recompensa, "DETRITOS");
+                    }
+                }
+                fprintf(txt, "NAU = %d, x = %lf, y= %lf, gold = %lf, e = %lf\n", getId(nau), getX(nau), getY(nau), getGold(nau), getEnergy(nau));
+                fprintf(txt, "\tPESCOU %s, id = %d, x = %lf, y = %lf\n", recompensa, getId(i), getX(i), getY(i));
+            }
         }
     }
 }
@@ -270,28 +298,32 @@ void d_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2,
     // fazer os calculos de energia para tiro e reportar txt!!
 
     // o tiro é lançado na parte central do lado definido do retangulo (nau)
-    bool shot = false;
     if (getId(i) != id) {
-        if (!strcmp(lado, "PP")) {  // lado da frente, tiro para cima
-            xt = getX(nau) + getW(nau) / 2;
-            yt = getY(nau) - d;
+        if (energyShot(nau, d)) {
+            if (!strcmp(lado, "PP")) {  // lado da frente, tiro para cima
+                xt = getX(nau) + getW(nau) / 2;
+                yt = getY(nau) - d;
 
-        } else if (!strcmp(lado, "EB")) {  // esquerda, lado a ancora, rede para esquerda
-            xt = getX(nau) - d;
-            yt = getY(nau) + getH(nau) / 2;
+            } else if (!strcmp(lado, "EB")) {  // esquerda, lado a ancora, rede para esquerda
+                xt = getX(nau) - d;
+                yt = getY(nau) + getH(nau) / 2;
 
-        } else if (!strcmp(lado, "BB")) {  // direita, lado ancora+largura, rede para direita
-            xt = getX(nau) + getW(nau) + d;
-            yt = getY(nau) + getH(nau) / 2;
+            } else if (!strcmp(lado, "BB")) {  // direita, lado ancora+largura, rede para direita
+                xt = getX(nau) + getW(nau) + d;
+                yt = getY(nau) + getH(nau) / 2;
 
-        } else if (!strcmp(lado, "PR")) {  // baixo, lado da ancora+altura, rede para baixo
-            xt = getX(nau) + getW(nau) / 2;
-            yt = getY(nau) + getH(nau) + d;
-        }
-        bool shot = hitRectangle(i, xt, yt);
-        if (shot) {
-            // arrumar MBB !!
-            removeSRB(t, getX(i), getY(i), NULL, NULL, NULL, NULL);
+            } else if (!strcmp(lado, "PR")) {  // baixo, lado da ancora+altura, rede para baixo
+                xt = getX(nau) + getW(nau) / 2;
+                yt = getY(nau) + getH(nau) + d;
+            }
+            bool shot = hitRectangle(i, xt, yt);
+            fprintf(txt, "Nau id = %d, Atirou em: x = %lf, y = %lf\n", getId(nau), xt, yt);
+            if (shot) {
+                // arrumar MBB !!
+                addGold(nau, getGold(i));
+                removeSRB(t, getX(i), getY(i), getX(i), getY(i), getX(i)+getW(i), getY(i)+getH(i));
+                fprintf(txt, "\t Acertou e destrui nau id = %d, x = %lf, y = %lf, gold = %lf\n", getId(i), getX(i), getY(i), fetGold(i));
+            }
         }
     }
 }
@@ -336,11 +368,11 @@ void mc_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2
     if (getType(i) == 1) {
         if (fishInside(i, x1, y1, w, h)) {
             fprintf(txt, "id = %d, xi = %lf, yi = %lf, ", getId(i), getX(i), getY(i));
-            removeSRB(t, getX(i), getY(i), NULL, NULL, NULL, NULL);
+            removeSRB(t, getX(i), getY(i), getX(i), getY(i), getX(i)+getW(i), getY(i)+getH(i));
             setX(i, x + dx);
             setY(i, y + dy);
             fprintf(txt, "xf = %lf, yf = %lf\n", getX(i), getY(i));
-            insertSRB(t, x + dx, y + dy, 0, 0, 0, 0, i);
+            insertSRB(t, x + dx, y + dy, getX(i), getY(i), getX(i)+getW(i), getY(i)+getH(i), i);
         }
     }
 }

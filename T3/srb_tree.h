@@ -87,7 +87,7 @@ void updateInfoSRB(SRBTree t, Node n, Info i);
 valores.
  */
 
-Info removeSRB(SRBTree t, double xa, double ya, double *mbbX1, double *mbbY1, double *mbbX2, double *mbbY2);
+Info removeSRB(SRBTree t, double xa, double ya, double mbbX1, double mbbY1, double mbbX2, double mbbY2);
 /*
   Remove o nó da árvore cuja chave é a coordenada (xa,ya). Qualquer nó da árvore retornado por operações anteriores
   deve ser considerado invalido.

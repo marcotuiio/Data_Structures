@@ -67,11 +67,29 @@ void setEnergy(Info rect, double energy);
 double getEnergy(Info rect);
 // Recebe um retangulo (nau) e retorna a sua energia
 
+void addGold(Info rect, double gold);
+// Recebe um retangulo (nau) e atribui a sua quantidade de ouro
+
+double getGold(Info rect);
+// Recebe um retangulo (nau) e retorna a sua quantidade de ouro
+
 void setX(Info f, double dx);
 // Recebe uma forma e translada sua posicao em dx
 
 void setY(Info f, double dy);
 // Recebe uma forma e translada sua posicao em dy
+
+bool energyDeslocamento(Info i, double d);
+// Recebe uma nau e o deslocamento proposto, calcula se possui energia
+// realiza a atualização e retorna verdadeiro, caso não seja possivel, falso
+
+bool energyArremesso(Info i, double d, double A);
+// Recebe uma nau e a area de rede do lançamento, calcula se possui energia
+// realiza a atualização e retorna verdadeiro, caso não seja possivel, falso
+
+bool energyShot(Info i, double d);
+// Recebe uma nau e o d do tiro proposto, calcula se possui energia
+// realiza a atualização e retorna verdadeiro, caso não seja possivel, falso
 
 bool hitRectangle(Info i, double xt, double yt);
 // Recebe uma forma e um ponto e retorna se o ponto esta dentro da forma

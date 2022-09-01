@@ -4,7 +4,7 @@ struct fig {
     char type[3];               // geral
     int id;                     // geral
     double x, y;                // geral
-    double w, h, energy;        // retangulo
+    double w, h, energy, gold;  // retangulo
     double r;                   // circulo
     double x2, y2;              // linha
     char anchor[3], text[100];  // texto
@@ -30,11 +30,12 @@ void setCircle(FILE *geo, SRBTree t, Info f) {
     fscanf(geo, "%s", shape->fill);
 
     shape->energy = -1;
+    shape->gold = -1;
     shape->w = shape->h = shape->x2 = shape->y2 = 0;
     strcpy(shape->anchor, "0");
     strcpy(shape->text, "0");
-
-    insertSRB(t, shape->x, shape->y, 0, 0, 0, 0, shape);
+    // mbb de circulo é um retangulo que contem o mesmo
+    insertSRB(t, shape->x, shape->y, shape->x - shape->r, shape->y - shape->r, shape->x + shape->r, shape->y + shape->r, shape);
 }
 
 void setRectangle(FILE *geo, SRBTree t, Info f) {
@@ -50,12 +51,13 @@ void setRectangle(FILE *geo, SRBTree t, Info f) {
     fscanf(geo, "%s", shape->stroke);
     fscanf(geo, "%s", shape->fill);
     shape->energy = 0;
+    shape->gold = 0;
 
     shape->r = shape->x2 = shape->y2 = 0;
     strcpy(shape->anchor, "0");
     strcpy(shape->text, "0");
-
-    insertSRB(t, shape->x, shape->y, 0, 0, 0, 0, shape);
+    // mbb de retangulo é ele mesmo
+    insertSRB(t, shape->x, shape->y, shape->x, shape->y, shape->x + shape->w, shape->y + shape->h, shape);
 }
 
 void setLine(FILE *geo, SRBTree t, Info f) {
@@ -71,12 +73,21 @@ void setLine(FILE *geo, SRBTree t, Info f) {
     fscanf(geo, "%s", shape->stroke);
 
     shape->energy = -1;
+    shape->gold = -1;
     shape->w = shape->h = shape->r = 0;
     strcpy(shape->anchor, "0");
     strcpy(shape->text, "0");
     strcpy(shape->fill, "none");
 
-    insertSRB(t, shape->x, shape->y, 0, 0, 0, 0, shape);
+    double y_aux, y2_aux;
+    if (shape->y < shape->y2) {
+        y_aux = shape->y;
+        y2_aux = shape->y2;
+    } else {
+        y_aux = shape->y2;
+        y2_aux = shape->y;
+    }
+    insertSRB(t, shape->x, shape->y, shape->x, y_aux, shape->x2, y2_aux, shape);
 }
 
 void setText(FILE *geo, SRBTree t, Info f) {
@@ -93,9 +104,10 @@ void setText(FILE *geo, SRBTree t, Info f) {
     fscanf(geo, "%[^\n]", shape->text);
 
     shape->energy = -1;
+    shape->gold = -1;
     shape->w = shape->h = shape->r = shape->x2 = shape->y2 = 0;
 
-    insertSRB(t, shape->x, shape->y, 0, 0, 0, 0, shape);
+    insertSRB(t, shape->x, shape->y, shape->x, shape->y, shape->x, shape->y, shape);
 }
 
 int getType(Info f) {
@@ -207,6 +219,16 @@ double getEnergy(Info rect) {
     return shape->energy;
 }
 
+void addGold(Info rect, double gold) {
+    Shapes *shape = rect;
+    shape->gold = shape->gold + gold;
+}
+
+double getGold(Info rect) {
+    Shapes *shape = rect;
+    return shape->gold;
+}
+
 void setX(Info f, double dx) {
     Shapes *shape = f;
     shape->x = shape->x + dx;
@@ -215,6 +237,38 @@ void setX(Info f, double dx) {
 void setY(Info f, double dy) {
     Shapes *shape = f;
     shape->y = shape->y + dy;
+}
+
+bool energyDeslocamento(Info i, double d) {
+    Shapes *nau = i;
+    double e = d / 5;
+
+    if ((nau->energy - e) >= 0) {
+        nau->energy = nau->energy - e;
+        return true;
+    }
+    return false;
+}
+
+bool energyArremesso(Info i, double d, double A) {
+    Shapes *nau = i;
+    double e = A/25 * d/5;
+
+    if ((nau->energy - e) >= 0) {
+        nau->energy = nau->energy - e;
+        return true;
+    }
+    return false;
+}
+
+bool energyShot(Info i, double d) {
+    Shapes *nau = i;
+
+    if ((nau->energy - d) >= 0) {
+        nau->energy = nau->energy - d;
+        return true;
+    }
+    return false;
 }
 
 bool hitRectangle(Info i, double xt, double yt) {
@@ -231,7 +285,7 @@ bool hitRectangle(Info i, double xt, double yt) {
     return false;
 }
 
-bool insideNetAll(Info i, double xr, double yr, double w, double h) {
+bool insideNet(Info i, double xr, double yr, double w, double h) {
     bool inside = false;
     double x1 = getX(i);
     double y1 = getY(i);

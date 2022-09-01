@@ -119,8 +119,9 @@ Node insertAux(SRBTree t, Node n, double x, double y, double mbbX1, double mbbY1
     return new_node;
 }
 
-// TODO
-// Node insertBBSRB(SRBTree t, double mbbX1, double mbbY1, double mbbX2, double mbbY2, Info info) {}
+Node insertBBSRB(SRBTree t, double mbbX1, double mbbY1, double mbbX2, double mbbY2, Info info) {
+    insertSRB(t, mbbX1, mbbY1, mbbX1, mbbY1, mbbX2, mbbY2, info);
+}
 
 void fixRBinsert(SRBTree t, Node n) {
     Red_Black_Root *rb_tree = t;
@@ -376,13 +377,13 @@ void updateInfoSRB(SRBTree t, Node n, Info i) {
 }
 
 // Cases and algorithm of deletion: https://www.geeksforgeeks.org/red-black-tree-set-3-delete-2/
-Info removeSRB(SRBTree t, double xa, double ya, double *mbbX1, double *mbbY1, double *mbbX2, double *mbbY2) {
+Info removeSRB(SRBTree t, double xa, double ya, double mbbX1, double mbbY1, double mbbX2, double mbbY2) {
     Red_Black_Root *tree = t;
-    Red_Black_Node *rb_node = getNodeSRB(tree, xa, ya, mbbX1, mbbY1, mbbX2, mbbY2);
+    Red_Black_Node *rb_node = getNodeSRB(tree, xa, ya, &mbbX1, &mbbY1, &mbbX2, &mbbY2);
     Red_Black_Node *nil = tree->nil;
     if (!rb_node) {
         printf("NO NODE FOUND\n");
-        return;
+        return NULL;
     }
 
     if (fabs(rb_node->x - xa) <= tree->epislon && fabs(rb_node->y - ya) <= tree->epislon) {
@@ -400,7 +401,6 @@ Info removeSRB(SRBTree t, double xa, double ya, double *mbbX1, double *mbbY1, do
             Info aux = rb_node->value;
             free(rb_node);
             return (aux);
-            return;
 
         } else if (!rb_node->left && !rb_node->right && isBlack(rb_node)) {
             Red_Black_Node *aux_p = rb_node->parent;
@@ -421,7 +421,6 @@ Info removeSRB(SRBTree t, double xa, double ya, double *mbbX1, double *mbbY1, do
             Info aux = rb_node->value;
             free(rb_node);
             return (aux);
-            return;
         }
 
         if (!rb_node->left && rb_node->right) {
