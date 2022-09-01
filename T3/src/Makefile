@@ -1,6 +1,7 @@
 EXEC = gcc
 CFLAGS = -std=c99 -fstack-protector-all -g -Wall
 PROJECT_NAME = ted
+ALUNO = marcotab
 
 clear:
 	rm *.o
@@ -35,3 +36,9 @@ svg.o: svg.c svg.h
 
 system.o: system.c system.h
 	$(EXEC) $(CFLAGS) -c system.c
+
+pack: $(PROJ_NAME)
+	rm -f ../$(ALUNO).zip
+	echo $(ALUNO)
+	date >> .entrega
+	cd ..; zip $(ALUNO).zip -r src/*.c src/*.h src/Makefile LEIA-ME.txt .entrega
