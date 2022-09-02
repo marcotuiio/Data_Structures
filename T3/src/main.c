@@ -20,7 +20,8 @@ int main(int argc, char** argv) {
     } else {
         return 0;  // ERRO!
     }
-    percursoLargura(my_tree, NULL, NULL);
+    // percursoLargura(my_tree, NULL, NULL);
+    preOrder(getRoot(my_tree));
 
     if (checkQRY(my_ctrl)) {
         readQry(my_tree, getBedQry(my_paths), getBsdGeoQrySvg(my_paths), getBsdGeoQryTxt(my_paths));

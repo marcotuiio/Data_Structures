@@ -1,6 +1,7 @@
 EXEC = gcc
 CFLAGS = -std=c99 -fstack-protector-all -g -Wall
 PROJECT_NAME = ted
+OBJETCS = main.o geo.o list.o paths.o qry.o shapes.o srb_tree.o svg.o system.o
 ALUNO = marcotab
 
 clear:
@@ -13,8 +14,8 @@ pack: $(PROJECT_NAME)
 	date >> .entrega
 	cd ..; zip $(ALUNO).zip -r src/*.c src/*.h src/Makefile LEIA-ME.txt .entrega
 
-$(PROJECT_NAME): main.o geo.o list.o paths.o qry.o shapes.o srb_tree.o svg.o system.o 
-	$(EXEC) $(CFLAGS) main.o geo.o list.o paths.o qry.o shapes.o srb_tree.o svg.o system.o -o $(PROJECT_NAME) -lm
+$(PROJECT_NAME): $(OBJETCS) 
+	$(EXEC) $(CFLAGS) $(OBJETCS) -o $(PROJECT_NAME) -lm
 
 main.o: main.c
 	$(EXEC) $(CFLAGS) -c main.c

@@ -6,7 +6,8 @@
 struct node {
     Info value;
     double x, y;
-    double mbbX1, mbbX2, mbbY1, mbbY2;
+    double mbbX1, mbbX2, mbbY1, mbbY2;      // minimum bounding box da figura
+    double SmbbX1, SmbbX2, SmbbY1, SmbbY2;  // minimum bounding box da subárvore
     struct node *parent;
     struct node *left;
     struct node *right;
@@ -33,6 +34,9 @@ bool isBlack(Node n);
 void paintBlack(Node n);
 bool isRed(Node n);
 void paintRed(Node n);
+void getMBBSub(Node n, double *x1, double *y1, double *x2, double *y2);
+void uniteMBB(double x11, double y11, double x12, double y12, double x21, double y21, double x22, double y22, double *xr1, double *yr1, double *xr2, double *yr2);
+void fixTreeMBB(SRBTree t, Node n);
 void rectangleOverlaps(Node n, double x, double y, double w, double h, Lista resultado);
 void mbbFullyInside(Node n, double x, double y, double w, double h, Lista resultado);
 Node searchNode(SRBTree t, Node n, double xa, double ya, double *mbbX1, double *mbbY1, double *mbbX2, double *mbbY2);
@@ -86,6 +90,7 @@ Node insertSRB(SRBTree t, double x, double y, double mbbX1, double mbbY1, double
     insertAux(t, red_black_tree->root, x, y, mbbX1, mbbY1, mbbX2, mbbY2, info);
     Red_Black_Node *new_node = getNodeSRB(t, x, y, &mbbX1, &mbbY1, &mbbX2, &mbbY2);
     fixRBinsert(t, new_node);
+    fixTreeMBB(t, new_node);
     return new_node;
 }
 
@@ -262,6 +267,52 @@ void paintRed(Node n) {
     strcpy(node->color, "RED");
 }
 
+void getMBBSub(Node n, double *x1, double *y1, double *x2, double *y2) {
+    Red_Black_Node *node = n;
+
+    if (!node->left && !node->right) {
+        *x1 = node->mbbX1;
+        *y1 = node->mbbY1;
+        *x2 = node->mbbX2;
+        *y2 = node->mbbY2;
+    } else {
+        *x1 = node->SmbbX1;
+        *y1 = node->SmbbY1;
+        *x2 = node->SmbbX2;
+        *y2 = node->SmbbY2;
+    }
+    
+}
+
+void uniteMBB(double x11, double y11, double x12, double y12, double x21, double y21, double x22, double y22, double *xr1, double *yr1, double *xr2, double *yr2) {
+    *xr1 = x11 < x21 ? x11 : x21;
+    *yr1 = y11 < y21 ? y11 : y21;
+    *xr2 = x12 > x22 ? x12 : x22;
+    *yr2 = y12 > y22 ? y12 : y22;
+}
+
+void fixTreeMBB(SRBTree t, Node n) {
+    Red_Black_Node *node = n;
+
+    while (node) {
+
+        if (node->left) {
+            getMBBSub(node->left, &node->SmbbX1, &node->SmbbY1, &node->SmbbX2, &node->SmbbY2);
+        } else {
+            getMBBSub(node, &node->SmbbX1, &node->SmbbY1, &node->SmbbX2, &node->SmbbY2);
+        }
+
+        if (node->right) {
+            getMBBSub(node->right, &node->SmbbX1, &node->SmbbY1, &node->SmbbX2, &node->SmbbY2);
+        } else {
+            getMBBSub(node, &node->SmbbX1, &node->SmbbY1, &node->SmbbX2, &node->SmbbY2);
+        }
+
+        uniteMBB(node->mbbX1, node->mbbY1, node->mbbX2, node->mbbY2, node->SmbbX1, node->SmbbY1, node->SmbbX2, node->SmbbY2, &node->SmbbX1, &node->SmbbY1, &node->SmbbX2, &node->SmbbY2);
+        node = node->parent;
+    }
+}
+
 void getBBPartSRB(SRBTree t, double x, double y, double w, double h, Lista resultado) {  // MBB do node e retangulo tem alguma intersecção
     Red_Black_Root *tree = t;
     rectangleOverlaps(tree->root, x, y, w, h, resultado);
@@ -399,7 +450,10 @@ Info removeSRB(SRBTree t, double xa, double ya, double mbbX1, double mbbY1, doub
                 rb_node->parent->right = NULL;
             }
             Info aux = rb_node->value;
+            Node p = rb_node->parent;
             free(rb_node);
+            fixTreeMBB(tree, p);
+            tree->size--;
             return (aux);
 
         } else if (!rb_node->left && !rb_node->right && isBlack(rb_node)) {
@@ -419,7 +473,10 @@ Info removeSRB(SRBTree t, double xa, double ya, double mbbX1, double mbbY1, doub
             }
             removeNils(tree, tree->root);
             Info aux = rb_node->value;
+            Node p = rb_node->parent;
             free(rb_node);
+            fixTreeMBB(tree, p);
+            tree->size--;
             return (aux);
         }
 
@@ -466,10 +523,13 @@ Info removeSRB(SRBTree t, double xa, double ya, double mbbX1, double mbbY1, doub
         }
     }
     Info aux = rb_node->value;
+    Node p = rb_node->parent;
     if (rb_node) {
         free(rb_node);
     }
-    removeNils(tree, tree->root);
+    removeNils(tree, tree->root);   
+    fixTreeMBB(tree, p);
+    tree->size--;
     return (aux);
 }
 
@@ -702,3 +762,26 @@ void freeAux(Node root) {
         free(node);
     }
 }
+
+// DELETAR
+
+// void printMBB(Node n) {
+//     Red_Black_Node *node = n;
+//     printf("MBB: (%.2lf, %.2lf) (%.2lf, %.2lf)\n", node->mbbX1, node->mbbY1, node->mbbX2, node->mbbY2);
+//     printf("SMBB: (%.2lf, %.2lf) (%.2lf, %.2lf)\n", node->SmbbX1, node->SmbbY1, node->SmbbX2, node->SmbbY2);
+// }
+
+// Node preOrder(Node n) {
+//     Red_Black_Node *node = n;
+//     if (!node) {
+//         return NULL;
+//     }
+//     printMBB(node);
+//     preOrder(node->left);
+//     preOrder(node->right);
+// }
+
+// Node getRoot(SRBTree t) {
+//     Red_Black_Root *tree = t;
+//     return tree->root;
+// }
