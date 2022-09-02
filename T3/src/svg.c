@@ -51,7 +51,7 @@ void drawCircle(FILE *svg, Info circ) {
 
 void drawRectangle(FILE *svg, Info rect) {
     int id;
-    double x, y, h, w;
+    double x, y, h, w, e;
     char fill[15], stroke[15];
 
     id = getId(rect);
@@ -60,7 +60,17 @@ void drawRectangle(FILE *svg, Info rect) {
     h = getH(rect);
     w = getW(rect);
     strcpy(fill, getFill(rect));
-    strcpy(stroke, getStroke(rect));
+    e = getEnergy(rect);
+    
+    if (e == 0) {
+        strcpy(stroke, "#484537");
+    } else if (e > 0 && e < 10) {
+        strcpy(stroke, "#FFCC00");
+    } else if (e >= 10 && e < 30) {
+        strcpy(stroke, "#217821");
+    } else if (e >= 30) {
+        strcpy(stroke, "#800066");
+    }
 
     fprintf(svg, RECTANGLE, id, x, y, w, h, stroke, fill);
 }
