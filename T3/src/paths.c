@@ -10,8 +10,10 @@ struct param {
     char* qryarq;        // pasta/arq.qry
     char* qryname;       // only name (no .qry)
     char* bsdgeosvg;     // bsd/nomegeo.svg
+    char* bsdgeodot;     // bsd/nomegeo.dot
     char* bsdgeoqrysvg;  // bsd/nomegeo_nomeqry.svg
     char* bsdgeoqrytxt;  // bsd/nomegeo_nomeqry.txt
+    char* bsdgeoqrydot   // bsd/nomegeo_nomeqry.dot
 };
 typedef struct param AllPaths;
 
@@ -133,6 +135,16 @@ char* getBsdGeoSvg(Paths path) {
     return paths->bsdgeosvg;
 }
 
+void setBsdGeoDot(Paths path, char* bsdgeodot) {
+    AllPaths* paths = path;
+    paths->bsdgeodot = bsdgeodot;
+}
+
+char* getBsdGeoDot(Paths path) {
+    AllPaths* paths = path;
+    return paths->bsdgeodot;
+}
+
 void setBsdGeoQrySvg(Paths path, char* bsdgeoqrysvg) {
     AllPaths* paths = path;
     paths->bsdgeoqrysvg = bsdgeoqrysvg;
@@ -153,6 +165,17 @@ char* getBsdGeoQryTxt(Paths path) {
     return paths->bsdgeoqrytxt;
 }
 
+void setBsdGeoQryDot(Paths path, char* bsdgeoqrydot) {
+    AllPaths* paths = path;
+    paths->bsdgeoqrydot = bsdgeoqrydot;
+}
+
+char* getBsdGeoQryDot(Paths path) {
+    AllPaths* paths = path;
+    return paths->bsdgeoqrydot;
+}
+
+
 void freePaths(Paths path) {
     AllPaths* paths = path;
 
@@ -164,8 +187,10 @@ void freePaths(Paths path) {
     free(paths->geoarq);
     free(paths->qryname);
     free(paths->qryarq);
+    free(paths->bsdgeosvg);
+    free(paths->bsdgeodot);
     free(paths->bsdgeoqrysvg);
     free(paths->bsdgeoqrytxt);
-    free(paths->bsdgeosvg);
+    free(paths->bsdgeoqrydot);
     free(paths);
 }

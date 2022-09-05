@@ -44,6 +44,7 @@ void transplantRB(SRBTree t, Node n, Node n2);
 void fixRBdelete(SRBTree t, Node n);
 Node getLargestLeft(Node n);
 Node getSmallestRight(Node n);
+void makeDot(Node n, char *dotFile);
 void traverseAux(Node root, FvisitaNo f, void *aux);
 void levelOrderAux(Node root, int level);
 int heightOfLevel(Node n);
@@ -641,7 +642,43 @@ Node getSmallestRight(Node n) {
 }
 
 // TODO
-// void printSRB(SRBTree t, char *nomeArq) {}
+void printSRB(SRBTree t, char *nomeArq) {
+    Red_Black_Root *tree = t;
+    char node[] = "[fontname=\"\ Helvetica,Arial,sans-serif\"\ style=\"\ filled\"\]";
+    char edge[] = "[fontname=\"\ Helvetica,Arial,sans-serif\"\ color=\"\ black\"\]";
+/////
+    fprintf(nomeArq, "digraph G {\n");
+    fprintf(nomeArq, "node %s", node);
+    fprintf(nomeArq, "edge %s", edge);
+    makeDot(tree->root, nomeArq);
+    fprintf(nomeArq, "\n}\n");
+}
+
+void makeDot(Node n, char *dotFile) {
+    Red_Black_Node *node = n;
+
+    if (!node) {
+        return;
+    } 
+
+    if (node) {
+        if (isBlack(node)) {
+            fprintf(dotFile, "node [fillcolor=\"\ black\"\ fontcolor=\"\ white\"\ ] %lf \n", getId(node->value));
+        } else if (isRed(node)) {
+            fprintf(dotFile, "node [fillcolor=\"\ red\"\ fontcolor=\"\ white\"\ ] %lf \n", getId(node->value));
+        }
+
+        if (node->left) {
+            fprintf(dotFile, "%lf -> %lf \n", getId(node->value), getId(node->left->value));
+        }
+        if (node->right) {
+            fprintf(dotFile, "%lf -> %lf \n", getId(node->value), getId(node->right->value));
+        }
+    }
+
+    makeDot(node->left, dotFile);
+    makeDot(node->right, dotFile);
+}
 
 void percursoProfundidade(SRBTree t, FvisitaNo f, void *aux) {
     Red_Black_Root *br_tree = t;

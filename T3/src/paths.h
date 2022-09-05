@@ -75,6 +75,13 @@ void setBsdGeoSvg(Paths path, char* bsdgeosvg);
 char* getBsdGeoSvg(Paths path);
 // Retorna apenas o diretório de saída com geo e .svg
 
+void setBsdGeoDot(Paths path, char* bsdgeodot);
+// Atribui o nome do arquivo geo concatenado com o diretório de
+// saída e a terminação .dot em sua devida variável
+
+char* getBsdGeoDot(Paths path);
+// Retorna apenas o diretório de saída com geo e .dot
+
 void setBsdGeoQrySvg(Paths path, char* bsdgeoqrysvg);
 // Atribui o nome do arquivo geo concatenado com o nome
 // do arquivo qry, o diretório de saída e a terminação
@@ -90,6 +97,14 @@ void setBsdGeoQryTxt(Paths path, char* bsdgeoqrytxt);
 
 char* getBsdGeoQryTxt(Paths path);
 // Retorna apenas o diretório de saída com geo, qry e .txt
+
+void setBsdGeoQryDot(Paths path, char* bsdgeoqrytxt);
+// Atribui o nome do arquivo geo concatenado com o nome
+// do arquivo qry, o diretório de saída e a terminação
+// .dot em sua devida variável
+
+char* getBsdGeoQryDot(Paths path);
+// Retorna apenas o diretório de saída com geo, qry e .dot
 
 void freePaths(Paths path);
 // Realiza liberação de memória de todos os parâmetros de entrada
