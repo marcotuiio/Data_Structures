@@ -44,7 +44,7 @@ void transplantRB(SRBTree t, Node n, Node n2);
 void fixRBdelete(SRBTree t, Node n);
 Node getLargestLeft(Node n);
 Node getSmallestRight(Node n);
-void makeDot(Node n, char *dotFile);
+void makeDot(Node n, FILE *dotFile);
 void traverseAux(Node root, FvisitaNo f, void *aux);
 void levelOrderAux(Node root, int level);
 int heightOfLevel(Node n);
