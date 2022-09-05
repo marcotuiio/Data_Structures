@@ -641,20 +641,20 @@ Node getSmallestRight(Node n) {
     return node;
 }
 
-// TODO
 void printSRB(SRBTree t, char *nomeArq) {
     Red_Black_Root *tree = t;
     char node[] = "[fontname=\"\ Helvetica,Arial,sans-serif\"\ style=\"\ filled\"\]";
     char edge[] = "[fontname=\"\ Helvetica,Arial,sans-serif\"\ color=\"\ black\"\]";
-/////
-    fprintf(nomeArq, "digraph G {\n");
-    fprintf(nomeArq, "node %s", node);
-    fprintf(nomeArq, "edge %s", edge);
-    makeDot(tree->root, nomeArq);
+    FILE *dotFile = fopen(nomeArq, "w");
+    
+    fprintf(dotFile, "digraph G {\n");
+    fprintf(dotFile, "node %s", node);
+    fprintf(dotFile, "edge %s", edge);
+    makeDot(tree->root, dotFile);
     fprintf(nomeArq, "\n}\n");
 }
 
-void makeDot(Node n, char *dotFile) {
+void makeDot(Node n, FILE *dotFile) {
     Red_Black_Node *node = n;
 
     if (!node) {
@@ -791,7 +791,6 @@ void freeAux(Node root) {
     if (!node) {
         return;
     }
-
     free(node->value);
     freeAux(node->left);
     freeAux(node->right);
@@ -799,26 +798,3 @@ void freeAux(Node root) {
         free(node);
     }
 }
-
-// DELETAR
-
-// void printMBB(Node n) {
-//     Red_Black_Node *node = n;
-//     printf("MBB: (%.2lf, %.2lf) (%.2lf, %.2lf)\n", node->mbbX1, node->mbbY1, node->mbbX2, node->mbbY2);
-//     printf("SMBB: (%.2lf, %.2lf) (%.2lf, %.2lf)\n", node->SmbbX1, node->SmbbY1, node->SmbbX2, node->SmbbY2);
-// }
-
-// Node preOrder(Node n) {
-//     Red_Black_Node *node = n;
-//     if (!node) {
-//         return NULL;
-//     }
-//     printMBB(node);
-//     preOrder(node->left);
-//     preOrder(node->right);
-// }
-
-// Node getRoot(SRBTree t) {
-//     Red_Black_Root *tree = t;
-//     return tree->root;
-// }
