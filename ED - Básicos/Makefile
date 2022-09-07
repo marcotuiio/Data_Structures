@@ -4,6 +4,7 @@ PROJECT_NAME = ted
 
 clear: 
 	rm *.o
+	rm *.dot
 	rm $(PROJECT_NAME)
 
 $(PROJECT_NAME): main.o red_black_tree.o

@@ -66,7 +66,10 @@ void levelOrderAux(Node root, int level);
 int heightOfLevel(Node n);
 // Percorre a árvore t em nível e imprime o nível de cada nó.
 
-void print(int i, void *aux);
+void printTREE(Tree t, char *nomeArq);
+void makeDotNodes(Node n, FILE *dotFile);
+void makeDotEdges(Node n, FILE *dotFile);
+// Percorre a árvore t e imprime a mesma no formato .dot
 
 void freeTree(Tree t);
 void freeAux(Node n);

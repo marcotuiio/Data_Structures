@@ -8,16 +8,13 @@ int main () {
     for (int i = 0; i < 17; i++) {
         insertTree(t, a[i]);
     }
+    char file[] = "/home/marcotuiio/Data_Structures/ED - Básicos/testes.dot";
+    printTREE(t, file);
 
-    // printf("\n");
-    // traversePreOrder(t, print, NULL);
-    // printf("\n");
+    // printf("\n\tREMOVIDO\n");
+    // removeTree(t, 99);
+    // removeTree(t, 20);
     // levelOrder(t);
-
-    printf("\n\tREMOVIDO\n");
-    removeTree(t, 99);
-    removeTree(t, 20);
-    levelOrder(t);
 
     // REMOVER 20 OK no raiz, preto com dois filhos pretos 
     // REMOVER 23 OK no preto com unico filho a direita

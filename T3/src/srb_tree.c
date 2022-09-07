@@ -44,7 +44,8 @@ void transplantRB(SRBTree t, Node n, Node n2);
 void fixRBdelete(SRBTree t, Node n);
 Node getLargestLeft(Node n);
 Node getSmallestRight(Node n);
-void makeDot(Node n, FILE *dotFile);
+void makeDotNodes(Node n, FILE *dotFile);
+void makeDotEdges(Node n, FILE *dotFile);
 void traverseAux(Node root, FvisitaNo f, void *aux);
 void levelOrderAux(Node root, int level);
 int heightOfLevel(Node n);
@@ -162,7 +163,7 @@ void fixRBinsert(SRBTree t, Node n) {
                 rotateRight(t, z->parent->parent);
             }
 
-            // CASO B: o pai de z é o filho direito do avô de z
+        // CASO B: o pai de z é o filho direito do avô de z
         } else if (z->parent && z->parent == z->parent->parent->right) {
             if (z->parent->parent->left) {
                 uncle_z = z->parent->parent->left;
@@ -195,7 +196,7 @@ void fixRBinsert(SRBTree t, Node n) {
 void rotateLeft(SRBTree t, Node n) {
     Red_Black_Root *red_black_tree = t;
     Red_Black_Node *node = n;                   // avô 2
-    Red_Black_Node *right_child = node->right;  // pai (direita) 7
+    Red_Black_Node *right_child = node->right;  // pai (direita) 
 
     node->right = right_child->left;
     if (node->right) {
@@ -643,41 +644,54 @@ Node getSmallestRight(Node n) {
 
 void printSRB(SRBTree t, char *nomeArq) {
     Red_Black_Root *tree = t;
-    char node[] = "[fontname=\"\ Helvetica,Arial,sans-serif\"\ style=\"\ filled\"\]";
-    char edge[] = "[fontname=\"\ Helvetica,Arial,sans-serif\"\ color=\"\ black\"\]";
+    char node[] = "[fontname=\"Helvetica,Arial,sans-serif\" style=\"filled\"]";
+    char edge[] = "[fontname=\"Helvetica,Arial,sans-serif\" color=\"black\"]" ;
     FILE *dotFile = fopen(nomeArq, "w");
     
-    fprintf(dotFile, "digraph G {\n");
-    fprintf(dotFile, "node %s", node);
-    fprintf(dotFile, "edge %s", edge);
-    makeDot(tree->root, dotFile);
-    fprintf(nomeArq, "\n}\n");
+    fprintf(dotFile, "digraph RB_Teste {\n");
+    fprintf(dotFile, "\tnode %s\n", node);
+    fprintf(dotFile, "\tedge %s\n\n", edge);
+    fprintf(dotFile, "\t{\n");
+    makeDotNodes(tree->root, dotFile);
+    fprintf(dotFile, "\t}\n\n");
+    makeDotEdges(tree->root, dotFile);
+    fprintf(dotFile, "}\n");
+    fclose(dotFile);
 }
 
-void makeDot(Node n, FILE *dotFile) {
+void makeDotNodes(Node n, FILE *dotFile) {
     Red_Black_Node *node = n;
-
     if (!node) {
         return;
     } 
 
     if (node) {
         if (isBlack(node)) {
-            fprintf(dotFile, "node [fillcolor=\"\ black\"\ fontcolor=\"\ white\"\ ] %lf \n", getId(node->value));
+            fprintf(dotFile, "\t\tnode [fillcolor=\" black\" fontcolor=\" white\"] %d \n", getId(node->value));
         } else if (isRed(node)) {
-            fprintf(dotFile, "node [fillcolor=\"\ red\"\ fontcolor=\"\ white\"\ ] %lf \n", getId(node->value));
-        }
-
-        if (node->left) {
-            fprintf(dotFile, "%lf -> %lf \n", getId(node->value), getId(node->left->value));
-        }
-        if (node->right) {
-            fprintf(dotFile, "%lf -> %lf \n", getId(node->value), getId(node->right->value));
+            fprintf(dotFile, "\t\tnode [fillcolor=\" red\" fontcolor=\" white\"] %d \n", getId(node->value));
         }
     }
 
-    makeDot(node->left, dotFile);
-    makeDot(node->right, dotFile);
+    makeDotNodes(node->left, dotFile);
+    makeDotNodes(node->right, dotFile);
+}
+
+void makeDotEdges(Node n, FILE *dotFile) {
+    Red_Black_Node *node = n;
+    if (!node) {
+        return;
+    } 
+
+    if (node->left) {
+        fprintf(dotFile, "\t%d -> %d \n", getId(node->value), getId(node->left->value));
+    }
+    if (node->right) {
+        fprintf(dotFile, "\t%d -> %d \n", getId(node->value), getId(node->right->value));
+    }
+
+    makeDotEdges(node->left, dotFile);
+    makeDotEdges(node->right, dotFile);
 }
 
 void percursoProfundidade(SRBTree t, FvisitaNo f, void *aux) {
@@ -756,7 +770,6 @@ void traverseSim(Node root, FvisitaNo f, void *aux) {
     if (!node) {
         return;
     }
-
     traverseSim(node->left, f, aux);
     f(node->value, node->x, node->y, node->mbbX1, node->mbbY1, node->mbbX2, node->mbbY2, aux);
     traverseSim(node->right, f, aux);
@@ -791,6 +804,7 @@ void freeAux(Node root) {
     if (!node) {
         return;
     }
+
     free(node->value);
     freeAux(node->left);
     freeAux(node->right);

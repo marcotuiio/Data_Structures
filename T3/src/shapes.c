@@ -35,7 +35,7 @@ void setCircle(FILE *geo, SRBTree t, Info f) {
     strcpy(shape->anchor, "0");
     strcpy(shape->text, "0");
     // mbb de circulo é um retangulo que contem o mesmo
-    insertSRB(t, shape->x, shape->y, shape->x - shape->r, shape->y - shape->r, shape->x + shape->r, shape->y + shape->r, shape);
+    insertSRB(t, shape->x, shape->y, shape->x - shape->r, shape->y - shape->r, 2*shape->r, 2*shape->r, shape);
 }
 
 void setRectangle(FILE *geo, SRBTree t, Info f) {
@@ -286,7 +286,6 @@ bool hitRectangle(Info i, double xt, double yt) {
 }
 
 bool insideNet(Info i, double xr, double yr, double w, double h) {
-    bool inside = false;
     double x1 = getX(i);
     double y1 = getY(i);
 
@@ -296,11 +295,11 @@ bool insideNet(Info i, double xr, double yr, double w, double h) {
             if ((xr + w) >= (x1 + r) && (xr) <= (x1 - r)) {
                 if ((yr + h) >= (y1 + r) && (yr) <= (yr - r)) {
                     if (xr <= x1 && yr <= y1) {
-                        inside = true;
+                        return true;
                     }
                 }
             }
-            inside = false;
+            return false;
             break;
 
         case 2:
@@ -312,29 +311,29 @@ bool insideNet(Info i, double xr, double yr, double w, double h) {
             if (((xr + w) >= (x1)) && ((yr + h) >= (y1))) {
                 if (((xr + w) >= (x2)) && ((yr + h) >= (y2))) {
                     if (xr <= x1 && yr <= y1 && xr <= x2 && yr <= y2) {
-                        inside = true;
+                        return true;
                     }
                 }
             }
-            inside = false;
+            return false;
             break;
 
         case 4:
             if ((xr + w) >= (x1) && (yr + h) >= (y1)) {
                 if (xr <= x1 && yr <= y1) {
-                    inside = true;
+                    return true;
                 }
             }
-            inside = false;
+            return false;
+            break;
 
         default:
             break;
     }
-    return inside;
+    return false;
 }
 
 bool fishInside(Info i, double x, double y, double w, double h) {
-    bool inside = false;
     double x1 = getX(i);
     double y1 = getY(i);
 
@@ -342,10 +341,10 @@ bool fishInside(Info i, double x, double y, double w, double h) {
         double r = getR(i);
         if ((x + w) >= (x1 + r) && (x) <= (x1 - r)) {
             if ((y + h) >= (y1 + r) && (y) <= (y - r)) {
-                inside = true;
+                return true;
             }
         }
-        inside = false;
+        return false;
     }
-    return inside;
+    return false;
 }

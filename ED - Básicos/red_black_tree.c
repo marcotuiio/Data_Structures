@@ -518,8 +518,56 @@ int heightOfLevel(Node n) {
     }
 }
 
-void print(int i, void *aux) {
-    printf("%d ", i);
+void printTREE(Tree t, char *nomeArq) {
+    Red_Black_Root *tree = t;
+    char node[] = "[fontname=\"Helvetica,Arial,sans-serif\" style=\"filled\"]";
+    char edge[] = "[fontname=\"Helvetica,Arial,sans-serif\" color=\"black\"]" ;
+    FILE *dotFile = fopen(nomeArq, "w");
+    
+    fprintf(dotFile, "digraph RB_Teste {\n");
+    fprintf(dotFile, "\tnode %s\n", node);
+    fprintf(dotFile, "\tedge %s\n\n", edge);
+    fprintf(dotFile, "\t{\n");
+    makeDotNodes(tree->root, dotFile);
+    fprintf(dotFile, "\t}\n\n");
+    makeDotEdges(tree->root, dotFile);
+    fprintf(dotFile, "}\n");
+    fclose(dotFile);
+}
+
+void makeDotNodes(Node n, FILE *dotFile) {
+    Red_Black_Node *node = n;
+    if (!node) {
+        return;
+    } 
+
+    if (node) {
+        if (isBlack(node)) {
+            fprintf(dotFile, "\t\tnode [fillcolor=\" black\" fontcolor=\" white\"] %d \n", node->value);
+        } else if (isRed(node)) {
+            fprintf(dotFile, "\t\tnode [fillcolor=\" red\" fontcolor=\" white\"] %d \n", node->value);
+        }
+    }
+
+    makeDotNodes(node->left, dotFile);
+    makeDotNodes(node->right, dotFile);
+}
+
+void makeDotEdges(Node n, FILE *dotFile) {
+    Red_Black_Node *node = n;
+    if (!node) {
+        return;
+    } 
+
+    if (node->left) {
+        fprintf(dotFile, "\t%d -> %d \n", node->value, node->left->value);
+    }
+    if (node->right) {
+        fprintf(dotFile, "\t%d -> %d \n", node->value, node->right->value);
+    }
+
+    makeDotEdges(node->left, dotFile);
+    makeDotEdges(node->right, dotFile);
 }
 
 void freeTree(Tree t) {

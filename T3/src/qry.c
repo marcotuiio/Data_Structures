@@ -47,13 +47,12 @@ void readQry(SRBTree t, char *bedQry, char *bsdSvgQry, char *bsdTxt) {
     FILE *txt = openTxt(bsdTxt);
     FILE *svg = createSvg(bsdSvgQry);
     char comando[6];
-    // double energy = 0;  // agressividade do ataque
 
     while (!feof(qry)) {
         fscanf(qry, "%s", comando);
 
         if (!strcmp(comando, "e")) {
-            // energy = e(qry, txt);
+            e(qry, txt, t);
 
         } else if (!strcmp(comando, "mv")) {
             mv(qry, txt, t);
@@ -71,6 +70,7 @@ void readQry(SRBTree t, char *bedQry, char *bsdSvgQry, char *bsdTxt) {
     }
     writeSvg(svg, t);
 
+    percursoProfundidade(t, printResultados, txt);
     fclose(qry);
     fclose(txt);
     killSvg(svg);
@@ -124,7 +124,7 @@ void e_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2,
 
     if (getType(i) == 2) {
         setEnergy(i, e);
-        fprintf(txt, "id = %d, x = %lf, y = %lf, e = %lf\n", getId(i), getX(i), getY(i), e);
+        fprintf(txt, "\tAtribuida energia id = %d, x = %lf, y = %lf, e = %lf\n", getId(i), getX(i), getY(i), e);
     }
 }
 
@@ -157,10 +157,9 @@ void mv_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2
     double dy = data->dy;
     SRBTree t = data->t;
 
-    // Fazer funçoes para cuidar da MBB e energia de deslocamento !!!!
     if (getId(i) == id) {
         if (energyDeslocamento(i, dx)) {
-            fprintf(txt, "id = %d, xi = %lf, yi = %lf, ", getId(i), getX(i), getY(i));
+            fprintf(txt, "\tDeslocou id = %d, xi = %lf, yi = %lf, ", getId(i), getX(i), getY(i));
             removeSRB(t, getX(i), getY(i), getX(i), getY(i), getX(i)+getW(i), getY(i)+getH(i));
             setX(i, x + dx);
             setY(i, y + dy);
@@ -210,8 +209,6 @@ void lr_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2
     double d = data->d;
     Info nau = data->nau;
 
-    // olhar energia para jogar rede, ver o que ta dentro, remover e atribuir as recompensas
-    // redes são lançadas a partir da ancora do retangulo (nau)
     if (getId(i) != id) {
         if (energyArremesso(nau, d, w * h)) {
             double xr, yr;
@@ -253,8 +250,10 @@ void lr_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2
                         strcpy(recompensa, "DETRITOS");
                     }
                 }
-                fprintf(txt, "NAU = %d, x = %lf, y= %lf, gold = %lf, e = %lf\n", getId(nau), getX(nau), getY(nau), getGold(nau), getEnergy(nau));
-                fprintf(txt, "\tPESCOU %s, id = %d, x = %lf, y = %lf\n", recompensa, getId(i), getX(i), getY(i));
+                
+                fprintf(txt, "\tNAU = %d, x = %lf, y= %lf, gold = %lf, e = %lf\n", getId(nau), getX(nau), getY(nau), getGold(nau), getEnergy(nau));
+                fprintf(txt, "\t  PESCOU %s, id = %d, x = %lf, y = %lf\n", recompensa, getId(i), getX(i), getY(i));
+                removeSRB(data->t, getX(i), getY(i), 0, 0, 0, 0);
             }
         }
     }
@@ -295,7 +294,6 @@ void d_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2,
     Info nau = data->nau;
     SRBTree t = data->t;
     double xt, yt;
-    // fazer os calculos de energia para tiro e reportar txt!!
 
     // o tiro é lançado na parte central do lado definido do retangulo (nau)
     if (getId(i) != id) {
@@ -316,12 +314,12 @@ void d_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2,
                 xt = getX(nau) + getW(nau) / 2;
                 yt = getY(nau) + getH(nau) + d;
             }
+
             bool shot = hitRectangle(i, xt, yt);
-            fprintf(txt, "Nau id = %d, Atirou em: x = %lf, y = %lf\n", getId(nau), xt, yt);
+            fprintf(txt, "\tNAU id = %d, Atirou em: x = %lf, y = %lf\n", getId(nau), xt, yt);
             if (shot) {
-                // arrumar MBB !!
                 addGold(nau, getGold(i));
-                fprintf(txt, "\t Acertou e destrui nau id = %d, x = %lf, y = %lf, gold = %lf\n", getId(i), getX(i), getY(i), getGold(i));
+                fprintf(txt, "\t  DESTRUIDA Nau id = %d, x = %lf, y = %lf, gold = %lf\n", getId(i), getX(i), getY(i), getGold(i));
                 removeSRB(t, getX(i), getY(i), getX(i), getY(i), getX(i)+getW(i), getY(i)+getH(i));
             }
         }
@@ -364,15 +362,23 @@ void mc_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2
     double h = data->h;
     SRBTree t = data->t;
 
-    // arrumar MBB !!
     if (getType(i) == 1) {
         if (fishInside(i, x1, y1, w, h)) {
-            fprintf(txt, "id = %d, xi = %lf, yi = %lf, ", getId(i), getX(i), getY(i));
-            removeSRB(t, getX(i), getY(i), getX(i), getY(i), getX(i)+getW(i), getY(i)+getH(i));
+            fprintf(txt, "\tPEIXES id = %d, xi = %lf, yi = %lf, ", getId(i), getX(i), getY(i));
+            removeSRB(t, getX(i), getY(i), getX(i)-getR(i), getY(i)-getR(i), 2*getR(i), 2*getR(i));
             setX(i, x + dx);
             setY(i, y + dy);
             fprintf(txt, "xf = %lf, yf = %lf\n", getX(i), getY(i));
-            insertSRB(t, x + dx, y + dy, getX(i), getY(i), getX(i)+getW(i), getY(i)+getH(i), i);
+            insertSRB(t, x + dx, y + dy, getX(i)-getR(i), getY(i)-getR(i), 2*getR(i), 2*getR(i), i);
         }
+    }
+}
+
+void printResultados(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, void *aux) {
+    FILE *txt = aux;
+    fprintf(txt, "\n\t*** RESULTADOS FINAIS DA PESCARIA PIRATA ***\n");
+
+    if (getType(i) == 2) {
+        fprintf(txt, "\tNAU id = %d, x = %lf, y = %lf, gold = %lf, energy = %lf\n", getId(i), getX(i), getY(i), getGold(i), getEnergy(i));
     }
 }

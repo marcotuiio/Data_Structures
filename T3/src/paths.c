@@ -13,7 +13,7 @@ struct param {
     char* bsdgeodot;     // bsd/nomegeo.dot
     char* bsdgeoqrysvg;  // bsd/nomegeo_nomeqry.svg
     char* bsdgeoqrytxt;  // bsd/nomegeo_nomeqry.txt
-    char* bsdgeoqrydot   // bsd/nomegeo_nomeqry.dot
+    char* bsdgeoqrydot;   // bsd/nomegeo_nomeqry.dot
 };
 typedef struct param AllPaths;
 

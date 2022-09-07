@@ -46,4 +46,7 @@ void mc_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2
 // Translada os peixes que estiverem dentro da região
 // (x,y,w,h) de dx e dy.
 
+void printResultados(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, void *aux);
+// Função que imprime os resultados finais da pescaria no arquivo de texto.
+
 #endif
