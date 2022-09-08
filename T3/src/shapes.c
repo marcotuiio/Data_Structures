@@ -80,14 +80,20 @@ void setLine(FILE *geo, SRBTree t, Info f) {
     strcpy(shape->fill, "none");
 
     double y_aux, y2_aux;
-    if (shape->y < shape->y2) {
-        y_aux = shape->y;
-        y2_aux = shape->y2;
-    } else {
-        y_aux = shape->y2;
-        y2_aux = shape->y;
-    }
+    findLineXY(&y_aux, &y2_aux, shape);
     insertSRB(t, shape->x, shape->y, shape->x, y_aux, shape->x2, y2_aux, shape);
+}
+
+void findLineXY(double *y1, double *y2, Info f) {
+    Shapes *shape = f;
+
+    if (shape->y < shape->y2) {
+        *y1 = shape->y;
+        *y2 = shape->y2;
+    } else {
+        *y1 = shape->y2;
+        *y2 = shape->y;
+    }
 }
 
 void setText(FILE *geo, SRBTree t, Info f) {

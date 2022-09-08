@@ -14,6 +14,7 @@ void setRectangle(FILE *geo, SRBTree t, Info f);
 // Recebe um arquivo de entrada e uma forma e preenche um retangulo com os dados do arquivo
 
 void setLine(FILE *geo, SRBTree t, Info f);
+void findLineXY(double *y1, double *y2, Info f);
 // Recebe um arquivo de entrada e uma forma e preenche uma linha com os dados do arquivo
 
 void setText(FILE *geo, SRBTree t, Info f);

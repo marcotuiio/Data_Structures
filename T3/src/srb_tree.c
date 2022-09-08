@@ -423,9 +423,31 @@ void updateInfoSRB(SRBTree t, Node n, Info i) {
     double y = getY(i);
     if (fabs(node->x - x) <= red_black_tree->epislon && fabs(node->y - y) <= red_black_tree->epislon) {
         node->value = i;
-        printf("Sucesso ao atualizar a info\n");
+        printf("Sucesso ao atualizar a info\n"); // Apenas trocadas as informações
     } else {
-        printf("Não foi possivel atualizar a info\n");
+        removeSRB(t, node->x, node->y, 0, 0, 0, 0); // Remove info atual e analisa os asos para reinserir o nó atualizado
+        switch (getId(i)) {
+            case 1:
+                insertSRB(t, x, y, x - getR(i), y - getR(i), 2*getR(i), 2*getR(i), i);
+                break;
+            
+            case 2:
+                insertSRB(t, x, y, x, y, x + getW(i), y + getH(i), i);
+                break;
+
+            case 3:
+                double y_aux, y2_aux;
+                findLineXY(&y_aux, &y2_aux, i);
+                insertSRB(t, x, y, x, y_aux, getX2(i), y2_aux, i);
+                break;
+
+            case 4:
+                insertSRB(t, x, y, x, y, x, y, i);
+                break;
+
+            default:
+                break; 
+        }
     }
 }
 

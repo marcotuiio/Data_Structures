@@ -1,0 +1,39 @@
+digraph RB_Teste {
+	node [fontname="Helvetica,Arial,sans-serif" style="filled"]
+	edge [fontname="Helvetica,Arial,sans-serif" color="black"]
+
+	{
+		node [fillcolor=" black" fontcolor=" white"] 20 
+		node [fillcolor=" black" fontcolor=" white"] 5 
+		node [fillcolor=" red" fontcolor=" white"] 2 
+		node [fillcolor=" black" fontcolor=" white"] 1 
+		node [fillcolor=" black" fontcolor=" white"] 3 
+		node [fillcolor=" red" fontcolor=" white"] 4 
+		node [fillcolor=" black" fontcolor=" white"] 10 
+		node [fillcolor=" red" fontcolor=" white"] 8 
+		node [fillcolor=" red" fontcolor=" white"] 12 
+		node [fillcolor=" black" fontcolor=" white"] 90 
+		node [fillcolor=" black" fontcolor=" white"] 23 
+		node [fillcolor=" red" fontcolor=" white"] 81 
+		node [fillcolor=" red" fontcolor=" white"] 99 
+		node [fillcolor=" black" fontcolor=" white"] 95 
+		node [fillcolor=" black" fontcolor=" white"] 100 
+		node [fillcolor=" red" fontcolor=" white"] 104 
+	}
+
+	20 -> 5 
+	20 -> 90 
+	5 -> 2 
+	5 -> 10 
+	2 -> 1 
+	2 -> 3 
+	3 -> 4 
+	10 -> 8 
+	10 -> 12 
+	90 -> 23 
+	90 -> 99 
+	23 -> 81 
+	99 -> 95 
+	99 -> 100 
+	100 -> 104 
+}
