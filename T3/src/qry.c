@@ -41,7 +41,6 @@ struct aux5 {
 };
 typedef struct aux5 AUXMC;
 
-// PP frente, EB esquerda, BB direita, PR trás
 void readQry(SRBTree t, char *bedQry, char *bsdSvgQry, char *bsdTxt) {
     FILE *qry = openQry(bedQry);
     FILE *txt = openTxt(bsdTxt);
@@ -160,11 +159,12 @@ void mv_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2
     if (getId(i) == id) {
         if (energyDeslocamento(i, dx)) {
             fprintf(txt, "\tDeslocou id = %d, xi = %lf, yi = %lf, ", getId(i), getX(i), getY(i));
-            removeSRB(t, getX(i), getY(i), getX(i), getY(i), getX(i)+getW(i), getY(i)+getH(i));
-            setX(i, x + dx);
-            setY(i, y + dy);
+            Info aux = removeSRB(t, getX(i), getY(i), getX(i), getY(i), getX(i) + getW(i), getY(i) + getH(i));
+            setX(i, getX(aux) + dx);
+            setY(i, getY(aux) + dy);
             fprintf(txt, "xf = %lf, yf = %lf\n", getX(i), getY(i));
-            insertSRB(t, x + dx, y + dy, getX(i), getY(i), getX(i)+getW(i), getY(i)+getH(i), i);
+            insertSRB(t, getX(i), getY(i), getX(i), getY(i), getX(i) + getW(i), getY(i) + getH(i), i);
+            // free(aux);
         }
     }
 }
@@ -175,7 +175,7 @@ void lr(FILE *qry, FILE *txt, SRBTree t) {
     double d, w, h;
 
     fscanf(qry, "%d", &i);
-    fscanf(qry, "%s", lado);
+    fscanf(qry, "%s", lado);  // PP frente, EB esquerda, BB direita, PR trás
     fscanf(qry, "%lf", &d);
     fscanf(qry, "%lf", &w);
     fscanf(qry, "%lf", &h);
@@ -250,10 +250,11 @@ void lr_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2
                         strcpy(recompensa, "DETRITOS");
                     }
                 }
-                
+
                 fprintf(txt, "\tNAU = %d, x = %lf, y= %lf, gold = %lf, e = %lf\n", getId(nau), getX(nau), getY(nau), getGold(nau), getEnergy(nau));
                 fprintf(txt, "\t  PESCOU %s, id = %d, x = %lf, y = %lf\n", recompensa, getId(i), getX(i), getY(i));
-                removeSRB(data->t, getX(i), getY(i), 0, 0, 0, 0);
+                Info aux = removeSRB(data->t, getX(i), getY(i), 0, 0, 0, 0);
+                free(aux);
             }
         }
     }
@@ -265,7 +266,7 @@ void d(FILE *qry, FILE *txt, SRBTree t) {
     double d;
 
     fscanf(qry, "%d", &i);
-    fscanf(qry, "%s", lado);
+    fscanf(qry, "%s", lado);  // PP frente, EB esquerda, BB direita, PR trás
     fscanf(qry, "%lf", &d);
 
     fprintf(txt, "\n[*] d %d %s %lf \n", i, lado, d);
@@ -320,7 +321,8 @@ void d_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2,
             if (shot) {
                 addGold(nau, getGold(i));
                 fprintf(txt, "\t  DESTRUIDA Nau id = %d, x = %lf, y = %lf, gold = %lf\n", getId(i), getX(i), getY(i), getGold(i));
-                removeSRB(t, getX(i), getY(i), getX(i), getY(i), getX(i)+getW(i), getY(i)+getH(i));
+                Info aux = removeSRB(t, getX(i), getY(i), getX(i), getY(i), getX(i) + getW(i), getY(i) + getH(i));
+                free(aux);
             }
         }
     }
@@ -365,11 +367,12 @@ void mc_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2
     if (getType(i) == 1) {
         if (fishInside(i, x1, y1, w, h)) {
             fprintf(txt, "\tPEIXES id = %d, xi = %lf, yi = %lf, ", getId(i), getX(i), getY(i));
-            removeSRB(t, getX(i), getY(i), getX(i)-getR(i), getY(i)-getR(i), 2*getR(i), 2*getR(i));
-            setX(i, x + dx);
-            setY(i, y + dy);
+            Info aux = removeSRB(t, getX(i), getY(i), getX(i) - getR(i), getY(i) - getR(i), 2 * getR(i), 2 * getR(i));
+            setX(i, getX(aux) + dx);
+            setY(i, getY(aux) + dy);
             fprintf(txt, "xf = %lf, yf = %lf\n", getX(i), getY(i));
-            insertSRB(t, x + dx, y + dy, getX(i)-getR(i), getY(i)-getR(i), 2*getR(i), 2*getR(i), i);
+            insertSRB(t, getX(i), getY(aux), getX(i) - getR(i), getY(i) - getR(i), 2 * getR(i), 2 * getR(i), i);
+            free(aux);
         }
     }
 }

@@ -4,7 +4,6 @@
 #include "system.h"
 
 void writeSvg(FILE *svg, SRBTree t) {
-
     percursoProfundidade(t, writeAux, svg);
 
     killSvg(svg);
@@ -61,7 +60,7 @@ void drawRectangle(FILE *svg, Info rect) {
     w = getW(rect);
     strcpy(fill, getFill(rect));
     e = getEnergy(rect);
-    
+
     if (e == 0) {
         strcpy(stroke, "#484537");
     } else if (e > 0 && e < 10) {
