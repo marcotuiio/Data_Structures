@@ -136,7 +136,7 @@ void fixRBinsert(SRBTree t, Node n) {
     Red_Black_Node *z = n;
     Red_Black_Node *uncle_z = NULL;
 
-    while ((z != root) && (isRed(z)) && (isRed(z->parent))) {
+    while ((z != root) && (isRed(z->parent))) {
         // CASO A: pai de z é filho a esquerda do avô de z
         if (z->parent == z->parent->parent->left) {
             if (z->parent->parent->right) {
