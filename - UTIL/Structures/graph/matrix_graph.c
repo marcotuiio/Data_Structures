@@ -1,4 +1,4 @@
-#include "graph.h"
+#include "matrix_graph.h"
 
 typedef struct graph {
     int v;  // number of vertices
@@ -53,4 +53,18 @@ bool addEdge(void* g, int from, int to) {
 bool hasEdge(void* g, int from, int to) {
     Graph* graph = g;
     return graph->e[from][to] == 1 ? true : false;
+}
+
+int getInfo(void* g, int from, int to) {
+    Graph* graph = g;
+    return graph->e[from][to];
+}
+
+bool removeEdge(void* g, int from, int to) {
+    Graph* graph = g;
+    if (!hasEdge(g, from, to)) {
+        return false;
+    }
+    graph->e[from][to] = 0;
+    return true;
 }
