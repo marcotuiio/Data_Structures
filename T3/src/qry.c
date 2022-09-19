@@ -8,6 +8,7 @@ typedef struct aux1 AUXE;
 
 struct aux2 {
     int i;
+    Info nau;
     double dx, dy;
     FILE *txt;
     SRBTree t;
@@ -69,10 +70,11 @@ void readQry(SRBTree t, char *bedQry, char *bsdSvgQry, char *bsdTxt) {
     }
     writeSvg(svg, t);
 
+    fprintf(txt, "\n\t*** RESULTADOS FINAIS DA PESCARIA PIRATA ***\n");
     percursoProfundidade(t, printResultados, txt);
+
     fclose(qry);
     fclose(txt);
-    killSvg(svg);
 }
 
 FILE *openQry(char *bedQry) {
@@ -93,8 +95,26 @@ FILE *openTxt(char *bsdTxt) {
     return txt;
 }
 
-void find_id(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, void *aux) {
+void find_idMV(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, void *aux) {
+    AUXMV *aux0 = aux;
+    int id = aux0->i;
+
+    if (getId(i) == id) {
+        aux0->nau = i;
+    }
+}
+
+void find_idLR(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, void *aux) {
     AUXLR *aux0 = aux;
+    int id = aux0->i;
+
+    if (getId(i) == id) {
+        aux0->nau = i;
+    }
+}
+
+void find_idD(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, void *aux) {
+    AUXD *aux0 = aux;
     int id = aux0->i;
 
     if (getId(i) == id) {
@@ -139,34 +159,28 @@ void mv(FILE *qry, FILE *txt, SRBTree t) {
 
     AUXMV *aux = calloc(1, sizeof(AUXMV));
     aux->i = i;
-    aux->dx = dx;
-    aux->dy = dy;
-    aux->txt = txt;
-    aux->t = t;
+    aux->nau = NULL;
+    
+    percursoProfundidade(t, find_idMV, aux);
 
-    percursoProfundidade(t, mv_aux, aux);
-    free(aux);
-}
-
-void mv_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, void *aux) {
-    AUXMV *data = aux;
-    FILE *txt = data->txt;
-    int id = data->i;
-    double dx = data->dx;
-    double dy = data->dy;
-    SRBTree t = data->t;
-
-    if (getId(i) == id) {
-        if (energyDeslocamento(i, dx)) {
-            fprintf(txt, "\tDeslocou id = %d, xi = %lf, yi = %lf, ", getId(i), getX(i), getY(i));
-            Info aux = removeSRB(t, getX(i), getY(i), getX(i), getY(i), getX(i) + getW(i), getY(i) + getH(i));
-            setX(i, getX(aux) + dx);
-            setY(i, getY(aux) + dy);
-            fprintf(txt, "xf = %lf, yf = %lf\n", getX(i), getY(i));
-            insertSRB(t, getX(i), getY(i), getX(i), getY(i), getX(i) + getW(i), getY(i) + getH(i), i);
-            // free(aux);
-        }
+    Info old = removeSRB(t, getX(aux->nau), getY(aux->nau), 0, 0, 0, 0);
+    fprintf(txt, "\tDeslocou id = %d, xi = %lf, yi = %lf, ", getId(old), getX(old), getY(old));
+    setX(old, dx);
+    setY(old, dy);
+    fprintf(txt, "xf = %lf, yf = %lf\n", getX(old), getY(old));
+    if (getType(old) == 1) {
+        insertSRB(t, getX(old), getY(old), getX(old) - getR(old), getY(old) - getR(old), 2*getR(old), 2*getR(old), old);
+    } else if (getType(old) == 2) {
+        insertSRB(t, getX(old), getY(old), getX(old), getY(old), getX(old) + getW(old), getY(old) + getH(old), old);
+    } else if (getType(old) == 3) {
+        double y_aux, y2_aux;
+        findLineXY(&y_aux, &y2_aux, old);
+        insertSRB(t, getX(old), getY(old), getX(old), y_aux, getX2(old), y2_aux, old);
+    } else if (getType(old) == 4) {
+        insertSRB(t, getX(old), getY(old), getX(old), getY(old), getX(old), getY(old), old);
     }
+
+    free(aux);
 }
 
 void lr(FILE *qry, FILE *txt, SRBTree t) {
@@ -190,9 +204,8 @@ void lr(FILE *qry, FILE *txt, SRBTree t) {
     aux->d = d;
     aux->txt = txt;
     aux->t = t;
-    Info nau = NULL;
-    aux->nau = nau;
-    percursoProfundidade(t, find_id, aux);
+    aux->nau = NULL;
+    percursoProfundidade(t, find_idLR, aux);
 
     percursoProfundidade(t, lr_aux, aux);
     free(aux);
@@ -231,6 +244,7 @@ void lr_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2
 
             bool pescou = insideNet(i, xr, yr, w, h);
             if (pescou) {
+                printf("Pescou %d\n", getId(i));
                 // remover e fazer tabela de recompensa para energia
                 char recompensa[20];
                 if (getType(i) == 1) {
@@ -277,9 +291,8 @@ void d(FILE *qry, FILE *txt, SRBTree t) {
     aux->d = d;
     aux->txt = txt;
     aux->t = t;
-    Info nau = NULL;
-    aux->nau = nau;
-    percursoProfundidade(t, find_id, aux);
+    aux->nau = NULL;
+    percursoProfundidade(t, find_idD, aux);
 
     percursoProfundidade(t, d_aux, aux);
     free(aux);
@@ -321,8 +334,8 @@ void d_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2,
             if (shot) {
                 addGold(nau, getGold(i));
                 fprintf(txt, "\t  DESTRUIDA Nau id = %d, x = %lf, y = %lf, gold = %lf\n", getId(i), getX(i), getY(i), getGold(i));
-                Info aux = removeSRB(t, getX(i), getY(i), getX(i), getY(i), getX(i) + getW(i), getY(i) + getH(i));
-                free(aux);
+                Info dead = removeSRB(t, getX(i), getY(i), getX(i), getY(i), getX(i) + getW(i), getY(i) + getH(i));
+                free(dead);
             }
         }
     }
@@ -367,19 +380,18 @@ void mc_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2
     if (getType(i) == 1) {
         if (fishInside(i, x1, y1, w, h)) {
             fprintf(txt, "\tPEIXES id = %d, xi = %lf, yi = %lf, ", getId(i), getX(i), getY(i));
-            Info aux = removeSRB(t, getX(i), getY(i), getX(i) - getR(i), getY(i) - getR(i), 2 * getR(i), 2 * getR(i));
-            setX(i, getX(aux) + dx);
-            setY(i, getY(aux) + dy);
+            Info old = removeSRB(t, getX(i), getY(i), getX(i) - getR(i), getY(i) - getR(i), 2 * getR(i), 2 * getR(i));
+            setX(old, dx);
+            setY(old, dy);
             fprintf(txt, "xf = %lf, yf = %lf\n", getX(i), getY(i));
-            insertSRB(t, getX(i), getY(aux), getX(i) - getR(i), getY(i) - getR(i), 2 * getR(i), 2 * getR(i), i);
-            free(aux);
+            insertSRB(t, getX(old), getY(aux), getX(old) - getR(old), getY(old) - getR(old), 2 * getR(old), 2 * getR(old), old);
+            // free(old);
         }
     }
 }
 
 void printResultados(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, void *aux) {
     FILE *txt = aux;
-    fprintf(txt, "\n\t*** RESULTADOS FINAIS DA PESCARIA PIRATA ***\n");
 
     if (getType(i) == 2) {
         fprintf(txt, "\tNAU id = %d, x = %lf, y = %lf, gold = %lf, energy = %lf\n", getId(i), getX(i), getY(i), getGold(i), getEnergy(i));

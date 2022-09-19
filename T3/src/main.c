@@ -16,8 +16,6 @@ int main(int argc, char** argv) {
     if (checkBED(my_ctrl) && checkGEO(my_ctrl) && checkBSD(my_ctrl)) {
         readGeo(getBedGeo(my_paths), my_tree);
         writeSvg(createSvg(getBsdGeoSvg(my_paths)), my_tree);
-        Info aux = removeSRB(my_tree, 37, 17, 0, 0, 0, 0);
-        free(aux);
         printSRB(my_tree, getBsdGeoDot(my_paths));
                  
     } else {

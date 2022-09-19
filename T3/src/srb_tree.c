@@ -475,7 +475,10 @@ Info removeSRB(SRBTree t, double xa, double ya, double mbbX1, double mbbY1, doub
             }
             Info aux = rb_node->value;
             Node p = rb_node->parent;
-            free(rb_node);
+            if (rb_node) {
+                printf("1 - REMOVENDO %lf %lf\n", rb_node->x, rb_node->y);
+                free(rb_node);
+            }
             fixTreeMBB(tree, p);
             tree->size--;
             return (aux);
@@ -498,7 +501,10 @@ Info removeSRB(SRBTree t, double xa, double ya, double mbbX1, double mbbY1, doub
             removeNils(tree, tree->root);
             Info aux = rb_node->value;
             Node p = rb_node->parent;
-            free(rb_node);
+            if (rb_node) {
+                printf("2 - REMOVENDO %lf %lf\n", rb_node->x, rb_node->y);
+                free(rb_node);
+            }
             fixTreeMBB(tree, p);
             tree->size--;
             return (aux);
@@ -549,6 +555,7 @@ Info removeSRB(SRBTree t, double xa, double ya, double mbbX1, double mbbY1, doub
     Info aux = rb_node->value;
     Node p = rb_node->parent;
     if (rb_node) {
+        printf("3 - REMOVENDO %lf %lf\n", rb_node->x, rb_node->y);
         free(rb_node);
     }
     removeNils(tree, tree->root);   

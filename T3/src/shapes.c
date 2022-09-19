@@ -249,6 +249,7 @@ bool energyDeslocamento(Info i, double d) {
     Shapes *nau = i;
     double e = d / 5;
 
+    printf("e: %lf", e);
     if ((nau->energy - e) >= 0) {
         nau->energy = nau->energy - e;
         return true;
@@ -309,6 +310,7 @@ bool insideNet(Info i, double xr, double yr, double w, double h) {
             break;
 
         case 2:
+            return false;
             break;
 
         case 3:

@@ -15,7 +15,9 @@ FILE *openQry(char *bedQry);
 FILE *openTxt(char *bsdTxt);
 // Função que abre o arquivo de texto.
 
-void find_id(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, void *aux);
+void find_idMV(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, void *aux);
+void find_idLR(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, void *aux);
+void find_idD(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, void *aux);
 // Função que busca o elemento pelo id e retorna a informação.
 
 void e(FILE *qry, FILE *txt, SRBTree t);
@@ -23,7 +25,6 @@ void e_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2,
 // Energiza todas as naus com o nível v.
 
 void mv(FILE *qry, FILE *txt, SRBTree t);
-void mv_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, void *aux);
 // Desloca a forma de identificador i de dx no eixo x e dy
 // no eixo y.
 

@@ -18,9 +18,9 @@ typedef void* Info;
 typedef void *Lista;
 
 #define CIRCLE "\t<circle id=\"%d\" cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"45%%\" />\n"
-#define RECTANGLE "\t<rect id=\"%d\" x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" stroke-width=\"5%%\" />\n"
+#define RECTANGLE "\t<rect id=\"%d\" x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"25%%\" stroke-width=\"2%%\" />\n"
 #define LINE "\t<line id=\"%d\" x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" />\n"
-#define TEXT "\t<text id=\"%d\" x=\"%lf\" y=\"%lf\" text-anchor=\"%s\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"60%%\" >%s</text>\n"
+#define TEXT "\t<text id=\"%d\" x=\"%lf\" y=\"%lf\" text-anchor=\"%s\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"60%%\" ><![CDATA[%s]]></text>\n"
 
 // HEADER FILE AUXILIAR PARA IMPORTS DE LIBS DO C;
 // Usado também para realizar typedefs de void*;
