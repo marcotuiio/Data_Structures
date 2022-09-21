@@ -221,9 +221,11 @@ void lr_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2
     double h = data->h;
     double d = data->d;
     Info nau = data->nau;
+    double a = 0;
+    double *need = &a;
 
     if (getId(i) != id) {
-        if (energyArremesso(nau, d, w * h)) {
+        if (energyArremesso(nau, d, w * h, need)) {
             double xr, yr;
             if (!strcmp(lado, "PP")) {  // lado da frente, lado a ancora, rede para cima
                 xr = getX(nau);
@@ -242,10 +244,8 @@ void lr_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2
                 yr = getY(nau) + getH(nau) + d;
             }
 
-            bool pescou = insideNet(i, xr, yr, w, h);
-            if (pescou) {
+            if (insideNet(i, xr, yr, w, h)) {
                 printf("Pescou %d\n", getId(i));
-                // remover e fazer tabela de recompensa para energia
                 char recompensa[20];
                 if (getType(i) == 1) {
                     strcpy(recompensa, "PEIXE");
@@ -254,10 +254,10 @@ void lr_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2
                     strcpy(recompensa, "CAMARÃO");
                     addGold(nau, 10);
                 } else if (getType(i) == 4) {
-                    if (!strcmp(getText(i), "$")) {
+                    if (!strcmp(getText(i), " $")) {
                         strcpy(recompensa, "MOEDA");
                         setEnergy(nau, getEnergy(nau) + 0.5);
-                    } else if (!strcmp(getText(i), ">-|-<")) {
+                    } else if (!strcmp(getText(i), " >-|-<")) {
                         strcpy(recompensa, "LAGOSTA");
                         addGold(nau, 20);
                     } else {
@@ -269,7 +269,10 @@ void lr_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2
                 fprintf(txt, "\t  PESCOU %s, id = %d, x = %lf, y = %lf\n", recompensa, getId(i), getX(i), getY(i));
                 Info dead = removeSRB(data->t, getX(i), getY(i), 0, 0, 0, 0);
                 free(dead);
+            
             }
+        } else {
+            fprintf(txt, "\tNau id = %d, e = %lf, energia_necessaria = %lf ENERGIA INSUFICIENTE PARA LANÇAMENTO\n", getId(nau), getEnergy(nau), a);
         }
     }
 }

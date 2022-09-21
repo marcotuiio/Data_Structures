@@ -257,9 +257,10 @@ bool energyDeslocamento(Info i, double d) {
     return false;
 }
 
-bool energyArremesso(Info i, double d, double A) {
+bool energyArremesso(Info i, double d, double A, double *need) {
     Shapes *nau = i;
     double e = A/25 * d/5;
+    (*need) = e;
 
     if ((nau->energy - e) >= 0) {
         nau->energy = nau->energy - e;
@@ -300,7 +301,7 @@ bool insideNet(Info i, double xr, double yr, double w, double h) {
         case 1:
             double r = getR(i);
             if ((xr + w) >= (x1 + r) && (xr) <= (x1 - r)) {
-                if ((yr + h) >= (y1 + r) && (yr) <= (yr - r)) {
+                if ((yr + h) >= (y1 + r) && (yr) <= (y1 - r)) {
                     if (xr <= x1 && yr <= y1) {
                         return true;
                     }
@@ -327,7 +328,9 @@ bool insideNet(Info i, double xr, double yr, double w, double h) {
             break;
 
         case 4:
+            // printf("%d %lf >= %lf %lf >= %lf\n", getType(i), xr+w, x1, yr+h , y1);
             if ((xr + w) >= (x1) && (yr + h) >= (y1)) {
+                // printf("%lf <= %lf %lf <= %lf\n", xr, x1, yr, y1);
                 if (xr <= x1 && yr <= y1) {
                     return true;
                 }

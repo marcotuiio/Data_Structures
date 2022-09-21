@@ -84,7 +84,7 @@ bool energyDeslocamento(Info i, double d);
 // Recebe uma nau e o deslocamento proposto, calcula se possui energia
 // realiza a atualização e retorna verdadeiro, caso não seja possivel, falso
 
-bool energyArremesso(Info i, double d, double A);
+bool energyArremesso(Info i, double d, double A, double *need);
 // Recebe uma nau e a area de rede do lançamento, calcula se possui energia
 // realiza a atualização e retorna verdadeiro, caso não seja possivel, falso
 

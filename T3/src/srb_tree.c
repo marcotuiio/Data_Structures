@@ -506,6 +506,7 @@ Info removeSRB(SRBTree t, double xa, double ya, double mbbX1, double mbbY1, doub
         }
         removeNils(tree, tree->root);
         fixTreeMBB(tree, y);
+        tree->size--;
         return info;
     }
     return NULL; // ERRO!
