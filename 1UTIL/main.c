@@ -8,7 +8,7 @@ int main () {
     for (int i = 0; i < 17; i++) {
         insertTree(t, a[i]);
     }
-    char file[] = "/home/marcotuiio/Data_Structures/ED - Básicos/testes.dot";
+    char file[] = "/home/marcotuiio/Data_Structures/1UTIL/testes.dot";
     printTREE(t, file);
 
     // printf("\n\tREMOVIDO\n");

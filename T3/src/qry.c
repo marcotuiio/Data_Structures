@@ -310,7 +310,7 @@ void d_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2,
     double xt, yt;
 
     // o tiro é lançado na parte central do lado definido do retangulo (nau)
-    if (getId(i) != id) {
+    if (getType(i) == 2 && getId(i) != id) {
         if (energyShot(nau, d)) {
             if (!strcmp(lado, "PP")) {  // lado da frente, tiro para cima
                 xt = getX(nau) + getW(nau) / 2;
@@ -329,9 +329,8 @@ void d_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2,
                 yt = getY(nau) + getH(nau) + d;
             }
 
-            bool shot = hitRectangle(i, xt, yt);
             fprintf(txt, "\tNAU id = %d, Atirou em: x = %lf, y = %lf\n", getId(nau), xt, yt);
-            if (shot) {
+            if (hitRectangle(i, xt, yt);) {
                 addGold(nau, getGold(i));
                 fprintf(txt, "\t  DESTRUIDA Nau id = %d, x = %lf, y = %lf, gold = %lf\n", getId(i), getX(i), getY(i), getGold(i));
                 Info dead = removeSRB(t, getX(i), getY(i), getX(i), getY(i), getX(i) + getW(i), getY(i) + getH(i));
@@ -379,13 +378,12 @@ void mc_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2
 
     if (getType(i) == 1) {
         if (fishInside(i, x1, y1, w, h)) {
-            fprintf(txt, "\tPEIXES id = %d, xi = %lf, yi = %lf, ", getId(i), getX(i), getY(i));
+            fprintf(txt, "\tPEIXE id = %d, xi = %lf, yi = %lf, ", getId(i), getX(i), getY(i));
             Info old = removeSRB(t, getX(i), getY(i), getX(i) - getR(i), getY(i) - getR(i), 2 * getR(i), 2 * getR(i));
             setX(old, dx);
             setY(old, dy);
             fprintf(txt, "xf = %lf, yf = %lf\n", getX(i), getY(i));
             insertSRB(t, getX(old), getY(aux), getX(old) - getR(old), getY(old) - getR(old), 2 * getR(old), 2 * getR(old), old);
-            // free(old);
         }
     }
 }

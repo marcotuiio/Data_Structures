@@ -451,7 +451,6 @@ void updateInfoSRB(SRBTree t, Node n, Info i) {
     }
 }
 
-// Cases and algorithm of deletion: https://www.geeksforgeeks.org/red-black-tree-set-3-delete-2/
 Info removeSRB(SRBTree t, double xa, double ya, double mbbX1, double mbbY1, double mbbX2, double mbbY2) {
     Red_Black_Root *tree = t;
     Red_Black_Node *rb_node = getNodeSRB(tree, xa, ya, &mbbX1, &mbbY1, &mbbX2, &mbbY2);
@@ -476,7 +475,7 @@ Info removeSRB(SRBTree t, double xa, double ya, double mbbX1, double mbbY1, doub
             Info aux = rb_node->value;
             Node p = rb_node->parent;
             if (rb_node) {
-                printf("1 - REMOVENDO %lf %lf\n", rb_node->x, rb_node->y);
+                // printf("1 - REMOVENDO %lf %lf\n", rb_node->x, rb_node->y);
                 free(rb_node);
             }
             fixTreeMBB(tree, p);
@@ -498,13 +497,13 @@ Info removeSRB(SRBTree t, double xa, double ya, double mbbX1, double mbbY1, doub
             } else if (i == 1) {
                 aux_p->right = nil;
             }
-            removeNils(tree, tree->root);
             Info aux = rb_node->value;
             Node p = rb_node->parent;
             if (rb_node) {
-                printf("2 - REMOVENDO %lf %lf\n", rb_node->x, rb_node->y);
+                // printf("2 - REMOVENDO %lf %lf\n", rb_node->x, rb_node->y);
                 free(rb_node);
             }
+            removeNils(tree, tree->root);
             fixTreeMBB(tree, p);
             tree->size--;
             return (aux);
@@ -555,7 +554,7 @@ Info removeSRB(SRBTree t, double xa, double ya, double mbbX1, double mbbY1, doub
     Info aux = rb_node->value;
     Node p = rb_node->parent;
     if (rb_node) {
-        printf("3 - REMOVENDO %lf %lf\n", rb_node->x, rb_node->y);
+        // printf("3 - REMOVENDO %lf %lf\n", rb_node->x, rb_node->y);
         free(rb_node);
     }
     removeNils(tree, tree->root);   
@@ -608,17 +607,17 @@ void fixRBdelete(SRBTree t, Node n) {
             }
 
             // Caso 2A: Ambos os filhos do irmão w são pretos
-            if (isBlack(w) && (isBlack(w->left) && isBlack(w->right))) {
+            if ((isBlack(w->left) && isBlack(w->right))) {
                 paintRed(w);
                 rb_node = rb_node->parent;
 
                 // Caso 3A: Filho direito do irmão é vermelho Caso Right right
-            } else if ((w->right && isRed(w->right))) {
-                rotateLeft(t, w->parent);
-                paintRed(w);
-                paintBlack(w->right);
+            } else if ((w->right && isBlack(w->right))) {
                 paintBlack(w->left);
-                rb_node = w;
+                paintRed(w);
+                rotateRight(t, w);
+                w = rb_node->parent->right;
+                rb_node = rb_node->parent;
             }
 
         } else if (rb_node && rb_node == rb_node->parent->right) {
@@ -643,13 +642,12 @@ void fixRBdelete(SRBTree t, Node n) {
                 rb_node = rb_node->parent;
 
                 // Caso 3B: Filho esquerdo do irmão é vermelho caso Left left
-            } else if ((w->left && isRed(w->left))) {
-                paintBlack(w->left);
-                rotateRight(t, w->parent);
-                paintRed(w);
-                paintBlack(w->left);
+            } else if ((w->left && isBlack(w->left))) {
                 paintBlack(w->right);
-                rb_node = w;
+                paintRed(w);
+                rotateLeft(t, w);
+                w = rb_node->parent->left;
+                rb_node = rb_node->parent;
             }
         }
     }

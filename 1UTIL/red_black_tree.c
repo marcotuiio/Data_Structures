@@ -352,6 +352,7 @@ void transplantRB(Tree t, Node n, Node n2) {
     }
 }
 
+// Cases and algorithm of deletion: https://www.geeksforgeeks.org/red-black-tree-set-3-delete-2/
 void fixRBdelete(Tree t, Node n) {
     Red_Black_Root *rb_tree = t;
     Red_Black_Node *rb_node = n;
