@@ -267,8 +267,8 @@ void lr_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2
 
                 fprintf(txt, "\tNAU = %d, x = %lf, y= %lf, gold = %lf, e = %lf\n", getId(nau), getX(nau), getY(nau), getGold(nau), getEnergy(nau));
                 fprintf(txt, "\t  PESCOU %s, id = %d, x = %lf, y = %lf\n", recompensa, getId(i), getX(i), getY(i));
-                Info aux = removeSRB(data->t, getX(i), getY(i), 0, 0, 0, 0);
-                free(aux);
+                Info dead = removeSRB(data->t, getX(i), getY(i), 0, 0, 0, 0);
+                free(dead);
             }
         }
     }
@@ -330,7 +330,7 @@ void d_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2,
             }
 
             fprintf(txt, "\tNAU id = %d, Atirou em: x = %lf, y = %lf\n", getId(nau), xt, yt);
-            if (hitRectangle(i, xt, yt);) {
+            if (hitRectangle(i, xt, yt)) {
                 addGold(nau, getGold(i));
                 fprintf(txt, "\t  DESTRUIDA Nau id = %d, x = %lf, y = %lf, gold = %lf\n", getId(i), getX(i), getY(i), getGold(i));
                 Info dead = removeSRB(t, getX(i), getY(i), getX(i), getY(i), getX(i) + getW(i), getY(i) + getH(i));

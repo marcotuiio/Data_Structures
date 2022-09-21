@@ -460,55 +460,107 @@ Info removeSRB(SRBTree t, double xa, double ya, double mbbX1, double mbbY1, doub
         return NULL;
     }
 
-    Red_Black_Node *x = NULL;
     if (fabs(rb_node->x - xa) <= tree->epislon && fabs(rb_node->y - ya) <= tree->epislon) {
-        Info info = rb_node->value;
         Red_Black_Node *y = rb_node;
+        Red_Black_Node *x = NULL;
         char y_original_color[10];
         strcpy(y_original_color, y->color);
 
-        if (!rb_node->left) {
-            if (!rb_node->right) {
-                x = nil;
+        if (!rb_node->left && !rb_node->right && isRed(rb_node)) {
+            if (rb_node == rb_node->parent->left) {
+                rb_node->parent->left = NULL;
             } else {
-                x = rb_node->right;
+                rb_node->parent->right = NULL;
             }
+            Info aux = rb_node->value;
+            Node p = rb_node->parent;
+            if (rb_node) {
+                // printf("1 - REMOVENDO %lf %lf\n", rb_node->x, rb_node->y);
+                free(rb_node);
+            }
+            fixTreeMBB(tree, p);
+            tree->size--;
+            return (aux);
+
+        } else if (!rb_node->left && !rb_node->right && isBlack(rb_node)) {
+            Red_Black_Node *aux_p = rb_node->parent;
+            int i = -1;
+            if (rb_node == rb_node->parent->left) {
+                i = 0;
+            } else {
+                i = 1;
+            }
+
+            fixRBdelete(tree, rb_node);
+            if (i == 0) {
+                aux_p->left = nil;
+            } else if (i == 1) {
+                aux_p->right = nil;
+            }
+            Info aux = rb_node->value;
+            Node p = rb_node->parent;
+            if (rb_node) {
+                // printf("2 - REMOVENDO %lf %lf\n", rb_node->x, rb_node->y);
+                free(rb_node);
+            }
+            removeNils(tree, tree->root);
+            fixTreeMBB(tree, p);
+            tree->size--;
+            return (aux);
+        }
+
+        if (!rb_node->left && rb_node->right) {
+            x = rb_node->right;
             transplantRB(tree, rb_node, rb_node->right);
-        } else if (!rb_node->right) {
-            if (!rb_node->left) {
-                x = nil;
-            } else {
-                x = rb_node->left;
-            }
+
+        } else if (!rb_node->right && rb_node->left) {
+            x = rb_node->left;
             transplantRB(tree, rb_node, rb_node->left);
-        } else {
-            y = getSmallestRight(rb_node->right);
+
+        } else if (rb_node->left && rb_node->right) {
+            y = getLargestLeft(rb_node->left);
             strcpy(y_original_color, y->color);
-            if (!y->right) {
+            if (!y->left) {
                 x = nil;
+                nil->parent = y;
             } else {
-                x = y->right;
+                x = y->left;
             }
             if (y->parent == rb_node) {
                 x->parent = y;
             } else {
-                transplantRB(tree, y, y->right);
-                y->right = rb_node->right;
-                y->right->parent = y;
+                transplantRB(tree, y, y->left);
+                y->left = rb_node->left;
+                y->left->parent = y;
+            }
+            if (!y->right) {
+                y->right = nil;
+                nil->parent = y;
+            }
+            if (!y->left) {
+                y->left = nil;
+                nil->parent = y;
             }
             transplantRB(tree, rb_node, y);
-            y->left = rb_node->left;
-            y->left->parent = y;
+            y->right = rb_node->right;
+            y->right->parent = y;
             strcpy(y->color, rb_node->color);
         }
-        if (!strcmp(y_original_color, "BLACK") && x != nil) {
+
+        if (!strcmp(y_original_color, "BLACK")) {
             fixRBdelete(tree, x);
         }
-        removeNils(tree, tree->root);
-        fixTreeMBB(tree, y);
-        return info;
     }
-    return NULL; // ERRO!
+    Info aux = rb_node->value;
+    Node p = rb_node->parent;
+    if (rb_node) {
+        // printf("3 - REMOVENDO %lf %lf\n", rb_node->x, rb_node->y);
+        free(rb_node);
+    }
+    removeNils(tree, tree->root);   
+    fixTreeMBB(tree, p);
+    tree->size--;
+    return (aux);
 }
 
 void transplantRB(SRBTree t, Node n, Node n2) {

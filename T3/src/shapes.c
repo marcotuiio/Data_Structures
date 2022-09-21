@@ -346,11 +346,9 @@ bool fishInside(Info i, double x, double y, double w, double h) {
     double y1 = getY(i);
     if (getType(i) == 1) {
         double r = getR(i);
-        // printf("x1: %lf, y1: %lf, r: %lf, x: %lf, y: %lf, w: %lf, h: %lf\n", x1, y1, r, x, y, w, h);
         if ((x + w) >= (x1 + r) && (x) <= (x1 - r)) {
             if ((y + h) >= (y1 + r) && (y) <= (y1 - r)) {
                 if (x <= x1 && y <= y1) {
-                    printf("3\n");
                     return true;
                 }
             }
