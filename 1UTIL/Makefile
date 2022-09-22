@@ -7,11 +7,11 @@ clear:
 	rm *.dot
 	rm $(PROJECT_NAME)
 
-$(PROJECT_NAME): main.o red_black_tree.o
-	$(EXEC) $(CFLAGS) main.o red_black_tree.o -o $(PROJECT_NAME)
+$(PROJECT_NAME): main.o teste.o
+	$(EXEC) $(CFLAGS) main.o teste.o -o $(PROJECT_NAME)
 
-red_black_tree.o: red_black_tree.c red_black_tree.h
-	$(EXEC) $(CFLAGS) -c red_black_tree.c
+teste.o: teste.c red_black_tree.h
+	$(EXEC) $(CFLAGS) -c teste.c
 
 main.o: main.c 
 	$(EXEC) $(CFLAGS) -c main.c

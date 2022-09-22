@@ -99,7 +99,7 @@ void find_idMV(Info i, double x, double y, double mbbX1, double mbbY1, double mb
     AUXMV *aux0 = aux;
     int id = aux0->i;
 
-    if (getId(i) == id) {
+    if (i && getId(i) == id) {
         aux0->nau = i;
     }
 }
@@ -108,7 +108,7 @@ void find_idLR(Info i, double x, double y, double mbbX1, double mbbY1, double mb
     AUXLR *aux0 = aux;
     int id = aux0->i;
 
-    if (getId(i) == id) {
+    if (i && getId(i) == id) {
         aux0->nau = i;
     }
 }
@@ -160,7 +160,7 @@ void mv(FILE *qry, FILE *txt, SRBTree t) {
     AUXMV *aux = calloc(1, sizeof(AUXMV));
     aux->i = i;
     aux->nau = NULL;
-    
+
     percursoProfundidade(t, find_idMV, aux);
 
     Info old = removeSRB(t, getX(aux->nau), getY(aux->nau), 0, 0, 0, 0);
@@ -168,16 +168,18 @@ void mv(FILE *qry, FILE *txt, SRBTree t) {
     setX(old, dx);
     setY(old, dy);
     fprintf(txt, "xf = %lf, yf = %lf\n", getX(old), getY(old));
-    if (getType(old) == 1) {
-        insertSRB(t, getX(old), getY(old), getX(old) - getR(old), getY(old) - getR(old), 2*getR(old), 2*getR(old), old);
-    } else if (getType(old) == 2) {
-        insertSRB(t, getX(old), getY(old), getX(old), getY(old), getX(old) + getW(old), getY(old) + getH(old), old);
-    } else if (getType(old) == 3) {
-        double y_aux, y2_aux;
-        findLineXY(&y_aux, &y2_aux, old);
-        insertSRB(t, getX(old), getY(old), getX(old), y_aux, getX2(old), y2_aux, old);
-    } else if (getType(old) == 4) {
-        insertSRB(t, getX(old), getY(old), getX(old), getY(old), getX(old), getY(old), old);
+    if (old) {
+        if (getType(old) == 1) {
+            insertSRB(t, getX(old), getY(old), getX(old) - getR(old), getY(old) - getR(old), 2 * getR(old), 2 * getR(old), old);
+        } else if (getType(old) == 2) {
+            insertSRB(t, getX(old), getY(old), getX(old), getY(old), getX(old) + getW(old), getY(old) + getH(old), old);
+        } else if (getType(old) == 3) {
+            double y_aux, y2_aux;
+            findLineXY(&y_aux, &y2_aux, old);
+            insertSRB(t, getX(old), getY(old), getX(old), y_aux, getX2(old), y2_aux, old);
+        } else if (getType(old) == 4) {
+            insertSRB(t, getX(old), getY(old), getX(old), getY(old), getX(old), getY(old), old);
+        }
     }
 
     free(aux);
@@ -207,7 +209,12 @@ void lr(FILE *qry, FILE *txt, SRBTree t) {
     aux->nau = NULL;
     percursoProfundidade(t, find_idLR, aux);
 
-    percursoProfundidade(t, lr_aux, aux);
+    double need = 0;
+    if (energyArremesso(aux->nau, d, w * h, &need)) {
+        percursoProfundidade(t, lr_aux, aux);
+    } else {
+        fprintf(txt, "\tNau id = %d, e = %lf, energia_necessaria = %lf ENERGIA INSUFICIENTE PARA LANÇAMENTO\n", getId(aux->nau), getEnergy(aux->nau), need);
+    }
     free(aux);
 }
 
@@ -221,58 +228,53 @@ void lr_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2
     double h = data->h;
     double d = data->d;
     Info nau = data->nau;
-    double a = 0;
-    double *need = &a;
 
-    if (getId(i) != id) {
-        if (energyArremesso(nau, d, w * h, need)) {
-            double xr, yr;
-            if (!strcmp(lado, "PP")) {  // lado da frente, lado a ancora, rede para cima
-                xr = getX(nau);
-                yr = getY(nau) - h - d;
+    if (i && getId(i) != id) {
+        double xr, yr;
+        if (!strcmp(lado, "PP")) {  // lado da frente, lado a ancora, rede para cima
+            xr = getX(nau);
+            yr = getY(nau) - h - d;
 
-            } else if (!strcmp(lado, "EB")) {  // esquerda, lado a ancora, rede para esquerda
-                xr = getX(nau) - w - d;
-                yr = getY(nau);
+        } else if (!strcmp(lado, "EB")) {  // esquerda, lado a ancora, rede para esquerda
+            xr = getX(nau) - w - d;
+            yr = getY(nau);
 
-            } else if (!strcmp(lado, "BB")) {  // direita, lado ancora+largura, rede para direita
-                xr = getX(nau) + getW(nau) + d;
-                yr = getY(nau);
+        } else if (!strcmp(lado, "BB")) {  // direita, lado ancora+largura, rede para direita
+            xr = getX(nau) + getW(nau) + d;
+            yr = getY(nau);
 
-            } else if (!strcmp(lado, "PR")) {  // baixo, lado da ancora+altura, rede para baixo
-                xr = getX(nau);
-                yr = getY(nau) + getH(nau) + d;
-            }
+        } else if (!strcmp(lado, "PR")) {  // baixo, lado da ancora+altura, rede para baixo
+            xr = getX(nau);
+            yr = getY(nau) + getH(nau) + d;
+        }
 
-            if (insideNet(i, xr, yr, w, h)) {
-                printf("Pescou %d\n", getId(i));
-                char recompensa[20];
-                if (getType(i) == 1) {
-                    strcpy(recompensa, "PEIXE");
-                    addGold(nau, 5);
-                } else if (getType(i) == 3) {
-                    strcpy(recompensa, "CAMARÃO");
-                    addGold(nau, 10);
-                } else if (getType(i) == 4) {
-                    if (!strcmp(getText(i), " $")) {
-                        strcpy(recompensa, "MOEDA");
-                        setEnergy(nau, getEnergy(nau) + 0.5);
-                    } else if (!strcmp(getText(i), " >-|-<")) {
-                        strcpy(recompensa, "LAGOSTA");
-                        addGold(nau, 20);
-                    } else {
-                        strcpy(recompensa, "DETRITOS");
-                    }
+        if (insideNet(i, xr, yr, w, h)) {
+            char recompensa[20];
+            if (getType(i) == 1) {
+                strcpy(recompensa, "PEIXE");
+                addGold(nau, 5);
+            } else if (getType(i) == 3) {
+                strcpy(recompensa, "CAMARÃO");
+                addGold(nau, 10);
+            } else if (getType(i) == 4) {
+                if (!strcmp(getText(i), " $")) {
+                    strcpy(recompensa, "MOEDA");
+                    setEnergy(nau, getEnergy(nau) + 0.5);
+                } else if (!strcmp(getText(i), " >-|-<")) {
+                    strcpy(recompensa, "LAGOSTA");
+                    addGold(nau, 20);
+                } else {
+                    strcpy(recompensa, "DETRITOS");
                 }
-
-                fprintf(txt, "\tNAU = %d, x = %lf, y= %lf, gold = %lf, e = %lf\n", getId(nau), getX(nau), getY(nau), getGold(nau), getEnergy(nau));
-                fprintf(txt, "\t  PESCOU %s, id = %d, x = %lf, y = %lf\n", recompensa, getId(i), getX(i), getY(i));
-                Info dead = removeSRB(data->t, getX(i), getY(i), 0, 0, 0, 0);
-                free(dead);
-            
             }
-        } else {
-            fprintf(txt, "\tNau id = %d, e = %lf, energia_necessaria = %lf ENERGIA INSUFICIENTE PARA LANÇAMENTO\n", getId(nau), getEnergy(nau), a);
+
+            fprintf(txt, "\tNAU = %d, x = %lf, y= %lf, gold = %lf, e = %lf\n", getId(nau), getX(nau), getY(nau), getGold(nau), getEnergy(nau));
+            fprintf(txt, "\t  PESCOU %s, id = %d, x = %lf, y = %lf\n", recompensa, getId(i), getX(i), getY(i));
+            Info dead = removeSRB(data->t, getX(i), getY(i), 0, 0, 0, 0);
+            if (dead) {
+                printf("MORREU %p\n", dead);
+                free(dead);
+            }
         }
     }
 }
@@ -337,7 +339,9 @@ void d_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2,
                 addGold(nau, getGold(i));
                 fprintf(txt, "\t  DESTRUIDA Nau id = %d, x = %lf, y = %lf, gold = %lf\n", getId(i), getX(i), getY(i), getGold(i));
                 Info dead = removeSRB(t, getX(i), getY(i), getX(i), getY(i), getX(i) + getW(i), getY(i) + getH(i));
-                free(dead);
+                if (dead) {
+                    free(dead);
+                }
             }
         }
     }
@@ -379,14 +383,16 @@ void mc_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2
     double h = data->h;
     SRBTree t = data->t;
 
-    if (getType(i) == 1) {
+    if (i && getType(i) == 1) {
         if (fishInside(i, x1, y1, w, h)) {
             fprintf(txt, "\tPEIXE id = %d, xi = %lf, yi = %lf, ", getId(i), getX(i), getY(i));
             Info old = removeSRB(t, getX(i), getY(i), getX(i) - getR(i), getY(i) - getR(i), 2 * getR(i), 2 * getR(i));
-            setX(old, dx);
-            setY(old, dy);
-            fprintf(txt, "xf = %lf, yf = %lf\n", getX(i), getY(i));
-            insertSRB(t, getX(old), getY(aux), getX(old) - getR(old), getY(old) - getR(old), 2 * getR(old), 2 * getR(old), old);
+            if (old) {
+                setX(old, dx);
+                setY(old, dy);
+                fprintf(txt, "xf = %lf, yf = %lf\n", getX(i), getY(i));
+                insertSRB(t, getX(old), getY(aux), getX(old) - getR(old), getY(old) - getR(old), 2 * getR(old), 2 * getR(old), old);
+            }
         }
     }
 }

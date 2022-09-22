@@ -26,7 +26,7 @@ typedef struct tree Red_Black_Root;
 // ---> HEADERS DE FUNÇÕES EXTRAS
 
 Node newNode(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2);
-Node insertAux(SRBTree t, Node n, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, Info info);
+Node insertBST(SRBTree t, Node n, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, Info info);
 void fixRBinsert(SRBTree t, Node n);
 void rotateLeft(SRBTree t, Node n);
 void rotateRight(SRBTree t, Node n);
@@ -88,15 +88,15 @@ Node newNode(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX
 }
 
 Node insertSRB(SRBTree t, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, Info info) {
-    Red_Black_Root *red_black_tree = t;
-    insertAux(t, red_black_tree->root, x, y, mbbX1, mbbY1, mbbX2, mbbY2, info);
+    Red_Black_Root *tree = t;
+    insertBST(t, tree->root, x, y, mbbX1, mbbY1, mbbX2, mbbY2, info);
     Red_Black_Node *new_node = getNodeSRB(t, x, y, &mbbX1, &mbbY1, &mbbX2, &mbbY2);
     fixRBinsert(t, new_node);
     fixTreeMBB(t, new_node);
     return new_node;
 }
 
-Node insertAux(SRBTree t, Node n, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, Info info) {
+Node insertBST(SRBTree t, Node n, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, Info info) {
     Red_Black_Root *red_black_tree = t;
     Red_Black_Node *new_node = n;
 
@@ -116,11 +116,11 @@ Node insertAux(SRBTree t, Node n, double x, double y, double mbbX1, double mbbY1
     }
 
     if ((x < new_node->x) || (x == new_node->x && y < new_node->y)) {
-        new_node->left = insertAux(red_black_tree, new_node->left, x, y, mbbX1, mbbY1, mbbX2, mbbY2, info);
+        new_node->left = insertBST(red_black_tree, new_node->left, x, y, mbbX1, mbbY1, mbbX2, mbbY2, info);
         new_node->left->parent = new_node;
 
     } else {
-        new_node->right = insertAux(red_black_tree, new_node->right, x, y, mbbX1, mbbY1, mbbX2, mbbY2, info);
+        new_node->right = insertBST(red_black_tree, new_node->right, x, y, mbbX1, mbbY1, mbbX2, mbbY2, info);
         new_node->right->parent = new_node;
     }
     return new_node;

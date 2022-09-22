@@ -4,8 +4,8 @@
 int main () {
     Tree t = newTree();
 
-    int a[17] = {20, 12, 23, 3, 5, 99, 10, 90, 1, 100, 81, 8, 2, 1, 4, 95, 104};
-    for (int i = 0; i < 17; i++) {
+    int a[16] = {20, 12, 23, 3, 5, 99, 10, 90, 1, 100, 81, 8, 2, 4, 95, 104};
+    for (int i = 0; i < 16; i++) {
         insertTree(t, a[i]);
     }
     char file[] = "/home/marcotuiio/Data_Structures/1UTIL/testes.dot";
@@ -24,7 +24,7 @@ int main () {
     // REMOVER 4 OK no vermelho folha
     // REMOVER 95 OK no preto folha (a esquerda)
 
-    freeTree(t);
+    // freeTree(t);
 
     return 0;
 }

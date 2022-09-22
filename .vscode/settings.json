@@ -3,6 +3,7 @@
         "fila_circ.h": "c",
         "libs.h": "c",
         "list.h": "c",
-        "rectangle.h": "c"
+        "rectangle.h": "c",
+        "teste": "c"
     }
 }

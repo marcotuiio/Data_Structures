@@ -26,7 +26,8 @@ typedef struct tree Red_Black_Root;
 // ---> HEADERS DE FUNÇÕES EXTRAS
 
 Node newNode(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2);
-Node insertAux(SRBTree t, Node n, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, Info info);
+Node insertBST(SRBTree t, Node n, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, Info info);
+void RBinsert(SRBTree t, Node n);
 void fixRBinsert(SRBTree t, Node n);
 void rotateLeft(SRBTree t, Node n);
 void rotateRight(SRBTree t, Node n);
@@ -64,7 +65,7 @@ SRBTree createSRB(double epsilon) {
     new_tree->nil->value = NULL;
 
     new_tree->epislon = epsilon;
-    new_tree->root = NULL;
+    new_tree->root = new_tree->nil;
     new_tree->size = 0;
 
     return new_tree;
@@ -79,6 +80,10 @@ Node newNode(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX
     new_node->mbbX2 = mbbX2;
     new_node->mbbY1 = mbbY1;
     new_node->mbbY2 = mbbY2;
+    new_node->SmbbX1 = 0;
+    new_node->SmbbY1 = 0;
+    new_node->SmbbX2 = 0;
+    new_node->SmbbY2 = 0;
     new_node->parent = NULL;
     new_node->left = NULL;
     new_node->right = NULL;
@@ -88,15 +93,15 @@ Node newNode(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX
 }
 
 Node insertSRB(SRBTree t, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, Info info) {
-    Red_Black_Root *red_black_tree = t;
-    insertAux(t, red_black_tree->root, x, y, mbbX1, mbbY1, mbbX2, mbbY2, info);
+    Red_Black_Root *tree = t;
+    insertBST(t, tree->root, x, y, mbbX1, mbbY1, mbbX2, mbbY2, info);
     Red_Black_Node *new_node = getNodeSRB(t, x, y, &mbbX1, &mbbY1, &mbbX2, &mbbY2);
     fixRBinsert(t, new_node);
     fixTreeMBB(t, new_node);
     return new_node;
 }
 
-Node insertAux(SRBTree t, Node n, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, Info info) {
+Node insertBST(SRBTree t, Node n, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, Info info) {
     Red_Black_Root *red_black_tree = t;
     Red_Black_Node *new_node = n;
 
@@ -108,6 +113,8 @@ Node insertAux(SRBTree t, Node n, double x, double y, double mbbX1, double mbbY1
         }
         if (new_node) {
             red_black_tree->size++;
+            // new_node->left = red_black_tree->nil;
+            // new_node->right = red_black_tree->nil;
             return new_node;
         } else {
             printf("ERROR: YOU ARE OUT OF MEMORY\n");
@@ -116,15 +123,43 @@ Node insertAux(SRBTree t, Node n, double x, double y, double mbbX1, double mbbY1
     }
 
     if ((x < new_node->x) || (x == new_node->x && y < new_node->y)) {
-        new_node->left = insertAux(red_black_tree, new_node->left, x, y, mbbX1, mbbY1, mbbX2, mbbY2, info);
+        new_node->left = insertBST(red_black_tree, new_node->left, x, y, mbbX1, mbbY1, mbbX2, mbbY2, info);
         new_node->left->parent = new_node;
 
     } else {
-        new_node->right = insertAux(red_black_tree, new_node->right, x, y, mbbX1, mbbY1, mbbX2, mbbY2, info);
+        new_node->right = insertBST(red_black_tree, new_node->right, x, y, mbbX1, mbbY1, mbbX2, mbbY2, info);
         new_node->right->parent = new_node;
     }
     return new_node;
 }
+
+// void RBinsert(SRBTree t, Node n) {
+//     Red_Black_Root *red_black_tree = t;
+//     Red_Black_Node *x = red_black_tree->root;
+//     Red_Black_Node *y = red_black_tree->nil;
+//     Red_Black_Node *z = n;
+
+//     while (x != red_black_tree->nil) {
+//         y = x;
+//         if ((z->x < x->x) || (z->x == x->x && z->y < x->y)) {
+//             x = x->left;
+//         } else {
+//             x = x->right;
+//         }
+//     }
+//     z->parent = y;
+//     if (y == red_black_tree->nil) {
+//         red_black_tree->root = z;
+//     } else if ((z->x < x->x) || (z->x == x->x && z->y < x->y)) {
+//         y->left = z;
+//     } else {
+//         y->right = z;
+//     }
+//     z->left = red_black_tree->nil;
+//     z->right = red_black_tree->nil;
+//     paintRed(z);
+//     fixRBinsert(t, z);
+// }
 
 Node insertBBSRB(SRBTree t, double mbbX1, double mbbY1, double mbbX2, double mbbY2, Info info) {
     return insertSRB(t, mbbX1, mbbY1, mbbX1, mbbY1, mbbX2, mbbY2, info);
@@ -163,7 +198,7 @@ void fixRBinsert(SRBTree t, Node n) {
                 rotateRight(t, z->parent->parent);
             }
 
-        // CASO B: o pai de z é o filho direito do avô de z
+            // CASO B: o pai de z é o filho direito do avô de z
         } else if (z->parent && z->parent == z->parent->parent->right) {
             if (z->parent->parent->left) {
                 uncle_z = z->parent->parent->left;
@@ -196,7 +231,7 @@ void fixRBinsert(SRBTree t, Node n) {
 void rotateLeft(SRBTree t, Node n) {
     Red_Black_Root *red_black_tree = t;
     Red_Black_Node *node = n;                   // avô 2
-    Red_Black_Node *right_child = node->right;  // pai (direita) 
+    Red_Black_Node *right_child = node->right;  // pai (direita)
 
     node->right = right_child->left;
     if (node->right) {
@@ -245,8 +280,10 @@ void rotateRight(SRBTree t, Node n) {
 
 bool isBlack(Node n) {
     Red_Black_Node *node = n;
-    if (!strcmp(node->color, "BLACK")) {
-        return true;
+    if (n) {    
+        if (!strcmp(node->color, "BLACK")) {
+            return true;
+        }
     }
     return false;
 }
@@ -258,8 +295,10 @@ void paintBlack(Node n) {
 
 bool isRed(Node n) {
     Red_Black_Node *node = n;
-    if (!strcmp(node->color, "RED")) {
-        return true;
+    if (n) {
+        if (!strcmp(node->color, "RED")) {
+            return true;
+        }
     }
     return false;
 }
@@ -283,7 +322,6 @@ void getMBBSub(Node n, double *x1, double *y1, double *x2, double *y2) {
         *x2 = node->SmbbX2;
         *y2 = node->SmbbY2;
     }
-    
 }
 
 void uniteMBB(double x11, double y11, double x12, double y12, double x21, double y21, double x22, double y22, double *xr1, double *yr1, double *xr2, double *yr2) {
@@ -297,7 +335,6 @@ void fixTreeMBB(SRBTree t, Node n) {
     Red_Black_Node *node = n;
 
     while (node) {
-
         if (node->left) {
             getMBBSub(node->left, &node->SmbbX1, &node->SmbbY1, &node->SmbbX2, &node->SmbbY2);
         } else {
@@ -423,14 +460,14 @@ void updateInfoSRB(SRBTree t, Node n, Info i) {
     double y = getY(i);
     if (fabs(node->x - x) <= red_black_tree->epislon && fabs(node->y - y) <= red_black_tree->epislon) {
         node->value = i;
-        printf("Sucesso ao atualizar a info\n"); // Apenas trocadas as informações
+        printf("Sucesso ao atualizar a info\n");  // Apenas trocadas as informações
     } else {
-        removeSRB(t, node->x, node->y, 0, 0, 0, 0); // Remove info atual e analisa os asos para reinserir o nó atualizado
+        removeSRB(t, node->x, node->y, 0, 0, 0, 0);  // Remove info atual e analisa os asos para reinserir o nó atualizado
         switch (getId(i)) {
             case 1:
-                insertSRB(t, x, y, x - getR(i), y - getR(i), 2*getR(i), 2*getR(i), i);
+                insertSRB(t, x, y, x - getR(i), y - getR(i), 2 * getR(i), 2 * getR(i), i);
                 break;
-            
+
             case 2:
                 insertSRB(t, x, y, x, y, x + getW(i), y + getH(i), i);
                 break;
@@ -446,7 +483,7 @@ void updateInfoSRB(SRBTree t, Node n, Info i) {
                 break;
 
             default:
-                break; 
+                break;
         }
     }
 }
@@ -455,42 +492,34 @@ Info removeSRB(SRBTree t, double xa, double ya, double mbbX1, double mbbY1, doub
     Red_Black_Root *tree = t;
     Red_Black_Node *rb_node = getNodeSRB(tree, xa, ya, &mbbX1, &mbbY1, &mbbX2, &mbbY2);
     Red_Black_Node *nil = tree->nil;
+
     if (!rb_node) {
-        printf("NO NODE FOUND\n");
+        printf("\nNODE x = %lf y = %lf NOT FOUND\n", xa, ya);
         return NULL;
     }
 
-    Red_Black_Node *x = NULL;
     if (fabs(rb_node->x - xa) <= tree->epislon && fabs(rb_node->y - ya) <= tree->epislon) {
         Info info = rb_node->value;
+        Red_Black_Node *x = NULL;
         Red_Black_Node *y = rb_node;
         char y_original_color[10];
         strcpy(y_original_color, y->color);
 
-        if (!rb_node->left) {
-            if (!rb_node->right) {
-                x = nil;
-            } else {
-                x = rb_node->right;
-            }
+        if (rb_node->left == nil) {
+            x = rb_node->right;
             transplantRB(tree, rb_node, rb_node->right);
-        } else if (!rb_node->right) {
-            if (!rb_node->left) {
-                x = nil;
-            } else {
-                x = rb_node->left;
-            }
+        } else if (rb_node->right == nil) {
+            x = rb_node->left;
             transplantRB(tree, rb_node, rb_node->left);
         } else {
             y = getSmallestRight(rb_node->right);
             strcpy(y_original_color, y->color);
-            if (!y->right) {
-                x = nil;
-            } else {
-                x = y->right;
-            }
+            x = y->right;
+            
             if (y->parent == rb_node) {
-                x->parent = y;
+                if (x) {
+                    x->parent = y;
+                }
             } else {
                 transplantRB(tree, y, y->right);
                 y->right = rb_node->right;
@@ -501,15 +530,15 @@ Info removeSRB(SRBTree t, double xa, double ya, double mbbX1, double mbbY1, doub
             y->left->parent = y;
             strcpy(y->color, rb_node->color);
         }
-        if (!strcmp(y_original_color, "BLACK") && x != nil) {
+        if (!strcmp(y_original_color, "BLACK")) {
             fixRBdelete(tree, x);
         }
-        removeNils(tree, tree->root);
+        // removeNils(tree, tree->root);
         fixTreeMBB(tree, y);
         tree->size--;
         return info;
     }
-    return NULL; // ERRO!
+    return NULL;  // ERRO!
 }
 
 void transplantRB(SRBTree t, Node n, Node n2) {
@@ -567,7 +596,8 @@ void fixRBdelete(SRBTree t, Node n) {
                 rotateRight(t, w);
                 w = rb_node->parent->right;
                 rb_node = rb_node->parent;
-            }
+
+            } 
 
         } else if (rb_node && rb_node == rb_node->parent->right) {
             w = rb_node->parent->left;
@@ -585,6 +615,7 @@ void fixRBdelete(SRBTree t, Node n) {
                 rotateRight(t, rb_node->parent);
                 w = rb_node->parent->left;
             }
+            
             // Caso 2B: Ambos os filhos do irmão w são pretos
             if ((isBlack(w->left) && isBlack(w->right))) {
                 paintRed(w);
@@ -597,6 +628,7 @@ void fixRBdelete(SRBTree t, Node n) {
                 rotateLeft(t, w);
                 w = rb_node->parent->left;
                 rb_node = rb_node->parent;
+
             }
         }
     }
@@ -621,9 +653,9 @@ Node getSmallestRight(Node n) {
 void printSRB(SRBTree t, char *nomeArq) {
     Red_Black_Root *tree = t;
     char node[] = "[fontname=\"Helvetica,Arial,sans-serif\" style=\"filled\"]";
-    char edge[] = "[fontname=\"Helvetica,Arial,sans-serif\" color=\"black\"]" ;
+    char edge[] = "[fontname=\"Helvetica,Arial,sans-serif\" color=\"black\"]";
     FILE *dotFile = fopen(nomeArq, "w");
-    
+
     fprintf(dotFile, "digraph RB_Teste {\n");
     fprintf(dotFile, "\tnode %s\n", node);
     fprintf(dotFile, "\tedge %s\n\n", edge);
@@ -639,9 +671,9 @@ void makeDotNodes(Node n, FILE *dotFile) {
     Red_Black_Node *node = n;
     if (!node) {
         return;
-    } 
+    }
 
-    if (node) {
+    if (node && node->value) {
         if (isBlack(node)) {
             fprintf(dotFile, "\t\tnode [fillcolor=\" black\" fontcolor=\" white\"] %d \n", getId(node->value));
         } else if (isRed(node)) {
@@ -657,12 +689,12 @@ void makeDotEdges(Node n, FILE *dotFile) {
     Red_Black_Node *node = n;
     if (!node) {
         return;
-    } 
+    }
 
-    if (node->left) {
+    if (node->value && node->left && node->left->value) {
         fprintf(dotFile, "\t%d -> %d \n", getId(node->value), getId(node->left->value));
     }
-    if (node->right) {
+    if (node->value && node->right && node->right->value) {
         fprintf(dotFile, "\t%d -> %d \n", getId(node->value), getId(node->right->value));
     }
 
@@ -681,7 +713,9 @@ void traverseAux(Node root, FvisitaNo f, void *aux) {
         return;
     }
 
-    f(node->value, node->x, node->y, node->mbbX1, node->mbbY1, node->mbbX2, node->mbbY2, aux);
+    if (node->value) {
+        f(node->value, node->x, node->y, node->mbbX1, node->mbbY1, node->mbbX2, node->mbbY2, aux);
+    }
     traverseAux(node->left, f, aux);
     traverseAux(node->right, f, aux);
 }
@@ -701,7 +735,7 @@ void levelOrderAux(Node root, int level) {
         return;
     }
     if (level == 1) {
-        if (node->parent) {
+        if (node->parent && node->parent->value) {
             printf("\n\n\n\t%.2lf %.2lf %s\n", node->parent->x, node->parent->y, node->parent->color);
             printf("\t      |\n");
         }
@@ -710,10 +744,10 @@ void levelOrderAux(Node root, int level) {
         printf("\t /");
         printf("\t    \\\n");
 
-        if (node->left) {
+        if (node->left && node->left->value) {
             printf("%.2lf %.2lf %s", node->left->x, node->left->y, node->left->color);
         }
-        if (node->right) {
+        if (node->right && node->right->value) {
             printf("  %.2lf %.2lf %s", node->right->x, node->right->y, node->right->color);
         }
 
