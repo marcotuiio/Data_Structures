@@ -44,10 +44,7 @@ void insertTree(Tree t, int i) {
     Red_Black_Root *red_black_tree = t;
     Red_Black_Node *new_node = newNode(i);
     if (!red_black_tree->root) {
-        red_black_tree->root = new_node;
-        paintBlack(red_black_tree->root);
-        red_black_tree->size++;
-        return;
+        red_black_tree->root = red_black_tree->nil;
     }
     RBinsert(t, new_node);
     red_black_tree->size++;
@@ -59,10 +56,8 @@ void RBinsert(Tree t, Node n) {
     Red_Black_Node *y = red_black_tree->nil;
     Red_Black_Node *z = n;
 
-    printf("inserindo %d %p | %d %p\n", z->value, z, x->value, x);
     while (x != red_black_tree->nil) {
         y = x;
-            printf("esquerda");
         if (z->value < x->value) {
             x = x->left;
         } else if (z->value > x->value) {

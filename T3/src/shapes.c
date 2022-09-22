@@ -297,7 +297,7 @@ bool insideNet(Info i, double xr, double yr, double w, double h) {
     double y1 = getY(i);
 
     switch (getType(i)) {
-        case 1:
+        case 1: ;
             double r = getR(i);
             if ((xr + w) >= (x1 + r) && (xr) <= (x1 - r)) {
                 if ((yr + h) >= (y1 + r) && (yr) <= (y1 - r)) {
@@ -313,7 +313,7 @@ bool insideNet(Info i, double xr, double yr, double w, double h) {
             return false;
             break;
 
-        case 3:
+        case 3: ;
             double x2 = getX2(i);
             double y2 = getY2(i);
             if (((xr + w) >= (x1)) && ((yr + h) >= (y1))) {

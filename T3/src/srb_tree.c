@@ -65,7 +65,7 @@ SRBTree createSRB(double epsilon) {
     new_tree->nil->value = NULL;
 
     new_tree->epislon = epsilon;
-    new_tree->root = new_tree->nil;
+    new_tree->root = NULL;
     new_tree->size = 0;
 
     return new_tree;
@@ -80,10 +80,10 @@ Node newNode(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX
     new_node->mbbX2 = mbbX2;
     new_node->mbbY1 = mbbY1;
     new_node->mbbY2 = mbbY2;
-    new_node->SmbbX1 = 0;
-    new_node->SmbbY1 = 0;
-    new_node->SmbbX2 = 0;
-    new_node->SmbbY2 = 0;
+    new_node->SmbbX1 = mbbX1;
+    new_node->SmbbY1 = mbbY1;
+    new_node->SmbbX2 = mbbX2;
+    new_node->SmbbY2 = mbbY2;
     new_node->parent = NULL;
     new_node->left = NULL;
     new_node->right = NULL;
@@ -94,9 +94,9 @@ Node newNode(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX
 
 Node insertSRB(SRBTree t, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, Info info) {
     Red_Black_Root *tree = t;
+
     insertBST(t, tree->root, x, y, mbbX1, mbbY1, mbbX2, mbbY2, info);
     Red_Black_Node *new_node = getNodeSRB(t, x, y, &mbbX1, &mbbY1, &mbbX2, &mbbY2);
-    fixRBinsert(t, new_node);
     fixTreeMBB(t, new_node);
     return new_node;
 }
@@ -113,8 +113,6 @@ Node insertBST(SRBTree t, Node n, double x, double y, double mbbX1, double mbbY1
         }
         if (new_node) {
             red_black_tree->size++;
-            // new_node->left = red_black_tree->nil;
-            // new_node->right = red_black_tree->nil;
             return new_node;
         } else {
             printf("ERROR: YOU ARE OUT OF MEMORY\n");
@@ -132,34 +130,6 @@ Node insertBST(SRBTree t, Node n, double x, double y, double mbbX1, double mbbY1
     }
     return new_node;
 }
-
-// void RBinsert(SRBTree t, Node n) {
-//     Red_Black_Root *red_black_tree = t;
-//     Red_Black_Node *x = red_black_tree->root;
-//     Red_Black_Node *y = red_black_tree->nil;
-//     Red_Black_Node *z = n;
-
-//     while (x != red_black_tree->nil) {
-//         y = x;
-//         if ((z->x < x->x) || (z->x == x->x && z->y < x->y)) {
-//             x = x->left;
-//         } else {
-//             x = x->right;
-//         }
-//     }
-//     z->parent = y;
-//     if (y == red_black_tree->nil) {
-//         red_black_tree->root = z;
-//     } else if ((z->x < x->x) || (z->x == x->x && z->y < x->y)) {
-//         y->left = z;
-//     } else {
-//         y->right = z;
-//     }
-//     z->left = red_black_tree->nil;
-//     z->right = red_black_tree->nil;
-//     paintRed(z);
-//     fixRBinsert(t, z);
-// }
 
 Node insertBBSRB(SRBTree t, double mbbX1, double mbbY1, double mbbX2, double mbbY2, Info info) {
     return insertSRB(t, mbbX1, mbbY1, mbbX1, mbbY1, mbbX2, mbbY2, info);
@@ -280,7 +250,7 @@ void rotateRight(SRBTree t, Node n) {
 
 bool isBlack(Node n) {
     Red_Black_Node *node = n;
-    if (n) {    
+    if (n) {
         if (!strcmp(node->color, "BLACK")) {
             return true;
         }
@@ -290,7 +260,9 @@ bool isBlack(Node n) {
 
 void paintBlack(Node n) {
     Red_Black_Node *node = n;
-    strcpy(node->color, "BLACK");
+    if (n) {
+        strcpy(node->color, "BLACK");
+    }
 }
 
 bool isRed(Node n) {
@@ -305,7 +277,9 @@ bool isRed(Node n) {
 
 void paintRed(Node n) {
     Red_Black_Node *node = n;
-    strcpy(node->color, "RED");
+    if (n) {
+        strcpy(node->color, "RED");
+    }
 }
 
 void getMBBSub(Node n, double *x1, double *y1, double *x2, double *y2) {
@@ -400,6 +374,7 @@ void mbbFullyInside(Node n, double x, double y, double w, double h, Lista result
     if (!node) {
         return;
     }
+    
     double x1 = node->mbbX1;
     double y1 = node->mbbY1;
     double w1 = node->mbbX2 - x1;
@@ -456,6 +431,7 @@ Node searchNode(SRBTree t, Node n, double xa, double ya, double *mbbX1, double *
 void updateInfoSRB(SRBTree t, Node n, Info i) {
     Red_Black_Root *red_black_tree = t;
     Red_Black_Node *node = n;
+
     double x = getX(i);
     double y = getY(i);
     if (fabs(node->x - x) <= red_black_tree->epislon && fabs(node->y - y) <= red_black_tree->epislon) {
@@ -472,7 +448,7 @@ void updateInfoSRB(SRBTree t, Node n, Info i) {
                 insertSRB(t, x, y, x, y, x + getW(i), y + getH(i), i);
                 break;
 
-            case 3:
+            case 3:;
                 double y_aux, y2_aux;
                 findLineXY(&y_aux, &y2_aux, i);
                 insertSRB(t, x, y, x, y_aux, getX2(i), y2_aux, i);
@@ -491,7 +467,6 @@ void updateInfoSRB(SRBTree t, Node n, Info i) {
 Info removeSRB(SRBTree t, double xa, double ya, double mbbX1, double mbbY1, double mbbX2, double mbbY2) {
     Red_Black_Root *tree = t;
     Red_Black_Node *rb_node = getNodeSRB(tree, xa, ya, &mbbX1, &mbbY1, &mbbX2, &mbbY2);
-    Red_Black_Node *nil = tree->nil;
 
     if (!rb_node) {
         printf("\nNODE x = %lf y = %lf NOT FOUND\n", xa, ya);
@@ -505,17 +480,17 @@ Info removeSRB(SRBTree t, double xa, double ya, double mbbX1, double mbbY1, doub
         char y_original_color[10];
         strcpy(y_original_color, y->color);
 
-        if (rb_node->left == nil) {
+        if (!rb_node->left) {
             x = rb_node->right;
             transplantRB(tree, rb_node, rb_node->right);
-        } else if (rb_node->right == nil) {
+        } else if (!rb_node->right) {
             x = rb_node->left;
             transplantRB(tree, rb_node, rb_node->left);
         } else {
             y = getSmallestRight(rb_node->right);
             strcpy(y_original_color, y->color);
             x = y->right;
-            
+
             if (y->parent == rb_node) {
                 if (x) {
                     x->parent = y;
@@ -596,8 +571,7 @@ void fixRBdelete(SRBTree t, Node n) {
                 rotateRight(t, w);
                 w = rb_node->parent->right;
                 rb_node = rb_node->parent;
-
-            } 
+            }
 
         } else if (rb_node && rb_node == rb_node->parent->right) {
             w = rb_node->parent->left;
@@ -615,7 +589,7 @@ void fixRBdelete(SRBTree t, Node n) {
                 rotateRight(t, rb_node->parent);
                 w = rb_node->parent->left;
             }
-            
+
             // Caso 2B: Ambos os filhos do irmão w são pretos
             if ((isBlack(w->left) && isBlack(w->right))) {
                 paintRed(w);
@@ -628,7 +602,6 @@ void fixRBdelete(SRBTree t, Node n) {
                 rotateLeft(t, w);
                 w = rb_node->parent->left;
                 rb_node = rb_node->parent;
-
             }
         }
     }

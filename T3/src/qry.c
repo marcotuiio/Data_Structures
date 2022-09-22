@@ -162,6 +162,11 @@ void mv(FILE *qry, FILE *txt, SRBTree t) {
     aux->nau = NULL;
 
     percursoProfundidade(t, find_idMV, aux);
+    if (!aux->nau) {
+        fprintf(txt, "\tNao foi possivel encontrar a nave id = %d\n", i);
+        free(aux);
+        return;
+    }
 
     Info old = removeSRB(t, getX(aux->nau), getY(aux->nau), 0, 0, 0, 0);
     fprintf(txt, "\tDeslocou id = %d, xi = %lf, yi = %lf, ", getId(old), getX(old), getY(old));
@@ -210,6 +215,12 @@ void lr(FILE *qry, FILE *txt, SRBTree t) {
     percursoProfundidade(t, find_idLR, aux);
 
     double need = 0;
+    if (!aux->nau) {
+        fprintf(txt, "\tNao existe nave com id = %d\n", i);
+        free(aux);
+        return;
+    }
+
     if (energyArremesso(aux->nau, d, w * h, &need)) {
         percursoProfundidade(t, lr_aux, aux);
     } else {
@@ -272,7 +283,6 @@ void lr_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2
             fprintf(txt, "\t  PESCOU %s, id = %d, x = %lf, y = %lf\n", recompensa, getId(i), getX(i), getY(i));
             Info dead = removeSRB(data->t, getX(i), getY(i), 0, 0, 0, 0);
             if (dead) {
-                printf("MORREU %p\n", dead);
                 free(dead);
             }
         }
