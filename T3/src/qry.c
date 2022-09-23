@@ -378,7 +378,9 @@ void mc(FILE *qry, FILE *txt, SRBTree t) {
     aux->h = h;
     aux->txt = txt;
     aux->t = t;
+
     percursoProfundidade(t, mc_aux, aux);
+
     free(aux);
 }
 
@@ -401,7 +403,7 @@ void mc_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2
                 setX(old, dx);
                 setY(old, dy);
                 fprintf(txt, "xf = %lf, yf = %lf\n", getX(i), getY(i));
-                insertSRB(t, getX(old), getY(aux), getX(old) - getR(old), getY(old) - getR(old), 2 * getR(old), 2 * getR(old), old);
+                insertSRB(t, getX(old), getY(old), getX(old) - getR(old), getY(old) - getR(old), 2 * getR(old), 2 * getR(old), old);
             }
         }
     }

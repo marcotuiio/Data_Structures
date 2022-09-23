@@ -60,7 +60,7 @@ void insereFim(Lista l, void* n) {
     novaCelula->next = NULL;
     novaCelula->prev = NULL;
 
-    if (lista->fim != NULL) {  // fim <-> nova --
+    if (lista->fim) {  // fim <-> nova --
         novaCelula->prev = lista->fim;
         novaCelula->prev->next = novaCelula;
         lista->fim = novaCelula;
