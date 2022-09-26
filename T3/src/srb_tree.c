@@ -94,9 +94,15 @@ Node newNode(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX
 
 Node insertSRB(SRBTree t, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, Info info) {
     Red_Black_Root *tree = t;
-
-    insertBST(t, tree->root, x, y, mbbX1, mbbY1, mbbX2, mbbY2, info);
-    Red_Black_Node *new_node = getNodeSRB(t, x, y, &mbbX1, &mbbY1, &mbbX2, &mbbY2);
+    Red_Black_Node *new_node;
+    if (1) {
+        insertBST(t, tree->root, x, y, mbbX1, mbbY1, mbbX2, mbbY2, info);
+        new_node = getNodeSRB(t, x, y, &mbbX1, &mbbY1, &mbbX2, &mbbY2);
+        // fixRBinsert(t, new_node);
+    } else {
+        new_node = newNode(info, x, y, mbbX1, mbbY1, mbbX2, mbbY2);
+        RBinsert(t, new_node);
+    }
     fixTreeMBB(t, new_node);
     return new_node;
 }
@@ -131,6 +137,34 @@ Node insertBST(SRBTree t, Node n, double x, double y, double mbbX1, double mbbY1
     return new_node;
 }
 
+void RBinsert(SRBTree t, Node n) {
+    Red_Black_Root *red_black_tree = t;
+    Red_Black_Node *x = red_black_tree->root;
+    Red_Black_Node *y = red_black_tree->nil;
+    Red_Black_Node *z = n;
+
+    while (x) {
+        y = x;
+        if ((z->x < x->x) || (z->x == x->x && z->y < x->y)) {
+            x = x->left;
+        } else {
+            x = x->right;
+        }
+    }
+    z->parent = y;
+    if (y == red_black_tree->nil) {
+        red_black_tree->root = z;
+    } else if ((z->x < x->x) || (z->x == x->x && z->y < x->y)) {
+        y->left = z;
+    } else {
+        y->right = z;
+    }
+    z->left = red_black_tree->nil;
+    z->right = red_black_tree->nil;
+    paintRed(z);
+    fixRBinsert(t, z);
+}
+
 Node insertBBSRB(SRBTree t, double mbbX1, double mbbY1, double mbbX2, double mbbY2, Info info) {
     return insertSRB(t, mbbX1, mbbY1, mbbX1, mbbY1, mbbX2, mbbY2, info);
 }
@@ -141,15 +175,13 @@ void fixRBinsert(SRBTree t, Node n) {
     Red_Black_Node *z = n;
     Red_Black_Node *uncle_z = NULL;
 
-    while ((z != root) && (isRed(z->parent))) {
-        // CASO A: pai de z é filho a esquerda do avô de z
+    while ((isRed(z->parent))) {
+        // CASO A: pai de z é filho a esquerda do avô de z  
         if (z->parent == z->parent->parent->left) {
-            if (z->parent->parent->right) {
-                uncle_z = z->parent->parent->right;
-            }
+            uncle_z = z->parent->parent->right;
 
             // CASO 1A: o tio de z é vermelho, precisa recolorir
-            if (uncle_z && isRed(uncle_z)) {
+            if (isRed(uncle_z)) {
                 paintRed(z->parent->parent);
                 paintBlack(z->parent);
                 paintBlack(uncle_z);
@@ -170,12 +202,10 @@ void fixRBinsert(SRBTree t, Node n) {
 
             // CASO B: o pai de z é o filho direito do avô de z
         } else if (z->parent && z->parent == z->parent->parent->right) {
-            if (z->parent->parent->left) {
-                uncle_z = z->parent->parent->left;
-            }
+            uncle_z = z->parent->parent->left;
 
             // CASO 1B: o tio de z é vermelho, precisa recolorir
-            if (uncle_z && isRed(uncle_z)) {
+            if (isRed(uncle_z)) {
                 paintRed(z->parent->parent);
                 paintBlack(z->parent);
                 paintBlack(uncle_z);
@@ -252,10 +282,11 @@ bool isBlack(Node n) {
     Red_Black_Node *node = n;
     if (n) {
         if (!strcmp(node->color, "BLACK")) {
-            return true;
+            return true;        
         }
+        return false;
     }
-    return false;
+    return true;
 }
 
 void paintBlack(Node n) {
@@ -271,6 +302,7 @@ bool isRed(Node n) {
         if (!strcmp(node->color, "RED")) {
             return true;
         }
+        return false;
     }
     return false;
 }
@@ -374,7 +406,7 @@ void mbbFullyInside(Node n, double x, double y, double w, double h, Lista result
     if (!node) {
         return;
     }
-    
+
     double x1 = node->mbbX1;
     double y1 = node->mbbY1;
     double w1 = node->mbbX2 - x1;
@@ -534,22 +566,27 @@ void transplantRB(SRBTree t, Node n, Node n2) {
     }
 }
 
+void setNil(Node n, Node nil) {
+    Red_Black_Node *w = n;
+    if (!w->left) {
+        w->left = nil;
+    }
+    if (!w->right) {
+        w->right = nil;
+    }
+}
+
 void fixRBdelete(SRBTree t, Node n) {
     Red_Black_Root *rb_tree = t;
     Red_Black_Node *rb_node = n;
     Red_Black_Node *root = rb_tree->root;
-    Red_Black_Node *nil = rb_tree->nil;
+    // Red_Black_Node *nil = rb_tree->nil;
     Red_Black_Node *w = NULL;
 
     while (root != rb_node && isBlack(rb_node)) {
         if (rb_node && rb_node == rb_node->parent->left) {
             w = rb_node->parent->right;
-            if (!w->left) {
-                w->left = nil;
-            }
-            if (!w->right) {
-                w->right = nil;
-            }
+            // setNil(w, nil);
 
             // Caso 1A: irmão w é vermelho
             if (w && isRed(w)) {
@@ -557,6 +594,7 @@ void fixRBdelete(SRBTree t, Node n) {
                 paintBlack(w);
                 rotateLeft(t, rb_node->parent);
                 w = rb_node->parent->right;
+                // setNil(w, nil);
             }
 
             // Caso 2A: Ambos os filhos do irmão w são pretos
@@ -570,17 +608,13 @@ void fixRBdelete(SRBTree t, Node n) {
                 paintRed(w);
                 rotateRight(t, w);
                 w = rb_node->parent->right;
+                // setNil(w, nil);
                 rb_node = rb_node->parent;
             }
 
         } else if (rb_node && rb_node == rb_node->parent->right) {
             w = rb_node->parent->left;
-            if (!w->left) {
-                w->left = nil;
-            }
-            if (!w->right) {
-                w->right = nil;
-            }
+            // setNil(w, nil);
 
             // Caso 1B: irmão w é vermelho
             if (w && isRed(w)) {
@@ -588,6 +622,7 @@ void fixRBdelete(SRBTree t, Node n) {
                 paintBlack(w);
                 rotateRight(t, rb_node->parent);
                 w = rb_node->parent->left;
+                // setNil(w, nil);
             }
 
             // Caso 2B: Ambos os filhos do irmão w são pretos
@@ -601,6 +636,7 @@ void fixRBdelete(SRBTree t, Node n) {
                 paintRed(w);
                 rotateLeft(t, w);
                 w = rb_node->parent->left;
+                // setNil(w, nil);
                 rb_node = rb_node->parent;
             }
         }

@@ -180,6 +180,8 @@ void mv(FILE *qry, FILE *txt, SRBTree t) {
             insertSRB(t, getX(old), getY(old), getX(old), getY(old), getX(old) + getW(old), getY(old) + getH(old), old);
         } else if (getType(old) == 3) {
             double y_aux, y2_aux;
+            setX2(old, dx);
+            setY2(old, dy);
             findLineXY(&y_aux, &y2_aux, old);
             insertSRB(t, getX(old), getY(old), getX(old), y_aux, getX2(old), y2_aux, old);
         } else if (getType(old) == 4) {
@@ -344,14 +346,16 @@ void d_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2,
                 yt = getY(nau) + getH(nau) + d;
             }
 
-            fprintf(txt, "\tNAU id = %d, Atirou em: x = %lf, y = %lf\n", getId(nau), xt, yt);
+            fprintf(txt, "\tNAU id = %d, Atirou em: x = %lf, y = %lf", getId(nau), xt, yt);
             if (hitRectangle(i, xt, yt)) {
                 addGold(nau, getGold(i));
-                fprintf(txt, "\t  DESTRUIDA Nau id = %d, x = %lf, y = %lf, gold = %lf\n", getId(i), getX(i), getY(i), getGold(i));
+                fprintf(txt, "\n\t  DESTRUIDA Nau id = %d, x = %lf, y = %lf, gold = %lf\n", getId(i), getX(i), getY(i), getGold(i));
                 Info dead = removeSRB(t, getX(i), getY(i), getX(i), getY(i), getX(i) + getW(i), getY(i) + getH(i));
                 if (dead) {
                     free(dead);
                 }
+            } else {
+                fprintf(txt, "  ERROU id %d\n", getId(i));
             }
         }
     }

@@ -80,6 +80,12 @@ void setX(Info f, double dx);
 void setY(Info f, double dy);
 // Recebe uma forma e translada sua posicao em dy
 
+void setX2(Info f, double dx);
+// Recebe uma linha e translada sua posicao em dx
+
+void setY2(Info f, double dx);
+// Recebe uma linha e translada sua posicao em dy
+
 bool energyDeslocamento(Info i, double d);
 // Recebe uma nau e o deslocamento proposto, calcula se possui energia
 // realiza a atualização e retorna verdadeiro, caso não seja possivel, falso

@@ -35,7 +35,7 @@ void setCircle(FILE *geo, SRBTree t, Info f) {
     strcpy(shape->anchor, "0");
     strcpy(shape->text, "0");
     // mbb de circulo é um retangulo que contem o mesmo
-    insertSRB(t, shape->x, shape->y, shape->x - shape->r, shape->y - shape->r, 2*shape->r, 2*shape->r, shape);
+    insertSRB(t, shape->x, shape->y, shape->x - shape->r, shape->y - shape->r, 2 * shape->r, 2 * shape->r, shape);
 }
 
 void setRectangle(FILE *geo, SRBTree t, Info f) {
@@ -245,6 +245,16 @@ void setY(Info f, double dy) {
     shape->y = shape->y + dy;
 }
 
+void setX2(Info f, double dx) {
+    Shapes *shape = f;
+    shape->x2 = shape->x2 + dx;
+}
+
+void setY2(Info f, double dy) {
+    Shapes *shape = f;
+    shape->y2 = shape->y2 + dy;
+}
+
 bool energyDeslocamento(Info i, double d) {
     Shapes *nau = i;
     double e = d / 5;
@@ -258,7 +268,7 @@ bool energyDeslocamento(Info i, double d) {
 
 bool energyArremesso(Info i, double d, double A, double *need) {
     Shapes *nau = i;
-    double e = A/25 * d/5;
+    double e = A / 25 * d / 5;
     (*need) = e;
 
     if ((nau->energy - e) >= 0) {
@@ -297,7 +307,7 @@ bool insideNet(Info i, double xr, double yr, double w, double h) {
     double y1 = getY(i);
 
     switch (getType(i)) {
-        case 1: ;
+        case 1:;
             double r = getR(i);
             if ((xr + w) >= (x1 + r) && (xr) <= (x1 - r)) {
                 if ((yr + h) >= (y1 + r) && (yr) <= (y1 - r)) {
@@ -313,7 +323,7 @@ bool insideNet(Info i, double xr, double yr, double w, double h) {
             return false;
             break;
 
-        case 3: ;
+        case 3:;
             double x2 = getX2(i);
             double y2 = getY2(i);
             if (((xr + w) >= (x1)) && ((yr + h) >= (y1))) {
