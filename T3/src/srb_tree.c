@@ -96,15 +96,10 @@ Node insertSRB(SRBTree t, double x, double y, double mbbX1, double mbbY1, double
     Red_Black_Root *tree = t;
     Red_Black_Node *new_node;
 
-    if (1) {
-        insertBST(t, tree->root, x, y, mbbX1, mbbY1, mbbX2, mbbY2, info);
-        new_node = getNodeSRB(t, x, y, &mbbX1, &mbbY1, &mbbX2, &mbbY2);
-        // fixRBinsert(t, new_node);
-    } else {
-        new_node = newNode(tree->nil, info, x, y, mbbX1, mbbY1, mbbX2, mbbY2);
-        RBinsert(t, new_node);
-    }
-    
+    insertBST(t, tree->root, x, y, mbbX1, mbbY1, mbbX2, mbbY2, info);
+    new_node = getNodeSRB(t, x, y, &mbbX1, &mbbY1, &mbbX2, &mbbY2);
+    // fixRBinsert(t, new_node);
+
     fixTreeMBB(t, new_node);
     return new_node;
 }

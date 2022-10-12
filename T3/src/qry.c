@@ -72,7 +72,7 @@ void readQry(SRBTree t, char *bedQry, char *bsdSvgQry, char *bsdTxt) {
     }
     writeSvg(svg, t);
 
-    fprintf(txt, "\n\t*** RESULTADOS FINAIS DA PESCARIA PIRATA ***\n");
+    fprintf(txt, "\n\t\t\t\t|------ RESULTADOS FINAIS DA PESCARIA PIRATA ------|\n");
     percursoProfundidade(t, printResultados, txt);
 
     fclose(qry);
@@ -316,7 +316,7 @@ void lr_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2
         }
 
         fprintf(txt, "\tNAU = %d, x = %lf, y= %lf, gold = %lf, e = %lf\n", getId(nau), getX(nau), getY(nau), getGold(nau), getEnergy(nau));
-        fprintf(txt, "\t  PESCOU %s, VALOR %d, id = %d, x = %lf, y = %lf\n", recompensa, monetario, getId(i), getX(i), getY(i));
+        fprintf(txt, "\t  PESCOU %s, VALOR MONETÁRIO M$%d, id = %d, x = %lf, y = %lf\n", recompensa, monetario, getId(i), getX(i), getY(i));
         Info dead = removeSRB(data->t, getX(i), getY(i), 0, 0, 0, 0);
         if (dead) {
             free(dead);
@@ -386,7 +386,7 @@ void calc_shot(void *aux) {
     char stroke[] = "black";
     char fill[] = "red";
     fprintf(svg, "\t<text x=\"%lf\" y=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"60%%\" >*</text>\n", xt, yt, stroke, fill);
-    fprintf(txt, "\tNAU id = %d, Atirou em: x = %lf, y = %lf", getId(nau), xt, yt);
+    fprintf(txt, "\tNAU id = %d, Atirou em: x = %lf, y = %lf\n", getId(nau), xt, yt);
 }
 
 void d_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, void *aux) {
@@ -399,7 +399,7 @@ void d_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2,
     double yt = data->yt;
 
     // o tiro é lançado na parte central do lado definido do retangulo (nau)
-    if (getId(i) != id) {
+    if (getId(i) != id && getType(i) == 2) {
         if (hitRectangle(i, xt, yt)) {
             addGold(nau, getGold(i));
             fprintf(txt, "\n\t  DESTRUIDA Nau id = %d, x = %lf, y = %lf, gold = %lf\n", getId(i), getX(i), getY(i), getGold(i));
@@ -408,7 +408,7 @@ void d_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2,
                 free(dead);
             }
         } else {
-            fprintf(txt, "  ERROU id %d\n", getId(i));
+            fprintf(txt, "\t  ERROU id %d\n", getId(i));
         }
     }
 }
