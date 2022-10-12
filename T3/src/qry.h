@@ -28,14 +28,16 @@ void mv(FILE *qry, FILE *txt, SRBTree t);
 // Desloca a forma de identificador i de dx no eixo x e dy
 // no eixo y.
 
-void lr(FILE *qry, FILE *txt, SRBTree t);
+void lr(FILE *qry, FILE *txt, FILE *svg, SRBTree t);
+void calc_net(void *aux);
 void lr_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, void *aux);
 // Lança rede de dimensão (w,h) a uma distância d do
 // lado especificado da nau de identificador i, se a nau
 // tiver energia suficiente. Os elementos capturados são
 // contabilizados e removidos
 
-void d(FILE *qry, FILE *txt, SRBTree t);
+void d(FILE *qry, FILE *txt, FILE *svg, SRBTree t);
+void calc_shot(void *aux);
 void d_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, void *aux);
 // Dispara canhão da nau i do lado especificado, se a
 // nau tiver energia suficiente. A carga atinge a distância

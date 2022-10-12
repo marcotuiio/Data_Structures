@@ -18,8 +18,9 @@ typedef struct aux2 AUXMV;
 struct aux3 {
     int i;
     char lado[4];
-    double w, h, d;
+    double w, h, d, xr, yr;
     FILE *txt;
+    FILE *svg;
     Info nau;
     SRBTree t;
 };
@@ -28,8 +29,9 @@ typedef struct aux3 AUXLR;
 struct aux4 {
     int i;
     char lado[4];
-    double d;
+    double d, xt, yt;
     FILE *txt;
+    FILE *svg;
     Info nau;
     SRBTree t;
 };
@@ -58,10 +60,10 @@ void readQry(SRBTree t, char *bedQry, char *bsdSvgQry, char *bsdTxt) {
             mv(qry, txt, t);
 
         } else if (!strcmp(comando, "lr")) {
-            lr(qry, txt, t);
+            lr(qry, txt, svg, t);
 
         } else if (!strcmp(comando, "d")) {
-            d(qry, txt, t);
+            d(qry, txt, svg, t);
 
         } else if (!strcmp(comando, "mc")) {
             mc(qry, txt, t);
@@ -163,9 +165,18 @@ void mv(FILE *qry, FILE *txt, SRBTree t) {
 
     percursoProfundidade(t, find_idMV, aux);
     if (!aux->nau) {
-        fprintf(txt, "\tNao foi possivel encontrar a nave id = %d\n", i);
+        fprintf(txt, "\tNao foi possivel encontrar a figura id = %d\n", i);
         free(aux);
         return;
+    }
+
+    if (getType(aux->nau) == 2) {
+        bool teste = energyDeslocamento(aux->nau, dx, dy);
+        if (!teste) {
+            fprintf(txt, "\tEnergia insuficiente para deslocar a nau id = %d\n", i);
+            free(aux);
+            return;
+        }
     }
 
     Info old = removeSRB(t, getX(aux->nau), getY(aux->nau), 0, 0, 0, 0);
@@ -192,7 +203,7 @@ void mv(FILE *qry, FILE *txt, SRBTree t) {
     free(aux);
 }
 
-void lr(FILE *qry, FILE *txt, SRBTree t) {
+void lr(FILE *qry, FILE *txt, FILE *svg, SRBTree t) {
     int i;
     char lado[4];
     double d, w, h;
@@ -212,18 +223,20 @@ void lr(FILE *qry, FILE *txt, SRBTree t) {
     aux->h = h;
     aux->d = d;
     aux->txt = txt;
+    aux->svg = svg;
     aux->t = t;
     aux->nau = NULL;
     percursoProfundidade(t, find_idLR, aux);
 
-    double need = 0;
     if (!aux->nau) {
-        fprintf(txt, "\tNao existe nave com id = %d\n", i);
+        fprintf(txt, "\tNao existe nau com id = %d\n", i);
         free(aux);
         return;
     }
 
+    double need = 0;
     if (energyArremesso(aux->nau, d, w * h, &need)) {
+        calc_net(aux);
         percursoProfundidade(t, lr_aux, aux);
     } else {
         fprintf(txt, "\tNau id = %d, e = %lf, energia_necessaria = %lf ENERGIA INSUFICIENTE PARA LANÇAMENTO\n", getId(aux->nau), getEnergy(aux->nau), need);
@@ -231,10 +244,9 @@ void lr(FILE *qry, FILE *txt, SRBTree t) {
     free(aux);
 }
 
-void lr_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, void *aux) {
+void calc_net(void *aux) {
     AUXLR *data = aux;
-    FILE *txt = data->txt;
-    int id = data->i;
+    FILE *svg = data->svg;
     char lado[4];
     strcpy(lado, data->lado);
     double w = data->w;
@@ -242,56 +254,77 @@ void lr_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2
     double d = data->d;
     Info nau = data->nau;
 
-    if (i && getId(i) != id) {
-        double xr, yr;
-        if (!strcmp(lado, "PP")) {  // lado da frente, lado a ancora, rede para cima
-            xr = getX(nau);
-            yr = getY(nau) - h - d;
+    double xr, yr;
+    if (!strcmp(lado, "PP")) {  // lado da frente, lado a ancora, rede para cima
+        xr = getX(nau);
+        yr = getY(nau) - h - d;
 
-        } else if (!strcmp(lado, "EB")) {  // esquerda, lado a ancora, rede para esquerda
-            xr = getX(nau) - w - d;
-            yr = getY(nau);
+    } else if (!strcmp(lado, "EB")) {  // esquerda, lado a ancora, rede para esquerda
+        xr = getX(nau) - w - d;
+        yr = getY(nau);
 
-        } else if (!strcmp(lado, "BB")) {  // direita, lado ancora+largura, rede para direita
-            xr = getX(nau) + getW(nau) + d;
-            yr = getY(nau);
+    } else if (!strcmp(lado, "BB")) {  // direita, lado ancora+largura, rede para direita
+        xr = getX(nau) + getW(nau) + d;
+        yr = getY(nau);
 
-        } else if (!strcmp(lado, "PR")) {  // baixo, lado da ancora+altura, rede para baixo
-            xr = getX(nau);
-            yr = getY(nau) + getH(nau) + d;
+    } else if (!strcmp(lado, "PR")) {  // baixo, lado da ancora+altura, rede para baixo
+        xr = getX(nau);
+        yr = getY(nau) + getH(nau) + d;
+    }
+
+    char stroke[] = "red";
+    char fill[] = "white";
+    fprintf(svg, "\t<rect x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"2%%\"/>\n", xr, yr, w, h, stroke, fill);
+    data->xr = xr;
+    data->yr = yr;
+}
+
+void lr_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, void *aux) {
+    AUXLR *data = aux;
+    FILE *txt = data->txt;
+    int id = data->i;
+    Info nau = data->nau;
+    double xr = data->xr;
+    double yr = data->yr;
+    double w = data->w;
+    double h = data->h;
+
+    if (insideNet(i, xr, yr, w, h) && getId(i) != id) {
+        char recompensa[20];
+        int monetario;
+        if (getType(i) == 1) {
+            strcpy(recompensa, "PEIXE");
+            monetario = 5;
+            addGold(nau, 5);
+        } else if (getType(i) == 3) {
+            strcpy(recompensa, "CAMARÃO");
+            monetario = 10;
+            addGold(nau, 10);
+        } else if (getType(i) == 4) {
+            if (!strcmp(getText(i), " $")) {
+                strcpy(recompensa, "MOEDA");
+                monetario = 0;
+                setEnergy(nau, getEnergy(nau) + 0.5);
+            } else if (!strcmp(getText(i), " >-|-<")) {
+                strcpy(recompensa, "LAGOSTA");
+                monetario = 20;
+                addGold(nau, 20);
+            } else {
+                monetario = 0;
+                strcpy(recompensa, "DETRITOS");
+            }
         }
 
-        if (insideNet(i, xr, yr, w, h)) {
-            char recompensa[20];
-            if (getType(i) == 1) {
-                strcpy(recompensa, "PEIXE");
-                addGold(nau, 5);
-            } else if (getType(i) == 3) {
-                strcpy(recompensa, "CAMARÃO");
-                addGold(nau, 10);
-            } else if (getType(i) == 4) {
-                if (!strcmp(getText(i), " $")) {
-                    strcpy(recompensa, "MOEDA");
-                    setEnergy(nau, getEnergy(nau) + 0.5);
-                } else if (!strcmp(getText(i), " >-|-<")) {
-                    strcpy(recompensa, "LAGOSTA");
-                    addGold(nau, 20);
-                } else {
-                    strcpy(recompensa, "DETRITOS");
-                }
-            }
-
-            fprintf(txt, "\tNAU = %d, x = %lf, y= %lf, gold = %lf, e = %lf\n", getId(nau), getX(nau), getY(nau), getGold(nau), getEnergy(nau));
-            fprintf(txt, "\t  PESCOU %s, id = %d, x = %lf, y = %lf\n", recompensa, getId(i), getX(i), getY(i));
-            Info dead = removeSRB(data->t, getX(i), getY(i), 0, 0, 0, 0);
-            if (dead) {
-                free(dead);
-            }
+        fprintf(txt, "\tNAU = %d, x = %lf, y= %lf, gold = %lf, e = %lf\n", getId(nau), getX(nau), getY(nau), getGold(nau), getEnergy(nau));
+        fprintf(txt, "\t  PESCOU %s, VALOR %d, id = %d, x = %lf, y = %lf\n", recompensa, monetario, getId(i), getX(i), getY(i));
+        Info dead = removeSRB(data->t, getX(i), getY(i), 0, 0, 0, 0);
+        if (dead) {
+            free(dead);
         }
     }
 }
 
-void d(FILE *qry, FILE *txt, SRBTree t) {
+void d(FILE *qry, FILE *txt, FILE *svg, SRBTree t) {
     int i;
     char lado[4];
     double d;
@@ -307,56 +340,75 @@ void d(FILE *qry, FILE *txt, SRBTree t) {
     strcpy(aux->lado, lado);
     aux->d = d;
     aux->txt = txt;
+    aux->svg = svg;
     aux->t = t;
     aux->nau = NULL;
     percursoProfundidade(t, find_idD, aux);
 
-    percursoProfundidade(t, d_aux, aux);
+    if (energyShot(aux->nau, d)) {
+        calc_shot(aux);
+        percursoProfundidade(t, d_aux, aux);
+    } else {
+        fprintf(txt, "\tNAU id = %d, e = %lf, energia_necessaria = %lf ENERGIA INSUFICIENTE PARA LANÇAMENTO", getId(aux->nau), getEnergy(aux->nau), d);
+    }
     free(aux);
+}
+
+void calc_shot(void *aux) {
+    AUXD *data = aux;
+    FILE *txt = data->txt;
+    FILE *svg = data->svg;
+    char lado[4];
+    strcpy(lado, data->lado);
+    double d = data->d;
+    Info nau = data->nau;
+    double xt, yt;
+
+    if (!strcmp(lado, "PP")) {  // lado da frente, tiro para cima
+        xt = getX(nau) + getW(nau) / 2;
+        yt = getY(nau) - d;
+
+    } else if (!strcmp(lado, "EB")) {  // esquerda, lado a ancora, rede para esquerda
+        xt = getX(nau) - d;
+        yt = getY(nau) + getH(nau) / 2;
+
+    } else if (!strcmp(lado, "BB")) {  // direita, lado ancora+largura, rede para direita
+        xt = getX(nau) + getW(nau) + d;
+        yt = getY(nau) + getH(nau) / 2;
+
+    } else if (!strcmp(lado, "PR")) {  // baixo, lado da ancora+altura, rede para baixo
+        xt = getX(nau) + getW(nau) / 2;
+        yt = getY(nau) + getH(nau) + d;
+    }
+
+    data->xt = xt;
+    data->yt = yt;
+    char stroke[] = "black";
+    char fill[] = "red";
+    fprintf(svg, "\t<text x=\"%lf\" y=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"60%%\" >*</text>\n", xt, yt, stroke, fill);
+    fprintf(txt, "\tNAU id = %d, Atirou em: x = %lf, y = %lf", getId(nau), xt, yt);
 }
 
 void d_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, void *aux) {
     AUXD *data = aux;
     FILE *txt = data->txt;
     int id = data->i;
-    char lado[4];
-    strcpy(lado, data->lado);
-    double d = data->d;
     Info nau = data->nau;
     SRBTree t = data->t;
-    double xt, yt;
+    double xt = data->xt;
+    double yt = data->yt;
 
     // o tiro é lançado na parte central do lado definido do retangulo (nau)
-    if (getType(i) == 2 && getId(i) != id) {
-        if (energyShot(nau, d)) {
-            if (!strcmp(lado, "PP")) {  // lado da frente, tiro para cima
-                xt = getX(nau) + getW(nau) / 2;
-                yt = getY(nau) - d;
-
-            } else if (!strcmp(lado, "EB")) {  // esquerda, lado a ancora, rede para esquerda
-                xt = getX(nau) - d;
-                yt = getY(nau) + getH(nau) / 2;
-
-            } else if (!strcmp(lado, "BB")) {  // direita, lado ancora+largura, rede para direita
-                xt = getX(nau) + getW(nau) + d;
-                yt = getY(nau) + getH(nau) / 2;
-
-            } else if (!strcmp(lado, "PR")) {  // baixo, lado da ancora+altura, rede para baixo
-                xt = getX(nau) + getW(nau) / 2;
-                yt = getY(nau) + getH(nau) + d;
+    if (getId(i) != id) {
+        if (hitRectangle(i, xt, yt)) {
+            addGold(nau, getGold(i));
+            fprintf(txt, "\n\t  DESTRUIDA Nau id = %d, x = %lf, y = %lf, gold = %lf\n", getId(i), getX(i), getY(i), getGold(i));
+            Info dead = removeSRB(t, getX(i), getY(i), getX(i), getY(i), getX(i) + getW(i), getY(i) + getH(i));
+            if (dead) {
+                free(dead);
             }
-
-            fprintf(txt, "\tNAU id = %d, Atirou em: x = %lf, y = %lf", getId(nau), xt, yt);
-            if (hitRectangle(i, xt, yt)) {
-                addGold(nau, getGold(i));
-                fprintf(txt, "\n\t  DESTRUIDA Nau id = %d, x = %lf, y = %lf, gold = %lf\n", getId(i), getX(i), getY(i), getGold(i));
-                Info dead = removeSRB(t, getX(i), getY(i), getX(i), getY(i), getX(i) + getW(i), getY(i) + getH(i));
-                if (dead) {
-                    free(dead);
-                }
-            } else {
-                fprintf(txt, "  ERROU id %d\n", getId(i));
-            }
+        } else {
+            fprintf(txt, "  ERROU id %d\n", getId(i));
         }
     }
 }

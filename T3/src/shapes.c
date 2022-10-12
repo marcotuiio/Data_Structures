@@ -255,8 +255,10 @@ void setY2(Info f, double dy) {
     shape->y2 = shape->y2 + dy;
 }
 
-bool energyDeslocamento(Info i, double d) {
+bool energyDeslocamento(Info i, double dx, double dy) {
     Shapes *nau = i;
+
+    double d = sqrt(pow(dx, 2) + pow(dy, 2));
     double e = d / 5;
 
     if ((nau->energy - e) >= 0) {

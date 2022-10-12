@@ -1,7 +1,6 @@
-#include "srb_tree.h"
-
 #include "list.h"
 #include "shapes.h"
+#include "srb_tree.h"
 
 struct node {
     Info value;
@@ -26,7 +25,6 @@ typedef struct tree Red_Black_Root;
 // ---> HEADERS DE FUNÇÕES EXTRAS
 
 Node newNode(Node nil, Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2);
-Node insertBST(SRBTree t, Node n, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, Info info);
 void RBinsert(SRBTree t, Node n);
 void fixRBinsert(SRBTree t, Node n);
 void rotateLeft(SRBTree t, Node n);
@@ -48,8 +46,8 @@ Node getSmallestRight(Node n, Node nil);
 void makeDotNodes(Node n, Node nil, FILE *dotFile);
 void makeDotEdges(Node n, Node nil, FILE *dotFile);
 void traverseAux(Node root, Node nil, FvisitaNo f, void *aux);
-void levelOrderAux(Node root, int level);
-int heightOfLevel(Node n);
+void levelOrderAux(Node root, Node nil, int level);
+int heightOfLevel(Node n, Node nil);
 void mbbFullyInside(Node n, Node nil, double x, double y, double w, double h, Lista resultado);
 void traverseSim(Node root, Node nil, FvisitaNo f, void *aux);
 void removeNils(SRBTree t, Node root);
@@ -65,7 +63,7 @@ SRBTree createSRB(double epsilon) {
     new_tree->nil->value = NULL;
 
     new_tree->epislon = epsilon;
-    new_tree->root = NULL;
+    new_tree->root = new_tree->nil;
     new_tree->size = 0;
 
     return new_tree;
@@ -84,9 +82,9 @@ Node newNode(Node nil, Info i, double x, double y, double mbbX1, double mbbY1, d
     new_node->SmbbY1 = mbbY1;
     new_node->SmbbX2 = mbbX2;
     new_node->SmbbY2 = mbbY2;
-    new_node->parent = NULL;
-    new_node->left = NULL;
-    new_node->right = NULL;
+    new_node->parent = nil;
+    new_node->left = nil;
+    new_node->right = nil;
     paintRed(new_node);
 
     return new_node;
@@ -94,48 +92,11 @@ Node newNode(Node nil, Info i, double x, double y, double mbbX1, double mbbY1, d
 
 Node insertSRB(SRBTree t, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, Info info) {
     Red_Black_Root *tree = t;
-    Red_Black_Node *new_node;
 
-    if (1) {
-        insertBST(t, tree->root, x, y, mbbX1, mbbY1, mbbX2, mbbY2, info);
-        new_node = getNodeSRB(t, x, y, &mbbX1, &mbbY1, &mbbX2, &mbbY2);
-        // fixRBinsert(t, new_node);
-    } else {
-        new_node = newNode(tree->nil, info, x, y, mbbX1, mbbY1, mbbX2, mbbY2);
-        RBinsert(t, new_node);
-    }
-    
+    Red_Black_Node *new_node = newNode(tree->nil, info, x, y, mbbX1, mbbY1, mbbX2, mbbY2);
+    RBinsert(t, new_node);
+
     fixTreeMBB(t, new_node);
-    return new_node;
-}
-
-Node insertBST(SRBTree t, Node n, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, Info info) {
-    Red_Black_Root *red_black_tree = t;
-    Red_Black_Node *new_node = n;
-
-    if (!new_node) {
-        new_node = newNode(red_black_tree->nil, info, x, y, mbbX1, mbbY1, mbbX2, mbbY2);
-        if (!red_black_tree->root) {
-            red_black_tree->root = new_node;
-            paintBlack(new_node);
-        }
-        if (new_node) {
-            red_black_tree->size++;
-            return new_node;
-        } else {
-            printf("ERROR: YOU ARE OUT OF MEMORY\n");
-            return NULL;
-        }
-    }
-
-    if ((x < new_node->x) || (x == new_node->x && y < new_node->y)) {
-        new_node->left = insertBST(red_black_tree, new_node->left, x, y, mbbX1, mbbY1, mbbX2, mbbY2, info);
-        new_node->left->parent = new_node;
-
-    } else {
-        new_node->right = insertBST(red_black_tree, new_node->right, x, y, mbbX1, mbbY1, mbbX2, mbbY2, info);
-        new_node->right->parent = new_node;
-    }
     return new_node;
 }
 
@@ -178,7 +139,7 @@ void fixRBinsert(SRBTree t, Node n) {
     Red_Black_Root *rb_tree = t;
     Red_Black_Node *root = rb_tree->root;
     Red_Black_Node *z = n;
-    Red_Black_Node *uncle_z = NULL;
+    Red_Black_Node *uncle_z = rb_tree->nil;
 
     while ((isRed(z->parent))) {
         // CASO A: pai de z é filho a esquerda do avô de z
@@ -235,17 +196,17 @@ void fixRBinsert(SRBTree t, Node n) {
 
 void rotateLeft(SRBTree t, Node n) {
     Red_Black_Root *red_black_tree = t;
-    // Red_Black_Node *nil = red_black_tree->nil;
+    Red_Black_Node *nil = red_black_tree->nil;
     Red_Black_Node *node = n;                   // avô 2
     Red_Black_Node *right_child = node->right;  // pai (direita)
 
     node->right = right_child->left;
-    if (node->right) {
+    if (node->right != nil) {
         node->right->parent = node;
     }
     right_child->parent = node->parent;
 
-    if (!node->parent) {
+    if (node->parent == nil) {
         red_black_tree->root = right_child;
 
     } else if ((node == node->parent->left)) {
@@ -261,17 +222,17 @@ void rotateLeft(SRBTree t, Node n) {
 
 void rotateRight(SRBTree t, Node n) {
     Red_Black_Root *red_black_tree = t;
-    // Red_Black_Node *nil = red_black_tree->nil;
+    Red_Black_Node *nil = red_black_tree->nil;
     Red_Black_Node *node = n;                 // recebo o AVÔ
     Red_Black_Node *left_child = node->left;  // pai
 
     node->left = left_child->right;  // esqueda do avô aponta para direita do pai
-    if (node->left) {
+    if (node->left != nil) {
         node->left->parent = node;
     }
     left_child->parent = node->parent;
 
-    if (!node->parent) {
+    if (node->parent == nil) {
         red_black_tree->root = left_child;
 
     } else if ((node == node->parent->left)) {
@@ -316,7 +277,7 @@ bool isRed(Node n) {
 
 void paintRed(Node n) {
     Red_Black_Node *node = n;
-    if (node) {
+    if (node && node->value) {
         strcpy(node->color, "RED");
     }
 }
@@ -324,7 +285,7 @@ void paintRed(Node n) {
 void getMBBSub(Node n, Node nil, double *x1, double *y1, double *x2, double *y2) {
     Red_Black_Node *node = n;
 
-    if (!node->left && !node->right) {
+    if (node->left == nil && node->right == nil) {
         *x1 = node->mbbX1;
         *y1 = node->mbbY1;
         *x2 = node->mbbX2;
@@ -349,14 +310,14 @@ void fixTreeMBB(SRBTree t, Node n) {
     Red_Black_Node *node = n;
     Red_Black_Node *nil = red_black_tree->nil;
 
-    while (node) {
-        if (node->left) {
+    while (node != nil) {
+        if (node->left != nil) {
             getMBBSub(node->left, nil, &node->SmbbX1, &node->SmbbY1, &node->SmbbX2, &node->SmbbY2);
         } else {
             getMBBSub(node, nil, &node->SmbbX1, &node->SmbbY1, &node->SmbbX2, &node->SmbbY2);
         }
 
-        if (node->right) {
+        if (node->right != nil) {
             getMBBSub(node->right, nil, &node->SmbbX1, &node->SmbbY1, &node->SmbbX2, &node->SmbbY2);
         } else {
             getMBBSub(node, nil, &node->SmbbX1, &node->SmbbY1, &node->SmbbX2, &node->SmbbY2);
@@ -384,7 +345,7 @@ void rectangleOverlaps(Node n, Node nil, double x, double y, double w, double h,
     double r2y = y + h;
     int i = 0;
 
-    if (!node) {
+    if (node == nil) {
         return;
     }
 
@@ -413,7 +374,7 @@ void getBBSRB(SRBTree t, double x, double y, double w, double h, Lista resultado
 void mbbFullyInside(Node n, Node nil, double x, double y, double w, double h, Lista resultado) {
     Red_Black_Node *node = n;
 
-    if (!node) {
+    if (node == nil) {
         return;
     }
 
@@ -428,6 +389,7 @@ void mbbFullyInside(Node n, Node nil, double x, double y, double w, double h, Li
             }
         }
     }
+
     mbbFullyInside(node->left, nil, x, y, w, h, resultado);
     mbbFullyInside(node->right, nil, x, y, w, h, resultado);
 }
@@ -450,8 +412,8 @@ Node getNodeSRB(SRBTree t, double xa, double ya, double *mbbX1, double *mbbY1, d
 Node searchNode(SRBTree t, Node n, double xa, double ya, double *mbbX1, double *mbbY1, double *mbbX2, double *mbbY2) {
     Red_Black_Root *red_black_tree = t;
     Red_Black_Node *new_node = n;
-    if (!new_node) {
-        return NULL;
+    if (new_node == red_black_tree) {
+        return red_black_tree->nil;
     }
 
     if (fabs(new_node->x - xa) <= red_black_tree->epislon && fabs(new_node->y - ya) <= red_black_tree->epislon) {
@@ -476,9 +438,11 @@ void updateInfoSRB(SRBTree t, Node n, Info i) {
 
     double x = getX(i);
     double y = getY(i);
+
     if (fabs(node->x - x) <= red_black_tree->epislon && fabs(node->y - y) <= red_black_tree->epislon) {
         node->value = i;
         printf("Sucesso ao atualizar a info\n");  // Apenas trocadas as informações
+    
     } else {
         removeSRB(t, node->x, node->y, 0, 0, 0, 0);  // Remove info atual e analisa os asos para reinserir o nó atualizado
         switch (getId(i)) {
@@ -511,22 +475,22 @@ Info removeSRB(SRBTree t, double xa, double ya, double mbbX1, double mbbY1, doub
     Red_Black_Node *rb_node = getNodeSRB(tree, xa, ya, &mbbX1, &mbbY1, &mbbX2, &mbbY2);
     Red_Black_Node *nil = tree->nil;
 
-    if (!rb_node) {
+    if (rb_node == nil) {
         printf("\nNODE x = %lf y = %lf NOT FOUND\n", xa, ya);
         return NULL;
     }
 
     if (fabs(rb_node->x - xa) <= tree->epislon && fabs(rb_node->y - ya) <= tree->epislon) {
         Info info = rb_node->value;
-        Red_Black_Node *x = NULL;
+        Red_Black_Node *x = nil;
         Red_Black_Node *y = rb_node;
         char y_original_color[10];
         strcpy(y_original_color, y->color);
 
-        if (!rb_node->left) {
+        if (rb_node->left == nil) {
             x = rb_node->right;
             transplantRB(tree, rb_node, rb_node->right);
-        } else if (!rb_node->right) {
+        } else if (rb_node->right == nil) {
             x = rb_node->left;
             transplantRB(tree, rb_node, rb_node->left);
         } else {
@@ -549,9 +513,7 @@ Info removeSRB(SRBTree t, double xa, double ya, double mbbX1, double mbbY1, doub
             strcpy(y->color, rb_node->color);
         }
         if (!strcmp(y_original_color, "BLACK")) {
-            if (x) {
-                fixRBdelete(tree, x);
-            }
+            fixRBdelete(tree, x);
         }
 
         fixTreeMBB(tree, y);
@@ -563,11 +525,11 @@ Info removeSRB(SRBTree t, double xa, double ya, double mbbX1, double mbbY1, doub
 
 void transplantRB(SRBTree t, Node n, Node n2) {
     Red_Black_Root *red_black_tree = t;
-    // Red_Black_Node *nil = red_black_tree->nil;
+    Red_Black_Node *nil = red_black_tree->nil;
     Red_Black_Node *u = n;
     Red_Black_Node *v = n2;
 
-    if (!u->parent) {  // u é raiz
+    if (u->parent == nil) {  // u é raiz
         red_black_tree->root = v;
 
     } else if (u == u->parent->left) {  // u é filho da esquerda
@@ -641,7 +603,7 @@ void fixRBdelete(SRBTree t, Node n) {
 
 Node getLargestLeft(Node n, Node nil) {
     Red_Black_Node *node = n;
-    while (node->right) {
+    while (node->right != nil) {
         node = node->right;
     }
     return node;
@@ -649,7 +611,7 @@ Node getLargestLeft(Node n, Node nil) {
 
 Node getSmallestRight(Node n, Node nil) {
     Red_Black_Node *node = n;
-    while (node->left) {
+    while (node->left != nil) {
         node = node->left;
     }
     return node;
@@ -674,11 +636,11 @@ void printSRB(SRBTree t, char *nomeArq) {
 
 void makeDotNodes(Node n, Node nil, FILE *dotFile) {
     Red_Black_Node *node = n;
-    if (!node) {
+    if (node == nil) {
         return;
     }
 
-    if (node && node->value) {
+    if (node != nil && node->value) {
         if (isBlack(node)) {
             fprintf(dotFile, "\t\tnode [fillcolor=\" black\" fontcolor=\" white\"] %d \n", getId(node->value));
         } else if (isRed(node)) {
@@ -692,7 +654,7 @@ void makeDotNodes(Node n, Node nil, FILE *dotFile) {
 
 void makeDotEdges(Node n, Node nil, FILE *dotFile) {
     Red_Black_Node *node = n;
-    if (!node) {
+    if (node == nil) {
         return;
     }
 
@@ -714,33 +676,35 @@ void percursoProfundidade(SRBTree t, FvisitaNo f, void *aux) {
 
 void traverseAux(Node root, Node nil, FvisitaNo f, void *aux) {
     Red_Black_Node *node = root;
-    if (!node) {
+    if (node == nil) {
         return;
     }
 
     if (node->value) {
         f(node->value, node->x, node->y, node->mbbX1, node->mbbY1, node->mbbX2, node->mbbY2, aux);
     }
+
     traverseAux(node->left, nil, f, aux);
     traverseAux(node->right, nil, f, aux);
 }
 
 void percursoLargura(SRBTree t, FvisitaNo f, void *aux) {
     Red_Black_Root *rb_tree = t;
-    int h = heightOfLevel(rb_tree->root);
+    int h = heightOfLevel(rb_tree->root, rb_tree->nil);
     printf("\n\tTamanho da árvore: %d\n\n", rb_tree->size);
     for (int i = 0; i <= h; i++) {
-        levelOrderAux(rb_tree->root, i);
+        levelOrderAux(rb_tree->root, rb_tree->nil, i);
     }
 }
 
-void levelOrderAux(Node root, int level) {
+void levelOrderAux(Node root, Node nil, int level) {
     Red_Black_Node *node = root;
-    if (!node) {
+    if (node == nil) {
         return;
     }
+
     if (level == 1) {
-        if (node->parent && node->parent->value) {
+        if (node->parent != nil && node->parent->value) {
             printf("\n\n\n\t%.2lf %.2lf %s\n", node->parent->x, node->parent->y, node->parent->color);
             printf("\t      |\n");
         }
@@ -749,26 +713,27 @@ void levelOrderAux(Node root, int level) {
         printf("\t /");
         printf("\t    \\\n");
 
-        if (node->left && node->left->value) {
+        if (node->left != nil && node->left->value) {
             printf("%.2lf %.2lf %s", node->left->x, node->left->y, node->left->color);
         }
-        if (node->right && node->right->value) {
+        if (node->right != nil && node->right->value) {
             printf("  %.2lf %.2lf %s", node->right->x, node->right->y, node->right->color);
         }
 
     } else if (level > 1) {
-        levelOrderAux(node->left, level - 1);
-        levelOrderAux(node->right, level - 1);
+        levelOrderAux(node->left, nil, level - 1);
+        levelOrderAux(node->right, nil, level - 1);
     }
 }
 
-int heightOfLevel(Node n) {
+int heightOfLevel(Node n, Node nil) {
     Red_Black_Node *node = n;
-    if (!node) {
+    if (node == nil) {
         return 0;
     }
-    int left_height = heightOfLevel(node->left);
-    int right_height = heightOfLevel(node->right);
+
+    int left_height = heightOfLevel(node->left, nil);
+    int right_height = heightOfLevel(node->right, nil);
     if (left_height > right_height) {
         return (left_height + 1);
     } else {
@@ -782,29 +747,13 @@ void percursoSimetrico(SRBTree t, FvisitaNo f, void *aux) {
 
 void traverseSim(Node root, Node nil, FvisitaNo f, void *aux) {
     Red_Black_Node *node = root;
-    if (!node) {
+    if (node == nil) {
         return;
     }
+
     traverseSim(node->left, nil, f, aux);
     f(node->value, node->x, node->y, node->mbbX1, node->mbbY1, node->mbbX2, node->mbbY2, aux);
     traverseSim(node->right, nil, f, aux);
-}
-
-void removeNils(SRBTree t, Node root) {
-    Red_Black_Root *tree = t;
-    Red_Black_Node *node = root;
-    Red_Black_Node *nil = tree->nil;
-    if (!node) {
-        return;
-    }
-    if (node->left == nil) {
-        node->left = NULL;
-    }
-    if (node->right == nil) {
-        node->right = NULL;
-    }
-    removeNils(t, node->left);
-    removeNils(t, node->right);
 }
 
 void killSRB(SRBTree t) {
@@ -816,7 +765,7 @@ void killSRB(SRBTree t) {
 
 void freeAux(Node root, Node nil) {
     Red_Black_Node *node = root;
-    if (!node) {
+    if (node == nil) {
         return;
     }
 

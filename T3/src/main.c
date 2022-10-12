@@ -3,6 +3,7 @@
 #include "paths.h"
 #include "qry.h"
 #include "srb_tree.h"
+#include "list.h"
 #include "svg.h"
 #include "system.h"
 
