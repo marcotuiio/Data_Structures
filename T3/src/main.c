@@ -3,7 +3,6 @@
 #include "paths.h"
 #include "qry.h"
 #include "srb_tree.h"
-#include "list.h"
 #include "svg.h"
 #include "system.h"
 
@@ -21,6 +20,7 @@ int main(int argc, char** argv) {
                  
     } else {
         return -1;  // ERRO!
+        printf("ERROR: INPUT FILES OR OUTPUT DIRECTORIES HAVE NOT BEEN READ\n");
     }
     
     if (checkQRY(my_ctrl)) {
