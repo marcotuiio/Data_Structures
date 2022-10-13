@@ -102,9 +102,10 @@ Node insertSRB(SRBTree t, double x, double y, double mbbX1, double mbbY1, double
 void RBinsert(SRBTree t, Node n) {
     Red_Black_Root *red_black_tree = t;
     Red_Black_Node *nil = red_black_tree->nil;
-    Red_Black_Node *x1 = red_black_tree->root;
-    Red_Black_Node *y1 = nil;
+    Red_Black_Node *x1 = red_black_tree->root;  // tRoot
+    Red_Black_Node *y1 = nil;                   // aux
     Red_Black_Node *z = n;
+    // Insert em arv binaria de busca padrao
 
     while (x1 != nil) {
         y1 = x1;
@@ -136,66 +137,66 @@ Node insertBBSRB(SRBTree t, double mbbX1, double mbbY1, double mbbX2, double mbb
 
 void fixRBinsert(SRBTree t, Node n) {
     Red_Black_Root *rb_tree = t;
-    Red_Black_Node *root = rb_tree->root;
     Red_Black_Node *z = n;
-    Red_Black_Node *uncle_z = rb_tree->nil;
-    while (z != root && (isRed(z->parent))) {
+    Red_Black_Node *y = NULL;
+
+    while (z->parent && isRed(z->parent)) {
         // CASO A: pai de z é filho a esquerda do avô de z
         if (z->parent == z->parent->parent->left) {
-            uncle_z = z->parent->parent->right;
+            y = z->parent->parent->right;
 
             // CASO 1A: o tio de z é vermelho, precisa recolorir
-            if (isRed(uncle_z)) {
-                paintRed(z->parent->parent);
+            if (y && isRed(y)) {
                 paintBlack(z->parent);
-                paintBlack(uncle_z);
+                paintBlack(y);
+                paintRed(z->parent->parent);
                 z = z->parent->parent;
-
             } else {
+
                 // CASO 2A: tio preto, z é filho a direita de seu pai, precisa rotacionar para a esquerda
                 if (z == z->parent->right) {
                     z = z->parent;
                     rotateLeft(t, z);
                 }
-
                 // CASO 3A: tio preto, z é filho a esquerda de seu pai, precisa rotacionar para a direita
                 paintBlack(z->parent);
                 paintRed(z->parent->parent);
-                z = rotateRight(t, z->parent->parent);
+                rotateRight(t, z->parent->parent);
             }
 
             // CASO B: o pai de z é o filho direito do avô de z
-        } else if (z->parent && z->parent == z->parent->parent->right) {
-            uncle_z = z->parent->parent->left;
+        } else {
+            if (z->parent == z->parent->parent->right) {
+                y = z->parent->parent->left;
 
-            // CASO 1B: o tio de z é vermelho, precisa recolorir
-            if (isRed(uncle_z)) {
-                paintRed(z->parent->parent);
-                paintBlack(z->parent);
-                paintBlack(uncle_z);
-                z = z->parent->parent;
-
-            } else {
-                // CASO 2B: tio preto, z é filho a esquerda de seu pai, precisa rotacionar para a direita
-                if (z == z->parent->left) {
-                    z = z->parent;
-                    rotateRight(t, z);
+                // CASO 1B: o tio de z é vermelho, precisa recolorir
+                if (y && isRed(y)) {
+                    paintBlack(z->parent);
+                    paintBlack(y);
+                    paintRed(z->parent->parent);
+                    z = z->parent->parent;
+                } else {
+                    // CASO 2B: tio preto, z é filho a esquerda de seu pai, precisa rotacionar para a direita
+                    if (z == z->parent->left) {
+                        z = z->parent;
+                        rotateRight(t, z);
+                    }
+                    
+                    // CASO 3B: z é filho a direita de seu pai, precisa rotacionar para a esquerda
+                    paintBlack(z->parent);
+                    paintRed(z->parent->parent);
+                    rotateLeft(t, z->parent->parent);
                 }
-
-                // CASO 3B: z é filho a direita de seu pai, precisa rotacionar para a esquerda
-                paintBlack(z->parent);
-                paintRed(z->parent->parent);
-                z = rotateLeft(t, z->parent->parent);
             }
         }
     }
-    paintBlack(root);
+    paintBlack(rb_tree->root);
 }
 
 Node rotateLeft(SRBTree t, Node n) {
     Red_Black_Root *red_black_tree = t;
     Red_Black_Node *nil = red_black_tree->nil;
-    Red_Black_Node *node = n;                   // avô 2
+    Red_Black_Node *node = n;         // avô 2
     Red_Black_Node *y = node->right;  // pai (direita)
 
     node->right = y->left;
@@ -222,7 +223,7 @@ Node rotateLeft(SRBTree t, Node n) {
 Node rotateRight(SRBTree t, Node n) {
     Red_Black_Root *red_black_tree = t;
     Red_Black_Node *nil = red_black_tree->nil;
-    Red_Black_Node *node = n;                 // recebo o AVÔ
+    Red_Black_Node *node = n;        // recebo o AVÔ
     Red_Black_Node *y = node->left;  // pai
 
     node->left = y->right;  // esqueda do avô aponta para direita do pai
@@ -442,7 +443,7 @@ void updateInfoSRB(SRBTree t, Node n, Info i) {
     if (fabs(node->x - x) <= red_black_tree->epislon && fabs(node->y - y) <= red_black_tree->epislon) {
         node->value = i;
         printf("Sucesso ao atualizar a info\n");  // Apenas trocadas as informações
-    
+
     } else {
         removeSRB(t, node->x, node->y, 0, 0, 0, 0);  // Remove info atual e analisa os asos para reinserir o nó atualizado
         switch (getId(i)) {

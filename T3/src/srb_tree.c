@@ -27,8 +27,8 @@ typedef struct tree Red_Black_Root;
 
 Node newNode(Node nil, Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2);
 Node insertBST(SRBTree t, Node n, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, Info info);
-void RBinsert(SRBTree t, Node n);
 void fixRBinsert(SRBTree t, Node n);
+void RBinsert(SRBTree t, Node n);
 void rotateLeft(SRBTree t, Node n);
 void rotateRight(SRBTree t, Node n);
 bool isBlack(Node n);
@@ -93,14 +93,34 @@ Node newNode(Node nil, Info i, double x, double y, double mbbX1, double mbbY1, d
 }
 
 Node insertSRB(SRBTree t, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, Info info) {
-    Red_Black_Root *tree = t;
+    Red_Black_Root *rb_tree = t;
+    Red_Black_Node *x1 = rb_tree->root;
+    Red_Black_Node *z = newNode(rb_tree->nil, info, x, y, mbbX1, mbbY1, mbbX2, mbbY2);
+    Red_Black_Node *y1 = NULL;
 
-    insertBST(t, tree->root, x, y, mbbX1, mbbY1, mbbX2, mbbY2, info);
-    Red_Black_Node *new_node = getNodeSRB(t, x, y, &mbbX1, &mbbY1, &mbbX2, &mbbY2);
-    fixRBinsert(t, new_node);
+    while (x1) {
+        y1 = x1;
+        if (z->x < x1->x || (z->x == x1->x && z->y < x1->y)) {
+            x1 = x1->left;
+        } else {
+            x1 = x1->right;
+        }
+    }
 
-    fixTreeMBB(t, new_node);
-    return new_node;
+    z->parent = y1;
+    if (!y1) {
+        rb_tree->root = z;
+    } else if (z->x < y1->x || (z->x == y1->x && z->y < y1->y)) {
+        y1->left = z;
+    } else {
+        y1->right = z;
+    }
+
+    paintRed(z);
+    rb_tree->size++;
+    fixRBinsert(t, z);
+    fixTreeMBB(t, z);
+    return z;
 }
 
 Node insertBST(SRBTree t, Node n, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, Info info) {
@@ -139,29 +159,27 @@ Node insertBBSRB(SRBTree t, double mbbX1, double mbbY1, double mbbX2, double mbb
 
 void fixRBinsert(SRBTree t, Node n) {
     Red_Black_Root *rb_tree = t;
-    Red_Black_Node *root = rb_tree->root;
     Red_Black_Node *z = n;
-    Red_Black_Node *uncle_z = NULL;
+    Red_Black_Node *y = NULL;
 
-    while (z != root && (isRed(z->parent))) {
+    while (z->parent && isRed(z->parent)) {
         // CASO A: pai de z é filho a esquerda do avô de z
         if (z->parent == z->parent->parent->left) {
-            uncle_z = z->parent->parent->right;
+            y = z->parent->parent->right;
 
             // CASO 1A: o tio de z é vermelho, precisa recolorir
-            if (isRed(uncle_z)) {
-                paintRed(z->parent->parent);
+            if (y && isRed(y)) {
                 paintBlack(z->parent);
-                paintBlack(uncle_z);
+                paintBlack(y);
+                paintRed(z->parent->parent);
                 z = z->parent->parent;
-
             } else {
+
                 // CASO 2A: tio preto, z é filho a direita de seu pai, precisa rotacionar para a esquerda
                 if (z == z->parent->right) {
                     z = z->parent;
                     rotateLeft(t, z);
                 }
-
                 // CASO 3A: tio preto, z é filho a esquerda de seu pai, precisa rotacionar para a direita
                 paintBlack(z->parent);
                 paintRed(z->parent->parent);
@@ -169,37 +187,37 @@ void fixRBinsert(SRBTree t, Node n) {
             }
 
             // CASO B: o pai de z é o filho direito do avô de z
-        } else if (z->parent && z->parent == z->parent->parent->right) {
-            uncle_z = z->parent->parent->left;
+        } else {
+            if (z->parent == z->parent->parent->right) {
+                y = z->parent->parent->left;
 
-            // CASO 1B: o tio de z é vermelho, precisa recolorir
-            if (isRed(uncle_z)) {
-                paintRed(z->parent->parent);
-                paintBlack(z->parent);
-                paintBlack(uncle_z);
-                z = z->parent->parent;
+                // CASO 1B: o tio de z é vermelho, precisa recolorir
+                if (y && isRed(y)) {
+                    paintBlack(z->parent);
+                    paintBlack(y);
+                    paintRed(z->parent->parent);
+                    z = z->parent->parent;
+                } else {
+                    // CASO 2B: tio preto, z é filho a esquerda de seu pai, precisa rotacionar para a direita
+                    if (z == z->parent->left) {
+                        z = z->parent;
+                        rotateRight(t, z);
+                    }
 
-            } else {
-                // CASO 2B: tio preto, z é filho a esquerda de seu pai, precisa rotacionar para a direita
-                if (z == z->parent->left) {
-                    z = z->parent;
-                    rotateRight(t, z);
+                    // CASO 3B: z é filho a direita de seu pai, precisa rotacionar para a esquerda
+                    paintBlack(z->parent);
+                    paintRed(z->parent->parent);
+                    rotateLeft(t, z->parent->parent);
                 }
-
-                // CASO 3B: z é filho a direita de seu pai, precisa rotacionar para a esquerda
-                paintBlack(z->parent);
-                paintRed(z->parent->parent);
-                rotateLeft(t, z->parent->parent);
             }
         }
     }
-    paintBlack(root);
+    paintBlack(rb_tree->root);
 }
 
 void rotateLeft(SRBTree t, Node n) {
     Red_Black_Root *red_black_tree = t;
-    // Red_Black_Node *nil = red_black_tree->nil;
-    Red_Black_Node *node = n;                   // avô 2
+    Red_Black_Node *node = n;         // avô 2
     Red_Black_Node *y = node->right;  // pai (direita)
 
     node->right = y->left;
@@ -224,8 +242,7 @@ void rotateLeft(SRBTree t, Node n) {
 
 void rotateRight(SRBTree t, Node n) {
     Red_Black_Root *red_black_tree = t;
-    // Red_Black_Node *nil = red_black_tree->nil;
-    Red_Black_Node *node = n;                 // recebo o AVÔ
+    Red_Black_Node *node = n;        // recebo o AVÔ
     Red_Black_Node *y = node->left;  // pai
 
     node->left = y->right;  // esqueda do avô aponta para direita do pai
@@ -790,3 +807,4 @@ void freeAux(Node root, Node nil) {
         free(node);
     }
 }
+
