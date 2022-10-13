@@ -372,6 +372,7 @@ void rectangleOverlaps(Node n, double x, double y, double w, double h, Lista res
         return;
     }
 
+    // Análise das condições para a MBB possuir alguma intersecção com o retangulo
     if (l1x == r1x || l1y == r1y || r2x == l2x || l2y == r2y) {
         i++;
     }
@@ -405,13 +406,15 @@ void mbbFullyInside(Node n, double x, double y, double w, double h, Lista result
     double y1 = node->mbbY1;
     double w1 = node->mbbX2 - x1;
     double h1 = node->mbbY2 - y1;
-    if (((x + w) >= (x1 + w1))) {
+    // Verificando se o MBB do nó está completamente dentro do retangulo
+    if (((x + w) >= (x1 + w1))) {  
         if (((y + h) >= (y1 + h1))) {
             if (x <= x1 && y <= y1) {
                 insereFim(resultado, n);
             }
         }
     }
+
     mbbFullyInside(node->left, x, y, w, h, resultado);
     mbbFullyInside(node->right, x, y, w, h, resultado);
 }

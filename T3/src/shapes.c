@@ -290,7 +290,7 @@ bool energyShot(Info i, double d) {
     return false;
 }
 
-bool hitRectangle(Info i, double xt, double yt) {
+bool hitRectangle(Info i, double xt, double yt) { // point inside rectangle
     double rx = getX(i);
     double ry = getY(i);
     double w = getW(i);
@@ -304,12 +304,12 @@ bool hitRectangle(Info i, double xt, double yt) {
     return false;
 }
 
-bool insideNet(Info i, double xr, double yr, double w, double h) {
+bool insideNet(Info i, double xr, double yr, double w, double h) { // circle or line or text inside net
     double x1 = getX(i);
     double y1 = getY(i);
 
     switch (getType(i)) {
-        case 1:;
+        case 1:; // circle 
             double r = getR(i);
             if ((xr + w) >= (x1 + r) && (xr) <= (x1 - r)) {
                 if ((yr + h) >= (y1 + r) && (yr) <= (y1 - r)) {
@@ -325,7 +325,7 @@ bool insideNet(Info i, double xr, double yr, double w, double h) {
             return false;
             break;
 
-        case 3:;
+        case 3:;  // line
             double x2 = getX2(i);
             double y2 = getY2(i);
             if (((xr + w) >= (x1)) && ((yr + h) >= (y1))) {
@@ -338,7 +338,7 @@ bool insideNet(Info i, double xr, double yr, double w, double h) {
             return false;
             break;
 
-        case 4:
+        case 4: // text
             if ((xr + w) >= (x1) && (yr + h) >= (y1)) {
                 if (xr <= x1 && yr <= y1) {
                     return true;
@@ -353,7 +353,7 @@ bool insideNet(Info i, double xr, double yr, double w, double h) {
     return false;
 }
 
-bool fishInside(Info i, double x, double y, double w, double h) {
+bool fishInside(Info i, double x, double y, double w, double h) { // circle inside rectangle
     double x1 = getX(i);
     double y1 = getY(i);
     if (getType(i) == 1) {
