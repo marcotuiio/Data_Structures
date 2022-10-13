@@ -402,7 +402,7 @@ void d_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2,
     if (getId(i) != id && getType(i) == 2) {
         if (hitRectangle(i, xt, yt)) {
             addGold(nau, getGold(i));
-            fprintf(txt, "\n\t  DESTRUIDA Nau id = %d, x = %lf, y = %lf, gold = %lf\n", getId(i), getX(i), getY(i), getGold(i));
+            fprintf(txt, "\t  DESTRUIDA Nau id = %d, x = %lf, y = %lf, gold = %lf\n", getId(i), getX(i), getY(i), getGold(i));
             Info dead = removeSRB(t, getX(i), getY(i), getX(i), getY(i), getX(i) + getW(i), getY(i) + getH(i));
             if (dead) {
                 free(dead);

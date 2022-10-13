@@ -25,7 +25,7 @@ typedef struct tree Red_Black_Root;
 
 // ---> HEADERS DE FUNÇÕES EXTRAS
 
-Node newNode(Node nil, Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2);
+Node newNode(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2);
 Node insertBST(SRBTree t, Node n, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, Info info);
 void fixRBinsert(SRBTree t, Node n);
 void RBinsert(SRBTree t, Node n);
@@ -35,23 +35,23 @@ bool isBlack(Node n);
 void paintBlack(Node n);
 bool isRed(Node n);
 void paintRed(Node n);
-void getMBBSub(Node n, Node nil, double *x1, double *y1, double *x2, double *y2);
+void getMBBSub(Node n, double *x1, double *y1, double *x2, double *y2);
 void uniteMBB(double x11, double y11, double x12, double y12, double x21, double y21, double x22, double y22, double *xr1, double *yr1, double *xr2, double *yr2);
 void fixTreeMBB(SRBTree t, Node n);
-void rectangleOverlaps(Node n, Node nil, double x, double y, double w, double h, Lista resultado);
-void mbbFullyInside(Node n, Node nil, double x, double y, double w, double h, Lista resultado);
+void rectangleOverlaps(Node n, double x, double y, double w, double h, Lista resultado);
+void mbbFullyInside(Node n, double x, double y, double w, double h, Lista resultado);
 Node searchNode(SRBTree t, Node n, double xa, double ya, double *mbbX1, double *mbbY1, double *mbbX2, double *mbbY2);
 void transplantRB(SRBTree t, Node n, Node n2);
 void fixRBdelete(SRBTree t, Node n);
 Node getLargestLeft(Node n, Node nil);
 Node getSmallestRight(Node n, Node nil);
-void makeDotNodes(Node n, Node nil, FILE *dotFile);
-void makeDotEdges(Node n, Node nil, FILE *dotFile);
-void traverseAux(Node root, Node nil, FvisitaNo f, void *aux);
+void makeDotNodes(Node n, FILE *dotFile);
+void makeDotEdges(Node n, FILE *dotFile);
+void traverseAux(Node root, FvisitaNo f, void *aux);
 void levelOrderAux(Node root, int level);
 int heightOfLevel(Node n);
-void mbbFullyInside(Node n, Node nil, double x, double y, double w, double h, Lista resultado);
-void traverseSim(Node root, Node nil, FvisitaNo f, void *aux);
+void mbbFullyInside(Node n, double x, double y, double w, double h, Lista resultado);
+void traverseSim(Node root, FvisitaNo f, void *aux);
 void removeNils(SRBTree t, Node root);
 void freeAux(Node n, Node nil);
 
@@ -71,7 +71,7 @@ SRBTree createSRB(double epsilon) {
     return new_tree;
 }
 
-Node newNode(Node nil, Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2) {
+Node newNode(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2) {
     Red_Black_Node *new_node = calloc(1, sizeof(Red_Black_Node));
     new_node->value = i;
     new_node->x = x;
@@ -95,8 +95,13 @@ Node newNode(Node nil, Info i, double x, double y, double mbbX1, double mbbY1, d
 Node insertSRB(SRBTree t, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, Info info) {
     Red_Black_Root *rb_tree = t;
     Red_Black_Node *x1 = rb_tree->root;
-    Red_Black_Node *z = newNode(rb_tree->nil, info, x, y, mbbX1, mbbY1, mbbX2, mbbY2);
+    Red_Black_Node *z = newNode(info, x, y, mbbX1, mbbY1, mbbX2, mbbY2);
     Red_Black_Node *y1 = NULL;
+
+    if (!z) {
+        printf("ERROR: YOU ARE OUT OF MEMORY\n");
+        return NULL;
+    }
 
     while (x1) {
         y1 = x1;
@@ -128,7 +133,7 @@ Node insertBST(SRBTree t, Node n, double x, double y, double mbbX1, double mbbY1
     Red_Black_Node *new_node = n;
 
     if (!new_node) {
-        new_node = newNode(red_black_tree->nil, info, x, y, mbbX1, mbbY1, mbbX2, mbbY2);
+        new_node = newNode(info, x, y, mbbX1, mbbY1, mbbX2, mbbY2);
         if (!red_black_tree->root) {
             red_black_tree->root = new_node;
             paintBlack(new_node);
@@ -173,8 +178,8 @@ void fixRBinsert(SRBTree t, Node n) {
                 paintBlack(y);
                 paintRed(z->parent->parent);
                 z = z->parent->parent;
-            } else {
 
+            } else {
                 // CASO 2A: tio preto, z é filho a direita de seu pai, precisa rotacionar para a esquerda
                 if (z == z->parent->right) {
                     z = z->parent;
@@ -197,6 +202,7 @@ void fixRBinsert(SRBTree t, Node n) {
                     paintBlack(y);
                     paintRed(z->parent->parent);
                     z = z->parent->parent;
+
                 } else {
                     // CASO 2B: tio preto, z é filho a esquerda de seu pai, precisa rotacionar para a direita
                     if (z == z->parent->left) {
@@ -301,7 +307,7 @@ void paintRed(Node n) {
     }
 }
 
-void getMBBSub(Node n, Node nil, double *x1, double *y1, double *x2, double *y2) {
+void getMBBSub(Node n, double *x1, double *y1, double *x2, double *y2) {
     Red_Black_Node *node = n;
 
     if (!node->left && !node->right) {
@@ -325,21 +331,19 @@ void uniteMBB(double x11, double y11, double x12, double y12, double x21, double
 }
 
 void fixTreeMBB(SRBTree t, Node n) {
-    Red_Black_Root *red_black_tree = t;
     Red_Black_Node *node = n;
-    Red_Black_Node *nil = red_black_tree->nil;
 
     while (node) {
         if (node->left) {
-            getMBBSub(node->left, nil, &node->SmbbX1, &node->SmbbY1, &node->SmbbX2, &node->SmbbY2);
+            getMBBSub(node->left, &node->SmbbX1, &node->SmbbY1, &node->SmbbX2, &node->SmbbY2);
         } else {
-            getMBBSub(node, nil, &node->SmbbX1, &node->SmbbY1, &node->SmbbX2, &node->SmbbY2);
+            getMBBSub(node, &node->SmbbX1, &node->SmbbY1, &node->SmbbX2, &node->SmbbY2);
         }
 
         if (node->right) {
-            getMBBSub(node->right, nil, &node->SmbbX1, &node->SmbbY1, &node->SmbbX2, &node->SmbbY2);
+            getMBBSub(node->right, &node->SmbbX1, &node->SmbbY1, &node->SmbbX2, &node->SmbbY2);
         } else {
-            getMBBSub(node, nil, &node->SmbbX1, &node->SmbbY1, &node->SmbbX2, &node->SmbbY2);
+            getMBBSub(node, &node->SmbbX1, &node->SmbbY1, &node->SmbbX2, &node->SmbbY2);
         }
 
         uniteMBB(node->mbbX1, node->mbbY1, node->mbbX2, node->mbbY2, node->SmbbX1, node->SmbbY1, node->SmbbX2, node->SmbbY2, &node->SmbbX1, &node->SmbbY1, &node->SmbbX2, &node->SmbbY2);
@@ -349,10 +353,10 @@ void fixTreeMBB(SRBTree t, Node n) {
 
 void getBBPartSRB(SRBTree t, double x, double y, double w, double h, Lista resultado) {  // MBB do node e retangulo tem alguma intersecção
     Red_Black_Root *tree = t;
-    rectangleOverlaps(tree->root, tree->nil, x, y, w, h, resultado);
+    rectangleOverlaps(tree->root, x, y, w, h, resultado);
 }
 
-void rectangleOverlaps(Node n, Node nil, double x, double y, double w, double h, Lista resultado) {
+void rectangleOverlaps(Node n, double x, double y, double w, double h, Lista resultado) {
     Red_Black_Node *node = n;
     double l1x = node->mbbX1;
     double l1y = node->mbbY1;
@@ -381,16 +385,16 @@ void rectangleOverlaps(Node n, Node nil, double x, double y, double w, double h,
         insereFim(resultado, node);
     }
 
-    rectangleOverlaps(node->left, nil, x, y, w, h, resultado);
-    rectangleOverlaps(node->right, nil, x, y, w, h, resultado);
+    rectangleOverlaps(node->left, x, y, w, h, resultado);
+    rectangleOverlaps(node->right, x, y, w, h, resultado);
 }
 
 void getBBSRB(SRBTree t, double x, double y, double w, double h, Lista resultado) {  // MBB completamente dentro do retangulo
     Red_Black_Root *red_black_tree = t;
-    mbbFullyInside(red_black_tree->root, red_black_tree->nil, x, y, w, h, resultado);
+    mbbFullyInside(red_black_tree->root, x, y, w, h, resultado);
 }
 
-void mbbFullyInside(Node n, Node nil, double x, double y, double w, double h, Lista resultado) {
+void mbbFullyInside(Node n, double x, double y, double w, double h, Lista resultado) {
     Red_Black_Node *node = n;
 
     if (!node) {
@@ -408,8 +412,8 @@ void mbbFullyInside(Node n, Node nil, double x, double y, double w, double h, Li
             }
         }
     }
-    mbbFullyInside(node->left, nil, x, y, w, h, resultado);
-    mbbFullyInside(node->right, nil, x, y, w, h, resultado);
+    mbbFullyInside(node->left, x, y, w, h, resultado);
+    mbbFullyInside(node->right, x, y, w, h, resultado);
 }
 
 Info getInfoSRB(SRBTree t, Node n, double xa, double ya, double *mbbX1, double *mbbY1, double *mbbX2, double *mbbY2) {
@@ -533,8 +537,9 @@ Info removeSRB(SRBTree t, double xa, double ya, double mbbX1, double mbbY1, doub
                 fixRBdelete(tree, x);
             }
         }
-
-        fixTreeMBB(tree, y);
+        if (x) {
+            fixTreeMBB(tree, x);
+        }
         tree->size--;
         return info;
     }
@@ -645,14 +650,14 @@ void printSRB(SRBTree t, char *nomeArq) {
     fprintf(dotFile, "\tnode %s\n", node);
     fprintf(dotFile, "\tedge %s\n\n", edge);
     fprintf(dotFile, "\t{\n");
-    makeDotNodes(tree->root, tree->nil, dotFile);
+    makeDotNodes(tree->root, dotFile);
     fprintf(dotFile, "\t}\n\n");
-    makeDotEdges(tree->root, tree->nil, dotFile);
+    makeDotEdges(tree->root, dotFile);
     fprintf(dotFile, "}\n");
     fclose(dotFile);
 }
 
-void makeDotNodes(Node n, Node nil, FILE *dotFile) {
+void makeDotNodes(Node n, FILE *dotFile) {
     Red_Black_Node *node = n;
     if (!node) {
         return;
@@ -666,11 +671,11 @@ void makeDotNodes(Node n, Node nil, FILE *dotFile) {
         }
     }
 
-    makeDotNodes(node->left, nil, dotFile);
-    makeDotNodes(node->right, nil, dotFile);
+    makeDotNodes(node->left, dotFile);
+    makeDotNodes(node->right, dotFile);
 }
 
-void makeDotEdges(Node n, Node nil, FILE *dotFile) {
+void makeDotEdges(Node n, FILE *dotFile) {
     Red_Black_Node *node = n;
     if (!node) {
         return;
@@ -683,16 +688,16 @@ void makeDotEdges(Node n, Node nil, FILE *dotFile) {
         fprintf(dotFile, "\t%d -> %d \n", getId(node->value), getId(node->right->value));
     }
 
-    makeDotEdges(node->left, nil, dotFile);
-    makeDotEdges(node->right, nil, dotFile);
+    makeDotEdges(node->left, dotFile);
+    makeDotEdges(node->right, dotFile);
 }
 
 void percursoProfundidade(SRBTree t, FvisitaNo f, void *aux) {
     Red_Black_Root *rb_tree = t;
-    traverseAux(rb_tree->root, rb_tree->nil, f, aux);
+    traverseAux(rb_tree->root, f, aux);
 }
 
-void traverseAux(Node root, Node nil, FvisitaNo f, void *aux) {
+void traverseAux(Node root, FvisitaNo f, void *aux) {
     Red_Black_Node *node = root;
     if (!node) {
         return;
@@ -701,8 +706,8 @@ void traverseAux(Node root, Node nil, FvisitaNo f, void *aux) {
     if (node->value) {
         f(node->value, node->x, node->y, node->mbbX1, node->mbbY1, node->mbbX2, node->mbbY2, aux);
     }
-    traverseAux(node->left, nil, f, aux);
-    traverseAux(node->right, nil, f, aux);
+    traverseAux(node->left, f, aux);
+    traverseAux(node->right, f, aux);
 }
 
 void percursoLargura(SRBTree t, FvisitaNo f, void *aux) {
@@ -757,34 +762,17 @@ int heightOfLevel(Node n) {
 }
 void percursoSimetrico(SRBTree t, FvisitaNo f, void *aux) {
     Red_Black_Root *br_tree = t;
-    traverseSim(br_tree->root, br_tree->nil, f, aux);
+    traverseSim(br_tree->root, f, aux);
 }
 
-void traverseSim(Node root, Node nil, FvisitaNo f, void *aux) {
+void traverseSim(Node root, FvisitaNo f, void *aux) {
     Red_Black_Node *node = root;
     if (!node) {
         return;
     }
-    traverseSim(node->left, nil, f, aux);
+    traverseSim(node->left, f, aux);
     f(node->value, node->x, node->y, node->mbbX1, node->mbbY1, node->mbbX2, node->mbbY2, aux);
-    traverseSim(node->right, nil, f, aux);
-}
-
-void removeNils(SRBTree t, Node root) {
-    Red_Black_Root *tree = t;
-    Red_Black_Node *node = root;
-    Red_Black_Node *nil = tree->nil;
-    if (!node) {
-        return;
-    }
-    if (node->left == nil) {
-        node->left = NULL;
-    }
-    if (node->right == nil) {
-        node->right = NULL;
-    }
-    removeNils(t, node->left);
-    removeNils(t, node->right);
+    traverseSim(node->right, f, aux);
 }
 
 void killSRB(SRBTree t) {
@@ -807,4 +795,3 @@ void freeAux(Node root, Node nil) {
         free(node);
     }
 }
-
