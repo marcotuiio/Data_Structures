@@ -186,7 +186,7 @@ void mv(FILE *qry, FILE *txt, SRBTree t) {
     fprintf(txt, "xf = %lf, yf = %lf\n", getX(old), getY(old));
     if (old) {
         if (getType(old) == 1) {
-            insertSRB(t, getX(old), getY(old), getX(old) - getR(old), getY(old) - getR(old), 2 * getR(old), 2 * getR(old), old);
+            insertSRB(t, getX(old), getY(old), getX(old) - getR(old), getY(old) - getR(old), getX(old) + getR(old), getY(old) + getR(old), old);
         } else if (getType(old) == 2) {
             insertSRB(t, getX(old), getY(old), getX(old), getY(old), getX(old) + getW(old), getY(old) + getH(old), old);
         } else if (getType(old) == 3) {
@@ -454,12 +454,12 @@ void mc_aux(Info i, double x, double y, double mbbX1, double mbbY1, double mbbX2
     if (i && getType(i) == 1) {
         if (fishInside(i, x1, y1, w, h)) {
             fprintf(txt, "\tPEIXE id = %d, xi = %lf, yi = %lf, ", getId(i), getX(i), getY(i));
-            Info old = removeSRB(t, getX(i), getY(i), getX(i) - getR(i), getY(i) - getR(i), 2 * getR(i), 2 * getR(i));
+            Info old = removeSRB(t, getX(i), getY(i), getX(i) - getR(i), getY(i) - getR(i), getX(i) + getR(i), getY(i) + getR(i));
             if (old) {
                 setX(old, dx);
                 setY(old, dy);
                 fprintf(txt, "xf = %lf, yf = %lf\n", getX(i), getY(i));
-                insertSRB(t, getX(old), getY(old), getX(old) - getR(old), getY(old) - getR(old), 2 * getR(old), 2 * getR(old), old);
+                insertSRB(t, getX(old), getY(old), getX(old) - getR(old), getY(old) - getR(old), getX(old) + getR(old), getY(old) + getR(old), old);
             }
         }
     }

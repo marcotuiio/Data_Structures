@@ -35,7 +35,7 @@ void setCircle(FILE *geo, SRBTree t, Info f) {
     strcpy(shape->anchor, "0");
     strcpy(shape->text, "0");
     // mbb de circulo é um retangulo que contem o mesmo
-    insertSRB(t, shape->x, shape->y, shape->x - shape->r, shape->y - shape->r, 2 * shape->r, 2 * shape->r, shape);
+    insertSRB(t, shape->x, shape->y, shape->x - shape->r, shape->y - shape->r, shape->x + shape->r, shape->y + shape->r, shape);
 }
 
 void setRectangle(FILE *geo, SRBTree t, Info f) {
