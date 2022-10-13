@@ -94,11 +94,10 @@ Node newNode(Node nil, Info i, double x, double y, double mbbX1, double mbbY1, d
 
 Node insertSRB(SRBTree t, double x, double y, double mbbX1, double mbbY1, double mbbX2, double mbbY2, Info info) {
     Red_Black_Root *tree = t;
-    Red_Black_Node *new_node;
 
     insertBST(t, tree->root, x, y, mbbX1, mbbY1, mbbX2, mbbY2, info);
-    new_node = getNodeSRB(t, x, y, &mbbX1, &mbbY1, &mbbX2, &mbbY2);
-    // fixRBinsert(t, new_node);
+    Red_Black_Node *new_node = getNodeSRB(t, x, y, &mbbX1, &mbbY1, &mbbX2, &mbbY2);
+    fixRBinsert(t, new_node);
 
     fixTreeMBB(t, new_node);
     return new_node;
@@ -134,37 +133,6 @@ Node insertBST(SRBTree t, Node n, double x, double y, double mbbX1, double mbbY1
     return new_node;
 }
 
-void RBinsert(SRBTree t, Node n) {
-    Red_Black_Root *red_black_tree = t;
-    Red_Black_Node *nil = red_black_tree->nil;
-    Red_Black_Node *x1 = red_black_tree->root;
-    Red_Black_Node *y1 = nil;
-    Red_Black_Node *z = n;
-
-    while (x1 != nil) {
-        y1 = x1;
-        if ((z->x < x1->x) || (z->x == x1->x && z->y < x1->y)) {
-            x1 = x1->left;
-        } else {
-            x1 = x1->right;
-        }
-    }
-    z->parent = y1;
-    // printf("z = %p x = %p y = %p \n", z, x1, y1);
-    if (y1 == nil) {
-        red_black_tree->root = z;
-    } else if ((z->x < y1->x) || (z->x == y1->x && z->y < y1->y)) {
-        y1->left = z;
-    } else {
-        y1->right = z;
-    }
-    z->left = nil;
-    z->right = nil;
-    red_black_tree->size++;
-    paintRed(z);
-    fixRBinsert(t, z);
-}
-
 Node insertBBSRB(SRBTree t, double mbbX1, double mbbY1, double mbbX2, double mbbY2, Info info) {
     return insertSRB(t, mbbX1, mbbY1, mbbX1, mbbY1, mbbX2, mbbY2, info);
 }
@@ -175,7 +143,7 @@ void fixRBinsert(SRBTree t, Node n) {
     Red_Black_Node *z = n;
     Red_Black_Node *uncle_z = NULL;
 
-    while ((isRed(z->parent))) {
+    while (z != root && (isRed(z->parent))) {
         // CASO A: pai de z é filho a esquerda do avô de z
         if (z->parent == z->parent->parent->left) {
             uncle_z = z->parent->parent->right;
@@ -232,57 +200,57 @@ void rotateLeft(SRBTree t, Node n) {
     Red_Black_Root *red_black_tree = t;
     // Red_Black_Node *nil = red_black_tree->nil;
     Red_Black_Node *node = n;                   // avô 2
-    Red_Black_Node *right_child = node->right;  // pai (direita)
+    Red_Black_Node *y = node->right;  // pai (direita)
 
-    node->right = right_child->left;
-    if (node->right) {
-        node->right->parent = node;
+    node->right = y->left;
+    if (y->left) {
+        y->left->parent = node;
     }
-    right_child->parent = node->parent;
+    y->parent = node->parent;
 
     if (!node->parent) {
-        red_black_tree->root = right_child;
+        red_black_tree->root = y;
 
     } else if ((node == node->parent->left)) {
-        node->parent->left = right_child;
+        node->parent->left = y;
 
     } else {
-        node->parent->right = right_child;
+        node->parent->right = y;
     }
 
-    right_child->left = node;
-    node->parent = right_child;
+    y->left = node;
+    node->parent = y;
 }
 
 void rotateRight(SRBTree t, Node n) {
     Red_Black_Root *red_black_tree = t;
     // Red_Black_Node *nil = red_black_tree->nil;
     Red_Black_Node *node = n;                 // recebo o AVÔ
-    Red_Black_Node *left_child = node->left;  // pai
+    Red_Black_Node *y = node->left;  // pai
 
-    node->left = left_child->right;  // esqueda do avô aponta para direita do pai
-    if (node->left) {
-        node->left->parent = node;
+    node->left = y->right;  // esqueda do avô aponta para direita do pai
+    if (y->right) {
+        y->right->parent = node;
     }
-    left_child->parent = node->parent;
+    y->parent = node->parent;
 
     if (!node->parent) {
-        red_black_tree->root = left_child;
+        red_black_tree->root = y;
 
-    } else if ((node == node->parent->left)) {
-        node->parent->left = left_child;
+    } else if ((node == node->parent->right)) {
+        node->parent->right = y;
 
     } else {
-        node->parent->right = left_child;
+        node->parent->left = y;
     }
 
-    left_child->right = node;
-    node->parent = left_child;
+    y->right = node;
+    node->parent = y;
 }
 
 bool isBlack(Node n) {
-    Red_Black_Node *node = n;
     if (n) {
+        Red_Black_Node *node = n;
         if (!strcmp(node->color, "BLACK")) {
             return true;
         }

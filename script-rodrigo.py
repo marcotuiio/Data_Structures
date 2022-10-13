@@ -17,7 +17,7 @@ ini = datetime.datetime.now()
 os.chdir(src)
 
 # Ative a função abaixo caso tenha alguma coisa no Makefile que limpe todos os *.o
-subprocess.call(["make", "clean"])  
+subprocess.call(["make", "clear"])  
 
 # Observação, quem tiver o executável diferente de 'ted', mude no código todo para o nome certo
 subprocess.call(["make", "ted"])

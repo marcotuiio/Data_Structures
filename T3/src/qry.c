@@ -72,7 +72,7 @@ void readQry(SRBTree t, char *bedQry, char *bsdSvgQry, char *bsdTxt) {
     }
     writeSvg(svg, t);
 
-    fprintf(txt, "\n\t\t\t\t|------ RESULTADOS FINAIS DA PESCARIA PIRATA ------|\n");
+    fprintf(txt, "\n\t\t\t|------ RESULTADOS FINAIS DA PESCARIA PIRATA ------|\n");
     percursoProfundidade(t, printResultados, txt);
 
     fclose(qry);
@@ -349,7 +349,7 @@ void d(FILE *qry, FILE *txt, FILE *svg, SRBTree t) {
         calc_shot(aux);
         percursoProfundidade(t, d_aux, aux);
     } else {
-        fprintf(txt, "\tNAU id = %d, e = %lf, energia_necessaria = %lf ENERGIA INSUFICIENTE PARA LANÇAMENTO", getId(aux->nau), getEnergy(aux->nau), d);
+        fprintf(txt, "\tNAU id = %d, e = %lf, energia_necessaria = %lf ENERGIA INSUFICIENTE PARA LANÇAMENTO\n", getId(aux->nau), getEnergy(aux->nau), d);
     }
     free(aux);
 }
