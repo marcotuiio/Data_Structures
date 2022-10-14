@@ -1,0 +1,12 @@
+
+[*] e 2000.000000 
+	Atribuida energia id = 1, x = 252.117044, y = 59.201976, e = 2000.000000
+	Atribuida energia id = 2, x = 317.117044, y = 59.201976, e = 2000.000000
+
+[*] d 2 EB 77.500000 
+	NAU id = 2, Atirou em: x = 239.617044, y = 79.201976
+	  ERROU id 1
+
+			|------ RESULTADOS FINAIS DA PESCARIA PIRATA ------|
+	NAU id = 1, x = 252.117044, y = 59.201976, gold = 0.000000, energy = 2000.000000
+	NAU id = 2, x = 317.117044, y = 59.201976, gold = 0.000000, energy = 1922.500000

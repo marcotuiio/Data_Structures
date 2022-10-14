@@ -1,282 +1,282 @@
 <svg xmlns="http://www.w3.org/2000/svg">
-	<rect id="4" x="533.259818" y="754.749322" width="20.000000" height="35.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
-	<rect id="1" x="263.217228" y="474.526393" width="20.000000" height="35.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
-	<rect id="12" x="111.066849" y="39.390989" width="40.000000" height="25.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
-	<text id="50" x="43.425450" y="192.288614" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
-	<rect id="9" x="13.223379" y="77.908363" width="40.000000" height="25.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
-	<text id="39" x="4.912427" y="520.649738" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
-	<text id="108" x="2.555246" y="225.826234" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
-	<line id="177" x1="2.337135" y1="771.513725" x2="6.756552" y2="775.933143" stroke="#c83771" />
-	<rect id="10" x="4.469179" y="6.792137" width="40.000000" height="25.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
-	<text id="85" x="10.038161" y="411.457311" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
-	<circle id="158" cx="26.386341" cy="383.753762" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<line id="164" x1="15.480009" y1="453.379936" x2="19.899427" y2="457.799353" stroke="#c83771" />
-	<text id="57" x="14.662981" y="236.305199" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
-	<circle id="128" cx="18.273260" cy="1567.227176" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<line id="179" x1="34.312462" y1="691.562451" x2="38.731879" y2="695.981868" stroke="#c83771" />
-	<rect id="14" x="41.766957" y="376.943888" width="40.000000" height="25.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
-	<circle id="190" cx="41.501403" cy="1128.460144" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<text id="64" x="103.071750" y="17.186531" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
-	<text id="53" x="57.290922" y="95.862809" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
-	<circle id="127" cx="53.861756" cy="892.162745" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<text id="98" x="45.203169" y="430.664499" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
-	<circle id="250" cx="49.718387" cy="1519.028251" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<circle id="224" cx="54.248785" cy="824.119875" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<circle id="268" cx="55.979098" cy="1397.853264" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<circle id="251" cx="85.985447" cy="1110.103546" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<text id="89" x="85.612865" y="27.225024" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
-	<circle id="236" cx="62.211586" cy="1432.641319" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<circle id="212" cx="60.443918" cy="825.758896" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<circle id="115" cx="77.491614" cy="1208.026870" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<line id="167" x1="89.910119" y1="582.530820" x2="94.329537" y2="586.950237" stroke="#c83771" />
-	<circle id="271" cx="94.827148" cy="1526.959180" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<circle id="279" cx="92.315614" cy="1168.308642" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<circle id="191" cx="99.701645" cy="1541.067049" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<text id="34" x="104.484637" y="566.175731" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
-	<circle id="145" cx="103.886834" cy="8.854222" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<line id="174" x1="103.484785" y1="596.225599" x2="107.904202" y2="600.645016" stroke="#c83771" />
-	<text id="96" x="108.193847" y="129.598006" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
-	<circle id="151" cx="110.031951" cy="840.960642" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<line id="168" x1="187.030597" y1="773.486303" x2="191.450014" y2="777.905720" stroke="#c83771" />
-	<rect id="11" x="160.528041" y="35.831018" width="40.000000" height="25.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
-	<rect id="13" x="151.754865" y="22.680387" width="40.000000" height="25.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
-	<text id="95" x="127.958478" y="605.229916" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
-	<circle id="267" cx="117.842260" cy="1386.234037" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<line id="180" x1="111.798738" y1="699.596254" x2="116.218155" y2="704.015671" stroke="#c83771" />
-	<circle id="111" cx="121.508006" cy="1266.832360" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<circle id="211" cx="144.295555" cy="1250.162995" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<circle id="272" cx="141.530778" cy="1028.197505" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<text id="44" x="144.779641" y="558.778143" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
-	<text id="69" x="157.681946" y="725.516296" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
-	<line id="175" x1="156.604914" y1="764.396209" x2="161.024331" y2="768.815627" stroke="#c83771" />
-	<circle id="249" cx="153.307363" cy="1482.562914" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<text id="31" x="157.576084" y="160.538153" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
-	<circle id="141" cx="157.907805" cy="1343.144504" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<circle id="201" cx="158.220282" cy="1395.629875" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<circle id="131" cx="172.884256" cy="209.136104" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<circle id="157" cx="168.376424" cy="624.601505" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<text id="55" x="163.110814" y="443.039440" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
-	<circle id="138" cx="169.877745" cy="1203.796095" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<circle id="129" cx="183.236750" cy="1411.091584" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<circle id="146" cx="181.948984" cy="1009.835843" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<circle id="215" cx="176.200639" cy="1461.897558" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<circle id="221" cx="183.078933" cy="954.042273" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<text id="59" x="223.620859" y="290.309509" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
-	<circle id="270" cx="200.856625" cy="302.717117" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<line id="172" x1="196.298097" y1="656.075479" x2="200.717515" y2="660.494896" stroke="#c83771" />
-	<circle id="232" cx="195.411167" cy="1243.058933" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<circle id="276" cx="195.854311" cy="1277.426729" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<circle id="234" cx="200.169010" cy="927.815154" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<circle id="228" cx="196.694553" cy="1376.148995" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<line id="170" x1="216.218608" y1="619.480097" x2="220.638026" y2="623.899514" stroke="#c83771" />
-	<circle id="265" cx="204.447232" cy="1587.917407" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<circle id="264" cx="217.566910" cy="923.128166" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<text id="32" x="236.661400" y="605.885659" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
-	<circle id="155" cx="233.309816" cy="889.779992" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<circle id="208" cx="233.422490" cy="1176.661751" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<rect id="3" x="259.344322" y="764.035290" width="20.000000" height="35.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
-	<text id="67" x="243.456892" y="139.811665" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
-	<circle id="122" cx="420.532131" cy="217.806892" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<text id="65" x="317.272831" y="276.234480" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
-	<text id="40" x="286.529923" y="797.732277" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
-	<line id="166" x1="275.208543" y1="498.771753" x2="279.627960" y2="503.191170" stroke="#c83771" />
-	<text id="103" x="272.978930" y="772.391051" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
-	<circle id="223" cx="273.418379" cy="1449.834988" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<rect id="7" x="275.880530" y="541.493773" width="20.000000" height="35.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
-	<line id="171" x1="281.402189" y1="478.412667" x2="285.821606" y2="482.832085" stroke="#c83771" />
-	<text id="92" x="298.712339" y="590.492500" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
-	<text id="60" x="293.711405" y="494.499151" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
-	<text id="105" x="289.150848" y="71.056232" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
-	<circle id="134" cx="296.680919" cy="982.762727" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<text id="71" x="315.611287" y="69.405065" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
-	<circle id="188" cx="315.539792" cy="1165.875705" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<text id="75" x="383.540465" y="665.865203" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
-	<line id="162" x1="327.527053" y1="590.133746" x2="331.946471" y2="594.553163" stroke="#c83771" />
-	<circle id="199" cx="325.909365" cy="1558.098731" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<line id="169" x1="322.957040" y1="418.221823" x2="327.376458" y2="422.641240" stroke="#c83771" />
-	<circle id="253" cx="326.430585" cy="1283.119949" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<text id="80" x="369.102296" y="100.051120" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
-	<circle id="186" cx="342.635665" cy="1119.674648" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<circle id="233" cx="339.905247" cy="1386.058442" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<circle id="202" cx="362.555101" cy="1425.336578" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<circle id="278" cx="399.643350" cy="759.901776" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<circle id="218" cx="395.568586" cy="1460.875335" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<circle id="257" cx="390.983061" cy="1268.134039" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<text id="90" x="385.841380" y="124.707767" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
-	<circle id="230" cx="392.897314" cy="1291.744422" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<circle id="114" cx="419.101110" cy="1011.517895" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<circle id="280" cx="410.619166" cy="1314.006974" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<circle id="144" cx="409.313803" cy="1033.153030" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<circle id="262" cx="410.793824" cy="1354.845506" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<text id="35" x="453.376576" y="87.236383" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
-	<text id="49" x="439.301049" y="266.317243" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
-	<text id="107" x="451.609937" y="629.986423" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
-	<circle id="125" cx="440.401244" cy="1203.921915" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<text id="58" x="488.938827" y="398.316320" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
-	<text id="46" x="465.787012" y="637.495431" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
-	<text id="52" x="455.413170" y="751.154284" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
-	<circle id="226" cx="466.256525" cy="1176.172385" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<text id="102" x="465.848441" y="509.838682" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
-	<circle id="181" cx="468.994914" cy="1394.043237" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<circle id="241" cx="469.315838" cy="1178.197150" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<text id="70" x="512.457241" y="37.677344" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
-	<circle id="229" cx="496.969271" cy="12.664976" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<circle id="150" cx="511.197570" cy="903.538675" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<line id="176" x1="526.602064" y1="596.924837" x2="531.021482" y2="601.344254" stroke="#c83771" />
-	<line id="165" x1="520.551416" y1="485.923311" x2="524.970833" y2="490.342728" stroke="#c83771" />
-	<circle id="254" cx="518.189464" cy="1416.227581" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<circle id="231" cx="524.050399" cy="825.862211" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<circle id="227" cx="532.070364" cy="1455.188588" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<circle id="207" cx="531.755328" cy="1053.888946" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<line id="163" x1="533.215706" y1="622.127694" x2="537.635123" y2="626.547111" stroke="#c83771" />
-	<rect id="2" x="842.737600" y="526.413996" width="20.000000" height="35.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
-	<text id="23" x="723.030902" y="230.353974" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ $]]></text>
-	<rect id="6" x="663.894613" y="281.155580" width="20.000000" height="35.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
-	<text id="54" x="592.200427" y="653.135913" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
-	<text id="84" x="562.400894" y="89.763858" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
-	<line id="161" x1="549.224247" y1="640.856190" x2="553.643664" y2="645.275608" stroke="#c83771" />
-	<circle id="198" cx="536.147012" cy="1052.143491" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<circle id="194" cx="535.659988" cy="1315.453002" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<line id="178" x1="539.065982" y1="421.026692" x2="543.485400" y2="425.446109" stroke="#c83771" />
-	<text id="77" x="553.348773" y="170.960499" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
-	<circle id="277" cx="552.909985" cy="1531.950769" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<circle id="183" cx="561.002663" cy="1356.154075" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<text id="88" x="575.410576" y="668.123609" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
-	<circle id="135" cx="572.016324" cy="1536.578051" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<circle id="206" cx="564.325211" cy="1228.564999" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<text id="51" x="562.453326" y="87.520654" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
-	<circle id="225" cx="568.257514" cy="1312.025872" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<line id="173" x1="583.187877" y1="719.633248" x2="587.607294" y2="724.052665" stroke="#c83771" />
-	<circle id="197" cx="582.148291" cy="1312.235901" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<circle id="213" cx="584.171105" cy="1085.145583" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<circle id="247" cx="588.512440" cy="1521.132547" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<text id="83" x="623.855337" y="8.735214" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
-	<text id="42" x="612.729077" y="373.397829" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
-	<text id="62" x="602.808598" y="64.061189" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
-	<circle id="196" cx="618.507589" cy="1366.827135" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<circle id="120" cx="614.426452" cy="1438.634086" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<circle id="112" cx="619.742656" cy="1474.865980" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<text id="76" x="652.172833" y="506.656692" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
-	<circle id="219" cx="643.750019" cy="119.059569" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<circle id="187" cx="640.639609" cy="967.594060" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<circle id="143" cx="639.735338" cy="1098.465595" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<text id="104" x="649.740035" y="71.874755" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
-	<text id="25" x="655.860236" y="151.305041" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ $]]></text>
-	<text id="100" x="653.113426" y="180.757586" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
-	<circle id="140" cx="659.881957" cy="1250.237504" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<circle id="246" cx="658.149711" cy="1556.547800" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<text id="68" x="691.460125" y="513.497254" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
-	<text id="56" x="670.119639" y="581.703253" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
-	<circle id="130" cx="667.919243" cy="1519.526386" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<circle id="269" cx="677.156815" cy="1579.119765" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<circle id="152" cx="670.319194" cy="1450.786787" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<circle id="124" cx="682.258229" cy="1559.465914" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<text id="94" x="710.617656" y="270.174803" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
-	<circle id="209" cx="697.757479" cy="36.400449" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<circle id="148" cx="696.754634" cy="1430.125570" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<circle id="139" cx="691.553960" cy="1120.599019" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<circle id="193" cx="708.778524" cy="1093.066939" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<circle id="185" cx="702.588922" cy="1016.055107" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<circle id="204" cx="717.601926" cy="1595.624950" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<text id="30" x="780.231760" y="154.292411" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ $]]></text>
-	<text id="99" x="759.461584" y="584.196756" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
-	<circle id="240" cx="753.277973" cy="193.916881" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<circle id="203" cx="726.647248" cy="92.553624" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<text id="101" x="723.947376" y="539.420071" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
-	<circle id="235" cx="724.154732" cy="847.417439" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<circle id="184" cx="747.324162" cy="1385.083305" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<circle id="273" cx="743.513588" cy="1084.043478" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<circle id="136" cx="758.980265" cy="1002.532939" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<text id="37" x="762.725087" y="277.235733" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
-	<circle id="153" cx="761.159631" cy="1055.272518" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<circle id="117" cx="777.145426" cy="1250.836811" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<circle id="248" cx="777.328090" cy="1144.667177" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<text id="97" x="832.644367" y="657.949031" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
-	<circle id="154" cx="822.242466" cy="1557.566227" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<circle id="121" cx="819.994285" cy="904.825931" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<circle id="238" cx="784.488178" cy="966.104502" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<circle id="275" cx="780.703531" cy="949.076360" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<circle id="147" cx="814.540168" cy="1562.548972" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<circle id="259" cx="826.200989" cy="455.878512" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<circle id="116" cx="822.684259" cy="1061.806239" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<circle id="133" cx="829.363982" cy="1270.201703" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<circle id="205" cx="828.982471" cy="838.490793" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<circle id="118" cx="832.115992" cy="1541.038248" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<text id="78" x="833.524726" y="267.688055" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
-	<text id="27" x="836.855958" y="364.708377" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ $]]></text>
-	<text id="22" x="985.392889" y="119.851307" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ $]]></text>
-	<text id="72" x="918.167965" y="762.407682" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
-	<text id="45" x="895.150626" y="396.391536" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
-	<text id="41" x="882.416820" y="312.395258" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
-	<circle id="274" cx="874.735003" cy="758.876892" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<text id="81" x="858.367479" y="799.259812" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
-	<circle id="261" cx="852.037550" cy="1157.334026" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<circle id="113" cx="873.432414" cy="1313.311469" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<text id="28" x="874.775871" y="362.274424" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ $]]></text>
-	<circle id="137" cx="880.704888" cy="1476.169981" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<text id="48" x="888.936784" y="460.669219" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
-	<circle id="123" cx="884.550857" cy="1371.147825" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<circle id="244" cx="894.960312" cy="1312.257422" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<text id="79" x="905.357430" y="365.434785" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
-	<text id="61" x="903.401177" y="320.656212" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
-	<circle id="242" cx="901.824693" cy="1292.692276" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<circle id="214" cx="913.782665" cy="1520.729779" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<text id="91" x="946.043548" y="409.419390" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
-	<circle id="258" cx="932.964486" cy="284.856552" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<circle id="159" cx="929.963243" cy="865.688546" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<circle id="200" cx="919.144575" cy="1138.437962" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<text id="106" x="941.634076" y="215.886977" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
-	<text id="38" x="957.068283" y="763.414948" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
-	<text id="86" x="948.124899" y="595.578727" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
-	<circle id="266" cx="949.193247" cy="1086.488178" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<text id="74" x="972.718114" y="432.130547" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
-	<circle id="243" cx="963.307088" cy="1326.647959" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<circle id="256" cx="961.718635" cy="1454.523820" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<circle id="126" cx="963.424533" cy="1182.736927" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<circle id="260" cx="980.157426" cy="1124.390167" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<circle id="210" cx="975.726510" cy="1326.853175" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<circle id="263" cx="982.345113" cy="863.831484" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<rect id="19" x="1064.343539" y="552.423908" width="30.000000" height="45.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
-	<rect id="20" x="1014.812982" y="773.915599" width="30.000000" height="45.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
-	<text id="47" x="993.770136" y="422.792166" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
-	<text id="24" x="988.031542" y="278.437138" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ $]]></text>
-	<circle id="222" cx="992.703912" cy="1471.671119" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<text id="73" x="995.815302" y="243.472014" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
-	<text id="29" x="994.613184" y="113.887647" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ $]]></text>
-	<text id="93" x="998.536486" y="160.810857" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
-	<rect id="5" x="1033.573972" y="449.591232" width="20.000000" height="35.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
-	<text id="63" x="1027.547412" y="642.716001" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
-	<text id="110" x="1020.017554" y="455.442844" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
-	<circle id="237" cx="1018.298334" cy="1085.439632" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<circle id="195" cx="1027.593381" cy="846.996270" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<text id="26" x="1039.638167" y="130.136880" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ $]]></text>
-	<circle id="182" cx="1037.101743" cy="922.797120" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<circle id="156" cx="1059.421384" cy="1220.044650" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<circle id="239" cx="1040.246570" cy="1587.361963" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<circle id="132" cx="1060.614155" cy="922.975793" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<circle id="252" cx="1137.687005" cy="1431.590942" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<circle id="160" cx="1116.584553" cy="45.382334" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<rect id="15" x="1076.429451" y="667.830385" width="30.000000" height="45.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
-	<rect id="17" x="1066.817329" y="472.650962" width="30.000000" height="45.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
-	<text id="36" x="1065.498165" y="532.241758" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
-	<text id="87" x="1067.702349" y="41.338352" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
-	<circle id="245" cx="1076.245999" cy="1046.400167" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<circle id="142" cx="1099.634817" cy="1354.236635" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<circle id="255" cx="1086.536989" cy="1544.873822" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
-	<text id="43" x="1083.561683" y="191.788444" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
-	<circle id="216" cx="1094.520205" cy="1185.428730" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<circle id="149" cx="1133.512672" cy="80.243523" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<circle id="119" cx="1126.296446" cy="1109.674850" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
-	<circle id="189" cx="1121.418801" cy="1230.373487" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<rect id="16" x="1160.707736" y="438.589382" width="30.000000" height="45.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
-	<rect id="18" x="1144.275260" y="434.372692" width="30.000000" height="45.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
-	<circle id="217" cx="1152.172534" cy="1055.903594" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<text id="21" x="1185.148748" y="289.442201" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ $]]></text>
-	<text id="109" x="1179.934137" y="275.443688" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
-	<rect id="8" x="1169.099275" y="350.926209" width="20.000000" height="35.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
-	<circle id="192" cx="1163.887704" cy="1129.360836" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<circle id="220" cx="1178.558730" cy="877.032821" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
-	<text id="82" x="1180.099142" y="205.329059" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
-	<text id="33" x="1191.909427" y="508.975923" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
-	<text id="66" x="1193.477130" y="506.754201" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
+	<rect id="2" x="740.407475" y="335.589979" width="20.000000" height="35.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
+	<text id="51" x="337.839807" y="35.932992" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
+	<rect id="10" x="126.559970" y="341.307266" width="40.000000" height="25.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
+	<text id="37" x="76.148646" y="598.527228" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
+	<rect id="9" x="18.799721" y="380.799264" width="40.000000" height="25.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
+	<line id="167" x1="3.258642" y1="552.967295" x2="7.678059" y2="557.386713" stroke="#c83771" />
+	<line id="170" x1="0.789420" y1="578.659719" x2="5.208838" y2="583.079136" stroke="#c83771" />
+	<circle id="213" cx="7.683144" cy="433.748367" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<circle id="184" cx="7.657604" cy="596.831533" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<rect id="12" x="8.429877" y="238.396083" width="40.000000" height="25.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
+	<text id="68" x="36.460505" y="552.798683" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
+	<circle id="220" cx="20.686308" cy="1174.710527" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<text id="33" x="20.079560" y="536.241994" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
+	<circle id="187" cx="25.659015" cy="1238.587181" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<circle id="255" cx="34.316979" cy="1456.084748" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<text id="55" x="61.498401" y="243.875769" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
+	<circle id="222" cx="56.376000" cy="1106.255338" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<circle id="185" cx="53.522005" cy="984.885015" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<circle id="116" cx="59.916402" cy="1363.765727" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<circle id="114" cx="75.465297" cy="1177.106079" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<text id="58" x="111.791128" y="665.638679" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
+	<rect id="13" x="100.736635" y="343.058743" width="40.000000" height="25.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
+	<circle id="230" cx="94.831923" cy="414.812024" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<rect id="11" x="85.623544" y="10.771691" width="40.000000" height="25.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
+	<circle id="128" cx="88.976011" cy="1260.287978" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<line id="172" x1="97.388355" y1="443.909317" x2="101.807772" y2="448.328735" stroke="#c83771" />
+	<circle id="242" cx="100.608786" cy="985.977531" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="147" cx="103.944780" cy="1167.617848" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<circle id="159" cx="104.645939" cy="1150.191188" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<rect id="14" x="117.699201" y="104.968746" width="40.000000" height="25.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
+	<text id="95" x="117.196270" y="404.365899" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
+	<circle id="149" cx="113.790559" cy="1146.792546" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<text id="88" x="121.045425" y="158.192257" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
+	<text id="35" x="289.056674" y="641.423059" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
+	<text id="96" x="207.298031" y="367.714792" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
+	<circle id="274" cx="176.864516" cy="273.297239" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<line id="165" x1="157.212885" y1="460.965525" x2="161.632302" y2="465.384943" stroke="#c83771" />
+	<line id="176" x1="136.477269" y1="693.868883" x2="140.896687" y2="698.288301" stroke="#c83771" />
+	<circle id="231" cx="131.773230" cy="1559.704245" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<rect id="1" x="163.373218" y="497.849962" width="20.000000" height="35.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
+	<line id="178" x1="158.049024" y1="667.052847" x2="162.468442" y2="671.472265" stroke="#c83771" />
+	<circle id="119" cx="170.656766" cy="1554.295777" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<circle id="229" cx="167.383297" cy="1573.037509" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<text id="83" x="190.943903" y="792.714186" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
+	<text id="100" x="181.210189" y="426.457143" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
+	<circle id="216" cx="190.937848" cy="1045.899016" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<text id="85" x="200.224013" y="1.002514" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
+	<circle id="273" cx="196.355471" cy="880.904709" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="239" cx="201.194437" cy="0.014562" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<text id="110" x="255.112438" y="753.017108" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
+	<line id="166" x1="226.148712" y1="670.715772" x2="230.568130" y2="675.135189" stroke="#c83771" />
+	<circle id="217" cx="208.644963" cy="1554.775450" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<circle id="278" cx="207.420986" cy="1288.302163" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="120" cx="237.405100" cy="1270.116698" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<circle id="253" cx="243.580456" cy="1418.437563" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="196" cx="268.213716" cy="1265.748086" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<text id="98" x="259.574904" y="52.919328" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
+	<line id="163" x1="255.355116" y1="654.360998" x2="259.774534" y2="658.780415" stroke="#c83771" />
+	<circle id="245" cx="256.382085" cy="1509.976824" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="265" cx="262.140060" cy="929.564705" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="276" cx="266.194285" cy="862.383824" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="250" cx="272.671029" cy="940.151604" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="272" cx="284.528008" cy="1110.038095" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<text id="45" x="308.181032" y="648.716178" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
+	<text id="77" x="306.323825" y="203.624133" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
+	<text id="99" x="305.907051" y="392.439229" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
+	<line id="175" x1="298.488656" y1="438.711025" x2="302.908074" y2="443.130443" stroke="#c83771" />
+	<circle id="122" cx="307.634636" cy="1239.485433" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<circle id="225" cx="307.803865" cy="1128.935719" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<text id="62" x="332.873377" y="416.200025" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
+	<circle id="197" cx="321.843038" cy="788.575595" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<line id="162" x1="314.982349" y1="793.510896" x2="319.401767" y2="797.930313" stroke="#c83771" />
+	<circle id="157" cx="321.321255" cy="1420.597062" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<text id="84" x="325.116319" y="270.942475" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
+	<line id="179" x1="327.421478" y1="492.415444" x2="331.840895" y2="496.834862" stroke="#c83771" />
+	<text id="65" x="333.193548" y="784.649251" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
+	<rect id="4" x="480.654339" y="486.144380" width="20.000000" height="35.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
+	<rect id="5" x="414.696857" y="608.542787" width="20.000000" height="35.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
+	<text id="79" x="364.802327" y="87.953785" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
+	<text id="104" x="353.753959" y="572.391388" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
+	<line id="168" x1="347.985625" y1="622.293066" x2="352.405042" y2="626.712484" stroke="#c83771" />
+	<circle id="232" cx="343.521065" cy="1025.055420" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="182" cx="353.460099" cy="1124.320415" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<text id="50" x="356.763768" y="238.397796" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
+	<text id="86" x="377.276806" y="235.217311" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
+	<line id="180" x1="372.958733" y1="423.970604" x2="377.378151" y2="428.390021" stroke="#c83771" />
+	<circle id="235" cx="367.025582" cy="1576.631640" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="212" cx="365.344497" cy="1209.456015" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<circle id="202" cx="367.328965" cy="993.501025" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<text id="70" x="407.795439" y="106.925140" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
+	<circle id="200" cx="380.480388" cy="1053.935038" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<circle id="195" cx="413.043636" cy="1406.348635" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<text id="49" x="440.390057" y="580.398598" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
+	<text id="94" x="430.903242" y="616.920712" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
+	<text id="74" x="429.047362" y="752.569318" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
+	<text id="101" x="420.354511" y="115.530707" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
+	<circle id="280" cx="417.551644" cy="1029.940511" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="181" cx="425.918956" cy="1400.889984" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<text id="57" x="437.946376" y="790.157181" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
+	<circle id="199" cx="460.676873" cy="194.294440" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<text id="44" x="450.688048" y="300.553043" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
+	<line id="173" x1="441.589858" y1="538.934917" x2="446.009275" y2="543.354335" stroke="#c83771" />
+	<circle id="224" cx="456.135154" cy="1250.844658" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<circle id="193" cx="452.212138" cy="1433.896391" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<circle id="148" cx="456.363311" cy="1248.077455" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<text id="63" x="480.376814" y="237.383068" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
+	<circle id="112" cx="476.969395" cy="1317.412030" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<line id="177" x1="469.555999" y1="771.286900" x2="473.975416" y2="775.706317" stroke="#c83771" />
+	<circle id="241" cx="466.585720" cy="1316.664465" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="248" cx="475.521325" cy="1452.426198" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="194" cx="680.252082" cy="33.799664" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<text id="39" x="628.895454" y="604.905419" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
+	<text id="105" x="521.668756" y="779.197456" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
+	<text id="82" x="494.557571" y="105.444264" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
+	<circle id="246" cx="491.672261" cy="521.971869" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<text id="76" x="486.236492" y="433.386327" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
+	<circle id="223" cx="484.574288" cy="830.594541" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<circle id="198" cx="482.737837" cy="1334.665408" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<circle id="124" cx="486.465298" cy="1296.000329" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<line id="169" x1="494.521284" y1="797.329739" x2="498.940701" y2="801.749157" stroke="#c83771" />
+	<circle id="117" cx="493.497980" cy="1111.671173" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<line id="171" x1="520.857799" y1="599.967233" x2="525.277216" y2="604.386650" stroke="#c83771" />
+	<circle id="218" cx="504.639519" cy="872.182955" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<circle id="227" cx="500.163797" cy="809.500809" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<circle id="188" cx="499.045254" cy="914.534551" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<circle id="262" cx="503.184439" cy="1197.965385" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<text id="92" x="550.666221" y="775.484464" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
+	<line id="161" x1="538.568017" y1="415.682037" x2="542.987435" y2="420.101454" stroke="#c83771" />
+	<line id="174" x1="524.892381" y1="514.036019" x2="529.311799" y2="518.455436" stroke="#c83771" />
+	<line id="164" x1="523.668972" y1="548.863231" x2="528.088389" y2="553.282649" stroke="#c83771" />
+	<circle id="207" cx="524.356770" cy="1184.116306" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<circle id="158" cx="537.879153" cy="1093.089868" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<circle id="259" cx="525.130444" cy="1033.497205" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="153" cx="541.149948" cy="1191.008621" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<circle id="160" cx="548.059645" cy="1556.396155" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<text id="53" x="588.410501" y="232.747545" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
+	<circle id="142" cx="568.336433" cy="1495.047921" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<circle id="226" cx="565.131392" cy="1078.534111" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<circle id="269" cx="554.095524" cy="1226.523639" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="277" cx="556.449775" cy="919.535332" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="261" cx="565.552078" cy="1326.548438" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="203" cx="572.637842" cy="1202.058743" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<circle id="263" cx="580.671530" cy="1045.730481" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="145" cx="610.004699" cy="1154.655675" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<circle id="155" cx="598.711141" cy="901.963447" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<circle id="190" cx="594.326259" cy="841.498152" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<circle id="186" cx="608.156849" cy="1493.344954" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<circle id="152" cx="621.836275" cy="1545.793317" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<text id="23" x="652.830505" y="57.778958" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ $]]></text>
+	<text id="109" x="646.602225" y="89.756876" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
+	<circle id="215" cx="638.155229" cy="836.621169" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<text id="93" x="632.682266" y="464.775966" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
+	<circle id="126" cx="642.853170" cy="1092.515035" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<text id="46" x="649.410675" y="571.474075" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
+	<circle id="118" cx="676.330380" cy="1165.636327" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<circle id="191" cx="656.159456" cy="910.696713" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<text id="107" x="654.153325" y="669.498108" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
+	<circle id="208" cx="655.307682" cy="907.944474" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<circle id="138" cx="657.264663" cy="1080.324455" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<text id="43" x="713.383829" y="204.767554" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
+	<circle id="144" cx="696.778060" cy="1058.738268" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<text id="34" x="681.268540" y="799.597118" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
+	<circle id="132" cx="702.120876" cy="1454.594126" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<text id="97" x="729.218849" y="232.726859" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
+	<text id="47" x="718.029305" y="152.519661" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
+	<text id="22" x="736.576375" y="108.303646" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ $]]></text>
+	<circle id="140" cx="731.419938" cy="1302.203795" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<rect id="6" x="988.820282" y="265.602431" width="20.000000" height="35.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
+	<text id="31" x="862.877235" y="314.589995" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
+	<rect id="8" x="788.752797" y="229.692933" width="20.000000" height="35.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
+	<text id="72" x="776.204913" y="146.770163" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
+	<text id="21" x="771.203687" y="148.959551" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ $]]></text>
+	<text id="27" x="755.426008" y="362.793024" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ $]]></text>
+	<text id="28" x="746.952611" y="23.178473" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ $]]></text>
+	<circle id="134" cx="746.345960" cy="1064.534300" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<text id="42" x="750.766821" y="178.095311" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
+	<circle id="135" cx="756.664770" cy="1438.012051" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<circle id="154" cx="764.471464" cy="1546.337013" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<circle id="131" cx="772.734470" cy="1487.440253" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<text id="73" x="782.618189" y="211.723318" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
+	<text id="89" x="776.946034" y="448.976469" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
+	<text id="90" x="778.796079" y="573.040633" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
+	<text id="59" x="784.440785" y="611.805942" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
+	<circle id="146" cx="788.673196" cy="1310.408500" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<text id="36" x="844.796344" y="334.258149" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
+	<text id="48" x="833.755373" y="182.621870" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
+	<text id="108" x="823.485460" y="255.508872" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
+	<text id="52" x="789.927145" y="188.093402" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
+	<text id="67" x="828.476269" y="6.154601" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
+	<text id="29" x="834.570050" y="17.243772" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ $]]></text>
+	<text id="32" x="846.664692" y="234.423575" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
+	<circle id="201" cx="846.887631" cy="951.934938" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<circle id="136" cx="954.026583" cy="276.512198" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<rect id="7" x="898.082903" y="632.063649" width="20.000000" height="35.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
+	<text id="61" x="884.123027" y="186.340607" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
+	<circle id="279" cx="877.291962" cy="738.836742" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="151" cx="874.613493" cy="842.821344" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<circle id="183" cx="868.505554" cy="851.178493" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<text id="41" x="878.192046" y="427.621252" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
+	<circle id="125" cx="892.299581" cy="1061.674977" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<circle id="233" cx="888.732961" cy="1122.974318" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<text id="87" x="896.617418" y="647.602208" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
+	<circle id="209" cx="915.219736" cy="192.453315" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<circle id="214" cx="901.340766" cy="98.952197" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<text id="56" x="900.022684" y="557.523409" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
+	<circle id="211" cx="900.407083" cy="1111.294399" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<circle id="121" cx="914.942402" cy="1215.848643" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<circle id="267" cx="901.672101" cy="891.736172" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="115" cx="949.765709" cy="1539.490554" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<circle id="249" cx="924.661129" cy="1524.175535" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="210" cx="923.330094" cy="966.826598" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<circle id="275" cx="949.054345" cy="1134.291464" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="133" cx="971.393431" cy="436.661599" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<circle id="270" cx="966.571872" cy="789.715014" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="111" cx="965.236772" cy="944.382029" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<circle id="247" cx="959.547578" cy="956.461437" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="139" cx="958.468086" cy="1264.605703" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<circle id="254" cx="961.248665" cy="1573.735249" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="150" cx="968.238552" cy="450.754039" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<text id="106" x="979.414632" y="458.936792" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
+	<circle id="252" cx="975.187848" cy="976.227102" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="257" cx="974.791923" cy="911.710258" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="237" cx="986.331917" cy="1511.143954" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="271" cx="984.105700" cy="812.468383" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<text id="78" x="986.914182" y="288.406847" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
+	<rect id="18" x="1062.753435" y="533.200052" width="30.000000" height="45.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
+	<rect id="20" x="1037.213797" y="446.395846" width="30.000000" height="45.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
+	<circle id="206" cx="997.869396" cy="1305.983468" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<text id="80" x="990.069310" y="735.929197" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
+	<text id="75" x="989.812512" y="284.134408" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
+	<circle id="113" cx="989.511272" cy="845.786076" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<rect id="16" x="1008.421739" y="592.567183" width="30.000000" height="45.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
+	<circle id="244" cx="1024.790963" cy="1497.665946" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="243" cx="1018.592219" cy="929.408050" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<text id="102" x="1030.848076" y="12.404622" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
+	<text id="24" x="1055.422565" y="208.640816" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ $]]></text>
+	<circle id="143" cx="1043.937085" cy="1476.526942" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<text id="54" x="1039.771036" y="298.435130" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
+	<text id="91" x="1047.813767" y="349.634212" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
+	<text id="60" x="1060.639430" y="169.594837" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
+	<text id="66" x="1118.256176" y="764.204617" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
+	<rect id="15" x="1082.866023" y="485.051343" width="30.000000" height="45.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
+	<text id="25" x="1076.534699" y="253.542837" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ $]]></text>
+	<rect id="19" x="1064.422294" y="523.588826" width="30.000000" height="45.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
+	<circle id="258" cx="1070.696041" cy="995.655511" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="204" cx="1076.643417" cy="1183.281276" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<circle id="228" cx="1081.338667" cy="1018.393462" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<circle id="251" cx="1094.445347" cy="41.832827" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<text id="30" x="1084.942529" y="279.128038" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ $]]></text>
+	<circle id="127" cx="1088.907434" cy="1049.413244" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<circle id="141" cx="1111.111161" cy="1201.667614" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<circle id="234" cx="1094.586038" cy="988.881551" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="219" cx="1100.725905" cy="1472.937486" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<circle id="129" cx="1115.724891" cy="1158.913915" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<text id="38" x="1154.235614" y="645.512788" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
+	<text id="81" x="1138.600709" y="436.010440" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
+	<text id="69" x="1126.321225" y="410.196454" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
+	<circle id="240" cx="1121.292416" cy="969.434793" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="238" cx="1133.518541" cy="1439.000289" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="256" cx="1134.333364" cy="854.318745" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="264" cx="1145.198375" cy="1189.799316" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="205" cx="1140.771648" cy="16.056146" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<circle id="189" cx="1139.856566" cy="1006.288379" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<circle id="130" cx="1139.613584" cy="857.642268" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<text id="103" x="1148.308816" y="556.999279" text-anchor="middle" stroke="#806600" fill="#806600" fill-opacity="60%" ><![CDATA[ b]]></text>
+	<circle id="236" cx="1152.473499" cy="1561.670719" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="268" cx="1150.807682" cy="1246.205428" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<rect id="17" x="1183.527271" y="592.391313" width="30.000000" height="45.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
+	<rect id="3" x="1169.741118" y="644.620699" width="20.000000" height="35.000000" stroke="#800066" fill="#6F6F91" fill-opacity="45%" stroke-width="1.4%" />
+	<circle id="192" cx="1169.544082" cy="1398.325498" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<circle id="156" cx="1158.411896" cy="805.130162" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<text id="71" x="1169.701528" y="510.823717" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
+	<circle id="123" cx="1177.673302" cy="824.935119" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<text id="26" x="1198.973834" y="281.512429" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ $]]></text>
+	<circle id="137" cx="1193.924850" cy="1541.961724" r="0.500000" stroke="#8de25f" fill="#2b13c8" fill-opacity="55%" />
+	<circle id="266" cx="1187.436864" cy="1442.894512" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="260" cx="1184.145524" cy="979.180056" r="3.750000" stroke="#00d4aa" fill="#ffff00" fill-opacity="55%" />
+	<circle id="221" cx="1189.644389" cy="974.844317" r="2.500000" stroke="#000000" fill="#ff6600" fill-opacity="55%" />
+	<text id="64" x="1199.225412" y="52.333545" text-anchor="middle" stroke="#2ca02c" fill="#2ca02c" fill-opacity="60%" ><![CDATA[ ~~~~]]></text>
+	<text id="40" x="1199.715737" y="631.496807" text-anchor="middle" stroke="#FFCC00" fill="#FFCC00" fill-opacity="60%" ><![CDATA[ >-|-<]]></text>
 </svg>

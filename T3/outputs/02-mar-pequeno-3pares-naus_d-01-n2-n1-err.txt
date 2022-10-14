@@ -1,24 +1,24 @@
 
-[*] e 2000.000000 
-	Atribuida energia id = 1, x = 158.713937, y = 148.477155, e = 2000.000000
-	Atribuida energia id = 2, x = 223.713937, y = 148.477155, e = 2000.000000
-	Atribuida energia id = 5, x = 213.666625, y = 50.026824, e = 2000.000000
-	Atribuida energia id = 6, x = 278.666625, y = 50.026824, e = 2000.000000
-	Atribuida energia id = 3, x = 233.963939, y = 42.211111, e = 2000.000000
-	Atribuida energia id = 4, x = 298.963939, y = 42.211111, e = 2000.000000
+[*] e 500.000000 
+	Atribuida energia id = 2, x = 248.289950, y = 249.512677, e = 500.000000
+	Atribuida energia id = 1, x = 183.289950, y = 249.512677, e = 500.000000
+	Atribuida energia id = 5, x = 304.791776, y = 274.257657, e = 500.000000
+	Atribuida energia id = 3, x = 343.644500, y = 289.056863, e = 500.000000
+	Atribuida energia id = 6, x = 369.791776, y = 274.257657, e = 500.000000
+	Atribuida energia id = 4, x = 408.644500, y = 289.056863, e = 500.000000
 
-[*] d 4 EB 152.750002 
-	NAU id = 4, Atirou em: x = 146.213937, y = 62.211111
+[*] d 2 EB 77.500000 
+	NAU id = 2, Atirou em: x = 170.789950, y = 269.512677
 	  ERROU id 1
-	  ERROU id 2
 	  ERROU id 5
-	  ERROU id 6
 	  ERROU id 3
+	  ERROU id 6
+	  ERROU id 4
 
 			|------ RESULTADOS FINAIS DA PESCARIA PIRATA ------|
-	NAU id = 1, x = 158.713937, y = 148.477155, gold = 0.000000, energy = 2000.000000
-	NAU id = 2, x = 223.713937, y = 148.477155, gold = 0.000000, energy = 2000.000000
-	NAU id = 5, x = 213.666625, y = 50.026824, gold = 0.000000, energy = 2000.000000
-	NAU id = 6, x = 278.666625, y = 50.026824, gold = 0.000000, energy = 2000.000000
-	NAU id = 3, x = 233.963939, y = 42.211111, gold = 0.000000, energy = 2000.000000
-	NAU id = 4, x = 298.963939, y = 42.211111, gold = 0.000000, energy = 1847.249998
+	NAU id = 2, x = 248.289950, y = 249.512677, gold = 0.000000, energy = 422.500000
+	NAU id = 1, x = 183.289950, y = 249.512677, gold = 0.000000, energy = 500.000000
+	NAU id = 5, x = 304.791776, y = 274.257657, gold = 0.000000, energy = 500.000000
+	NAU id = 3, x = 343.644500, y = 289.056863, gold = 0.000000, energy = 500.000000
+	NAU id = 6, x = 369.791776, y = 274.257657, gold = 0.000000, energy = 500.000000
+	NAU id = 4, x = 408.644500, y = 289.056863, gold = 0.000000, energy = 500.000000
