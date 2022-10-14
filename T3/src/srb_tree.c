@@ -647,6 +647,7 @@ void printSRB(SRBTree t, char *nomeArq) {
     fprintf(dotFile, "\tnode %s\n", node);
     fprintf(dotFile, "\tedge %s\n\n", edge);
     fprintf(dotFile, "\t{\n");
+    fprintf(dotFile, "\t\tnode [fillcolor=\" black\" fontcolor=\" white\"] %s \n", "nil");
     makeDotNodes(tree->root, tree->nil, dotFile);
     fprintf(dotFile, "\t}\n\n");
     makeDotEdges(tree->root, tree->nil, dotFile);
@@ -683,6 +684,12 @@ void makeDotEdges(Node n, Node nil, FILE *dotFile) {
     }
     if (node->value && node->right && node->right->value) {
         fprintf(dotFile, "\t%d -> %d \n", getId(node->value), getId(node->right->value));
+    }
+    if (node->left == nil && node->value) {
+        fprintf(dotFile, "\t%d -> nil \n", getId(node->value));
+    }
+    if (node->right == nil && node->value) {
+        fprintf(dotFile, "\t%d -> nil \n", getId(node->value));
     }
 
     makeDotEdges(node->left, nil, dotFile);

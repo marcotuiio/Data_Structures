@@ -3,6 +3,7 @@ digraph RB_Teste {
 	edge [fontname="Helvetica,Arial,sans-serif" color="black"]
 
 	{
+		node [fillcolor=" black" fontcolor=" white"] nil 
 		node [fillcolor=" black" fontcolor=" white"] 2 
 		node [fillcolor=" black" fontcolor=" white"] 22 
 		node [fillcolor=" black" fontcolor=" white"] 35 
@@ -124,47 +125,101 @@ digraph RB_Teste {
 	72 -> 64 
 	72 -> 83 
 	64 -> 88 
+	64 -> nil 
+	88 -> nil 
+	88 -> nil 
 	83 -> 104 
+	83 -> nil 
+	104 -> nil 
+	104 -> nil 
 	29 -> 91 
 	29 -> 62 
 	91 -> 95 
+	91 -> nil 
+	95 -> nil 
+	95 -> nil 
 	62 -> 98 
+	62 -> nil 
+	98 -> nil 
+	98 -> nil 
 	60 -> 65 
 	60 -> 76 
 	65 -> 96 
 	65 -> 58 
+	96 -> nil 
+	96 -> nil 
+	58 -> nil 
+	58 -> nil 
 	76 -> 25 
 	76 -> 94 
+	25 -> nil 
+	25 -> nil 
+	94 -> nil 
+	94 -> nil 
 	24 -> 45 
 	24 -> 51 
 	45 -> 100 
 	45 -> 101 
 	100 -> 90 
+	100 -> nil 
 	90 -> 105 
+	90 -> nil 
+	105 -> nil 
+	105 -> nil 
 	101 -> 89 
+	101 -> nil 
+	89 -> nil 
+	89 -> nil 
 	51 -> 97 
+	51 -> nil 
 	97 -> 23 
 	97 -> 92 
 	23 -> 106 
+	23 -> nil 
+	106 -> nil 
+	106 -> nil 
 	92 -> 103 
+	92 -> nil 
+	103 -> nil 
+	103 -> nil 
 	11 -> 1 
 	11 -> 34 
 	1 -> 99 
 	1 -> 44 
 	99 -> 93 
 	99 -> 66 
+	93 -> nil 
+	93 -> nil 
+	66 -> nil 
+	66 -> nil 
 	44 -> 57 
 	44 -> 50 
 	57 -> 87 
+	57 -> nil 
+	87 -> nil 
+	87 -> nil 
 	50 -> 102 
 	50 -> 48 
+	102 -> nil 
+	102 -> nil 
+	48 -> nil 
+	48 -> nil 
 	34 -> 33 
 	34 -> 41 
 	33 -> 8 
+	33 -> nil 
 	8 -> 49 
 	8 -> 39 
+	49 -> nil 
+	49 -> nil 
+	39 -> nil 
+	39 -> nil 
 	41 -> 55 
 	41 -> 38 
+	55 -> nil 
+	55 -> nil 
+	38 -> nil 
+	38 -> nil 
 	6 -> 10 
 	6 -> 77 
 	10 -> 21 
@@ -173,17 +228,34 @@ digraph RB_Teste {
 	21 -> 15 
 	42 -> 36 
 	42 -> 30 
+	36 -> nil 
+	36 -> nil 
 	30 -> 17 
 	30 -> 28 
+	17 -> nil 
+	17 -> nil 
 	28 -> 54 
+	28 -> nil 
+	54 -> nil 
+	54 -> nil 
 	15 -> 27 
 	15 -> 40 
 	27 -> 52 
 	27 -> 47 
 	52 -> 59 
 	52 -> 43 
+	59 -> nil 
+	59 -> nil 
+	43 -> nil 
+	43 -> nil 
+	47 -> nil 
+	47 -> nil 
 	40 -> 32 
 	40 -> 5 
+	32 -> nil 
+	32 -> nil 
+	5 -> nil 
+	5 -> nil 
 	3 -> 14 
 	3 -> 18 
 	14 -> 16 
@@ -191,29 +263,65 @@ digraph RB_Teste {
 	16 -> 20 
 	16 -> 9 
 	20 -> 37 
+	20 -> nil 
+	37 -> nil 
+	37 -> nil 
 	9 -> 56 
+	9 -> nil 
+	56 -> nil 
+	56 -> nil 
 	12 -> 31 
+	12 -> nil 
+	31 -> nil 
+	31 -> nil 
 	18 -> 19 
 	18 -> 7 
 	19 -> 63 
+	19 -> nil 
+	63 -> nil 
+	63 -> nil 
+	7 -> nil 
+	7 -> nil 
 	77 -> 53 
 	77 -> 82 
 	53 -> 46 
 	53 -> 4 
 	46 -> 13 
+	46 -> nil 
+	13 -> nil 
+	13 -> nil 
 	4 -> 75 
+	4 -> nil 
+	75 -> nil 
+	75 -> nil 
 	82 -> 86 
 	82 -> 78 
 	86 -> 85 
 	86 -> 71 
+	85 -> nil 
+	85 -> nil 
+	71 -> nil 
+	71 -> nil 
 	78 -> 70 
 	78 -> 68 
 	70 -> 80 
 	70 -> 79 
+	80 -> nil 
+	80 -> nil 
+	79 -> nil 
+	79 -> nil 
 	68 -> 81 
 	68 -> 84 
+	81 -> nil 
+	81 -> nil 
 	84 -> 69 
 	84 -> 73 
+	69 -> nil 
+	69 -> nil 
 	73 -> 67 
 	73 -> 74 
+	67 -> nil 
+	67 -> nil 
+	74 -> nil 
+	74 -> nil 
 }
