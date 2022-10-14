@@ -1,0 +1,211 @@
+digraph RB_Teste {
+	node [fontname="Helvetica,Arial,sans-serif" style="filled"]
+	edge [fontname="Helvetica,Arial,sans-serif" color="black"]
+
+	{
+		node [fillcolor=" black" fontcolor=" white"] 23 
+		node [fillcolor=" red" fontcolor=" white"] 43 
+		node [fillcolor=" black" fontcolor=" white"] 47 
+		node [fillcolor=" red" fontcolor=" white"] 36 
+		node [fillcolor=" black" fontcolor=" white"] 57 
+		node [fillcolor=" black" fontcolor=" white"] 52 
+		node [fillcolor=" red" fontcolor=" white"] 83 
+		node [fillcolor=" black" fontcolor=" white"] 76 
+		node [fillcolor=" red" fontcolor=" white"] 102 
+		node [fillcolor=" black" fontcolor=" white"] 39 
+		node [fillcolor=" black" fontcolor=" white"] 91 
+		node [fillcolor=" red" fontcolor=" white"] 87 
+		node [fillcolor=" black" fontcolor=" white"] 79 
+		node [fillcolor=" red" fontcolor=" white"] 98 
+		node [fillcolor=" red" fontcolor=" white"] 67 
+		node [fillcolor=" black" fontcolor=" white"] 75 
+		node [fillcolor=" red" fontcolor=" white"] 66 
+		node [fillcolor=" black" fontcolor=" white"] 1 
+		node [fillcolor=" black" fontcolor=" white"] 101 
+		node [fillcolor=" red" fontcolor=" white"] 16 
+		node [fillcolor=" red" fontcolor=" white"] 100 
+		node [fillcolor=" red" fontcolor=" white"] 59 
+		node [fillcolor=" black" fontcolor=" white"] 30 
+		node [fillcolor=" black" fontcolor=" white"] 44 
+		node [fillcolor=" red" fontcolor=" white"] 92 
+		node [fillcolor=" black" fontcolor=" white"] 2 
+		node [fillcolor=" red" fontcolor=" white"] 84 
+		node [fillcolor=" black" fontcolor=" white"] 14 
+		node [fillcolor=" black" fontcolor=" white"] 35 
+		node [fillcolor=" black" fontcolor=" white"] 95 
+		node [fillcolor=" red" fontcolor=" white"] 78 
+		node [fillcolor=" black" fontcolor=" white"] 41 
+		node [fillcolor=" black" fontcolor=" white"] 26 
+		node [fillcolor=" red" fontcolor=" white"] 65 
+		node [fillcolor=" black" fontcolor=" white"] 46 
+		node [fillcolor=" red" fontcolor=" white"] 15 
+		node [fillcolor=" black" fontcolor=" white"] 88 
+		node [fillcolor=" red" fontcolor=" white"] 56 
+		node [fillcolor=" red" fontcolor=" white"] 21 
+		node [fillcolor=" black" fontcolor=" white"] 89 
+		node [fillcolor=" red" fontcolor=" white"] 99 
+		node [fillcolor=" red" fontcolor=" white"] 31 
+		node [fillcolor=" black" fontcolor=" white"] 38 
+		node [fillcolor=" red" fontcolor=" white"] 97 
+		node [fillcolor=" black" fontcolor=" white"] 33 
+		node [fillcolor=" red" fontcolor=" white"] 94 
+		node [fillcolor=" red" fontcolor=" white"] 74 
+		node [fillcolor=" red" fontcolor=" white"] 6 
+		node [fillcolor=" black" fontcolor=" white"] 4 
+		node [fillcolor=" red" fontcolor=" white"] 22 
+		node [fillcolor=" black" fontcolor=" white"] 45 
+		node [fillcolor=" red" fontcolor=" white"] 32 
+		node [fillcolor=" black" fontcolor=" white"] 48 
+		node [fillcolor=" red" fontcolor=" white"] 90 
+		node [fillcolor=" black" fontcolor=" white"] 80 
+		node [fillcolor=" red" fontcolor=" white"] 93 
+		node [fillcolor=" red" fontcolor=" white"] 85 
+		node [fillcolor=" black" fontcolor=" white"] 96 
+		node [fillcolor=" red" fontcolor=" white"] 86 
+		node [fillcolor=" red" fontcolor=" white"] 42 
+		node [fillcolor=" black" fontcolor=" white"] 37 
+		node [fillcolor=" black" fontcolor=" white"] 68 
+		node [fillcolor=" red" fontcolor=" white"] 60 
+		node [fillcolor=" red" fontcolor=" white"] 73 
+		node [fillcolor=" black" fontcolor=" white"] 3 
+		node [fillcolor=" red" fontcolor=" white"] 62 
+		node [fillcolor=" black" fontcolor=" white"] 17 
+		node [fillcolor=" black" fontcolor=" white"] 8 
+		node [fillcolor=" red" fontcolor=" white"] 53 
+		node [fillcolor=" red" fontcolor=" white"] 81 
+		node [fillcolor=" red" fontcolor=" white"] 18 
+		node [fillcolor=" black" fontcolor=" white"] 82 
+		node [fillcolor=" red" fontcolor=" white"] 10 
+		node [fillcolor=" red" fontcolor=" white"] 61 
+		node [fillcolor=" black" fontcolor=" white"] 34 
+		node [fillcolor=" red" fontcolor=" white"] 77 
+		node [fillcolor=" black" fontcolor=" white"] 5 
+		node [fillcolor=" red" fontcolor=" white"] 49 
+		node [fillcolor=" black" fontcolor=" white"] 50 
+		node [fillcolor=" black" fontcolor=" white"] 51 
+		node [fillcolor=" red" fontcolor=" white"] 70 
+		node [fillcolor=" black" fontcolor=" white"] 9 
+		node [fillcolor=" red" fontcolor=" white"] 55 
+		node [fillcolor=" black" fontcolor=" white"] 20 
+		node [fillcolor=" black" fontcolor=" white"] 54 
+		node [fillcolor=" red" fontcolor=" white"] 24 
+		node [fillcolor=" red" fontcolor=" white"] 71 
+		node [fillcolor=" red" fontcolor=" white"] 11 
+		node [fillcolor=" black" fontcolor=" white"] 63 
+		node [fillcolor=" red" fontcolor=" white"] 72 
+		node [fillcolor=" red" fontcolor=" white"] 69 
+		node [fillcolor=" black" fontcolor=" white"] 12 
+		node [fillcolor=" red" fontcolor=" white"] 19 
+		node [fillcolor=" black" fontcolor=" white"] 25 
+		node [fillcolor=" red" fontcolor=" white"] 27 
+		node [fillcolor=" black" fontcolor=" white"] 28 
+		node [fillcolor=" red" fontcolor=" white"] 13 
+		node [fillcolor=" black" fontcolor=" white"] 29 
+		node [fillcolor=" red" fontcolor=" white"] 40 
+		node [fillcolor=" black" fontcolor=" white"] 58 
+		node [fillcolor=" red" fontcolor=" white"] 7 
+		node [fillcolor=" red" fontcolor=" white"] 64 
+	}
+
+	23 -> 43 
+	23 -> 6 
+	43 -> 47 
+	43 -> 2 
+	47 -> 36 
+	47 -> 1 
+	36 -> 57 
+	36 -> 91 
+	57 -> 52 
+	57 -> 83 
+	83 -> 76 
+	83 -> 39 
+	76 -> 102 
+	91 -> 87 
+	91 -> 66 
+	87 -> 79 
+	87 -> 75 
+	79 -> 98 
+	79 -> 67 
+	1 -> 101 
+	1 -> 59 
+	101 -> 16 
+	101 -> 100 
+	59 -> 30 
+	59 -> 44 
+	44 -> 92 
+	2 -> 84 
+	2 -> 46 
+	84 -> 14 
+	84 -> 41 
+	14 -> 35 
+	14 -> 95 
+	95 -> 78 
+	41 -> 26 
+	41 -> 65 
+	46 -> 15 
+	46 -> 31 
+	15 -> 88 
+	15 -> 89 
+	88 -> 56 
+	88 -> 21 
+	89 -> 99 
+	31 -> 38 
+	31 -> 33 
+	38 -> 97 
+	33 -> 94 
+	33 -> 74 
+	6 -> 4 
+	6 -> 5 
+	4 -> 22 
+	4 -> 17 
+	22 -> 45 
+	22 -> 37 
+	45 -> 32 
+	45 -> 96 
+	32 -> 48 
+	32 -> 80 
+	48 -> 90 
+	80 -> 93 
+	80 -> 85 
+	96 -> 86 
+	96 -> 42 
+	37 -> 68 
+	37 -> 3 
+	68 -> 60 
+	68 -> 73 
+	3 -> 62 
+	17 -> 8 
+	17 -> 18 
+	8 -> 53 
+	8 -> 81 
+	18 -> 82 
+	18 -> 34 
+	82 -> 10 
+	82 -> 61 
+	34 -> 77 
+	5 -> 49 
+	5 -> 12 
+	49 -> 50 
+	49 -> 20 
+	50 -> 51 
+	50 -> 9 
+	51 -> 70 
+	9 -> 55 
+	20 -> 54 
+	20 -> 11 
+	54 -> 24 
+	54 -> 71 
+	11 -> 63 
+	63 -> 72 
+	63 -> 69 
+	12 -> 19 
+	12 -> 13 
+	19 -> 25 
+	19 -> 28 
+	25 -> 27 
+	13 -> 29 
+	13 -> 58 
+	29 -> 40 
+	58 -> 7 
+	58 -> 64 
+}

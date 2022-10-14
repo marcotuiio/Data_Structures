@@ -1,0 +1,56 @@
+
+[*] e 500.000000 
+	Atribuida energia id = 3, x = 385.706611, y = 301.837166, e = 500.000000
+	Atribuida energia id = 4, x = 167.315359, y = 184.651354, e = 500.000000
+	Atribuida energia id = 1, x = 124.842416, y = 255.143113, e = 500.000000
+	Atribuida energia id = 5, x = 252.430739, y = 287.956080, e = 500.000000
+	Atribuida energia id = 2, x = 403.331640, y = 191.447716, e = 500.000000
+	Atribuida energia id = 6, x = 579.255019, y = 79.118431, e = 500.000000
+
+[*] d 5 EB 75.120000 
+	NAU id = 5, Atirou em: x = 177.310739, y = 305.456080
+	  ERROU id 3
+	  ERROU id 4
+	  ERROU id 1
+	  ERROU id 2
+	  ERROU id 6
+
+[*] d 5 EB 75.120000 
+	NAU id = 5, Atirou em: x = 177.310739, y = 305.456080
+	  ERROU id 3
+	  ERROU id 4
+	  ERROU id 1
+	  ERROU id 2
+	  ERROU id 6
+
+[*] d 5 EB 95.120000 
+	NAU id = 5, Atirou em: x = 157.310739, y = 305.456080
+	  ERROU id 3
+	  ERROU id 4
+	  ERROU id 1
+	  ERROU id 2
+	  ERROU id 6
+
+[*] d 5 EB 100.120000 
+	NAU id = 5, Atirou em: x = 152.310739, y = 305.456080
+	  ERROU id 3
+	  ERROU id 4
+	  ERROU id 1
+	  ERROU id 2
+	  ERROU id 6
+
+[*] d 5 EB 105.120000 
+	NAU id = 5, Atirou em: x = 147.310739, y = 305.456080
+	  ERROU id 3
+	  ERROU id 4
+	  ERROU id 1
+	  ERROU id 2
+	  ERROU id 6
+
+			|------ RESULTADOS FINAIS DA PESCARIA PIRATA ------|
+	NAU id = 3, x = 385.706611, y = 301.837166, gold = 0.000000, energy = 500.000000
+	NAU id = 4, x = 167.315359, y = 184.651354, gold = 0.000000, energy = 500.000000
+	NAU id = 1, x = 124.842416, y = 255.143113, gold = 0.000000, energy = 500.000000
+	NAU id = 5, x = 252.430739, y = 287.956080, gold = 0.000000, energy = 49.400000
+	NAU id = 2, x = 403.331640, y = 191.447716, gold = 0.000000, energy = 500.000000
+	NAU id = 6, x = 579.255019, y = 79.118431, gold = 0.000000, energy = 500.000000
