@@ -1,0 +1,12 @@
+
+[*] e 2000.000000 
+	Atribuida energia id = 1, x = 252.117044, y = 59.201976, e = 2000.000000
+	Atribuida energia id = 2, x = 317.117044, y = 59.201976, e = 2000.000000
+
+[*] lr 2 BB 30.000000 35.000000 35.000000 
+	NAU = 2, x = 317.117044, y= 59.201976, gold = 0.000000, e = 1706.000000
+	  PESCOU DETRITOS, VALOR MONETÁRIO M$0, id = 62, x = 377.110901, y = 65.994146
+
+			|------ RESULTADOS FINAIS DA PESCARIA PIRATA ------|
+	NAU id = 1, x = 252.117044, y = 59.201976, gold = 0.000000, energy = 2000.000000
+	NAU id = 2, x = 317.117044, y = 59.201976, gold = 0.000000, energy = 1706.000000

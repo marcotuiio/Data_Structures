@@ -1,0 +1,20 @@
+
+[*] e 2000.000000 
+	Atribuida energia id = 1, x = 158.713937, y = 148.477155, e = 2000.000000
+	Atribuida energia id = 2, x = 223.713937, y = 148.477155, e = 2000.000000
+	Atribuida energia id = 5, x = 213.666625, y = 50.026824, e = 2000.000000
+	Atribuida energia id = 6, x = 278.666625, y = 50.026824, e = 2000.000000
+	Atribuida energia id = 3, x = 233.963939, y = 42.211111, e = 2000.000000
+	Atribuida energia id = 4, x = 298.963939, y = 42.211111, e = 2000.000000
+
+[*] lr 3 BB 30.000000 35.000000 35.000000 
+	NAU = 3, x = 233.963939, y= 42.211111, gold = 0.000000, e = 1706.000000
+	  PESCOU DETRITOS, VALOR MONETÁRIO M$0, id = 61, x = 312.116667, y = 59.226500
+
+			|------ RESULTADOS FINAIS DA PESCARIA PIRATA ------|
+	NAU id = 1, x = 158.713937, y = 148.477155, gold = 0.000000, energy = 2000.000000
+	NAU id = 2, x = 223.713937, y = 148.477155, gold = 0.000000, energy = 2000.000000
+	NAU id = 5, x = 213.666625, y = 50.026824, gold = 0.000000, energy = 2000.000000
+	NAU id = 6, x = 278.666625, y = 50.026824, gold = 0.000000, energy = 2000.000000
+	NAU id = 3, x = 233.963939, y = 42.211111, gold = 0.000000, energy = 1706.000000
+	NAU id = 4, x = 298.963939, y = 42.211111, gold = 0.000000, energy = 2000.000000

@@ -1,0 +1,95 @@
+
+[*] e 2000.000000 
+	Atribuida energia id = 4, x = 533.259818, y = 754.749322, e = 2000.000000
+	Atribuida energia id = 1, x = 263.217228, y = 474.526393, e = 2000.000000
+	Atribuida energia id = 12, x = 111.066849, y = 39.390989, e = 2000.000000
+	Atribuida energia id = 9, x = 13.223379, y = 77.908363, e = 2000.000000
+	Atribuida energia id = 10, x = 4.469179, y = 6.792137, e = 2000.000000
+	Atribuida energia id = 14, x = 41.766957, y = 376.943888, e = 2000.000000
+	Atribuida energia id = 11, x = 160.528041, y = 35.831018, e = 2000.000000
+	Atribuida energia id = 13, x = 151.754865, y = 22.680387, e = 2000.000000
+	Atribuida energia id = 3, x = 259.344322, y = 764.035290, e = 2000.000000
+	Atribuida energia id = 7, x = 275.880530, y = 541.493773, e = 2000.000000
+	Atribuida energia id = 2, x = 842.737600, y = 526.413996, e = 2000.000000
+	Atribuida energia id = 6, x = 663.894613, y = 281.155580, e = 2000.000000
+	Atribuida energia id = 19, x = 1064.343539, y = 552.423908, e = 2000.000000
+	Atribuida energia id = 20, x = 1014.812982, y = 773.915599, e = 2000.000000
+	Atribuida energia id = 5, x = 1033.573972, y = 449.591232, e = 2000.000000
+	Atribuida energia id = 16, x = 1160.707736, y = 438.589382, e = 2000.000000
+	Atribuida energia id = 15, x = 1076.429451, y = 667.830385, e = 2000.000000
+	Atribuida energia id = 17, x = 1066.817329, y = 472.650962, e = 2000.000000
+	Atribuida energia id = 18, x = 1144.275260, y = 434.372692, e = 2000.000000
+	Atribuida energia id = 8, x = 1169.099275, y = 350.926209, e = 2000.000000
+
+[*] d 17 EB 792.473006 
+	NAU id = 17, Atirou em: x = 274.344323, y = 495.150962
+	  ERROU id 4
+	  DESTRUIDA Nau id = 1, x = 263.217228, y = 474.526393, gold = 0.000000
+	  ERROU id 12
+	  ERROU id 9
+	  ERROU id 10
+	  ERROU id 14
+	  ERROU id 11
+	  ERROU id 13
+	  ERROU id 3
+	  ERROU id 7
+	  ERROU id 2
+	  ERROU id 6
+	  ERROU id 19
+	  ERROU id 20
+	  ERROU id 5
+	  ERROU id 16
+	  ERROU id 15
+	  ERROU id 18
+	  ERROU id 8
+
+[*] d 17 EB 792.473006 
+	NAU id = 17, Atirou em: x = 274.344323, y = 495.150962
+	  ERROU id 4
+	  ERROU id 12
+	  ERROU id 9
+	  ERROU id 10
+	  ERROU id 14
+	  ERROU id 11
+	  ERROU id 13
+	  ERROU id 3
+	  ERROU id 7
+	  ERROU id 2
+	  ERROU id 6
+	  ERROU id 19
+	  ERROU id 20
+	  ERROU id 5
+	  ERROU id 16
+	  ERROU id 15
+	  ERROU id 18
+	  ERROU id 8
+
+[*] d 17 EB 812.473006 
+	NAU id = 17, e = 415.053988, energia_necessaria = 812.473006 ENERGIA INSUFICIENTE PARA LANÇAMENTO
+
+[*] d 17 EB 817.473006 
+	NAU id = 17, e = 415.053988, energia_necessaria = 817.473006 ENERGIA INSUFICIENTE PARA LANÇAMENTO
+
+[*] d 17 EB 822.473006 
+	NAU id = 17, e = 415.053988, energia_necessaria = 822.473006 ENERGIA INSUFICIENTE PARA LANÇAMENTO
+
+			|------ RESULTADOS FINAIS DA PESCARIA PIRATA ------|
+	NAU id = 4, x = 533.259818, y = 754.749322, gold = 0.000000, energy = 2000.000000
+	NAU id = 12, x = 111.066849, y = 39.390989, gold = 0.000000, energy = 2000.000000
+	NAU id = 9, x = 13.223379, y = 77.908363, gold = 0.000000, energy = 2000.000000
+	NAU id = 10, x = 4.469179, y = 6.792137, gold = 0.000000, energy = 2000.000000
+	NAU id = 14, x = 41.766957, y = 376.943888, gold = 0.000000, energy = 2000.000000
+	NAU id = 11, x = 160.528041, y = 35.831018, gold = 0.000000, energy = 2000.000000
+	NAU id = 13, x = 151.754865, y = 22.680387, gold = 0.000000, energy = 2000.000000
+	NAU id = 3, x = 259.344322, y = 764.035290, gold = 0.000000, energy = 2000.000000
+	NAU id = 7, x = 275.880530, y = 541.493773, gold = 0.000000, energy = 2000.000000
+	NAU id = 2, x = 842.737600, y = 526.413996, gold = 0.000000, energy = 2000.000000
+	NAU id = 6, x = 663.894613, y = 281.155580, gold = 0.000000, energy = 2000.000000
+	NAU id = 19, x = 1064.343539, y = 552.423908, gold = 0.000000, energy = 2000.000000
+	NAU id = 20, x = 1014.812982, y = 773.915599, gold = 0.000000, energy = 2000.000000
+	NAU id = 5, x = 1033.573972, y = 449.591232, gold = 0.000000, energy = 2000.000000
+	NAU id = 16, x = 1160.707736, y = 438.589382, gold = 0.000000, energy = 2000.000000
+	NAU id = 15, x = 1076.429451, y = 667.830385, gold = 0.000000, energy = 2000.000000
+	NAU id = 17, x = 1066.817329, y = 472.650962, gold = 0.000000, energy = 415.053988
+	NAU id = 18, x = 1144.275260, y = 434.372692, gold = 0.000000, energy = 2000.000000
+	NAU id = 8, x = 1169.099275, y = 350.926209, gold = 0.000000, energy = 2000.000000
