@@ -114,8 +114,4 @@ void percursoProfundidade(SRBTree t, FvisitaNo fVisita, void *aux); // preOrder
 void killSRB(SRBTree t);
 // Libera a memoria alocada para a árvore.
 
-// DELETAR FUNÇÕES DE TESTE
-// Node preOrder(Node n);
-// Node getRoot(SRBTree t);
-
 #endif

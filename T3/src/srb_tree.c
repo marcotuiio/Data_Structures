@@ -52,7 +52,6 @@ void levelOrderAux(Node root, Node nil, int level);
 int heightOfLevel(Node n, Node nil);
 void mbbFullyInside(Node n, Node nil, double x, double y, double w, double h, Lista resultado);
 void traverseSim(Node root, Node nil, FvisitaNo f, void *aux);
-void removeNils(SRBTree t, Node root);
 void freeAux(Node n, Node nil);
 
 // FIM <---
@@ -469,7 +468,7 @@ void updateInfoSRB(SRBTree t, Node n, Info i) {
                 break;
         }
     }
-}
+} 
 
 Info removeSRB(SRBTree t, double xa, double ya, double mbbX1, double mbbY1, double mbbX2, double mbbY2) {
     Red_Black_Root *tree = t;

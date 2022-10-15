@@ -270,7 +270,7 @@ bool energyDeslocamento(Info i, double dx, double dy) {
 
 bool energyArremesso(Info i, double d, double A, double *need) {
     Shapes *nau = i;
-    double e = A / 25 * d / 5;
+    double e = (A / 25) * (d / 5);
     (*need) = e;
 
     if ((nau->energy - e) >= 0) {

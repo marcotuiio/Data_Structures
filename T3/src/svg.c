@@ -61,7 +61,7 @@ void drawRectangle(FILE *svg, Info rect) {
     strcpy(fill, getFill(rect));
     e = getEnergy(rect);
 
-    if (e == 0) {
+    if (e <= 0) {
         strcpy(stroke, "#484537");
     } else if (e > 0 && e < 10) {
         strcpy(stroke, "#FFCC00");

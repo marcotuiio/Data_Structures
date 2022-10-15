@@ -19,8 +19,8 @@ int main(int argc, char** argv) {
         printSRB(my_tree, getBsdGeoDot(my_paths));
                  
     } else {
-        return -1;  // ERRO!
         printf("ERROR: INPUT FILES OR OUTPUT DIRECTORIES HAVE NOT BEEN READ\n");
+        return -1;  // ERRO!
     }
     
     if (checkQRY(my_ctrl)) {
