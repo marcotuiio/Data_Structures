@@ -4,13 +4,13 @@ import time
 import datetime
 
 # BED = Path BED (pasta de testes do Evandro):
-BED = '/home/marcotuiio/inputs'
+BED = '/mnt/c/Users/marco/OneDrive/Área de Trabalho/UEL/Data_Structures/inputs'
 
 # BSD = Path de saída:
-BSD = '/home/marcotuiio/outputs'
+BSD = '/mnt/c/Users/marco/OneDrive/Área de Trabalho/UEL/Data_Structures/outputs'
 
 # src = Path da pasta SRC:
-src = '/home/marcotuiio/Data_Structures/T3/src'
+src = '/mnt/c/Users/marco/OneDrive/Área de Trabalho/UEL/Data_Structures/T3/src'
 
 ini = datetime.datetime.now()
 

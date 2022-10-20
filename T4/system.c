@@ -5,7 +5,6 @@
 struct checks {
     bool readbed;
     bool readgeo;
-    bool readvia;
     bool readbsd;
     bool readqry;
 };
