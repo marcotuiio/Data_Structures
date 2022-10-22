@@ -19,7 +19,7 @@ Lista createList() {
     ImpList *novaLista = calloc(1, sizeof(ImpList));
     novaLista->inicio = NULL;
     novaLista->fim = NULL;
-
+    
     return novaLista;
 }
 

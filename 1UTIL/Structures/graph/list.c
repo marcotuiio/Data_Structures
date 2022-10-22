@@ -1,7 +1,7 @@
 #include "list.h"
 
 struct nodeL {
-    Item value;
+    int value;
     struct nodeL *next;
     struct nodeL *prev;
 };
@@ -25,33 +25,33 @@ void printList(Lista l) {
     ImpList *aux = l;  // celulaL *temporary = (celulaL*) l
     celulaL *temporary = aux->inicio;
 
-    while (temporary != NULL) {
-        printf("%p - ", temporary->value);
+    while (temporary) {
+        printf("%d - ", temporary->value);
         temporary = temporary->next;
     }
     printf("\n");
 }
 
-Item encontraCelula(Lista from, Item to) {
+int encontraCelula(Lista from, int to) {
     ImpList *aux = from;
     celulaL *lista = aux->inicio;
     celulaL *result = NULL;
-    int *value = to;
+
     while (lista) {
-        if (lista->value == value) {
+        if (lista->value == to) {
             result = lista;
-            return result;
+            return result->value;
         }
         lista = lista->next;
     }
     if (!result) {
-        printf("VALOR NÂO ENCONTRADO");
-        return NULL;
+        printf("VALUE NOT FOUND");
+        return -999;
     }
-    return NULL;
+    return -999;
 }
 
-void insereFim(Lista l, Item n) {
+void insereFim(Lista l, int n) {
     ImpList *lista = l;
 
     // Cria celula
@@ -71,7 +71,7 @@ void insereFim(Lista l, Item n) {
     }
 }
 
-void insereInicio(Lista l, Item n) {
+void insereInicio(Lista l, int n) {
     ImpList *lista = l;
 
     // Cria celula
@@ -91,7 +91,7 @@ void insereInicio(Lista l, Item n) {
     }
 }
 
-void insereDepois(Lista l, Item n, Item x) {
+void insereDepois(Lista l, int n, int x) {
     ImpList *aux = l;
     celulaL *lista = aux->inicio;
     celulaL *celulaAnterior;
@@ -127,12 +127,10 @@ void removeCelula(Lista from, int to) {
     ImpList *aux = from;
     celulaL *lista = aux->inicio;
     celulaL *celulaARemover = NULL;
-    int *info = to;
-
     // Buscando a celula com valor desejado
 
-    while (lista != NULL) {
-        if (lista->next == info) { //se n inteiro ou char
+    while (lista) {
+        if (lista->value == to) {  // se n inteiro ou char
             celulaARemover = lista;
         }
         lista = lista->next;
@@ -146,7 +144,7 @@ void removeCelula(Lista from, int to) {
     if (aux->inicio == celulaARemover && aux->fim == celulaARemover) {
         aux->inicio = NULL;
         aux->fim = NULL;
-    
+
     } else if (aux->inicio == celulaARemover) {  // celula a remover -> slkkefd
         aux->inicio = celulaARemover->next;
         celulaARemover->next->prev = NULL;
@@ -155,11 +153,11 @@ void removeCelula(Lista from, int to) {
         aux->fim = celulaARemover->prev;
         celulaARemover->prev->next = NULL;
 
-    } else {   // ant -> remove -> next
+    } else {  // ant -> remove -> next
         celulaARemover->prev->next = celulaARemover->next;
         if (celulaARemover->next != NULL) {
             celulaARemover->next->prev = celulaARemover->prev;
-        }  
+        }
     }
 
     free(celulaARemover);
@@ -180,19 +178,19 @@ Cell getLast(Lista l) {
 }
 
 Cell getNext(Lista l, Cell at) {
-    celulaL *node = (celulaL *)at;
+    celulaL *node = at;
 
     return node->next;
 }
 
 Cell getPrevious(Lista l, Cell at) {
-    celulaL *node = (celulaL *)at;
+    celulaL *node = at;
 
     return node->prev;
 }
 
-Item getInfo(Cell x) {
-    celulaL *node = (celulaL *)x;
+int getInfo(Cell x) {
+    celulaL *node = x;
 
     return node->value;
 }
@@ -202,28 +200,24 @@ void getLenght(Lista l) {
     celulaL *aux = lista->inicio;
     int contador = 0;
 
-    while (aux != NULL) {
+    while (aux) {
         contador++;
         aux = aux->next;
     }
     printf("\nO tamanho da lista é de %d elementos\n", contador);
-    free(aux);
 }
 
-void removeAll(Lista l) {
+void freeList(Lista l) {
     ImpList *lista = l;
-    if (lista->inicio == NULL) {
+    if (!lista->inicio) {
         return;
     }
-
     celulaL *head = lista->inicio;
     celulaL *tmp;
-    
-    while (head != NULL) {
+
+    while (head) {
         tmp = head;
         head = tmp->next;
-        
-        free(tmp->value);
         free(tmp);
     }
 }

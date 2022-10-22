@@ -191,11 +191,11 @@ void getEdges(Digraph g, Lista arestas);
 
 /*
    Faz percurso em profundidade sobre o grafo g, classificando as arestas do grafo em
-   aresta de arvore, aresta de avanco, de retorno e cruzada. No momento da classificacao,
-   a respectiva funcao e' invocada (caso nao seja NULL).
+   aresta de árvore, aresta de avanço, de retorno e cruzada. No momento da classificação,
+   a respectiva funcao é invocada (caso nao seja NULL).
    "extra" e' um apontador que pode ser usado por qualquer uma das funcoes.
    A busca em profundidade, eventualmente, pode produzir uma floresta. Neste caso,
-   a funçao newTree e' invocada sempre que o percurso for retomado.
+   a função newTree é invocada sempre que o percurso for retomado.
 */
 bool dfs(Digraph g, procEdge treeEdge, procEdge forwardEdge, procEdge returnEdge, procEdge crossEdge, dfsRestarted newTree, void *extra);
 
