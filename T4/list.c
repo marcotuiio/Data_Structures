@@ -1,44 +1,56 @@
 #include "list.h"
 
-struct nodeL {
-    void *value;
-    struct nodeL *next;
-    struct nodeL *prev;
-};
-typedef struct nodeL StListNode;
+typedef struct StListEdge {
+    InfoEdge valueEdge;
+    struct StListEdge *next;
+    struct StListEdge *prev;
+    Node from, to;
+    bool enabled;
+} StListEdge;
 
-struct ptrL {
-    StListNode *inicio;
-    StListNode *fim;
-};
-typedef struct ptrL StList;
+typedef struct StListVertex {
+    InfoNode valueNode;
+    char nodeName[100];
+    StListEdge *inicio;
+    StListEdge *fim;
+} StListVertex;
 
 Lista criaLista() {
-    StList *novaLista = calloc(1, sizeof(StList));
+    StListVertex *novaLista = calloc(1, sizeof(StListVertex));
     novaLista->inicio = NULL;
     novaLista->fim = NULL;
 
     return novaLista;
 }
 
+void setNodeName(Lista l, char *name) {
+    StListVertex *lista = l;
+    strcpy(lista->nodeName, name);
+}
+
+char *getNomeNode(Lista l) {
+    StListVertex *lista = l;
+    return lista->nodeName;
+}
+
 void printList(Lista l) {
-    StList *aux = l;  
-    StListNode *temporary = aux->inicio;
+    StListVertex *aux = l;
+    StListEdge *temporary = aux->inicio;
 
     while (temporary) {
-        printf("%p ", temporary->value);
+        printf("%p ", temporary->valueEdge);
         temporary = temporary->next;
     }
     free(temporary);
 }
 
-void *encontraCelula(Lista l, void *n) {
-    StList *aux = l;
-    StListNode *lista = aux->inicio;
-    StListNode *result = NULL;
+InfoEdge encontraAresta(Lista l, void *n) {
+    StListVertex *aux = l;
+    StListEdge *lista = aux->inicio;
+    StListEdge *result = NULL;
 
     while (lista) {
-        if (lista->value == n) {
+        if (lista->valueEdge == n) {
             result = lista;
             return result;
         }
@@ -51,14 +63,17 @@ void *encontraCelula(Lista l, void *n) {
     return NULL;
 }
 
-void insereFim(Lista l, void *n) {
-    StList *lista = l;
+Edge insereFim(Lista l, void *n, Node from) {
+    StListVertex *lista = l;
 
     // Cria celula
-    StListNode *novaCelula = calloc(1, sizeof(StListNode));
-    novaCelula->value = n;  // n pode ser int, char etc, recebido com void pointer
+    StListEdge *novaCelula = calloc(1, sizeof(StListEdge));
+    novaCelula->valueEdge = n;  // n pode ser int, char etc, recebido com void pointer
     novaCelula->next = NULL;
     novaCelula->prev = NULL;
+    novaCelula->enabled = true;
+    novaCelula->from = from;
+    novaCelula->to = n;
 
     if (lista->fim) {  // fim <-> nova --
         novaCelula->prev = lista->fim;
@@ -68,14 +83,15 @@ void insereFim(Lista l, void *n) {
         lista->fim = novaCelula;
         lista->inicio = novaCelula;
     }
+    return novaCelula;
 }
 
-void insereInicio(Lista l, void *n) {
-    StList *lista = l;
+Edge insereInicio(Lista l, void *n) {
+    StListVertex *lista = l;
 
     // Cria celula
-    StListNode *novaCelula = calloc(1, sizeof(StListNode));
-    novaCelula->value = n;  // n pode ser int, char etc, recebido com void pointer
+    StListEdge *novaCelula = calloc(1, sizeof(StListEdge));
+    novaCelula->valueEdge = n;  // n pode ser int, char etc, recebido com void pointer
     novaCelula->next = NULL;
     novaCelula->prev = NULL;
 
@@ -87,16 +103,17 @@ void insereInicio(Lista l, void *n) {
         lista->fim = novaCelula;
         lista->inicio = novaCelula;  //(inicio)nova(fim)
     }
+    return novaCelula;
 }
 
-void insereDepois(Lista l, void *n, void *x) {
-    StList *aux = l;
-    StListNode *lista = aux->inicio;
-    StListNode *celulaAnterior;
+Edge insereDepois(Lista l, void *n, void *x) {
+    StListVertex *aux = l;
+    StListEdge *lista = aux->inicio;
+    StListEdge *celulaAnterior;
 
     // Buscando a celula com valor n desejado
     while (lista) {
-        if (lista->value == n) {
+        if (lista->valueEdge == n) {
             celulaAnterior = lista;
             break;
         }
@@ -104,8 +121,8 @@ void insereDepois(Lista l, void *n, void *x) {
     }
 
     // Criando celula com valor x desejado
-    StListNode *novaCelula = calloc(1, sizeof(StListNode));
-    novaCelula->value = x;
+    StListEdge *novaCelula = calloc(1, sizeof(StListEdge));
+    novaCelula->valueEdge = x;
     novaCelula->next = NULL;
     novaCelula->prev = NULL;
 
@@ -118,12 +135,13 @@ void insereDepois(Lista l, void *n, void *x) {
     }
     novaCelula->prev = celulaAnterior;
     celulaAnterior->next = novaCelula;
+    return novaCelula;
 }
 
-void removeCelula(Lista l, void *n, int id, char *tipo) {
-    StList *aux = l;
-    StListNode *lista = aux->inicio;
-    StListNode *celulaARemover = NULL;
+void removeAresta(Lista l, void *n) {
+    StListVertex *aux = l;
+    StListEdge *lista = aux->inicio;
+    StListEdge *celulaARemover = NULL;
 
     // Buscando a celula com valor desejado
 
@@ -161,38 +179,82 @@ void removeCelula(Lista l, void *n, int id, char *tipo) {
     free(celulaARemover);
 }
 
-void *getFirst(Lista l) {
-    StList *lista = l;
+void setEnabled(Edge e, bool b) {
+    StListEdge *aux = e;
+    aux->enabled = b;
+}
+
+bool getEnabled(Edge e) {
+    StListEdge *aux = e;
+    return aux->enabled;
+}
+
+Node getFromAresta(Edge e) {
+    StListEdge *aux = e;
+    return aux->from;
+}
+
+Node getToAresta(Edge e) {
+    StListEdge *aux = e;
+    return aux->to;
+}
+
+Edge getFirst(Lista l) {
+    StListVertex *lista = l;
 
     return lista->inicio;
 }
 
-void *getLast(Lista l) {
-    StList *lista = l;
+Edge getLast(Lista l) {
+    StListVertex *lista = l;
     return lista->fim;
 }
 
-void *getNext(Lista l, void *at) {
-    StListNode *node = at;
+Edge getNext(Edge at) {
+    StListEdge *node = at;
 
     return node->next;
 }
 
-void *getPrevious(Lista l, void *at) {
-    StListNode *node = at;
+Edge getPrevious(Edge at) {
+    StListEdge *node = at;
 
     return node->prev;
 }
 
-void *getInfo(void *x) {
-    StListNode *node = x;
+void setInfoFromVertex(Lista l, InfoNode info) {
+    StListVertex *list = l;
 
-    return node->value;
+    list->valueNode = info;
+}
+
+InfoNode getInfoFromVertex(Lista l) {
+    StListVertex *list = l;
+
+    return list->valueNode;
+}
+
+void setInfoFromEdge(Lista l, InfoEdge info) {
+    StListEdge *list = l;
+
+    list->valueEdge = info;
+}
+
+InfoEdge getInfoFromEdge(Edge e) {
+    StListEdge *edge = e;
+
+    return edge->valueEdge;
+}
+
+void freeEdgeInfo(Edge e) {
+    StListEdge *edge = e;
+
+    free(edge->valueEdge);
 }
 
 void getLenght(Lista l) {
-    StList *lista = l;
-    StListNode *aux = lista->inicio;
+    StListVertex *lista = l;
+    StListEdge *aux = lista->inicio;
     int contador = 0;
 
     while (aux) {
@@ -202,20 +264,20 @@ void getLenght(Lista l) {
     printf("\nO tamanho da lista é de %d elementos\n", contador);
 }
 
-void removeAll(Lista l) {
-    StList *lista = (StList *)l;
+void freeList(Lista l) {
+    StListVertex *lista = l;
     if (!lista->inicio) {
         return;
     }
 
-    StListNode *head = lista->inicio;
-    StListNode *tmp;
+    StListEdge *head = lista->inicio;
+    StListEdge *tmp;
 
     while (head != NULL) {
         tmp = head;
         head = tmp->next;
 
-        free(tmp->value);
+        free(tmp->valueEdge);
         free(tmp);
     }
 }
