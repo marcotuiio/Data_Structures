@@ -66,8 +66,19 @@ void printTerminal(void *g) {
     Graph *graph = g;
 
     for (int i = 0; i < graph->n_vertices; i++) {
-        printf("list of vertex %d: ", i);
-        printList(graph->adj[i]);
+        printf("list of vertex %d: %d\n", i, getVisited(graph->adj[i]));
+        // printList(graph->adj[i]);
+    }
+}
+
+void bfsTraverse(void *g, int start) {
+    Graph *graph = g;
+    setVisited(graph->adj[start], true);
+    
+    for (int i = 0; i < graph->n_vertices; i++) {
+        if (!getVisited(graph->adj[i])) {
+            bfsTraverse(graph, i);
+        }
     }
 }
 

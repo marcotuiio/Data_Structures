@@ -8,6 +8,7 @@ struct nodeL {
 typedef struct nodeL celulaL;
 
 struct ptrL {
+    bool visited;
     celulaL *inicio;
     celulaL *fim;
 };
@@ -161,6 +162,18 @@ void removeCelula(Lista from, int to) {
     }
 
     free(celulaARemover);
+}
+
+void setVisited(Lista l, bool b) {
+    ImpList *lista = l;
+
+    lista->visited = b;
+}
+
+bool getVisited(Lista l) {
+    ImpList *lista = l;
+
+    return lista->visited;
 }
 
 Cell getFirst(Lista l) {

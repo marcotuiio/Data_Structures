@@ -38,6 +38,10 @@ void removeCelula(Lista from, int to);  // remove
 // comprimento da lista  ́e diminu ́ıdo de 1 elemento. O indicador n deixa de
 // indicar um elemento válido de L.
 
+void setVisited(Lista l, bool b);
+
+bool getVisited(Lista l);
+
 Cell getFirst(Lista l);
 // * retorna o indicador do primeiro elemento de L. Se
 // length(L)=0, retorna NULL.
