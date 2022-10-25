@@ -1,5 +1,5 @@
 #include "digraph.h"
-
+#include "queue.h"
 #include "list.h"
 
 typedef struct StDigraph {
@@ -13,20 +13,33 @@ Digraph createGraph(int nVert) {
     g->adjacency = calloc(nVert, sizeof(Lista));  // aloca espaço para nVert nodes
 
     for (int i = 0; i < nVert; i++) {
-        g->adjacency[i] = createList();  // inicializa listas de cada vertice
+        g->adjacency[i] = criaLista();  // inicializa listas de cada vertice
     }
 
     return g;
+}
+
+void setNodeName(Digraph g, Node n, char *nome) {
+    StDigraph *graph = g;
+    setName(graph->adjacency[n], nome);
+}
+
+void addVerticesNames(Digraph g, char *nomes[], int nNomes) {
+    StDigraph *graph = g;
+    for (int i = 0; i < nNomes; i++) {
+        nomes[i] = getName(graph->adjacency[i]);
+    }
 }
 
 Node getNode(Digraph g, char *nome) {
     StDigraph *graph = g;
 
     for (int i = 0; i < graph->nVertex; i++) {
-        if (!strcmp(getNodeName(graph->adjacency[i]), nome)) {
+        if (!strcmp(getName(graph->adjacency[i]), nome)) {
             return i;
         }
     }
+    return -1;
 }
 
 InfoNode getNodeInfo(Digraph g, Node node) {
@@ -42,7 +55,7 @@ void setNodeInfo(Digraph g, Node node, InfoNode info) {
 Edge addEdge(Digraph g, Node from, Node to, InfoEdge info) {
     StDigraph *graph = g;
 
-    Edge newEdge = insereFim(graph->adjacency[from], to, from);  // inserindo na lista de adjacencia de from o nó to (from-aresta-to)
+    Edge newEdge = insereFim(graph->adjacency[from], info, from, to);  // inserindo na lista de adjacencia de from o nó to (from-aresta-to)
     graph->nEdges++;
     setEdgeInfo(g, newEdge, info);
 
@@ -53,7 +66,7 @@ Edge getEdge(Digraph g, Node from, Node to) {
     StDigraph *graph = g;
     Edge e = NULL;
     for (int i = 0; i < from; i++) {
-        e = encontraAresta(graph->adjacency[from], to);
+        e = encontraAresta(graph->adjacency[from], from, to);
     }
     return e;
 }
@@ -111,27 +124,31 @@ void delEdge(Edge e) {
 
 bool isAdjacent(Digraph g, Node from, Node to) {
     StDigraph *graph = g;
-    return encontraAresta(graph->adjacency[from], to);
+    return encontraAresta(graph->adjacency[from], from, to);
 }
 
 void adjacentNodes(Digraph g, Node node, Lista nosAdjacentes) {
     StDigraph *graph = g;
-    for (Edge e = getFirst(graph->adjacency[node]); e; e = getNext(graph->adjacency[node])) {
-        insereFim(nosAdjacentes, getToAresta(e), getFromAresta(e));
+    for (int i = 0; i < graph->nVertex; i++) {
+        if (isAdjacent(g, node, i)) {
+            insereFim(nosAdjacentes, getNodeInfo(g, i), node, i);
+        }
     }
 }
 
 void adjacentEdges(Digraph g, Node node, Lista arestasAdjacentes) {
     StDigraph *graph = g;
     for (Edge e = getFirst(graph->adjacency[node]); e; e = getNext(graph->adjacency[node])) {
-        insereFim(arestasAdjacentes, getToAresta(e), getFromAresta(e));
+        if (getFromAresta(e) == node) {
+            insereFim(arestasAdjacentes, getEdgeInfo(g, e), node, getToAresta(e));
+        }
     }
 }
 
 void getNodeNames(Digraph g, Lista nomesNodes) {
     StDigraph *graph = g;
     for (int i = 0; i < graph->nVertex; i++) {
-        insereInicio(nomesNodes, getNodeName(graph->adjacency[i]));
+        insereInicio(nomesNodes, (void *)getName(graph->adjacency[i]));
     }
 }
 
@@ -139,20 +156,55 @@ void getEdges(Digraph g, Lista arestas) {
     StDigraph *graph = g;
     for (int i = 0; i < graph->nVertex; i++) {
         for (Edge e = getFirst(graph->adjacency[i]); e; e = getNext(graph->adjacency[i])) {
-            insereFim(arestas, e, getFromAresta(e));
+            insereFim(arestas, e, getFromAresta(e), getToAresta(e));
         }
     }
 }
 
-bool dfs(Digraph g, procEdge treeEdge, procEdge forwardEdge, procEdge returnEdge, procEdge crossEdge, dfsRestarted newTree, void *extra) {
+bool dfs(Digraph g, procEdge treeEdge, procEdge forwardEdge, procEdge returnEdge, procEdge crossEdge, dfsRestarted newTree, int start, void *extra) {
+    StDigraph *graph = g;
 
+    setVisited(graph->adjacency[start], true);
+    // fazer varios ifs in invocar cada função corretamente
+    // treeEdge(graph->adjacency[0], NULL, 0, 0, extra);
+    // forwardEdge(graph->adjacency[0], NULL, 0, 0, extra);
+    // returnEdge(graph->adjacency[0], NULL, 0, 0, extra);
+    // crossEdge(graph->adjacency[0], NULL, 0, 0, extra);
+
+    for (int i = 0; i < graph->nVertex; i++) {
+        if (!getVisited(graph->adjacency[start])) {
+            dfs(graph, treeEdge, forwardEdge, returnEdge, crossEdge, newTree, start, extra);
+        }
+    }
+    return true;
 }
 
-bool bfs(Digraph g, procEdge discoverNode) {
-    
+bool bfs(Digraph g, procEdge discoverNode, int start) {
+    StDigraph *graph = g;
+    for (int i = 0; i < graph->nVertex; i++) {
+        setVisited(graph->adjacency[i], false);
+    }
+
+    void *queue = createQueue();
+
+    setVisited(graph->adjacency[start], true);
+    enfila(queue, getInfoFromVertex(graph->adjacency[start]));
+
+    while (!isEmpty(queue)) {
+        void *currentVertex = desenfila(queue);
+        printf("Visiting vetex %p\n", currentVertex);
+
+        for (int adjVertex = 0; adjVertex < graph->nVertex; adjVertex++) {
+            if (!getVisited(graph->adjacency[adjVertex])) {
+                setVisited(graph->adjacency[adjVertex], true);
+                enfila(queue, graph->adjacency[adjVertex]);
+            }
+        }
+    }
+    return true;
 }
 
-void killGraph(Lista g) {
+void killGraph(Digraph g) {
     StDigraph *graph = g;
 
     for (int i = 0; i < graph->nVertex; i++) {

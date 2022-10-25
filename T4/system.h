@@ -8,7 +8,7 @@
  * Leitura dos dados, e atribuição dos determinados diretórios
  */
 
-void readParam(int argc, char** argv, Paths paths, Controller ctrl);
+void readParam(int argc, char* argv[], Paths paths, Controller ctrl);
 // Recebe os parâmetros de entrada e a media que os lê, faz o devido
 // tratamento e organização desses dados
 

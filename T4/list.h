@@ -12,17 +12,20 @@
 Lista criaLista();  // createList
 // Cria e retorna uma lista vazia;
 
-char* getNomeNode(Lista l);
+void setName(Lista l, char *name);
+// seta o nome do nó
+
+char *getName(Lista l);
 // Retorna o nome do node
 
 void printList(Lista l);
 // * Percorre a lista e exibe o valor de cada célula armazenada
 
-InfoEdge encontraAresta(Lista l, void* n);
+Edge encontraAresta(Lista l, Node from, Node to);
 // * n deve indicar um elemento existente em L.
 // * retorna o valor do item da lista indicado por n.
 
-Edge insereFim(Lista l, void *n, Node from);  // insert
+Edge insereFim(Lista l, void *n, Node from, Node to);  // insert
 // * Insere o item n no final da lista L. O comprimento da
 // lista  ́e acrescido de 1 elemento.
 
@@ -40,6 +43,12 @@ void removeAresta(Lista l, void* n);  // remove
 // * remove o elemento da lista indicado por n. O
 // comprimento da lista  ́e diminu ́ıdo de 1 elemento. O indicador n deixa de
 // indicar um elemento válido de L.
+
+void setVisited(Lista l, bool b);
+// * seta o valor de visited para b
+
+bool getVisited(Lista l);
+// * retorna o valor de visited
 
 void setEnabled(Edge e, bool b);
 // * Ativa ou desativa a aresta

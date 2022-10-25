@@ -1,5 +1,6 @@
 #include "list_graph.h"
 #include "list.h"
+#include "queue.h"
 
 typedef struct graph {
     int n_vertices;
@@ -66,18 +67,44 @@ void printTerminal(void *g) {
     Graph *graph = g;
 
     for (int i = 0; i < graph->n_vertices; i++) {
-        printf("list of vertex %d: %d\n", i, getVisited(graph->adj[i]));
-        // printList(graph->adj[i]);
+        printf("list of vertex %d: ", i);
+        printList(graph->adj[i]);
+    }
+}
+
+void dfsTraverse(void *g, int start) {
+    Graph *graph = g;
+    setVisited(graph->adj[start], true);
+    printf("%d ", start);
+
+    for (int i = 0; i < graph->n_vertices; i++) {
+        if (!getVisited(graph->adj[i])) {
+            dfsTraverse(graph, i);
+        }
     }
 }
 
 void bfsTraverse(void *g, int start) {
     Graph *graph = g;
-    setVisited(graph->adj[start], true);
-    
     for (int i = 0; i < graph->n_vertices; i++) {
-        if (!getVisited(graph->adj[i])) {
-            bfsTraverse(graph, i);
+        setVisited(graph->adj[i], false);
+    }
+
+    void *queue = createQueue();
+
+    setVisited(graph->adj[start], true);
+    enfila(queue, start);
+
+    while (!isEmpty(queue)) {
+        int currentVertex = desenfila(queue);
+        printf("Visiting vetex %d\n", currentVertex);
+
+        for (void *cell = getFirst(graph->adj[currentVertex]); cell; cell = getNext(graph->adj[currentVertex], cell)) {
+            int adjVertex = getInfo(cell);
+            if (!getVisited(graph->adj[adjVertex])) {
+                setVisited(graph->adj[adjVertex], true);
+                enfila(queue, adjVertex);
+            }
         }
     }
 }

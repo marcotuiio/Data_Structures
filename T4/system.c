@@ -10,7 +10,7 @@ struct checks {
 };
 typedef struct checks Sauron;
 
-void readParam(int argc, char** argv, Paths paths, Controller ctrl) {
+void readParam(int argc, char* argv[], Paths paths, Controller ctrl) {
     Sauron* help = ctrl;
 
     for (int i = 1; i < argc; i++) {

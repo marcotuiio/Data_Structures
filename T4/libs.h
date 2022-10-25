@@ -19,7 +19,7 @@ typedef void* InfoEdge;
 
 typedef void *Lista;
 
-typedef void* Hashtable;
+typedef void *Queue;
 
 #define CIRCLE "\t<circle id=\"%d\" cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"55%%\" />\n"
 #define RECTANGLE "\t<rect id=\"%d\" x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"45%%\" stroke-width=\"1.1%%\" />\n"

@@ -1,7 +1,7 @@
 EXEC = gcc
 CFLAGS = -std=c99 -fstack-protector-all -g -Wall
 PROJECT_NAME = ted
-OBJETCS = main.o geo.o list.o paths.o qry.o shapes.o srb_tree.o svg.o system.o
+OBJETCS = main.o list.o paths.o system.o queue.o digraph.o
 ALUNO = marcotab
 
 clear:
@@ -43,3 +43,6 @@ svg.o: svg.c svg.h
 
 system.o: system.c system.h
 	$(EXEC) $(CFLAGS) -c system.c
+
+queue.o: queue.c queue.h
+	$(EXEC) $(CFLAGS) -c queue.c

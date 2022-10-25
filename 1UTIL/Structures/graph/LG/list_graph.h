@@ -15,6 +15,8 @@ void printGraph(void* g);
 
 void printTerminal(void *g);
 
+void dfsTraverse(void *g, int start);
+
 void bfsTraverse(void *g, int start);
 
 void killGraph(void* g);

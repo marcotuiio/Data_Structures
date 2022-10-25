@@ -10,6 +10,7 @@ typedef struct StListEdge {
 
 typedef struct StListVertex {
     InfoNode valueNode;
+    bool visited;
     char nodeName[100];
     StListEdge *inicio;
     StListEdge *fim;
@@ -23,12 +24,12 @@ Lista criaLista() {
     return novaLista;
 }
 
-void setNodeName(Lista l, char *name) {
+void setName(Lista l, char *name) {
     StListVertex *lista = l;
     strcpy(lista->nodeName, name);
 }
 
-char *getNomeNode(Lista l) {
+char *getName(Lista l) {
     StListVertex *lista = l;
     return lista->nodeName;
 }
@@ -44,26 +45,26 @@ void printList(Lista l) {
     free(temporary);
 }
 
-InfoEdge encontraAresta(Lista l, void *n) {
+Edge encontraAresta(Lista l, Node from, Node to) {
     StListVertex *aux = l;
-    StListEdge *lista = aux->inicio;
+    StListEdge *edge = aux->inicio;
     StListEdge *result = NULL;
 
-    while (lista) {
-        if (lista->valueEdge == n) {
-            result = lista;
+    while (edge) {
+        if (edge->to == to && edge->from == from) {
+            result = edge;
             return result;
         }
-        lista = lista->next;
+        edge = edge->next;
     }
     if (!result) {
-        printf("VALOR NÂO ENCONTRADO");
+        printf("VALOR NAO ENCONTRADO");
         return NULL;
     }
     return NULL;
 }
 
-Edge insereFim(Lista l, void *n, Node from) {
+Edge insereFim(Lista l, void *n, Node from, Node to) {
     StListVertex *lista = l;
 
     // Cria celula
@@ -73,7 +74,7 @@ Edge insereFim(Lista l, void *n, Node from) {
     novaCelula->prev = NULL;
     novaCelula->enabled = true;
     novaCelula->from = from;
-    novaCelula->to = n;
+    novaCelula->to = to;
 
     if (lista->fim) {  // fim <-> nova --
         novaCelula->prev = lista->fim;
@@ -177,6 +178,16 @@ void removeAresta(Lista l, void *n) {
     }
 
     free(celulaARemover);
+}
+
+void setVisited(Lista l, bool b) {
+    StListVertex *lista = l;
+    lista->visited = b;
+}
+
+bool getVisited(Lista l) {
+    StListVertex *lista = l;
+    return lista->visited;
 }
 
 void setEnabled(Edge e, bool b) {
