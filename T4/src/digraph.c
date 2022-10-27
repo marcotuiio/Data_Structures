@@ -27,7 +27,7 @@ void setNodeName(Digraph g, Node n, char *nome) {
 void addVerticesNames(Digraph g, char *nomes[], int nNomes) {
     StDigraph *graph = g;
     for (int i = 0; i < nNomes; i++) {
-        nomes[i] = getName(graph->adjacency[i]);
+        setName(graph->adjacency[i], nomes[i]);
     }
 }
 
@@ -119,7 +119,7 @@ bool isDisabled(Digraph g, Edge e) {
 }
 
 void delEdge(Edge e) {
-    freeEdgeInfo(e);
+    return;
 }
 
 bool isAdjacent(Digraph g, Node from, Node to) {
