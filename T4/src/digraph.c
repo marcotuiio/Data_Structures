@@ -19,6 +19,59 @@ Digraph createGraph(int nVert) {
     return g;
 }
 
+Digraph cloneOnlyVertices(Digraph g, bool keepInfo) {
+    StDigraph *graph = g;
+    Digraph newGraph = createGraph(graph->nVertex);
+
+    for (int i = 0; i < graph->nVertex; i++) {
+        if (keepInfo) {
+            setNodeInfo(newGraph, i, getNodeInfo(g, i));
+        }
+    }
+
+    return newGraph;
+}
+
+Digraph cloneOnlyEnabled(Digraph g, bool keepInfo) {
+    StDigraph *graph = g;
+    Digraph newGraph = cloneOnlyVertices(g, keepInfo);
+
+    for (int i = 0; i < graph->nVertex; i++) {
+        for (int j = 0; j < graph->nVertex; j++) {
+            Edge o = getEdge(g, i, j);
+            if (o && !isDisabled(g, o)) {
+                addEdge(newGraph, i, j, NULL);
+                if (keepInfo) {
+                    Edge e = getEdge(newGraph, i, j); 
+                    setEdgeInfo(newGraph, e, getEdgeInfo(g, o));
+                }
+            }
+        }
+    }
+
+    return newGraph;
+}
+
+Digraph cloneAll(Digraph g, bool keepInfo) {
+    StDigraph *graph = g;
+    Digraph newGraph = cloneOnlyVertices(g, keepInfo);
+
+    for (int i = 0; i < graph->nVertex; i++) {
+        for (int j = 0; j < graph->nVertex; j++) {
+            Edge o = getEdge(g, i, j);
+            if (o) {
+                addEdge(newGraph, i, j, NULL);
+                if (keepInfo) {
+                    Edge e = getEdge(newGraph, i, j); 
+                    setEdgeInfo(newGraph, e, getEdgeInfo(g, o));
+                }
+            }
+        }
+    }
+
+    return newGraph;
+}
+
 void setNodeName(Digraph g, Node n, char *nome) {
     StDigraph *graph = g;
     setName(graph->adjacency[n], nome);
@@ -115,7 +168,7 @@ void enableAllEdges(Digraph g) {
 }
 
 bool isDisabled(Digraph g, Edge e) {
-    return !getEnabled(e);
+    return !getEnabled(e); // se for falso retorna verdadeiro
 }
 
 void delEdge(Edge e) {
