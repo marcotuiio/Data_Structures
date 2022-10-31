@@ -12,7 +12,7 @@ int main(int argc, char* argv[]) {
     Digraph my_graph = createGraph(200);
     readParam(argc, argv, my_paths, my_ctrl);
 
-    // if (checkBED(my_ctrl) && checkGEO(my_ctrl) && checkBSD(my_ctrl)) {
+    // if (checkBED(my_ctrl) && checkGEO(my_ctrl) && checkVIA(my_ctrl) && checkBSD(my_ctrl)) {
     //     readGeo(getBedGeo(my_paths), my_graph);
     //     writeSvg(createSvg(getBsdGeoSvg(my_paths)), my_graph);
     //     printSRB(my_graph, getBsdGeoDot(my_paths));

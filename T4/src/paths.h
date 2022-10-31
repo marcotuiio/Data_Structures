@@ -48,6 +48,18 @@ void setGeoName(Paths path, char* geoname);
 char* getGeoName(Paths path);
 // Retorna apenas o nome do arquivo geo
 
+void setBedVia(Paths path, char* bedvia);
+// Atribui o diretório de entrada concatenado com o arquivo via
+
+char* getBedVia(Paths path);
+// Retorna apenas o diretório de entrada concatenado com o arquivo via
+
+void setViaArq(Paths path, char* viaarq);
+// Atribui o arquivo via em sua devida variável (nome com .via)
+
+char* getViaArq(Paths path);
+// Retorna apenas o arquivo via
+
 void setBedQry(Paths path, char* bedqry);
 // Atribui o diretório de entrada concatenado com o arquivo qry
 

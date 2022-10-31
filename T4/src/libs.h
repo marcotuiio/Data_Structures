@@ -21,6 +21,10 @@ typedef void *Lista;
 
 typedef void *Queue;
 
+typedef void *PQueue;
+typedef void *PInfo;
+typedef void *Chave;
+
 #define CIRCLE "\t<circle id=\"%d\" cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"55%%\" />\n"
 #define RECTANGLE "\t<rect id=\"%d\" x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"45%%\" stroke-width=\"1.1%%\" />\n"
 #define LINE "\t<line id=\"%d\" x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" />\n"

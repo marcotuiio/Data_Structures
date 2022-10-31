@@ -11,7 +11,8 @@ typedef struct StListEdge {
 typedef struct StListVertex {
     InfoNode valueNode;
     bool visited;
-    char nodeName[100];
+    char id[50];
+    double x, y;
     StListEdge *inicio;
     StListEdge *fim;
 } StListVertex;
@@ -24,14 +25,14 @@ Lista criaLista() {
     return novaLista;
 }
 
-void setName(Lista l, char *name) {
+void setId(Lista l, char *id) {
     StListVertex *lista = l;
-    strcpy(lista->nodeName, name);
+    strcpy(lista->id, id);
 }
 
-char *getName(Lista l) {
+char *getId(Lista l) {
     StListVertex *lista = l;
-    return lista->nodeName;
+    return lista->id;
 }
 
 void printList(Lista l) {
@@ -212,7 +213,6 @@ Node getToAresta(Edge e) {
 
 Edge getFirst(Lista l) {
     StListVertex *lista = l;
-
     return lista->inicio;
 }
 
@@ -223,43 +223,36 @@ Edge getLast(Lista l) {
 
 Edge getNext(Edge at) {
     StListEdge *node = at;
-
     return node->next;
 }
 
 Edge getPrevious(Edge at) {
     StListEdge *node = at;
-
     return node->prev;
 }
 
 void setInfoFromVertex(Lista l, InfoNode info) {
     StListVertex *list = l;
-
     list->valueNode = info;
 }
 
 InfoNode getInfoFromVertex(Lista l) {
     StListVertex *list = l;
-
     return list->valueNode;
 }
 
 void setInfoFromEdge(Lista l, InfoEdge info) {
     StListEdge *list = l;
-
     list->valueEdge = info;
 }
 
 InfoEdge getInfoFromEdge(Edge e) {
     StListEdge *edge = e;
-
     return edge->valueEdge;
 }
 
 void freeEdgeInfo(Edge e) {
     StListEdge *edge = e;
-
     free(edge->valueEdge);
 }
 

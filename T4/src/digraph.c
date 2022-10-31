@@ -74,13 +74,13 @@ Digraph cloneAll(Digraph g, bool keepInfo) {
 
 void setNodeName(Digraph g, Node n, char *nome) {
     StDigraph *graph = g;
-    setName(graph->adjacency[n], nome);
+    setId(graph->adjacency[n], nome);
 }
 
 void addVerticesNames(Digraph g, char *nomes[], int nNomes) {
     StDigraph *graph = g;
     for (int i = 0; i < nNomes; i++) {
-        setName(graph->adjacency[i], nomes[i]);
+        setId(graph->adjacency[i], nomes[i]);
     }
 }
 
@@ -88,7 +88,7 @@ Node getNode(Digraph g, char *nome) {
     StDigraph *graph = g;
 
     for (int i = 0; i < graph->nVertex; i++) {
-        if (!strcmp(getName(graph->adjacency[i]), nome)) {
+        if (!strcmp(getId(graph->adjacency[i]), nome)) {
             return i;
         }
     }
@@ -201,7 +201,7 @@ void adjacentEdges(Digraph g, Node node, Lista arestasAdjacentes) {
 void getNodeNames(Digraph g, Lista nomesNodes) {
     StDigraph *graph = g;
     for (int i = 0; i < graph->nVertex; i++) {
-        insereInicio(nomesNodes, (void *)getName(graph->adjacency[i]));
+        insereInicio(nomesNodes, (void *)getId(graph->adjacency[i]));
     }
 }
 

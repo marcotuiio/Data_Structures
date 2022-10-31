@@ -16,6 +16,7 @@ Controller createController();
 bool checkBED(Controller ctrl);
 bool checkBSD(Controller ctrl);
 bool checkGEO(Controller ctrl);
+bool checkVIA(Controller ctrl);
 bool checkQRY(Controller ctrl);
 void freeCtrl(Controller ctrl);
 // Funções complementares que recebem dados confirmando ou não

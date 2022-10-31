@@ -12,10 +12,10 @@
 Lista criaLista();  // createList
 // Cria e retorna uma lista vazia;
 
-void setName(Lista l, char *name);
+void setId(Lista l, char *id);
 // seta o nome do nó
 
-char *getName(Lista l);
+char *getId(Lista l);
 // Retorna o nome do node
 
 void printList(Lista l);

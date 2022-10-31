@@ -5,6 +5,7 @@
 struct checks {
     bool readbed;
     bool readgeo;
+    bool readvia;
     bool readbsd;
     bool readqry;
 };
@@ -61,7 +62,15 @@ void readParam(int argc, char* argv[], Paths paths, Controller ctrl) {
 
             setQryArq(paths, qryarq);
             setQryName(paths, qryname);
-        }
+        
+        } else if (!strcmp(argv[i], "-v")) {
+            i++;
+            char* via = calloc(strlen(argv[i]) + 1, sizeof(char));
+            strcpy(via, argv[i]);
+            help->readvia = true;
+
+            setViaArq(paths, via);
+        } 
     }
 
     if (help->readbed && help->readgeo) {  // bed/arq.geo
@@ -92,6 +101,14 @@ void readParam(int argc, char* argv[], Paths paths, Controller ctrl) {
 
         setBsdGeoSvg(paths, bsdgeosvg);
         setBsdGeoDot(paths, bsdgeodot);
+    }
+
+    if (help->readbed && help->readvia) {
+        char* bedvia = calloc(strlen(getBed(paths)) + strlen(getViaArq(paths)) + 1, sizeof(char));
+        strcpy(bedvia, getBed(paths));
+        strcat(bedvia, getViaArq(paths));
+
+        setBedVia(paths, bedvia);
     }
 
     if (help->readbsd && help->readqry) {  // bsd/geoname_qryname.svg and bsd/geoname_qryname.txt
@@ -142,6 +159,12 @@ bool checkGEO(Controller ctrl) {
     Sauron* help = ctrl;
 
     return help->readgeo;
+}
+
+bool checkVIA(Controller ctrl) {
+    Sauron* help = ctrl;
+
+    return help->readvia;
 }
 
 bool checkQRY(Controller ctrl) {
