@@ -8,7 +8,7 @@ void readGeo(char *bedGeo, Avl t) {
     char tipo[5];
     void *details = createDetails();
     double x, y, w, h;
-    char cep[50], sw[10], cfill[15], cstrk[15];
+    char cep[30], sw[10], cfill[15], cstrk[15];
 
     while (!feof(geo)) {
         fscanf(geo, "%s", tipo);

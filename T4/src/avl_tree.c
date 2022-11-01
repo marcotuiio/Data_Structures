@@ -285,7 +285,7 @@ void traverseAux(AvlNode root, ToDoNode f, void *aux) {
     traverseAux(node->right, f, aux);
 }
 
-void freeTree(Avl t) {
+void killTree(Avl t) {
     Avl_Root *avl_tree = t;
     freeAux(avl_tree->root);
     free(avl_tree);

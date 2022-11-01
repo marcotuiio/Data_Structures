@@ -5,7 +5,7 @@
 #include "paths.h"
 #include "via.h"
 // #include "qry.h"
-// #include "svg.h"
+#include "svg.h"
 #include "system.h"
 
 int main(int argc, char* argv[]) {
@@ -15,14 +15,10 @@ int main(int argc, char* argv[]) {
     Avl my_avl = createAvl();
     readParam(argc, argv, my_paths, my_ctrl);
 
-    puts(getBed(my_paths));
-    puts(getBedGeo(my_paths));
-    puts(getBedVia(my_paths));
-
     if (checkBED(my_ctrl) && checkGEO(my_ctrl) && checkVIA(my_ctrl) && checkBSD(my_ctrl)) {
         readGeo(getBedGeo(my_paths), my_avl);
-        my_graph = readVia(getBedVia(my_paths));
-        // writeSvg(createSvg(getBsdGeoSvg(my_paths)), my_avl, my_graph);
+        // my_graph = readVia(getBedVia(my_paths));
+        writeSvg(createSvg(getBsdGeoSvg(my_paths)), my_avl, my_graph);
         // printSRB(my_graph, getBsdGeoDot(my_paths));
 
     } else {
@@ -35,7 +31,7 @@ int main(int argc, char* argv[]) {
     //     printSRB(my_graph, getBsdGeoQryDot(my_paths));
     // }
 
-    freeTree(my_avl);
+    killTree(my_avl);
     killGraph(my_graph);
     freePaths(my_paths);
     freeCtrl(my_ctrl);

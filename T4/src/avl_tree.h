@@ -31,7 +31,7 @@ void traversePreOrder(Avl t, ToDoNode f, void *aux);
 // Recebe uma árvore, uma função f definida previamente e um ponteiro auxiliar e 
 // a percorre no percurso pre-ordem.
 
-void freeTree(Avl t);
+void killTree(Avl t);
 // Recebe uma árvore e libera toda a memória alocada para ela.
 
 #endif

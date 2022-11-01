@@ -1,7 +1,7 @@
 EXEC = gcc
 CFLAGS = -std=c99 -fstack-protector-all -g -Wall
 PROJECT_NAME = ted
-OBJETCS = main.o avl_tree.o digraph.o geo.o infos.o list.o paths.o queue.o system.o via.o
+OBJETCS = main.o avl_tree.o digraph.o geo.o infos.o list.o paths.o queue.o svg.o system.o via.o
 ALUNO = marcotab
 
 clear:

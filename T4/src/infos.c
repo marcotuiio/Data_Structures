@@ -47,34 +47,45 @@ InfoEdge createInfoEdge(double vm, double cmp, char *ldir, char *lesq, char *nom
     return info;
 }
 
-char *getSw(void *detail) {
-    StDetails *details = detail;
+char *getSw(InfoAvl info) {
+    StQuadra *quadra = info;
+    StDetails *details = quadra->detail;
     return details->sw;
 }
 
-void setSW(void *detail, char *sw) {
-    StDetails *details = detail;
+void setSW(InfoAvl info, char *sw) {
+    StQuadra *quadra = info;
+    StDetails *details = quadra->detail;
     strcpy(details->sw, sw);
 }
 
-char *getCFill(void *detail) {
-    StDetails *details = detail;
+char *getCFill(InfoAvl info) {
+    StQuadra *quadra = info;
+    StDetails *details = quadra->detail;
     return details->cfill;
 }
 
-void setCFill(void *detail, char *cfill) {
-    StDetails *details = detail;
+void setCFill(InfoAvl info, char *cfill) {
+    StQuadra *quadra = info;
+    StDetails *details = quadra->detail;
     strcpy(details->cfill, cfill);
 }
 
-char *getCStrk(void *detail) {
-    StDetails *details = detail;
+char *getCStrk(InfoAvl info) {
+    StQuadra *quadra = info;
+    StDetails *details = quadra->detail;
     return details->cstrk;
 }
 
-void setCStrk(void *detail, char *cstrk) {
-    StDetails *details = detail;
+void setCStrk(InfoAvl info, char *cstrk) {
+    StQuadra *quadra = info;
+    StDetails *details = quadra->detail;
     strcpy(details->cstrk, cstrk);
+}
+
+char* getCep(InfoAvl info) {
+    StQuadra *quadra = info;
+    return quadra->cep;
 }
 
 double getXNode(InfoAvl info) {
@@ -85,6 +96,16 @@ double getXNode(InfoAvl info) {
 double getYNode(InfoAvl info) {
     StQuadra *i = info;
     return i->y;
+}
+
+double getWNode(InfoAvl info) {
+    StQuadra *i = info;
+    return i->w;
+}
+
+double getHNode(InfoAvl info) {
+    StQuadra *i = info;
+    return i->h;
 }
 
 double getVMEdge(InfoEdge info) {
