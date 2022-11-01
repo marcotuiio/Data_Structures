@@ -114,21 +114,17 @@ void readParam(int argc, char* argv[], Paths paths, Controller ctrl) {
     if (help->readbsd && help->readqry) {  // bsd/geoname_qryname.svg and bsd/geoname_qryname.txt
         char* bsdgeoqrysvg = calloc(strlen(getBsd(paths)) + strlen(getGeoName(paths)) + strlen(getQryName(paths)) + 10, sizeof(char));
         char* bsdgeoqrytxt = calloc(strlen(getBsd(paths)) + strlen(getGeoName(paths)) + strlen(getQryName(paths)) + 10, sizeof(char));
-        char* bsdgepqrydot = calloc(strlen(getBsd(paths)) + strlen(getGeoName(paths)) + strlen(getQryName(paths)) + 10, sizeof(char));
         strcpy(bsdgeoqrysvg, getBsd(paths));
         strcat(bsdgeoqrysvg, getGeoName(paths));
         strcat(bsdgeoqrysvg, "_");
         strcat(bsdgeoqrysvg, getQryName(paths));
         strcpy(bsdgeoqrytxt, bsdgeoqrysvg);
-        strcpy(bsdgepqrydot, bsdgeoqrysvg);
 
         strcat(bsdgeoqrysvg, ".svg");
         strcat(bsdgeoqrytxt, ".txt");
-        strcat(bsdgepqrydot, ".dot");
 
         setBsdGeoQrySvg(paths, bsdgeoqrysvg);
         setBsdGeoQryTxt(paths, bsdgeoqrytxt);
-        setBsdGeoQryDot(paths, bsdgepqrydot);
     }
 }
 

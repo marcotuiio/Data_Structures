@@ -25,9 +25,9 @@ typedef void *PQueue;
 typedef void *PInfo;
 typedef void *Chave;
 
-typedef void *AvlNode;
-typedef void *Avl;
-typedef void *InfoAvl;    
+typedef void *RbNode;
+typedef void *Rb;
+typedef void *InfoRb;    
 
 #define CIRCLE "\t<circle id=\"%d\" cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"55%%\" />\n"
 #define RECTANGLE "\t<rect cep=\"%s\" x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" stroke=\"%s\" fill=\"%s\" fill-opacity=\"45%%\" stroke-width=\"%s\" />\n"

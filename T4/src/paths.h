@@ -110,14 +110,6 @@ void setBsdGeoQryTxt(Paths path, char* bsdgeoqrytxt);
 char* getBsdGeoQryTxt(Paths path);
 // Retorna apenas o diretório de saída com geo, qry e .txt
 
-void setBsdGeoQryDot(Paths path, char* bsdgeoqrytxt);
-// Atribui o nome do arquivo geo concatenado com o nome
-// do arquivo qry, o diretório de saída e a terminação
-// .dot em sua devida variável
-
-char* getBsdGeoQryDot(Paths path);
-// Retorna apenas o diretório de saída com geo, qry e .dot
-
 void freePaths(Paths path);
 // Realiza liberação de memória de todos os parâmetros de entrada
 // utilizados durante o projeto

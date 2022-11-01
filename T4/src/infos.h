@@ -6,44 +6,44 @@
 void* createDetails();
 // Creates a new details pattern
 
-InfoAvl createInfoAvl(char* cep, double x, double y, double w, double h, void* details);
-// Creates a new InfoAvl with the given name and coordinates
+InfoRb createInfoRb(char* cep, double x, double y, double w, double h, void* details);
+// Creates a new InfoRb with the given name and coordinates
 
 InfoEdge createInfoEdge(double vm, double cmp, char* ldir, char* lesq, char* nomeEdge);
 // Creates a new InfoEdge with the given values
 
-char* getSw(InfoAvl info);
+char* getSW(InfoRb info);
 // Returns the border width of the given details
 
-void setSW(InfoAvl info, char* sw);
-// Sets the border width of the given InfoAvl
+void setSW(void *detail, char* sw);
+// Sets the border width of the given InfoRb
 
-char* getCFill(InfoAvl info);
+char* getCFill(InfoRb info);
 // Returns the fill color of the given details
 
-void setCFill(InfoAvl info, char* cfill);
-// Sets the fill color of the given InfoAvl
+void setCFill(void *detail, char* cfill);
+// Sets the fill color of the given InfoRb
 
-char* getCStrk(InfoAvl info);
+char* getCStrk(InfoRb info);
 // Returns the stroke color of the given details
 
-void setCStrk(InfoAvl info, char* cstrk);
-// Sets the stroke color of the given InfoAvl
+void setCStrk(void *detail, char* cstrk);
+// Sets the stroke color of the given InfoRb
 
-char* getCep(InfoAvl info);
-// Returns the cep of the given InfoAvl
+char* getCep(InfoRb info);
+// Returns the cep of the given InfoRb
 
-double getXNode(InfoAvl info);
-// Returns the x coordinate of the given InfoAvl
+double getXNode(InfoRb info);
+// Returns the x coordinate of the given InfoRb
 
-double getYNode(InfoAvl info);
-// Returns the y coordinate of the given InfoAvl
+double getYNode(InfoRb info);
+// Returns the y coordinate of the given InfoRb
 
-double getWNode(InfoAvl info);
-// Returns the width of the given InfoAvl
+double getWNode(InfoRb info);
+// Returns the width of the given InfoRb
 
-double getHNode(InfoAvl info);
-// Returns the height of the given InfoAvl 
+double getHNode(InfoRb info);
+// Returns the height of the given InfoRb 
 
 double getVMEdge(InfoEdge info);
 // Returns the vm value of the given InfoEdge
@@ -56,5 +56,8 @@ char* getLDirEdge(InfoEdge info);
 
 char* getLEsqEdge(InfoEdge info);
 // Returns the lesq value of the given InfoEdge
+
+void freeRbInfo(InfoRb info);
+// Frees the given InfoRb
 
 #endif

@@ -1,13 +1,13 @@
 #include "infos.h"
 
 typedef struct StDetails {
-    char sw[10], cfill[15], cstrk[15];
+    char sw[15], cfill[15], cstrk[15];
 } StDetails;
 
 typedef struct StQuadra {
     char cep[30];
     double x, y, w, h;
-    void *detail;
+    StDetails *detail;
 } StQuadra;
 
 typedef struct StInfoEdge {
@@ -17,21 +17,22 @@ typedef struct StInfoEdge {
 
 void *createDetails() {
     StDetails *details = calloc(1, sizeof(StDetails));
-    strcpy(details->sw, "1.0px");
-    strcpy(details->cfill, "none");
-    strcpy(details->cstrk, "black");
+    strcpy(details->sw, "zzzzzzzzz");
+    strcpy(details->cfill, "zzzzzzzzz");
+    strcpy(details->cstrk, "zzzzzzzzz");
 
     return details;
 }
 
-InfoAvl createInfoAvl(char *cep, double x, double y, double w, double h, void *detail) {
+InfoRb createInfoRb(char *cep, double x, double y, double w, double h, void *detail) {
     StQuadra *info = calloc(1, sizeof(StQuadra));
+    StDetails *details = detail;
     strcpy(info->cep, cep);
     info->x = x;
     info->y = y;
     info->w = w;
     info->h = h;
-    info->detail = detail;
+    info->detail = details;
 
     return info;
 }
@@ -47,63 +48,60 @@ InfoEdge createInfoEdge(double vm, double cmp, char *ldir, char *lesq, char *nom
     return info;
 }
 
-char *getSw(InfoAvl info) {
+char *getSW(InfoRb info) {
     StQuadra *quadra = info;
     StDetails *details = quadra->detail;
     return details->sw;
 }
 
-void setSW(InfoAvl info, char *sw) {
-    StQuadra *quadra = info;
-    StDetails *details = quadra->detail;
+void setSW(void *detail, char *sw) {
+    StDetails *details = detail;
     strcpy(details->sw, sw);
 }
 
-char *getCFill(InfoAvl info) {
+char *getCFill(InfoRb info) {
     StQuadra *quadra = info;
     StDetails *details = quadra->detail;
     return details->cfill;
 }
 
-void setCFill(InfoAvl info, char *cfill) {
-    StQuadra *quadra = info;
-    StDetails *details = quadra->detail;
+void setCFill(void *detail, char *cfill) {
+    StDetails *details = detail;
     strcpy(details->cfill, cfill);
 }
 
-char *getCStrk(InfoAvl info) {
+char *getCStrk(InfoRb info) {
     StQuadra *quadra = info;
     StDetails *details = quadra->detail;
     return details->cstrk;
 }
 
-void setCStrk(InfoAvl info, char *cstrk) {
-    StQuadra *quadra = info;
-    StDetails *details = quadra->detail;
+void setCStrk(void *detail, char *cstrk) {
+    StDetails *details = detail;
     strcpy(details->cstrk, cstrk);
 }
 
-char* getCep(InfoAvl info) {
+char* getCep(InfoRb info) {
     StQuadra *quadra = info;
     return quadra->cep;
 }
 
-double getXNode(InfoAvl info) {
+double getXNode(InfoRb info) {
     StQuadra *i = info;
     return i->x;
 }
 
-double getYNode(InfoAvl info) {
+double getYNode(InfoRb info) {
     StQuadra *i = info;
     return i->y;
 }
 
-double getWNode(InfoAvl info) {
+double getWNode(InfoRb info) {
     StQuadra *i = info;
     return i->w;
 }
 
-double getHNode(InfoAvl info) {
+double getHNode(InfoRb info) {
     StQuadra *i = info;
     return i->h;
 }
@@ -126,4 +124,10 @@ char *getLdirEdge(InfoEdge info) {
 char *getLesqEdge(InfoEdge info) {
     StInfoEdge *i = info;
     return i->lesq;
+}
+
+void freeRbInfo(InfoRb info) {
+    StQuadra *i = info;
+    free(i->detail);
+    free(i);
 }

@@ -15,7 +15,6 @@ struct param {
     char* bsdgeodot;     // bsd/nomegeo.dot
     char* bsdgeoqrysvg;  // bsd/nomegeo_nomeqry.svg
     char* bsdgeoqrytxt;  // bsd/nomegeo_nomeqry.txt
-    char* bsdgeoqrydot;  // bsd/nomegeo_nomeqry.dot
 };
 typedef struct param AllPaths;
 
@@ -187,16 +186,6 @@ char* getBsdGeoQryTxt(Paths path) {
     return paths->bsdgeoqrytxt;
 }
 
-void setBsdGeoQryDot(Paths path, char* bsdgeoqrydot) {
-    AllPaths* paths = path;
-    paths->bsdgeoqrydot = bsdgeoqrydot;
-}
-
-char* getBsdGeoQryDot(Paths path) {
-    AllPaths* paths = path;
-    return paths->bsdgeoqrydot;
-}
-
 void freePaths(Paths path) {
     AllPaths* paths = path;
 
@@ -214,6 +203,5 @@ void freePaths(Paths path) {
     free(paths->bsdgeodot);
     free(paths->bsdgeoqrysvg);
     free(paths->bsdgeoqrytxt);
-    free(paths->bsdgeoqrydot);
     free(paths);
 }

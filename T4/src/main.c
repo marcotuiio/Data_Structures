@@ -1,8 +1,8 @@
-#include "avl_tree.h"
 #include "digraph.h"
 #include "geo.h"
 #include "libs.h"
 #include "paths.h"
+#include "rb_tree.h"
 #include "via.h"
 // #include "qry.h"
 #include "svg.h"
@@ -12,13 +12,14 @@ int main(int argc, char* argv[]) {
     Controller my_ctrl = createController();
     Paths my_paths = createAllPaths();
     Digraph my_graph = NULL;
-    Avl my_avl = createAvl();
+    Rb my_Rb = createRB(0);
     readParam(argc, argv, my_paths, my_ctrl);
 
-    if (checkBED(my_ctrl) && checkGEO(my_ctrl) && checkVIA(my_ctrl) && checkBSD(my_ctrl)) {
-        readGeo(getBedGeo(my_paths), my_avl);
+    if (checkBED(my_ctrl) && checkGEO(my_ctrl) && checkBSD(my_ctrl)) {
+        puts(getBsdGeoSvg(my_paths));
+        readGeo(getBedGeo(my_paths), my_Rb);
         // my_graph = readVia(getBedVia(my_paths));
-        writeSvg(createSvg(getBsdGeoSvg(my_paths)), my_avl, my_graph);
+        writeSvg(createSvg(getBsdGeoSvg(my_paths)), my_Rb, my_graph);
         // printSRB(my_graph, getBsdGeoDot(my_paths));
 
     } else {
@@ -31,8 +32,8 @@ int main(int argc, char* argv[]) {
     //     printSRB(my_graph, getBsdGeoQryDot(my_paths));
     // }
 
-    killTree(my_avl);
-    killGraph(my_graph);
+    killRB(my_Rb);
+    // killGraph(my_graph);
     freePaths(my_paths);
     freeCtrl(my_ctrl);
 

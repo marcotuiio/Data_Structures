@@ -1,17 +1,17 @@
 #include "svg.h"
 
-#include "avl_tree.h"
+#include "rb_tree.h"
 #include "infos.h"
 #include "system.h"
 
-void writeSvg(FILE *svg, Avl t, Digraph g) {
-    traversePreOrder(t, writeAvl, svg);
+void writeSvg(FILE *svg, Rb t, Digraph g) {
+    percursoProfundidade(t, writeRb, svg);
     // percursoProfundidade(t, writeAux, svg);
 
     killSvg(svg);
 }
 
-void writeAvl(InfoAvl i, void *aux) {
+void writeRb(InfoRb i, void *aux) {
     FILE *svg = aux;
     double x = getXNode(i);
     double y = getYNode(i);
@@ -19,7 +19,7 @@ void writeAvl(InfoAvl i, void *aux) {
     double h = getHNode(i);
     char cep[30], sw[10], cfill[15], cstrk[15];
     strcpy(cep, getCep(i));
-    strcpy(sw, getSw(i));
+    strcpy(sw, getSW(i));
     strcpy(cfill, getCFill(i));
     strcpy(cstrk, getCStrk(i));
 
@@ -84,7 +84,7 @@ void writeAvl(InfoAvl i, void *aux) {
 
 FILE *createSvg(char *bsdSvg) {
     FILE *svg = fopen(bsdSvg, "w");
-    if (svg == NULL) {
+    if (!svg) {
         printf("ERRO AO CRIAR SVG\n");
         exit(1);
     }
