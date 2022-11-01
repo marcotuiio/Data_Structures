@@ -29,7 +29,7 @@ Rb createRB(double epsilon);
 /*
   Retorna uma árvore vazia, com precisão epsilon.
   Retorna NULL caso não tenha conseguido criar a árvore.
- */
+*/
 
 RbNode insertRB(Rb t, double x, double y, InfoRb info);
 /*
@@ -42,19 +42,19 @@ InfoRb getInfoRB(Rb t, RbNode n, double xa, double ya);
 /*
   Retorna a informação associada ao nó n, sua âncora (xa,ya).
   Este nó deve ser um nó valido (veja acima).
- */
+*/
 
 RbNode getNodeRB(Rb t, double xa, double ya);
 /*
   Retorna o nó da árvore associado a âncora (xa,ya); NULL, se tal âncora não existir.
- */
+*/
 
 InfoRb removeRB(Rb t, double xa, double ya);
 /*
   Remove o nó da árvore cuja chave é a coordenada (xa,ya). Qualquer nó da árvore retornado por operações anteriores
   deve ser considerado invalido.
   Retorna a informação que estava associada a tal nó (ou NULL, se não encontrado).
- */
+*/
 
 void percursoLargura(Rb t, FvisitaNo fVisita, void *aux);  // levelOrder
 

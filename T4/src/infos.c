@@ -24,6 +24,11 @@ void *createDetails() {
     return details;
 }
 
+void *getDetails(InfoRb info) {
+    StQuadra *quadra = info;
+    return quadra->detail;
+}
+
 InfoRb createInfoRb(char *cep, double x, double y, double w, double h, void *detail) {
     StQuadra *info = calloc(1, sizeof(StQuadra));
     StDetails *details = detail;
@@ -126,8 +131,7 @@ char *getLesqEdge(InfoEdge info) {
     return i->lesq;
 }
 
-void freeRbInfo(InfoRb info) {
-    StQuadra *i = info;
-    free(i->detail);
-    free(i);
+char *getNomeEdge(InfoEdge info) {
+    StInfoEdge *i = info;
+    return i->nome;
 }

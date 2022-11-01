@@ -29,7 +29,6 @@ void readGeo(char *bedGeo, Rb t) {
         }
         strcpy(tipo, " ");
     }
-    printf("Número de quadras: %d\n", i);
     fclose(geo);
 }
 

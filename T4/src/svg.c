@@ -6,7 +6,7 @@
 
 void writeSvg(FILE *svg, Rb t, Digraph g) {
     percursoProfundidade(t, writeRb, svg);
-    // percursoProfundidade(t, writeAux, svg);
+    
 
     killSvg(svg);
 }

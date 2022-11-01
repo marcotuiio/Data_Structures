@@ -18,9 +18,8 @@ int main(int argc, char* argv[]) {
     if (checkBED(my_ctrl) && checkGEO(my_ctrl) && checkBSD(my_ctrl)) {
         puts(getBsdGeoSvg(my_paths));
         readGeo(getBedGeo(my_paths), my_Rb);
-        // my_graph = readVia(getBedVia(my_paths));
+        my_graph = readVia(getBedVia(my_paths));
         writeSvg(createSvg(getBsdGeoSvg(my_paths)), my_Rb, my_graph);
-        // printSRB(my_graph, getBsdGeoDot(my_paths));
 
     } else {
         printf("ERROR: INPUT FILES OR OUTPUT DIRECTORIES HAVE NOT BEEN READ\n");
@@ -29,11 +28,10 @@ int main(int argc, char* argv[]) {
 
     // if (checkQRY(my_ctrl)) {
     //     readQry(my_graph, getBedQry(my_paths), getBsdGeoQrySvg(my_paths), getBsdGeoQryTxt(my_paths));
-    //     printSRB(my_graph, getBsdGeoQryDot(my_paths));
     // }
 
     killRB(my_Rb);
-    // killGraph(my_graph);
+    killGraph(my_graph);
     freePaths(my_paths);
     freeCtrl(my_ctrl);
 

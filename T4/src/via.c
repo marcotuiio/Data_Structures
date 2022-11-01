@@ -4,9 +4,8 @@
 
 Digraph readVia(char *bedVia) {
     FILE *via = openVia(bedVia);
-    char tipo[5], id[30], ldir[30], lesq[30], nomeEdge[30];
+    char tipo[5], id[30], ldir[30], lesq[30], nomeEdge[30], i[30], j[30];
     double x, y, vm, cmp;
-    Node i, j;
 
     int nVertex;
     fscanf(via, "%d", &nVertex);
@@ -23,10 +22,9 @@ Digraph readVia(char *bedVia) {
             posic++;
 
         } else if (!strcmp(tipo, "e")) {
-            fscanf(via, "%d %d %s %s %lf %lf %s", &i, &j, ldir, lesq, &vm, &cmp, nomeEdge);
+            fscanf(via, "%s %s %s %s %lf %lf %s", i, j, ldir, lesq, &cmp, &vm, nomeEdge);
             InfoEdge info = createInfoEdge(vm, cmp, ldir, lesq, nomeEdge);
-            addEdge(g, i, j, info);
-
+            addEdge(g, getNode(g, i), getNode(g, j), info);
         }
         strcpy(tipo, " ");
     }

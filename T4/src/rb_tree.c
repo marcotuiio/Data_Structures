@@ -1,4 +1,5 @@
 #include "rb_tree.h"
+#include "infos.h"
 
 struct node {
     InfoRb value;
@@ -17,8 +18,6 @@ struct tree {
     int size;
 };
 typedef struct tree Red_Black_Root;
-
-/* Versão da Special Red Black totalmente de acordo com o Cormen, utilizando nó NIL sentinela */
 
 // ---> HEADERS DE FUNÇÕES EXTRAS
 
@@ -519,6 +518,7 @@ int heightOfLevel(RbNode n, RbNode nil) {
 
 void killRB(Rb t) {
     Red_Black_Root *red_black_tree = t;
+    free(getDetails(red_black_tree->root->value));
     freeAux(red_black_tree->root, red_black_tree->nil);
     free(red_black_tree->nil);
     free(red_black_tree);

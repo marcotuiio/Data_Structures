@@ -6,6 +6,9 @@
 void* createDetails();
 // Creates a new details pattern
 
+void* getDetails(InfoRb info);
+// Returns the details of a given info
+
 InfoRb createInfoRb(char* cep, double x, double y, double w, double h, void* details);
 // Creates a new InfoRb with the given name and coordinates
 
@@ -57,7 +60,7 @@ char* getLDirEdge(InfoEdge info);
 char* getLEsqEdge(InfoEdge info);
 // Returns the lesq value of the given InfoEdge
 
-void freeRbInfo(InfoRb info);
-// Frees the given InfoRb
+char *getNomeEdge(InfoEdge info);
+// Returns the name of the given InfoEdge
 
 #endif
