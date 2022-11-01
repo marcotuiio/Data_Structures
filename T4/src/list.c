@@ -11,7 +11,7 @@ typedef struct StListEdge {
 typedef struct StListVertex {
     InfoNode valueNode;
     bool visited;
-    char id[50];
+    char id[30];
     double x, y;
     StListEdge *inicio;
     StListEdge *fim;
@@ -33,6 +33,18 @@ void setId(Lista l, char *id) {
 char *getId(Lista l) {
     StListVertex *lista = l;
     return lista->id;
+}
+
+void setXY(Lista l, double x, double y) {
+    StListVertex *lista = l;
+    lista->x = x;
+    lista->y = y;
+}
+
+void getXY(Lista l, double *x, double *y) {
+    StListVertex *lista = l;
+    *x = lista->x;
+    *y = lista->y;
 }
 
 void printList(Lista l) {

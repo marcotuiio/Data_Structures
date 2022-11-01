@@ -1,6 +1,7 @@
 #include "digraph.h"
-#include "queue.h"
+
 #include "list.h"
+#include "queue.h"
 
 typedef struct StDigraph {
     Lista *adjacency;
@@ -42,7 +43,7 @@ Digraph cloneOnlyEnabled(Digraph g, bool keepInfo) {
             if (o && !isDisabled(g, o)) {
                 addEdge(newGraph, i, j, NULL);
                 if (keepInfo) {
-                    Edge e = getEdge(newGraph, i, j); 
+                    Edge e = getEdge(newGraph, i, j);
                     setEdgeInfo(newGraph, e, getEdgeInfo(g, o));
                 }
             }
@@ -62,7 +63,7 @@ Digraph cloneAll(Digraph g, bool keepInfo) {
             if (o) {
                 addEdge(newGraph, i, j, NULL);
                 if (keepInfo) {
-                    Edge e = getEdge(newGraph, i, j); 
+                    Edge e = getEdge(newGraph, i, j);
                     setEdgeInfo(newGraph, e, getEdgeInfo(g, o));
                 }
             }
@@ -82,6 +83,11 @@ void addVerticesNames(Digraph g, char *nomes[], int nNomes) {
     for (int i = 0; i < nNomes; i++) {
         setId(graph->adjacency[i], nomes[i]);
     }
+}
+
+void setNodeXY(Digraph g, Node n, double x, double y) {
+    StDigraph *graph = g;
+    setXY(graph->adjacency[n], x, y);
 }
 
 Node getNode(Digraph g, char *nome) {
@@ -168,7 +174,7 @@ void enableAllEdges(Digraph g) {
 }
 
 bool isDisabled(Digraph g, Edge e) {
-    return !getEnabled(e); // se for falso retorna verdadeiro
+    return !getEnabled(e);  // se for falso retorna verdadeiro
 }
 
 void delEdge(Edge e) {

@@ -1,7 +1,7 @@
 EXEC = gcc
 CFLAGS = -std=c99 -fstack-protector-all -g -Wall
 PROJECT_NAME = ted
-OBJETCS = main.o geo.o list.o paths.o system.o infos.o digraph.o queue.o
+OBJETCS = main.o avl_tree.o digraph.o geo.o infos.o list.o paths.o queue.o system.o via.o
 ALUNO = marcotab
 
 clear:
@@ -17,11 +17,17 @@ pack: $(PROJECT_NAME)
 $(PROJECT_NAME): $(OBJETCS) 
 	$(EXEC) $(CFLAGS) $(OBJETCS) -o $(PROJECT_NAME) -lm
 
-main.o: main.c
-	$(EXEC) $(CFLAGS) -c main.c
+avl_tree.o: avl_tree.c avl_tree.h
+	$(EXEC) $(CFLAGS) -c avl_tree.c
+
+digraph.o: digraph.c digraph.h
+	$(EXEC) $(CFLAGS) -c digraph.c
 
 geo.o: geo.c geo.h
 	$(EXEC) $(CFLAGS) -c geo.c
+
+infos.o: infos.c infos.h
+	$(EXEC) $(CFLAGS) -c infos.c
 
 list.o: list.c list.h
 	$(EXEC) $(CFLAGS) -c list.c
@@ -29,14 +35,14 @@ list.o: list.c list.h
 paths.o: paths.c paths.h
 	$(EXEC) $(CFLAGS) -c paths.c
 
+priority_queue.o: priority_queue.c priority_queue.h
+	$(EXEC) $(CFLAGS) -c priority_queue.c
+
+queue.o: queue.c queue.h
+	$(EXEC) $(CFLAGS) -c queue.c
+
 qry.o: qry.c qry.h
 	$(EXEC) $(CFLAGS) -c qry.c
-
-infos.o: infos.c infos.h
-	$(EXEC) $(CFLAGS) -c infos.c
-
-digraph.o: digraph.c digraph.h
-	$(EXEC) $(CFLAGS) -c digraph.c
 
 svg.o: svg.c svg.h
 	$(EXEC) $(CFLAGS) -c svg.c
@@ -44,8 +50,8 @@ svg.o: svg.c svg.h
 system.o: system.c system.h
 	$(EXEC) $(CFLAGS) -c system.c
 
-queue.o: queue.c queue.h
-	$(EXEC) $(CFLAGS) -c queue.c
+via.o: via.c via.h
+	$(EXEC) $(CFLAGS) -c via.c
 
-priority_queue.o: priority_queue.c priority_queue.h
-	$(EXEC) $(CFLAGS) -c priority_queue.c
+main.o: main.c
+	$(EXEC) $(CFLAGS) -c main.c

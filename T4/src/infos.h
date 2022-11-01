@@ -6,35 +6,35 @@
 void* createDetails();
 // Creates a new details pattern
 
-InfoNode createInfoNode(char *cep, double x, double y, double w, double h, void* details);
-// Creates a new InfoNode with the given name and coordinates
+InfoAvl createInfoAvl(char *cep, double x, double y, double w, double h, void* details);
+// Creates a new InfoAvl with the given name and coordinates
 
-InfoEdge createInfoEdge(double vm, double cmp, char *ldir, char *lesq);
+InfoEdge createInfoEdge(double vm, double cmp, char *ldir, char *lesq, char *nomeEdge);
 // Creates a new InfoEdge with the given values
 
 char* getSw(void* detail);
 // Returns the border width of the given details
 
 void setSW(void* detail, char *sw);
-// Sets the border width of the given InfoNode
+// Sets the border width of the given InfoAvl
 
 char* getCFill(void* detail);
 // Returns the fill color of the given details
 
 void setCFill(void* detail, char *cfill);
-// Sets the fill color of the given InfoNode
+// Sets the fill color of the given InfoAvl
 
 char* getCStrk(void* detail);
 // Returns the stroke color of the given details
 
 void setCStrk(void* detail, char *cstrk);
-// Sets the stroke color of the given InfoNode
+// Sets the stroke color of the given InfoAvl
 
-double getXNode(InfoNode info);
-// Returns the x coordinate of the given InfoNode
+double getXNode(InfoAvl info);
+// Returns the x coordinate of the given InfoAvl
 
-double getYNode(InfoNode info);
-// Returns the y coordinate of the given InfoNode
+double getYNode(InfoAvl info);
+// Returns the y coordinate of the given InfoAvl
 
 double getVMEdge(InfoEdge info);
 // Returns the vm value of the given InfoEdge

@@ -18,6 +18,12 @@ void setId(Lista l, char *id);
 char *getId(Lista l);
 // Retorna o nome do node
 
+void setXY(Lista l, double x, double y);
+// Define as coordenadas do nó
+
+void getXY(Lista l, double *x, double *y);
+// Retorna por referencia as coordenadas do nó
+
 void printList(Lista l);
 // * Percorre a lista e exibe o valor de cada célula armazenada
 
