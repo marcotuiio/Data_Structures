@@ -1,7 +1,7 @@
 EXEC = gcc
 CFLAGS = -std=c99 -fstack-protector-all -g -Wall
 PROJECT_NAME = ted
-OBJETCS = main.o rb_tree.o digraph.o geo.o infos.o list.o paths.o queue.o svg.o system.o via.o
+OBJETCS = main.o digraph.o geo.o infos.o list.o paths.o priority_queue.o queue.o qry.o rb_tree.o svg.o system.o via.o
 ALUNO = marcotab
 
 clear:
@@ -16,9 +16,6 @@ pack: $(PROJECT_NAME)
 
 $(PROJECT_NAME): $(OBJETCS) 
 	$(EXEC) $(CFLAGS) $(OBJETCS) -o $(PROJECT_NAME) -lm
-
-rb_tree.o: rb_tree.c rb_tree.h
-	$(EXEC) $(CFLAGS) -c rb_tree.c
 
 digraph.o: digraph.c digraph.h
 	$(EXEC) $(CFLAGS) -c digraph.c
@@ -43,6 +40,9 @@ queue.o: queue.c queue.h
 
 qry.o: qry.c qry.h
 	$(EXEC) $(CFLAGS) -c qry.c
+
+rb_tree.o: rb_tree.c rb_tree.h
+	$(EXEC) $(CFLAGS) -c rb_tree.c
 
 svg.o: svg.c svg.h
 	$(EXEC) $(CFLAGS) -c svg.c
