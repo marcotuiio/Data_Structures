@@ -3,14 +3,19 @@
 #include "infos.h"
 #include "rb_tree.h"
 
-void **readGeo(char *bedGeo, Rb t) {
+void readGeo(char *bedGeo, Rb t) {
+    char *auxGeo = calloc(1, strlen(bedGeo) + 1);
+    strcpy(auxGeo, bedGeo);
+    int nCQ = countCQ(auxGeo);
+    
     FILE *geo = openGeo(bedGeo);
     char tipo[5];
-    void **details = calloc(30, sizeof(void *));
+    void **details = calloc(nCQ, sizeof(void *));
     int nDetails = 0;
     double x, y, w, h;
     char cep[30], sw[10], cfill[15], cstrk[15];
     int i = 0;
+
     while (!feof(geo)) {
         fscanf(geo, "%s", tipo);
 
@@ -29,7 +34,8 @@ void **readGeo(char *bedGeo, Rb t) {
         strcpy(tipo, " ");
     }
     fclose(geo);
-    return details;
+    free(auxGeo);
+    setDetailsRB(t, details, nCQ);
 }
 
 FILE *openGeo(char *bedGeo) {
@@ -39,4 +45,23 @@ FILE *openGeo(char *bedGeo) {
         exit(1);
     }
     return geo;
+}
+
+int countCQ(char *bedGeoAux) {
+    FILE *geoAux = fopen(bedGeoAux, "r");
+    char tipo[50];
+    int nCQ = 0;
+    if (!geoAux) {
+        printf("ERRO NA CRIAÇÃO DO GEO AUXILIAR\n");
+        exit(1);
+    }
+
+    while (!feof(geoAux)) {
+        fscanf(geoAux, "%s", tipo);
+        if (!strcmp(tipo, "cq")) {
+            nCQ++;
+        }
+    }
+    fclose(geoAux);
+    return nCQ;
 }

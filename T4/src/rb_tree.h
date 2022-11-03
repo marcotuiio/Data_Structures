@@ -38,10 +38,16 @@ RbNode insertRB(Rb t, double x, double y, InfoRb info);
   inserida.
  */
 
+
 InfoRb getInfoRB(Rb t, RbNode n, double xa, double ya);
 /*
   Retorna a informação associada ao nó n, sua âncora (xa,ya).
   Este nó deve ser um nó valido (veja acima).
+*/
+
+void setDetailsRB(Rb t, void **details, int nCQ);
+/*
+  Define os detalhes da árvore t.
 */
 
 RbNode getNodeRB(Rb t, double xa, double ya);
@@ -60,7 +66,7 @@ void percursoLargura(Rb t, FvisitaNo fVisita, void *aux);  // levelOrder
 
 void percursoProfundidade(Rb t, FvisitaNo fVisita, void *aux);  // preOrder
 
-void killRB(Rb t, void **details);
+void killRB(Rb t);
 // Libera a memoria alocada para a árvore.
 
 #endif

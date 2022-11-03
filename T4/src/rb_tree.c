@@ -14,8 +14,9 @@ typedef struct node Red_Black_Node;
 struct tree {
     Red_Black_Node *root;
     Red_Black_Node *nil;
+    void **details;
     double epislon;
-    int size;
+    int size, nCQ;
 };
 typedef struct tree Red_Black_Root;
 
@@ -262,6 +263,12 @@ RbNode getNodeRB(Rb t, double xa, double ya) {
     Red_Black_Root *tree = t;
     Red_Black_Node *node = searchNode(t, tree->root, xa, ya);
     return node;
+}
+
+void setDetailsRB(Rb t, void **details, int nCQ) {
+    Red_Black_Root *tree = t;
+    tree->details = details;
+    tree->nCQ = nCQ;
 }
 
 RbNode searchNode(Rb t, RbNode n, double xa, double ya) {
@@ -516,14 +523,14 @@ int heightOfLevel(RbNode n, RbNode nil) {
     }
 }
 
-void killRB(Rb t, void **details) {
+void killRB(Rb t) {
     Red_Black_Root *red_black_tree = t;
-    for (int i = 0; i < 30; i++) {
-        if (details[i]) {
-            free(details[i]);
+    for (int i = 0; i < red_black_tree->nCQ; i++) {
+        if (red_black_tree->details[i]) {
+            free(red_black_tree->details[i]);
         }
     }
-    free(details);
+    free(red_black_tree->details);
     
     freeAux(red_black_tree->root, red_black_tree->nil);
     free(red_black_tree->nil);
