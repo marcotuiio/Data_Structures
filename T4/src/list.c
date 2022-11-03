@@ -10,8 +10,9 @@ typedef struct StListEdge {
 
 typedef struct StListVertex {
     InfoNode valueNode;
+    double x, y;
     char visitedType;  // 'w' = white, 'g' = gray, 'b' = black 
-    char id[30];
+    char id[40];
     StListEdge *inicio;
     StListEdge *fim;
 } StListVertex;

@@ -108,12 +108,15 @@ void setNodeInfo(Digraph g, Node node, InfoNode info) {
 
 Edge addEdge(Digraph g, Node from, Node to, InfoEdge info) {
     StDigraph *graph = g;
-
-    Edge newEdge = insereFim(graph->adjacency[from], info, from, to);  // inserindo na lista de adjacencia de from o nó to (from-aresta-to)
-    graph->nEdges++;
-    setEdgeInfo(g, newEdge, info);
-
-    return newEdge;
+    
+    if(graph->adjacency[from]) {
+        Edge newEdge = insereFim(graph->adjacency[from], info, from, to);  // inserindo na lista de adjacencia de from o nó to (from-aresta-to)
+        graph->nEdges++;
+        // printf("%p\n", newEdge);
+        // setEdgeInfo(g, newEdge, info);
+        return newEdge;
+    }
+    return NULL;
 }
 
 Edge getEdge(Digraph g, Node from, Node to) {

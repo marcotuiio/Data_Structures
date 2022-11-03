@@ -24,18 +24,22 @@ Digraph readVia(char *bedVia) {
 
         } else if (!strcmp(tipo, "e")) {
             fscanf(via, "%s %s %s %s %lf %lf %s", i, j, ldir, lesq, &cmp, &vm, nomeEdge);
-            InfoEdge infoE = createInfoEdge(vm, cmp, ldir, lesq, nomeEdge);
-            addEdge(g, getNode(g, i), getNode(g, j), infoE);
+            Node from = getNode(g, i);
+            Node to = getNode(g, j);
+            if (from != -1 && to != -1) {
+                InfoEdge infoE = createInfoEdge(vm, cmp, ldir, lesq, nomeEdge);
+                addEdge(g, from, to, infoE);
+            }
         }
         strcpy(tipo, " ");
     }
+    printf("posic: %d\n", posic);
     fclose(via);
     return g;
 }
 
 FILE *openVia(char *bedVia) {
     FILE *via = fopen(bedVia, "r");
-    printf("Via %s\n", bedVia);
     if (!via) {
         printf("ERRO NA CRIAÇÃO DO VIA\n");
         exit(1);

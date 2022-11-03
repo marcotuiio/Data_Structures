@@ -12,6 +12,12 @@
 Lista criaLista();  // createList
 // Cria e retorna uma lista vazia;
 
+void setXY(Lista l, double x, double y);
+// Sets the x and y coordinates of the given list
+
+void getXY(Lista l, double *x, double *y);
+// Gets the x and y coordinates of the given list
+
 void setId(Lista l, char *id);
 // seta o nome do nó
 
