@@ -10,9 +10,8 @@ typedef struct StListEdge {
 
 typedef struct StListVertex {
     InfoNode valueNode;
-    bool visited;
+    char visitedType;  // 'w' = white, 'g' = gray, 'b' = black 
     char id[30];
-    double x, y;
     StListEdge *inicio;
     StListEdge *fim;
 } StListVertex;
@@ -33,18 +32,6 @@ void setId(Lista l, char *id) {
 char *getId(Lista l) {
     StListVertex *lista = l;
     return lista->id;
-}
-
-void setXY(Lista l, double x, double y) {
-    StListVertex *lista = l;
-    lista->x = x;
-    lista->y = y;
-}
-
-void getXY(Lista l, double *x, double *y) {
-    StListVertex *lista = l;
-    *x = lista->x;
-    *y = lista->y;
 }
 
 void printList(Lista l) {
@@ -77,7 +64,7 @@ Edge encontraAresta(Lista l, Node from, Node to) {
     return NULL;
 }
 
-Edge insereFim(Lista l, void *n, Node from, Node to) {
+Edge insereFim(Lista l, InfoEdge n, Node from, Node to) {
     StListVertex *lista = l;
 
     // Cria celula
@@ -193,14 +180,14 @@ void removeAresta(Lista l, void *n) {
     free(celulaARemover);
 }
 
-void setVisited(Lista l, bool b) {
+void setVisited(Lista l, char b) {
     StListVertex *lista = l;
-    lista->visited = b;
+    lista->visitedType = b;
 }
 
-bool getVisited(Lista l) {
+char getVisited(Lista l) {
     StListVertex *lista = l;
-    return lista->visited;
+    return lista->visitedType;
 }
 
 void setEnabled(Edge e, bool b) {

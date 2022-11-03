@@ -18,12 +18,6 @@ void setId(Lista l, char *id);
 char *getId(Lista l);
 // Retorna o nome do node
 
-void setXY(Lista l, double x, double y);
-// Define as coordenadas do nó
-
-void getXY(Lista l, double *x, double *y);
-// Retorna por referencia as coordenadas do nó
-
 void printList(Lista l);
 // * Percorre a lista e exibe o valor de cada célula armazenada
 
@@ -31,7 +25,7 @@ Edge encontraAresta(Lista l, Node from, Node to);
 // * n deve indicar um elemento existente em L.
 // * retorna o valor do item da lista indicado por n.
 
-Edge insereFim(Lista l, void *n, Node from, Node to);  // insert
+Edge insereFim(Lista l, InfoEdge n, Node from, Node to);  // insert
 // * Insere o item n no final da lista L. O comprimento da
 // lista  ́e acrescido de 1 elemento.
 
@@ -50,10 +44,10 @@ void removeAresta(Lista l, void* n);  // remove
 // comprimento da lista  ́e diminu ́ıdo de 1 elemento. O indicador n deixa de
 // indicar um elemento válido de L.
 
-void setVisited(Lista l, bool b);
+void setVisited(Lista l, char b);
 // * seta o valor de visited para b
 
-bool getVisited(Lista l);
+char getVisited(Lista l);
 // * retorna o valor de visited
 
 void setEnabled(Edge e, bool b);

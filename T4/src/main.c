@@ -15,7 +15,7 @@ int main(int argc, char* argv[]) {
     Rb my_rb = createRB(0);
     readParam(argc, argv, my_paths, my_ctrl);
 
-    if (checkBED(my_ctrl) && checkGEO(my_ctrl) && checkBSD(my_ctrl)) {
+    if (checkBED(my_ctrl) && checkGEO(my_ctrl) && checkVIA(my_ctrl) && checkBSD(my_ctrl)) {
         puts(getBsdGeoSvg(my_paths));
         readGeo(getBedGeo(my_paths), my_rb);
         my_graph = readVia(getBedVia(my_paths));

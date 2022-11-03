@@ -18,13 +18,14 @@ Digraph readVia(char *bedVia) {
         if (!strcmp(tipo, "v")) {
             fscanf(via, "%s %lf %lf", id, &x, &y);
             setNodeName(g, posic, id);
-            setNodeXY(g, posic, x, y);
+            InfoNode infoV = createInfoVertex(x, y);
+            setNodeInfo(g, posic, infoV);
             posic++;
 
         } else if (!strcmp(tipo, "e")) {
             fscanf(via, "%s %s %s %s %lf %lf %s", i, j, ldir, lesq, &cmp, &vm, nomeEdge);
-            InfoEdge info = createInfoEdge(vm, cmp, ldir, lesq, nomeEdge);
-            addEdge(g, getNode(g, i), getNode(g, j), info);
+            InfoEdge infoE = createInfoEdge(vm, cmp, ldir, lesq, nomeEdge);
+            addEdge(g, getNode(g, i), getNode(g, j), infoE);
         }
         strcpy(tipo, " ");
     }
@@ -34,6 +35,7 @@ Digraph readVia(char *bedVia) {
 
 FILE *openVia(char *bedVia) {
     FILE *via = fopen(bedVia, "r");
+    printf("Via %s\n", bedVia);
     if (!via) {
         printf("ERRO NA CRIAÇÃO DO VIA\n");
         exit(1);

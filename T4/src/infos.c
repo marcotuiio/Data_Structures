@@ -15,6 +15,10 @@ typedef struct StInfoEdge {
     char ldir[30], lesq[30], nome[30];
 } StInfoEdge;
 
+typedef struct StInfoVertex{
+    double x, y;
+} StInfoVertex;
+
 void *createDetails() {
     StDetails *details = calloc(1, sizeof(StDetails));
     strcpy(details->sw, "zzzzzzzzz");
@@ -49,6 +53,14 @@ InfoEdge createInfoEdge(double vm, double cmp, char *ldir, char *lesq, char *nom
     strcpy(info->ldir, ldir);  // se nao tiver nennhuma quadra = "-"
     strcpy(info->lesq, lesq);  // se nao tiver nennhuma quadra = "-"
     strcpy(info->nome, nomeEdge);
+
+    return info;
+}
+
+InfoNode createInfoVertex(double x, double y) {
+    StInfoVertex *info = calloc(1, sizeof(StInfoVertex));
+    info->x = x;
+    info->y = y;
 
     return info;
 }
@@ -134,4 +146,14 @@ char *getLesqEdge(InfoEdge info) {
 char *getNomeEdge(InfoEdge info) {
     StInfoEdge *i = info;
     return i->nome;
+}
+
+double getXVertex(InfoNode info) {
+    StInfoVertex *i = info;
+    return i->x;
+}
+
+double getYVertex(InfoNode info) {
+    StInfoVertex *i = info;
+    return i->y;
 }

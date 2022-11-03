@@ -15,6 +15,9 @@ InfoRb createInfoRb(char* cep, double x, double y, double w, double h, void* det
 InfoEdge createInfoEdge(double vm, double cmp, char* ldir, char* lesq, char* nomeEdge);
 // Creates a new InfoEdge with the given values
 
+InfoNode createInfoVertex(double x, double y);
+// Creates a new InfoNode with the given coordinates
+
 char* getSW(InfoRb info);
 // Returns the border width of the given details
 
@@ -62,5 +65,11 @@ char* getLEsqEdge(InfoEdge info);
 
 char *getNomeEdge(InfoEdge info);
 // Returns the name of the given InfoEdge
+
+double getXVertex(InfoNode info);
+// Returns the x coordinate of the given InfoNode
+
+double getYVertex(InfoNode info);
+// Returns the y coordinate of the given InfoNode
 
 #endif

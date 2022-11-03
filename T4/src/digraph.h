@@ -75,11 +75,6 @@ void setNodeName(Digraph g, Node n, char *nome);
 void addVerticesNames(Digraph g, char *nomes[], int nNomes);
 
 /*
-   Associa ao Node n as coordenadas (x,y) no plano.
-*/
-void setNodeXY(Digraph g, Node n, double x, double y);
-
-/*
    Retorna no' cujo de nome e' "nome". Retorna -1, caso o nao
    exista no com o nome especificado.
 */

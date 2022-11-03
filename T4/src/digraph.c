@@ -85,11 +85,6 @@ void addVerticesNames(Digraph g, char *nomes[], int nNomes) {
     }
 }
 
-void setNodeXY(Digraph g, Node n, double x, double y) {
-    StDigraph *graph = g;
-    setXY(graph->adjacency[n], x, y);
-}
-
 Node getNode(Digraph g, char *nome) {
     StDigraph *graph = g;
 
@@ -223,7 +218,7 @@ void getEdges(Digraph g, Lista arestas) {
 bool dfs(Digraph g, procEdge treeEdge, procEdge forwardEdge, procEdge returnEdge, procEdge crossEdge, dfsRestarted newTree, int start, void *extra) {
     StDigraph *graph = g;
 
-    setVisited(graph->adjacency[start], true);
+    setVisited(graph->adjacency[start], 'w');
     // fazer varios ifs in invocar cada função corretamente
     // treeEdge(graph->adjacency[0], NULL, 0, 0, extra);
     // forwardEdge(graph->adjacency[0], NULL, 0, 0, extra);
@@ -231,7 +226,7 @@ bool dfs(Digraph g, procEdge treeEdge, procEdge forwardEdge, procEdge returnEdge
     // crossEdge(graph->adjacency[0], NULL, 0, 0, extra);
 
     for (int i = 0; i < graph->nVertex; i++) {
-        if (!getVisited(graph->adjacency[start])) {
+        if (getVisited(graph->adjacency[start]) == 'w') {
             dfs(graph, treeEdge, forwardEdge, returnEdge, crossEdge, newTree, start, extra);
         }
     }
@@ -241,12 +236,12 @@ bool dfs(Digraph g, procEdge treeEdge, procEdge forwardEdge, procEdge returnEdge
 bool bfs(Digraph g, procEdge discoverNode, int start) {
     StDigraph *graph = g;
     for (int i = 0; i < graph->nVertex; i++) {
-        setVisited(graph->adjacency[i], false);
+        setVisited(graph->adjacency[i], 'w');
     }
 
     void *queue = createQueue();
 
-    setVisited(graph->adjacency[start], true);
+    setVisited(graph->adjacency[start], 'g');
     enfila(queue, getInfoFromVertex(graph->adjacency[start]));
 
     while (!isEmpty(queue)) {
@@ -254,8 +249,8 @@ bool bfs(Digraph g, procEdge discoverNode, int start) {
         printf("Visiting vetex %p\n", currentVertex);
 
         for (int adjVertex = 0; adjVertex < graph->nVertex; adjVertex++) {
-            if (!getVisited(graph->adjacency[adjVertex])) {
-                setVisited(graph->adjacency[adjVertex], true);
+            if (getVisited(graph->adjacency[adjVertex]) == 'w') {
+                setVisited(graph->adjacency[adjVertex], 'g');
                 enfila(queue, graph->adjacency[adjVertex]);
             }
         }
