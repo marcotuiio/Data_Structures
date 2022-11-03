@@ -516,9 +516,15 @@ int heightOfLevel(RbNode n, RbNode nil) {
     }
 }
 
-void killRB(Rb t) {
+void killRB(Rb t, void **details) {
     Red_Black_Root *red_black_tree = t;
-    free(getDetails(red_black_tree->root->value));
+    for (int i = 0; i < 30; i++) {
+        if (details[i]) {
+            free(details[i]);
+        }
+    }
+    free(details);
+    
     freeAux(red_black_tree->root, red_black_tree->nil);
     free(red_black_tree->nil);
     free(red_black_tree);

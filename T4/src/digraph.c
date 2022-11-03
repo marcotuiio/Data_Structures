@@ -263,7 +263,7 @@ bool bfs(Digraph g, procEdge discoverNode, int start) {
 
 void killGraph(Digraph g) {
     StDigraph *graph = g;
-
+    printf("Killing graph qith %d nodes and %d edges\n", graph->nVertex, graph->nEdges);
     for (int i = 0; i < graph->nVertex; i++) {
         freeList(graph->adjacency[i]);
         free(getInfoFromVertex(graph->adjacency[i]));

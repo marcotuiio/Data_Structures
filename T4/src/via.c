@@ -33,7 +33,6 @@ Digraph readVia(char *bedVia) {
         }
         strcpy(tipo, " ");
     }
-    printf("posic: %d\n", posic);
     fclose(via);
     return g;
 }

@@ -60,7 +60,7 @@ void percursoLargura(Rb t, FvisitaNo fVisita, void *aux);  // levelOrder
 
 void percursoProfundidade(Rb t, FvisitaNo fVisita, void *aux);  // preOrder
 
-void killRB(Rb t);
+void killRB(Rb t, void **details);
 // Libera a memoria alocada para a árvore.
 
 #endif

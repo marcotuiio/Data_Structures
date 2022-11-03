@@ -19,12 +19,12 @@ typedef struct StInfoVertex{
     double x, y;
 } StInfoVertex;
 
-void *createDetails() {
+void *createDetails(char *sw, char *cfill, char *cstrk) {
     StDetails *details = calloc(1, sizeof(StDetails));
-    strcpy(details->sw, "zzzzzzzzz");
-    strcpy(details->cfill, "zzzzzzzzz");
-    strcpy(details->cstrk, "zzzzzzzzz");
-
+    strcpy(details->sw, sw);
+    strcpy(details->cfill, cfill);
+    strcpy(details->cstrk, cstrk);
+    
     return details;
 }
 

@@ -3,7 +3,7 @@
 #ifndef INFOS_H
 #define INFOS_H
 
-void* createDetails();
+void *createDetails(char *sw, char *cfill, char *cstrk);
 // Creates a new details pattern
 
 void* getDetails(InfoRb info);
