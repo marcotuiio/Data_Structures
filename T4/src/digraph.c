@@ -256,12 +256,12 @@ bool dfs(Digraph g, procEdge treeEdge, procEdge forwardEdge, procEdge returnEdge
 
     graph->time = 0;
     for (int j = 0; j < graph->nVertex; j++) {
-        setVisited(graph->adjacency[j], 'w');
+        setVisited(graph->adjacency[j], 'w');  // marca todos os nós como não visitados
     }
 
     for (int i = 0; i < graph->nVertex; i++) {
-        if (getVisited(graph->adjacency[i]) == 'w') {
-            dfsTraverse(graph, treeEdge, forwardEdge, returnEdge, crossEdge, newTree, i, extra);
+        if (getVisited(graph->adjacency[i]) == 'w') {  // se o nó não foi visitado
+            dfsTraverse(graph, treeEdge, forwardEdge, returnEdge, crossEdge, newTree, i, extra); 
         }
     }
     return true;
@@ -271,26 +271,31 @@ bool bfs(Digraph g, procEdge discoverNode) {  // largura
     StDigraph *graph = g;
     int start = 0;
     for (int i = 0; i < graph->nVertex; i++) {
-        setVisited(graph->adjacency[i], 'w');
-        setD(graph->adjacency[i], -1);
+        setVisited(graph->adjacency[i], 'w');  // marca todos os nós como não visitados
+        setD(graph->adjacency[i], -1);  
     }
 
     void *queue = createQueue();
 
     setVisited(graph->adjacency[start], 'g');
     setD(graph->adjacency[start], 0);
-    enfila(queue, graph->adjacency[start]);
+    enfila(queue, graph->adjacency[start]);  // enfileira o nó inicial
 
     while (!isEmpty(queue)) {
-        void *currentVertex = desenfila(queue);
+        void *currentVertex = desenfila(queue);  // desenfila o primeiro nó da fila (Lista *)
+        int j = 0;
+        for (void *n = getFirst(currentVertex); n; n = getNext(currentVertex)) {  // percorre a lista de adjacencia do nó atual
 
-        for (int adjVertex = 0; adjVertex < graph->nVertex; adjVertex++) {
-            if (getVisited(graph->adjacency[adjVertex]) == 'w') {
-                discoverNode(currentVertex, graph->adjacency[adjVertex], getTD(graph->adjacency[adjVertex]), getTD(graph->adjacency[adjVertex]), NULL);
-                setVisited(graph->adjacency[adjVertex], 'g');
-                setD(graph->adjacency[adjVertex], getD(currentVertex) + 1);
-                enfila(queue, graph->adjacency[adjVertex]);
+            if (getVisited(n) == 'w') {  // se o nó adjacente não foi visitado
+                // se o nó atual e o nó adjacente são adjacentes
+                // aresta: currentVertex -> n
+                Edge e = getEdge(g, getNode(g, getId(currentVertex)), j);
+                discoverNode(currentVertex, e, getTD(e), getTF(e), NULL);
+                setVisited(n, 'g');  // marca o nó adjacente como visitado
+                setD(e, getD(currentVertex) + 1);  // marca a distância do nó adjacente
+                enfila(queue, n);  // enfileira o nó adjacente
             }
+            j++;
         }
     }
     return true;
