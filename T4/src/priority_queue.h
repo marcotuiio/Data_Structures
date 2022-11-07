@@ -52,7 +52,7 @@ int priorityPQ(PQueue pq, Chave ch);
   Retira e retorna o elemento de maior prioridade da fila "pq".
   Retorna NULL se a fila estiver vazia.
 */
-PQInfo removeMaximunPQ(PQueue pq);
+PQInfo removeMaximumPQ(PQueue pq);
 
 /*
   Retorna (sem retirar) o elemento de maior prioridade em "pq".

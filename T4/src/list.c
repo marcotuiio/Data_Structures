@@ -11,7 +11,6 @@ typedef struct StListEdge {
 typedef struct StListVertex {
     InfoNode valueNode;
     int td, tf, d;  // tempo de descoberta, tempo de finalização e distância
-    int dijkstraProcessed;  // 0 = não processado, 1 = processado, 2 = processado e inserido na fila de prioridade
     char visitedType;  // 'w' = white, 'g' = gray, 'b' = black
     char id[40];
     StListEdge *inicio;
@@ -63,16 +62,6 @@ void setD(Lista l, int d) {
 int getD(Lista l) {
     StListVertex *lista = l;
     return lista->d;
-}
-
-void setDijkstraProcessed(Lista l, int dijkstraProcessed) {
-    StListVertex *lista = l;
-    lista->dijkstraProcessed = dijkstraProcessed;
-}
-
-int getDijkstraProcessed(Lista l) {
-    StListVertex *lista = l;
-    return lista->dijkstraProcessed;
 }
 
 void printList(Lista l) {

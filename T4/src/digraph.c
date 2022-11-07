@@ -1,8 +1,8 @@
 #include "digraph.h"
 
 #include "list.h"
-#include "queue.h"
 #include "priority_queue.h"
+#include "queue.h"
 
 typedef struct StDigraph {
     Lista *adjacency;
@@ -223,26 +223,30 @@ void getEdges(Digraph g, Lista arestas) {
 void dfsTraverse(Digraph g, procEdge treeEdge, procEdge forwardEdge, procEdge returnEdge, procEdge crossEdge, dfsRestarted newTree, int posic, void *extra) {
     StDigraph *graph = g;
 
-    newTree(graph, extra); // chama fução que deve criar floresta devido ao percurso em profundidade
+    newTree(graph, extra);  // chama fução que deve criar floresta devido ao percurso em profundidade
     setTD(graph->adjacency[posic], graph->time);
-    graph->time++;  
+    graph->time++;
     setVisited(graph->adjacency[posic], 'g');
     setD(graph->adjacency[posic], graph->time);
 
     for (Edge e = getFirst(graph->adjacency[posic]); e; e = getNext(graph->adjacency[posic])) {  // percorre a lista de adjacencia do nó
 
-        if (getVisited(graph->adjacency[getToAresta(e)]) == 'w') {     // se o nó adjacente não foi visitado
+        if (getVisited(graph->adjacency[getToAresta(e)]) == 'w') {  // se o nó adjacente não foi visitado
+            printf("Tree Edge: %s -> %s\n", getId(graph->adjacency[posic]), getId(graph->adjacency[getToAresta(e)]));
             treeEdge(graph->adjacency, e, getTD(e), getTF(e), extra);  // chama a função treeEdge
             dfsTraverse(g, treeEdge, forwardEdge, returnEdge, crossEdge, newTree, getToAresta(e), extra);
 
-        } else if (getVisited(graph->adjacency[getToAresta(e)]) == 'g') {           // se o nó adjacente é cinza
+        } else if (getVisited(graph->adjacency[getToAresta(e)]) == 'g') {  // se o nó adjacente é cinza
+            printf("Forward Edge: %s -> %s\n", getId(graph->adjacency[posic]), getId(graph->adjacency[getToAresta(e)]));
             forwardEdge(graph->adjacency[posic], e, posic, getToAresta(e), extra);  // chama a função forwardEdge
 
         } else if (getVisited(graph->adjacency[getToAresta(e)]) == 'b') {                    // se o nó adjacente é preto
             if (getTD(graph->adjacency[posic]) < getTD(graph->adjacency[getToAresta(e)])) {  // se o nó adjacente foi visitado depois do nó atual
-                returnEdge(graph->adjacency[posic], e, posic, getToAresta(e), extra);        // chama a função returnEdge
+                printf("Return Edge: %s -> %s\n", getId(graph->adjacency[posic]), getId(graph->adjacency[getToAresta(e)]));
+                returnEdge(graph->adjacency[posic], e, posic, getToAresta(e), extra);  // chama a função returnEdge
 
-            } else {                                                                  // se o nó adjacente foi visitado antes do nó atual
+            } else {  // se o nó adjacente foi visitado antes do nó atual
+                printf("Cross Edge: %s -> %s\n", getId(graph->adjacency[posic]), getId(graph->adjacency[getToAresta(e)]));
                 crossEdge(graph->adjacency[posic], e, posic, getToAresta(e), extra);  // chama a função crossEdge
             }
         }
@@ -262,7 +266,7 @@ bool dfs(Digraph g, procEdge treeEdge, procEdge forwardEdge, procEdge returnEdge
 
     for (int i = 0; i < graph->nVertex; i++) {
         if (getVisited(graph->adjacency[i]) == 'w') {  // se o nó não foi visitado
-            dfsTraverse(graph, treeEdge, forwardEdge, returnEdge, crossEdge, newTree, i, extra); 
+            dfsTraverse(graph, treeEdge, forwardEdge, returnEdge, crossEdge, newTree, i, extra);
         }
     }
     return true;
@@ -273,7 +277,7 @@ bool bfs(Digraph g, procEdge discoverNode) {  // largura
     int start = 0;
     for (int i = 0; i < graph->nVertex; i++) {
         setVisited(graph->adjacency[i], 'w');  // marca todos os nós como não visitados
-        setD(graph->adjacency[i], -1);  
+        setD(graph->adjacency[i], -1);
     }
 
     void *queue = createQueue();
@@ -291,10 +295,11 @@ bool bfs(Digraph g, procEdge discoverNode) {  // largura
                 // se o nó atual e o nó adjacente são adjacentes
                 // aresta: currentVertex -> n
                 Edge e = getEdge(g, getNode(g, getId(currentVertex)), j);
+                printf("Discovering edge %s -> %s\n", getId(currentVertex), getId(n));
                 discoverNode(graph, e, getTD(n), getTF(n), NULL);
-                setVisited(n, 'g');  // marca o nó adjacente como visitado
+                setVisited(n, 'g');                // marca o nó adjacente como visitado
                 setD(n, getD(currentVertex) + 1);  // marca a distância do nó adjacente
-                enfila(queue, n);  // enfileira o nó adjacente
+                enfila(queue, n);                  // enfileira o nó adjacente
             }
             j++;
         }
@@ -302,11 +307,13 @@ bool bfs(Digraph g, procEdge discoverNode) {  // largura
     return true;
 }
 
+/////////////////////////// DIJKSTRA ///////////////////////////
+
 void initDijkstra(Digraph g, int start) {
     StDigraph *graph = g;
     for (int i = 0; i < graph->nVertex; i++) {  // para todos os vertices
-        setD(graph->adjacency[i], -1);  // marca a distância como infinito
-        setDijkstraProcessed(graph->adjacency[i], 0);  // marca o nó como não processado
+        setD(graph->adjacency[i], -1);          // marca a distância como infinito
+        setVisited(graph->adjacency[i], 'w');   // marca o nó como não processado
     }
     setD(graph->adjacency[start], 0);  // marca a distância do nó inicial como 0
 }
@@ -318,16 +325,56 @@ void relaxDijkstra(Digraph g, Node u, Node v, double w) {  // u é o nó atual, 
     }
 }
 
-void fullDijkstra(Digraph g, double w, Node start, ComparaChavesPQ comparator) {
-    StDigraph *graph = g;
-    initDijkstra(g, start);
-    
-    // quem devo inserir na fila de prioridade?
-    PQueue *pq = createPQ(graph->nVertex, comparator);
-    while (!isEmptyPQ(pq)) {
-        // oq fazer aq?
+int compareDijkstra(Chave ch1, Chave ch2) {
+    double *d1 = ch1;
+    double *d2 = ch2;
+    if (d1 < d2) {
+        return -1;
+    } else if (d1 > d2) {
+        return 1;
+    } else {
+        return 0;
     }
 }
+
+void fullDijkstra(Digraph g, double w, Node src, Node dest, ComparaChavesPQ comparator) {
+    StDigraph *graph = g;
+
+    if (src == -1) {
+        printf("Source node not found\n");
+    }
+    if (dest == -1) {
+        printf("Destination node not found\n");
+    }
+
+    initDijkstra(g, src);
+
+    PQueue *pq = createPQ(graph->nVertex, compareDijkstra);
+    int prio = 0;
+    insertPQ(pq, getNodeInfo(g, src), graph->adjacency[src], prio);
+
+    while (src != dest) {  // !isEmptyPQ(pq)
+        PQInfo maxPrio = removeMaximumPQ(pq);
+        Node u = getNode(g, getId(maxPrio));
+        setVisited(graph->adjacency[u], 'b');  // marca o nó como processado
+
+        for (void *n = getFirst(graph->adjacency[u]); n; n = getNext(graph->adjacency[u])) {  // percorre a lista de adjacencia do nó atual
+
+            if (getVisited(n) == 'w') {  // se o nó adjacente não foi processado
+                // Edge e = getEdge(g, getNode(g, getId(graph->adjacency[u])), j);
+                Node nVert = getNode(g, getId(n));
+                relaxDijkstra(g, u, getNode(g, getId(n)), w);  // Compara e atribui os pesos das arestas
+                insertPQ(pq, getNodeInfo(g, nVert), graph->adjacency[getNode(g, getId(n))], prio);
+                prio += 1;
+            }
+        }
+
+        PQInfo *info = getMaximumPQ(pq);
+        src = getNode(g, getId(info));
+    }
+}
+
+/////////////////////////// END_DIJKSTRA ///////////////////////////
 
 void killGraph(Digraph g) {
     StDigraph *graph = g;

@@ -36,12 +36,6 @@ void setD(Lista l, int d);
 int getD(Lista l);
 // retorna a distância
 
-void setDijkstraProcessed(Lista l, int dijkstraProcessed);
-// adiciona o valor de dijkstraProcessed    
-
-int getDijkstraProcessed(Lista l);
-// retorna o valor de dijkstraProcessed
-
 void printList(Lista l);
 // * Percorre a lista e exibe o valor de cada célula armazenada
 

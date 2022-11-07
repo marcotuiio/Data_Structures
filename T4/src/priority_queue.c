@@ -90,7 +90,7 @@ int priorityPQ(PQueue pq, Chave ch) {
     return -1;
 }
 
-PQInfo removeMaximunPQ(PQueue pq) {
+PQInfo removeMaximumPQ(PQueue pq) {
     if (isEmptyPQ(pq)) {
         return NULL;  // se a fila estiver vazia, retorna NULL
     }
