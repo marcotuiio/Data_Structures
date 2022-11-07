@@ -18,23 +18,29 @@ void setId(Lista l, char *id);
 char *getId(Lista l);
 // Retorna o nome do node
 
-void setTD(Edge e, int td);
+void setTD(Lista l, int td);
 // adiciona o tempo de descoberta
 
-int getTD(Edge e);
+int getTD(Lista l);
 // retorna o tempo de descoberta
 
-void setTF(Edge e, int tf);
+void setTF(Lista l, int tf);
 // adiciona o tempo de finalização
 
-int getTF(Edge e);
+int getTF(Lista l);
 // retorna o tempo de finalização
 
-void setD(Edge e, int d);
+void setD(Lista l, int d);
 // adiciona a distância
 
-int getD(Edge e);
+int getD(Lista l);
 // retorna a distância
+
+void setDijkstraProcessed(Lista l, int dijkstraProcessed);
+// adiciona o valor de dijkstraProcessed    
+
+int getDijkstraProcessed(Lista l);
+// retorna o valor de dijkstraProcessed
 
 void printList(Lista l);
 // * Percorre a lista e exibe o valor de cada célula armazenada

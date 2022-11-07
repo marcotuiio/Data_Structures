@@ -5,12 +5,13 @@ typedef struct StListEdge {
     struct StListEdge *next;
     struct StListEdge *prev;
     Node from, to;
-    int td, tf, d;  // tempo de descoberta, tempo de finalização e distância
     bool enabled;
 } StListEdge;
 
 typedef struct StListVertex {
     InfoNode valueNode;
+    int td, tf, d;  // tempo de descoberta, tempo de finalização e distância
+    int dijkstraProcessed;  // 0 = não processado, 1 = processado, 2 = processado e inserido na fila de prioridade
     char visitedType;  // 'w' = white, 'g' = gray, 'b' = black
     char id[40];
     StListEdge *inicio;
@@ -34,34 +35,44 @@ char *getId(Lista l) {
     return lista->id;
 }
 
-void setTD(Edge e, int td) {
-    StListEdge *edge = e;
-    edge->td = td;
+void setTD(Lista l, int td) {
+    StListVertex *lista = l;
+    lista->td = td;
 }
 
-int getTD(Edge e) {
-    StListEdge *edge = e;
-    return edge->td;
+int getTD(Lista l) {
+    StListVertex *lista = l;
+    return lista->td;
 }
 
-void setTF(Edge e, int tf) {
-    StListEdge *edge = e;
-    edge->tf = tf;
+void setTF(Lista l, int tf) {
+    StListVertex *lista = l;
+    lista->tf = tf;
 }
 
-int getTF(Edge e) {
-    StListEdge *edge = e;
-    return edge->tf;
+int getTF(Lista l) {
+    StListVertex *lista = l;
+    return lista->tf;
 }
 
-void setD(Edge e, int d) {
-    StListEdge *edge = e;
-    edge->d = d;
+void setD(Lista l, int d) {
+    StListVertex *lista = l;
+    lista->d = d;
 }
 
-int getD(Edge e) {
-    StListEdge *edge = e;
-    return edge->d;
+int getD(Lista l) {
+    StListVertex *lista = l;
+    return lista->d;
+}
+
+void setDijkstraProcessed(Lista l, int dijkstraProcessed) {
+    StListVertex *lista = l;
+    lista->dijkstraProcessed = dijkstraProcessed;
+}
+
+int getDijkstraProcessed(Lista l) {
+    StListVertex *lista = l;
+    return lista->dijkstraProcessed;
 }
 
 void printList(Lista l) {

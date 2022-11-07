@@ -2,6 +2,7 @@
 
 #include "list.h"
 #include "queue.h"
+#include "priority_queue.h"
 
 typedef struct StDigraph {
     Lista *adjacency;
@@ -222,9 +223,9 @@ void getEdges(Digraph g, Lista arestas) {
 void dfsTraverse(Digraph g, procEdge treeEdge, procEdge forwardEdge, procEdge returnEdge, procEdge crossEdge, dfsRestarted newTree, int posic, void *extra) {
     StDigraph *graph = g;
 
-    newTree(graph, extra);
+    newTree(graph, extra); // chama fução que deve criar floresta devido ao percurso em profundidade
     setTD(graph->adjacency[posic], graph->time);
-    graph->time++;
+    graph->time++;  
     setVisited(graph->adjacency[posic], 'g');
     setD(graph->adjacency[posic], graph->time);
 
@@ -246,9 +247,9 @@ void dfsTraverse(Digraph g, procEdge treeEdge, procEdge forwardEdge, procEdge re
             }
         }
     }
+    graph->time++;
     setVisited(graph->adjacency[posic], 'b');
     setTF(graph->adjacency[posic], graph->time);
-    graph->time++;
 }
 
 bool dfs(Digraph g, procEdge treeEdge, procEdge forwardEdge, procEdge returnEdge, procEdge crossEdge, dfsRestarted newTree, void *extra) {  // profundidade
@@ -290,15 +291,42 @@ bool bfs(Digraph g, procEdge discoverNode) {  // largura
                 // se o nó atual e o nó adjacente são adjacentes
                 // aresta: currentVertex -> n
                 Edge e = getEdge(g, getNode(g, getId(currentVertex)), j);
-                discoverNode(currentVertex, e, getTD(e), getTF(e), NULL);
+                discoverNode(graph, e, getTD(n), getTF(n), NULL);
                 setVisited(n, 'g');  // marca o nó adjacente como visitado
-                setD(e, getD(currentVertex) + 1);  // marca a distância do nó adjacente
+                setD(n, getD(currentVertex) + 1);  // marca a distância do nó adjacente
                 enfila(queue, n);  // enfileira o nó adjacente
             }
             j++;
         }
     }
     return true;
+}
+
+void initDijkstra(Digraph g, int start) {
+    StDigraph *graph = g;
+    for (int i = 0; i < graph->nVertex; i++) {  // para todos os vertices
+        setD(graph->adjacency[i], -1);  // marca a distância como infinito
+        setDijkstraProcessed(graph->adjacency[i], 0);  // marca o nó como não processado
+    }
+    setD(graph->adjacency[start], 0);  // marca a distância do nó inicial como 0
+}
+
+void relaxDijkstra(Digraph g, Node u, Node v, double w) {  // u é o nó atual, v é o nó adjacente, w é o peso da aresta
+    StDigraph *graph = g;
+    if (getD(graph->adjacency[v]) > getD(graph->adjacency[u]) + w) {  // se a distância do nó adjacente for maior que a distância do nó atual + o peso da aresta
+        setD(graph->adjacency[v], getD(graph->adjacency[u]) + w);
+    }
+}
+
+void fullDijkstra(Digraph g, double w, Node start, ComparaChavesPQ comparator) {
+    StDigraph *graph = g;
+    initDijkstra(g, start);
+    
+    // quem devo inserir na fila de prioridade?
+    PQueue *pq = createPQ(graph->nVertex, comparator);
+    while (!isEmptyPQ(pq)) {
+        // oq fazer aq?
+    }
 }
 
 void killGraph(Digraph g) {
