@@ -5,13 +5,13 @@ typedef struct StListEdge {
     struct StListEdge *next;
     struct StListEdge *prev;
     Node from, to;
+    int td, tf, d;  // tempo de descoberta, tempo de finalização e distância
     bool enabled;
 } StListEdge;
 
 typedef struct StListVertex {
     InfoNode valueNode;
-    double x, y;
-    char visitedType;  // 'w' = white, 'g' = gray, 'b' = black 
+    char visitedType;  // 'w' = white, 'g' = gray, 'b' = black
     char id[40];
     StListEdge *inicio;
     StListEdge *fim;
@@ -21,7 +21,6 @@ Lista criaLista() {
     StListVertex *novaLista = calloc(1, sizeof(StListVertex));
     novaLista->inicio = NULL;
     novaLista->fim = NULL;
-
     return novaLista;
 }
 
@@ -33,6 +32,36 @@ void setId(Lista l, char *id) {
 char *getId(Lista l) {
     StListVertex *lista = l;
     return lista->id;
+}
+
+void setTD(Edge e, int td) {
+    StListEdge *edge = e;
+    edge->td = td;
+}
+
+int getTD(Edge e) {
+    StListEdge *edge = e;
+    return edge->td;
+}
+
+void setTF(Edge e, int tf) {
+    StListEdge *edge = e;
+    edge->tf = tf;
+}
+
+int getTF(Edge e) {
+    StListEdge *edge = e;
+    return edge->tf;
+}
+
+void setD(Edge e, int d) {
+    StListEdge *edge = e;
+    edge->d = d;
+}
+
+int getD(Edge e) {
+    StListEdge *edge = e;
+    return edge->d;
 }
 
 void printList(Lista l) {

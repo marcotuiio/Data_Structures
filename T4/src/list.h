@@ -12,17 +12,29 @@
 Lista criaLista();  // createList
 // Cria e retorna uma lista vazia;
 
-void setXY(Lista l, double x, double y);
-// Sets the x and y coordinates of the given list
-
-void getXY(Lista l, double *x, double *y);
-// Gets the x and y coordinates of the given list
-
 void setId(Lista l, char *id);
 // seta o nome do nó
 
 char *getId(Lista l);
 // Retorna o nome do node
+
+void setTD(Edge e, int td);
+// adiciona o tempo de descoberta
+
+int getTD(Edge e);
+// retorna o tempo de descoberta
+
+void setTF(Edge e, int tf);
+// adiciona o tempo de finalização
+
+int getTF(Edge e);
+// retorna o tempo de finalização
+
+void setD(Edge e, int d);
+// adiciona a distância
+
+int getD(Edge e);
+// retorna a distância
 
 void printList(Lista l);
 // * Percorre a lista e exibe o valor de cada célula armazenada

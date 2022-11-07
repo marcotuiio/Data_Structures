@@ -197,7 +197,7 @@ void getEdges(Digraph g, Lista arestas);
    A busca em profundidade, eventualmente, pode produzir uma floresta. Neste caso,
    a função newTree é invocada sempre que o percurso for retomado.
 */
-bool dfs(Digraph g, procEdge treeEdge, procEdge forwardEdge, procEdge returnEdge, procEdge crossEdge, dfsRestarted newTree, int start, void *extra);
+bool dfs(Digraph g, procEdge treeEdge, procEdge forwardEdge, procEdge returnEdge, procEdge crossEdge, dfsRestarted newTree, void *extra);
 
 /*
    Percorre o grafo g em largura. Invoca a funcao discoverNode (se != NULL)

@@ -6,6 +6,7 @@
 typedef struct StDigraph {
     Lista *adjacency;
     int nVertex, nEdges;
+    int time;
 } StDigraph;
 
 Digraph createGraph(int nVert) {
@@ -108,8 +109,8 @@ void setNodeInfo(Digraph g, Node node, InfoNode info) {
 
 Edge addEdge(Digraph g, Node from, Node to, InfoEdge info) {
     StDigraph *graph = g;
-    
-    if(graph->adjacency[from]) {
+
+    if (graph->adjacency[from]) {
         Edge newEdge = insereFim(graph->adjacency[from], info, from, to);  // inserindo na lista de adjacencia de from o nó to (from-aresta-to)
         graph->nEdges++;
         // printf("%p\n", newEdge);
@@ -218,42 +219,76 @@ void getEdges(Digraph g, Lista arestas) {
     }
 }
 
-bool dfs(Digraph g, procEdge treeEdge, procEdge forwardEdge, procEdge returnEdge, procEdge crossEdge, dfsRestarted newTree, int start, void *extra) {
+void dfsTraverse(Digraph g, procEdge treeEdge, procEdge forwardEdge, procEdge returnEdge, procEdge crossEdge, dfsRestarted newTree, int posic, void *extra) {
     StDigraph *graph = g;
 
-    setVisited(graph->adjacency[start], 'w');
-    // fazer varios ifs in invocar cada função corretamente
-    // treeEdge(graph->adjacency[0], NULL, 0, 0, extra);
-    // forwardEdge(graph->adjacency[0], NULL, 0, 0, extra);
-    // returnEdge(graph->adjacency[0], NULL, 0, 0, extra);
-    // crossEdge(graph->adjacency[0], NULL, 0, 0, extra);
+    newTree(graph, extra);
+    setTD(graph->adjacency[posic], graph->time);
+    graph->time++;
+    setVisited(graph->adjacency[posic], 'g');
+    setD(graph->adjacency[posic], graph->time);
+
+    for (Edge e = getFirst(graph->adjacency[posic]); e; e = getNext(graph->adjacency[posic])) {  // percorre a lista de adjacencia do nó
+
+        if (getVisited(graph->adjacency[getToAresta(e)]) == 'w') {     // se o nó adjacente não foi visitado
+            treeEdge(graph->adjacency, e, getTD(e), getTF(e), extra);  // chama a função treeEdge
+            dfsTraverse(g, treeEdge, forwardEdge, returnEdge, crossEdge, newTree, getToAresta(e), extra);
+
+        } else if (getVisited(graph->adjacency[getToAresta(e)]) == 'g') {           // se o nó adjacente é cinza
+            forwardEdge(graph->adjacency[posic], e, posic, getToAresta(e), extra);  // chama a função forwardEdge
+
+        } else if (getVisited(graph->adjacency[getToAresta(e)]) == 'b') {                    // se o nó adjacente é preto
+            if (getTD(graph->adjacency[posic]) < getTD(graph->adjacency[getToAresta(e)])) {  // se o nó adjacente foi visitado depois do nó atual
+                returnEdge(graph->adjacency[posic], e, posic, getToAresta(e), extra);        // chama a função returnEdge
+
+            } else {                                                                  // se o nó adjacente foi visitado antes do nó atual
+                crossEdge(graph->adjacency[posic], e, posic, getToAresta(e), extra);  // chama a função crossEdge
+            }
+        }
+    }
+    setVisited(graph->adjacency[posic], 'b');
+    setTF(graph->adjacency[posic], graph->time);
+    graph->time++;
+}
+
+bool dfs(Digraph g, procEdge treeEdge, procEdge forwardEdge, procEdge returnEdge, procEdge crossEdge, dfsRestarted newTree, void *extra) {  // profundidade
+    StDigraph *graph = g;
+
+    graph->time = 0;
+    for (int j = 0; j < graph->nVertex; j++) {
+        setVisited(graph->adjacency[j], 'w');
+    }
 
     for (int i = 0; i < graph->nVertex; i++) {
-        if (getVisited(graph->adjacency[start]) == 'w') {
-            dfs(graph, treeEdge, forwardEdge, returnEdge, crossEdge, newTree, start, extra);
+        if (getVisited(graph->adjacency[i]) == 'w') {
+            dfsTraverse(graph, treeEdge, forwardEdge, returnEdge, crossEdge, newTree, i, extra);
         }
     }
     return true;
 }
 
-bool bfs(Digraph g, procEdge discoverNode, int start) {
+bool bfs(Digraph g, procEdge discoverNode) {  // largura
     StDigraph *graph = g;
+    int start = 0;
     for (int i = 0; i < graph->nVertex; i++) {
         setVisited(graph->adjacency[i], 'w');
+        setD(graph->adjacency[i], -1);
     }
 
     void *queue = createQueue();
 
     setVisited(graph->adjacency[start], 'g');
-    enfila(queue, getInfoFromVertex(graph->adjacency[start]));
+    setD(graph->adjacency[start], 0);
+    enfila(queue, graph->adjacency[start]);
 
     while (!isEmpty(queue)) {
         void *currentVertex = desenfila(queue);
-        printf("Visiting vetex %p\n", currentVertex);
 
         for (int adjVertex = 0; adjVertex < graph->nVertex; adjVertex++) {
             if (getVisited(graph->adjacency[adjVertex]) == 'w') {
+                discoverNode(currentVertex, graph->adjacency[adjVertex], getTD(graph->adjacency[adjVertex]), getTD(graph->adjacency[adjVertex]), NULL);
                 setVisited(graph->adjacency[adjVertex], 'g');
+                setD(graph->adjacency[adjVertex], getD(currentVertex) + 1);
                 enfila(queue, graph->adjacency[adjVertex]);
             }
         }
@@ -263,7 +298,7 @@ bool bfs(Digraph g, procEdge discoverNode, int start) {
 
 void killGraph(Digraph g) {
     StDigraph *graph = g;
-    printf("Killing graph qith %d nodes and %d edges\n", graph->nVertex, graph->nEdges);
+    printf("Killing graph with %d nodes and %d edges\n", graph->nVertex, graph->nEdges);
     for (int i = 0; i < graph->nVertex; i++) {
         freeList(graph->adjacency[i]);
         free(getInfoFromVertex(graph->adjacency[i]));
