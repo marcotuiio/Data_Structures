@@ -11,6 +11,7 @@ typedef struct StListEdge {
 typedef struct StListVertex {
     InfoNode valueNode;
     int td, tf, d;  // tempo de descoberta, tempo de finalização e distância
+    double weightDij;
     char visitedType;  // 'w' = white, 'g' = gray, 'b' = black
     char id[40];
     StListEdge *inicio;
@@ -62,6 +63,16 @@ void setD(Lista l, int d) {
 int getD(Lista l) {
     StListVertex *lista = l;
     return lista->d;
+}
+
+void setWeightDij(Lista l, double weightDij) {
+    StListVertex *lista = l;
+    lista->weightDij = weightDij;
+}
+
+double getWeightDij(Lista l) {
+    StListVertex *lista = l;
+    return lista->weightDij;
 }
 
 void printList(Lista l) {
@@ -310,7 +321,9 @@ void freeList(Lista l) {
         tmp = head;
         head = tmp->next;
 
-        free(tmp->valueEdge);
+        if (tmp->valueEdge) {
+            free(tmp->valueEdge);
+        }
         free(tmp);
     }
 }

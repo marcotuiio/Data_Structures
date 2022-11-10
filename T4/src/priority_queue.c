@@ -107,6 +107,23 @@ PQInfo getMaximumPQ(PQueue pq) {
     return my_pq->head->data;
 }
 
+void fixQueuePrio(PQueue pq) {
+    PriorityQueue *my_pq = pq;
+    QueueNode *aux = my_pq->head;
+    QueueNode *aux2 = aux->next;
+    while (aux2) {
+        if (aux->priority < aux2->priority) {  // se a prioridade do nó for menor que a do próximo nó
+            aux->next = aux2->next;  // o próximo do nó é o próximo do próximo nó
+            aux2->next = my_pq->head;  // o próximo do nó com prioridade maior é a cabeça
+            my_pq->head = aux2;  // o nó com prioridade maior passa a ser a cabeça
+            aux2 = aux->next;  // o aux2 passa a ser o próximo do aux
+        } else {
+            aux = aux->next;  // se a prioridade do nó for maior que a do próximo nó, o aux passa a ser o próximo nó
+            aux2 = aux2->next;  // o aux2 passa a ser o próximo do aux
+        }
+    }
+}
+
 void increasePrioPQ(PQueue pq, Chave ch, int dp) {
     PriorityQueue *my_pq = pq;
     QueueNode *aux = my_pq->head;
@@ -117,4 +134,18 @@ void increasePrioPQ(PQueue pq, Chave ch, int dp) {
         }
         aux = aux->next;
     }
+    fixQueuePrio(my_pq);  // como alterou prioridade, arrumar a fila
+}
+
+void setPrioPQ(PQueue pq, Chave ch, int prio) {
+    PriorityQueue *my_pq = pq;
+    QueueNode *aux = my_pq->head;
+    while (aux) {  
+        if (my_pq->compare(aux->key, ch) == 0) {  // se a chave do nó for igual a chave procurada
+            aux->priority = prio;  // altera a prioridade
+            return;
+        }
+        aux = aux->next;
+    }
+    fixQueuePrio(my_pq);  // como alterou prioridade, arrumar a fila
 }

@@ -36,6 +36,12 @@ void setD(Lista l, int d);
 int getD(Lista l);
 // retorna a distância
 
+void setWeightDij(Lista l, double weightDij);
+// adiciona o peso do algoritmo de Dijkstra
+
+double getWeightDij(Lista l);
+// retorna o peso do algoritmo de Dijkstra
+
 void printList(Lista l);
 // * Percorre a lista e exibe o valor de cada célula armazenada
 

@@ -67,4 +67,11 @@ PQInfo getMaximumPQ(PQueue pq);
 */
 void increasePrioPQ(PQueue pq, Chave ch, int dp);
 
+/*
+  Modifica a prioridade do item de chave "ch" para "prio".
+  Se dp < 0, diminui a prioridade; dp > 0, aumenta prioridade.
+  Item com chave "ch" deve existir em "pq".
+*/
+void setPrioPQ(PQueue pq, Chave ch, int prio);
+
 #endif

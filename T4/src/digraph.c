@@ -223,11 +223,10 @@ void getEdges(Digraph g, Lista arestas) {
 void dfsTraverse(Digraph g, procEdge treeEdge, procEdge forwardEdge, procEdge returnEdge, procEdge crossEdge, dfsRestarted newTree, int posic, void *extra) {
     StDigraph *graph = g;
 
-    newTree(graph, extra);  // chama fução que deve criar floresta devido ao percurso em profundidade
-    setTD(graph->adjacency[posic], graph->time);
     graph->time++;
     setVisited(graph->adjacency[posic], 'g');
-    setD(graph->adjacency[posic], graph->time);
+    setTD(graph->adjacency[posic], graph->time);
+    // setD(graph->adjacency[posic], graph->time);
 
     for (Edge e = getFirst(graph->adjacency[posic]); e; e = getNext(graph->adjacency[posic])) {  // percorre a lista de adjacencia do nó
 
@@ -266,15 +265,15 @@ bool dfs(Digraph g, procEdge treeEdge, procEdge forwardEdge, procEdge returnEdge
 
     for (int i = 0; i < graph->nVertex; i++) {
         if (getVisited(graph->adjacency[i]) == 'w') {  // se o nó não foi visitado
+            newTree(graph, extra);                     // chama fução que deve criar floresta devido ao percurso em profundidade
             dfsTraverse(graph, treeEdge, forwardEdge, returnEdge, crossEdge, newTree, i, extra);
         }
     }
     return true;
 }
 
-bool bfs(Digraph g, procEdge discoverNode) {  // largura
+bool bfs(Digraph g, Node start, procEdge discoverNode) {  // largura
     StDigraph *graph = g;
-    int start = 0;
     for (int i = 0; i < graph->nVertex; i++) {
         setVisited(graph->adjacency[i], 'w');  // marca todos os nós como não visitados
         setD(graph->adjacency[i], -1);
@@ -284,25 +283,26 @@ bool bfs(Digraph g, procEdge discoverNode) {  // largura
 
     setVisited(graph->adjacency[start], 'g');
     setD(graph->adjacency[start], 0);
-    enfila(queue, graph->adjacency[start]);  // enfileira o nó inicial
+    enfila(queue, &start);  // enfileira o nó inicial
 
     while (!isEmpty(queue)) {
-        void *currentVertex = desenfila(queue);  // desenfila o primeiro nó da fila (Lista *)
-        int j = 0;
-        for (void *n = getFirst(currentVertex); n; n = getNext(currentVertex)) {  // percorre a lista de adjacencia do nó atual
+        Node *currentVertex = desenfila(queue);  // desenfila o primeiro nó da fila (Lista *)
+        Lista adj = criaLista();
+        adjacentNodes(graph, (*currentVertex), adj);        // pega os nós adjacentes do nó atual
+        for (Node *n = getFirst(adj); n; n = getNext(n)) {  // percorre a lista de adjacencia do nó atual
 
-            if (getVisited(n) == 'w') {  // se o nó adjacente não foi visitado
+            if (getVisited(graph->adjacency[(*n)]) == 'w') {  // se o nó adjacente não foi visitado
                 // se o nó atual e o nó adjacente são adjacentes
                 // aresta: currentVertex -> n
-                Edge e = getEdge(g, getNode(g, getId(currentVertex)), j);
-                printf("Discovering edge %s -> %s\n", getId(currentVertex), getId(n));
-                discoverNode(graph, e, getTD(n), getTF(n), NULL);
-                setVisited(n, 'g');                // marca o nó adjacente como visitado
-                setD(n, getD(currentVertex) + 1);  // marca a distância do nó adjacente
-                enfila(queue, n);                  // enfileira o nó adjacente
+                Edge e = getEdge(g, getNode(g, getId(graph->adjacency[(*currentVertex)])), (*n));
+                printf("Discovering edge %s -> %s\n", getId(graph->adjacency[(*currentVertex)]), getId(graph->adjacency[(*n)]));
+                discoverNode(graph, e, getTD(graph->adjacency[(*n)]), getTF(graph->adjacency[(*n)]), NULL);
+                setVisited(graph->adjacency[(*n)], 'g');                                     // marca o nó adjacente como visitado
+                setD(graph->adjacency[(*n)], getD(graph->adjacency[(*currentVertex)]) + 1);  // marca a distância do nó adjacente
+                enfila(queue, n);                                                            // enfileira o nó adjacente
             }
-            j++;
         }
+        freeList(adj);
     }
     return true;
 }
@@ -325,7 +325,19 @@ void relaxDijkstra(Digraph g, Node u, Node v, double w) {  // u é o nó atual, 
     }
 }
 
-int compareDijkstra(Chave ch1, Chave ch2) {
+int compareDijkstraSpeed(Chave ch1, Chave ch2) {
+    double *d1 = ch1;
+    double *d2 = ch2;
+    if (d1 < d2) {
+        return 1;
+    } else if (d1 > d2) {
+        return -1;
+    } else {
+        return 0;
+    }
+}
+
+int compareDijkstraDistance(Chave ch1, Chave ch2) {
     double *d1 = ch1;
     double *d2 = ch2;
     if (d1 < d2) {
@@ -337,7 +349,7 @@ int compareDijkstra(Chave ch1, Chave ch2) {
     }
 }
 
-void fullDijkstra(Digraph g, double w, Node src, Node dest, ComparaChavesPQ comparator) {
+void fullDijkstra(Digraph g, double w, Node src, Node dest, ComparaChavesPQ comparator, int type) {
     StDigraph *graph = g;
 
     if (src == -1) {
@@ -349,8 +361,16 @@ void fullDijkstra(Digraph g, double w, Node src, Node dest, ComparaChavesPQ comp
 
     initDijkstra(g, src);
 
-    PQueue *pq = createPQ(graph->nVertex, compareDijkstra);
+    PQueue *pq = NULL;
     int prio = 0;
+    if (type == 0) {  // peso é a distancia
+        pq = createPQ(graph->nVertex, compareDijkstraDistance);
+        prio = 10000 / getWeightDij(graph->adjacency[src]);
+
+    } else {  // peso é a velocidade
+        pq = createPQ(graph->nVertex, compareDijkstraSpeed);
+        prio = 10000 * getWeightDij(graph->adjacency[src]);
+    }
     insertPQ(pq, getNodeInfo(g, src), graph->adjacency[src], prio);
 
     while (src != dest) {  // !isEmptyPQ(pq)
@@ -363,9 +383,16 @@ void fullDijkstra(Digraph g, double w, Node src, Node dest, ComparaChavesPQ comp
             if (getVisited(n) == 'w') {  // se o nó adjacente não foi processado
                 // Edge e = getEdge(g, getNode(g, getId(graph->adjacency[u])), j);
                 Node nVert = getNode(g, getId(n));
+
+                if (type == 0) {  // peso é a distancia
+                    prio = 10000 / getWeightDij(graph->adjacency[src]);
+
+                } else {
+                    prio = 10000 * getWeightDij(graph->adjacency[src]);
+                }
+
                 relaxDijkstra(g, u, getNode(g, getId(n)), w);  // Compara e atribui os pesos das arestas
                 insertPQ(pq, getNodeInfo(g, nVert), graph->adjacency[getNode(g, getId(n))], prio);
-                prio += 1;
             }
         }
 

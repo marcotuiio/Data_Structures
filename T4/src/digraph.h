@@ -203,7 +203,7 @@ bool dfs(Digraph g, procEdge treeEdge, procEdge forwardEdge, procEdge returnEdge
    Percorre o grafo g em largura. Invoca a funcao discoverNode (se != NULL)
    para a aresta (x,y) usada para "descobrir" o no' y.
 */
-bool bfs(Digraph g, procEdge discoverNode);
+bool bfs(Digraph g, Node start, procEdge discoverNode);
 
 /*
    Libera a memoria utilizada no grafo
