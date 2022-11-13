@@ -272,7 +272,7 @@ bool dfs(Digraph g, procEdge treeEdge, procEdge forwardEdge, procEdge returnEdge
     return true;
 }
 
-bool bfs(Digraph g, Node start, procEdge discoverNode) {  // largura
+bool bfs(Digraph g, Node start, procEdge discoverNode, void *extra) {  // largura
     StDigraph *graph = g;
     for (int i = 0; i < graph->nVertex; i++) {
         setVisited(graph->adjacency[i], 'w');  // marca todos os nós como não visitados
@@ -295,8 +295,8 @@ bool bfs(Digraph g, Node start, procEdge discoverNode) {  // largura
                 // se o nó atual e o nó adjacente são adjacentes
                 // aresta: currentVertex -> n
                 Edge e = getEdge(g, getNode(g, getId(graph->adjacency[(*currentVertex)])), (*n));
-                printf("Discovering edge %s -> %s\n", getId(graph->adjacency[(*currentVertex)]), getId(graph->adjacency[(*n)]));
-                discoverNode(graph, e, getTD(graph->adjacency[(*n)]), getTF(graph->adjacency[(*n)]), NULL);
+                // printf("Discovering edge %s -> %s\n", getId(graph->adjacency[(*currentVertex)]), getId(graph->adjacency[(*n)]));
+                discoverNode(graph, e, getTD(graph->adjacency[(*n)]), getTF(graph->adjacency[(*n)]), extra);
                 setVisited(graph->adjacency[(*n)], 'g');                                     // marca o nó adjacente como visitado
                 setD(graph->adjacency[(*n)], getD(graph->adjacency[(*currentVertex)]) + 1);  // marca a distância do nó adjacente
                 enfila(queue, n);                                                            // enfileira o nó adjacente
@@ -402,6 +402,11 @@ void fullDijkstra(Digraph g, double w, Node src, Node dest, ComparaChavesPQ comp
 }
 
 /////////////////////////// END_DIJKSTRA ///////////////////////////
+
+// Lista getVertex(Digraph g, Node n) {
+//     StDigraph *graph = g;
+//     return graph->adjacency[n];
+// }
 
 void killGraph(Digraph g) {
     StDigraph *graph = g;

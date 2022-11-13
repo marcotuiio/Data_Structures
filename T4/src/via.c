@@ -18,7 +18,7 @@ Digraph readVia(char *bedVia) {
         if (!strcmp(tipo, "v")) {
             fscanf(via, "%s %lf %lf", id, &x, &y);
             setNodeName(g, posic, id);
-            InfoNode infoV = createInfoVertex(x, y);
+            InfoNode infoV = createInfoVertex(x, y, id);
             setNodeInfo(g, posic, infoV);
             posic++;
 

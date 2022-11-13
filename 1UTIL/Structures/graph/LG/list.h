@@ -1,4 +1,4 @@
-#include "/mnt/c/Users/marco/OneDrive/Área de Trabalho/UEL/Data_Structures/1UTIL/libs.h"
+#include "/home/marcotuiio/Data_Structures/1UTIL/libs.h"
 
 #ifndef LIST_H
 #define LIST_H

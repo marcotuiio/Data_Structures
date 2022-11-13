@@ -1,6 +1,6 @@
 EXEC = gcc
 CFLAGS = -std=c99 -fstack-protector-all -g -Wall
-PROJECT_NAME = ted
+PROJECT_NAME = t2
 OBJETCS = main.o digraph.o geo.o infos.o list.o paths.o priority_queue.o queue.o qry.o rb_tree.o svg.o system.o via.o
 ALUNO = marcotab
 

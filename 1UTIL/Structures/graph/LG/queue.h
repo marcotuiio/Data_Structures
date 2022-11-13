@@ -1,5 +1,4 @@
-#include "/mnt/c/Users/marco/OneDrive/Área de Trabalho/UEL/Data_Structures/1UTIL/libs.h"
-
+#include "/home/marcotuiio/Data_Structures/1UTIL/libs.h"
 #ifndef QUEUE_H
 #define QUEUE_H
 

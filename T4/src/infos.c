@@ -17,6 +17,7 @@ typedef struct StInfoEdge {
 
 typedef struct StInfoVertex{
     double x, y;
+    char nomeAux[30];
 } StInfoVertex;
 
 void *createDetails(char *sw, char *cfill, char *cstrk) {
@@ -57,10 +58,11 @@ InfoEdge createInfoEdge(double vm, double cmp, char *ldir, char *lesq, char *nom
     return info;
 }
 
-InfoNode createInfoVertex(double x, double y) {
+InfoNode createInfoVertex(double x, double y, char *nome) {
     StInfoVertex *info = calloc(1, sizeof(StInfoVertex));
     info->x = x;
     info->y = y;
+    strcpy(info->nomeAux, nome);
 
     return info;
 }
@@ -156,4 +158,29 @@ double getXVertex(InfoNode info) {
 double getYVertex(InfoNode info) {
     StInfoVertex *i = info;
     return i->y;
+}
+
+char *getNomeVertex(InfoNode info) {
+    StInfoVertex *i = info;
+    return i->nomeAux;
+}
+
+bool insideQuadra(InfoRb info, double x, double y, double w, double h) {
+    StQuadra *quadra = info;
+    
+    if (x + w > quadra->x && x < quadra->x + quadra->w) {
+        if (y + h > quadra->y && y < quadra->y + quadra->h) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool insideEdge(double x, double y, double w, double h, double x1, double y1, double x2, double y2) {
+    if (x >= x1 && x <= x2) {
+        if (y >= y1 && y <= y2) {
+            return true;
+        }
+    }
+    return false;
 }

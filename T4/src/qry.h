@@ -17,9 +17,12 @@ FILE *openTxt(char *bsdTxt);
 // Função que abre o arquivo de texto.
 
 void oFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d);
+void lookCep(InfoRb i, void *aux);
 // Armazena a posição geográfica do endereço cep/face/num
 
 void catac(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d);
+void catacQuadras(InfoRb i, void *aux);
+bool catacEdges(Digraph g, Edge e, int td, int tf, void *extra);
 // Remover as quadras contidas na região delimitada pelo retângulo x,y,w,h. Arestas
 // incidentes em vértices dentro do retângulo especificado devem ser removidas.4
 
