@@ -403,10 +403,10 @@ void fullDijkstra(Digraph g, double w, Node src, Node dest, ComparaChavesPQ comp
 
 /////////////////////////// END_DIJKSTRA ///////////////////////////
 
-// Lista getVertex(Digraph g, Node n) {
-//     StDigraph *graph = g;
-//     return graph->adjacency[n];
-// }
+int getGraphSize(Digraph g) {
+    StDigraph *graph = g;
+    return graph->nVertex;
+}
 
 void killGraph(Digraph g) {
     StDigraph *graph = g;

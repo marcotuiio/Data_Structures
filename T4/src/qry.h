@@ -16,8 +16,10 @@ FILE *openQry(char *bedQry);
 FILE *openTxt(char *bsdTxt);
 // Função que abre o arquivo de texto.
 
-void oFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d);
 void lookCep(InfoRb i, void *aux);
+// Função que procura na arvore a quadra com o cep desejado.
+
+void oFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d);
 // Armazena a posição geográfica do endereço cep/face/num
 
 void catac(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d);
@@ -45,6 +47,7 @@ void rf(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d);
 // do parâmetro.
 
 void bFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d);
+bool bFuncEdges(Digraph g, Edge e, int td, int tf, void *extra);
 // Faz o percurso em largura no grafo, a partir do nó mais próximo da coordenada (x,y), multiplicando
 // a velocidade média pelo fator especificado.
 

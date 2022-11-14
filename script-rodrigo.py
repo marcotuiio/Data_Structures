@@ -20,7 +20,7 @@ os.chdir(src)
 subprocess.call(["make", "clear"])  
 
 # Observação, quem tiver o executável diferente de 'ted', mude no código todo para o nome certo
-subprocess.call(["make", "ted"])
+subprocess.call(["make", "t2"])
 
 print("\n")
 
@@ -64,17 +64,17 @@ count = 0
 for files_in_subqry in subqry:
     files_in_subqry.sort()
     for j in files_in_subqry:
-        print(f"./ted -e {BED} -o {BSD} -f {geo[count]} -q {subdir[count] + '/' + j}")
+        print(f"./t2 -e {BED} -o {BSD} -f {geo[count]} -q {subdir[count] + '/' + j}")
         print("\n")
-        subprocess.call(["./ted", "-e", BED, "-o", BSD, "-f", geo[count], "-q", subdir[count] + "/" + j])
+        subprocess.call(["./t2", "-e", BED, "-o", BSD, "-f", geo[count], "-q", subdir[count] + "/" + j])
     count += 1 
 
 print("==========> Executando testes que possuem apenas arquivos .geo <==========\n\n")
 
 for f in geo_no_qry:
-    print(f"./ted -e {BED} -o {BSD} -f {f}")
+    print(f"./t2 -e {BED} -o {BSD} -f {f}")
     print("\n")
-    subprocess.call(["./ted", "-e", BED, "-o", BSD, "-f", f])
+    subprocess.call(["./t2", "-e", BED, "-o", BSD, "-f", f])
     
 fin = datetime.datetime.now()
 

@@ -29,13 +29,13 @@ void readQry(Rb t, Digraph d, char *bedQry, char *bsdSvg, char *bsdTxt) {
 
         } else if (!strcmp(comando, "rbl")) {
             rbl(qry, txt, svg, t, d);
-        
+
         } else if (!strcmp(comando, "rf")) {
             rf(qry, txt, svg, t, d);
-        
+
         } else if (!strcmp(comando, "b")) {
             bFunc(qry, txt, svg, t, d);
-        
+
         } else if (!strcmp(comando, "p?")) {
             pFunc(qry, txt, svg, t, d);
         }
@@ -64,6 +64,13 @@ FILE *openTxt(char *bsdTxt) {
     return txt;
 }
 
+void lookCep(InfoRb i, void *aux) {
+    void **data = aux;
+    if (!strcmp(getCep(i), data[0])) {
+        data[1] = i;
+    }
+}
+
 void oFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d) {
     char cep[30], face[3];
     double num;
@@ -73,8 +80,13 @@ void oFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d) {
 
     void *data[] = {cep, NULL};
     lookCep(t, data);
-    fprintf(txt, "CEP: %s, %s, %lf || %p\n", cep, face, num, data[1]);
-    
+    if (data[1]) {
+        fprintf(txt, "CEP: %s, %s, %lf || %p\n", cep, face, num, data[1]);
+    } else {
+        fprintf(txt, "CEP: %s, NÃO ENCONTRADO\n", cep);
+        return;
+    }
+
     double x1, y1, x2, y2;
     if (!strcmp(face, "S")) {
         x1 = getXNode(data[1]) + num;
@@ -97,15 +109,8 @@ void oFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d) {
         x2 = getXNode(data[1]) + 5;
         y2 = getYNode(data[1]) + num;
     }
-    
-    fprintf(svg, LINE, x1, y1, x2, y2, "red");
-}
 
-void lookCep(InfoRb i, void *aux) {
-    void **data = aux;
-    if (!strcmp(getCep(i), data[0])) {
-        data[1] = i;
-    }
+    fprintf(svg, LINE, x1, y1, x2, y2, "red");
 }
 
 void catac(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d) {
@@ -121,8 +126,12 @@ void catac(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d) {
     aux->h = h;
     aux->txt = txt;
     aux->tree = t;
+
     catacQuadras(t, aux);
     bfs(d, 0, catacEdges, aux);
+    fprintf(svg, "<rect x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" fill=\"#AB37C8\" stroke=\"#AA0044\" fill-opacity=\"50%%\" />\n", x, y, w, h);
+
+    free(aux);
 }
 
 void catacQuadras(InfoRb i, void *aux) {
@@ -154,6 +163,17 @@ void pnt(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d) {
 
     fscanf(qry, "%s %s %s", cep, cfill, cstrk);
     fprintf(txt, "\n[*] pnt %s %s %s\n", cep, cfill, cstrk);
+
+    void *data[] = {cep, NULL};
+    lookCep(t, data);
+
+    if (data[1]) {
+        fprintf(txt, "CEP: %s, X: %lf, Y: %lf, iCFILL: %s, iCSTRK: %s\n", cep, getXNode(data[1]), getYNode(data[1]), getCFill(data[1]), getCStrk(data[1]));
+        setCFill(data[1], cfill);
+        setCStrk(data[1], cstrk);
+    } else {
+        fprintf(txt, "CEP: %s, NÃO Encontrado\n", cep);
+    }
 }
 
 void blq(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d) {
@@ -184,10 +204,34 @@ void bFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d) {
 
     fscanf(qry, "%lf %lf %lf", &x, &y, &fator);
     fprintf(txt, "\n[*] b %lf %lf %lf\n", x, y, fator);
+
+    double aux = 1.0;
+    Node toStart;
+    for (Node i = 0; i < getGraphSize(d); i++) {
+        // Lista v = getVertexList(d, i);
+        double x1 = getXVertex(getNodeInfo(d, i));
+        double y1 = getYVertex(getNodeInfo(d, i));
+        if (fabs(x1 - x) <= aux && fabs(y1 - y) <= aux) {
+            aux = aux - 0.1;
+            toStart = i;
+        }
+    }
+    void *data[] = {&fator, txt};
+    bfs(d, toStart, bFuncEdges, data);
+}
+
+bool bFuncEdges(Digraph g, Edge e, int td, int tf, void *extra) {
+    void **data = extra;
+    double *fator = data[0];
+    FILE *txt = data[1];
+    fprintf(txt, "EDGE %s, VMi: %lf, ", getNomeEdge(getEdgeInfo(g, e)), getVMEdge(getEdgeInfo(g, e)));
+    setVMEdge(getEdgeInfo(g, e), getVMEdge(getEdgeInfo(g, e)) * (*fator));
+    fprintf(txt, "VMf: %lf\n", getVMEdge(getEdgeInfo(g, e)));
+    return true;
 }
 
 void pFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d) {
-    char cep[30], face[3], cmc[30], cmr[30]; // cmc = cor percurso curto, cmr = cor percurso rapido
+    char cep[30], face[3], cmc[30], cmr[30];  // cmc = cor percurso curto, cmr = cor percurso rapido
     double num;
 
     fscanf(qry, "%s %s %lf %s %s", cep, face, &num, cmc, cmr);

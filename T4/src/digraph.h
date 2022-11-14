@@ -206,9 +206,9 @@ bool dfs(Digraph g, procEdge treeEdge, procEdge forwardEdge, procEdge returnEdge
 bool bfs(Digraph g, Node start, procEdge discoverNode, void *extra);
 
 /*
-   Retorna o n-esimo vertice do grafo g.
+   Retorna a quantidade vertice do grafo g.
 */
-// Lista getVertex(Digraph g, Node n);
+int getGraphSize(Digraph g);
 
 /*
    Libera a memoria utilizada no grafo

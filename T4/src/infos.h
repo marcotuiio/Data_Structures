@@ -51,6 +51,9 @@ double getWNode(InfoRb info);
 double getHNode(InfoRb info);
 // Returns the height of the given InfoRb 
 
+void setVMEdge(InfoEdge info, double vm);
+// Sets the velocity of the given InfoEdge
+
 double getVMEdge(InfoEdge info);
 // Returns the vm value of the given InfoEdge
 
@@ -64,6 +67,12 @@ char* getLEsqEdge(InfoEdge info);
 // Returns the lesq value of the given InfoEdge
 
 char *getNomeEdge(InfoEdge info);
+// Returns the name of the given InfoEdge
+
+void setBloqNameEdge(InfoEdge info, char *bloqName);
+// Sets the name of the given InfoEdge
+
+char *getBloqNameEdge(InfoEdge info);
 // Returns the name of the given InfoEdge
 
 double getXVertex(InfoNode info);
