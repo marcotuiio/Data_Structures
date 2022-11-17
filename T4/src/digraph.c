@@ -232,21 +232,28 @@ void dfsTraverse(Digraph g, procEdge treeEdge, procEdge forwardEdge, procEdge re
 
         if (getVisited(graph->adjacency[getToAresta(e)]) == 'w') {  // se o nó adjacente não foi visitado
             printf("Tree Edge: %s -> %s\n", getId(graph->adjacency[posic]), getId(graph->adjacency[getToAresta(e)]));
-            treeEdge(graph->adjacency, e, getTD(e), getTF(e), extra);  // chama a função treeEdge
+            if (treeEdge(graph->adjacency, e, getTD(e), getTF(e), extra)) {  // chama a função treeEdge
+                return;
+            }
             dfsTraverse(g, treeEdge, forwardEdge, returnEdge, crossEdge, newTree, getToAresta(e), extra);
 
         } else if (getVisited(graph->adjacency[getToAresta(e)]) == 'g') {  // se o nó adjacente é cinza
             printf("Forward Edge: %s -> %s\n", getId(graph->adjacency[posic]), getId(graph->adjacency[getToAresta(e)]));
-            forwardEdge(graph->adjacency[posic], e, posic, getToAresta(e), extra);  // chama a função forwardEdge
+            if (forwardEdge(graph->adjacency[posic], e, posic, getToAresta(e), extra)) {  // chama a função forwardEdge
+                return;
+            } 
 
         } else if (getVisited(graph->adjacency[getToAresta(e)]) == 'b') {                    // se o nó adjacente é preto
             if (getTD(graph->adjacency[posic]) < getTD(graph->adjacency[getToAresta(e)])) {  // se o nó adjacente foi visitado depois do nó atual
                 printf("Return Edge: %s -> %s\n", getId(graph->adjacency[posic]), getId(graph->adjacency[getToAresta(e)]));
-                returnEdge(graph->adjacency[posic], e, posic, getToAresta(e), extra);  // chama a função returnEdge
-
+                if (returnEdge(graph->adjacency[posic], e, posic, getToAresta(e), extra)) {  // chama a função returnEdge
+                    return;
+                }
             } else {  // se o nó adjacente foi visitado antes do nó atual
                 printf("Cross Edge: %s -> %s\n", getId(graph->adjacency[posic]), getId(graph->adjacency[getToAresta(e)]));
-                crossEdge(graph->adjacency[posic], e, posic, getToAresta(e), extra);  // chama a função crossEdge
+                if (crossEdge(graph->adjacency[posic], e, posic, getToAresta(e), extra)) {  // chama a função crossEdge
+                    return;
+                }
             }
         }
     }

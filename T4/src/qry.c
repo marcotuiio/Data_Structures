@@ -11,12 +11,13 @@ void readQry(Rb t, Digraph d, char *bedQry, char *bsdSvg, char *bsdTxt) {
     FILE *txt = openTxt(bsdTxt);
     FILE *svg = createSvg(bsdSvg);
     char comando[8];
+    double x_end, y_end;
 
     while (!feof(qry)) {
         fscanf(qry, "%s", comando);
 
         if (!strcmp(comando, "@o?")) {
-            oFunc(qry, txt, svg, t, d);
+            oFunc(qry, txt, svg, t, d, &x_end, &y_end);
 
         } else if (!strcmp(comando, "catac")) {
             catac(qry, txt, svg, t, d);
@@ -37,7 +38,7 @@ void readQry(Rb t, Digraph d, char *bedQry, char *bsdSvg, char *bsdTxt) {
             bFunc(qry, txt, svg, t, d);
 
         } else if (!strcmp(comando, "p?")) {
-            pFunc(qry, txt, svg, t, d);
+            pFunc(qry, txt, svg, t, d, x_end, y_end);
         }
         strcpy(comando, " ");
     }
@@ -71,7 +72,7 @@ void lookCep(InfoRb i, void *aux) {
     }
 }
 
-void oFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d) {
+void oFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d, double *x, double *y) {
     char cep[30], face[3];
     double num;
 
@@ -93,21 +94,29 @@ void oFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d) {
         y1 = getYNode(data[1]) - 5;
         x2 = getXNode(data[1]) + num;
         y2 = getYNode(data[1]) + 5;
+        *x = x1;
+        *y = y1;
     } else if (!strcmp(face, "N")) {
         x1 = getXNode(data[1]) + num;
         y1 = getYNode(data[1]) + 5;
         x2 = getXNode(data[1]) + num;
         y2 = getYNode(data[1]) - 5;
+        *x = x1;
+        *y = y1;
     } else if (!strcmp(face, "O")) {
         x1 = getXNode(data[1]) + 5;
         y1 = getYNode(data[1]) + num;
         x2 = getXNode(data[1]) - 5;
         y2 = getYNode(data[1]) + num;
+        *x = x1;
+        *y = y1;
     } else if (!strcmp(face, "L")) {
         x1 = getXNode(data[1]) - 5;
         y1 = getYNode(data[1]) + num;
         x2 = getXNode(data[1]) + 5;
         y2 = getYNode(data[1]) + num;
+        *x = x1;
+        *y = y1;
     }
 
     fprintf(svg, LINE, x1, y1, x2, y2, "red");
@@ -197,6 +206,37 @@ void rf(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d) {
 
     fscanf(qry, "%s %s %lf", cep, face, &fator);
     fprintf(txt, "\n[*] rf %s %s %lf\n", cep, face, fator);
+    dfs(d, classTree, classForward, classReturn, classCross, restarted, txt);
+}
+
+bool classTree(Digraph g, Edge e, int td, int tf, void *extra) {
+    FILE *txt = extra;
+    fprintf(txt, "Aresta de Árvore: %s\n", getNomeEdge(getEdgeInfo(g, e)));
+    return false;
+}
+
+bool classForward(Digraph g, Edge e, int td, int tf, void *extra) {
+    FILE *txt = extra;
+    fprintf(txt, "Aresta de Avanço: %s\n", getNomeEdge(getEdgeInfo(g, e)));
+    return false;
+} 
+
+bool classReturn(Digraph g, Edge e, int td, int tf, void *extra) {
+    FILE *txt = extra;
+    fprintf(txt, "Aresta de Retorno: %s\n", getNomeEdge(getEdgeInfo(g, e)));
+    return false;
+} 
+
+bool classCross(Digraph g, Edge e, int td, int tf, void *extra) {
+    FILE *txt = extra;
+    fprintf(txt, "PONTE em Aresta Cruzada: %s\n", getNomeEdge(getEdgeInfo(g, e)));
+    return false;
+}
+
+bool restarted(Digraph g, void *extra) {
+    FILE *txt = extra;
+    fprintf(txt, "REINICIADO\n");
+    return false;
 }
 
 void bFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d) {
@@ -230,10 +270,20 @@ bool bFuncEdges(Digraph g, Edge e, int td, int tf, void *extra) {
     return true;
 }
 
-void pFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d) {
+void pFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d, double x, double y) {
     char cep[30], face[3], cmc[30], cmr[30];  // cmc = cor percurso curto, cmr = cor percurso rapido
     double num;
 
     fscanf(qry, "%s %s %lf %s %s", cep, face, &num, cmc, cmr);
     fprintf(txt, "\n[*] p %s %s %lf %s %s\n", cep, face, num, cmc, cmr);
+
+    void *data[] = {cep, NULL};
+    lookCep(t, data);
+    if (data[1]) {
+        fprintf(txt, "CEP de Destino: %s, %s, %lf || %p\n", cep, face, num, data[1]);
+    } else {
+        fprintf(txt, "CEP de Destino: %s, NÃO ENCONTRADO\n", cep);
+        return;
+    }
+
 }
