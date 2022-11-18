@@ -6,18 +6,23 @@ typedef struct auxCatac {
     Rb tree;
 } auxCatac;
 
+typedef struct originAdress {
+    double x, y, num;
+    char cep[30], face[3];
+} originAdress;
+
 void readQry(Rb t, Digraph d, char *bedQry, char *bsdSvg, char *bsdTxt) {
     FILE *qry = openQry(bedQry);
     FILE *txt = openTxt(bsdTxt);
     FILE *svg = createSvg(bsdSvg);
     char comando[8];
-    double x_end, y_end;
+    originAdress *origin = calloc(1, sizeof(originAdress));
 
     while (!feof(qry)) {
         fscanf(qry, "%s", comando);
 
         if (!strcmp(comando, "@o?")) {
-            oFunc(qry, txt, svg, t, d, &x_end, &y_end);
+            oFunc(qry, txt, svg, t, d, origin);
 
         } else if (!strcmp(comando, "catac")) {
             catac(qry, txt, svg, t, d);
@@ -38,11 +43,12 @@ void readQry(Rb t, Digraph d, char *bedQry, char *bsdSvg, char *bsdTxt) {
             bFunc(qry, txt, svg, t, d);
 
         } else if (!strcmp(comando, "p?")) {
-            pFunc(qry, txt, svg, t, d, x_end, y_end);
+            pFunc(qry, txt, svg, t, d, origin);
         }
         strcpy(comando, " ");
     }
 
+    free(origin);
     fclose(qry);
     fclose(txt);
 }
@@ -72,7 +78,7 @@ void lookCep(InfoRb i, void *aux) {
     }
 }
 
-void oFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d, double *x, double *y) {
+void oFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d, void *origin) {
     char cep[30], face[3];
     double num;
 
@@ -94,30 +100,29 @@ void oFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d, double *x, double *
         y1 = getYNode(data[1]) - 5;
         x2 = getXNode(data[1]) + num;
         y2 = getYNode(data[1]) + 5;
-        *x = x1;
-        *y = y1;
     } else if (!strcmp(face, "N")) {
         x1 = getXNode(data[1]) + num;
         y1 = getYNode(data[1]) + 5;
         x2 = getXNode(data[1]) + num;
         y2 = getYNode(data[1]) - 5;
-        *x = x1;
-        *y = y1;
     } else if (!strcmp(face, "O")) {
         x1 = getXNode(data[1]) + 5;
         y1 = getYNode(data[1]) + num;
         x2 = getXNode(data[1]) - 5;
         y2 = getYNode(data[1]) + num;
-        *x = x1;
-        *y = y1;
     } else if (!strcmp(face, "L")) {
         x1 = getXNode(data[1]) - 5;
         y1 = getYNode(data[1]) + num;
         x2 = getXNode(data[1]) + 5;
         y2 = getYNode(data[1]) + num;
-        *x = x1;
-        *y = y1;
     }
+
+    originAdress *o = origin;
+    o->x = x1;
+    o->y = y1;
+    o->num = num;
+    strcpy(o->cep, cep);
+    strcpy(o->face, face);
 
     fprintf(svg, LINE, x1, y1, x2, y2, "red");
 }
@@ -206,30 +211,43 @@ void rf(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d) {
 
     fscanf(qry, "%s %s %lf", cep, face, &fator);
     fprintf(txt, "\n[*] rf %s %s %lf\n", cep, face, fator);
-    dfs(d, classTree, classForward, classReturn, classCross, restarted, txt);
+    void *data[] = {txt, &fator, cep, face};
+    dfs(d, classTree, classForward, classReturn, classCross, restarted, data);
 }
 
 bool classTree(Digraph g, Edge e, int td, int tf, void *extra) {
-    FILE *txt = extra;
-    fprintf(txt, "Aresta de Árvore: %s\n", getNomeEdge(getEdgeInfo(g, e)));
+    void **data = extra;
+    FILE *txt = data[0];
+    double fat = *(double *)data[1];
+    setVMEdge(getEdgeInfo(g, e), getVMEdge(getEdgeInfo(g, e)) * fat);
+    fprintf(txt, "Aresta de Árvore: %s, Velocidade Máxima: %lf\n", getNomeEdge(getEdgeInfo(g, e)), getVMEdge(getEdgeInfo(g, e)));
     return false;
 }
 
 bool classForward(Digraph g, Edge e, int td, int tf, void *extra) {
-    FILE *txt = extra;
-    fprintf(txt, "Aresta de Avanço: %s\n", getNomeEdge(getEdgeInfo(g, e)));
+    void **data = extra;
+    FILE *txt = data[0];
+    double fat = *(double *)data[1];
+    setVMEdge(getEdgeInfo(g, e), getVMEdge(getEdgeInfo(g, e)) * fat);
+    fprintf(txt, "Aresta de Avanço: %s, Velocidade Máxima: %lf\n", getNomeEdge(getEdgeInfo(g, e)), getVMEdge(getEdgeInfo(g, e)));
     return false;
-} 
+}
 
 bool classReturn(Digraph g, Edge e, int td, int tf, void *extra) {
-    FILE *txt = extra;
-    fprintf(txt, "Aresta de Retorno: %s\n", getNomeEdge(getEdgeInfo(g, e)));
+    void **data = extra;
+    FILE *txt = data[0];
+    double fat = *(double *)data[1];
+    setVMEdge(getEdgeInfo(g, e), getVMEdge(getEdgeInfo(g, e)) * fat);
+    fprintf(txt, "Aresta de Retorno: %s, Velocidade Máxima: %lf\n", getNomeEdge(getEdgeInfo(g, e)), getVMEdge(getEdgeInfo(g, e)));
     return false;
-} 
+}
 
 bool classCross(Digraph g, Edge e, int td, int tf, void *extra) {
-    FILE *txt = extra;
-    fprintf(txt, "PONTE em Aresta Cruzada: %s\n", getNomeEdge(getEdgeInfo(g, e)));
+    void **data = extra;
+    FILE *txt = data[0];
+    double fat = *(double *)data[1];
+    setVMEdge(getEdgeInfo(g, e), getVMEdge(getEdgeInfo(g, e)) * fat);
+    fprintf(txt, "PONTE em Aresta Cruzada: %s, Velocidade Máxima: %lf\n", getNomeEdge(getEdgeInfo(g, e)), getVMEdge(getEdgeInfo(g, e)));
     return false;
 }
 
@@ -245,14 +263,11 @@ void bFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d) {
     fscanf(qry, "%lf %lf %lf", &x, &y, &fator);
     fprintf(txt, "\n[*] b %lf %lf %lf\n", x, y, fator);
 
-    double aux = 1.0;
     Node toStart;
     for (Node i = 0; i < getGraphSize(d); i++) {
-        // Lista v = getVertexList(d, i);
         double x1 = getXVertex(getNodeInfo(d, i));
         double y1 = getYVertex(getNodeInfo(d, i));
-        if (fabs(x1 - x) <= aux && fabs(y1 - y) <= aux) {
-            aux = aux - 0.1;
+        if (fabs(x1 - x) <= 0 && fabs(y1 - y) <= 0) {  // Atenção!!!!
             toStart = i;
         }
     }
@@ -267,10 +282,10 @@ bool bFuncEdges(Digraph g, Edge e, int td, int tf, void *extra) {
     fprintf(txt, "EDGE %s, VMi: %lf, ", getNomeEdge(getEdgeInfo(g, e)), getVMEdge(getEdgeInfo(g, e)));
     setVMEdge(getEdgeInfo(g, e), getVMEdge(getEdgeInfo(g, e)) * (*fator));
     fprintf(txt, "VMf: %lf\n", getVMEdge(getEdgeInfo(g, e)));
-    return true;
+    return false;
 }
 
-void pFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d, double x, double y) {
+void pFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d, void *origin) {
     char cep[30], face[3], cmc[30], cmr[30];  // cmc = cor percurso curto, cmr = cor percurso rapido
     double num;
 
@@ -286,4 +301,21 @@ void pFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d, double x, double y)
         return;
     }
 
+    double x1, y1;
+    if (!strcmp(face, "S")) {
+        x1 = getXNode(data[1]) + num;
+        y1 = getYNode(data[1]);
+    } else if (!strcmp(face, "N")) {
+        x1 = getXNode(data[1]) + num;
+        y1 = getYNode(data[1]);
+    } else if (!strcmp(face, "O")) {
+        x1 = getXNode(data[1]);
+        y1 = getYNode(data[1]) + num;
+    } else if (!strcmp(face, "L")) {
+        x1 = getXNode(data[1]);
+        y1 = getYNode(data[1]) + num;
+    }
+
+    originAdress *o = origin;
+    fprintf(txt, "Iniciando percurso de %s (%lf, %lf) para %s (%lf, %lf)\n", o->cep, o->x, o->y, cep, x1, y1);
 }

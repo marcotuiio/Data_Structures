@@ -75,6 +75,11 @@ void setNodeName(Digraph g, Node n, char *nome);
 void addVerticesNames(Digraph g, char *nomes[], int nNomes);
 
 /*
+   Retorna a quantidade vertice do grafo g.
+*/
+Node getGraphSize(Digraph g);
+
+/*
    Retorna no' cujo de nome e' "nome". Retorna -1, caso o nao
    exista no com o nome especificado.
 */
@@ -204,11 +209,6 @@ bool dfs(Digraph g, procEdge treeEdge, procEdge forwardEdge, procEdge returnEdge
    para a aresta (x,y) usada para "descobrir" o no' y.
 */
 bool bfs(Digraph g, Node start, procEdge discoverNode, void *extra);
-
-/*
-   Retorna a quantidade vertice do grafo g.
-*/
-int getGraphSize(Digraph g);
 
 /*
    Libera a memoria utilizada no grafo

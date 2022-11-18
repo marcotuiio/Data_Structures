@@ -1,5 +1,5 @@
 #include "digraph.h"
-
+#include "infos.h"
 #include "list.h"
 #include "priority_queue.h"
 #include "queue.h"
@@ -85,6 +85,11 @@ void addVerticesNames(Digraph g, char *nomes[], int nNomes) {
     for (int i = 0; i < nNomes; i++) {
         setId(graph->adjacency[i], nomes[i]);
     }
+}
+
+Node getGraphSize(Digraph g) {
+    StDigraph *graph = g;
+    return graph->nVertex;
 }
 
 Node getNode(Digraph g, char *nome) {
@@ -241,7 +246,7 @@ void dfsTraverse(Digraph g, procEdge treeEdge, procEdge forwardEdge, procEdge re
             printf("Forward Edge: %s -> %s\n", getId(graph->adjacency[posic]), getId(graph->adjacency[getToAresta(e)]));
             if (forwardEdge(graph->adjacency[posic], e, posic, getToAresta(e), extra)) {  // chama a função forwardEdge
                 return;
-            } 
+            }
 
         } else if (getVisited(graph->adjacency[getToAresta(e)]) == 'b') {                    // se o nó adjacente é preto
             if (getTD(graph->adjacency[posic]) < getTD(graph->adjacency[getToAresta(e)])) {  // se o nó adjacente foi visitado depois do nó atual
@@ -303,7 +308,9 @@ bool bfs(Digraph g, Node start, procEdge discoverNode, void *extra) {  // largur
                 // aresta: currentVertex -> n
                 Edge e = getEdge(g, getNode(g, getId(graph->adjacency[(*currentVertex)])), (*n));
                 // printf("Discovering edge %s -> %s\n", getId(graph->adjacency[(*currentVertex)]), getId(graph->adjacency[(*n)]));
-                discoverNode(graph, e, getTD(graph->adjacency[(*n)]), getTF(graph->adjacency[(*n)]), extra);
+                if (discoverNode(graph, e, getTD(graph->adjacency[(*n)]), getTF(graph->adjacency[(*n)]), extra)) {  // chama a função discoverNode
+                    return false;
+                }
                 setVisited(graph->adjacency[(*n)], 'g');                                     // marca o nó adjacente como visitado
                 setD(graph->adjacency[(*n)], getD(graph->adjacency[(*currentVertex)]) + 1);  // marca a distância do nó adjacente
                 enfila(queue, n);                                                            // enfileira o nó adjacente
@@ -410,14 +417,22 @@ void fullDijkstra(Digraph g, double w, Node src, Node dest, ComparaChavesPQ comp
 
 /////////////////////////// END_DIJKSTRA ///////////////////////////
 
-int getGraphSize(Digraph g) {
+void printGraph(Digraph g) {
     StDigraph *graph = g;
-    return graph->nVertex;
+    printf("Graph with %d nodes and %d edges\n", graph->nVertex, graph->nEdges);
+    for (int i = 0; i < graph->nVertex; i++) {
+        printf("Node %s: ", getId(graph->adjacency[i]));
+        for (Edge e = getFirst(graph->adjacency[i]); e; e = getNext(e)) {
+            printf("\n\t%s ", getNomeEdge(getEdgeInfo(g, e)));
+        }
+        printf("\n");
+    }
 }
 
 void killGraph(Digraph g) {
     StDigraph *graph = g;
-    printf("Killing graph with %d nodes and %d edges\n", graph->nVertex, graph->nEdges);
+    // printf("Killing graph with %d nodes and %d edges\n", graph->nVertex, graph->nEdges);
+    printGraph(g);
     for (int i = 0; i < graph->nVertex; i++) {
         freeList(graph->adjacency[i]);
         free(getInfoFromVertex(graph->adjacency[i]));
