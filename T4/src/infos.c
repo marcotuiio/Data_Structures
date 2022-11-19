@@ -12,7 +12,7 @@ typedef struct StQuadra {
 
 typedef struct StInfoEdge {
     double vm, cmp;
-    char ldir[30], lesq[30], nome[30], bloqName[30];
+    char ldir[30], lesq[30], nome[30], bloqName[30], sentido[5];
 } StInfoEdge;
 
 typedef struct StInfoVertex{
@@ -163,6 +163,16 @@ void setBloqNameEdge(InfoEdge info, char *bloqName) {
 char *getBloqNameEdge(InfoEdge info) {
     StInfoEdge *i = info;
     return i->bloqName;
+}
+
+void setSentidoEdge(InfoEdge info, char *sentido) {
+    StInfoEdge *i = info;
+    strcpy(i->sentido, sentido);
+}
+
+char *getSentidoEdge(InfoEdge info) {
+    StInfoEdge *i = info;
+    return i->sentido;
 }
 
 double getXVertex(InfoNode info) {

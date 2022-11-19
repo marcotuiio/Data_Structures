@@ -26,8 +26,13 @@ Digraph readVia(char *bedVia) {
             fscanf(via, "%s %s %s %s %lf %lf %s", i, j, ldir, lesq, &cmp, &vm, nomeEdge);
             Node from = getNode(g, i);
             Node to = getNode(g, j);
+
             if (from != -1 && to != -1) {
+                char sentido[5];
+                defineSentido(g, from, to, sentido);
                 InfoEdge infoE = createInfoEdge(vm, cmp, ldir, lesq, nomeEdge);
+                setSentidoEdge(infoE, sentido);
+                // printf("Sentido: %s\n", sentido);
                 addEdge(g, from, to, infoE);
             }
         }
@@ -35,6 +40,29 @@ Digraph readVia(char *bedVia) {
     }
     fclose(via);
     return g;
+}
+
+void defineSentido(Digraph g, Node from, Node to, char *sentido) {
+    InfoNode inFrom = getNodeInfo(g, from);
+    InfoNode inTo = getNodeInfo(g, to);
+    double x1 = getXNode(inFrom);
+    double y1 = getYNode(inFrom);
+    double x2 = getXNode(inTo);
+    double y2 = getYNode(inTo);
+    if (fabs(x1 - x2) < 5) {
+        if (y1 < y2) {
+            strcpy(sentido, "sn");
+        } else {
+            strcpy(sentido, "ns");
+        }
+    } 
+    if (fabs(y1 - y2) < 5) {
+        if (x1 < x2) {
+            strcpy(sentido, "lo");
+        } else {
+            strcpy(sentido, "ol");
+        }
+    }
 }
 
 FILE *openVia(char *bedVia) {

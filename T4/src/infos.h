@@ -75,6 +75,12 @@ void setBloqNameEdge(InfoEdge info, char *bloqName);
 char *getBloqNameEdge(InfoEdge info);
 // Returns the name of the given InfoEdge
 
+void setSentidoEdge(InfoEdge info, char *sentido);
+// Sets the sentido of the given InfoEdge
+
+char *getSentidoEdge(InfoEdge info);
+// Returns the sentido of the given InfoEdge
+
 double getXVertex(InfoNode info);
 // Returns the x coordinate of the given InfoNode
 

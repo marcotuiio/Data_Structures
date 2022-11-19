@@ -1,7 +1,7 @@
 # DATA STRUCTURES
 
 ### T4
-nothing makes senses
+"nothing makes senses"
 * bfs and dijkstra dont work and probably never will
 * qry:
     - @o? ok
@@ -10,4 +10,4 @@ nothing makes senses
     - pnt ok
     - rf seems ok (???)
     - b seems ok (???)
-    - blq and rbl dont know how to make it
+    - blq and rbl seem to work buut need to check if direction of edge is correct
