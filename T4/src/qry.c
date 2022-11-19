@@ -48,6 +48,7 @@ void readQry(Rb t, Digraph d, char *bedQry, char *bsdSvg, char *bsdTxt) {
         strcpy(comando, " ");
     }
 
+    writeSvg(svg, t, d);
     free(origin);
     fclose(qry);
     fclose(txt);
@@ -73,7 +74,7 @@ FILE *openTxt(char *bsdTxt) {
 
 void lookCep(InfoRb i, void *aux) {
     void **data = aux;
-    if (!strcmp(getCep(i), data[0])) {
+    if (!strcmp(getCep(i), (char *)data[0])) {
         data[1] = i;
     }
 }
@@ -86,43 +87,50 @@ void oFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d, void *origin) {
     fprintf(txt, "\n[*] @o? %s %s %lf\n", cep, face, num);
 
     void *data[] = {cep, NULL};
-    lookCep(t, data);
-    if (data[1]) {
-        fprintf(txt, "CEP: %s, %s, %lf || %p\n", cep, face, num, data[1]);
-    } else {
+    percursoProfundidade(t, lookCep, data);
+    
+    if (!data[1]) {        
         fprintf(txt, "CEP: %s, NÃO ENCONTRADO\n", cep);
         return;
     }
 
     double x1, y1, x2, y2;
+    originAdress *o = origin;
     if (!strcmp(face, "S")) {
         x1 = getXNode(data[1]) + num;
-        y1 = getYNode(data[1]) - 5;
+        y1 = getYNode(data[1]) - 10;
         x2 = getXNode(data[1]) + num;
-        y2 = getYNode(data[1]) + 5;
+        y2 = getYNode(data[1]) + 10;
+        o->x = x1;
+        o->y = getYNode(data[1]);
     } else if (!strcmp(face, "N")) {
         x1 = getXNode(data[1]) + num;
-        y1 = getYNode(data[1]) + 5;
+        y1 = getYNode(data[1]) + getHNode(data[1]) - 10;
         x2 = getXNode(data[1]) + num;
-        y2 = getYNode(data[1]) - 5;
+        y2 = getYNode(data[1]) + getHNode(data[1]) + 10;
+        o->x = x1;
+        o->y = getYNode(data[1]) + getHNode(data[1]);
     } else if (!strcmp(face, "O")) {
-        x1 = getXNode(data[1]) + 5;
+        x1 = getXNode(data[1]) + getWNode(data[1]) - 10;
         y1 = getYNode(data[1]) + num;
-        x2 = getXNode(data[1]) - 5;
+        x2 = getXNode(data[1]) + getWNode(data[1]) + 10;
         y2 = getYNode(data[1]) + num;
+        o->x = getXNode(data[1]) + getWNode(data[1]);
+        o->y = y1;
     } else if (!strcmp(face, "L")) {
-        x1 = getXNode(data[1]) - 5;
+        x1 = getXNode(data[1]) - 10;
         y1 = getYNode(data[1]) + num;
-        x2 = getXNode(data[1]) + 5;
+        x2 = getXNode(data[1]) + 10;
         y2 = getYNode(data[1]) + num;
+        o->x = getXNode(data[1]);
+        o->y = y1;
     }
 
-    originAdress *o = origin;
-    o->x = x1;
-    o->y = y1;
     o->num = num;
     strcpy(o->cep, cep);
     strcpy(o->face, face);
+
+    fprintf(txt, "CEP: %s, FACE: %s, NUM: %lf, X: %lf, Y: %lf\n", cep, face, num, o->x, o->y);
 
     fprintf(svg, LINE, x1, y1, x2, y2, "red");
 }
@@ -141,8 +149,8 @@ void catac(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d) {
     aux->txt = txt;
     aux->tree = t;
 
-    catacQuadras(t, aux);
-    bfs(d, 0, catacEdges, aux);
+    percursoProfundidade(t, catacQuadras, aux);
+    catacEdges(d, aux);
     fprintf(svg, "<rect x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" fill=\"#AB37C8\" stroke=\"#AA0044\" fill-opacity=\"50%%\" />\n", x, y, w, h);
 
     free(aux);
@@ -151,25 +159,34 @@ void catac(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d) {
 void catacQuadras(InfoRb i, void *aux) {
     auxCatac *data = aux;
     if (insideQuadra(i, data->x, data->y, data->w, data->h)) {
-        fprintf(data->txt, "\tENDEREÇO REMOVIDO: %s, X: %lf, Y: %lf\n", getCep(i), getXNode(i), getYNode(i));
-        removeRB(data->tree, getXNode(i), getYNode(i));
+        fprintf(data->txt, "\tQUADRA REMOVIDA: %s, X: %lf, Y: %lf\n", getCep(i), getXNode(i), getYNode(i));
+        InfoRb removed = removeRB(data->tree, getXNode(i), getYNode(i));
+        if (removed) {
+            free(removed);
+        }
     }
 }
 
-bool catacEdges(Digraph g, Edge e, int td, int tf, void *extra) {
+void catacEdges(Digraph d, void *extra) {
     auxCatac *data = extra;
-    Node from = getFromNode(g, e);
-    Node to = getToNode(g, e);
-    double x1 = getXVertex(getNodeInfo(g, from));
-    double y1 = getYVertex(getNodeInfo(g, from));
-    double x2 = getXVertex(getNodeInfo(g, to));
-    double y2 = getYVertex(getNodeInfo(g, to));
 
-    if (insideEdge(data->x, data->y, data->w, data->h, x1, y1, x2, y2)) {
-        fprintf(data->txt, "\tARESTA REMOVIDA: FROM %s, TO %s, x1: %lf, y1: %lf, x2: %lf, y2: %lf\n", getNomeVertex(getNodeInfo(g, from)), getNomeVertex(getNodeInfo(g, to)), x1, y1, x2, y2);
-        removeEdge(g, e);
+    for (Node v = 0; v < getGraphSize(d); v++) {
+        Lista adj = criaLista();
+        adjacentEdges(d, v, adj);
+        for (Edge e = getFirst(adj); e; e = getNext(e)) {
+            Node from = getFromNode(d, e);
+            Node to = getToNode(d, e);
+            double x1 = getXVertex(getNodeInfo(d, from));
+            double y1 = getYVertex(getNodeInfo(d, from));
+            double x2 = getXVertex(getNodeInfo(d, to));
+            double y2 = getYVertex(getNodeInfo(d, to));
+            if (insideEdge(data->x, data->y, data->w, data->h, x1, y1, x2, y2)) {
+                fprintf(data->txt, "\tARESTA REMOVIDA: %s, X1: %lf, Y1: %lf, X2: %lf, Y2: %lf\n", getNomeEdge(getEdgeInfo(d, e)), x1, y1, x2, y2);
+                removeEdge(d, e);
+            }
+        }
+        freeAdjList(adj);
     }
-    return true;
 }
 
 void pnt(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d) {
@@ -179,12 +196,13 @@ void pnt(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d) {
     fprintf(txt, "\n[*] pnt %s %s %s\n", cep, cfill, cstrk);
 
     void *data[] = {cep, NULL};
-    lookCep(t, data);
+    percursoProfundidade(t, lookCep, data);
 
     if (data[1]) {
-        fprintf(txt, "CEP: %s, X: %lf, Y: %lf, iCFILL: %s, iCSTRK: %s\n", cep, getXNode(data[1]), getYNode(data[1]), getCFill(data[1]), getCStrk(data[1]));
-        setCFill(data[1], cfill);
-        setCStrk(data[1], cstrk);
+        fprintf(txt, "CEP: %s, CFILL_INICIAL: %s, CSTRK_INICIAL: %s, ", cep, getCFill(data[1]), getCStrk(data[1]));
+        setCFill(getDetails(data[1]), cfill);
+        setCStrk(getDetails(data[1]), cstrk);
+        fprintf(txt, "CFILL_FINAL: %s, CSTRK_FINAL: %s\n", getCFill(data[1]), getCStrk(data[1]));
     } else {
         fprintf(txt, "CEP: %s, NÃO Encontrado\n", cep);
     }
@@ -293,10 +311,8 @@ void pFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d, void *origin) {
     fprintf(txt, "\n[*] p %s %s %lf %s %s\n", cep, face, num, cmc, cmr);
 
     void *data[] = {cep, NULL};
-    lookCep(t, data);
-    if (data[1]) {
-        fprintf(txt, "CEP de Destino: %s, %s, %lf || %p\n", cep, face, num, data[1]);
-    } else {
+    percursoProfundidade(t, lookCep, data);
+    if (!data[1]) {
         fprintf(txt, "CEP de Destino: %s, NÃO ENCONTRADO\n", cep);
         return;
     }
@@ -317,5 +333,5 @@ void pFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d, void *origin) {
     }
 
     originAdress *o = origin;
-    fprintf(txt, "Iniciando percurso de %s (%lf, %lf) para %s (%lf, %lf)\n", o->cep, o->x, o->y, cep, x1, y1);
+    fprintf(txt, "Iniciando percurso de CEP: %s (X: %lf, Y: %lf) para CEP: %s (X: %lf, Y: %lf)\n", o->cep, o->x, o->y, cep, x1, y1);
 }

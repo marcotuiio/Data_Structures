@@ -182,19 +182,22 @@ char *getNomeVertex(InfoNode info) {
 
 bool insideQuadra(InfoRb info, double x, double y, double w, double h) {
     StQuadra *quadra = info;
-    
-    if (x + w > quadra->x && x < quadra->x + quadra->w) {
-        if (y + h > quadra->y && y < quadra->y + quadra->h) {
-            return true;
+    if (x + w >= quadra->x + quadra->w) {
+        if (y + h >= quadra->y + quadra->h) {
+            if (x <= quadra->x && y <= quadra->y) {
+                return true;
+            }
         }
     }
     return false;
 }
 
 bool insideEdge(double x, double y, double w, double h, double x1, double y1, double x2, double y2) {
-    if (x >= x1 && x <= x2) {
-        if (y >= y1 && y <= y2) {
-            return true;
+    if (x + w >= x1 && x + w >= x2) {
+        if (y + h >= y1 && y + h >= y2) {
+            if (x <= x1 && x <= x2 && y <= y1 && y <= y2) {
+                return true;
+            }
         }
     }
     return false;

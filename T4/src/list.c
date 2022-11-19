@@ -32,6 +32,9 @@ void setId(Lista l, char *id) {
 
 char *getId(Lista l) {
     StListVertex *lista = l;
+    if (!lista) {
+        return NULL;
+    }
     return lista->id;
 }
 
@@ -42,6 +45,9 @@ void setTD(Lista l, int td) {
 
 int getTD(Lista l) {
     StListVertex *lista = l;
+    if (lista->td == 0) {
+        return -1;
+    }
     return lista->td;
 }
 
@@ -228,6 +234,9 @@ void setVisited(Lista l, char b) {
 
 char getVisited(Lista l) {
     StListVertex *lista = l;
+    if (!lista) {
+        return '0';
+    }
     return lista->visitedType;
 }
 
@@ -306,6 +315,22 @@ void getLenght(Lista l) {
         aux = aux->next;
     }
     printf("\nO tamanho da lista é de %d elementos\n", contador);
+}
+
+void freeAdjList(Lista l) {
+    StListVertex *lista = l;
+    if (!lista->inicio) {
+        return;
+    }
+
+    StListEdge *head = lista->inicio;
+    StListEdge *tmp;
+
+    while (head != NULL) {
+        tmp = head;
+        head = tmp->next;
+        free(tmp);
+    }
 }
 
 void freeList(Lista l) {

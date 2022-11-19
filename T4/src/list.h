@@ -121,6 +121,9 @@ void freeEdgeInfo(Edge e);
 void getLenght(Lista l);
 // * exibe a quantidade de elementos em L
 
+void freeAdjList(Lista l);
+// * libera a lista de nós adjacentes sem remover a informação associada
+
 void freeList(Lista l);
 // * recebe uma lista e remove todos seus elementos.
 

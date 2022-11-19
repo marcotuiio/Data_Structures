@@ -45,11 +45,6 @@ InfoRb getInfoRB(Rb t, RbNode n, double xa, double ya);
   Este nó deve ser um nó valido (veja acima).
 */
 
-void setDetailsRB(Rb t, void **details, int nCQ);
-/*
-  Define os detalhes da árvore t.
-*/
-
 RbNode getNodeRB(Rb t, double xa, double ya);
 /*
   Retorna o nó da árvore associado a âncora (xa,ya); NULL, se tal âncora não existir.

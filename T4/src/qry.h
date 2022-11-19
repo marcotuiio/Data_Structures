@@ -1,4 +1,5 @@
 #include "libs.h"
+#include "list.h"
 #include "infos.h"
 #include "digraph.h"
 #include "rb_tree.h"
@@ -24,7 +25,7 @@ void oFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d, void *origin);
 
 void catac(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d);
 void catacQuadras(InfoRb i, void *aux);
-bool catacEdges(Digraph g, Edge e, int td, int tf, void *extra);
+void catacEdges(Digraph g, void *extra);
 // Remover as quadras contidas na região delimitada pelo retângulo x,y,w,h. Arestas
 // incidentes em vértices dentro do retângulo especificado devem ser removidas.
 
