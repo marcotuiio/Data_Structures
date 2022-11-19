@@ -9,6 +9,8 @@
 #include "system.h"
 
 int main(int argc, char* argv[]) {
+    clock_t start, end;
+    start = clock();
     Controller my_ctrl = createController();
     Paths my_paths = createAllPaths();
     Digraph my_graph = NULL;
@@ -34,5 +36,8 @@ int main(int argc, char* argv[]) {
     freePaths(my_paths);
     freeCtrl(my_ctrl);
 
+    end = clock();
+    printf("Tempo de execução: %lf\n", (double) (end - start) / CLOCKS_PER_SEC);
+    
     return 0;
 }

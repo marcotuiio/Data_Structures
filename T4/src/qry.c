@@ -74,7 +74,7 @@ FILE *openTxt(char *bsdTxt) {
 
 void lookCep(InfoRb i, void *aux) {
     void **data = aux;
-    if (!strcmp(getCep(i), (char *)data[0])) {
+    if (i && !strcmp(getCep(i), (char *)data[0])) {
         data[1] = i;
     }
 }
@@ -88,8 +88,8 @@ void oFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d, void *origin) {
 
     void *data[] = {cep, NULL};
     percursoProfundidade(t, lookCep, data);
-    
-    if (!data[1]) {        
+
+    if (!data[1]) {
         fprintf(txt, "CEP: %s, NÃO ENCONTRADO\n", cep);
         return;
     }
@@ -158,12 +158,14 @@ void catac(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d) {
 
 void catacQuadras(InfoRb i, void *aux) {
     auxCatac *data = aux;
-    if (insideQuadra(i, data->x, data->y, data->w, data->h)) {
+
+    if (i && insideQuadra(i, data->x, data->y, data->w, data->h)) {
         fprintf(data->txt, "\tQUADRA REMOVIDA: %s, X: %lf, Y: %lf\n", getCep(i), getXNode(i), getYNode(i));
-        InfoRb removed = removeRB(data->tree, getXNode(i), getYNode(i));
-        if (removed) {
-            free(removed);
-        }
+        RbNode removed = getNodeRB(data->tree, getXNode(i), getYNode(i));
+        // printf("cep removed %s\n", getCep(getInfoRB(removed)));
+        free(getDetails(getInfoRB(removed)));
+        free(getInfoRB(removed));
+        setInfoRB(removed, NULL);
     }
 }
 
@@ -171,8 +173,7 @@ void catacEdges(Digraph d, void *extra) {
     auxCatac *data = extra;
 
     for (Node v = 0; v < getGraphSize(d); v++) {
-        Lista adj = criaLista();
-        adjacentEdges(d, v, adj);
+        Lista adj = adjacentEdges(d, v);
         for (Edge e = getFirst(adj); e; e = getNext(e)) {
             Node from = getFromNode(d, e);
             Node to = getToNode(d, e);
@@ -185,7 +186,6 @@ void catacEdges(Digraph d, void *extra) {
                 removeEdge(d, e);
             }
         }
-        freeAdjList(adj);
     }
 }
 
@@ -281,7 +281,7 @@ void bFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d) {
     fscanf(qry, "%lf %lf %lf", &x, &y, &fator);
     fprintf(txt, "\n[*] b %lf %lf %lf\n", x, y, fator);
 
-    Node toStart;
+    Node toStart = 0;
     for (Node i = 0; i < getGraphSize(d); i++) {
         double x1 = getXVertex(getNodeInfo(d, i));
         double y1 = getYVertex(getNodeInfo(d, i));
@@ -289,16 +289,17 @@ void bFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph d) {
             toStart = i;
         }
     }
+    // printf("toStart: %d\n", toStart);
     void *data[] = {&fator, txt};
     bfs(d, toStart, bFuncEdges, data);
 }
 
 bool bFuncEdges(Digraph g, Edge e, int td, int tf, void *extra) {
     void **data = extra;
-    double *fator = data[0];
+    double fator = *(double *)data[0];
     FILE *txt = data[1];
-    fprintf(txt, "EDGE %s, VMi: %lf, ", getNomeEdge(getEdgeInfo(g, e)), getVMEdge(getEdgeInfo(g, e)));
-    setVMEdge(getEdgeInfo(g, e), getVMEdge(getEdgeInfo(g, e)) * (*fator));
+    fprintf(txt, "Aresta no percurso em Largura %s, VMi: %lf, ", getNomeEdge(getEdgeInfo(g, e)), getVMEdge(getEdgeInfo(g, e)));
+    setVMEdge(getEdgeInfo(g, e), getVMEdge(getEdgeInfo(g, e)) * fator);
     fprintf(txt, "VMf: %lf\n", getVMEdge(getEdgeInfo(g, e)));
     return false;
 }

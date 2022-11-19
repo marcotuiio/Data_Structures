@@ -39,9 +39,15 @@ RbNode insertRB(Rb t, double x, double y, InfoRb info);
  */
 
 
-InfoRb getInfoRB(Rb t, RbNode n, double xa, double ya);
+InfoRb getInfoRB(RbNode n);
 /*
   Retorna a informação associada ao nó n, sua âncora (xa,ya).
+  Este nó deve ser um nó valido (veja acima).
+*/
+
+void setInfoRB(RbNode n, InfoRb info);
+/*
+  Associa a informação info ao nó n.
   Este nó deve ser um nó valido (veja acima).
 */
 

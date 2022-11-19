@@ -4,6 +4,7 @@
         "libs.h": "c",
         "list.h": "c",
         "rectangle.h": "c",
-        "teste": "c"
+        "teste": "c",
+        "queue.h": "c"
     }
 }

@@ -6,24 +6,25 @@
 
 void writeSvg(FILE *svg, Rb t, Digraph g) {
     percursoProfundidade(t, writeRb, svg);
-    
 
     killSvg(svg);
 }
 
 void writeRb(InfoRb i, void *aux) {
     FILE *svg = aux;
-    double x = getXNode(i);
-    double y = getYNode(i);
-    double w = getWNode(i);
-    double h = getHNode(i);
-    char cep[30], sw[10], cfill[15], cstrk[15];
-    strcpy(cep, getCep(i));
-    strcpy(sw, getSW(i));
-    strcpy(cfill, getCFill(i));
-    strcpy(cstrk, getCStrk(i));
+    if (i) {
+        double x = getXNode(i);
+        double y = getYNode(i);
+        double w = getWNode(i);
+        double h = getHNode(i);
+        char cep[30], sw[10], cfill[15], cstrk[15];
+        strcpy(cep, getCep(i));
+        strcpy(sw, getSW(i));
+        strcpy(cfill, getCFill(i));
+        strcpy(cstrk, getCStrk(i));
 
-    fprintf(svg, RECTANGLE, cep, x, y, w, h, cfill, cstrk, sw);
+        fprintf(svg, RECTANGLE, cep, x, y, w, h, cfill, cstrk, sw);
+    }
 }
 
 // void drawCircle(FILE *svg, void *circ) {

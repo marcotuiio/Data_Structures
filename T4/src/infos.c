@@ -182,8 +182,9 @@ char *getNomeVertex(InfoNode info) {
 
 bool insideQuadra(InfoRb info, double x, double y, double w, double h) {
     StQuadra *quadra = info;
-    if (x + w >= quadra->x + quadra->w) {
-        if (y + h >= quadra->y + quadra->h) {
+
+    if ((x + w) >= (quadra->x + quadra->w)) {
+        if ((y + h) >= (quadra->y + quadra->h)) {
             if (x <= quadra->x && y <= quadra->y) {
                 return true;
             }

@@ -25,8 +25,8 @@ typedef struct tree Red_Black_Root;
 RbNode newNode(InfoRb i, double x, double y);
 void RBinsert(Rb t, RbNode n);
 void fixRBinsert(Rb t, RbNode n);
-RbNode rotateLeft(Rb t, RbNode n);
-RbNode rotateRight(Rb t, RbNode n);
+void rotateLeft(Rb t, RbNode n);
+void rotateRight(Rb t, RbNode n);
 RbNode searchNode(Rb t, RbNode n, double xa, double ya);
 void transplantRB(Rb t, RbNode n, RbNode n2);
 void fixRBdelete(Rb t, RbNode n);
@@ -113,7 +113,7 @@ void fixRBinsert(Rb t, RbNode n) {
     while (z->parent != nil && z->parent->color == 'r') {
         if (z->parent == z->parent->parent->left) {
             y = z->parent->parent->right;
-            if (y && y->color == 'r') {
+            if (y->color == 'r') {
                 z->parent->color = 'b';
                 y->color = 'b';
                 z->parent->parent->color = 'r';
@@ -127,10 +127,11 @@ void fixRBinsert(Rb t, RbNode n) {
                 z->parent->parent->color = 'r';
                 rotateRight(t, z->parent->parent);
             }
+
         } else {
             if (z->parent == z->parent->parent->right) {
                 y = z->parent->parent->left;
-                if (y != nil && y->color == 'r') {
+                if (y->color == 'r') {
                     z->parent->color = 'b';
                     y->color = 'b';
                     z->parent->parent->color = 'r';
@@ -150,7 +151,7 @@ void fixRBinsert(Rb t, RbNode n) {
     rb_tree->root->color = 'b';
 }
 
-RbNode rotateLeft(Rb t, RbNode n) {
+void rotateLeft(Rb t, RbNode n) {
     Red_Black_Root *red_black_tree = t;
     Red_Black_Node *nil = red_black_tree->nil;
     Red_Black_Node *node = n;         // avô 2
@@ -174,10 +175,9 @@ RbNode rotateLeft(Rb t, RbNode n) {
 
     y->left = node;
     node->parent = y;
-    return y;
 }
 
-RbNode rotateRight(Rb t, RbNode n) {
+void rotateRight(Rb t, RbNode n) {
     Red_Black_Root *red_black_tree = t;
     Red_Black_Node *nil = red_black_tree->nil;
     Red_Black_Node *node = n;        // recebo o AVÔ
@@ -201,12 +201,16 @@ RbNode rotateRight(Rb t, RbNode n) {
 
     y->right = node;
     node->parent = y;
-    return y;
 }
 
-InfoRb getInfoRB(Rb t, RbNode n, double xa, double ya) {
+InfoRb getInfoRB(RbNode n) {
     Red_Black_Node *node = n;
     return node->value;
+}
+
+void setInfoRB(RbNode n, InfoRb info) {
+    Red_Black_Node *node = n;
+    node->value = info;
 }
 
 RbNode getNodeRB(Rb t, double xa, double ya) {
@@ -320,7 +324,7 @@ void fixRBdelete(Rb t, RbNode n) {
             w = rb_node->parent->right;
 
             // Caso 1A: irmão w é vermelho
-            if (w && w->color == 'r') {
+            if (w->color == 'r') {
                 w->color = 'b';
                 rb_node->parent->color = 'r';
                 rotateLeft(t, rb_node->parent);
@@ -331,7 +335,6 @@ void fixRBdelete(Rb t, RbNode n) {
             if (w->left->color == 'b' && w->right->color == 'b') {
                 w->color = 'r';
                 rb_node = rb_node->parent;
-                rb_node = rb_node->parent;
 
                 // Caso 3A: Filho direito do irmão é vermelho Caso Right right
             } else {
@@ -341,12 +344,12 @@ void fixRBdelete(Rb t, RbNode n) {
                     rotateRight(t, w);
                     w = rb_node->parent->right;
                 }
+                w->color = rb_node->parent->color;
+                rb_node->parent->color = 'b';
+                w->right->color = 'b';
+                rotateLeft(t, rb_node->parent);
+                rb_node = root;
             }
-            w->color = rb_node->parent->color;
-            rb_node->parent->color = 'b';
-            w->right->color = 'b';
-            rotateLeft(t, rb_node->parent);
-            rb_node = root;
 
         } else {
             if (rb_node == rb_node->parent->right) {
@@ -358,7 +361,6 @@ void fixRBdelete(Rb t, RbNode n) {
                     rb_node->parent->color = 'r';
                     rotateRight(t, rb_node->parent);
                     w = rb_node->parent->left;
-                    rb_node = rb_node->parent;
                 }
 
                 // Caso 2B: Ambos os filhos do irmão w são pretos
@@ -368,18 +370,18 @@ void fixRBdelete(Rb t, RbNode n) {
 
                     // Caso 3B: Filho esquerdo do irmão é vermelho caso Left left
                 } else {
-                    if (w->left && w->left->color == 'b') {
+                    if (w->left->color == 'b') {
                         w->right->color = 'b';
                         w->color = 'r';
                         rotateLeft(t, w);
                         w = rb_node->parent->left;
                     }
+                    w->color = rb_node->parent->color;
+                    rb_node->parent->color = 'b';
+                    w->left->color = 'b';
+                    rotateRight(t, rb_node->parent);
+                    rb_node = root;
                 }
-                w->color = rb_node->parent->color;
-                rb_node->parent->color = 'b';
-                w->left->color = 'b';
-                rotateRight(t, rb_node->parent);
-                rb_node = root;
             }
         }
     }
@@ -412,10 +414,12 @@ void traverseAux(RbNode root, RbNode nil, FvisitaNo f, void *aux) {
     if (node == nil) {
         return;
     }
-    RbNode left = node->left;
-    RbNode right = node->right;
+    Red_Black_Node *left = node->left;
+    Red_Black_Node *right = node->right;
 
-    f(node->value, aux);
+    if (node->value) {
+        f(node->value, aux);
+    }
     traverseAux(left, nil, f, aux);
     traverseAux(right, nil, f, aux);
 }
@@ -475,7 +479,6 @@ int heightOfLevel(RbNode n, RbNode nil) {
 
 void killRB(Rb t) {
     Red_Black_Root *red_black_tree = t;
-
     freeAux(red_black_tree->root, red_black_tree->nil);
     free(red_black_tree->nil);
     free(red_black_tree);
@@ -486,9 +489,10 @@ void freeAux(RbNode root, RbNode nil) {
     if (node == nil) {
         return;
     }
-
-    free(getDetails(node->value));
-    free(node->value);
+    if (node->value) {
+        free(getDetails(node->value));
+        free(node->value);
+    }
     freeAux(node->left, nil);
     freeAux(node->right, nil);
     if (node) {

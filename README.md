@@ -6,8 +6,8 @@ nothing makes senses
 * qry:
     - @o? ok
     - p? the beggining is ok, need to finish dijkstra
-    - catac doesnt work on rb but seems to work on graph and leaks lots of memory
+    - catac seems to be ok
     - pnt ok
-    - rf ok (???)
+    - rf seems ok (???)
+    - b seems ok (???)
     - blq and rbl dont know how to make it
-    - b dont know how to test it

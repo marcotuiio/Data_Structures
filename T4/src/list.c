@@ -18,6 +18,108 @@ typedef struct StListVertex {
     StListEdge *fim;
 } StListVertex;
 
+typedef struct StCellAux {
+    Node value;
+    struct StCellAux *next;
+    struct StCellAux *prev;
+} StCellAux;
+
+typedef struct StListAux {
+    StCellAux *inicio;
+    StCellAux *fim;
+} StListAux;
+
+Lista criaListaAux() {
+    StListAux *lista = calloc(1, sizeof(StListAux));
+    return lista;
+}
+
+void insereAux(Lista l, Node n) {
+    StListAux *lista = l;
+    StCellAux *novaCelula = calloc(1, sizeof(StCellAux));
+    novaCelula->value = n;
+    novaCelula->next = NULL;
+    novaCelula->prev = NULL;
+
+    if (lista->fim) {  // fim <-> nova --
+        novaCelula->prev = lista->fim;
+        novaCelula->prev->next = novaCelula;
+        lista->fim = novaCelula;
+    } else {  // lista vazia
+        lista->fim = novaCelula;
+        lista->inicio = novaCelula;
+    }
+    // printf("Inseriu %d, inicio: %d, fim: %d\n", n, lista->inicio->value, lista->fim->value);
+}
+
+void removeCell(Lista l, Node n) {
+    StListAux *aux = l;
+    StCellAux *lista = aux->inicio;
+    StCellAux *celulaARemover = NULL;
+
+    // Buscando a celula com valor desejado
+    while (lista) {
+        if (lista->next->value == n) {  // se n inteiro ou char
+            celulaARemover = lista;
+        }
+        lista = lista->next;
+    }
+
+    if (!celulaARemover) {
+        // printf("ELEMENTO INEXISTENTE NA LISTA\n");
+        return;
+    }
+
+    if (aux->inicio == celulaARemover && aux->fim == celulaARemover) {
+        aux->inicio = NULL;
+        aux->fim = NULL;
+
+    } else if (aux->inicio == celulaARemover) {  // celula a remover -> slkkefd
+        aux->inicio = celulaARemover->next;
+        celulaARemover->next->prev = NULL;
+
+    } else if (aux->fim == celulaARemover) {  // vfbvff -> celula a remover
+        aux->fim = celulaARemover->prev;
+        celulaARemover->prev->next = NULL;
+
+    } else {  // ant -> remove -> next
+        celulaARemover->prev->next = celulaARemover->next;
+        if (celulaARemover->next) {
+            celulaARemover->next->prev = celulaARemover->prev;
+        }
+    }
+
+    free(celulaARemover);
+}
+
+void *getFirstAux(Lista l) {
+    StListAux *aux = l;
+    return aux->inicio;
+}
+
+void *getNextAux(void *cell) {
+    StCellAux *celula = cell;
+    return celula->next;
+}
+
+Node getValueAux(void *cell) {
+    StCellAux *celula = cell;
+    return celula->value;
+}
+
+void freeListaAux(Lista l) {
+    StListAux *lista = l;
+    StCellAux *celula = lista->inicio;
+    StCellAux *aux;
+
+    while (celula) {
+        aux = celula;
+        celula = celula->next;
+        free(aux);
+    }
+    free(lista);
+}
+
 Lista criaLista() {
     StListVertex *novaLista = calloc(1, sizeof(StListVertex));
     novaLista->inicio = NULL;
@@ -96,16 +198,16 @@ Edge encontraAresta(Lista l, Node from, Node to) {
     StListVertex *aux = l;
     StListEdge *edge = aux->inicio;
     StListEdge *result = NULL;
-
     while (edge) {
         if (edge->to == to && edge->from == from) {
             result = edge;
+            // printf("Aresta encontrada: %d -> %d\n", result->from, result->to);
             return result;
         }
         edge = edge->next;
     }
     if (!result) {
-        printf("VALOR NAO ENCONTRADO");
+        // printf("VALOR NAO ENCONTRADO");
         return NULL;
     }
     return NULL;
@@ -224,6 +326,7 @@ void removeAresta(Lista l, void *n) {
         }
     }
 
+    free(celulaARemover->valueEdge);
     free(celulaARemover);
 }
 

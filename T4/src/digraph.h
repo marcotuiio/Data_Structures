@@ -182,7 +182,7 @@ void adjacentNodes(Digraph g, Node node, Lista nosAdjacentes);
    Adiciona 'a lista "arestaAdjacentes" as arestas (x,y), tal que,
    x == node.
 */
-void adjacentEdges(Digraph g, Node node, Lista arestasAdjacentes);
+Lista adjacentEdges(Digraph g, Node node);
 
 /*
    Insere na lista "nomesNodes" os nomes atribuidos aos nos do grafo.

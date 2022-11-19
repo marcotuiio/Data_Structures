@@ -11,13 +11,10 @@
 void *createQueue();
 // Cria uma fila vazia
 
-bool enfila(Queue q, InfoNode n);
+bool enfila(Queue q, Node n);
 // crio uma nov celula e adiciona elemento n a fila
 
-InfoNode desenfila(Queue q);
-// verifica se a fila está vazia
-
-InfoNode desenfila(Queue q);
+Node desenfila(Queue q);
 // removo o elemento
 
 bool isEmpty(Queue q);

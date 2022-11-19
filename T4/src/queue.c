@@ -1,7 +1,7 @@
 #include "queue.h"
 
 typedef struct NodeQueue {
-    InfoNode value;
+    Node value;
     struct NodeQueue *next;
 } NodeQueue;
 
@@ -10,12 +10,12 @@ typedef struct StQueue {
     NodeQueue *tail;
 } StQueue;
 
-void *createQueue() {
+Queue createQueue() {
     StQueue *queue = calloc(1, sizeof(StQueue));
     return queue;
 }
 
-bool enfila(Queue q, InfoNode n) {
+bool enfila(Queue q, Node n) {
     // crio uma nova celula
     StQueue *queue = q;
     NodeQueue *novaCelula = calloc(1, sizeof(NodeQueue));
@@ -36,21 +36,21 @@ bool enfila(Queue q, InfoNode n) {
     return true;
 }
 
-bool isEmpty(Queue q) {
+bool isEmpty(Queue q) {  // retorna true se a fila estiver vazia
     StQueue *queue = q;
     return !queue->head;
 }
 
-InfoNode desenfila(Queue q) {
+Node desenfila(Queue q) {
     // conferir se a fila está ou não vazia
     StQueue *queue = q;
     if (!queue->head) {
-        return NULL;
+        return -1;
     }
     // salvo o começo da fila
     NodeQueue *tmp = queue->head;
     // salvo o valor a ser removido
-    InfoNode result = tmp->value;
+    Node result = tmp->value;
     // removo o valor
     queue->head = queue->head->next;
     if (!queue->head) {
@@ -62,9 +62,10 @@ InfoNode desenfila(Queue q) {
 
 void printFila(Queue q) {
     StQueue *queue = q;
-    InfoNode info;
+    Node info;
     printf("\n");
-    while ((info = desenfila(queue))) {
-        printf("info = %p\n", info);
+    while (info != -1) {
+        printf("info = %d\n", info);
+        info = desenfila(queue);
     }
 }

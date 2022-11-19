@@ -9,6 +9,15 @@
  * elemento (comprimento 0)  ́e denominada lista vazia.
  */
 
+Lista criaListaAux();
+void insereAux(Lista l, Node n);
+void removeCell(Lista l, Node n);
+void *getFirstAux(Lista l);
+void *getNextAux(void *cell);
+Node getValueAux(void *cell);
+void freeListaAux(Lista l);
+// Funções auxiliares para lidar com lista auxiliares envolvendo os grafo 
+
 Lista criaLista();  // createList
 // Cria e retorna uma lista vazia;
 
