@@ -1,4 +1,5 @@
 #include "via.h"
+
 #include "digraph.h"
 #include "infos.h"
 
@@ -7,11 +8,11 @@ Digraph readVia(char *bedVia) {
     char tipo[5], id[30], ldir[30], lesq[30], nomeEdge[30], i[30], j[30];
     double x, y, vm, cmp;
 
-    int nVertex;
+    Node nVertex;
     fscanf(via, "%d", &nVertex);
     Digraph g = createGraph(nVertex);
-    
-    int posic = 0;
+
+    Node posic = 0;
     while (!feof(via)) {
         fscanf(via, "%s", tipo);
 
@@ -28,11 +29,33 @@ Digraph readVia(char *bedVia) {
             Node to = getNode(g, j);
 
             if (from != -1 && to != -1) {
-                char sentido[5];
-                defineSentido(g, from, to, sentido);
+                char sentido[5] = "----";
+                InfoNode inFrom = getNodeInfo(g, from);
+                InfoNode inTo = getNodeInfo(g, to);
+                double x1 = getXVertex(inFrom);
+                double y1 = getXVertex(inFrom);
+                double x2 = getXVertex(inTo);
+                double y2 = getXVertex(inTo);
+
+                // printf("x1: %lf, y1: %lf, x2: %lf, y2: %lf\n", x1, y1, x2, y2);
+                if (x1 == x2) {
+                    if (y1 < y2) {
+                        strcpy(sentido, "sn");
+                    } else {
+                        strcpy(sentido, "ns");
+                    }
+                
+                } else if (y1 == y2) {
+                    if (x1 < x2) {
+                        strcpy(sentido, "lo");
+                    } else {
+                        strcpy(sentido, "ol");
+                    }
+                }
+                // printf("Sentido: %s\n", sentido);
+
                 InfoEdge infoE = createInfoEdge(vm, cmp, ldir, lesq, nomeEdge);
                 setSentidoEdge(infoE, sentido);
-                // printf("Sentido: %s\n", sentido);
                 addEdge(g, from, to, infoE);
             }
         }
@@ -40,29 +63,6 @@ Digraph readVia(char *bedVia) {
     }
     fclose(via);
     return g;
-}
-
-void defineSentido(Digraph g, Node from, Node to, char *sentido) {
-    InfoNode inFrom = getNodeInfo(g, from);
-    InfoNode inTo = getNodeInfo(g, to);
-    double x1 = getXNode(inFrom);
-    double y1 = getYNode(inFrom);
-    double x2 = getXNode(inTo);
-    double y2 = getYNode(inTo);
-    if (fabs(x1 - x2) < 5) {
-        if (y1 < y2) {
-            strcpy(sentido, "sn");
-        } else {
-            strcpy(sentido, "ns");
-        }
-    } 
-    if (fabs(y1 - y2) < 5) {
-        if (x1 < x2) {
-            strcpy(sentido, "lo");
-        } else {
-            strcpy(sentido, "ol");
-        }
-    }
 }
 
 FILE *openVia(char *bedVia) {

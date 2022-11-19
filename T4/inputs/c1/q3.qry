@@ -1,3 +1,8 @@
-blq teste1 lo 0.0 0.0 200.0 200.0
-rf b01.1 S 1000.00
+blq teste1 lo 0.0 0.0 6000.0 6000.0
+blq teste2 ol 0.0 0.0 6000.0 6000.0
+blq teste3 sn 0.0 0.0 2000.0 2000.0
+blq teste4 ns 0.0 0.0 2000.0 2000.0
 rbl teste1
+rbl teste2
+rbl teste3
+rbl teste4

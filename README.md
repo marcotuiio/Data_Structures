@@ -11,3 +11,8 @@
     - rf seems ok (???)
     - b seems ok (???)
     - blq and rbl seem to work buut need to check if direction of edge is correct
+
+* TODO:
+    ** fix dijkstra
+    ** fix direction of edges
+    ** test with evandros qrys
