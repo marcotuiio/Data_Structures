@@ -245,11 +245,17 @@ void bloqEdges(Digraph g, void *extra) {
             double y1 = getYVertex(getNodeInfo(g, from));
             double x2 = getXVertex(getNodeInfo(g, to));
             double y2 = getYVertex(getNodeInfo(g, to));
-            char sentidoAresta[5];
-            strcpy(sentidoAresta, getSentidoEdge(getEdgeInfo(g, e)));
+            char sentidoPrimAresta[5], sentidoSecAresta[5];
+            strcpy(sentidoPrimAresta, getSentidoPrimEdge(getEdgeInfo(g, e)));
+            strcpy(sentidoSecAresta, getSentidoSecEdge(getEdgeInfo(g, e)));
             if (insideEdge(data->x, data->y, data->w, data->h, x1, y1, x2, y2)) {
-                if (!strcmp(data->sentido, sentidoAresta)) {
-                    fprintf(data->txt, "\tARESTA BLOQUEADA: %s, Sentido: %s, X1: %lf, Y1: %lf, X2: %lf, Y2: %lf\n", getNomeEdge(getEdgeInfo(g, e)), sentidoAresta, x1, y1, x2, y2);
+                if (!strcmp(data->sentido, sentidoPrimAresta)) {
+                    fprintf(data->txt, "\tARESTA BLOQUEADA: %s, Sentido: %s, X1: %lf, Y1: %lf, X2: %lf, Y2: %lf\n", getNomeEdge(getEdgeInfo(g, e)), sentidoPrimAresta, x1, y1, x2, y2);
+                    disableEdge(g, e);
+                    setBloqNameEdge(getEdgeInfo(g, e), data->nome);
+                }
+                if (!strcmp(data->sentido, sentidoSecAresta)) {
+                    fprintf(data->txt, "\tARESTA BLOQUEADA: %s, Sentido: %s, X1: %lf, Y1: %lf, X2: %lf, Y2: %lf\n", getNomeEdge(getEdgeInfo(g, e)), sentidoSecAresta, x1, y1, x2, y2);
                     disableEdge(g, e);
                     setBloqNameEdge(getEdgeInfo(g, e), data->nome);
                 }
@@ -268,7 +274,7 @@ void rbl(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph g) {
         Lista adj = adjacentEdges(g, v);
         for (Edge e = getFirst(adj); e; e = getNext(e)) {
             if (!strcmp(getBloqNameEdge(getEdgeInfo(g, e)), nome)) {
-                fprintf(txt, "\tARESTA DESBLOQUEADA: %s, Sentido: %s, X1: %lf, Y1: %lf, X2: %lf, Y2: %lf\n", getNomeEdge(getEdgeInfo(g, e)), getSentidoEdge(getEdgeInfo(g, e)), getXVertex(getNodeInfo(g, getFromNode(g, e))), getYVertex(getNodeInfo(g, getFromNode(g, e))), getXVertex(getNodeInfo(g, getToNode(g, e))), getYVertex(getNodeInfo(g, getToNode(g, e))));
+                fprintf(txt, "\tARESTA DESBLOQUEADA: %s, Sentido_Prim: %s, Sentido_Sec: %s, X1: %lf, Y1: %lf, X2: %lf, Y2: %lf\n", getNomeEdge(getEdgeInfo(g, e)), getSentidoPrimEdge(getEdgeInfo(g, e)), getSentidoSecEdge(getEdgeInfo(g, e)), getXVertex(getNodeInfo(g, getFromNode(g, e))), getYVertex(getNodeInfo(g, getFromNode(g, e))), getXVertex(getNodeInfo(g, getToNode(g, e))), getYVertex(getNodeInfo(g, getToNode(g, e))));
                 enableEdge(g, e);
                 setBloqNameEdge(getEdgeInfo(g, e), "");
             }
@@ -282,8 +288,10 @@ void rf(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph g) {
 
     fscanf(qry, "%s %s %lf", cep, face, &fator);
     fprintf(txt, "\n[*] rf %s %s %lf\n", cep, face, fator);
-    void *data[] = {txt, &fator, cep, face};
+    Lista floresta = criaListaAux();
+    void *data[] = {txt, &fator, cep, face, floresta, NULL};
     dfs(g, classTree, classForward, classReturn, classCross, restarted, data);
+    freeListaAux(floresta);
 }
 
 bool classTree(Digraph g, Edge e, int td, int tf, void *extra) {
@@ -323,8 +331,11 @@ bool classCross(Digraph g, Edge e, int td, int tf, void *extra) {
 }
 
 bool restarted(Digraph g, void *extra) {
-    FILE *txt = extra;
-    fprintf(txt, "REINICIADO\n");
+    void **data = extra;
+    FILE *txt = data[0];
+    Lista floresta = data[4];
+    insereAux(floresta, *(Node *)data[5]);
+    fprintf(txt, "REINICIANDO e inserindo nó %d na floresta\n", *(Node *)data[5]);
     return false;
 }
 
@@ -334,13 +345,17 @@ void bFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph g) {
     fscanf(qry, "%lf %lf %lf", &x, &y, &fator);
     fprintf(txt, "\n[*] b %lf %lf %lf\n", x, y, fator);
 
-    Node toStart = 0;
+    Node toStart = -1;
     for (Node i = 0; i < getGraphSize(g); i++) {
         double x1 = getXVertex(getNodeInfo(g, i));
         double y1 = getYVertex(getNodeInfo(g, i));
         if (fabs(x1 - x) <= 0 && fabs(y1 - y) <= 0) {  // Atenção!!!!
             toStart = i;
         }
+    }
+    if (toStart == -1) {
+        fprintf(txt, "NÃO FOI ENCONTRADO NENHUM VÉRTICE COM AS COORDENADAS (%lf, %lf)\n", x, y);
+        return;
     }
     // printf("toStart: %g\n", toStart);
     void *data[] = {&fator, txt};
@@ -351,9 +366,9 @@ bool bFuncEdges(Digraph g, Edge e, int td, int tf, void *extra) {
     void **data = extra;
     double fator = *(double *)data[0];
     FILE *txt = data[1];
-    fprintf(txt, "Aresta no percurso em Largura %s, VMi: %lf, ", getNomeEdge(getEdgeInfo(g, e)), getVMEdge(getEdgeInfo(g, e)));
+    fprintf(txt, "Aresta no percurso em Largura %s, VM_Inicial: %lf, ", getNomeEdge(getEdgeInfo(g, e)), getVMEdge(getEdgeInfo(g, e)));
     setVMEdge(getEdgeInfo(g, e), getVMEdge(getEdgeInfo(g, e)) * fator);
-    fprintf(txt, "VMf: %lf\n", getVMEdge(getEdgeInfo(g, e)));
+    fprintf(txt, "VM_Final: %lf\n", getVMEdge(getEdgeInfo(g, e)));
     return false;
 }
 
@@ -371,21 +386,30 @@ void pFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph g, void *origin) {
         return;
     }
 
-    double x1, y1;
+    double x2, y2;
     if (!strcmp(face, "S")) {
-        x1 = getXNode(data[1]) + num;
-        y1 = getYNode(data[1]);
+        x2 = getXNode(data[1]) + num;
+        y2 = getYNode(data[1]);
     } else if (!strcmp(face, "N")) {
-        x1 = getXNode(data[1]) + num;
-        y1 = getYNode(data[1]);
+        x2 = getXNode(data[1]) + num;
+        y2 = getYNode(data[1]);
     } else if (!strcmp(face, "O")) {
-        x1 = getXNode(data[1]);
-        y1 = getYNode(data[1]) + num;
+        x2 = getXNode(data[1]);
+        y2 = getYNode(data[1]) + num;
     } else if (!strcmp(face, "L")) {
-        x1 = getXNode(data[1]);
-        y1 = getYNode(data[1]) + num;
+        x2 = getXNode(data[1]);
+        y2 = getYNode(data[1]) + num;
     }
 
     originAdress *o = origin;
-    fprintf(txt, "Iniciando percurso de CEP: %s (X: %lf, Y: %lf) para CEP: %s (X: %lf, Y: %lf)\n", o->cep, o->x, o->y, cep, x1, y1);
+    Node i = getNodeGivenXY(g, o->x, o->y);
+    Node j = getNodeGivenXY(g, x2, y2);
+    printf("DIJKSTRA: i: %d, j: %d\n", i, j);
+    
+    fprintf(txt, "Iniciando percurso de CEP: %s (X: %lf, Y: %lf) para CEP: %s (X: %lf, Y: %lf)\n", o->cep, o->x, o->y, cep, x2, y2);
+    Node *path = fullDijkstra(g, 0, i, j, 1);  // 0 = distancia, 1 = velocidade
+    // for (int k = 0; path[k] != -1; k++) {
+    //     fprintf(txt, "Nó %d, X: %lf, Y: %lf\n", path[k], getXVertex(getNodeInfo(g, path[k])), getYVertex(getNodeInfo(g, path[k])));
+    // }
+    if (path) free(path);
 }

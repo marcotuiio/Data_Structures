@@ -93,6 +93,16 @@ Node getGraphSize(Digraph g) {
     return graph->nVertex;
 }
 
+Node getNodeGivenXY(Digraph g, double x, double y) {
+    StDigraph *graph = g;
+    for (Node i = 0; i < graph->nVertex; i++) {
+        if (fabs(getXVertex(getNodeInfo(g, i)) - x) <= 50.0 && fabs(getYVertex(getNodeInfo(g, i)) - y) <= 50.0) {
+            return i;
+        }
+    }
+    return -1;
+}
+
 Node getNode(Digraph g, char *nome) {
     StDigraph *graph = g;
 
@@ -235,7 +245,6 @@ void dfsTraverse(Digraph g, procEdge treeEdge, procEdge forwardEdge, procEdge re
     graph->time++;
     setVisited(graph->adjacency[posic], 'g');
     setTD(graph->adjacency[posic], graph->time);
-    // setD(graph->adjacency[posic], graph->time);
 
     for (Edge e = getFirst(graph->adjacency[posic]); e; e = getNext(e)) {  // percorre a lista de adjacencia do nó
         // printf("getTo %d || graph->adjacency[getTo] = %p\n", getToAresta(e), graph->adjacency[getToAresta(e)]);
@@ -283,6 +292,8 @@ bool dfs(Digraph g, procEdge treeEdge, procEdge forwardEdge, procEdge returnEdge
 
     for (int i = 0; i < graph->nVertex; i++) {
         if (getVisited(graph->adjacency[i]) == 'w') {  // se o nó não foi visitado
+            void **data = extra;
+            data[5] = &i;
             newTree(graph, extra);                     // chama fução que deve criar floresta devido ao percurso em profundidade
             dfsTraverse(graph, treeEdge, forwardEdge, returnEdge, crossEdge, newTree, i, extra);
         }
@@ -347,7 +358,7 @@ void printGraph(Digraph g) {
 
 void killGraph(Digraph g) {
     StDigraph *graph = g;
-    // printf("Killing graph with %d nodes and %d edges\n", graph->nVertex, graph->nEdges);
+    printf("Killing graph with %d nodes and %d edges\n", graph->nVertex, graph->nEdges);
     // printGraph(g);
     for (int i = 0; i < graph->nVertex; i++) {
         freeList(graph->adjacency[i]);

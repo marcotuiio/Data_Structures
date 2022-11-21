@@ -14,13 +14,10 @@
     utiliza uma fila de prioridades para encontrar o menor caminho.
 */
 
-int compareDijkstraSpeed(Chave ch1, Chave ch2);
-// Retorna 1 se ch1 > ch2, 0 se ch1 = ch2 e -1 se ch1 < ch2
+int compareKeys(Chave ch1, Chave ch2);
+// Compara duas chaves de acordo com o alguma espeficicação previamente definida
 
-int compareDijkstraDistance(Chave ch1, Chave ch2);
-// Retorna 1 se ch1 > ch2, 0 se ch1 = ch2 e -1 se ch1 < ch2
-
-void fullDijkstra(Digraph g, double w, Node src, Node dest, ComparaChavesPQ comparator, int type);
+Node *fullDijkstra(Digraph g, double w, Node src, Node dest, int type);
 // Executa o algoritmo de Dijkstra para encontrar o caminho mais curto entre src e dest
 
 #endif

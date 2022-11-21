@@ -38,24 +38,27 @@ Digraph readVia(char *bedVia) {
                 double y2 = getXVertex(inTo);
 
                 // printf("x1: %lf, y1: %lf, x2: %lf, y2: %lf\n", x1, y1, x2, y2);
-                if (x1 == x2) {
-                    if (y1 < y2) {
-                        strcpy(sentido, "sn");
-                    } else {
-                        strcpy(sentido, "ns");
-                    }
-                
-                } else if (y1 == y2) {
-                    if (x1 < x2) {
-                        strcpy(sentido, "lo");
-                    } else {
-                        strcpy(sentido, "ol");
-                    }
-                }
-                // printf("Sentido: %s\n", sentido);
-
                 InfoEdge infoE = createInfoEdge(vm, cmp, ldir, lesq, nomeEdge);
-                setSentidoEdge(infoE, sentido);
+                double difX, difY;
+                difX = x2 - x1;
+                difY = y2 - y1;
+                if (difX > 0) {
+                    strcpy(sentido, "sn");
+                }
+                if (difX < 0) {
+                    strcpy(sentido, "ns");
+                }
+                setSentidoPrimEdge(infoE, sentido);
+                // printf("Sentido Prim: %s\n", sentido);
+                if (difY > 0) {
+                    strcpy(sentido, "lo");
+                }
+                if (difY < 0) {
+                    strcpy(sentido, "ol");
+                }
+                setSentidoSecEdge(infoE, sentido);
+                // printf("Sentido Sec: %s\n\n", sentido);
+
                 addEdge(g, from, to, infoE);
             }
         }

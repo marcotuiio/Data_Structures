@@ -75,10 +75,16 @@ void setBloqNameEdge(InfoEdge info, char *bloqName);
 char *getBloqNameEdge(InfoEdge info);
 // Returns the name of the given InfoEdge
 
-void setSentidoEdge(InfoEdge info, char *sentido);
+void setSentidoPrimEdge(InfoEdge info, char *sentido);
 // Sets the sentido of the given InfoEdge
 
-char *getSentidoEdge(InfoEdge info);
+char *getSentidoPrimEdge(InfoEdge info);
+// Returns the sentido of the given InfoEdge
+
+void setSentidoSecEdge(InfoEdge info, char *sentido);
+// Sets the sentido of the given InfoEdge
+
+char *getSentidoSecEdge(InfoEdge info);
 // Returns the sentido of the given InfoEdge
 
 double getXVertex(InfoNode info);

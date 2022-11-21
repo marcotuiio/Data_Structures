@@ -1,4 +1,5 @@
 #include "priority_queue.h"
+#include "infos.h"
 
 typedef struct QueueNode {
     PQInfo data;
@@ -36,7 +37,6 @@ void insertPQ(PQueue pq, Chave ch, PQInfo info, int prio) {
     new_node->key = ch;
     new_node->priority = prio;
 
-
     if (isEmptyPQ(my_pq)) {
         // se a fila estiver vazia, cabeça e cauda apontam para o novo nó
         my_pq->head = new_node;
@@ -70,8 +70,8 @@ bool existsPQ(PQueue pq, Chave ch) {
     PriorityQueue *my_pq = pq;
     QueueNode *aux = my_pq->head;
     while (aux) {
-        if (my_pq->compare(aux->key, ch) == 0) {  // se a chave do nó for igual a chave procurada
-            return true;  // retorna true
+        if (my_pq->compare(aux->key, ch) == 1) {  // se a chave do nó for igual a chave procurada
+            return true;  // retorna true se a chave já existe
         }
         aux = aux->next;
     }
@@ -82,7 +82,7 @@ int priorityPQ(PQueue pq, Chave ch) {
     PriorityQueue *my_pq = pq;
     QueueNode *aux = my_pq->head;
     while (aux) {
-        if (my_pq->compare(aux->key, ch) == 0) {  // se a chave do nó for igual a chave procurada
+        if (my_pq->compare(aux->key, ch) == 1) {  // se a chave do nó for igual a chave procurada
             return aux->priority;  // retorna a prioridade
         }
         aux = aux->next;
@@ -99,6 +99,7 @@ PQInfo removeMaximumPQ(PQueue pq) {
     PQInfo info = aux->data;
     aux = my_pq->head->next;
     free(aux);
+    // printf("Removido: %d\n", *(Node *)info);
     return info;
 }
 
@@ -128,7 +129,7 @@ void increasePrioPQ(PQueue pq, Chave ch, int dp) {
     PriorityQueue *my_pq = pq;
     QueueNode *aux = my_pq->head;
     while (aux) {  
-        if (my_pq->compare(aux->key, ch) == 0) {  // se a chave do nó for igual a chave procurada
+        if (my_pq->compare(aux->key, ch) == 1) {  // se a chave do nó for igual a chave procurada
             aux->priority += dp;  // aumenta a prioridade
             return;
         }
@@ -141,7 +142,7 @@ void setPrioPQ(PQueue pq, Chave ch, int prio) {
     PriorityQueue *my_pq = pq;
     QueueNode *aux = my_pq->head;
     while (aux) {  
-        if (my_pq->compare(aux->key, ch) == 0) {  // se a chave do nó for igual a chave procurada
+        if (my_pq->compare(aux->key, ch) == 1) {  // se a chave do nó for igual a chave procurada
             aux->priority = prio;  // altera a prioridade
             return;
         }

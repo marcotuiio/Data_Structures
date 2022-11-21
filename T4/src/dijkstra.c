@@ -14,76 +14,55 @@ void relaxDijkstra(Digraph g, Node u, Node v, double w) {  // u é o nó atual, 
     }
 }
 
-int compareDijkstraSpeed(Chave ch1, Chave ch2) {
-    double *d1 = ch1;
-    double *d2 = ch2;
-    if (d1 < d2) {
-        return 1;
-    } else if (d1 > d2) {
-        return -1;
-    } else {
-        return 0;
+int compareKeys(Chave ch1, Chave ch2) {
+    if (!strcmp(getNomeVertex(ch1), getNomeVertex(ch2))) {
+        return 1;  // se os nomes forem iguais, retorna 1
     }
+    return 0;
 }
 
-int compareDijkstraDistance(Chave ch1, Chave ch2) {
-    double *d1 = ch1;
-    double *d2 = ch2;
-    if (d1 < d2) {
-        return -1;
-    } else if (d1 > d2) {
-        return 1;
-    } else {
-        return 0;
-    }
-}
-
-void fullDijkstra(Digraph g, double w, Node src, Node dest, ComparaChavesPQ comparator, int type) {
+Node *fullDijkstra(Digraph g, double w, Node src, Node dest, int type) {
     if (src == -1) {
         printf("Source node not found\n");
+        return NULL;
     }
     if (dest == -1) {
         printf("Destination node not found\n");
+        return NULL;
     }
 
+    Node *path = calloc(1, sizeof(Node) * getGraphSize(g));
     initDijkstra(g, src);
 
-    PQueue *pq = NULL;
+    PQueue *pq = createPQ(getGraphSize(g), compareKeys);
     int prio = 0;
-    if (type == 0) {  // peso é a distancia
-        pq = createPQ(getGraphSize(g), compareDijkstraDistance);
-        prio = 10000 / getWeightDij(adjacentEdges(g, src));
 
-    } else {  // peso é a velocidade
-        pq = createPQ(getGraphSize(g), compareDijkstraSpeed);
-        prio = 10000 * getWeightDij(adjacentEdges(g, src));
-    }
-    insertPQ(pq, getNodeInfo(g, src), adjacentEdges(g, src), prio);
-
-    while (src != dest) {  // !isEmptyPQ(pq)
+    // printf("Inserting node %d with priority %d, Lista %p\n", src, prio, adjacentEdges(g, src));
+    insertPQ(pq, getNodeInfo(g, src), &src, prio);
+    
+    while (!isEmptyPQ(pq)) {  // !isEmptyPQ(pq)
         PQInfo maxPrio = removeMaximumPQ(pq);
-        Node u = getNode(g, getId(maxPrio));
+        Node u = *(Node *)(maxPrio);
         setVisited(adjacentEdges(g, u), 'b');  // marca o nó como processado
 
-        for (void *n = getFirst(adjacentEdges(g, u)); n; n = getNext(n)) {  // percorre a lista de adjacencia do nó atual
-
+        for (Edge e = getFirst(adjacentEdges(g, u)); e; e = getNext(e)) {  // percorre a lista de adjacencia do nó atual
+            Lista n = adjacentEdges(g, getToNode(g, e));
             if (getVisited(n) == 'w') {  // se o nó adjacente não foi processado
-                // Edge e = getEdge(g, getNode(g, getId(graph->adjacency[u])), j);
                 Node nVert = getNode(g, getId(n));
 
                 if (type == 0) {  // peso é a distancia
-                    prio = 10000 / getWeightDij(adjacentEdges(g, src));
+                    prio = 10000 / getCMPEdge(getEdgeInfo(g, e));
 
                 } else {
-                    prio = 10000 * getWeightDij(adjacentEdges(g, src));
+                    prio = 10000 * getVMEdge(getEdgeInfo(g, e));
                 }
 
                 relaxDijkstra(g, u, getNode(g, getId(n)), w);  // Compara e atribui os pesos das arestas
-                insertPQ(pq, getNodeInfo(g, nVert), adjacentEdges(g, getNode(g, getId(n))), prio);
+                printf("1 - Inserting node %d with priority %d, Lista %p\n", nVert, prio, n);
+                Node aux = getNode(g, getId(n));
+                insertPQ(pq, getNodeInfo(g, nVert), &aux, prio);
             }
         }
-
-        PQInfo *info = getMaximumPQ(pq);
-        src = getNode(g, getId(info));
     }
+    return path;
 }
