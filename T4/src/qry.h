@@ -1,7 +1,8 @@
+#include "digraph.h"
+#include "dijkstra.h"
+#include "infos.h"
 #include "libs.h"
 #include "list.h"
-#include "infos.h"
-#include "digraph.h"
 #include "rb_tree.h"
 #include "svg.h"
 

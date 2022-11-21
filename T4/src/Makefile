@@ -1,7 +1,7 @@
 EXEC = gcc
 CFLAGS = -std=c99 -fstack-protector-all -g -Wall
 PROJECT_NAME = t2
-OBJETCS = main.o digraph.o geo.o infos.o list.o paths.o priority_queue.o queue.o qry.o rb_tree.o svg.o system.o via.o
+OBJETCS = main.o digraph.o dijkstra.o geo.o infos.o list.o paths.o priority_queue.o queue.o qry.o rb_tree.o svg.o system.o via.o
 ALUNO = marcotab
 
 clear:
@@ -19,6 +19,9 @@ $(PROJECT_NAME): $(OBJETCS)
 
 digraph.o: digraph.c digraph.h
 	$(EXEC) $(CFLAGS) -c digraph.c
+
+dijkstra.o: dijkstra.c dijkstra.h
+	$(EXEC) $(CFLAGS) -c dijkstra.c
 
 geo.o: geo.c geo.h
 	$(EXEC) $(CFLAGS) -c geo.c
