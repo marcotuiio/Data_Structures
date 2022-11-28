@@ -74,4 +74,10 @@ void increasePrioPQ(PQueue pq, Chave ch, int dp);
 */
 void setPrioPQ(PQueue pq, Chave ch, int prio);
 
+
+/*
+  Libera memória
+*/
+void killPQ(PQueue pq);
+
 #endif

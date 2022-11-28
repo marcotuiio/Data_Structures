@@ -9,7 +9,7 @@
 #ifndef LIBS_H
 #define LIBS_H
 
-#define DOUBLE_MIN -1.7976931348623157e+308
+#define DOUBLE_MAX 1.7976931348623157e+308
 
 typedef void *Paths;
 typedef void *Controller;

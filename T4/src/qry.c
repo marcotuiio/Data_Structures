@@ -408,8 +408,11 @@ void pFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph g, void *origin) {
     
     fprintf(txt, "Iniciando percurso de CEP: %s (X: %lf, Y: %lf) para CEP: %s (X: %lf, Y: %lf)\n", o->cep, o->x, o->y, cep, x2, y2);
     Node *path = fullDijkstra(g, 0, i, j, 1);  // 0 = distancia, 1 = velocidade
-    // for (int k = 0; path[k] != -1; k++) {
-    //     fprintf(txt, "Nó %d, X: %lf, Y: %lf\n", path[k], getXVertex(getNodeInfo(g, path[k])), getYVertex(getNodeInfo(g, path[k])));
-    // }
+    for (int k = 0; k < 200; k++) {
+        if (path[k] == -1) {
+            break;
+        }
+        fprintf(txt, "Nó %d: %s\n", k, getNomeVertex(getNodeInfo(g, path[k])));
+    }
     if (path) free(path);
 }

@@ -1,152 +1,166 @@
 #include "priority_queue.h"
 #include "infos.h"
 
-typedef struct QueueNode {
-    PQInfo data;
-    Chave key;
-    struct QueueNode *next;
-    int priority;
-} QueueNode;
+// Priority queue using a binary heap
 
-typedef struct PriorityQueue {
-    QueueNode* head;
-    QueueNode* tail;
+typedef struct PQ {
     int size;
-    int (*compare)(void*, void*);
-} PriorityQueue;
+    int maxsize;
+    PQInfo *elements;
+    int (*compare)(Chave, Chave);
+} PQ;
+
+typedef struct PQNode {
+    PQInfo info;
+    Chave chave;
+    int prioridade;
+} PQNode;
 
 PQueue createPQ(int size, ComparaChavesPQ comp) {
-    PriorityQueue* new_pq = calloc(1, sizeof(PriorityQueue));
-    new_pq->size = size;
-    new_pq->compare = comp;
-    return new_pq;
+    PQ *pq = calloc(1, sizeof(PQ));
+    pq->size = 0;
+    pq->maxsize = size;
+    pq->elements = calloc(size, sizeof(PQNode));
+    pq->compare = comp;
+    return pq;
 }
 
 bool isEmptyPQ(PQueue pq) {
-    PriorityQueue* my_pq = pq;
-    return !my_pq->head; // se a cabeça for nula, a fila está vazia retorna TRUE
+    PQ *p = pq;
+    return p->size == 0;
 }
 
 void insertPQ(PQueue pq, Chave ch, PQInfo info, int prio) {
-    if (existsPQ(pq, ch)) {
-        return;  // se a chave já existe, não insere
-    }
-    PriorityQueue *my_pq = pq;
-    QueueNode *new_node = calloc(1, sizeof(QueueNode));
-    new_node->data = info;
-    new_node->key = ch;
-    new_node->priority = prio;
-
-    if (isEmptyPQ(my_pq)) {
-        // se a fila estiver vazia, cabeça e cauda apontam para o novo nó
-        my_pq->head = new_node;
-        my_pq->tail = new_node;
-        return;
-    
-    } else {
-        my_pq->tail->next = new_node;
-        my_pq->tail = new_node;
-
-        QueueNode *aux = my_pq->head;
-        if (aux->priority < new_node->priority) {  // prioridade da cabeça é menor que a do novo nó 
-            my_pq->head = new_node;  // novo nó passa a ser a cabeça
-            new_node->next = aux;  // o antigo nó passa a ser o próximo do novo nó
-            return;
-        }
-
-        // senão, percorrer a fila comparando quem tem maior prioridade até achar a posição correta
-        while (aux->next && aux->next->priority >= new_node->priority) {
-            aux = aux->next;
-        }
-        // encontrou posição com prioridade de acordo
-        if (aux->next) { // se não for o último nó
-            new_node->next = aux->next; // o próximo do novo nó é o próximo do aux
-        }
-        aux->next = new_node; // o próximo do aux é o novo nó
+    PQ *p = pq;
+    PQNode *node = calloc(1, sizeof(PQNode));
+    node->info = info;
+    node->chave = ch;
+    node->prioridade = prio;
+    p->elements[p->size] = node;
+    p->size++;
+    int i = p->size - 1;
+    PQNode *aux1 = p->elements[(i - 1) / 2];
+    PQNode *aux2 = p->elements[i];
+    while (i > 0 && (aux1->prioridade - aux2->prioridade) < 0) {
+        PQInfo aux = p->elements[i];
+        p->elements[i] = p->elements[(i - 1) / 2];
+        p->elements[(i - 1) / 2] = aux;
+        i = (i - 1) / 2;
+        aux1 = p->elements[(i - 1) / 2];
+        aux2 = p->elements[i];
     }
 }
 
+Chave getChavePQ(void *n, int i) {
+    PQNode *node = n;
+    return node->chave;
+}
+
 bool existsPQ(PQueue pq, Chave ch) {
-    PriorityQueue *my_pq = pq;
-    QueueNode *aux = my_pq->head;
-    while (aux) {
-        if (my_pq->compare(aux->key, ch) == 1) {  // se a chave do nó for igual a chave procurada
-            return true;  // retorna true se a chave já existe
+    PQ *p = pq;
+    for (int i = 0; i < p->size; i++) {
+        PQNode *node = p->elements[i];
+        if (p->compare(node->chave, ch) == 1) {
+            return true;
         }
-        aux = aux->next;
     }
     return false;
 }
 
 int priorityPQ(PQueue pq, Chave ch) {
-    PriorityQueue *my_pq = pq;
-    QueueNode *aux = my_pq->head;
-    while (aux) {
-        if (my_pq->compare(aux->key, ch) == 1) {  // se a chave do nó for igual a chave procurada
-            return aux->priority;  // retorna a prioridade
+    PQ *p = pq;
+    for (int i = 0; i < p->size; i++) {
+        PQNode *node = p->elements[i];
+        if (p->compare(node, ch) == 1) {
+            return node->prioridade;
         }
-        aux = aux->next;
     }
     return -1;
 }
 
 PQInfo removeMaximumPQ(PQueue pq) {
-    if (isEmptyPQ(pq)) {
-        return NULL;  // se a fila estiver vazia, retorna NULL
+    PQ *p = pq;
+    PQNode *node = p->elements[0];
+    PQInfo info = node->info;
+    p->elements[0] = p->elements[p->size - 1];
+    p->size--;
+    int i = 0;
+    PQNode *aux1 = p->elements[i];
+    PQNode *aux2 = p->elements[2 * i + 1];
+    PQNode *aux3 = p->elements[2 * i + 2];
+    while ((2 * i + 1 < p->size) && ((aux1->prioridade - aux2->prioridade) < 0 || (aux1->prioridade - aux3->prioridade) < 0)) {
+        if (aux2->prioridade > aux3->prioridade) {
+            PQInfo aux = p->elements[i];
+            p->elements[i] = p->elements[2 * i + 1];
+            p->elements[2 * i + 1] = aux;
+            i = 2 * i + 1;
+        } else {
+            PQInfo aux = p->elements[i];
+            p->elements[i] = p->elements[2 * i + 2];
+            p->elements[2 * i + 2] = aux;
+            i = 2 * i + 2;
+        }
+        aux1 = p->elements[i];
+        aux2 = p->elements[2 * i + 1];
+        aux3 = p->elements[2 * i + 2];
     }
-    PriorityQueue *my_pq = pq;
-    QueueNode *aux = my_pq->head;
-    PQInfo info = aux->data;
-    aux = my_pq->head->next;
-    free(aux);
-    // printf("Removido: %d\n", *(Node *)info);
+    free(node);
     return info;
 }
 
 PQInfo getMaximumPQ(PQueue pq) {
-    PriorityQueue *my_pq = pq;
-    return my_pq->head->data;
-}
-
-void fixQueuePrio(PQueue pq) {
-    PriorityQueue *my_pq = pq;
-    QueueNode *aux = my_pq->head;
-    QueueNode *aux2 = aux->next;
-    while (aux2) {
-        if (aux->priority < aux2->priority) {  // se a prioridade do nó for menor que a do próximo nó
-            aux->next = aux2->next;  // o próximo do nó é o próximo do próximo nó
-            aux2->next = my_pq->head;  // o próximo do nó com prioridade maior é a cabeça
-            my_pq->head = aux2;  // o nó com prioridade maior passa a ser a cabeça
-            aux2 = aux->next;  // o aux2 passa a ser o próximo do aux
-        } else {
-            aux = aux->next;  // se a prioridade do nó for maior que a do próximo nó, o aux passa a ser o próximo nó
-            aux2 = aux2->next;  // o aux2 passa a ser o próximo do aux
-        }
-    }
+    PQ *p = pq;
+    PQNode *node = p->elements[0];
+    return node->info;
 }
 
 void increasePrioPQ(PQueue pq, Chave ch, int dp) {
-    PriorityQueue *my_pq = pq;
-    QueueNode *aux = my_pq->head;
-    while (aux) {  
-        if (my_pq->compare(aux->key, ch) == 1) {  // se a chave do nó for igual a chave procurada
-            aux->priority += dp;  // aumenta a prioridade
-            return;
+    PQ *p = pq;
+    for (int i = 0; i < p->size; i++) {
+        PQNode *node = p->elements[i];
+        if (p->compare(node->chave, ch) == 1) {
+            node->prioridade += dp;
+            int j = i;
+            PQNode *aux1 = p->elements[(j - 1) / 2];
+            PQNode *aux2 = p->elements[j];
+            while (j > 0 && (aux1->prioridade - aux2->prioridade) < 0) {
+                PQInfo aux = p->elements[j];
+                p->elements[j] = p->elements[(j - 1) / 2];
+                p->elements[(j - 1) / 2] = aux;
+                j = (j - 1) / 2;
+                aux1 = p->elements[(j - 1) / 2];
+                aux2 = p->elements[j];
+            }
         }
-        aux = aux->next;
     }
-    fixQueuePrio(my_pq);  // como alterou prioridade, arrumar a fila
 }
 
 void setPrioPQ(PQueue pq, Chave ch, int prio) {
-    PriorityQueue *my_pq = pq;
-    QueueNode *aux = my_pq->head;
-    while (aux) {  
-        if (my_pq->compare(aux->key, ch) == 1) {  // se a chave do nó for igual a chave procurada
-            aux->priority = prio;  // altera a prioridade
-            return;
+    PQ *p = pq;
+    for (int i = 0; i < p->size; i++) {
+        PQNode *node = p->elements[i];
+        if (p->compare(node->chave, ch) == 1) {
+            node->prioridade = prio;
+            int j = i;
+            PQNode *aux1 = p->elements[(j - 1) / 2];
+            PQNode *aux2 = p->elements[j];
+            while (j > 0 && (aux1->prioridade - aux2->prioridade) < 0) {
+                PQInfo aux = p->elements[j];
+                p->elements[j] = p->elements[(j - 1) / 2];
+                p->elements[(j - 1) / 2] = aux;
+                j = (j - 1) / 2;
+                aux1 = p->elements[(j - 1) / 2];
+                aux2 = p->elements[j];
+            }
         }
-        aux = aux->next;
     }
-    fixQueuePrio(my_pq);  // como alterou prioridade, arrumar a fila
+}
+
+void killPQ(PQueue pq) {
+    PQ *p = pq;
+    for (int i = 0; i < p->size; i++) {
+        free(p->elements[i]);
+    }
+    free(p->elements);
+    free(p);
 }
