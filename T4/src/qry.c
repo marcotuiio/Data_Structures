@@ -405,14 +405,39 @@ void pFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph g, void *origin) {
     Node i = getNodeGivenXY(g, o->x, o->y);
     Node j = getNodeGivenXY(g, x2, y2);
     printf("DIJKSTRA: i: %d, j: %d\n", i, j);
-    
+    int k;
+
     fprintf(txt, "Iniciando percurso de CEP: %s (X: %lf, Y: %lf) para CEP: %s (X: %lf, Y: %lf)\n", o->cep, o->x, o->y, cep, x2, y2);
-    Node *path = fullDijkstra(g, 0, i, j, 1);  // 0 = distancia, 1 = velocidade
-    for (int k = 0; k < 200; k++) {
-        if (path[k] == -1) {
-            break;
+    Node *path_speed = fullDijkstra(g, i, j, 1);  // 0 = distancia, 1 = velocidade
+    if (!path_speed) {
+        fprintf(txt, "NÃO FOI POSSÍVEL ENCONTRAR UM CAMINHO ENTRE OS ENDEREÇOS\n");
+        fprintf(svg, LINE, o->x, o->y, x2, y2, "red");
+        return;
+
+    } else {
+        for (k = 0; k < getGraphSize(g); k++) {
+            if (path_speed[k] == -1) {
+                break;
+            }
+            fprintf(txt, "Nó %d: %s\n", k, getNomeVertex(getNodeInfo(g, path_speed[k])));
+            fprintf(svg, "\t<line x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" stroke-width=\"2\" />\n", getXVertex(getNodeInfo(g, path_speed[k])), getYVertex(getNodeInfo(g, path_speed[k])), getXVertex(getNodeInfo(g, path_speed[k + 1])), getYVertex(getNodeInfo(g, path_speed[k + 1])), cmr);
         }
-        fprintf(txt, "Nó %d: %s\n", k, getNomeVertex(getNodeInfo(g, path[k])));
+        free(path_speed);
     }
-    if (path) free(path);
+
+    Node *path_distance = fullDijkstra(g, i, j, 0);  // 0 = distancia, 1 = velocidade
+    if (!path_distance) {
+        fprintf(txt, "NÃO FOI POSSÍVEL ENCONTRAR UM CAMINHO ENTRE OS ENDEREÇOS\n");
+        fprintf(svg, LINE, o->x, o->y, x2, y2, "red");
+        return;
+    } else {
+        for (k = 0; k < getGraphSize(g); k++) {
+            if (path_distance[k] == -1) {
+                break;
+            }
+            fprintf(txt, "Nó %d: %s\n", k, getNomeVertex(getNodeInfo(g, path_distance[k])));
+            fprintf(svg, "\t<line x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" stroke-width=\"2\" />\n", getXVertex(getNodeInfo(g, path_distance[k])), getYVertex(getNodeInfo(g, path_distance[k])), getXVertex(getNodeInfo(g, path_distance[k + 1])), getYVertex(getNodeInfo(g, path_distance[k + 1])), cmc);
+        }
+        free(path_distance);
+    }
 }
