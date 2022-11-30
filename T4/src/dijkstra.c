@@ -43,7 +43,7 @@ Node *fullDijkstra(Digraph g, Node src, Node dest, int type) {
     }
 
     Node *path = calloc(1, sizeof(Node) * getGraphSize(g));
-    Node current = 0;
+    Node current = 1;
     initDijkstra(g, src);
 
     PQueue pq = createPQ(getGraphSize(g), compareKeys);
@@ -52,8 +52,8 @@ Node *fullDijkstra(Digraph g, Node src, Node dest, int type) {
 
     // printf("Inserting node %d with priority %d, Lista %p\n", src, prio, adjacentEdges(g, src));
     insertPQ(pq, getNodeInfo(g, src), &src, prio);
-
-    while (!isEmptyPQ(pq)) {  
+    path[0] = src;
+    while (!isEmptyPQ(pq)) {
         PQInfo maxPrio = removeMaximumPQ(pq);
         // printf("Removed node %d\n", *(Node *)maxPrio);
         Node u;
@@ -75,7 +75,12 @@ Node *fullDijkstra(Digraph g, Node src, Node dest, int type) {
         }
     }
     killPQ(pq);
+
+    // for (int i = 0; i < current; i++) {
+    //     printf("%d ", path[i]);
+    // }
     // printf("Caminho: src %d dest %d\n", path[0], path[current - 1]);
+
     if (path[current - 1] != dest) {
         free(path);
         return NULL;

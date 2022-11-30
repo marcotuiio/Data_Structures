@@ -27,19 +27,20 @@ void readParam(int argc, char* argv[], Paths paths, Controller ctrl) {
 
         } else if (!strcmp(argv[i], "-f")) {  // arq.geo
             i++;
-            char* geofull = calloc(strlen(argv[i]) + 1, sizeof(char));
             char* geoarq = calloc(strlen(argv[i]) + 1, sizeof(char));
             char* geoname = calloc(strlen(argv[i]) + 1, sizeof(char));
-            strcpy(geofull, argv[i]);
+            strcpy(geoarq, argv[i]);
+            if (geoarq[strlen(geoarq) - 1] == '/') {
+                geoarq[strlen(geoarq) - 1] = '\0';
+            }
             help->readgeo = true;
 
-            fixDoc(geofull, geoname);
+            fixDoc(geoarq, geoname);
 
             strcpy(geoarq, geoname);
             strcat(geoarq, ".geo");
             setGeoArq(paths, geoarq);
             setGeoName(paths, geoname);
-            free(geofull);
 
         } else if (!strcmp(argv[i], "-o")) {  // path - diretório base de saída (BSD)
             i++;
@@ -56,21 +57,27 @@ void readParam(int argc, char* argv[], Paths paths, Controller ctrl) {
             char* qryarq = calloc(strlen(argv[i]) + 1, sizeof(char));
             char* qryname = calloc(strlen(argv[i]) + 1, sizeof(char));
             strcpy(qryarq, argv[i]);
+            if (qryarq[strlen(qryarq) - 1] == '/') {
+                qryarq[strlen(qryarq) - 1] = '\0';
+            }
             help->readqry = true;
 
             fixDoc(qryarq, qryname);
 
             setQryArq(paths, qryarq);
             setQryName(paths, qryname);
-        
+
         } else if (!strcmp(argv[i], "-v")) {
             i++;
             char* via = calloc(strlen(argv[i]) + 1, sizeof(char));
             strcpy(via, argv[i]);
+            if (via[strlen(via) - 1] == '/') {
+                via[strlen(via) - 1] = '\0';
+            }
             help->readvia = true;
 
             setViaArq(paths, via);
-        } 
+        }
     }
 
     if (help->readbed && help->readgeo) {  // bed/arq.geo

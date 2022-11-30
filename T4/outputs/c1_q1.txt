@@ -17,452 +17,887 @@ CEP: b02.2, FACE: S, NUM: 30.000000, X: 260.000000, Y: 190.000000
 [*] pnt b02.2 red blue
 CEP: b02.2, CFILL_INICIAL: peru, CSTRK_INICIAL: peru, CFILL_FINAL: red, CSTRK_FINAL: blue
 
+[*] b 766.250000 91.250000 1000.000000
+Aresta no percurso em Largura Al_Scoma_Way, VM_Inicial: 7.386963, VM_Final: 7386.963000
+Aresta no percurso em Largura ., VM_Inicial: 13.500000, VM_Final: 13500.000000
+Aresta no percurso em Largura Al_Scoma_Way, VM_Inicial: 7.386963, VM_Final: 7386.963000
+Aresta no percurso em Largura ., VM_Inicial: 13.500000, VM_Final: 13500.000000
+Aresta no percurso em Largura Al_Scoma_Way, VM_Inicial: 7.386963, VM_Final: 7386.963000
+Aresta no percurso em Largura Zampa_Ln, VM_Inicial: 14.948647, VM_Final: 14948.647000
+Aresta no percurso em Largura ., VM_Inicial: 13.500000, VM_Final: 13500.000000
+Aresta no percurso em Largura Al_Scoma_Way, VM_Inicial: 7.386963, VM_Final: 7386.963000
+Aresta no percurso em Largura ., VM_Inicial: 13.500000, VM_Final: 13500.000000
+Aresta no percurso em Largura Zampa_Ln, VM_Inicial: 14.948647, VM_Final: 14948.647000
+Aresta no percurso em Largura Al_Scoma_Way, VM_Inicial: 7.386963, VM_Final: 7386.963000
+Aresta no percurso em Largura ., VM_Inicial: 13.500000, VM_Final: 13500.000000
+Aresta no percurso em Largura Yosemite_Ave, VM_Inicial: 6.940380, VM_Final: 6940.380000
+Aresta no percurso em Largura Zampa_Ln, VM_Inicial: 13.908001, VM_Final: 13908.001000
+Aresta no percurso em Largura Al_Scoma_Way, VM_Inicial: 7.386963, VM_Final: 7386.963000
+Aresta no percurso em Largura ., VM_Inicial: 13.500000, VM_Final: 13500.000000
+Aresta no percurso em Largura Yosemite_Ave, VM_Inicial: 6.940380, VM_Final: 6940.380000
+Aresta no percurso em Largura Zampa_Ln, VM_Inicial: 13.908001, VM_Final: 13908.001000
+Aresta no percurso em Largura Al_Scoma_Way, VM_Inicial: 7.386963, VM_Final: 7386.963000
+Aresta no percurso em Largura Young_St, VM_Inicial: 14.144085, VM_Final: 14144.085000
+Aresta no percurso em Largura ., VM_Inicial: 13.500000, VM_Final: 13500.000000
+Aresta no percurso em Largura Zanowitz_Ave, VM_Inicial: 13.701354, VM_Final: 13701.354000
+Aresta no percurso em Largura Yosemite_Ave, VM_Inicial: 6.940380, VM_Final: 6940.380000
+Aresta no percurso em Largura Yorba_St, VM_Inicial: 6.512681, VM_Final: 6512.681000
+Aresta no percurso em Largura Zampa_Ln, VM_Inicial: 14.574418, VM_Final: 14574.418000
+Aresta no percurso em Largura Al_Scoma_Way, VM_Inicial: 7.386963, VM_Final: 7386.963000
+Aresta no percurso em Largura ., VM_Inicial: 13.500000, VM_Final: 13500.000000
+Aresta no percurso em Largura Young_St, VM_Inicial: 14.144085, VM_Final: 14144.085000
+Aresta no percurso em Largura Yosemite_Ave, VM_Inicial: 6.940380, VM_Final: 6940.380000
+Aresta no percurso em Largura Yorba_St, VM_Inicial: 6.512681, VM_Final: 6512.681000
+Aresta no percurso em Largura Zampa_Ln, VM_Inicial: 14.574418, VM_Final: 14574.418000
+Aresta no percurso em Largura Al_Scoma_Way, VM_Inicial: 7.386963, VM_Final: 7386.963000
+Aresta no percurso em Largura ., VM_Inicial: 13.500000, VM_Final: 13500.000000
+Aresta no percurso em Largura Yosemite_Ave, VM_Inicial: 6.940380, VM_Final: 6940.380000
+Aresta no percurso em Largura Young_St, VM_Inicial: 14.331472, VM_Final: 14331.472000
+Aresta no percurso em Largura Yosemite_Ave, VM_Inicial: 6.940380, VM_Final: 6940.380000
+Aresta no percurso em Largura Zanowitz_St, VM_Inicial: 14.864541, VM_Final: 14864.541000
+Aresta no percurso em Largura Yukon_St, VM_Inicial: 13.780652, VM_Final: 13780.652000
+Aresta no percurso em Largura Yorba_St, VM_Inicial: 6.512681, VM_Final: 6512.681000
+Aresta no percurso em Largura Yerba_Buena_Ln, VM_Inicial: 8.253049, VM_Final: 8253.049000
+Aresta no percurso em Largura Zampa_Ln, VM_Inicial: 13.343294, VM_Final: 13343.294000
+Aresta no percurso em Largura Al_Scoma_Way, VM_Inicial: 7.386963, VM_Final: 7386.963000
+Aresta no percurso em Largura ., VM_Inicial: 13.500000, VM_Final: 13500.000000
+Aresta no percurso em Largura Yosemite_Ave, VM_Inicial: 6.940380, VM_Final: 6940.380000
+Aresta no percurso em Largura Young_St, VM_Inicial: 14.331472, VM_Final: 14331.472000
+Aresta no percurso em Largura Yosemite_Ave, VM_Inicial: 6.940380, VM_Final: 6940.380000
+Aresta no percurso em Largura Zanowitz_St, VM_Inicial: 14.864541, VM_Final: 14864.541000
+Aresta no percurso em Largura Yerba_Buena_Ln, VM_Inicial: 8.253049, VM_Final: 8253.049000
+Aresta no percurso em Largura Zampa_Ln, VM_Inicial: 13.343294, VM_Final: 13343.294000
+Aresta no percurso em Largura Dr_Tom_Waddell_Pl, VM_Inicial: 15.000000, VM_Final: 15000.000000
+Aresta no percurso em Largura ., VM_Inicial: 13.500000, VM_Final: 13500.000000
+Aresta no percurso em Largura Yukon_St, VM_Inicial: 10.666155, VM_Final: 10666.155000
+Aresta no percurso em Largura Yosemite_Ave, VM_Inicial: 6.940380, VM_Final: 6940.380000
+Aresta no percurso em Largura Yorba_St, VM_Inicial: 6.512681, VM_Final: 6512.681000
+Aresta no percurso em Largura Young_St, VM_Inicial: 14.532217, VM_Final: 14532.217000
+Aresta no percurso em Largura Zeno_Pl, VM_Inicial: 6.968230, VM_Final: 6968.230000
+Aresta no percurso em Largura Yosemite_Ave, VM_Inicial: 6.940380, VM_Final: 6940.380000
+Aresta no percurso em Largura Yorba_St, VM_Inicial: 6.512681, VM_Final: 6512.681000
+Aresta no percurso em Largura Zanowitz_St, VM_Inicial: 13.885074, VM_Final: 13885.074000
+Aresta no percurso em Largura Zanowitz_Ave, VM_Inicial: 7.995937, VM_Final: 7995.937000
+Aresta no percurso em Largura Yerba_Buena_Ln, VM_Inicial: 8.253049, VM_Final: 8253.049000
+Aresta no percurso em Largura Yerba_Buena_Ave, VM_Inicial: 4.110953, VM_Final: 4110.953000
+Aresta no percurso em Largura Zampa_Ln, VM_Inicial: 13.867136, VM_Final: 13867.136000
+Aresta no percurso em Largura Dr_Tom_Waddell_Pl, VM_Inicial: 15.000000, VM_Final: 15000.000000
+Aresta no percurso em Largura Perimetral_Sul, VM_Inicial: 18.000000, VM_Final: 18000.000000
+Aresta no percurso em Largura Yorba_St, VM_Inicial: 6.512681, VM_Final: 6512.681000
+Aresta no percurso em Largura Young_St, VM_Inicial: 14.532217, VM_Final: 14532.217000
+Aresta no percurso em Largura Zeno_Pl, VM_Inicial: 6.968230, VM_Final: 6968.230000
+Aresta no percurso em Largura Yosemite_Ave, VM_Inicial: 6.940380, VM_Final: 6940.380000
+Aresta no percurso em Largura Yorba_St, VM_Inicial: 6.512681, VM_Final: 6512.681000
+Aresta no percurso em Largura Zanowitz_St, VM_Inicial: 13.885074, VM_Final: 13885.074000
+Aresta no percurso em Largura Yerba_Buena_Ave, VM_Inicial: 4.110953, VM_Final: 4110.953000
+Aresta no percurso em Largura Zampa_Ln, VM_Inicial: 13.867136, VM_Final: 13867.136000
+Aresta no percurso em Largura Yosemite_Ave, VM_Inicial: 6.940380, VM_Final: 6940.380000
+Aresta no percurso em Largura Dr_Tom_Waddell_Pl, VM_Inicial: 15.000000, VM_Final: 15000.000000
+Aresta no percurso em Largura Perimetral_Sul, VM_Inicial: 18.000000, VM_Final: 18000.000000
+Aresta no percurso em Largura Praca_Central2, VM_Inicial: 11.000000, VM_Final: 11000.000000
+Aresta no percurso em Largura Young_Ct, VM_Inicial: 9.061208, VM_Final: 9061.208000
+Aresta no percurso em Largura Yorba_St, VM_Inicial: 6.512681, VM_Final: 6512.681000
+Aresta no percurso em Largura Yerba_Buena_Ln, VM_Inicial: 8.253049, VM_Final: 8253.049000
+Aresta no percurso em Largura Young_St, VM_Inicial: 13.582038, VM_Final: 13582.038000
+Aresta no percurso em Largura Al_Scoma_Way, VM_Inicial: 7.386963, VM_Final: 7386.963000
+Aresta no percurso em Largura ., VM_Inicial: 13.500000, VM_Final: 13500.000000
+Aresta no percurso em Largura Yosemite_Ave, VM_Inicial: 6.940380, VM_Final: 6940.380000
+Aresta no percurso em Largura Zircon_Pl, VM_Inicial: 13.256210, VM_Final: 13256.210000
+Aresta no percurso em Largura Zanowitz_Ave, VM_Inicial: 8.002245, VM_Final: 8002.245000
+Aresta no percurso em Largura Yorba_St, VM_Inicial: 6.512681, VM_Final: 6512.681000
+Aresta no percurso em Largura Yerba_Buena_Ln, VM_Inicial: 8.253049, VM_Final: 8253.049000
+Aresta no percurso em Largura Zanowitz_St, VM_Inicial: 14.485750, VM_Final: 14485.750000
+Aresta no percurso em Largura Yukon_St, VM_Inicial: 6.886794, VM_Final: 6886.794000
+Aresta no percurso em Largura Yerba_Buena_Ave, VM_Inicial: 4.110953, VM_Final: 4110.953000
+Aresta no percurso em Largura Yacht_Rd, VM_Inicial: 4.563110, VM_Final: 4563.110000
+Aresta no percurso em Largura Zampa_Ln, VM_Inicial: 14.979432, VM_Final: 14979.432000
+Aresta no percurso em Largura Yosemite_Ave, VM_Inicial: 6.940380, VM_Final: 6940.380000
+Aresta no percurso em Largura Dr_Tom_Waddell_Pl, VM_Inicial: 15.000000, VM_Final: 15000.000000
+Aresta no percurso em Largura ., VM_Inicial: 13.500000, VM_Final: 13500.000000
+Aresta no percurso em Largura Perimetral_Sul, VM_Inicial: 18.000000, VM_Final: 18000.000000
+Aresta no percurso em Largura Praca_Central2, VM_Inicial: 11.000000, VM_Final: 11000.000000
+Aresta no percurso em Largura Yerba_Buena_Ln, VM_Inicial: 8.253049, VM_Final: 8253.049000
+Aresta no percurso em Largura Young_St, VM_Inicial: 13.582038, VM_Final: 13582.038000
+Aresta no percurso em Largura Al_Scoma_Way, VM_Inicial: 7.386963, VM_Final: 7386.963000
+Aresta no percurso em Largura ., VM_Inicial: 13.500000, VM_Final: 13500.000000
+Aresta no percurso em Largura Yosemite_Ave, VM_Inicial: 6.940380, VM_Final: 6940.380000
+Aresta no percurso em Largura Zircon_Pl, VM_Inicial: 13.256210, VM_Final: 13256.210000
+Aresta no percurso em Largura Yerba_Buena_Ln, VM_Inicial: 8.253049, VM_Final: 8253.049000
+Aresta no percurso em Largura Zanowitz_St, VM_Inicial: 14.485750, VM_Final: 14485.750000
+Aresta no percurso em Largura Yacht_Rd, VM_Inicial: 4.563110, VM_Final: 4563.110000
+Aresta no percurso em Largura Zampa_Ln, VM_Inicial: 14.979432, VM_Final: 14979.432000
+Aresta no percurso em Largura Young_Ct, VM_Inicial: 9.518176, VM_Final: 9518.176000
+Aresta no percurso em Largura Yosemite_Ave, VM_Inicial: 6.940380, VM_Final: 6940.380000
+Aresta no percurso em Largura Dr_Tom_Waddell_Pl, VM_Inicial: 15.000000, VM_Final: 15000.000000
+Aresta no percurso em Largura ., VM_Inicial: 13.500000, VM_Final: 13500.000000
+Aresta no percurso em Largura Perimetral_Sul, VM_Inicial: 18.000000, VM_Final: 18000.000000
+Aresta no percurso em Largura Praca_Central2, VM_Inicial: 11.000000, VM_Final: 11000.000000
+Aresta no percurso em Largura Yukon_St, VM_Inicial: 14.273895, VM_Final: 14273.895000
+Aresta no percurso em Largura Yerba_Buena_Ln, VM_Inicial: 8.253049, VM_Final: 8253.049000
+Aresta no percurso em Largura Yerba_Buena_Ave, VM_Inicial: 4.110953, VM_Final: 4110.953000
+Aresta no percurso em Largura Young_St, VM_Inicial: 14.802950, VM_Final: 14802.950000
+Aresta no percurso em Largura Al_Scoma_Way, VM_Inicial: 7.386963, VM_Final: 7386.963000
+Aresta no percurso em Largura Zanowitz_St, VM_Inicial: 14.691717, VM_Final: 14691.717000
+Aresta no percurso em Largura ., VM_Inicial: 13.500000, VM_Final: 13500.000000
+Aresta no percurso em Largura Zoe_St, VM_Inicial: 10.299347, VM_Final: 10299.347000
+Aresta no percurso em Largura Yosemite_Ave, VM_Inicial: 6.940380, VM_Final: 6940.380000
+Aresta no percurso em Largura Yorba_St, VM_Inicial: 6.512681, VM_Final: 6512.681000
+Aresta no percurso em Largura Zircon_Pl, VM_Inicial: 13.405735, VM_Final: 13405.735000
+Aresta no percurso em Largura Zeno_Pl, VM_Inicial: 10.478697, VM_Final: 10478.697000
+Aresta no percurso em Largura Yerba_Buena_Ln, VM_Inicial: 8.253049, VM_Final: 8253.049000
+Aresta no percurso em Largura Yerba_Buena_Ave, VM_Inicial: 4.110953, VM_Final: 4110.953000
+Aresta no percurso em Largura Zanowitz_St, VM_Inicial: 13.764305, VM_Final: 13764.305000
+Aresta no percurso em Largura Zanowitz_Ave, VM_Inicial: 11.367095, VM_Final: 11367.095000
+Aresta no percurso em Largura Yacht_Rd, VM_Inicial: 4.563110, VM_Final: 4563.110000
+Aresta no percurso em Largura Wyman_Ave, VM_Inicial: 2.703855, VM_Final: 2703.855000
+Aresta no percurso em Largura Zampa_Ln, VM_Inicial: 13.594649, VM_Final: 13594.649000
+Aresta no percurso em Largura Dr_Tom_Waddell_Pl, VM_Inicial: 15.000000, VM_Final: 15000.000000
+Aresta no percurso em Largura Perimetral_Sul, VM_Inicial: 18.000000, VM_Final: 18000.000000
+Aresta no percurso em Largura Praca_Central, VM_Inicial: 11.000000, VM_Final: 11000.000000
+Aresta no percurso em Largura Yerba_Buena_Ave, VM_Inicial: 4.110953, VM_Final: 4110.953000
+Aresta no percurso em Largura Young_St, VM_Inicial: 14.802950, VM_Final: 14802.950000
+Aresta no percurso em Largura ., VM_Inicial: 13.500000, VM_Final: 13500.000000
+Aresta no percurso em Largura Zoe_St, VM_Inicial: 10.299347, VM_Final: 10299.347000
+Aresta no percurso em Largura Yosemite_Ave, VM_Inicial: 6.940380, VM_Final: 6940.380000
+Aresta no percurso em Largura Yorba_St, VM_Inicial: 6.512681, VM_Final: 6512.681000
+Aresta no percurso em Largura Zircon_Pl, VM_Inicial: 13.405735, VM_Final: 13405.735000
+Aresta no percurso em Largura Yerba_Buena_Ave, VM_Inicial: 4.110953, VM_Final: 4110.953000
+Aresta no percurso em Largura Zanowitz_St, VM_Inicial: 13.764305, VM_Final: 13764.305000
+Aresta no percurso em Largura Wyman_Ave, VM_Inicial: 2.703855, VM_Final: 2703.855000
+Aresta no percurso em Largura Zampa_Ln, VM_Inicial: 13.594649, VM_Final: 13594.649000
+Aresta no percurso em Largura Yerba_Buena_Ln, VM_Inicial: 8.253049, VM_Final: 8253.049000
+Aresta no percurso em Largura Dr_Tom_Waddell_Pl, VM_Inicial: 15.000000, VM_Final: 15000.000000
+Aresta no percurso em Largura ., VM_Inicial: 13.500000, VM_Final: 13500.000000
+Aresta no percurso em Largura Perimetral_Sul, VM_Inicial: 18.000000, VM_Final: 18000.000000
+Aresta no percurso em Largura Praca_Central, VM_Inicial: 11.000000, VM_Final: 11000.000000
+Aresta no percurso em Largura Young_Ct, VM_Inicial: 7.330631, VM_Final: 7330.631000
+Aresta no percurso em Largura Yerba_Buena_Ave, VM_Inicial: 4.110953, VM_Final: 4110.953000
+Aresta no percurso em Largura Yacht_Rd, VM_Inicial: 4.563110, VM_Final: 4563.110000
+Aresta no percurso em Largura Young_St, VM_Inicial: 14.570954, VM_Final: 14570.954000
+Aresta no percurso em Largura Al_Scoma_Way, VM_Inicial: 7.386963, VM_Final: 7386.963000
+Aresta no percurso em Largura ., VM_Inicial: 13.500000, VM_Final: 13500.000000
+Aresta no percurso em Largura Zoo_Rd, VM_Inicial: 13.361850, VM_Final: 13361.850000
+Aresta no percurso em Largura ., VM_Inicial: 12.000000, VM_Final: 12000.000000
+Aresta no percurso em Largura Zeno_Pl, VM_Inicial: 11.645644, VM_Final: 11645.644000
+Aresta no percurso em Largura Yorba_St, VM_Inicial: 6.512681, VM_Final: 6512.681000
+Aresta no percurso em Largura Yerba_Buena_Ln, VM_Inicial: 8.253049, VM_Final: 8253.049000
+Aresta no percurso em Largura Zircon_Pl, VM_Inicial: 14.016998, VM_Final: 14016.998000
+Aresta no percurso em Largura Zanowitz_Ave, VM_Inicial: 9.407006, VM_Final: 9407.006000
+Aresta no percurso em Largura Yerba_Buena_Ave, VM_Inicial: 4.110953, VM_Final: 4110.953000
+Aresta no percurso em Largura Yacht_Rd, VM_Inicial: 4.563110, VM_Final: 4563.110000
+Aresta no percurso em Largura Zanowitz_St, VM_Inicial: 14.430430, VM_Final: 14430.430000
+Aresta no percurso em Largura Yukon_St, VM_Inicial: 11.197269, VM_Final: 11197.269000
+Aresta no percurso em Largura Wyman_Ave, VM_Inicial: 2.703855, VM_Final: 2703.855000
+Aresta no percurso em Largura Wright_Loop, VM_Inicial: 5.986043, VM_Final: 5986.043000
+Aresta no percurso em Largura Zampa_Ln, VM_Inicial: 14.334519, VM_Final: 14334.519000
+Aresta no percurso em Largura Yerba_Buena_Ln, VM_Inicial: 8.253049, VM_Final: 8253.049000
+Aresta no percurso em Largura Dr_Tom_Waddell_Pl, VM_Inicial: 15.000000, VM_Final: 15000.000000
+Aresta no percurso em Largura Al_Scoma_Way, VM_Inicial: 7.386963, VM_Final: 7386.963000
+Aresta no percurso em Largura Zoo_Rd, VM_Inicial: 13.491467, VM_Final: 13491.467000
+Aresta no percurso em Largura ., VM_Inicial: 12.000000, VM_Final: 12000.000000
+Aresta no percurso em Largura Praca_Central, VM_Inicial: 11.000000, VM_Final: 11000.000000
+Aresta no percurso em Largura Yacht_Rd, VM_Inicial: 4.563110, VM_Final: 4563.110000
+Aresta no percurso em Largura Young_St, VM_Inicial: 14.570954, VM_Final: 14570.954000
+Aresta no percurso em Largura Al_Scoma_Way, VM_Inicial: 7.386963, VM_Final: 7386.963000
+Aresta no percurso em Largura ., VM_Inicial: 13.500000, VM_Final: 13500.000000
+Aresta no percurso em Largura Zoo_Rd, VM_Inicial: 13.361850, VM_Final: 13361.850000
+Aresta no percurso em Largura ., VM_Inicial: 12.000000, VM_Final: 12000.000000
+Aresta no percurso em Largura Perimetral_Leste, VM_Inicial: 16.000000, VM_Final: 16000.000000
+Aresta no percurso em Largura Yerba_Buena_Ln, VM_Inicial: 8.253049, VM_Final: 8253.049000
+Aresta no percurso em Largura Zircon_Pl, VM_Inicial: 14.016998, VM_Final: 14016.998000
+Aresta no percurso em Largura Yacht_Rd, VM_Inicial: 4.563110, VM_Final: 4563.110000
+Aresta no percurso em Largura Zanowitz_St, VM_Inicial: 14.430430, VM_Final: 14430.430000
+Aresta no percurso em Largura Wright_Loop, VM_Inicial: 5.986043, VM_Final: 5986.043000
+Aresta no percurso em Largura Zampa_Ln, VM_Inicial: 14.334519, VM_Final: 14334.519000
+Aresta no percurso em Largura Young_Ct, VM_Inicial: 8.664420, VM_Final: 8664.420000
+Aresta no percurso em Largura Yerba_Buena_Ln, VM_Inicial: 8.253049, VM_Final: 8253.049000
+Aresta no percurso em Largura Dr_Tom_Waddell_Pl, VM_Inicial: 15.000000, VM_Final: 15000.000000
+Aresta no percurso em Largura Perimetral_Leste, VM_Inicial: 16.000000, VM_Final: 16000.000000
+Aresta no percurso em Largura Yukon_St, VM_Inicial: 8.826330, VM_Final: 8826.330000
+Aresta no percurso em Largura Yacht_Rd, VM_Inicial: 4.563110, VM_Final: 4563.110000
+Aresta no percurso em Largura Wyman_Ave, VM_Inicial: 2.703855, VM_Final: 2703.855000
+Aresta no percurso em Largura Young_St, VM_Inicial: 14.528840, VM_Final: 14528.840000
+Aresta no percurso em Largura Al_Scoma_Way, VM_Inicial: 7.386963, VM_Final: 7386.963000
+Aresta no percurso em Largura Zircon_Pl, VM_Inicial: 14.002431, VM_Final: 14002.431000
+Aresta no percurso em Largura ., VM_Inicial: 13.500000, VM_Final: 13500.000000
+Aresta no percurso em Largura Yorba_St, VM_Inicial: 6.512681, VM_Final: 6512.681000
+Aresta no percurso em Largura Zoo_Rd, VM_Inicial: 14.815920, VM_Final: 14815.920000
+Aresta no percurso em Largura ., VM_Inicial: 12.000000, VM_Final: 12000.000000
+Aresta no percurso em Largura Zoe_St, VM_Inicial: 10.924831, VM_Final: 10924.831000
+Aresta no percurso em Largura Yerba_Buena_Ln, VM_Inicial: 8.253049, VM_Final: 8253.049000
+Aresta no percurso em Largura Yerba_Buena_Ave, VM_Inicial: 4.110953, VM_Final: 4110.953000
+Aresta no percurso em Largura Zircon_Pl, VM_Inicial: 13.549497, VM_Final: 13549.497000
+Aresta no percurso em Largura Zeno_Pl, VM_Inicial: 13.365507, VM_Final: 13365.507000
+Aresta no percurso em Largura Yacht_Rd, VM_Inicial: 4.563110, VM_Final: 4563.110000
+Aresta no percurso em Largura Wyman_Ave, VM_Inicial: 2.703855, VM_Final: 2703.855000
+Aresta no percurso em Largura Zanowitz_St, VM_Inicial: 14.597270, VM_Final: 14597.270000
+Aresta no percurso em Largura Zanowitz_Ave, VM_Inicial: 9.238094, VM_Final: 9238.094000
+Aresta no percurso em Largura Wright_Loop, VM_Inicial: 5.986043, VM_Final: 5986.043000
+Aresta no percurso em Largura Worth_St, VM_Inicial: 2.648521, VM_Final: 2648.521000
+Aresta no percurso em Largura Zampa_Ln, VM_Inicial: 13.539580, VM_Final: 13539.580000
+Aresta no percurso em Largura Dr_Tom_Waddell_Pl, VM_Inicial: 15.000000, VM_Final: 15000.000000
+Aresta no percurso em Largura ., VM_Inicial: 12.000000, VM_Final: 12000.000000
+Aresta no percurso em Largura Perimetral_Leste, VM_Inicial: 16.000000, VM_Final: 16000.000000
+Aresta no percurso em Largura Wyman_Ave, VM_Inicial: 2.703855, VM_Final: 2703.855000
+Aresta no percurso em Largura Young_St, VM_Inicial: 14.528840, VM_Final: 14528.840000
+Aresta no percurso em Largura ., VM_Inicial: 13.500000, VM_Final: 13500.000000
+Aresta no percurso em Largura Yorba_St, VM_Inicial: 6.512681, VM_Final: 6512.681000
+Aresta no percurso em Largura Zoo_Rd, VM_Inicial: 14.815920, VM_Final: 14815.920000
+Aresta no percurso em Largura ., VM_Inicial: 12.000000, VM_Final: 12000.000000
+Aresta no percurso em Largura Yerba_Buena_Ave, VM_Inicial: 4.110953, VM_Final: 4110.953000
+Aresta no percurso em Largura Zircon_Pl, VM_Inicial: 13.549497, VM_Final: 13549.497000
+Aresta no percurso em Largura Wyman_Ave, VM_Inicial: 2.703855, VM_Final: 2703.855000
+Aresta no percurso em Largura Zanowitz_St, VM_Inicial: 14.597270, VM_Final: 14597.270000
+Aresta no percurso em Largura Worth_St, VM_Inicial: 2.648521, VM_Final: 2648.521000
+Aresta no percurso em Largura Zampa_Ln, VM_Inicial: 13.539580, VM_Final: 13539.580000
+Aresta no percurso em Largura Yacht_Rd, VM_Inicial: 4.563110, VM_Final: 4563.110000
+Aresta no percurso em Largura Dr_Tom_Waddell_Pl, VM_Inicial: 15.000000, VM_Final: 15000.000000
+Aresta no percurso em Largura ., VM_Inicial: 12.000000, VM_Final: 12000.000000
+Aresta no percurso em Largura Perimetral_Leste, VM_Inicial: 16.000000, VM_Final: 16000.000000
+Aresta no percurso em Largura Young_Ct, VM_Inicial: 14.081522, VM_Final: 14081.522000
+Aresta no percurso em Largura Wyman_Ave, VM_Inicial: 2.703855, VM_Final: 2703.855000
+Aresta no percurso em Largura Wright_Loop, VM_Inicial: 5.986043, VM_Final: 5986.043000
+Aresta no percurso em Largura Young_St, VM_Inicial: 14.653777, VM_Final: 14653.777000
+Aresta no percurso em Largura Zoe_St, VM_Inicial: 12.798451, VM_Final: 12798.451000
+Aresta no percurso em Largura Yorba_St, VM_Inicial: 6.512681, VM_Final: 6512.681000
+Aresta no percurso em Largura Zoo_Rd, VM_Inicial: 14.420954, VM_Final: 14420.954000
+Aresta no percurso em Largura ., VM_Inicial: 12.000000, VM_Final: 12000.000000
+Aresta no percurso em Largura Zeno_Pl, VM_Inicial: 9.512673, VM_Final: 9512.673000
+Aresta no percurso em Largura Yerba_Buena_Ave, VM_Inicial: 4.110953, VM_Final: 4110.953000
+Aresta no percurso em Largura Yacht_Rd, VM_Inicial: 4.563110, VM_Final: 4563.110000
+Aresta no percurso em Largura Zircon_Pl, VM_Inicial: 14.528509, VM_Final: 14528.509000
+Aresta no percurso em Largura Zanowitz_Ave, VM_Inicial: 6.783302, VM_Final: 6783.302000
+Aresta no percurso em Largura Wyman_Ave, VM_Inicial: 2.703855, VM_Final: 2703.855000
+Aresta no percurso em Largura Wright_Loop, VM_Inicial: 5.986043, VM_Final: 5986.043000
+Aresta no percurso em Largura Zanowitz_St, VM_Inicial: 14.024461, VM_Final: 14024.461000
+Aresta no percurso em Largura Yukon_St, VM_Inicial: 9.941799, VM_Final: 9941.799000
+Aresta no percurso em Largura Worth_St, VM_Inicial: 2.648521, VM_Final: 2648.521000
+Aresta no percurso em Largura Worcester_Ave, VM_Inicial: 8.772832, VM_Final: 8772.832000
+Aresta no percurso em Largura Zampa_Ln, VM_Inicial: 13.238207, VM_Final: 13238.207000
+Aresta no percurso em Largura Yacht_Rd, VM_Inicial: 4.563110, VM_Final: 4563.110000
+Aresta no percurso em Largura Dr_Tom_Waddell_Pl, VM_Inicial: 15.000000, VM_Final: 15000.000000
+Aresta no percurso em Largura Perimetral_Leste, VM_Inicial: 16.000000, VM_Final: 16000.000000
+Aresta no percurso em Largura Perimetral_Leste, VM_Inicial: 16.000000, VM_Final: 16000.000000
+Aresta no percurso em Largura Perimetral_Leste, VM_Inicial: 16.000000, VM_Final: 16000.000000
+Aresta no percurso em Largura Wright_Loop, VM_Inicial: 5.986043, VM_Final: 5986.043000
+Aresta no percurso em Largura Young_St, VM_Inicial: 14.653777, VM_Final: 14653.777000
+Aresta no percurso em Largura Zoo_Rd, VM_Inicial: 14.420954, VM_Final: 14420.954000
+Aresta no percurso em Largura ., VM_Inicial: 12.000000, VM_Final: 12000.000000
+Aresta no percurso em Largura Yacht_Rd, VM_Inicial: 4.563110, VM_Final: 4563.110000
+Aresta no percurso em Largura Zircon_Pl, VM_Inicial: 14.528509, VM_Final: 14528.509000
+Aresta no percurso em Largura Wright_Loop, VM_Inicial: 5.986043, VM_Final: 5986.043000
+Aresta no percurso em Largura Zanowitz_St, VM_Inicial: 14.024461, VM_Final: 14024.461000
+Aresta no percurso em Largura Worcester_Ave, VM_Inicial: 8.772832, VM_Final: 8772.832000
+Aresta no percurso em Largura Zampa_Ln, VM_Inicial: 13.238207, VM_Final: 13238.207000
+Aresta no percurso em Largura Young_Ct, VM_Inicial: 11.328721, VM_Final: 11328.721000
+Aresta no percurso em Largura Yacht_Rd, VM_Inicial: 4.563110, VM_Final: 4563.110000
+Aresta no percurso em Largura Dr_Tom_Waddell_Pl, VM_Inicial: 15.000000, VM_Final: 15000.000000
+Aresta no percurso em Largura Perimetral_Norte, VM_Inicial: 25.000000, VM_Final: 25000.000000
+Aresta no percurso em Largura Yukon_St, VM_Inicial: 11.783872, VM_Final: 11783.872000
+Aresta no percurso em Largura Wright_Loop, VM_Inicial: 5.986043, VM_Final: 5986.043000
+Aresta no percurso em Largura Worth_St, VM_Inicial: 2.648521, VM_Final: 2648.521000
+Aresta no percurso em Largura Young_St, VM_Inicial: 14.307904, VM_Final: 14307.904000
+Aresta no percurso em Largura Yerba_Buena_Ave, VM_Inicial: 4.110953, VM_Final: 4110.953000
+Aresta no percurso em Largura Zoo_Rd, VM_Inicial: 14.922639, VM_Final: 14922.639000
+Aresta no percurso em Largura ., VM_Inicial: 12.000000, VM_Final: 12000.000000
+Aresta no percurso em Largura Zoe_St, VM_Inicial: 6.096481, VM_Final: 6096.481000
+Aresta no percurso em Largura Yacht_Rd, VM_Inicial: 4.563110, VM_Final: 4563.110000
+Aresta no percurso em Largura Wyman_Ave, VM_Inicial: 2.703855, VM_Final: 2703.855000
+Aresta no percurso em Largura Zircon_Pl, VM_Inicial: 14.794167, VM_Final: 14794.167000
+Aresta no percurso em Largura Zeno_Pl, VM_Inicial: 14.690059, VM_Final: 14690.059000
+Aresta no percurso em Largura Wright_Loop, VM_Inicial: 5.986043, VM_Final: 5986.043000
+Aresta no percurso em Largura Worth_St, VM_Inicial: 2.648521, VM_Final: 2648.521000
+Aresta no percurso em Largura Zanowitz_St, VM_Inicial: 13.580954, VM_Final: 13580.954000
+Aresta no percurso em Largura Zanowitz_Ave, VM_Inicial: 9.195858, VM_Final: 9195.858000
+Aresta no percurso em Largura Worcester_Ave, VM_Inicial: 8.772832, VM_Final: 8772.832000
+Aresta no percurso em Largura Palace_Dr, VM_Inicial: 8.772832, VM_Final: 8772.832000
+Aresta no percurso em Largura ., VM_Inicial: 18.750000, VM_Final: 18750.000000
+Aresta no percurso em Largura Dr_Tom_Waddell_Pl, VM_Inicial: 15.000000, VM_Final: 15000.000000
+Aresta no percurso em Largura ., VM_Inicial: 18.750000, VM_Final: 18750.000000
+Aresta no percurso em Largura Perimetral_Norte, VM_Inicial: 25.000000, VM_Final: 25000.000000
+Aresta no percurso em Largura Worth_St, VM_Inicial: 2.648521, VM_Final: 2648.521000
+Aresta no percurso em Largura Young_St, VM_Inicial: 14.307904, VM_Final: 14307.904000
+Aresta no percurso em Largura Yerba_Buena_Ave, VM_Inicial: 4.110953, VM_Final: 4110.953000
+Aresta no percurso em Largura Zoo_Rd, VM_Inicial: 14.922639, VM_Final: 14922.639000
+Aresta no percurso em Largura ., VM_Inicial: 12.000000, VM_Final: 12000.000000
+Aresta no percurso em Largura Wyman_Ave, VM_Inicial: 2.703855, VM_Final: 2703.855000
+Aresta no percurso em Largura Zircon_Pl, VM_Inicial: 14.794167, VM_Final: 14794.167000
+Aresta no percurso em Largura Worth_St, VM_Inicial: 2.648521, VM_Final: 2648.521000
+Aresta no percurso em Largura Zanowitz_St, VM_Inicial: 13.580954, VM_Final: 13580.954000
+Aresta no percurso em Largura Palace_Dr, VM_Inicial: 8.772832, VM_Final: 8772.832000
+Aresta no percurso em Largura ., VM_Inicial: 18.750000, VM_Final: 18750.000000
+Aresta no percurso em Largura Perimetral_Norte, VM_Inicial: 25.000000, VM_Final: 25000.000000
+Aresta no percurso em Largura Wright_Loop, VM_Inicial: 5.986043, VM_Final: 5986.043000
+Aresta no percurso em Largura Dr_Tom_Waddell_Pl, VM_Inicial: 15.000000, VM_Final: 15000.000000
+Aresta no percurso em Largura ., VM_Inicial: 18.750000, VM_Final: 18750.000000
+Aresta no percurso em Largura Perimetral_Norte, VM_Inicial: 25.000000, VM_Final: 25000.000000
+Aresta no percurso em Largura Young_Ct, VM_Inicial: 8.831633, VM_Final: 8831.633000
+Aresta no percurso em Largura Worth_St, VM_Inicial: 2.648521, VM_Final: 2648.521000
+Aresta no percurso em Largura Worcester_Ave, VM_Inicial: 8.772832, VM_Final: 8772.832000
+Aresta no percurso em Largura Young_St, VM_Inicial: 14.598202, VM_Final: 14598.202000
+Aresta no percurso em Largura Zoe_St, VM_Inicial: 10.741873, VM_Final: 10741.873000
+Aresta no percurso em Largura Yerba_Buena_Ave, VM_Inicial: 4.110953, VM_Final: 4110.953000
+Aresta no percurso em Largura Zoo_Rd, VM_Inicial: 14.204488, VM_Final: 14204.488000
+Aresta no percurso em Largura ., VM_Inicial: 12.000000, VM_Final: 12000.000000
+Aresta no percurso em Largura Zeno_Pl, VM_Inicial: 14.594563, VM_Final: 14594.563000
+Aresta no percurso em Largura Wyman_Ave, VM_Inicial: 2.703855, VM_Final: 2703.855000
+Aresta no percurso em Largura Wright_Loop, VM_Inicial: 5.986043, VM_Final: 5986.043000
+Aresta no percurso em Largura Zircon_Pl, VM_Inicial: 14.792728, VM_Final: 14792.728000
+Aresta no percurso em Largura Zanowitz_Ave, VM_Inicial: 8.954238, VM_Final: 8954.238000
+Aresta no percurso em Largura Worth_St, VM_Inicial: 2.648521, VM_Final: 2648.521000
+Aresta no percurso em Largura Worcester_Ave, VM_Inicial: 8.772832, VM_Final: 8772.832000
+Aresta no percurso em Largura Zanowitz_St, VM_Inicial: 14.270830, VM_Final: 14270.830000
+Aresta no percurso em Largura Palace_Dr, VM_Inicial: 8.772832, VM_Final: 8772.832000
+Aresta no percurso em Largura Yukon_St, VM_Inicial: 7.298951, VM_Final: 7298.951000
+Aresta no percurso em Largura ., VM_Inicial: 18.750000, VM_Final: 18750.000000
+Aresta no percurso em Largura ., VM_Inicial: 18.750000, VM_Final: 18750.000000
+Aresta no percurso em Largura Perimetral_Norte, VM_Inicial: 25.000000, VM_Final: 25000.000000
+Aresta no percurso em Largura Wright_Loop, VM_Inicial: 5.986043, VM_Final: 5986.043000
+Aresta no percurso em Largura Dr_Tom_Waddell_Pl, VM_Inicial: 15.000000, VM_Final: 15000.000000
+Aresta no percurso em Largura Perimetral_Norte, VM_Inicial: 25.000000, VM_Final: 25000.000000
+Aresta no percurso em Largura Praca_Central3, VM_Inicial: 11.000000, VM_Final: 11000.000000
+Aresta no percurso em Largura Worcester_Ave, VM_Inicial: 8.772832, VM_Final: 8772.832000
+Aresta no percurso em Largura Young_St, VM_Inicial: 14.598202, VM_Final: 14598.202000
+Aresta no percurso em Largura Zoo_Rd, VM_Inicial: 14.204488, VM_Final: 14204.488000
+Aresta no percurso em Largura ., VM_Inicial: 12.000000, VM_Final: 12000.000000
+Aresta no percurso em Largura Wright_Loop, VM_Inicial: 5.986043, VM_Final: 5986.043000
+Aresta no percurso em Largura Zircon_Pl, VM_Inicial: 14.792728, VM_Final: 14792.728000
+Aresta no percurso em Largura Worcester_Ave, VM_Inicial: 8.772832, VM_Final: 8772.832000
+Aresta no percurso em Largura Zanowitz_St, VM_Inicial: 14.270830, VM_Final: 14270.830000
+Aresta no percurso em Largura ., VM_Inicial: 18.750000, VM_Final: 18750.000000
+Aresta no percurso em Largura ., VM_Inicial: 18.750000, VM_Final: 18750.000000
+Aresta no percurso em Largura Perimetral_Norte, VM_Inicial: 25.000000, VM_Final: 25000.000000
+Aresta no percurso em Largura Young_Ct, VM_Inicial: 6.408532, VM_Final: 6408.532000
+Aresta no percurso em Largura Wright_Loop, VM_Inicial: 5.986043, VM_Final: 5986.043000
+Aresta no percurso em Largura Dr_Tom_Waddell_Pl, VM_Inicial: 15.000000, VM_Final: 15000.000000
+Aresta no percurso em Largura ., VM_Inicial: 18.750000, VM_Final: 18750.000000
+Aresta no percurso em Largura Perimetral_Norte, VM_Inicial: 25.000000, VM_Final: 25000.000000
+Aresta no percurso em Largura Praca_Central3, VM_Inicial: 11.000000, VM_Final: 11000.000000
+Aresta no percurso em Largura Yukon_St, VM_Inicial: 9.154026, VM_Final: 9154.026000
+Aresta no percurso em Largura Worcester_Ave, VM_Inicial: 8.772832, VM_Final: 8772.832000
+Aresta no percurso em Largura Palace_Dr, VM_Inicial: 8.772832, VM_Final: 8772.832000
+Aresta no percurso em Largura ., VM_Inicial: 18.750000, VM_Final: 18750.000000
+Aresta no percurso em Largura Wyman_Ave, VM_Inicial: 2.703855, VM_Final: 2703.855000
+Aresta no percurso em Largura Zoo_Rd, VM_Inicial: 13.402381, VM_Final: 13402.381000
+Aresta no percurso em Largura ., VM_Inicial: 12.000000, VM_Final: 12000.000000
+Aresta no percurso em Largura Zoe_St, VM_Inicial: 11.054709, VM_Final: 11054.709000
+Aresta no percurso em Largura Wright_Loop, VM_Inicial: 5.986043, VM_Final: 5986.043000
+Aresta no percurso em Largura Worth_St, VM_Inicial: 2.648521, VM_Final: 2648.521000
+Aresta no percurso em Largura Zircon_Pl, VM_Inicial: 14.561999, VM_Final: 14561.999000
+Aresta no percurso em Largura Zeno_Pl, VM_Inicial: 8.181525, VM_Final: 8181.525000
+Aresta no percurso em Largura Worcester_Ave, VM_Inicial: 8.772832, VM_Final: 8772.832000
+Aresta no percurso em Largura Palace_Dr, VM_Inicial: 8.772832, VM_Final: 8772.832000
+Aresta no percurso em Largura ., VM_Inicial: 18.750000, VM_Final: 18750.000000
+Aresta no percurso em Largura Zanowitz_Ave, VM_Inicial: 11.619531, VM_Final: 11619.531000
+Aresta no percurso em Largura Dr_Tom_Waddell_Pl, VM_Inicial: 15.000000, VM_Final: 15000.000000
+Aresta no percurso em Largura ., VM_Inicial: 18.750000, VM_Final: 18750.000000
+Aresta no percurso em Largura Perimetral_Norte, VM_Inicial: 25.000000, VM_Final: 25000.000000
+Aresta no percurso em Largura Praca_Central3, VM_Inicial: 11.000000, VM_Final: 11000.000000
+Aresta no percurso em Largura Palace_Dr, VM_Inicial: 8.772832, VM_Final: 8772.832000
+Aresta no percurso em Largura ., VM_Inicial: 18.750000, VM_Final: 18750.000000
+Aresta no percurso em Largura Wyman_Ave, VM_Inicial: 2.703855, VM_Final: 2703.855000
+Aresta no percurso em Largura Zoo_Rd, VM_Inicial: 13.402381, VM_Final: 13402.381000
+Aresta no percurso em Largura ., VM_Inicial: 12.000000, VM_Final: 12000.000000
+Aresta no percurso em Largura Worth_St, VM_Inicial: 2.648521, VM_Final: 2648.521000
+Aresta no percurso em Largura Zircon_Pl, VM_Inicial: 14.561999, VM_Final: 14561.999000
+Aresta no percurso em Largura Perimetral_Norte, VM_Inicial: 25.000000, VM_Final: 25000.000000
+Aresta no percurso em Largura Worcester_Ave, VM_Inicial: 8.772832, VM_Final: 8772.832000
+Aresta no percurso em Largura Dr_Tom_Waddell_Pl, VM_Inicial: 15.000000, VM_Final: 15000.000000
+Aresta no percurso em Largura Young_Ct, VM_Inicial: 13.733957, VM_Final: 13733.957000
+Aresta no percurso em Largura Zoe_St, VM_Inicial: 12.357769, VM_Final: 12357.769000
+Aresta no percurso em Largura Wyman_Ave, VM_Inicial: 2.703855, VM_Final: 2703.855000
+Aresta no percurso em Largura Zoo_Rd, VM_Inicial: 14.189896, VM_Final: 14189.896000
+Aresta no percurso em Largura ., VM_Inicial: 12.000000, VM_Final: 12000.000000
+Aresta no percurso em Largura Zeno_Pl, VM_Inicial: 14.453549, VM_Final: 14453.549000
+Aresta no percurso em Largura Worth_St, VM_Inicial: 2.648521, VM_Final: 2648.521000
+Aresta no percurso em Largura Worcester_Ave, VM_Inicial: 8.772832, VM_Final: 8772.832000
+Aresta no percurso em Largura Zircon_Pl, VM_Inicial: 14.030771, VM_Final: 14030.771000
+Aresta no percurso em Largura ., VM_Inicial: 18.750000, VM_Final: 18750.000000
+Aresta no percurso em Largura Perimetral_Norte, VM_Inicial: 25.000000, VM_Final: 25000.000000
+Aresta no percurso em Largura Worcester_Ave, VM_Inicial: 8.772832, VM_Final: 8772.832000
+Aresta no percurso em Largura Zoo_Rd, VM_Inicial: 14.189896, VM_Final: 14189.896000
+Aresta no percurso em Largura ., VM_Inicial: 12.000000, VM_Final: 12000.000000
+Aresta no percurso em Largura Worcester_Ave, VM_Inicial: 8.772832, VM_Final: 8772.832000
+Aresta no percurso em Largura Zircon_Pl, VM_Inicial: 14.030771, VM_Final: 14030.771000
+Aresta no percurso em Largura ., VM_Inicial: 18.750000, VM_Final: 18750.000000
+Aresta no percurso em Largura Perimetral_Norte, VM_Inicial: 25.000000, VM_Final: 25000.000000
+Aresta no percurso em Largura Young_Ct, VM_Inicial: 6.216855, VM_Final: 6216.855000
+Aresta no percurso em Largura Worcester_Ave, VM_Inicial: 8.772832, VM_Final: 8772.832000
+Aresta no percurso em Largura Worth_St, VM_Inicial: 2.648521, VM_Final: 2648.521000
+Aresta no percurso em Largura Zoo_Rd, VM_Inicial: 13.660815, VM_Final: 13660.815000
+Aresta no percurso em Largura ., VM_Inicial: 12.000000, VM_Final: 12000.000000
+Aresta no percurso em Largura Zoe_St, VM_Inicial: 10.456493, VM_Final: 10456.493000
+Aresta no percurso em Largura Worcester_Ave, VM_Inicial: 8.772832, VM_Final: 8772.832000
+Aresta no percurso em Largura Palace_Dr, VM_Inicial: 8.772832, VM_Final: 8772.832000
+Aresta no percurso em Largura ., VM_Inicial: 18.750000, VM_Final: 18750.000000
+Aresta no percurso em Largura Zeno_Pl, VM_Inicial: 8.365381, VM_Final: 8365.381000
+Aresta no percurso em Largura Worth_St, VM_Inicial: 2.648521, VM_Final: 2648.521000
+Aresta no percurso em Largura Zoo_Rd, VM_Inicial: 13.660815, VM_Final: 13660.815000
+Aresta no percurso em Largura ., VM_Inicial: 12.000000, VM_Final: 12000.000000
+Aresta no percurso em Largura Perimetral_Norte, VM_Inicial: 25.000000, VM_Final: 25000.000000
+Aresta no percurso em Largura Zoe_St, VM_Inicial: 8.790422, VM_Final: 8790.422000
+Aresta no percurso em Largura Worth_St, VM_Inicial: 2.648521, VM_Final: 2648.521000
+Aresta no percurso em Largura Zoo_Rd, VM_Inicial: 13.646648, VM_Final: 13646.648000
+Aresta no percurso em Largura ., VM_Inicial: 12.000000, VM_Final: 12000.000000
+Aresta no percurso em Largura ., VM_Inicial: 18.750000, VM_Final: 18750.000000
+Aresta no percurso em Largura Perimetral_Norte, VM_Inicial: 25.000000, VM_Final: 25000.000000
+Aresta no percurso em Largura Zoo_Rd, VM_Inicial: 13.646648, VM_Final: 13646.648000
+Aresta no percurso em Largura ., VM_Inicial: 12.000000, VM_Final: 12000.000000
+Aresta no percurso em Largura ., VM_Inicial: 18.750000, VM_Final: 18750.000000
+Aresta no percurso em Largura Perimetral_Norte, VM_Inicial: 25.000000, VM_Final: 25000.000000
+Aresta no percurso em Largura Palace_Dr, VM_Inicial: 8.772832, VM_Final: 8772.832000
+Aresta no percurso em Largura ., VM_Inicial: 18.750000, VM_Final: 18750.000000
+Aresta no percurso em Largura ., VM_Inicial: 12.000000, VM_Final: 12000.000000
+Aresta no percurso em Largura Zoe_St, VM_Inicial: 9.653724, VM_Final: 9653.724000
+Aresta no percurso em Largura Perimetral_Norte, VM_Inicial: 25.000000, VM_Final: 25000.000000
+Aresta no percurso em Largura Perimetral_Norte, VM_Inicial: 25.000000, VM_Final: 25000.000000
+
 [*] rf b01.1 S 1000.000000
 REINICIANDO e inserindo nó 0 na floresta
 REINICIANDO e inserindo nó 1 na floresta
 REINICIANDO e inserindo nó 2 na floresta
 Aresta de Árvore: ., Velocidade Máxima: 13500.000000
-Aresta de Avanço: ., Velocidade Máxima: 13500.000000
-Aresta de Árvore: Perimetral_Sul, Velocidade Máxima: 18000.000000
-Aresta de Árvore: Praca_Central, Velocidade Máxima: 11000.000000
-Aresta de Árvore: Praca_Central, Velocidade Máxima: 11000.000000
-Aresta de Árvore: Praca_Central, Velocidade Máxima: 11000.000000
+Aresta de Avanço: ., Velocidade Máxima: 13500000.000000
+Aresta de Árvore: Perimetral_Sul, Velocidade Máxima: 18000000.000000
+Aresta de Árvore: Praca_Central, Velocidade Máxima: 11000000.000000
+Aresta de Árvore: Praca_Central, Velocidade Máxima: 11000000.000000
+Aresta de Árvore: Praca_Central, Velocidade Máxima: 11000000.000000
 Aresta de Avanço: Praca_Central, Velocidade Máxima: 11000.000000
-Aresta de Árvore: Perimetral_Leste, Velocidade Máxima: 16000.000000
-Aresta de Árvore: ., Velocidade Máxima: 12000.000000
+Aresta de Árvore: Perimetral_Leste, Velocidade Máxima: 16000000.000000
+Aresta de Árvore: ., Velocidade Máxima: 12000000.000000
 Aresta de Avanço: ., Velocidade Máxima: 12000.000000
-Aresta de Árvore: Perimetral_Leste, Velocidade Máxima: 16000.000000
-Aresta de Árvore: ., Velocidade Máxima: 12000.000000
+Aresta de Árvore: Perimetral_Leste, Velocidade Máxima: 16000000.000000
+Aresta de Árvore: ., Velocidade Máxima: 12000000.000000
 Aresta de Avanço: ., Velocidade Máxima: 12000.000000
-Aresta de Árvore: Perimetral_Leste, Velocidade Máxima: 16000.000000
-Aresta de Árvore: Perimetral_Leste, Velocidade Máxima: 16000.000000
-Aresta de Árvore: Perimetral_Leste, Velocidade Máxima: 16000.000000
-Aresta de Árvore: Perimetral_Leste, Velocidade Máxima: 16000.000000
-Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000.000000
-Aresta de Árvore: ., Velocidade Máxima: 18750.000000
+Aresta de Árvore: Perimetral_Leste, Velocidade Máxima: 16000000.000000
+Aresta de Árvore: Perimetral_Leste, Velocidade Máxima: 16000000.000000
+Aresta de Árvore: Perimetral_Leste, Velocidade Máxima: 16000000.000000
+Aresta de Árvore: Perimetral_Leste, Velocidade Máxima: 16000000.000000
+Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000000.000000
+Aresta de Árvore: ., Velocidade Máxima: 18750000.000000
 Aresta de Avanço: ., Velocidade Máxima: 18750.000000
-Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000.000000
-Aresta de Árvore: ., Velocidade Máxima: 18750.000000
+Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000000.000000
+Aresta de Árvore: ., Velocidade Máxima: 18750000.000000
 Aresta de Avanço: ., Velocidade Máxima: 18750.000000
-Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000.000000
-Aresta de Árvore: Praca_Central3, Velocidade Máxima: 11000.000000
-Aresta de Árvore: Praca_Central3, Velocidade Máxima: 11000.000000
-Aresta de Árvore: Praca_Central3, Velocidade Máxima: 11000.000000
+Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000000.000000
+Aresta de Árvore: Praca_Central3, Velocidade Máxima: 11000000.000000
+Aresta de Árvore: Praca_Central3, Velocidade Máxima: 11000000.000000
+Aresta de Árvore: Praca_Central3, Velocidade Máxima: 11000000.000000
 Aresta de Avanço: Praca_Central3, Velocidade Máxima: 11000.000000
-Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000.000000
-Aresta de Árvore: ., Velocidade Máxima: 18750.000000
+Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000000.000000
+Aresta de Árvore: ., Velocidade Máxima: 18750000.000000
 Aresta de Avanço: ., Velocidade Máxima: 18750.000000
-Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000.000000
-Aresta de Árvore: ., Velocidade Máxima: 18750.000000
+Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000000.000000
+Aresta de Árvore: ., Velocidade Máxima: 18750000.000000
 PONTE em Aresta Cruzada: Palace_Dr, Velocidade Máxima: 8772.832000
 Aresta de Avanço: ., Velocidade Máxima: 18750.000000
-Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000.000000
+Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000000.000000
 Aresta de Árvore: ., Velocidade Máxima: 18750.000000
 PONTE em Aresta Cruzada: Palace_Dr, Velocidade Máxima: 8772.832000
+Aresta de Árvore: Young_Ct, Velocidade Máxima: 13733957.000000
 Aresta de Árvore: Young_Ct, Velocidade Máxima: 13733.957000
-Aresta de Árvore: Young_Ct, Velocidade Máxima: 13733.957000
+Aresta de Árvore: Young_Ct, Velocidade Máxima: 6216855.000000
 Aresta de Árvore: Young_Ct, Velocidade Máxima: 6216.855000
-Aresta de Árvore: Young_Ct, Velocidade Máxima: 6216.855000
+Aresta de Árvore: Young_Ct, Velocidade Máxima: 8831633.000000
 Aresta de Árvore: Young_Ct, Velocidade Máxima: 8831.633000
-Aresta de Árvore: Young_Ct, Velocidade Máxima: 8831.633000
+Aresta de Árvore: Young_Ct, Velocidade Máxima: 6408532.000000
 Aresta de Árvore: Young_Ct, Velocidade Máxima: 6408.532000
-Aresta de Árvore: Young_Ct, Velocidade Máxima: 6408.532000
+Aresta de Árvore: Young_Ct, Velocidade Máxima: 14081522.000000
 Aresta de Árvore: Young_Ct, Velocidade Máxima: 14081.522000
-Aresta de Árvore: Young_Ct, Velocidade Máxima: 14081.522000
+Aresta de Árvore: Young_Ct, Velocidade Máxima: 11328721.000000
 Aresta de Árvore: Young_Ct, Velocidade Máxima: 11328.721000
-Aresta de Árvore: Young_Ct, Velocidade Máxima: 11328.721000
+Aresta de Árvore: Young_Ct, Velocidade Máxima: 7330631.000000
 Aresta de Árvore: Young_Ct, Velocidade Máxima: 7330.631000
-Aresta de Árvore: Young_Ct, Velocidade Máxima: 7330.631000
+Aresta de Árvore: Young_Ct, Velocidade Máxima: 8664420.000000
 Aresta de Árvore: Young_Ct, Velocidade Máxima: 8664.420000
-Aresta de Árvore: Young_Ct, Velocidade Máxima: 8664.420000
+Aresta de Árvore: Young_Ct, Velocidade Máxima: 9061208.000000
 Aresta de Árvore: Young_Ct, Velocidade Máxima: 9061.208000
-Aresta de Árvore: Young_Ct, Velocidade Máxima: 9061.208000
+Aresta de Árvore: Young_Ct, Velocidade Máxima: 9518176.000000
 Aresta de Árvore: Young_Ct, Velocidade Máxima: 9518.176000
-Aresta de Árvore: Young_Ct, Velocidade Máxima: 9518.176000
-Aresta de Árvore: Al_Scoma_Way, Velocidade Máxima: 7386.963000
-Aresta de Árvore: Al_Scoma_Way, Velocidade Máxima: 7386.963000
-Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000.000000
-Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000.000000
-Aresta de Árvore: Yosemite_Ave, Velocidade Máxima: 6940.380000
-Aresta de Avanço: Yosemite_Ave, Velocidade Máxima: 6940.380000
-Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000.000000
-Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000.000000
-Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000.000000
-Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000.000000
-Aresta de Árvore: Yerba_Buena_Ln, Velocidade Máxima: 8253.049000
-Aresta de Avanço: Yerba_Buena_Ln, Velocidade Máxima: 8253.049000
-Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000.000000
-Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000.000000
-Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000.000000
-Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000.000000
-Aresta de Árvore: Yacht_Rd, Velocidade Máxima: 4563.110000
-Aresta de Avanço: Yacht_Rd, Velocidade Máxima: 4563.110000
-Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000.000000
-Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000.000000
-Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000.000000
-Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000.000000
-Aresta de Árvore: Wright_Loop, Velocidade Máxima: 5986.043000
-Aresta de Avanço: Wright_Loop, Velocidade Máxima: 5986.043000
-Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000.000000
-Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000.000000
-Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000.000000
-Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000.000000
-Aresta de Árvore: Worcester_Ave, Velocidade Máxima: 8772.832000
-Aresta de Avanço: Worcester_Ave, Velocidade Máxima: 8772.832000
-Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000.000000
+Aresta de Árvore: Al_Scoma_Way, Velocidade Máxima: 7386963.000000
+Aresta de Árvore: Al_Scoma_Way, Velocidade Máxima: 7386963.000000
+Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000000.000000
+Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000000.000000
+Aresta de Árvore: Yosemite_Ave, Velocidade Máxima: 6940380.000000
+Aresta de Avanço: Yosemite_Ave, Velocidade Máxima: 6940380.000000
+Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000000.000000
+Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000000.000000
+Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000000.000000
+Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000000.000000
+Aresta de Árvore: Yerba_Buena_Ln, Velocidade Máxima: 8253049.000000
+Aresta de Avanço: Yerba_Buena_Ln, Velocidade Máxima: 8253049.000000
+Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000000.000000
+Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000000.000000
+Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000000.000000
+Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000000.000000
+Aresta de Árvore: Yacht_Rd, Velocidade Máxima: 4563110.000000
+Aresta de Avanço: Yacht_Rd, Velocidade Máxima: 4563110.000000
+Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000000.000000
+Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000000.000000
+Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000000.000000
+Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000000.000000
+Aresta de Árvore: Wright_Loop, Velocidade Máxima: 5986043.000000
+Aresta de Avanço: Wright_Loop, Velocidade Máxima: 5986043.000000
+Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000000.000000
+Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000000.000000
+Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000000.000000
+Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000000.000000
+Aresta de Árvore: Worcester_Ave, Velocidade Máxima: 8772832.000000
+Aresta de Avanço: Worcester_Ave, Velocidade Máxima: 8772832.000000
+Aresta de Árvore: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000000.000000
 PONTE em Aresta Cruzada: Dr_Tom_Waddell_Pl, Velocidade Máxima: 15000.000000
-Aresta de Árvore: ., Velocidade Máxima: 13500.000000
+Aresta de Árvore: ., Velocidade Máxima: 13500000.000000
 Aresta de Avanço: ., Velocidade Máxima: 13500.000000
-Aresta de Árvore: Perimetral_Sul, Velocidade Máxima: 18000.000000
-Aresta de Árvore: Praca_Central2, Velocidade Máxima: 11000.000000
-Aresta de Árvore: Praca_Central2, Velocidade Máxima: 11000.000000
-Aresta de Árvore: Praca_Central2, Velocidade Máxima: 11000.000000
+Aresta de Árvore: Perimetral_Sul, Velocidade Máxima: 18000000.000000
+Aresta de Árvore: Praca_Central2, Velocidade Máxima: 11000000.000000
+Aresta de Árvore: Praca_Central2, Velocidade Máxima: 11000000.000000
+Aresta de Árvore: Praca_Central2, Velocidade Máxima: 11000000.000000
 Aresta de Avanço: Praca_Central2, Velocidade Máxima: 11000.000000
-Aresta de Árvore: Perimetral_Sul, Velocidade Máxima: 18000.000000
-Aresta de Árvore: ., Velocidade Máxima: 13500.000000
+Aresta de Árvore: Perimetral_Sul, Velocidade Máxima: 18000000.000000
+Aresta de Árvore: ., Velocidade Máxima: 13500000.000000
 Aresta de Avanço: ., Velocidade Máxima: 13500.000000
-Aresta de Avanço: Perimetral_Sul, Velocidade Máxima: 18000.000000
-Aresta de Árvore: ., Velocidade Máxima: 13500.000000
-Aresta de Avanço: ., Velocidade Máxima: 13500.000000
-PONTE em Aresta Cruzada: Perimetral_Sul, Velocidade Máxima: 18000.000000
-Aresta de Árvore: ., Velocidade Máxima: 13500.000000
+Aresta de Avanço: Perimetral_Sul, Velocidade Máxima: 18000000.000000
+Aresta de Árvore: ., Velocidade Máxima: 13500000.000000
 Aresta de Avanço: ., Velocidade Máxima: 13500.000000
 PONTE em Aresta Cruzada: Perimetral_Sul, Velocidade Máxima: 18000.000000
+Aresta de Árvore: ., Velocidade Máxima: 13500000.000000
+Aresta de Avanço: ., Velocidade Máxima: 13500.000000
+PONTE em Aresta Cruzada: Perimetral_Sul, Velocidade Máxima: 18000.000000
+Aresta de Árvore: Yosemite_Ave, Velocidade Máxima: 6940380.000000
 Aresta de Árvore: Yosemite_Ave, Velocidade Máxima: 6940.380000
-Aresta de Árvore: Yosemite_Ave, Velocidade Máxima: 6940.380000
-Aresta de Árvore: Yosemite_Ave, Velocidade Máxima: 6940.380000
-Aresta de Árvore: Yosemite_Ave, Velocidade Máxima: 6940.380000
+Aresta de Árvore: Yosemite_Ave, Velocidade Máxima: 6940380.000000
+Aresta de Árvore: Yosemite_Ave, Velocidade Máxima: 6940380.000000
+Aresta de Árvore: Yukon_St, Velocidade Máxima: 10666155.000000
 Aresta de Árvore: Yukon_St, Velocidade Máxima: 10666.155000
-Aresta de Árvore: Yukon_St, Velocidade Máxima: 10666.155000
-Aresta de Árvore: Al_Scoma_Way, Velocidade Máxima: 7386.963000
-Aresta de Árvore: Al_Scoma_Way, Velocidade Máxima: 7386.963000
-Aresta de Árvore: Al_Scoma_Way, Velocidade Máxima: 7386.963000
-PONTE em Aresta Cruzada: Al_Scoma_Way, Velocidade Máxima: 7386.963000
-Aresta de Árvore: ., Velocidade Máxima: 13500.000000
+Aresta de Árvore: Al_Scoma_Way, Velocidade Máxima: 7386963.000000
+Aresta de Árvore: Al_Scoma_Way, Velocidade Máxima: 7386963.000000
+Aresta de Árvore: Al_Scoma_Way, Velocidade Máxima: 7386963.000000
+PONTE em Aresta Cruzada: Al_Scoma_Way, Velocidade Máxima: 7386963.000000
+Aresta de Árvore: ., Velocidade Máxima: 13500000.000000
 Aresta de Avanço: ., Velocidade Máxima: 13500.000000
 PONTE em Aresta Cruzada: Perimetral_Sul, Velocidade Máxima: 18000.000000
-Aresta de Árvore: Young_St, Velocidade Máxima: 14144.085000
-Aresta de Avanço: Young_St, Velocidade Máxima: 14144.085000
-Aresta de Árvore: ., Velocidade Máxima: 13500.000000
+Aresta de Árvore: Young_St, Velocidade Máxima: 14144085.000000
+Aresta de Avanço: Young_St, Velocidade Máxima: 14144085.000000
+Aresta de Árvore: ., Velocidade Máxima: 13500000.000000
 Aresta de Avanço: ., Velocidade Máxima: 13500.000000
 PONTE em Aresta Cruzada: Perimetral_Sul, Velocidade Máxima: 18000.000000
-Aresta de Árvore: ., Velocidade Máxima: 13500.000000
+Aresta de Árvore: ., Velocidade Máxima: 13500000.000000
 Aresta de Avanço: ., Velocidade Máxima: 13500.000000
 PONTE em Aresta Cruzada: Perimetral_Sul, Velocidade Máxima: 18000.000000
-Aresta de Árvore: ., Velocidade Máxima: 13500.000000
+Aresta de Árvore: ., Velocidade Máxima: 13500000.000000
 Aresta de Avanço: ., Velocidade Máxima: 13500.000000
 PONTE em Aresta Cruzada: Perimetral_Sul, Velocidade Máxima: 18000.000000
+Aresta de Árvore: Yosemite_Ave, Velocidade Máxima: 6940380.000000
 Aresta de Árvore: Yosemite_Ave, Velocidade Máxima: 6940.380000
-Aresta de Árvore: Yosemite_Ave, Velocidade Máxima: 6940.380000
-Aresta de Árvore: Yosemite_Ave, Velocidade Máxima: 6940.380000
-Aresta de Árvore: Yosemite_Ave, Velocidade Máxima: 6940.380000
+Aresta de Árvore: Yosemite_Ave, Velocidade Máxima: 6940380.000000
+Aresta de Árvore: Yosemite_Ave, Velocidade Máxima: 6940380.000000
+Aresta de Árvore: Zanowitz_Ave, Velocidade Máxima: 13701354.000000
 Aresta de Árvore: Zanowitz_Ave, Velocidade Máxima: 13701.354000
-Aresta de Árvore: Zanowitz_Ave, Velocidade Máxima: 13701.354000
-Aresta de Árvore: Al_Scoma_Way, Velocidade Máxima: 7386.963000
-Aresta de Árvore: Al_Scoma_Way, Velocidade Máxima: 7386.963000
-Aresta de Árvore: Al_Scoma_Way, Velocidade Máxima: 7386.963000
+Aresta de Árvore: Al_Scoma_Way, Velocidade Máxima: 7386963.000000
+Aresta de Árvore: Al_Scoma_Way, Velocidade Máxima: 7386963.000000
+Aresta de Árvore: Al_Scoma_Way, Velocidade Máxima: 7386963.000000
+PONTE em Aresta Cruzada: Al_Scoma_Way, Velocidade Máxima: 7386963.000000
+Aresta de Árvore: ., Velocidade Máxima: 13500000.000000
+Aresta de Avanço: ., Velocidade Máxima: 13500.000000
+PONTE em Aresta Cruzada: Perimetral_Sul, Velocidade Máxima: 18000.000000
+Aresta de Árvore: Zampa_Ln, Velocidade Máxima: 14948647.000000
+Aresta de Avanço: Zampa_Ln, Velocidade Máxima: 14948647.000000
+Aresta de Árvore: ., Velocidade Máxima: 13500000.000000
+Aresta de Avanço: ., Velocidade Máxima: 13500.000000
+PONTE em Aresta Cruzada: Perimetral_Sul, Velocidade Máxima: 18000.000000
+Aresta de Árvore: ., Velocidade Máxima: 13500000.000000
+Aresta de Avanço: ., Velocidade Máxima: 13500.000000
+PONTE em Aresta Cruzada: Perimetral_Sul, Velocidade Máxima: 18000.000000
+Aresta de Árvore: ., Velocidade Máxima: 13500000.000000
+Aresta de Avanço: ., Velocidade Máxima: 13500.000000
+PONTE em Aresta Cruzada: Perimetral_Sul, Velocidade Máxima: 18000.000000
+Aresta de Árvore: Yosemite_Ave, Velocidade Máxima: 6940380.000000
+Aresta de Árvore: Yosemite_Ave, Velocidade Máxima: 6940380.000000
+Aresta de Árvore: Yosemite_Ave, Velocidade Máxima: 6940380.000000
+Aresta de Árvore: Yosemite_Ave, Velocidade Máxima: 6940380.000000
+Aresta de Árvore: Zeno_Pl, Velocidade Máxima: 6968230.000000
+Aresta de Árvore: Zeno_Pl, Velocidade Máxima: 6968230.000000
+Aresta de Árvore: Al_Scoma_Way, Velocidade Máxima: 7386963.000000
+Aresta de Árvore: Al_Scoma_Way, Velocidade Máxima: 7386963.000000
+Aresta de Árvore: Al_Scoma_Way, Velocidade Máxima: 7386963.000000
 PONTE em Aresta Cruzada: Al_Scoma_Way, Velocidade Máxima: 7386.963000
-Aresta de Árvore: ., Velocidade Máxima: 13500.000000
+Aresta de Árvore: ., Velocidade Máxima: 13500000.000000
 Aresta de Avanço: ., Velocidade Máxima: 13500.000000
 PONTE em Aresta Cruzada: Perimetral_Sul, Velocidade Máxima: 18000.000000
-Aresta de Árvore: Zampa_Ln, Velocidade Máxima: 14948.647000
-Aresta de Avanço: Zampa_Ln, Velocidade Máxima: 14948.647000
-Aresta de Árvore: ., Velocidade Máxima: 13500.000000
-Aresta de Avanço: ., Velocidade Máxima: 13500.000000
-PONTE em Aresta Cruzada: Perimetral_Sul, Velocidade Máxima: 18000.000000
-Aresta de Árvore: ., Velocidade Máxima: 13500.000000
-Aresta de Avanço: ., Velocidade Máxima: 13500.000000
-PONTE em Aresta Cruzada: Perimetral_Sul, Velocidade Máxima: 18000.000000
-Aresta de Árvore: ., Velocidade Máxima: 13500.000000
-Aresta de Avanço: ., Velocidade Máxima: 13500.000000
-PONTE em Aresta Cruzada: Perimetral_Sul, Velocidade Máxima: 18000.000000
-Aresta de Árvore: Yosemite_Ave, Velocidade Máxima: 6940.380000
-Aresta de Árvore: Yosemite_Ave, Velocidade Máxima: 6940.380000
-Aresta de Árvore: Yosemite_Ave, Velocidade Máxima: 6940.380000
-Aresta de Árvore: Yosemite_Ave, Velocidade Máxima: 6940.380000
-Aresta de Árvore: Zeno_Pl, Velocidade Máxima: 6968.230000
-Aresta de Árvore: Zeno_Pl, Velocidade Máxima: 6968.230000
-Aresta de Árvore: Al_Scoma_Way, Velocidade Máxima: 7386.963000
-Aresta de Árvore: Al_Scoma_Way, Velocidade Máxima: 7386.963000
-Aresta de Árvore: Al_Scoma_Way, Velocidade Máxima: 7386.963000
-PONTE em Aresta Cruzada: Al_Scoma_Way, Velocidade Máxima: 7386.963000
-Aresta de Árvore: ., Velocidade Máxima: 13500.000000
-Aresta de Avanço: ., Velocidade Máxima: 13500.000000
-PONTE em Aresta Cruzada: Perimetral_Sul, Velocidade Máxima: 18000.000000
-Aresta de Árvore: Zanowitz_St, Velocidade Máxima: 14691.717000
+Aresta de Árvore: Zanowitz_St, Velocidade Máxima: 14691717.000000
 Aresta de Avanço: Zanowitz_St, Velocidade Máxima: 14691.717000
-Aresta de Árvore: ., Velocidade Máxima: 13500.000000
+Aresta de Árvore: ., Velocidade Máxima: 13500000.000000
 Aresta de Avanço: ., Velocidade Máxima: 13500.000000
 PONTE em Aresta Cruzada: Perimetral_Sul, Velocidade Máxima: 18000.000000
-Aresta de Árvore: ., Velocidade Máxima: 13500.000000
+Aresta de Árvore: ., Velocidade Máxima: 13500000.000000
 Aresta de Avanço: ., Velocidade Máxima: 13500.000000
 PONTE em Aresta Cruzada: Perimetral_Sul, Velocidade Máxima: 18000.000000
-Aresta de Árvore: ., Velocidade Máxima: 13500.000000
+Aresta de Árvore: ., Velocidade Máxima: 13500000.000000
 Aresta de Avanço: ., Velocidade Máxima: 13500.000000
 PONTE em Aresta Cruzada: Perimetral_Sul, Velocidade Máxima: 18000.000000
-Aresta de Árvore: Yosemite_Ave, Velocidade Máxima: 6940.380000
-Aresta de Árvore: Yosemite_Ave, Velocidade Máxima: 6940.380000
-Aresta de Árvore: Yosemite_Ave, Velocidade Máxima: 6940.380000
-Aresta de Árvore: Yosemite_Ave, Velocidade Máxima: 6940.380000
-Aresta de Árvore: Zoe_St, Velocidade Máxima: 10299.347000
-Aresta de Árvore: Zoe_St, Velocidade Máxima: 10299.347000
-Aresta de Árvore: Al_Scoma_Way, Velocidade Máxima: 7386.963000
-Aresta de Árvore: Al_Scoma_Way, Velocidade Máxima: 7386.963000
-Aresta de Árvore: Al_Scoma_Way, Velocidade Máxima: 7386.963000
+Aresta de Árvore: Yosemite_Ave, Velocidade Máxima: 6940380.000000
+Aresta de Árvore: Yosemite_Ave, Velocidade Máxima: 6940380.000000
+Aresta de Árvore: Yosemite_Ave, Velocidade Máxima: 6940380.000000
+Aresta de Árvore: Yosemite_Ave, Velocidade Máxima: 6940380.000000
+Aresta de Árvore: Zoe_St, Velocidade Máxima: 10299347.000000
+Aresta de Árvore: Zoe_St, Velocidade Máxima: 10299347.000000
+Aresta de Árvore: Al_Scoma_Way, Velocidade Máxima: 7386963.000000
+Aresta de Árvore: Al_Scoma_Way, Velocidade Máxima: 7386963.000000
+Aresta de Árvore: Al_Scoma_Way, Velocidade Máxima: 7386963.000000
 PONTE em Aresta Cruzada: Al_Scoma_Way, Velocidade Máxima: 7386.963000
-Aresta de Árvore: ., Velocidade Máxima: 13500.000000
+Aresta de Árvore: ., Velocidade Máxima: 13500000.000000
 Aresta de Avanço: ., Velocidade Máxima: 13500.000000
 PONTE em Aresta Cruzada: Perimetral_Sul, Velocidade Máxima: 18000.000000
-Aresta de Árvore: Zircon_Pl, Velocidade Máxima: 14002.431000
+Aresta de Árvore: Zircon_Pl, Velocidade Máxima: 14002431.000000
 Aresta de Avanço: Zircon_Pl, Velocidade Máxima: 14002.431000
-Aresta de Árvore: ., Velocidade Máxima: 13500.000000
+Aresta de Árvore: ., Velocidade Máxima: 13500000.000000
 Aresta de Avanço: ., Velocidade Máxima: 13500.000000
 PONTE em Aresta Cruzada: Perimetral_Sul, Velocidade Máxima: 18000.000000
-Aresta de Árvore: ., Velocidade Máxima: 13500.000000
+Aresta de Árvore: ., Velocidade Máxima: 13500000.000000
 Aresta de Avanço: ., Velocidade Máxima: 13500.000000
 PONTE em Aresta Cruzada: Perimetral_Sul, Velocidade Máxima: 18000.000000
-Aresta de Árvore: ., Velocidade Máxima: 13500.000000
+Aresta de Árvore: ., Velocidade Máxima: 13500000.000000
 Aresta de Avanço: ., Velocidade Máxima: 13500.000000
 PONTE em Aresta Cruzada: Perimetral_Sul, Velocidade Máxima: 18000.000000
-Aresta de Árvore: Yosemite_Ave, Velocidade Máxima: 6940.380000
-Aresta de Árvore: Yosemite_Ave, Velocidade Máxima: 6940.380000
-Aresta de Árvore: Zoo_Rd, Velocidade Máxima: 13361.850000
-Aresta de Árvore: Zoo_Rd, Velocidade Máxima: 13361.850000
-Aresta de Árvore: Yorba_St, Velocidade Máxima: 6512.681000
-Aresta de Árvore: Yorba_St, Velocidade Máxima: 6512.681000
-Aresta de Árvore: Zoe_St, Velocidade Máxima: 12798.451000
+Aresta de Árvore: Yosemite_Ave, Velocidade Máxima: 6940380.000000
+Aresta de Árvore: Yosemite_Ave, Velocidade Máxima: 6940380.000000
+Aresta de Árvore: Zoo_Rd, Velocidade Máxima: 13361850.000000
+Aresta de Árvore: Zoo_Rd, Velocidade Máxima: 13361850.000000
+Aresta de Árvore: Yorba_St, Velocidade Máxima: 6512681.000000
+Aresta de Árvore: Yorba_St, Velocidade Máxima: 6512681.000000
+Aresta de Árvore: Zoe_St, Velocidade Máxima: 12798451.000000
 Aresta de Avanço: Zoe_St, Velocidade Máxima: 12798.451000
+Aresta de Árvore: Yorba_St, Velocidade Máxima: 6512681.000000
 Aresta de Árvore: Yorba_St, Velocidade Máxima: 6512.681000
-Aresta de Árvore: Yorba_St, Velocidade Máxima: 6512.681000
-Aresta de Árvore: Yorba_St, Velocidade Máxima: 6512.681000
-Aresta de Árvore: Yorba_St, Velocidade Máxima: 6512.681000
-Aresta de Árvore: Zeno_Pl, Velocidade Máxima: 11645.644000
+Aresta de Árvore: Yorba_St, Velocidade Máxima: 6512681.000000
+Aresta de Árvore: Yorba_St, Velocidade Máxima: 6512681.000000
+Aresta de Árvore: Zeno_Pl, Velocidade Máxima: 11645644.000000
 Aresta de Avanço: Zeno_Pl, Velocidade Máxima: 11645.644000
+Aresta de Árvore: Yorba_St, Velocidade Máxima: 6512681.000000
 Aresta de Árvore: Yorba_St, Velocidade Máxima: 6512.681000
-Aresta de Árvore: Yorba_St, Velocidade Máxima: 6512.681000
-Aresta de Árvore: Yorba_St, Velocidade Máxima: 6512.681000
-Aresta de Árvore: Yorba_St, Velocidade Máxima: 6512.681000
-Aresta de Árvore: Zanowitz_Ave, Velocidade Máxima: 8002.245000
+Aresta de Árvore: Yorba_St, Velocidade Máxima: 6512681.000000
+Aresta de Árvore: Yorba_St, Velocidade Máxima: 6512681.000000
+Aresta de Árvore: Zanowitz_Ave, Velocidade Máxima: 8002245.000000
 Aresta de Avanço: Zanowitz_Ave, Velocidade Máxima: 8002.245000
+Aresta de Árvore: Yorba_St, Velocidade Máxima: 6512681.000000
 Aresta de Árvore: Yorba_St, Velocidade Máxima: 6512.681000
-Aresta de Árvore: Yorba_St, Velocidade Máxima: 6512.681000
-Aresta de Árvore: Yorba_St, Velocidade Máxima: 6512.681000
-Aresta de Árvore: Yorba_St, Velocidade Máxima: 6512.681000
-Aresta de Árvore: Yukon_St, Velocidade Máxima: 13780.652000
+Aresta de Árvore: Yorba_St, Velocidade Máxima: 6512681.000000
+Aresta de Árvore: Yorba_St, Velocidade Máxima: 6512681.000000
+Aresta de Árvore: Yukon_St, Velocidade Máxima: 13780652.000000
 Aresta de Avanço: Yukon_St, Velocidade Máxima: 13780.652000
+Aresta de Árvore: Yorba_St, Velocidade Máxima: 6512681.000000
 Aresta de Árvore: Yorba_St, Velocidade Máxima: 6512.681000
-Aresta de Árvore: Yorba_St, Velocidade Máxima: 6512.681000
-Aresta de Árvore: Yorba_St, Velocidade Máxima: 6512.681000
-Aresta de Avanço: Yorba_St, Velocidade Máxima: 6512.681000
-Aresta de Árvore: Young_St, Velocidade Máxima: 14532.217000
-Aresta de Árvore: Young_St, Velocidade Máxima: 14532.217000
-Aresta de Árvore: Yerba_Buena_Ln, Velocidade Máxima: 8253.049000
-Aresta de Árvore: Yerba_Buena_Ln, Velocidade Máxima: 8253.049000
-Aresta de Árvore: Yukon_St, Velocidade Máxima: 14273.895000
+Aresta de Árvore: Yorba_St, Velocidade Máxima: 6512681.000000
+Aresta de Avanço: Yorba_St, Velocidade Máxima: 6512681.000000
+Aresta de Árvore: Young_St, Velocidade Máxima: 14532217.000000
+Aresta de Árvore: Young_St, Velocidade Máxima: 14532217.000000
+Aresta de Árvore: Yerba_Buena_Ln, Velocidade Máxima: 8253049.000000
+Aresta de Árvore: Yerba_Buena_Ln, Velocidade Máxima: 8253049.000000
+Aresta de Árvore: Yukon_St, Velocidade Máxima: 14273895.000000
 Aresta de Avanço: Yukon_St, Velocidade Máxima: 14273.895000
+Aresta de Árvore: Yerba_Buena_Ln, Velocidade Máxima: 8253049.000000
 Aresta de Árvore: Yerba_Buena_Ln, Velocidade Máxima: 8253.049000
-Aresta de Árvore: Yerba_Buena_Ln, Velocidade Máxima: 8253.049000
-Aresta de Árvore: Yerba_Buena_Ln, Velocidade Máxima: 8253.049000
-Aresta de Árvore: Yerba_Buena_Ln, Velocidade Máxima: 8253.049000
-Aresta de Árvore: Zanowitz_Ave, Velocidade Máxima: 7995.937000
+Aresta de Árvore: Yerba_Buena_Ln, Velocidade Máxima: 8253049.000000
+Aresta de Árvore: Yerba_Buena_Ln, Velocidade Máxima: 8253049.000000
+Aresta de Árvore: Zanowitz_Ave, Velocidade Máxima: 7995937.000000
 Aresta de Avanço: Zanowitz_Ave, Velocidade Máxima: 7995.937000
+Aresta de Árvore: Yerba_Buena_Ln, Velocidade Máxima: 8253049.000000
 Aresta de Árvore: Yerba_Buena_Ln, Velocidade Máxima: 8253.049000
-Aresta de Árvore: Yerba_Buena_Ln, Velocidade Máxima: 8253.049000
-Aresta de Árvore: Yerba_Buena_Ln, Velocidade Máxima: 8253.049000
-Aresta de Árvore: Yerba_Buena_Ln, Velocidade Máxima: 8253.049000
-Aresta de Árvore: Zeno_Pl, Velocidade Máxima: 10478.697000
+Aresta de Árvore: Yerba_Buena_Ln, Velocidade Máxima: 8253049.000000
+Aresta de Árvore: Yerba_Buena_Ln, Velocidade Máxima: 8253049.000000
+Aresta de Árvore: Zeno_Pl, Velocidade Máxima: 10478697.000000
 Aresta de Avanço: Zeno_Pl, Velocidade Máxima: 10478.697000
+Aresta de Árvore: Yerba_Buena_Ln, Velocidade Máxima: 8253049.000000
 Aresta de Árvore: Yerba_Buena_Ln, Velocidade Máxima: 8253.049000
-Aresta de Árvore: Yerba_Buena_Ln, Velocidade Máxima: 8253.049000
-Aresta de Árvore: Yerba_Buena_Ln, Velocidade Máxima: 8253.049000
-Aresta de Árvore: Yerba_Buena_Ln, Velocidade Máxima: 8253.049000
-Aresta de Árvore: Zoe_St, Velocidade Máxima: 10924.831000
+Aresta de Árvore: Yerba_Buena_Ln, Velocidade Máxima: 8253049.000000
+Aresta de Árvore: Yerba_Buena_Ln, Velocidade Máxima: 8253049.000000
+Aresta de Árvore: Zoe_St, Velocidade Máxima: 10924831.000000
 Aresta de Avanço: Zoe_St, Velocidade Máxima: 10924.831000
+Aresta de Árvore: Yerba_Buena_Ln, Velocidade Máxima: 8253049.000000
 Aresta de Árvore: Yerba_Buena_Ln, Velocidade Máxima: 8253.049000
-Aresta de Árvore: Yerba_Buena_Ln, Velocidade Máxima: 8253.049000
-Aresta de Árvore: Zoo_Rd, Velocidade Máxima: 14420.954000
-Aresta de Árvore: Zoo_Rd, Velocidade Máxima: 14420.954000
-Aresta de Árvore: Yerba_Buena_Ave, Velocidade Máxima: 4110.953000
-Aresta de Árvore: Yerba_Buena_Ave, Velocidade Máxima: 4110.953000
-Aresta de Árvore: Zoe_St, Velocidade Máxima: 10741.873000
+Aresta de Árvore: Zoo_Rd, Velocidade Máxima: 14420954.000000
+Aresta de Árvore: Zoo_Rd, Velocidade Máxima: 14420954.000000
+Aresta de Árvore: Yerba_Buena_Ave, Velocidade Máxima: 4110953.000000
+Aresta de Árvore: Yerba_Buena_Ave, Velocidade Máxima: 4110953.000000
+Aresta de Árvore: Zoe_St, Velocidade Máxima: 10741873.000000
 Aresta de Avanço: Zoe_St, Velocidade Máxima: 10741.873000
+Aresta de Árvore: Yerba_Buena_Ave, Velocidade Máxima: 4110953.000000
 Aresta de Árvore: Yerba_Buena_Ave, Velocidade Máxima: 4110.953000
-Aresta de Árvore: Yerba_Buena_Ave, Velocidade Máxima: 4110.953000
-Aresta de Árvore: Yerba_Buena_Ave, Velocidade Máxima: 4110.953000
-Aresta de Árvore: Yerba_Buena_Ave, Velocidade Máxima: 4110.953000
-Aresta de Árvore: Zeno_Pl, Velocidade Máxima: 9512.673000
+Aresta de Árvore: Yerba_Buena_Ave, Velocidade Máxima: 4110953.000000
+Aresta de Árvore: Yerba_Buena_Ave, Velocidade Máxima: 4110953.000000
+Aresta de Árvore: Zeno_Pl, Velocidade Máxima: 9512673.000000
 Aresta de Avanço: Zeno_Pl, Velocidade Máxima: 9512.673000
+Aresta de Árvore: Yerba_Buena_Ave, Velocidade Máxima: 4110953.000000
 Aresta de Árvore: Yerba_Buena_Ave, Velocidade Máxima: 4110.953000
-Aresta de Árvore: Yerba_Buena_Ave, Velocidade Máxima: 4110.953000
-Aresta de Árvore: Yerba_Buena_Ave, Velocidade Máxima: 4110.953000
-Aresta de Árvore: Yerba_Buena_Ave, Velocidade Máxima: 4110.953000
-Aresta de Árvore: Zanowitz_Ave, Velocidade Máxima: 9407.006000
+Aresta de Árvore: Yerba_Buena_Ave, Velocidade Máxima: 4110953.000000
+Aresta de Árvore: Yerba_Buena_Ave, Velocidade Máxima: 4110953.000000
+Aresta de Árvore: Zanowitz_Ave, Velocidade Máxima: 9407006.000000
 Aresta de Avanço: Zanowitz_Ave, Velocidade Máxima: 9407.006000
+Aresta de Árvore: Yerba_Buena_Ave, Velocidade Máxima: 4110953.000000
 Aresta de Árvore: Yerba_Buena_Ave, Velocidade Máxima: 4110.953000
-Aresta de Árvore: Yerba_Buena_Ave, Velocidade Máxima: 4110.953000
-Aresta de Árvore: Yerba_Buena_Ave, Velocidade Máxima: 4110.953000
-Aresta de Árvore: Yerba_Buena_Ave, Velocidade Máxima: 4110.953000
-Aresta de Árvore: Yukon_St, Velocidade Máxima: 6886.794000
+Aresta de Árvore: Yerba_Buena_Ave, Velocidade Máxima: 4110953.000000
+Aresta de Árvore: Yerba_Buena_Ave, Velocidade Máxima: 4110953.000000
+Aresta de Árvore: Yukon_St, Velocidade Máxima: 6886794.000000
 Aresta de Avanço: Yukon_St, Velocidade Máxima: 6886.794000
+Aresta de Árvore: Yerba_Buena_Ave, Velocidade Máxima: 4110953.000000
 Aresta de Árvore: Yerba_Buena_Ave, Velocidade Máxima: 4110.953000
-Aresta de Árvore: Yerba_Buena_Ave, Velocidade Máxima: 4110.953000
-Aresta de Árvore: Yerba_Buena_Ave, Velocidade Máxima: 4110.953000
-Aresta de Avanço: Yerba_Buena_Ave, Velocidade Máxima: 4110.953000
-Aresta de Árvore: Young_St, Velocidade Máxima: 14802.950000
-Aresta de Árvore: Young_St, Velocidade Máxima: 14802.950000
-Aresta de Árvore: Yacht_Rd, Velocidade Máxima: 4563.110000
-Aresta de Árvore: Yacht_Rd, Velocidade Máxima: 4563.110000
-Aresta de Árvore: Yukon_St, Velocidade Máxima: 8826.330000
+Aresta de Árvore: Yerba_Buena_Ave, Velocidade Máxima: 4110953.000000
+Aresta de Avanço: Yerba_Buena_Ave, Velocidade Máxima: 4110953.000000
+Aresta de Árvore: Young_St, Velocidade Máxima: 14802950.000000
+Aresta de Árvore: Young_St, Velocidade Máxima: 14802950.000000
+Aresta de Árvore: Yacht_Rd, Velocidade Máxima: 4563110.000000
+Aresta de Árvore: Yacht_Rd, Velocidade Máxima: 4563110.000000
+Aresta de Árvore: Yukon_St, Velocidade Máxima: 8826330.000000
 Aresta de Avanço: Yukon_St, Velocidade Máxima: 8826.330000
+Aresta de Árvore: Yacht_Rd, Velocidade Máxima: 4563110.000000
 Aresta de Árvore: Yacht_Rd, Velocidade Máxima: 4563.110000
-Aresta de Árvore: Yacht_Rd, Velocidade Máxima: 4563.110000
-Aresta de Árvore: Yacht_Rd, Velocidade Máxima: 4563.110000
-Aresta de Árvore: Yacht_Rd, Velocidade Máxima: 4563.110000
-Aresta de Árvore: Zanowitz_Ave, Velocidade Máxima: 11367.095000
+Aresta de Árvore: Yacht_Rd, Velocidade Máxima: 4563110.000000
+Aresta de Árvore: Yacht_Rd, Velocidade Máxima: 4563110.000000
+Aresta de Árvore: Zanowitz_Ave, Velocidade Máxima: 11367095.000000
 Aresta de Avanço: Zanowitz_Ave, Velocidade Máxima: 11367.095000
+Aresta de Árvore: Yacht_Rd, Velocidade Máxima: 4563110.000000
 Aresta de Árvore: Yacht_Rd, Velocidade Máxima: 4563.110000
-Aresta de Árvore: Yacht_Rd, Velocidade Máxima: 4563.110000
-Aresta de Árvore: Yacht_Rd, Velocidade Máxima: 4563.110000
-Aresta de Árvore: Yacht_Rd, Velocidade Máxima: 4563.110000
-Aresta de Árvore: Zeno_Pl, Velocidade Máxima: 13365.507000
+Aresta de Árvore: Yacht_Rd, Velocidade Máxima: 4563110.000000
+Aresta de Árvore: Yacht_Rd, Velocidade Máxima: 4563110.000000
+Aresta de Árvore: Zeno_Pl, Velocidade Máxima: 13365507.000000
 Aresta de Avanço: Zeno_Pl, Velocidade Máxima: 13365.507000
+Aresta de Árvore: Yacht_Rd, Velocidade Máxima: 4563110.000000
 Aresta de Árvore: Yacht_Rd, Velocidade Máxima: 4563.110000
-Aresta de Árvore: Yacht_Rd, Velocidade Máxima: 4563.110000
-Aresta de Árvore: Yacht_Rd, Velocidade Máxima: 4563.110000
-Aresta de Árvore: Yacht_Rd, Velocidade Máxima: 4563.110000
-Aresta de Árvore: Zoe_St, Velocidade Máxima: 6096.481000
+Aresta de Árvore: Yacht_Rd, Velocidade Máxima: 4563110.000000
+Aresta de Árvore: Yacht_Rd, Velocidade Máxima: 4563110.000000
+Aresta de Árvore: Zoe_St, Velocidade Máxima: 6096481.000000
 Aresta de Avanço: Zoe_St, Velocidade Máxima: 6096.481000
+Aresta de Árvore: Yacht_Rd, Velocidade Máxima: 4563110.000000
 Aresta de Árvore: Yacht_Rd, Velocidade Máxima: 4563.110000
-Aresta de Árvore: Yacht_Rd, Velocidade Máxima: 4563.110000
-Aresta de Árvore: Zoo_Rd, Velocidade Máxima: 14204.488000
-Aresta de Árvore: Zoo_Rd, Velocidade Máxima: 14204.488000
-Aresta de Árvore: Wyman_Ave, Velocidade Máxima: 2703.855000
-Aresta de Árvore: Wyman_Ave, Velocidade Máxima: 2703.855000
-Aresta de Árvore: Zoe_St, Velocidade Máxima: 12357.769000
+Aresta de Árvore: Zoo_Rd, Velocidade Máxima: 14204488.000000
+Aresta de Árvore: Zoo_Rd, Velocidade Máxima: 14204488.000000
+Aresta de Árvore: Wyman_Ave, Velocidade Máxima: 2703855.000000
+Aresta de Árvore: Wyman_Ave, Velocidade Máxima: 2703855.000000
+Aresta de Árvore: Zoe_St, Velocidade Máxima: 12357769.000000
 Aresta de Avanço: Zoe_St, Velocidade Máxima: 12357.769000
+Aresta de Árvore: Wyman_Ave, Velocidade Máxima: 2703855.000000
 Aresta de Árvore: Wyman_Ave, Velocidade Máxima: 2703.855000
-Aresta de Árvore: Wyman_Ave, Velocidade Máxima: 2703.855000
-Aresta de Árvore: Wyman_Ave, Velocidade Máxima: 2703.855000
-Aresta de Árvore: Wyman_Ave, Velocidade Máxima: 2703.855000
-Aresta de Árvore: Zeno_Pl, Velocidade Máxima: 14594.563000
+Aresta de Árvore: Wyman_Ave, Velocidade Máxima: 2703855.000000
+Aresta de Árvore: Wyman_Ave, Velocidade Máxima: 2703855.000000
+Aresta de Árvore: Zeno_Pl, Velocidade Máxima: 14594563.000000
 Aresta de Avanço: Zeno_Pl, Velocidade Máxima: 14594.563000
+Aresta de Árvore: Wyman_Ave, Velocidade Máxima: 2703855.000000
 Aresta de Árvore: Wyman_Ave, Velocidade Máxima: 2703.855000
-Aresta de Árvore: Wyman_Ave, Velocidade Máxima: 2703.855000
-Aresta de Árvore: Wyman_Ave, Velocidade Máxima: 2703.855000
-Aresta de Árvore: Wyman_Ave, Velocidade Máxima: 2703.855000
-Aresta de Árvore: Zanowitz_Ave, Velocidade Máxima: 6783.302000
+Aresta de Árvore: Wyman_Ave, Velocidade Máxima: 2703855.000000
+Aresta de Árvore: Wyman_Ave, Velocidade Máxima: 2703855.000000
+Aresta de Árvore: Zanowitz_Ave, Velocidade Máxima: 6783302.000000
 Aresta de Avanço: Zanowitz_Ave, Velocidade Máxima: 6783.302000
+Aresta de Árvore: Wyman_Ave, Velocidade Máxima: 2703855.000000
 Aresta de Árvore: Wyman_Ave, Velocidade Máxima: 2703.855000
-Aresta de Árvore: Wyman_Ave, Velocidade Máxima: 2703.855000
-Aresta de Árvore: Wyman_Ave, Velocidade Máxima: 2703.855000
-Aresta de Árvore: Wyman_Ave, Velocidade Máxima: 2703.855000
-Aresta de Árvore: Yukon_St, Velocidade Máxima: 11197.269000
+Aresta de Árvore: Wyman_Ave, Velocidade Máxima: 2703855.000000
+Aresta de Árvore: Wyman_Ave, Velocidade Máxima: 2703855.000000
+Aresta de Árvore: Yukon_St, Velocidade Máxima: 11197269.000000
 Aresta de Avanço: Yukon_St, Velocidade Máxima: 11197.269000
+Aresta de Árvore: Wyman_Ave, Velocidade Máxima: 2703855.000000
 Aresta de Árvore: Wyman_Ave, Velocidade Máxima: 2703.855000
-Aresta de Árvore: Wyman_Ave, Velocidade Máxima: 2703.855000
-Aresta de Árvore: Wyman_Ave, Velocidade Máxima: 2703.855000
-Aresta de Avanço: Wyman_Ave, Velocidade Máxima: 2703.855000
-Aresta de Árvore: Young_St, Velocidade Máxima: 14528.840000
-Aresta de Árvore: Young_St, Velocidade Máxima: 14528.840000
-Aresta de Árvore: Wright_Loop, Velocidade Máxima: 5986.043000
-Aresta de Árvore: Wright_Loop, Velocidade Máxima: 5986.043000
-Aresta de Árvore: Yukon_St, Velocidade Máxima: 11783.872000
+Aresta de Árvore: Wyman_Ave, Velocidade Máxima: 2703855.000000
+Aresta de Avanço: Wyman_Ave, Velocidade Máxima: 2703855.000000
+Aresta de Árvore: Young_St, Velocidade Máxima: 14528840.000000
+Aresta de Árvore: Young_St, Velocidade Máxima: 14528840.000000
+Aresta de Árvore: Wright_Loop, Velocidade Máxima: 5986043.000000
+Aresta de Árvore: Wright_Loop, Velocidade Máxima: 5986043.000000
+Aresta de Árvore: Yukon_St, Velocidade Máxima: 11783872.000000
 Aresta de Avanço: Yukon_St, Velocidade Máxima: 11783.872000
+Aresta de Árvore: Wright_Loop, Velocidade Máxima: 5986043.000000
 Aresta de Árvore: Wright_Loop, Velocidade Máxima: 5986.043000
-Aresta de Árvore: Wright_Loop, Velocidade Máxima: 5986.043000
-Aresta de Árvore: Wright_Loop, Velocidade Máxima: 5986.043000
-Aresta de Árvore: Wright_Loop, Velocidade Máxima: 5986.043000
-Aresta de Árvore: Zanowitz_Ave, Velocidade Máxima: 9238.094000
+Aresta de Árvore: Wright_Loop, Velocidade Máxima: 5986043.000000
+Aresta de Árvore: Wright_Loop, Velocidade Máxima: 5986043.000000
+Aresta de Árvore: Zanowitz_Ave, Velocidade Máxima: 9238094.000000
 Aresta de Avanço: Zanowitz_Ave, Velocidade Máxima: 9238.094000
+Aresta de Árvore: Wright_Loop, Velocidade Máxima: 5986043.000000
 Aresta de Árvore: Wright_Loop, Velocidade Máxima: 5986.043000
-Aresta de Árvore: Wright_Loop, Velocidade Máxima: 5986.043000
-Aresta de Árvore: Wright_Loop, Velocidade Máxima: 5986.043000
-Aresta de Árvore: Wright_Loop, Velocidade Máxima: 5986.043000
-Aresta de Árvore: Zeno_Pl, Velocidade Máxima: 14690.059000
+Aresta de Árvore: Wright_Loop, Velocidade Máxima: 5986043.000000
+Aresta de Árvore: Wright_Loop, Velocidade Máxima: 5986043.000000
+Aresta de Árvore: Zeno_Pl, Velocidade Máxima: 14690059.000000
 Aresta de Avanço: Zeno_Pl, Velocidade Máxima: 14690.059000
+Aresta de Árvore: Wright_Loop, Velocidade Máxima: 5986043.000000
 Aresta de Árvore: Wright_Loop, Velocidade Máxima: 5986.043000
-Aresta de Árvore: Wright_Loop, Velocidade Máxima: 5986.043000
-Aresta de Árvore: Wright_Loop, Velocidade Máxima: 5986.043000
-Aresta de Árvore: Wright_Loop, Velocidade Máxima: 5986.043000
-Aresta de Árvore: Zoe_St, Velocidade Máxima: 11054.709000
+Aresta de Árvore: Wright_Loop, Velocidade Máxima: 5986043.000000
+Aresta de Árvore: Wright_Loop, Velocidade Máxima: 5986043.000000
+Aresta de Árvore: Zoe_St, Velocidade Máxima: 11054709.000000
 Aresta de Avanço: Zoe_St, Velocidade Máxima: 11054.709000
+Aresta de Árvore: Wright_Loop, Velocidade Máxima: 5986043.000000
 Aresta de Árvore: Wright_Loop, Velocidade Máxima: 5986.043000
-Aresta de Árvore: Wright_Loop, Velocidade Máxima: 5986.043000
-Aresta de Árvore: Zoo_Rd, Velocidade Máxima: 14189.896000
-Aresta de Árvore: Zoo_Rd, Velocidade Máxima: 14189.896000
-Aresta de Árvore: Worth_St, Velocidade Máxima: 2648.521000
-Aresta de Árvore: Worth_St, Velocidade Máxima: 2648.521000
-Aresta de Árvore: Zoe_St, Velocidade Máxima: 8790.422000
+Aresta de Árvore: Zoo_Rd, Velocidade Máxima: 14189896.000000
+Aresta de Árvore: Zoo_Rd, Velocidade Máxima: 14189896.000000
+Aresta de Árvore: Worth_St, Velocidade Máxima: 2648521.000000
+Aresta de Árvore: Worth_St, Velocidade Máxima: 2648521.000000
+Aresta de Árvore: Zoe_St, Velocidade Máxima: 8790422.000000
 Aresta de Avanço: Zoe_St, Velocidade Máxima: 8790.422000
+Aresta de Árvore: Worth_St, Velocidade Máxima: 2648521.000000
 Aresta de Árvore: Worth_St, Velocidade Máxima: 2648.521000
-Aresta de Árvore: Worth_St, Velocidade Máxima: 2648.521000
-Aresta de Árvore: Worth_St, Velocidade Máxima: 2648.521000
-Aresta de Árvore: Worth_St, Velocidade Máxima: 2648.521000
-Aresta de Árvore: Zeno_Pl, Velocidade Máxima: 14453.549000
+Aresta de Árvore: Worth_St, Velocidade Máxima: 2648521.000000
+Aresta de Árvore: Worth_St, Velocidade Máxima: 2648521.000000
+Aresta de Árvore: Zeno_Pl, Velocidade Máxima: 14453549.000000
 Aresta de Avanço: Zeno_Pl, Velocidade Máxima: 14453.549000
+Aresta de Árvore: Worth_St, Velocidade Máxima: 2648521.000000
 Aresta de Árvore: Worth_St, Velocidade Máxima: 2648.521000
-Aresta de Árvore: Worth_St, Velocidade Máxima: 2648.521000
-Aresta de Árvore: Worth_St, Velocidade Máxima: 2648.521000
-Aresta de Árvore: Worth_St, Velocidade Máxima: 2648.521000
-Aresta de Árvore: Zanowitz_Ave, Velocidade Máxima: 8954.238000
+Aresta de Árvore: Worth_St, Velocidade Máxima: 2648521.000000
+Aresta de Árvore: Worth_St, Velocidade Máxima: 2648521.000000
+Aresta de Árvore: Zanowitz_Ave, Velocidade Máxima: 8954238.000000
 Aresta de Avanço: Zanowitz_Ave, Velocidade Máxima: 8954.238000
+Aresta de Árvore: Worth_St, Velocidade Máxima: 2648521.000000
 Aresta de Árvore: Worth_St, Velocidade Máxima: 2648.521000
-Aresta de Árvore: Worth_St, Velocidade Máxima: 2648.521000
-Aresta de Árvore: Worth_St, Velocidade Máxima: 2648.521000
-Aresta de Árvore: Worth_St, Velocidade Máxima: 2648.521000
-Aresta de Árvore: Yukon_St, Velocidade Máxima: 9941.799000
+Aresta de Árvore: Worth_St, Velocidade Máxima: 2648521.000000
+Aresta de Árvore: Worth_St, Velocidade Máxima: 2648521.000000
+Aresta de Árvore: Yukon_St, Velocidade Máxima: 9941799.000000
 Aresta de Avanço: Yukon_St, Velocidade Máxima: 9941.799000
+Aresta de Árvore: Worth_St, Velocidade Máxima: 2648521.000000
 Aresta de Árvore: Worth_St, Velocidade Máxima: 2648.521000
-Aresta de Árvore: Worth_St, Velocidade Máxima: 2648.521000
-Aresta de Árvore: Worth_St, Velocidade Máxima: 2648.521000
-Aresta de Avanço: Worth_St, Velocidade Máxima: 2648.521000
-Aresta de Árvore: Young_St, Velocidade Máxima: 14307.904000
-Aresta de Árvore: Young_St, Velocidade Máxima: 14307.904000
-Aresta de Árvore: Worcester_Ave, Velocidade Máxima: 8772.832000
-Aresta de Árvore: Worcester_Ave, Velocidade Máxima: 8772.832000
-Aresta de Árvore: Yukon_St, Velocidade Máxima: 9154.026000
+Aresta de Árvore: Worth_St, Velocidade Máxima: 2648521.000000
+Aresta de Avanço: Worth_St, Velocidade Máxima: 2648521.000000
+Aresta de Árvore: Young_St, Velocidade Máxima: 14307904.000000
+Aresta de Árvore: Young_St, Velocidade Máxima: 14307904.000000
+Aresta de Árvore: Worcester_Ave, Velocidade Máxima: 8772832.000000
+Aresta de Árvore: Worcester_Ave, Velocidade Máxima: 8772832.000000
+Aresta de Árvore: Yukon_St, Velocidade Máxima: 9154026.000000
 Aresta de Avanço: Yukon_St, Velocidade Máxima: 9154.026000
+Aresta de Árvore: Worcester_Ave, Velocidade Máxima: 8772832.000000
 Aresta de Árvore: Worcester_Ave, Velocidade Máxima: 8772.832000
-Aresta de Árvore: Worcester_Ave, Velocidade Máxima: 8772.832000
-Aresta de Árvore: Worcester_Ave, Velocidade Máxima: 8772.832000
-Aresta de Árvore: Worcester_Ave, Velocidade Máxima: 8772.832000
-Aresta de Árvore: Zanowitz_Ave, Velocidade Máxima: 9195.858000
+Aresta de Árvore: Worcester_Ave, Velocidade Máxima: 8772832.000000
+Aresta de Árvore: Worcester_Ave, Velocidade Máxima: 8772832.000000
+Aresta de Árvore: Zanowitz_Ave, Velocidade Máxima: 9195858.000000
 Aresta de Avanço: Zanowitz_Ave, Velocidade Máxima: 9195.858000
+Aresta de Árvore: Worcester_Ave, Velocidade Máxima: 8772832.000000
 Aresta de Árvore: Worcester_Ave, Velocidade Máxima: 8772.832000
-Aresta de Árvore: Worcester_Ave, Velocidade Máxima: 8772.832000
-Aresta de Árvore: Worcester_Ave, Velocidade Máxima: 8772.832000
-Aresta de Árvore: Worcester_Ave, Velocidade Máxima: 8772.832000
-Aresta de Árvore: Zeno_Pl, Velocidade Máxima: 8181.525000
+Aresta de Árvore: Worcester_Ave, Velocidade Máxima: 8772832.000000
+Aresta de Árvore: Worcester_Ave, Velocidade Máxima: 8772832.000000
+Aresta de Árvore: Zeno_Pl, Velocidade Máxima: 8181525.000000
 Aresta de Avanço: Zeno_Pl, Velocidade Máxima: 8181.525000
+Aresta de Árvore: Worcester_Ave, Velocidade Máxima: 8772832.000000
 Aresta de Árvore: Worcester_Ave, Velocidade Máxima: 8772.832000
-Aresta de Árvore: Worcester_Ave, Velocidade Máxima: 8772.832000
-Aresta de Árvore: Worcester_Ave, Velocidade Máxima: 8772.832000
-Aresta de Árvore: Worcester_Ave, Velocidade Máxima: 8772.832000
-Aresta de Árvore: Zoe_St, Velocidade Máxima: 10456.493000
+Aresta de Árvore: Worcester_Ave, Velocidade Máxima: 8772832.000000
+Aresta de Árvore: Worcester_Ave, Velocidade Máxima: 8772832.000000
+Aresta de Árvore: Zoe_St, Velocidade Máxima: 10456493.000000
 Aresta de Avanço: Zoe_St, Velocidade Máxima: 10456.493000
+Aresta de Árvore: Worcester_Ave, Velocidade Máxima: 8772832.000000
 Aresta de Árvore: Worcester_Ave, Velocidade Máxima: 8772.832000
-Aresta de Árvore: Worcester_Ave, Velocidade Máxima: 8772.832000
-Aresta de Árvore: Zoo_Rd, Velocidade Máxima: 13646.648000
-Aresta de Árvore: Zoo_Rd, Velocidade Máxima: 13646.648000
+Aresta de Árvore: Zoo_Rd, Velocidade Máxima: 13646648.000000
+Aresta de Árvore: Zoo_Rd, Velocidade Máxima: 13646648.000000
+Aresta de Árvore: Palace_Dr, Velocidade Máxima: 8772832.000000
 Aresta de Árvore: Palace_Dr, Velocidade Máxima: 8772.832000
 Aresta de Árvore: Palace_Dr, Velocidade Máxima: 8772.832000
 Aresta de Árvore: Palace_Dr, Velocidade Máxima: 8772.832000
+Aresta de Árvore: Palace_Dr, Velocidade Máxima: 8772832.000000
 Aresta de Árvore: Palace_Dr, Velocidade Máxima: 8772.832000
 Aresta de Árvore: Palace_Dr, Velocidade Máxima: 8772.832000
 Aresta de Árvore: Palace_Dr, Velocidade Máxima: 8772.832000
+Aresta de Árvore: Palace_Dr, Velocidade Máxima: 8772832.000000
 Aresta de Árvore: Palace_Dr, Velocidade Máxima: 8772.832000
 Aresta de Árvore: Palace_Dr, Velocidade Máxima: 8772.832000
 Aresta de Árvore: Palace_Dr, Velocidade Máxima: 8772.832000
+Aresta de Árvore: Palace_Dr, Velocidade Máxima: 8772832.000000
+Aresta de Árvore: Palace_Dr, Velocidade Máxima: 8772832.000000
+Aresta de Árvore: Palace_Dr, Velocidade Máxima: 8772832.000000
 Aresta de Árvore: Palace_Dr, Velocidade Máxima: 8772.832000
-Aresta de Árvore: Palace_Dr, Velocidade Máxima: 8772.832000
-Aresta de Árvore: Palace_Dr, Velocidade Máxima: 8772.832000
-Aresta de Árvore: Palace_Dr, Velocidade Máxima: 8772.832000
-Aresta de Árvore: Palace_Dr, Velocidade Máxima: 8772.832000
-Aresta de Árvore: Palace_Dr, Velocidade Máxima: 8772.832000
-Aresta de Árvore: Palace_Dr, Velocidade Máxima: 8772.832000
-Aresta de Árvore: Palace_Dr, Velocidade Máxima: 8772.832000
-Aresta de Avanço: Palace_Dr, Velocidade Máxima: 8772.832000
-Aresta de Árvore: ., Velocidade Máxima: 18750.000000
+Aresta de Árvore: Palace_Dr, Velocidade Máxima: 8772832.000000
+Aresta de Avanço: Palace_Dr, Velocidade Máxima: 8772832.000000
+Aresta de Árvore: ., Velocidade Máxima: 18750000.000000
 Aresta de Avanço: ., Velocidade Máxima: 18750.000000
 Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000.000000
 Aresta de Avanço: ., Velocidade Máxima: 18750.000000
@@ -474,32 +909,32 @@ Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000.000000
 Aresta de Avanço: ., Velocidade Máxima: 18750.000000
 Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000.000000
 Aresta de Avanço: ., Velocidade Máxima: 18750.000000
-Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000.000000
+Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000000.000000
+Aresta de Avanço: ., Velocidade Máxima: 18750000.000000
+Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000000.000000
+Aresta de Avanço: ., Velocidade Máxima: 18750000.000000
+Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000000.000000
 Aresta de Avanço: ., Velocidade Máxima: 18750.000000
 Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000.000000
 Aresta de Avanço: ., Velocidade Máxima: 18750.000000
-Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000.000000
+Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000000.000000
+Aresta de Avanço: ., Velocidade Máxima: 18750000.000000
+Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000000.000000
+Aresta de Avanço: ., Velocidade Máxima: 18750000.000000
+Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000000.000000
 Aresta de Avanço: ., Velocidade Máxima: 18750.000000
 Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000.000000
 Aresta de Avanço: ., Velocidade Máxima: 18750.000000
-Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000.000000
+Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000000.000000
+Aresta de Avanço: ., Velocidade Máxima: 18750000.000000
+Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000000.000000
+Aresta de Avanço: ., Velocidade Máxima: 18750000.000000
+Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000000.000000
 Aresta de Avanço: ., Velocidade Máxima: 18750.000000
 Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000.000000
 Aresta de Avanço: ., Velocidade Máxima: 18750.000000
-Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000.000000
-Aresta de Avanço: ., Velocidade Máxima: 18750.000000
-Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000.000000
-Aresta de Avanço: ., Velocidade Máxima: 18750.000000
-Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000.000000
-Aresta de Avanço: ., Velocidade Máxima: 18750.000000
-Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000.000000
-Aresta de Avanço: ., Velocidade Máxima: 18750.000000
-Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000.000000
-Aresta de Avanço: ., Velocidade Máxima: 18750.000000
-Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000.000000
-Aresta de Avanço: ., Velocidade Máxima: 18750.000000
-Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000.000000
-Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000.000000
+Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000000.000000
+Aresta de Árvore: Perimetral_Norte, Velocidade Máxima: 25000000.000000
 Aresta de Árvore: Perimetral_Leste, Velocidade Máxima: 16000.000000
 Aresta de Avanço: ., Velocidade Máxima: 12000.000000
 Aresta de Árvore: Perimetral_Leste, Velocidade Máxima: 16000.000000
@@ -508,8 +943,8 @@ Aresta de Árvore: Perimetral_Leste, Velocidade Máxima: 16000.000000
 Aresta de Avanço: ., Velocidade Máxima: 12000.000000
 Aresta de Árvore: Perimetral_Leste, Velocidade Máxima: 16000.000000
 Aresta de Árvore: ., Velocidade Máxima: 12000.000000
-Aresta de Avanço: Zoo_Rd, Velocidade Máxima: 13660.815000
-Aresta de Avanço: ., Velocidade Máxima: 12000.000000
+Aresta de Avanço: Zoo_Rd, Velocidade Máxima: 13660815.000000
+Aresta de Avanço: ., Velocidade Máxima: 12000000.000000
 Aresta de Árvore: Perimetral_Leste, Velocidade Máxima: 16000.000000
 Aresta de Avanço: ., Velocidade Máxima: 12000.000000
 Aresta de Árvore: Perimetral_Leste, Velocidade Máxima: 16000.000000
@@ -518,8 +953,8 @@ Aresta de Árvore: Perimetral_Leste, Velocidade Máxima: 16000.000000
 Aresta de Avanço: ., Velocidade Máxima: 12000.000000
 Aresta de Árvore: Perimetral_Leste, Velocidade Máxima: 16000.000000
 Aresta de Árvore: ., Velocidade Máxima: 12000.000000
-Aresta de Avanço: Zoo_Rd, Velocidade Máxima: 13402.381000
-Aresta de Avanço: ., Velocidade Máxima: 12000.000000
+Aresta de Avanço: Zoo_Rd, Velocidade Máxima: 13402381.000000
+Aresta de Avanço: ., Velocidade Máxima: 12000000.000000
 Aresta de Árvore: Perimetral_Leste, Velocidade Máxima: 16000.000000
 Aresta de Avanço: ., Velocidade Máxima: 12000.000000
 Aresta de Árvore: Perimetral_Leste, Velocidade Máxima: 16000.000000
@@ -528,8 +963,8 @@ Aresta de Árvore: Perimetral_Leste, Velocidade Máxima: 16000.000000
 Aresta de Avanço: ., Velocidade Máxima: 12000.000000
 Aresta de Árvore: Perimetral_Leste, Velocidade Máxima: 16000.000000
 Aresta de Árvore: ., Velocidade Máxima: 12000.000000
-Aresta de Avanço: Zoo_Rd, Velocidade Máxima: 14922.639000
-Aresta de Avanço: ., Velocidade Máxima: 12000.000000
+Aresta de Avanço: Zoo_Rd, Velocidade Máxima: 14922639.000000
+Aresta de Avanço: ., Velocidade Máxima: 12000000.000000
 Aresta de Árvore: Perimetral_Leste, Velocidade Máxima: 16000.000000
 Aresta de Avanço: ., Velocidade Máxima: 12000.000000
 Aresta de Árvore: Perimetral_Leste, Velocidade Máxima: 16000.000000
@@ -538,160 +973,160 @@ Aresta de Árvore: Perimetral_Leste, Velocidade Máxima: 16000.000000
 Aresta de Avanço: ., Velocidade Máxima: 12000.000000
 Aresta de Árvore: Perimetral_Leste, Velocidade Máxima: 16000.000000
 Aresta de Árvore: ., Velocidade Máxima: 12000.000000
-Aresta de Avanço: Zoo_Rd, Velocidade Máxima: 14815.920000
-Aresta de Avanço: ., Velocidade Máxima: 12000.000000
+Aresta de Avanço: Zoo_Rd, Velocidade Máxima: 14815920.000000
+Aresta de Avanço: ., Velocidade Máxima: 12000000.000000
 Aresta de Árvore: Perimetral_Leste, Velocidade Máxima: 16000.000000
 Aresta de Avanço: ., Velocidade Máxima: 12000.000000
 Aresta de Árvore: Perimetral_Leste, Velocidade Máxima: 16000.000000
 Aresta de Avanço: ., Velocidade Máxima: 12000.000000
 Aresta de Árvore: Perimetral_Leste, Velocidade Máxima: 16000.000000
 Aresta de Avanço: ., Velocidade Máxima: 12000.000000
-Aresta de Árvore: Perimetral_Leste, Velocidade Máxima: 16000.000000
+Aresta de Árvore: Perimetral_Leste, Velocidade Máxima: 16000000.000000
 Aresta de Árvore: ., Velocidade Máxima: 12000.000000
 Aresta de Avanço: Zoo_Rd, Velocidade Máxima: 13491.467000
 Aresta de Avanço: ., Velocidade Máxima: 12000.000000
 Aresta de Árvore: Perimetral_Leste, Velocidade Máxima: 16000.000000
 Aresta de Árvore: ., Velocidade Máxima: 12000.000000
-Aresta de Árvore: Al_Scoma_Way, Velocidade Máxima: 7386.963000
+Aresta de Árvore: Al_Scoma_Way, Velocidade Máxima: 7386963.000000
 PONTE em Aresta Cruzada: Al_Scoma_Way, Velocidade Máxima: 7386.963000
 Aresta de Árvore: ., Velocidade Máxima: 13500.000000
 Aresta de Avanço: ., Velocidade Máxima: 13500.000000
 PONTE em Aresta Cruzada: Perimetral_Sul, Velocidade Máxima: 18000.000000
-PONTE em Aresta Cruzada: Zoo_Rd, Velocidade Máxima: 13491.467000
+PONTE em Aresta Cruzada: Zoo_Rd, Velocidade Máxima: 13491467.000000
 Aresta de Árvore: ., Velocidade Máxima: 13500.000000
-Aresta de Avanço: ., Velocidade Máxima: 13500.000000
-PONTE em Aresta Cruzada: Perimetral_Sul, Velocidade Máxima: 18000.000000
-Aresta de Avanço: ., Velocidade Máxima: 12000.000000
+Aresta de Avanço: ., Velocidade Máxima: 13500000.000000
+PONTE em Aresta Cruzada: Perimetral_Sul, Velocidade Máxima: 18000000.000000
+Aresta de Avanço: ., Velocidade Máxima: 12000000.000000
 Aresta de Avanço: Perimetral_Leste, Velocidade Máxima: 16000.000000
 PONTE em Aresta Cruzada: Perimetral_Norte, Velocidade Máxima: 25000.000000
 PONTE em Aresta Cruzada: Perimetral_Norte, Velocidade Máxima: 25000.000000
-Aresta de Retorno: ., Velocidade Máxima: 18750.000000
-Aresta de Retorno: ., Velocidade Máxima: 18750.000000
-Aresta de Árvore: Yukon_St, Velocidade Máxima: 7298.951000
+Aresta de Retorno: ., Velocidade Máxima: 18750000.000000
+Aresta de Retorno: ., Velocidade Máxima: 18750000.000000
+Aresta de Árvore: Yukon_St, Velocidade Máxima: 7298951.000000
 Aresta de Avanço: Yukon_St, Velocidade Máxima: 7298.951000
+Aresta de Retorno: ., Velocidade Máxima: 18750000.000000
+Aresta de Retorno: ., Velocidade Máxima: 18750000.000000
+Aresta de Retorno: ., Velocidade Máxima: 18750000.000000
 Aresta de Retorno: ., Velocidade Máxima: 18750.000000
-Aresta de Retorno: ., Velocidade Máxima: 18750.000000
-Aresta de Retorno: ., Velocidade Máxima: 18750.000000
-Aresta de Retorno: ., Velocidade Máxima: 18750.000000
-Aresta de Árvore: Zanowitz_Ave, Velocidade Máxima: 11619.531000
+Aresta de Árvore: Zanowitz_Ave, Velocidade Máxima: 11619531.000000
 Aresta de Avanço: Zanowitz_Ave, Velocidade Máxima: 11619.531000
 Aresta de Retorno: ., Velocidade Máxima: 18750.000000
 Aresta de Retorno: ., Velocidade Máxima: 18750.000000
+Aresta de Retorno: ., Velocidade Máxima: 18750000.000000
 Aresta de Retorno: ., Velocidade Máxima: 18750.000000
-Aresta de Retorno: ., Velocidade Máxima: 18750.000000
-Aresta de Árvore: Zeno_Pl, Velocidade Máxima: 8365.381000
+Aresta de Árvore: Zeno_Pl, Velocidade Máxima: 8365381.000000
 Aresta de Avanço: Zeno_Pl, Velocidade Máxima: 8365.381000
 Aresta de Retorno: ., Velocidade Máxima: 18750.000000
 Aresta de Retorno: ., Velocidade Máxima: 18750.000000
+Aresta de Retorno: ., Velocidade Máxima: 18750000.000000
 Aresta de Retorno: ., Velocidade Máxima: 18750.000000
-Aresta de Retorno: ., Velocidade Máxima: 18750.000000
-Aresta de Árvore: Zoe_St, Velocidade Máxima: 9653.724000
+Aresta de Árvore: Zoe_St, Velocidade Máxima: 9653724.000000
 Aresta de Avanço: Zoe_St, Velocidade Máxima: 9653.724000
 Aresta de Retorno: ., Velocidade Máxima: 18750.000000
 Aresta de Retorno: ., Velocidade Máxima: 18750.000000
-Aresta de Retorno: ., Velocidade Máxima: 18750.000000
-Aresta de Retorno: ., Velocidade Máxima: 12000.000000
-Aresta de Retorno: ., Velocidade Máxima: 12000.000000
-Aresta de Retorno: ., Velocidade Máxima: 12000.000000
-Aresta de Árvore: Zircon_Pl, Velocidade Máxima: 14030.771000
-PONTE em Aresta Cruzada: Zircon_Pl, Velocidade Máxima: 14030.771000
-Aresta de Árvore: Zanowitz_St, Velocidade Máxima: 14270.830000
-PONTE em Aresta Cruzada: Zanowitz_St, Velocidade Máxima: 14270.830000
-Aresta de Árvore: Zampa_Ln, Velocidade Máxima: 13238.207000
-PONTE em Aresta Cruzada: Zampa_Ln, Velocidade Máxima: 13238.207000
-Aresta de Árvore: Young_St, Velocidade Máxima: 14598.202000
-PONTE em Aresta Cruzada: Young_St, Velocidade Máxima: 14598.202000
-Aresta de Árvore: Zampa_Ln, Velocidade Máxima: 13539.580000
-PONTE em Aresta Cruzada: Zampa_Ln, Velocidade Máxima: 13539.580000
-Aresta de Árvore: Zanowitz_St, Velocidade Máxima: 13580.954000
-PONTE em Aresta Cruzada: Zanowitz_St, Velocidade Máxima: 13580.954000
-Aresta de Árvore: Zircon_Pl, Velocidade Máxima: 14561.999000
-PONTE em Aresta Cruzada: Zircon_Pl, Velocidade Máxima: 14561.999000
-Aresta de Retorno: Zoo_Rd, Velocidade Máxima: 13660.815000
-Aresta de Retorno: ., Velocidade Máxima: 12000.000000
-Aresta de Retorno: ., Velocidade Máxima: 12000.000000
-Aresta de Retorno: ., Velocidade Máxima: 12000.000000
-Aresta de Árvore: Zircon_Pl, Velocidade Máxima: 14792.728000
-PONTE em Aresta Cruzada: Zircon_Pl, Velocidade Máxima: 14792.728000
-Aresta de Árvore: Zanowitz_St, Velocidade Máxima: 14024.461000
-PONTE em Aresta Cruzada: Zanowitz_St, Velocidade Máxima: 14024.461000
-Aresta de Árvore: Zampa_Ln, Velocidade Máxima: 14334.519000
-PONTE em Aresta Cruzada: Zampa_Ln, Velocidade Máxima: 14334.519000
-Aresta de Árvore: Young_St, Velocidade Máxima: 14653.777000
-PONTE em Aresta Cruzada: Young_St, Velocidade Máxima: 14653.777000
-Aresta de Árvore: Zampa_Ln, Velocidade Máxima: 13594.649000
-PONTE em Aresta Cruzada: Zampa_Ln, Velocidade Máxima: 13594.649000
-Aresta de Árvore: Zanowitz_St, Velocidade Máxima: 14597.270000
-PONTE em Aresta Cruzada: Zanowitz_St, Velocidade Máxima: 14597.270000
-Aresta de Árvore: Zircon_Pl, Velocidade Máxima: 14794.167000
-PONTE em Aresta Cruzada: Zircon_Pl, Velocidade Máxima: 14794.167000
-Aresta de Retorno: Zoo_Rd, Velocidade Máxima: 13402.381000
-Aresta de Retorno: ., Velocidade Máxima: 12000.000000
-Aresta de Retorno: ., Velocidade Máxima: 12000.000000
-Aresta de Retorno: ., Velocidade Máxima: 12000.000000
-Aresta de Árvore: Zircon_Pl, Velocidade Máxima: 14528.509000
-PONTE em Aresta Cruzada: Zircon_Pl, Velocidade Máxima: 14528.509000
-Aresta de Árvore: Zanowitz_St, Velocidade Máxima: 14430.430000
-PONTE em Aresta Cruzada: Zanowitz_St, Velocidade Máxima: 14430.430000
-Aresta de Árvore: Zampa_Ln, Velocidade Máxima: 14979.432000
-PONTE em Aresta Cruzada: Zampa_Ln, Velocidade Máxima: 14979.432000
-Aresta de Árvore: Young_St, Velocidade Máxima: 14570.954000
-PONTE em Aresta Cruzada: Young_St, Velocidade Máxima: 14570.954000
-Aresta de Árvore: Zampa_Ln, Velocidade Máxima: 13867.136000
-PONTE em Aresta Cruzada: Zampa_Ln, Velocidade Máxima: 13867.136000
-Aresta de Árvore: Zanowitz_St, Velocidade Máxima: 13764.305000
-PONTE em Aresta Cruzada: Zanowitz_St, Velocidade Máxima: 13764.305000
-Aresta de Árvore: Zircon_Pl, Velocidade Máxima: 13549.497000
-PONTE em Aresta Cruzada: Zircon_Pl, Velocidade Máxima: 13549.497000
-Aresta de Retorno: Zoo_Rd, Velocidade Máxima: 14922.639000
-Aresta de Retorno: ., Velocidade Máxima: 12000.000000
-Aresta de Retorno: ., Velocidade Máxima: 12000.000000
-Aresta de Retorno: ., Velocidade Máxima: 12000.000000
-Aresta de Árvore: Zircon_Pl, Velocidade Máxima: 14016.998000
-PONTE em Aresta Cruzada: Zircon_Pl, Velocidade Máxima: 14016.998000
-Aresta de Árvore: Zanowitz_St, Velocidade Máxima: 14485.750000
-PONTE em Aresta Cruzada: Zanowitz_St, Velocidade Máxima: 14485.750000
-Aresta de Árvore: Zampa_Ln, Velocidade Máxima: 13343.294000
-PONTE em Aresta Cruzada: Zampa_Ln, Velocidade Máxima: 13343.294000
-Aresta de Árvore: Young_St, Velocidade Máxima: 13582.038000
-PONTE em Aresta Cruzada: Young_St, Velocidade Máxima: 13582.038000
-Aresta de Árvore: Zampa_Ln, Velocidade Máxima: 14574.418000
-PONTE em Aresta Cruzada: Zampa_Ln, Velocidade Máxima: 14574.418000
-Aresta de Árvore: Zanowitz_St, Velocidade Máxima: 13885.074000
-PONTE em Aresta Cruzada: Zanowitz_St, Velocidade Máxima: 13885.074000
-Aresta de Árvore: Zircon_Pl, Velocidade Máxima: 13405.735000
-PONTE em Aresta Cruzada: Zircon_Pl, Velocidade Máxima: 13405.735000
-Aresta de Retorno: Zoo_Rd, Velocidade Máxima: 14815.920000
-Aresta de Retorno: ., Velocidade Máxima: 12000.000000
-Aresta de Retorno: ., Velocidade Máxima: 12000.000000
-Aresta de Retorno: ., Velocidade Máxima: 12000.000000
-Aresta de Árvore: Zircon_Pl, Velocidade Máxima: 13256.210000
-PONTE em Aresta Cruzada: Zircon_Pl, Velocidade Máxima: 13256.210000
-Aresta de Árvore: Zanowitz_St, Velocidade Máxima: 14864.541000
-PONTE em Aresta Cruzada: Zanowitz_St, Velocidade Máxima: 14864.541000
-Aresta de Árvore: Zampa_Ln, Velocidade Máxima: 13908.001000
-PONTE em Aresta Cruzada: Zampa_Ln, Velocidade Máxima: 13908.001000
-Aresta de Árvore: Young_St, Velocidade Máxima: 14331.472000
-PONTE em Aresta Cruzada: Young_St, Velocidade Máxima: 14331.472000
-Aresta de Árvore: Yorba_St, Velocidade Máxima: 6512.681000
+Aresta de Retorno: ., Velocidade Máxima: 18750000.000000
+Aresta de Retorno: ., Velocidade Máxima: 12000000.000000
+Aresta de Retorno: ., Velocidade Máxima: 12000000.000000
+Aresta de Retorno: ., Velocidade Máxima: 12000000.000000
+Aresta de Árvore: Zircon_Pl, Velocidade Máxima: 14030771.000000
+PONTE em Aresta Cruzada: Zircon_Pl, Velocidade Máxima: 14030771.000000
+Aresta de Árvore: Zanowitz_St, Velocidade Máxima: 14270830.000000
+PONTE em Aresta Cruzada: Zanowitz_St, Velocidade Máxima: 14270830.000000
+Aresta de Árvore: Zampa_Ln, Velocidade Máxima: 13238207.000000
+PONTE em Aresta Cruzada: Zampa_Ln, Velocidade Máxima: 13238207.000000
+Aresta de Árvore: Young_St, Velocidade Máxima: 14598202.000000
+PONTE em Aresta Cruzada: Young_St, Velocidade Máxima: 14598202.000000
+Aresta de Árvore: Zampa_Ln, Velocidade Máxima: 13539580.000000
+PONTE em Aresta Cruzada: Zampa_Ln, Velocidade Máxima: 13539580.000000
+Aresta de Árvore: Zanowitz_St, Velocidade Máxima: 13580954.000000
+PONTE em Aresta Cruzada: Zanowitz_St, Velocidade Máxima: 13580954.000000
+Aresta de Árvore: Zircon_Pl, Velocidade Máxima: 14561999.000000
+PONTE em Aresta Cruzada: Zircon_Pl, Velocidade Máxima: 14561999.000000
+Aresta de Retorno: Zoo_Rd, Velocidade Máxima: 13660815.000000
+Aresta de Retorno: ., Velocidade Máxima: 12000000.000000
+Aresta de Retorno: ., Velocidade Máxima: 12000000.000000
+Aresta de Retorno: ., Velocidade Máxima: 12000000.000000
+Aresta de Árvore: Zircon_Pl, Velocidade Máxima: 14792728.000000
+PONTE em Aresta Cruzada: Zircon_Pl, Velocidade Máxima: 14792728.000000
+Aresta de Árvore: Zanowitz_St, Velocidade Máxima: 14024461.000000
+PONTE em Aresta Cruzada: Zanowitz_St, Velocidade Máxima: 14024461.000000
+Aresta de Árvore: Zampa_Ln, Velocidade Máxima: 14334519.000000
+PONTE em Aresta Cruzada: Zampa_Ln, Velocidade Máxima: 14334519.000000
+Aresta de Árvore: Young_St, Velocidade Máxima: 14653777.000000
+PONTE em Aresta Cruzada: Young_St, Velocidade Máxima: 14653777.000000
+Aresta de Árvore: Zampa_Ln, Velocidade Máxima: 13594649.000000
+PONTE em Aresta Cruzada: Zampa_Ln, Velocidade Máxima: 13594649.000000
+Aresta de Árvore: Zanowitz_St, Velocidade Máxima: 14597270.000000
+PONTE em Aresta Cruzada: Zanowitz_St, Velocidade Máxima: 14597270.000000
+Aresta de Árvore: Zircon_Pl, Velocidade Máxima: 14794167.000000
+PONTE em Aresta Cruzada: Zircon_Pl, Velocidade Máxima: 14794167.000000
+Aresta de Retorno: Zoo_Rd, Velocidade Máxima: 13402381.000000
+Aresta de Retorno: ., Velocidade Máxima: 12000000.000000
+Aresta de Retorno: ., Velocidade Máxima: 12000000.000000
+Aresta de Retorno: ., Velocidade Máxima: 12000000.000000
+Aresta de Árvore: Zircon_Pl, Velocidade Máxima: 14528509.000000
+PONTE em Aresta Cruzada: Zircon_Pl, Velocidade Máxima: 14528509.000000
+Aresta de Árvore: Zanowitz_St, Velocidade Máxima: 14430430.000000
+PONTE em Aresta Cruzada: Zanowitz_St, Velocidade Máxima: 14430430.000000
+Aresta de Árvore: Zampa_Ln, Velocidade Máxima: 14979432.000000
+PONTE em Aresta Cruzada: Zampa_Ln, Velocidade Máxima: 14979432.000000
+Aresta de Árvore: Young_St, Velocidade Máxima: 14570954.000000
+PONTE em Aresta Cruzada: Young_St, Velocidade Máxima: 14570954.000000
+Aresta de Árvore: Zampa_Ln, Velocidade Máxima: 13867136.000000
+PONTE em Aresta Cruzada: Zampa_Ln, Velocidade Máxima: 13867136.000000
+Aresta de Árvore: Zanowitz_St, Velocidade Máxima: 13764305.000000
+PONTE em Aresta Cruzada: Zanowitz_St, Velocidade Máxima: 13764305.000000
+Aresta de Árvore: Zircon_Pl, Velocidade Máxima: 13549497.000000
+PONTE em Aresta Cruzada: Zircon_Pl, Velocidade Máxima: 13549497.000000
+Aresta de Retorno: Zoo_Rd, Velocidade Máxima: 14922639.000000
+Aresta de Retorno: ., Velocidade Máxima: 12000000.000000
+Aresta de Retorno: ., Velocidade Máxima: 12000000.000000
+Aresta de Retorno: ., Velocidade Máxima: 12000000.000000
+Aresta de Árvore: Zircon_Pl, Velocidade Máxima: 14016998.000000
+PONTE em Aresta Cruzada: Zircon_Pl, Velocidade Máxima: 14016998.000000
+Aresta de Árvore: Zanowitz_St, Velocidade Máxima: 14485750.000000
+PONTE em Aresta Cruzada: Zanowitz_St, Velocidade Máxima: 14485750.000000
+Aresta de Árvore: Zampa_Ln, Velocidade Máxima: 13343294.000000
+PONTE em Aresta Cruzada: Zampa_Ln, Velocidade Máxima: 13343294.000000
+Aresta de Árvore: Young_St, Velocidade Máxima: 13582038.000000
+PONTE em Aresta Cruzada: Young_St, Velocidade Máxima: 13582038.000000
+Aresta de Árvore: Zampa_Ln, Velocidade Máxima: 14574418.000000
+PONTE em Aresta Cruzada: Zampa_Ln, Velocidade Máxima: 14574418.000000
+Aresta de Árvore: Zanowitz_St, Velocidade Máxima: 13885074.000000
+PONTE em Aresta Cruzada: Zanowitz_St, Velocidade Máxima: 13885074.000000
+Aresta de Árvore: Zircon_Pl, Velocidade Máxima: 13405735.000000
+PONTE em Aresta Cruzada: Zircon_Pl, Velocidade Máxima: 13405735.000000
+Aresta de Retorno: Zoo_Rd, Velocidade Máxima: 14815920.000000
+Aresta de Retorno: ., Velocidade Máxima: 12000000.000000
+Aresta de Retorno: ., Velocidade Máxima: 12000000.000000
+Aresta de Retorno: ., Velocidade Máxima: 12000000.000000
+Aresta de Árvore: Zircon_Pl, Velocidade Máxima: 13256210.000000
+PONTE em Aresta Cruzada: Zircon_Pl, Velocidade Máxima: 13256210.000000
+Aresta de Árvore: Zanowitz_St, Velocidade Máxima: 14864541.000000
+PONTE em Aresta Cruzada: Zanowitz_St, Velocidade Máxima: 14864541.000000
+Aresta de Árvore: Zampa_Ln, Velocidade Máxima: 13908001.000000
+PONTE em Aresta Cruzada: Zampa_Ln, Velocidade Máxima: 13908001.000000
+Aresta de Árvore: Young_St, Velocidade Máxima: 14331472.000000
+PONTE em Aresta Cruzada: Young_St, Velocidade Máxima: 14331472.000000
+Aresta de Árvore: Yorba_St, Velocidade Máxima: 6512681.000000
 PONTE em Aresta Cruzada: Yorba_St, Velocidade Máxima: 6512.681000
-Aresta de Árvore: Yerba_Buena_Ln, Velocidade Máxima: 8253.049000
+Aresta de Árvore: Yerba_Buena_Ln, Velocidade Máxima: 8253049.000000
 PONTE em Aresta Cruzada: Yerba_Buena_Ln, Velocidade Máxima: 8253.049000
-Aresta de Árvore: Yerba_Buena_Ave, Velocidade Máxima: 4110.953000
+Aresta de Árvore: Yerba_Buena_Ave, Velocidade Máxima: 4110953.000000
 PONTE em Aresta Cruzada: Yerba_Buena_Ave, Velocidade Máxima: 4110.953000
-Aresta de Árvore: Yacht_Rd, Velocidade Máxima: 4563.110000
+Aresta de Árvore: Yacht_Rd, Velocidade Máxima: 4563110.000000
 PONTE em Aresta Cruzada: Yacht_Rd, Velocidade Máxima: 4563.110000
-Aresta de Árvore: Wyman_Ave, Velocidade Máxima: 2703.855000
+Aresta de Árvore: Wyman_Ave, Velocidade Máxima: 2703855.000000
 PONTE em Aresta Cruzada: Wyman_Ave, Velocidade Máxima: 2703.855000
-Aresta de Árvore: Wright_Loop, Velocidade Máxima: 5986.043000
+Aresta de Árvore: Wright_Loop, Velocidade Máxima: 5986043.000000
 PONTE em Aresta Cruzada: Wright_Loop, Velocidade Máxima: 5986.043000
-Aresta de Árvore: Worth_St, Velocidade Máxima: 2648.521000
+Aresta de Árvore: Worth_St, Velocidade Máxima: 2648521.000000
 PONTE em Aresta Cruzada: Worth_St, Velocidade Máxima: 2648.521000
-Aresta de Árvore: Worcester_Ave, Velocidade Máxima: 8772.832000
+Aresta de Árvore: Worcester_Ave, Velocidade Máxima: 8772832.000000
 PONTE em Aresta Cruzada: Worcester_Ave, Velocidade Máxima: 8772.832000
 Aresta de Avanço: ., Velocidade Máxima: 18750.000000
 Aresta de Retorno: Perimetral_Norte, Velocidade Máxima: 25000.000000
-Aresta de Retorno: Perimetral_Sul, Velocidade Máxima: 18000.000000
+Aresta de Retorno: Perimetral_Sul, Velocidade Máxima: 18000000.000000
 REINICIANDO e inserindo nó 6 na floresta
 REINICIANDO e inserindo nó 7 na floresta
 REINICIANDO e inserindo nó 8 na floresta

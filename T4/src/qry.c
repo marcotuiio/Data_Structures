@@ -138,7 +138,7 @@ void oFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph g, void *origin) {
 
     fprintf(txt, "CEP: %s, FACE: %s, NUM: %lf, X: %lf, Y: %lf\n", cep, face, num, o->x, o->y);
 
-    fprintf(svg, LINE, x1, y1, x2, y2, "red");
+    fprintf(svg, LINE, x1, y1, x2, y2, "purple");
 }
 
 void catac(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph g) {
@@ -404,7 +404,15 @@ void pFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph g, void *origin) {
     originAdress *o = origin;
     Node i = getNodeGivenXY(g, o->x, o->y);
     Node j = getNodeGivenXY(g, x2, y2);
-    printf("DIJKSTRA: i: %d, j: %d\n", i, j);
+    if (i == -1) {
+        fprintf(txt, "Nó de origem não encontrado\n");
+        return;
+    }
+    if (j == -1) {
+        fprintf(txt, "Nó de destino não encontrado\n");
+        return;
+    }
+    // printf("DIJKSTRA: i: %d, j: %d\n", i, j);
     int k;
 
     fprintf(txt, "Iniciando percurso de CEP: %s (X: %lf, Y: %lf) para CEP: %s (X: %lf, Y: %lf)\n", o->cep, o->x, o->y, cep, x2, y2);
