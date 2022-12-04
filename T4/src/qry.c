@@ -51,7 +51,7 @@ void readQry(Rb t, Digraph g, char *bedQry, char *bsdSvg, char *bsdTxt) {
         } else if (!strcmp(comando, "p?")) {
             pFunc(qry, txt, svg, t, g, origin);
         }
-        strcpy(comando, " ");
+        strcpy(comando, "");
     }
 
     writeSvg(svg, t, g);
@@ -289,12 +289,13 @@ void rf(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph g) {
     fscanf(qry, "%s %s %lf", cep, face, &fator);
     fprintf(txt, "\n[*] rf %s %s %lf\n", cep, face, fator);
     Lista floresta = criaListaAux();
-    void *data[] = {txt, &fator, cep, face, floresta, NULL};
+    void *data[] = {txt, &fator, cep, face, floresta, NULL, svg};
     dfs(g, classTree, classForward, classReturn, classCross, restarted, data);
     freeListaAux(floresta);
 }
 
 bool classTree(Digraph g, Edge e, int td, int tf, void *extra) {
+    if (!e) return true;
     void **data = extra;
     FILE *txt = data[0];
     double fat = *(double *)data[1];
@@ -304,30 +305,61 @@ bool classTree(Digraph g, Edge e, int td, int tf, void *extra) {
 }
 
 bool classForward(Digraph g, Edge e, int td, int tf, void *extra) {
+    if (!e) return true;
     void **data = extra;
     FILE *txt = data[0];
     double fat = *(double *)data[1];
     setVMEdge(getEdgeInfo(g, e), getVMEdge(getEdgeInfo(g, e)) * fat);
     fprintf(txt, "Aresta de Avanço: %s, Velocidade Máxima: %lf\n", getNomeEdge(getEdgeInfo(g, e)), getVMEdge(getEdgeInfo(g, e)));
+    FILE *svg = data[6];
+    double x1, y1, x2, y2;
+    calcXY(g, e, &x1, &y1, &x2, &y2);
+    x1 = y1 = x2 = y2 = 0;
+    fprintf(svg, LINE, x1, y1, x2, y2, "#0000ff");
     return false;
 }
 
 bool classReturn(Digraph g, Edge e, int td, int tf, void *extra) {
+    if (!e) return true;
     void **data = extra;
     FILE *txt = data[0];
     double fat = *(double *)data[1];
     setVMEdge(getEdgeInfo(g, e), getVMEdge(getEdgeInfo(g, e)) * fat);
     fprintf(txt, "Aresta de Retorno: %s, Velocidade Máxima: %lf\n", getNomeEdge(getEdgeInfo(g, e)), getVMEdge(getEdgeInfo(g, e)));
+    FILE *svg = data[6];
+    double x1, y1, x2, y2;
+    x1 = y1 = x2 = y2 = 0;
+    calcXY(g, e, &x1, &y1, &x2, &y2);
+    fprintf(svg, LINE, x1, y1, x2, y2, "#ff6600");
     return false;
 }
 
 bool classCross(Digraph g, Edge e, int td, int tf, void *extra) {
+    if (!e) return true;
     void **data = extra;
     FILE *txt = data[0];
     double fat = *(double *)data[1];
     setVMEdge(getEdgeInfo(g, e), getVMEdge(getEdgeInfo(g, e)) * fat);
     fprintf(txt, "PONTE em Aresta Cruzada: %s, Velocidade Máxima: %lf\n", getNomeEdge(getEdgeInfo(g, e)), getVMEdge(getEdgeInfo(g, e)));
+    FILE *svg = data[6];
+    double x1, y1, x2, y2;
+    x1 = y1 = x2 = y2 = 0;
+    calcXY(g, e, &x1, &y1, &x2, &y2);
+    fprintf(svg, LINE, x1, y1, x2, y2, "magenta");
     return false;
+}
+
+void calcXY(Digraph g, Edge e, double *x1, double *y1, double *x2, double *y2) {
+    Node from = getFromNode(g, e);
+    Node to = getToNode(g, e);
+    Lista a1 = adjacentEdges(g, from);
+    Lista a2 = adjacentEdges(g, to);
+    InfoNode fromInfo = getInfoFromVertex(a1);
+    InfoNode toInfo = getInfoFromVertex(a2);
+    *x1 = getXVertex(fromInfo);
+    *y1 = getYVertex(fromInfo);
+    *x2 = getXVertex(toInfo);
+    *y2 = getYVertex(toInfo);
 }
 
 bool restarted(Digraph g, void *extra) {
@@ -349,7 +381,7 @@ void bFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph g) {
     for (Node i = 0; i < getGraphSize(g); i++) {
         double x1 = getXVertex(getNodeInfo(g, i));
         double y1 = getYVertex(getNodeInfo(g, i));
-        if (fabs(x1 - x) <= 0 && fabs(y1 - y) <= 0) {  // Atenção!!!!
+        if (fabs(x1 - x) <= 30 && fabs(y1 - y) <= 30) {  // Atenção!!!!
             toStart = i;
         }
     }
@@ -358,7 +390,7 @@ void bFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph g) {
         return;
     }
     // printf("toStart: %g\n", toStart);
-    void *data[] = {&fator, txt};
+    void *data[] = {&fator, txt, svg};
     bfs(g, toStart, bFuncEdges, data);
 }
 
@@ -366,9 +398,13 @@ bool bFuncEdges(Digraph g, Edge e, int td, int tf, void *extra) {
     void **data = extra;
     double fator = *(double *)data[0];
     FILE *txt = data[1];
+    FILE *svg = data[2];
     fprintf(txt, "Aresta no percurso em Largura %s, VM_Inicial: %lf, ", getNomeEdge(getEdgeInfo(g, e)), getVMEdge(getEdgeInfo(g, e)));
     setVMEdge(getEdgeInfo(g, e), getVMEdge(getEdgeInfo(g, e)) * fator);
     fprintf(txt, "VM_Final: %lf\n", getVMEdge(getEdgeInfo(g, e)));
+    double x1, y1, x2, y2;
+    calcXY(g, e, &x1, &y1, &x2, &y2);
+    fprintf(svg, LINE, x1, y1, x2, y2, "#c83737");
     return false;
 }
 
@@ -412,15 +448,14 @@ void pFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph g, void *origin) {
         fprintf(txt, "Nó de destino não encontrado\n");
         return;
     }
-    // printf("DIJKSTRA: i: %d, j: %d\n", i, j);
+    printf("DIJKSTRA: i: %d, j: %d\n", i, j);
     int k;
 
     fprintf(txt, "Iniciando percurso de CEP: %s (X: %lf, Y: %lf) para CEP: %s (X: %lf, Y: %lf)\n", o->cep, o->x, o->y, cep, x2, y2);
     Node *path_speed = fullDijkstra(g, i, j, 1);  // 0 = distancia, 1 = velocidade
     if (!path_speed) {
         fprintf(txt, "NÃO FOI POSSÍVEL ENCONTRAR UM CAMINHO ENTRE OS ENDEREÇOS\n");
-        fprintf(svg, LINE, o->x, o->y, x2, y2, "red");
-        return;
+        fprintf(svg, "\t<line x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" stroke-width=\"1.2%%\" stroke-dasharray=\"5,10\" />\n", o->x, o->y, x2, y2, "red");
 
     } else {
         for (k = 0; k < getGraphSize(g); k++) {
@@ -428,24 +463,26 @@ void pFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph g, void *origin) {
                 break;
             }
             fprintf(txt, "Nó %d: %s\n", k, getNomeVertex(getNodeInfo(g, path_speed[k])));
-            fprintf(svg, "\t<line x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" stroke-width=\"2\" />\n", getXVertex(getNodeInfo(g, path_speed[k])), getYVertex(getNodeInfo(g, path_speed[k])), getXVertex(getNodeInfo(g, path_speed[k + 1])), getYVertex(getNodeInfo(g, path_speed[k + 1])), cmr);
+            fprintf(svg, LINE, getXVertex(getNodeInfo(g, path_speed[k])), getYVertex(getNodeInfo(g, path_speed[k])), getXVertex(getNodeInfo(g, path_speed[k + 1])), getYVertex(getNodeInfo(g, path_speed[k + 1])), cmr);
         }
+        animatedPath(g, svg, path_speed, "path_speed");
         free(path_speed);
     }
 
     Node *path_distance = fullDijkstra(g, i, j, 0);  // 0 = distancia, 1 = velocidade
     if (!path_distance) {
         fprintf(txt, "NÃO FOI POSSÍVEL ENCONTRAR UM CAMINHO ENTRE OS ENDEREÇOS\n");
-        fprintf(svg, LINE, o->x, o->y, x2, y2, "red");
-        return;
+        fprintf(svg, "\t<line x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" stroke-width=\"1.2%%\" stroke-dasharray=\"5,10\" />\n", o->x, o->y, x2, y2, "red");
+
     } else {
         for (k = 0; k < getGraphSize(g); k++) {
             if (path_distance[k] == -1) {
                 break;
             }
             fprintf(txt, "Nó %d: %s\n", k, getNomeVertex(getNodeInfo(g, path_distance[k])));
-            fprintf(svg, "\t<line x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" stroke-width=\"2\" />\n", getXVertex(getNodeInfo(g, path_distance[k])), getYVertex(getNodeInfo(g, path_distance[k])), getXVertex(getNodeInfo(g, path_distance[k + 1])), getYVertex(getNodeInfo(g, path_distance[k + 1])), cmc);
+            fprintf(svg, LINE, getXVertex(getNodeInfo(g, path_distance[k])), getYVertex(getNodeInfo(g, path_distance[k])), getXVertex(getNodeInfo(g, path_distance[k + 1])), getYVertex(getNodeInfo(g, path_distance[k + 1])), cmc);
         }
+        animatedPath(g, svg, path_distance, "path_distance");
         free(path_distance);
     }
 }

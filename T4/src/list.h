@@ -119,7 +119,7 @@ void setInfoFromVertex(Lista l, InfoNode info);
 InfoNode getInfoFromVertex(Lista l);
 // * Retorna informacao associada ao no' node.
 
-void setInfoFromEdge(Lista l, InfoEdge info);
+void setInfoFromEdge(Edge e, InfoEdge info);
 // * Atribui a aresta "e" a informacao "info"
 
 InfoEdge getInfoFromEdge(Edge e);

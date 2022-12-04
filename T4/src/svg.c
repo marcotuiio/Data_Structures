@@ -1,6 +1,7 @@
 #include "svg.h"
 
 #include "rb_tree.h"
+#include "digraph.h"
 #include "infos.h"
 #include "system.h"
 
@@ -17,7 +18,7 @@ void writeRb(InfoRb i, void *aux) {
         double y = getYNode(i);
         double w = getWNode(i);
         double h = getHNode(i);
-        char cep[30], sw[10], cfill[15], cstrk[15];
+        char cep[30], sw[10], cfill[20], cstrk[20];
         strcpy(cep, getCep(i));
         strcpy(sw, getSW(i));
         strcpy(cfill, getCFill(i));
@@ -27,61 +28,20 @@ void writeRb(InfoRb i, void *aux) {
     }
 }
 
-// void drawCircle(FILE *svg, void *circ) {
-//     int id;
-//     double x, y, r;
-//     char fill[15], stroke[15];
+void animatedPath(Digraph g, FILE *svg, Node *path, char *id) {
+    fprintf(svg, "<path d=m ");
 
-//     id = getId(circ);
-//     x = getX(circ);
-//     y = getY(circ);
-//     r = getR(circ);
-//     strcpy(fill, getFill(circ));
-//     strcpy(stroke, getStroke(circ));
+    for (int i = 0; i < getGraphSize(g); i++) {
+        fprintf(svg, "\"%lf\" \"%lf\", ", getXVertex(getNodeInfo(g, path[i])), getYVertex(getNodeInfo(g, path[i])));
+    }
+    fprintf(svg, "id=\"%s\" />", id);
 
-//     fprintf(svg, CIRCLE, id, x, y, r, stroke, fill);
-// }
-
-// void drawLine(FILE *svg, void *linha) {
-//     int id;
-//     double x1, y1, x2, y2;
-//     char stroke[15];
-
-//     id = getId(linha);
-//     x1 = getX(linha);
-//     y1 = getY(linha);
-//     x2 = getX2(linha);
-//     y2 = getY2(linha);
-//     strcpy(stroke, getStroke(linha));
-
-//     fprintf(svg, LINE, id, x1, y1, x2, y2, stroke);
-// }
-
-// void drawText(FILE *svg, void *txt) {
-//     int id;
-//     char aux_anchor[3];
-//     double x, y;
-//     char text[100], fill[15], stroke[15], anchor[10];
-
-//     id = getId(txt);
-//     x = getX(txt);
-//     y = getY(txt);
-//     strcpy(fill, getFill(txt));
-//     strcpy(stroke, getStroke(txt));
-
-//     strcpy(aux_anchor, getAnchor(txt));
-//     if (!strcmp(aux_anchor, "i")) {
-//         strcpy(anchor, "start");
-//     } else if (!strcmp(aux_anchor, "m")) {
-//         strcpy(anchor, "middle");
-//     } else if (!strcmp(aux_anchor, "f")) {
-//         strcpy(anchor, "end");
-//     }
-
-//     strcpy(text, getText(txt));
-
-//     fprintf(svg, TEXT, id, x, y, anchor, stroke, fill, text);
-// }
+    fprintf(svg, "<circle cx="" cy="" r=\"%lf\" fill=\"%s\">", 5.0, "red");
+    fprintf(svg, "\t<animateMotion dur=\"%s\" repeatCount=\"%s\">", "6s", "indefinite");
+    fprintf(svg, "\t\t<mpath xlink:href=\"#%s\"/>", id);
+    fprintf(svg, "\t</animateMotion>");
+    fprintf(svg, "</circle>");
+}
 
 FILE *createSvg(char *bsdSvg) {
     FILE *svg = fopen(bsdSvg, "w");

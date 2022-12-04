@@ -48,6 +48,7 @@ bool classTree(Digraph g, Edge e, int td, int tf, void *extra);
 bool classForward(Digraph g, Edge e, int td, int tf, void *extra);
 bool classReturn(Digraph g, Edge e, int td, int tf, void *extra);
 bool classCross(Digraph g, Edge e, int td, int tf, void *extra);
+void calcXY(Digraph g, Edge e, double *x1, double *y1, double *x2, double *y2);
 bool restarted(Digraph g, void *extra);
 // Faz percurso em profundidade no mapa viário classificando as arestas conforme classificação
 // usual. As arestas cruzadas devem ser consideradas como “pontes” entre regiões

@@ -206,10 +206,6 @@ Edge encontraAresta(Lista l, Node from, Node to) {
         }
         edge = edge->next;
     }
-    if (!result) {
-        // printf("VALOR NAO ENCONTRADO");
-        return NULL;
-    }
     return NULL;
 }
 
@@ -393,9 +389,9 @@ InfoNode getInfoFromVertex(Lista l) {
     return list->valueNode;
 }
 
-void setInfoFromEdge(Lista l, InfoEdge info) {
-    StListEdge *list = l;
-    list->valueEdge = info;
+void setInfoFromEdge(Edge e, InfoEdge info) {
+    StListEdge *edge = e;
+    edge->valueEdge = info;
 }
 
 InfoEdge getInfoFromEdge(Edge e) {

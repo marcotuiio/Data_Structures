@@ -19,21 +19,9 @@ void writeRb(InfoRb i, void *aux);
 // Percorre todos os elementos e vai delegando funções corretas
 // para extrair dados dos nós e, consequentemente, escrever no svg
 
-void drawCircle(FILE *svg, void *circ);
-// Recebe o arquivo svg e o Info círculo
-// Extrai os dados tais quais encontrados no geo e imprimi os mesmo no formato SVG
-
-void drawRectangle(FILE *svg, void *rect);
-// Recebe o arquivo svg e o Info retângulo
-// Extrai os dados tais quais encontrados no geo e imprimi os mesmo no formato SVG
-
-void drawLine(FILE *svg, void *linha);
-// Recebe o arquivo svg e o Info linha
-// Extrai os dados tais quais encontrados no geo e imprimi os mesmo no formato SVG
-
-void drawText(FILE *svg, void *txt);
-// Recebe o arquivo svg, o Info texto e a informção se é um texto pós qry ou não
-// Extrai os dados tais quais encontrados no geo e imprimi os mesmo no formato SVG
+void animatedPath(Digraph g, FILE *svg, Node *path, char *id);
+// Deve receber o grafo, o arquivo svg, o vetor de nós que formam o caminho e o id do caminho
+// Anima um circulo percorrendo o caminho no svg
 
 FILE *createSvg(char *bsdSvg);
 // Consiste na criação da saída padrão do projeto, um arquivo .svg.

@@ -116,6 +116,11 @@ Node getNode(Digraph g, char *nome) {
 
 InfoNode getNodeInfo(Digraph g, Node node) {
     StDigraph *graph = g;
+
+    if (node < 0 || node >= graph->nVertex) {
+        printf("Erro: getNodeInfo: node %d não existe tamanho %d\n", node, graph->nVertex);
+        return NULL;
+    }
     return getInfoFromVertex(graph->adjacency[node]);
 }
 
@@ -137,10 +142,7 @@ Edge addEdge(Digraph g, Node from, Node to, InfoEdge info) {
 
 Edge getEdge(Digraph g, Node from, Node to) {
     StDigraph *graph = g;
-    Edge e = NULL;
-    for (int i = 0; i < from; i++) {
-        e = encontraAresta(graph->adjacency[from], from, to);
-    }
+    Edge e = encontraAresta(graph->adjacency[from], from, to);
     return e;
 }
 
@@ -251,26 +253,26 @@ void dfsTraverse(Digraph g, procEdge treeEdge, procEdge forwardEdge, procEdge re
         if (getEnabled(e)) {
             if (getVisited(graph->adjacency[getToAresta(e)]) == 'w') {  // se o nó adjacente não foi visitado
                 // printf("Tree Edge: %s -> %s\n", getId(graph->adjacency[posic]), getId(graph->adjacency[getToAresta(e)]));
-                if (treeEdge(graph->adjacency, e, getTD(e), getTF(e), extra)) {  // chama a função treeEdge
+                if (treeEdge(graph, e, getTD(e), getTF(e), extra)) {  // chama a função treeEdge
                     return;
                 }
                 dfsTraverse(g, treeEdge, forwardEdge, returnEdge, crossEdge, newTree, getToAresta(e), extra);
 
             } else if (getVisited(graph->adjacency[getToAresta(e)]) == 'g') {  // se o nó adjacente é cinza
                 // printf("Forward Edge: %s -> %s\n", getId(graph->adjacency[posic]), getId(graph->adjacency[getToAresta(e)]));
-                if (forwardEdge(graph->adjacency[posic], e, posic, getToAresta(e), extra)) {  // chama a função forwardEdge
+                if (forwardEdge(graph, e, getTD(e), getTF(e), extra)) {  // chama a função forwardEdge
                     return;
                 }
 
             } else if (getVisited(graph->adjacency[getToAresta(e)]) == 'b') {                    // se o nó adjacente é preto
                 if (getTD(graph->adjacency[posic]) < getTD(graph->adjacency[getToAresta(e)])) {  // se o nó adjacente foi visitado depois do nó atual
                     // printf("Return Edge: %s -> %s\n", getId(graph->adjacency[posic]), getId(graph->adjacency[getToAresta(e)]));
-                    if (returnEdge(graph->adjacency[posic], e, posic, getToAresta(e), extra)) {  // chama a função returnEdge
+                    if (returnEdge(graph, e, getTD(e), getTF(e), extra)) {  // chama a função returnEdge
                         return;
                     }
                 } else {  // se o nó adjacente foi visitado antes do nó atual
                     // printf("Cross Edge: %s -> %s\n", getId(graph->adjacency[posic]), getId(graph->adjacency[getToAresta(e)]));
-                    if (crossEdge(graph->adjacency[posic], e, posic, getToAresta(e), extra)) {  // chama a função crossEdge
+                    if (crossEdge(graph, e, getTD(e), getTF(e), extra)) {  // chama a função crossEdge
                         return;
                     }
                 }
@@ -291,11 +293,13 @@ bool dfs(Digraph g, procEdge treeEdge, procEdge forwardEdge, procEdge returnEdge
     }
 
     for (int i = 0; i < graph->nVertex; i++) {
+
         if (getVisited(graph->adjacency[i]) == 'w') {  // se o nó não foi visitado
             void **data = extra;
-            data[5] = &i;
-            newTree(graph, extra);                     // chama fução que deve criar floresta devido ao percurso em profundidade
-            dfsTraverse(graph, treeEdge, forwardEdge, returnEdge, crossEdge, newTree, i, extra);
+            Node aux = i;
+            data[5] = &aux;
+            newTree(graph, data);                     // chama função que deve criar floresta devido ao percurso em profundidade
+            dfsTraverse(graph, treeEdge, forwardEdge, returnEdge, crossEdge, newTree, i, data);
         }
     }
     return true;

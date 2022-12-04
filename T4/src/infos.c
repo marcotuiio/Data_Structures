@@ -1,7 +1,7 @@
 #include "infos.h"
 
 typedef struct StDetails {
-    char sw[15], cfill[15], cstrk[15];
+    char sw[15], cfill[25], cstrk[25];
 } StDetails;
 
 typedef struct StQuadra {
