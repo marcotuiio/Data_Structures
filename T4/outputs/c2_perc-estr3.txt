@@ -2,14 +2,31 @@
 [*] @o? B42-10.5 S 82.000000
 CEP: B42-10.5, FACE: S, NUM: 82.000000, X: 4957.000000, Y: 3135.000000
 
-[*] p B42-7.9 N 97.000000 #660080 #d400aa
+[*] p? B42-7.9 N 97.000000 #660080 #d400aa
 Iniciando percurso de CEP: B42-10.5 (X: 4957.000000, Y: 3135.000000) para CEP: B42-7.9 (X: 5492.000000, Y: 2820.000000)
-NÃO FOI POSSÍVEL ENCONTRAR UM CAMINHO ENTRE OS ENDEREÇOS
 
-[*] p B42-3.2 L 51.000000 #660080 #d400aa
+Caminho mais curto:
+Siga na direcao direcaoAtual na Rua Tandang_Sora. Chegou em seu destino.
+
+Caminho mais rapido:
+Siga na direcao direcaoAtual na Rua Tandang_Sora. Chegou em seu destino.
+
+[*] p? B42-3.2 L 51.000000 #660080 #d400aa
 Iniciando percurso de CEP: B42-10.5 (X: 4957.000000, Y: 3135.000000) para CEP: B42-3.2 (X: 4485.000000, Y: 2451.000000)
-NÃO FOI POSSÍVEL ENCONTRAR UM CAMINHO ENTRE OS ENDEREÇOS
 
-[*] p B43-9.11 S 12.000000 #660080 #d400aa
+Caminho mais curto:
+Siga na direcao Leste na Rua Sumner_St. Chegou em seu destino.
+
+Caminho mais rapido:
+Siga na direcao direcaoAtual na Rua Tandang_Sora. Chegou em seu destino.
+
+[*] p? B43-9.11 S 12.000000 #660080 #d400aa
 Iniciando percurso de CEP: B42-10.5 (X: 4957.000000, Y: 3135.000000) para CEP: B43-9.11 (X: 7672.000000, Y: 3030.000000)
-NÃO FOI POSSÍVEL ENCONTRAR UM CAMINHO ENTRE OS ENDEREÇOS
+
+Caminho mais curto:
+Siga na direcao direcaoAtual na Rua Tandang_Sora ate o cruzamento com a Rua State_Dr.
+Siga na direcao Oeste na Rua State_Dr. Chegou em seu destino.
+
+Caminho mais rapido:
+Siga na direcao direcaoAtual na Rua Tandang_Sora ate o cruzamento com a Rua State_Dr.
+Siga na direcao Oeste na Rua State_Dr. Chegou em seu destino.

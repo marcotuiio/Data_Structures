@@ -160,6 +160,11 @@ CEP: B41-8.1, CFILL_INICIAL: grey, CSTRK_INICIAL: black, CFILL_FINAL: #ff6600, C
 [*] @o? B44-9.6 O 74.000000
 CEP: B44-9.6, FACE: O, NUM: 74.000000, X: 9035.000000, Y: 3104.000000
 
-[*] p B41-8.1 L 22.000000 #660080 #d400aa
+[*] p? B41-8.1 L 22.000000 #660080 #d400aa
 Iniciando percurso de CEP: B44-9.6 (X: 9035.000000, Y: 3104.000000) para CEP: B41-8.1 (X: 2350.000000, Y: 2947.000000)
-NÃO FOI POSSÍVEL ENCONTRAR UM CAMINHO ENTRE OS ENDEREÇOS
+
+Caminho mais curto:
+Siga na direcao Leste na Rua Sotelo_Ave. Chegou em seu destino.
+
+Caminho mais rapido:
+Siga na direcao Norte na Rua Sproule_Ln. Chegou em seu destino.

@@ -74,6 +74,10 @@ void increasePrioPQ(PQueue pq, Chave ch, int dp);
 */
 void setPrioPQ(PQueue pq, Chave ch, int prio);
 
+/*
+  Printa a fila pq mostrando o index, o valor e a prioridade de cada elemento.
+*/
+void printQueue(PQueue pq);
 
 /*
   Libera memória

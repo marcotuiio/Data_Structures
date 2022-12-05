@@ -31,6 +31,7 @@ Digraph cloneOnlyVertices(Digraph g, bool keepInfo) {
         if (keepInfo) {
             setNodeInfo(newGraph, i, getNodeInfo(g, i));
         }
+        setNodeName(newGraph, i, getNomeVertex(getNodeInfo(g, i)));
     }
 
     return newGraph;
@@ -41,13 +42,17 @@ Digraph cloneOnlyEnabled(Digraph g, bool keepInfo) {
     Digraph newGraph = cloneOnlyVertices(g, keepInfo);
 
     for (int i = 0; i < graph->nVertex; i++) {
-        for (int j = 0; j < graph->nVertex; j++) {
-            Edge o = getEdge(g, i, j);
-            if (o && !isDisabled(g, o)) {
-                addEdge(newGraph, i, j, NULL);
+        setNodeInfo(newGraph, i, getNodeInfo(g, i));
+        setNodeName(newGraph, i, getNomeVertex(getNodeInfo(g, i)));
+    }
+
+    for (int j = 0; j < graph->nVertex; j++) {
+        for (Edge e = getFirst(graph->adjacency[j]); e; e = getNext(e)) {
+            if (getEnabled(e)) {
                 if (keepInfo) {
-                    Edge e = getEdge(newGraph, i, j);
-                    setEdgeInfo(newGraph, e, getEdgeInfo(g, o));
+                    addEdge(newGraph, getFromNode(g, e), getToNode(g, e), getEdgeInfo(g, e));
+                } else {
+                    addEdge(newGraph, getFromNode(g, e), getToNode(g, e), NULL);
                 }
             }
         }
@@ -61,14 +66,18 @@ Digraph cloneAll(Digraph g, bool keepInfo) {
     Digraph newGraph = cloneOnlyVertices(g, keepInfo);
 
     for (int i = 0; i < graph->nVertex; i++) {
-        for (int j = 0; j < graph->nVertex; j++) {
-            Edge o = getEdge(g, i, j);
-            if (o) {
-                addEdge(newGraph, i, j, NULL);
-                if (keepInfo) {
-                    Edge e = getEdge(newGraph, i, j);
-                    setEdgeInfo(newGraph, e, getEdgeInfo(g, o));
-                }
+        if (keepInfo) {
+            setNodeInfo(newGraph, i, getNodeInfo(g, i));
+        }
+        setNodeName(newGraph, i, getNomeVertex(getNodeInfo(g, i)));
+    }
+
+    for (int j = 0; j < graph->nVertex; j++) {
+        for (Edge e = getFirst(graph->adjacency[j]); e; e = getNext(e)) {
+            if (keepInfo) {
+                addEdge(newGraph, getFromNode(g, e), getToNode(g, e), getEdgeInfo(g, e));
+            } else {
+                addEdge(newGraph, getFromNode(g, e), getToNode(g, e), NULL);
             }
         }
     }
@@ -293,12 +302,11 @@ bool dfs(Digraph g, procEdge treeEdge, procEdge forwardEdge, procEdge returnEdge
     }
 
     for (int i = 0; i < graph->nVertex; i++) {
-
         if (getVisited(graph->adjacency[i]) == 'w') {  // se o nó não foi visitado
             void **data = extra;
             Node aux = i;
             data[5] = &aux;
-            newTree(graph, data);                     // chama função que deve criar floresta devido ao percurso em profundidade
+            newTree(graph, data);  // chama função que deve criar floresta devido ao percurso em profundidade
             dfsTraverse(graph, treeEdge, forwardEdge, returnEdge, crossEdge, newTree, i, data);
         }
     }

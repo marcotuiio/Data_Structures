@@ -451,7 +451,13 @@ CEP: b08.10, CFILL_INICIAL: darkblue, CSTRK_INICIAL: Olive, CFILL_FINAL: #ff6600
 [*] @o? b03.1 N 64.000000
 CEP: b03.1, FACE: N, NUM: 64.000000, X: 159.000000, Y: 365.000000
 
-[*] p b08.10 L 44.000000 #660080 #d400aa
+[*] p? b08.10 L 44.000000 #660080 #d400aa
 Iniciando percurso de CEP: b03.1 (X: 159.000000, Y: 365.000000) para CEP: b08.10 (X: 1310.000000, Y: 804.000000)
-NÃO FOI POSSÍVEL ENCONTRAR UM CAMINHO ENTRE OS ENDEREÇOS
-NÃO FOI POSSÍVEL ENCONTRAR UM CAMINHO ENTRE OS ENDEREÇOS
+
+Caminho mais curto:
+Siga na direcao Leste na Rua Yerba_Buena_Ln ate o cruzamento com a Rua Wyman_Ave.
+Siga na direcao Oeste na Rua Wyman_Ave. Chegou em seu destino.
+
+Caminho mais rapido:
+Siga na direcao Leste na Rua Yerba_Buena_Ln ate o cruzamento com a Rua Worth_St.
+Siga na direcao Oeste na Rua Worth_St. Chegou em seu destino.

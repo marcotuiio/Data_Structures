@@ -1,6 +1,0 @@
-
-[*] catac 520.000000 386.670000 468.000000 348.000000
-figura removida: x = 635.00 y = 475.00 cor borda = darkblue cor preenchimento = Olive
-figura removida: x = 770.00 y = 475.00 cor borda = darkblue cor preenchimento = Olive
-
-================ RELATORIO FINAL ================

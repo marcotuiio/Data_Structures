@@ -413,7 +413,7 @@ void pFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph g, void *origin) {
     double num;
 
     fscanf(qry, "%s %s %lf %s %s", cep, face, &num, cmc, cmr);
-    fprintf(txt, "\n[*] p %s %s %lf %s %s\n", cep, face, num, cmc, cmr);
+    fprintf(txt, "\n[*] p? %s %s %lf %s %s\n", cep, face, num, cmc, cmr);
 
     void *data[] = {cep, NULL};
     percursoProfundidade(t, lookCep, data);
@@ -448,41 +448,10 @@ void pFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph g, void *origin) {
         fprintf(txt, "Nó de destino não encontrado\n");
         return;
     }
-    printf("DIJKSTRA: i: %d, j: %d\n", i, j);
-    int k;
+    // printf("DIJKSTRA: i: %d, j: %d\n", i, j);
 
     fprintf(txt, "Iniciando percurso de CEP: %s (X: %lf, Y: %lf) para CEP: %s (X: %lf, Y: %lf)\n", o->cep, o->x, o->y, cep, x2, y2);
-    Node *path_speed = fullDijkstra(g, i, j, 1);  // 0 = distancia, 1 = velocidade
-    if (!path_speed) {
-        fprintf(txt, "NÃO FOI POSSÍVEL ENCONTRAR UM CAMINHO ENTRE OS ENDEREÇOS\n");
-        fprintf(svg, "\t<line x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" stroke-width=\"1.2%%\" stroke-dasharray=\"5,10\" />\n", o->x, o->y, x2, y2, "red");
-
-    } else {
-        for (k = 0; k < getGraphSize(g); k++) {
-            if (path_speed[k] == -1) {
-                break;
-            }
-            fprintf(txt, "Nó %d: %s\n", k, getNomeVertex(getNodeInfo(g, path_speed[k])));
-            fprintf(svg, LINE, getXVertex(getNodeInfo(g, path_speed[k])), getYVertex(getNodeInfo(g, path_speed[k])), getXVertex(getNodeInfo(g, path_speed[k + 1])), getYVertex(getNodeInfo(g, path_speed[k + 1])), cmr);
-        }
-        animatedPath(g, svg, path_speed, "path_speed");
-        free(path_speed);
-    }
-
-    Node *path_distance = fullDijkstra(g, i, j, 0);  // 0 = distancia, 1 = velocidade
-    if (!path_distance) {
-        fprintf(txt, "NÃO FOI POSSÍVEL ENCONTRAR UM CAMINHO ENTRE OS ENDEREÇOS\n");
-        fprintf(svg, "\t<line x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" stroke-width=\"1.2%%\" stroke-dasharray=\"5,10\" />\n", o->x, o->y, x2, y2, "red");
-
-    } else {
-        for (k = 0; k < getGraphSize(g); k++) {
-            if (path_distance[k] == -1) {
-                break;
-            }
-            fprintf(txt, "Nó %d: %s\n", k, getNomeVertex(getNodeInfo(g, path_distance[k])));
-            fprintf(svg, LINE, getXVertex(getNodeInfo(g, path_distance[k])), getYVertex(getNodeInfo(g, path_distance[k])), getXVertex(getNodeInfo(g, path_distance[k + 1])), getYVertex(getNodeInfo(g, path_distance[k + 1])), cmc);
-        }
-        animatedPath(g, svg, path_distance, "path_distance");
-        free(path_distance);
-    }
+    fullDijkstra(g, i, j, 1, svg, txt, cmr, cmc);  // 0 = distancia, 1 = velocidade
+    fullDijkstra(g, i, j, 0, svg, txt, cmr, cmc);  // 0 = distancia, 1 = velocidade
+    
 }

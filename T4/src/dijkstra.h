@@ -17,7 +17,7 @@
 int compareKeys(Chave ch1, Chave ch2);
 // Compara duas chaves de acordo com o alguma espeficicação previamente definida
 
-Node *fullDijkstra(Digraph g, Node src, Node dest, int type);
+void fullDijkstra(Digraph g, Node src, Node dest, int type, FILE* svg, FILE* txt, char *cmr, char *cmc);
 // Executa o algoritmo de Dijkstra para encontrar o caminho mais curto entre src e dest
 
 #endif

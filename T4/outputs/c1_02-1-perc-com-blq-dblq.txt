@@ -104,9 +104,14 @@ CEP: b01.9, CFILL_INICIAL: darkblue, CSTRK_INICIAL: Olive, CFILL_FINAL: #ff6600,
 [*] @o? b010.1 N 76.000000
 CEP: b010.1, FACE: N, NUM: 76.000000, X: 171.000000, Y: 1030.000000
 
-[*] p b01.9 S 43.000000 #660080 #d400aa
+[*] p? b01.9 S 43.000000 #660080 #d400aa
 Iniciando percurso de CEP: b010.1 (X: 171.000000, Y: 1030.000000) para CEP: b01.9 (X: 1218.000000, Y: 95.000000)
-NÃO FOI POSSÍVEL ENCONTRAR UM CAMINHO ENTRE OS ENDEREÇOS
+
+Caminho mais curto:
+Siga na direcao Oeste na Rua Palace_Dr. Chegou em seu destino.
+
+Caminho mais rapido:
+Siga na direcao Oeste na Rua Palace_Dr. Chegou em seu destino.
 
 [*] rbl blq-total-ilha-centro-ns-ns
 
@@ -177,6 +182,11 @@ CEP: b01.9, CFILL_INICIAL: #ff6600, CSTRK_INICIAL: #800080, CFILL_FINAL: #ff6600
 [*] @o? b010.1 N 76.000000
 CEP: b010.1, FACE: N, NUM: 76.000000, X: 171.000000, Y: 1030.000000
 
-[*] p b01.9 S 43.000000 #660080 #d400aa
+[*] p? b01.9 S 43.000000 #660080 #d400aa
 Iniciando percurso de CEP: b010.1 (X: 171.000000, Y: 1030.000000) para CEP: b01.9 (X: 1218.000000, Y: 95.000000)
-NÃO FOI POSSÍVEL ENCONTRAR UM CAMINHO ENTRE OS ENDEREÇOS
+
+Caminho mais curto:
+Siga na direcao Oeste na Rua Palace_Dr. Chegou em seu destino.
+
+Caminho mais rapido:
+Siga na direcao Oeste na Rua Palace_Dr. Chegou em seu destino.

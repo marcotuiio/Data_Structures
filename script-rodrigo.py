@@ -48,8 +48,8 @@ subdir.sort()
 count = 0
 for files_in_subqry in subqry:
     for j in files_in_subqry:
-        #print(f"./t2 -e {BED} -o {BSD} -f {geo[count]} -v {via[count]} -q {subdir[count] + '/' + j}")
-        #print("\n")
+        # print(f"./t2 -e {BED} -o {BSD} -f {geo[count]} -v {via[count]} -q {subdir[count] + '/' + j}")
+        # print("\n")
         subprocess.call(["./t2", "-e", BED, "-o", BSD, "-f", geo[count], "-v", via[count], "-q", subdir[count] + "/" + j])
         
 

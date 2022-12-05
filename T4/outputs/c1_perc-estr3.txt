@@ -2,14 +2,29 @@
 [*] @o? b09.2 O 28.000000
 CEP: b09.2, FACE: O, NUM: 28.000000, X: 350.000000, Y: 883.000000
 
-[*] p b010.2 S 8.000000 #660080 #d400aa
+[*] p? b010.2 S 8.000000 #660080 #d400aa
 Iniciando percurso de CEP: b09.2 (X: 350.000000, Y: 883.000000) para CEP: b010.2 (X: 238.000000, Y: 950.000000)
-NÃO FOI POSSÍVEL ENCONTRAR UM CAMINHO ENTRE OS ENDEREÇOS
 
-[*] p b04.10 L 66.000000 #660080 #d400aa
+Caminho mais curto:
+Siga na direcao Norte na Rua Zircon_Pl. Chegou em seu destino.
+
+Caminho mais rapido:
+Siga na direcao Norte na Rua Zircon_Pl. Chegou em seu destino.
+
+[*] p? b04.10 L 66.000000 #660080 #d400aa
 Iniciando percurso de CEP: b09.2 (X: 350.000000, Y: 883.000000) para CEP: b04.10 (X: 1310.000000, Y: 446.000000)
-NÃO FOI POSSÍVEL ENCONTRAR UM CAMINHO ENTRE OS ENDEREÇOS
 
-[*] p b07.8 N 88.000000 #660080 #d400aa
+Caminho mais curto:
+Siga na direcao Oeste na Rua Worth_St. Chegou em seu destino.
+
+Caminho mais rapido:
+Siga na direcao Oeste na Rua Worth_St. Chegou em seu destino.
+
+[*] p? b07.8 N 88.000000 #660080 #d400aa
 Iniciando percurso de CEP: b09.2 (X: 350.000000, Y: 883.000000) para CEP: b07.8 (X: 1128.000000, Y: 665.000000)
-NÃO FOI POSSÍVEL ENCONTRAR UM CAMINHO ENTRE OS ENDEREÇOS
+
+Caminho mais curto:
+Siga na direcao Oeste na Rua Worth_St. Chegou em seu destino.
+
+Caminho mais rapido:
+Siga na direcao Oeste na Rua Worth_St. Chegou em seu destino.

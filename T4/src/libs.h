@@ -25,7 +25,7 @@ typedef void *Lista;
 typedef void *Queue;
 
 typedef void *PQueue;
-typedef void *PQInfo;
+typedef int PQInfo;
 typedef void *Chave;
 
 typedef void *RbNode;

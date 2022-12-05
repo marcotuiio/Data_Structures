@@ -728,5 +728,11 @@ CEP: B30-3.4, CFILL_INICIAL: Khaki, CSTRK_INICIAL: Olive, CFILL_FINAL: #ff6600, 
 [*] @o? B43-1.9 L 77.000000
 CEP: B43-1.9, FACE: L, NUM: 77.000000, X: 10040.000000, Y: 3117.000000
 
-[*] p B30-3.4 N 85.000000 #660080 #d400aa
-In
+[*] p? B30-3.4 N 85.000000 #660080 #d400aa
+Iniciando percurso de CEP: B43-1.9 (X: 10040.000000, Y: 3117.000000) para CEP: B30-3.4 (X: 660.000000, Y: 415.000000)
+
+Caminho mais curto:
+Siga na direcao Leste na Rua Ophir_Aly. Chegou em seu destino.
+
+Caminho mais rapido:
+Siga na direcao Leste na Rua Ophir_Aly. Chegou em seu destino.

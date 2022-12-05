@@ -5291,6 +5291,12 @@
 [*] @o? B44-3.12 N 107.000000
 CEP: B44-3.12, FACE: N, NUM: 107.000000, X: 13222.000000, Y: 3345.000000
 
-[*] p B31-9.4 O 35.000000 #660080 #d400aa
+[*] p? B31-9.4 O 35.000000 #660080 #d400aa
 Iniciando percurso de CEP: B44-3.12 (X: 13222.000000, Y: 3345.000000) para CEP: B31-9.4 (X: 3460.000000, Y: 960.000000)
-NÃO FOI POSSÍVEL ENCONTRAR UM CAMINHO ENTRE OS ENDEREÇOS
+
+Caminho mais curto:
+Siga na direcao Leste na Rua Nimitz_Ave ate o cruzamento com a Rua Salmon_St.
+Siga na direcao Oeste na Rua Salmon_St. Chegou em seu destino.
+
+Caminho mais rapido:
+Siga na direcao Norte na Rua North_Dr. Chegou em seu destino.

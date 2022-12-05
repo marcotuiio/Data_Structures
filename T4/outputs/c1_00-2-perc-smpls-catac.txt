@@ -1,0 +1,18 @@
+
+[*] catac 225.400000 279.300000 108.000000 72.000000
+	ARESTA REMOVIDA: Yorba_St, X1: 226.250000, Y1: 281.250000, X2: 293.750000, Y2: 281.250000
+	ARESTA REMOVIDA: Zoe_St, X1: 226.250000, Y1: 328.750000, X2: 226.250000, Y2: 281.250000
+
+[*] @o? b01.8 O 10.000000
+CEP: b01.8, FACE: O, NUM: 10.000000, X: 1160.000000, Y: 105.000000
+
+[*] p? b07.1 N 62.000000 #660080 #d400aa
+Iniciando percurso de CEP: b01.8 (X: 1160.000000, Y: 105.000000) para CEP: b07.1 (X: 157.000000, Y: 665.000000)
+
+Caminho mais curto:
+Siga na direcao Norte na Rua Young_St ate o cruzamento com a Rua Wyman_Ave.
+Siga na direcao Oeste na Rua Wyman_Ave. Chegou em seu destino.
+
+Caminho mais rapido:
+Siga na direcao Norte na Rua Young_St ate o cruzamento com a Rua Wyman_Ave.
+Siga na direcao Oeste na Rua Wyman_Ave. Chegou em seu destino.

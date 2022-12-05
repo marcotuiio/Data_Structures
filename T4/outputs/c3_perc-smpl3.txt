@@ -2,6 +2,17 @@
 [*] @o? B30-30.16 L 38.000000
 CEP: B30-30.16, FACE: L, NUM: 38.000000, X: 1895.000000, Y: 2748.000000
 
-[*] p B44-15.7 N 60.000000 #660080 #d400aa
+[*] p? B44-15.7 N 60.000000 #660080 #d400aa
 Iniciando percurso de CEP: B30-30.16 (X: 1895.000000, Y: 2748.000000) para CEP: B44-15.7 (X: 12525.000000, Y: 4510.000000)
-NÃO FOI POSSÍVEL ENCONTRAR UM CAMINHO ENTRE OS ENDEREÇOS
+
+Caminho mais curto:
+Siga na direcao Leste na Rua Santa_Rosa_Ave ate o cruzamento com a Rua Sonoma_St.
+Siga na direcao Oeste na Rua Sonoma_St ate o cruzamento com a Rua Pennsylvania_Ave.
+Siga na direcao Oeste na Rua Pennsylvania_Ave ate o cruzamento com a Rua ..
+Siga na direcao Oeste na Rua . ate o cruzamento com a Rua Navajo_Ave.
+Siga na direcao Oeste na Rua Navajo_Ave. Chegou em seu destino.
+
+Caminho mais rapido:
+Siga na direcao direcaoAtual na Rua Sibert_Ln ate o cruzamento com a Rua ExpressaLesteOeste.
+Siga na direcao Oeste na Rua ExpressaLesteOeste ate o cruzamento com a Rua Navajo_Ave.
+Siga na direcao Oeste na Rua Navajo_Ave. Chegou em seu destino.
