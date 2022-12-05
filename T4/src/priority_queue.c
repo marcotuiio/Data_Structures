@@ -4,7 +4,6 @@
 
 // Priority queue using a binary heap
 
-
 typedef struct PQNode {
     PQInfo info;
     Chave chave;

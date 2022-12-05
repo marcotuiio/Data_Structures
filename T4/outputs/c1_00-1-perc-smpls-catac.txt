@@ -13,9 +13,12 @@ CEP: b01.8, FACE: O, NUM: 10.000000, X: 1160.000000, Y: 105.000000
 Iniciando percurso de CEP: b01.8 (X: 1160.000000, Y: 105.000000) para CEP: b07.1 (X: 157.000000, Y: 665.000000)
 
 Caminho mais curto:
-Siga na direcao Norte na Rua Young_St ate o cruzamento com a Rua Wyman_Ave.
+Siga na direcao Norte na Rua Young_St ate o cruzamento com a Rua Zampa_Ln.
+Siga na direcao Norte na Rua Zampa_Ln ate o cruzamento com a Rua Zoo_Rd.
+Siga na direcao Norte na Rua Zoo_Rd ate o cruzamento com a Rua Wyman_Ave.
 Siga na direcao Oeste na Rua Wyman_Ave. Chegou em seu destino.
 
 Caminho mais rapido:
-Siga na direcao Norte na Rua Young_St ate o cruzamento com a Rua Wyman_Ave.
+Siga na direcao Norte na Rua Young_St ate o cruzamento com a Rua Zoo_Rd.
+Siga na direcao Norte na Rua Zoo_Rd ate o cruzamento com a Rua Wyman_Ave.
 Siga na direcao Oeste na Rua Wyman_Ave. Chegou em seu destino.

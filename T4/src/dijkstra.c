@@ -3,113 +3,20 @@
 #define DISTANCIA 0
 #define VELOCIDADE 1
 
-// void initDijkstra(Digraph g, int start, PQueue pq) {
-//     for (Node i = 0; i < getGraphSize(g); i++) {        // para todos os vertices
-//         if (i == start) {
-//             insertPQ(pq, getNodeInfo(g, start), start, 0);
-//             setWeightDij(adjacentEdges(g, start), 0.0);  // marca a distância do nó inicial como 0
-//         } else {
-//             insertPQ(pq, getNodeInfo(g, i), i, -1);
-//             setWeightDij(adjacentEdges(g, i), DOUBLE_MAX);  // marca a distância como infinito
-//         }
-//     }
-// }
-
-// void relaxDijkstra(Digraph g, Node u, Node v, double w, int prio, PQueue pq, Node *path, int *current) {        // u é o nó atual, v é o nó adjacente, w é o peso da aresta
-//     if (getWeightDij(adjacentEdges(g, v)) > getWeightDij(adjacentEdges(g, u)) + w) {  // se a distância do nó adjacente for maior que a distância do nó atual + o peso da aresta
-//         setWeightDij(adjacentEdges(g, v), getWeightDij(adjacentEdges(g, u)) + w);
-//         setPrioPQ(pq, getNodeInfo(g, v), prio);
-//         if (*(current) < getGraphSize(g)) {
-//             path[*(current)] = v;
-//             // printf("path %d\n", path[*(current)]);
-//             *current++;
-//             // printf("current %d\n", *current);
-//         }
-//     }
-// }
-
-// int compareKeys(Chave ch1, Chave ch2) {
-//     // printf("Comparing %d and %d\n", *(Node*)ch1, *(Node*)ch2);
-//     if (!strcmp(getNomeVertex(ch1), getNomeVertex(ch2))) {
-//         return 1;  // se os nomes forem iguais, retorna 1
-//     }
-//     return 0;
-// }
-
-// void calcW(Digraph g, Edge e, int type, int *prio, double *w) {
-//     if (type == DISTANCIA) {  // peso é a distancia
-//         *(w) = getCMPEdge(getEdgeInfo(g, e));
-//         *(prio) = 10000 / *(w);
-
-//     } else if (type == VELOCIDADE) {  // peso é a velocidade
-//         *(w) = getVMEdge(getEdgeInfo(g, e));
-//         *(prio) = 10000 * *(w);
-//     }
-// }
-
-// Node *fullDijkstra(Digraph g, Node src, Node dest, int type) {
-//     if (src == -1) {
-//         printf("Source node not found\n");
-//         return NULL;
-//     }
-//     if (dest == -1) {
-//         printf("Destination node not found\n");
-//         return NULL;
-//     }
-
-//     Node *path = calloc(getGraphSize(g), sizeof(Node));
-//     PQueue pq = createPQ(getGraphSize(g), compareKeys);
-//     initDijkstra(g, src, pq);
-
-//     // printf("maxPriority: %d\n", *(Node*) getMaximumPQ(pq));
-//     // printQueue(pq);
-//     // exit(0);
-
-//     Node current = 1;
-//     int prio = 0;
-//     double w = 0;
-//     path[0] = src;
-
-//     while (!isEmptyPQ(pq)) {
-//         PQInfo u = removeMaximumPQ(pq);
-
-//         Lista adjacentes = adjacentEdges(g, u);                   // lista de nós adjacente
-//         // printf("Adjacentes de %d: %p %p\n", u, adjacentes, getFirst(adjacentes));
-//         for (Edge e = getFirst(adjacentes); e; e = getNext(e)) {  // percorre a lista de adjacencia do nó atual
-
-//             if (getEnabled(e)) {
-//                 Node v = getToAresta(e);  // nó adjacente
-
-//                 calcW(g, e, type, &prio, &w);
-//                 // printf("Relaxing node %d with prio %d\n", v, prio);
-//                 relaxDijkstra(g, u, v, w, prio, pq, path, &current);  // Compara e atribui os pesos das arestas
-//                 // printf("path[current] %d\n", path[current]);
-//             }
-//         }
-//     }
-//     killPQ(pq);
-
-//     // printf("\ncurrent: %d\n", current);
-//     // int i = 0;
-//     // while (path[i] != dest && i < getGraphSize(g)) {
-//     //     printf("%d ", path[i]);
-//     //     i++;
-//     // }
-//     // printf("Caminho: src %d dest %d\n", path[0], path[current-1]);
-
-//     if (path[current-1] != dest) {
-//         free(path);
-//         return NULL;
-//     }
-//     return path;
-// }
-
 void initDijkstra(Digraph g, Node* distancia, Node* pai, Node src) {
     for (int i = 0; i < getGraphSize(g); i++) {
         distancia[i] = INT_MAX;
         pai[i] = -1;
     }
     distancia[src] = 0;
+}
+
+int compareKeys(Chave ch1, Chave ch2) {
+    // printf("Comparing %d and %d\n", *(Node*)ch1, *(Node*)ch2);
+    if (!strcmp(getNomeVertex(ch1), getNomeVertex(ch2))) {
+        return 1;  // se os nomes forem iguais, retorna 1
+    }
+    return 0;
 }
 
 void relaxDijkstra(Digraph g, Node* distancia, Node* pai, Node u, Node v, double w) {
@@ -170,12 +77,22 @@ double calcW(Digraph g, Edge e, int type) {
     return w;
 }
 
-void fullDijkstra(Digraph g, Node src, Node dest, int type, FILE* svg, FILE* txt, char *cmr, char *cmc) {
+void fullDijkstra(Digraph g, Node src, Node dest, int type, FILE* svg, FILE* txt, char* cmr, char* cmc) {
+    if (src == -1) {
+        printf("Source node not found\n");
+        return;
+    }
+    if (dest == -1) {
+        printf("Destination node not found\n");
+        return;
+    }
+
     Node* distancia = calloc(getGraphSize(g), sizeof(Node));
     int* caminho = calloc(getGraphSize(g), sizeof(int));
     int pai[getGraphSize(g)];
     int menor;
     Node aux;
+    PQueue pq = createPQ(getGraphSize(g), compareKeys);
     bool aberto[getGraphSize(g)];
     Edge aresta = NULL;
 
@@ -259,8 +176,9 @@ void fullDijkstra(Digraph g, Node src, Node dest, int type, FILE* svg, FILE* txt
         } else if (y1 < y2) {
             strcpy(direcaoAtual, "Norte");
 
-        } else if (y2 > y2)
+        } else if (y2 > y2) {
             strcpy(direcaoAtual, "Sul");
+        }
 
         if (!strcmp(direcaoAnterior, "direcaoAnterior")) {
             fprintf(txt, "\nSiga na direcao %s na Rua %s", direcaoAtual, getNomeEdge(info));
@@ -283,4 +201,5 @@ void fullDijkstra(Digraph g, Node src, Node dest, int type, FILE* svg, FILE* txt
 
     free(distancia);
     free(caminho);
+    killPQ(pq);
 }
