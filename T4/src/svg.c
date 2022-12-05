@@ -32,7 +32,7 @@ void animatedPath(Digraph g, FILE *svg, Node *path, char *id) {
     fprintf(svg, "<path d=m ");
 
     for (int i = 0; i < getGraphSize(g); i++) {
-        if (path[i] != INT_MAX) {
+        if (path[i] != INT_MAX && path[i] != -1 && path[i] < getGraphSize(g)) {
             fprintf(svg, "\"%lf\" \"%lf\", ", getXVertex(getNodeInfo(g, path[i])), getYVertex(getNodeInfo(g, path[i])));
         }
     }

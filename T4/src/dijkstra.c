@@ -108,9 +108,11 @@ void fullDijkstra(Digraph g, Node src, Node dest, int type, FILE* svg, FILE* txt
 
         aresta = getFirst(adjacentEdges(g, menor));
         while (aresta) {
-            double w = calcW(g, aresta, type);
-            relaxDijkstra(g, distancia, pai, menor, getToAresta(aresta), w);
-            aresta = getNext(aresta);
+            if (getEnabled(aresta)) {
+                double w = calcW(g, aresta, type);
+                relaxDijkstra(g, distancia, pai, menor, getToAresta(aresta), w);
+            }
+            aresta = getNext(aresta);    
         }
     }
 

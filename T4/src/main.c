@@ -23,7 +23,7 @@ int main(int argc, char* argv[]) {
         writeSvg(createSvg(getBsdGeoSvg(my_paths)), my_rb, my_graph);
 
     } else {
-        printf("ERROR: INPUT FILES OR OUTPUT DIRECTORIES HAVE NOT BEEN READ\n");
+        printf("WARNING: INPUT FILES OR OUTPUT DIRECTORIES HAVE NOT BEEN READ\n");
         return -1;  // ERRO!
     }
 
