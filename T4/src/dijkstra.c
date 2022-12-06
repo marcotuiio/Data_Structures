@@ -138,14 +138,14 @@ void fullDijkstra(Digraph g, Node src, Node dest, int type, FILE* svg, FILE* txt
             y1 = getYVertex(getNodeInfo(g, caminho[i]));
             x2 = getXVertex(getNodeInfo(g, caminho[i + 1]));
             y2 = getYVertex(getNodeInfo(g, caminho[i + 1]));
-            fprintf(svg, "\t<path d=\"M%lf,%lf %lf,%lf\" style=\"stroke:%s; stroke-width:4; stroke-dasharray:2,2\"/> <circle cx=\"0\" cy=\"0\" r=\"5\" stroke=\"red\" fill=\"red\"> <animateMotion path =\"M%lf,%lf %lf,%lf\" begin=\"0s\" dur=\"3s\" repeatCount=\"indefinite\" /> </circle>\n", x1, y1, x2, y2, cmr, x1, y1, x2, y2);
+            fprintf(svg, "\t<path d=\"M%lf,%lf %lf,%lf\" style=\"stroke:%s; stroke-width:4; stroke-dasharray:2,2\"/> <circle x=\"0\" y=\"0\" r=\"5\" stroke=\"red\" fill=\"blue\"> <animateMotion path =\"M%lf,%lf %lf,%lf\" begin=\"0s\" dur=\"3s\" repeatCount=\"indefinite\" /> </circle>\n", x1, y1, x2, y2, cmr, x1, y1, x2, y2);
 
         } else if (type == DISTANCIA) {
             x1 = getXVertex(getNodeInfo(g, caminho[i])) - 4;
             y1 = getYVertex(getNodeInfo(g, caminho[i])) - 4;
             x2 = getXVertex(getNodeInfo(g, caminho[i + 1])) - 4;
             y2 = getYVertex(getNodeInfo(g, caminho[i + 1])) - 4;
-            fprintf(svg, "\t<path d=\"M%lf,%lf %lf,%lf\" style=\"stroke:%s; stroke-width:4; stroke-dasharray:2,2\"/> <circle cx=\"0\" cy=\"0\" r=\"5\" stroke=\"red\" fill=\"red\"> <animateMotion path =\"M%lf,%lf %lf,%lf\" begin=\"0s\" dur=\"3s\" repeatCount=\"indefinite\" /> </circle>\n", x1, y1, x2, y2, cmc, x1, y1, x2, y2);
+            fprintf(svg, "\t<path d=\"M%lf,%lf %lf,%lf\" style=\"stroke:%s; stroke-width:4; stroke-dasharray:2,2\"/> <circle cx=\"0\" cy=\"0\" r=\"5\" stroke=\"blue\" fill=\"red\"> <animateMotion path =\"M%lf,%lf %lf,%lf\" begin=\"0s\" dur=\"3s\" repeatCount=\"indefinite\" /> </circle>\n", x1, y1, x2, y2, cmc, x1, y1, x2, y2);
         }
     }
 

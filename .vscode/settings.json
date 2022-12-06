@@ -5,6 +5,7 @@
         "list.h": "c",
         "rectangle.h": "c",
         "teste": "c",
-        "queue.h": "c"
+        "queue.h": "c",
+        "digraph.h": "c"
     }
 }

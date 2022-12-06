@@ -157,7 +157,7 @@ void catac(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph g) {
 
     percursoProfundidade(t, catacQuadras, aux);
     catacEdges(g, aux);
-    fprintf(svg, "<rect x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" fill=\"#AB37C8\" stroke=\"#AA0044\" fill-opacity=\"50%%\" />\n", x, y, w, h);
+    fprintf(svg, "\t<rect x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" fill=\"#AB37C8\" stroke=\"#AA0044\" fill-opacity=\"50%%\" />\n", x, y, w, h);
 
     free(aux);
 }
