@@ -295,7 +295,7 @@ void rf(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph g) {
 }
 
 bool classTree(Digraph g, Edge e, int td, int tf, void *extra) {
-    if (!e) return true;
+    // if (!e) return true;
     void **data = extra;
     FILE *txt = data[0];
     double fat = *(double *)data[1];
@@ -305,7 +305,7 @@ bool classTree(Digraph g, Edge e, int td, int tf, void *extra) {
 }
 
 bool classForward(Digraph g, Edge e, int td, int tf, void *extra) {
-    if (!e) return true;
+    // if (!e) return true;
     void **data = extra;
     FILE *txt = data[0];
     double fat = *(double *)data[1];
@@ -320,7 +320,7 @@ bool classForward(Digraph g, Edge e, int td, int tf, void *extra) {
 }
 
 bool classReturn(Digraph g, Edge e, int td, int tf, void *extra) {
-    if (!e) return true;
+    // if (!e) return true;
     void **data = extra;
     FILE *txt = data[0];
     double fat = *(double *)data[1];
@@ -335,7 +335,7 @@ bool classReturn(Digraph g, Edge e, int td, int tf, void *extra) {
 }
 
 bool classCross(Digraph g, Edge e, int td, int tf, void *extra) {
-    if (!e) return true;
+    // if (!e) return true;
     void **data = extra;
     FILE *txt = data[0];
     double fat = *(double *)data[1];

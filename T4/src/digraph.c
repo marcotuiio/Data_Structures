@@ -304,10 +304,10 @@ bool dfs(Digraph g, procEdge treeEdge, procEdge forwardEdge, procEdge returnEdge
     for (int i = 0; i < graph->nVertex; i++) {
         if (getVisited(graph->adjacency[i]) == 'w') {  // se o nó não foi visitado
             void **data = extra;
+            dfsTraverse(g, treeEdge, forwardEdge, returnEdge, crossEdge, newTree, i, extra);
             Node aux = i;
             data[5] = &aux;
             newTree(graph, data);  // chama função que deve criar floresta devido ao percurso em profundidade
-
         }
     }
     return true;
@@ -338,15 +338,15 @@ bool bfs(Digraph g, Node start, procEdge discoverNode, void *extra) {  // largur
             if (getVisited(graph->adjacency[adjVertex]) == 'w') {          // se o nó adjacente não foi visitado
                 // se o nó atual e o nó adjacente são adjacentes
                 // aresta: currentVertex -> n
-                Edge e = getEdge(g, getNode(g, getId(graph->adjacency[currentVertex])), adjVertex);
+                Edge e = getEdge(g, currentVertex, adjVertex);
                 // printf("Discover Edge: %s -> %s\n", getId(graph->adjacency[currentVertex]), getId(graph->adjacency[adjVertex]));
-                if (getEnabled(e)) {
+                if (e && getEnabled(e)) {
                     if (discoverNode(graph, e, getTD(graph->adjacency[adjVertex]), getTF(graph->adjacency[adjVertex]), extra)) {  // chama a função discoverNode
                         return false;
                     }
                 }
                 setVisited(graph->adjacency[adjVertex], 'g');                              // marca o nó adjacente como visitado
-                setD(graph->adjacency[adjVertex], getD(graph->adjacency[adjVertex]) + 1);  // marca a distância do nó adjacente
+                setD(graph->adjacency[adjVertex], getD(graph->adjacency[currentVertex]) + 1);  // marca a distância do nó adjacente
                 enfila(queue, adjVertex);                                                  // enfileira o nó adjacente
             }
         }
