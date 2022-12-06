@@ -17,9 +17,8 @@ int main(int argc, char* argv[]) {
     Rb my_rb = createRB(0);
     readParam(argc, argv, my_paths, my_ctrl);
 
-    if (checkBED(my_ctrl) && checkGEO(my_ctrl) && checkVIA(my_ctrl) && checkBSD(my_ctrl)) {
+    if (checkBED(my_ctrl) && checkGEO(my_ctrl) && checkBSD(my_ctrl)) {
         readGeo(getBedGeo(my_paths), my_rb);
-        my_graph = readVia(getBedVia(my_paths));
         writeSvg(createSvg(getBsdGeoSvg(my_paths)), my_rb, my_graph);
 
     } else {
@@ -27,7 +26,8 @@ int main(int argc, char* argv[]) {
         return -1;  // ERRO!
     }
 
-    if (checkQRY(my_ctrl)) {
+    if (checkQRY(my_ctrl) && checkVIA(my_ctrl)) {
+        my_graph = readVia(getBedVia(my_paths));
         readQry(my_rb, my_graph, getBedQry(my_paths), getBsdGeoQrySvg(my_paths), getBsdGeoQryTxt(my_paths));
     }
 

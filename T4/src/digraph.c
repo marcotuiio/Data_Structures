@@ -307,7 +307,7 @@ bool dfs(Digraph g, procEdge treeEdge, procEdge forwardEdge, procEdge returnEdge
             Node aux = i;
             data[5] = &aux;
             newTree(graph, data);  // chama função que deve criar floresta devido ao percurso em profundidade
-            dfsTraverse(graph, treeEdge, forwardEdge, returnEdge, crossEdge, newTree, i, data);
+
         }
     }
     return true;
@@ -370,13 +370,15 @@ void printGraph(Digraph g) {
 
 void killGraph(Digraph g) {
     StDigraph *graph = g;
-    printf("Killing graph with %d nodes and %d edges\n", graph->nVertex, graph->nEdges);
-    // printGraph(g);
-    for (int i = 0; i < graph->nVertex; i++) {
-        freeList(graph->adjacency[i]);
-        free(getInfoFromVertex(graph->adjacency[i]));
-        free(graph->adjacency[i]);
+    if (graph) {
+        printf("Killing graph with %d nodes and %d edges\n", graph->nVertex, graph->nEdges);
+        // printGraph(g);
+        for (int i = 0; i < graph->nVertex; i++) {
+            freeList(graph->adjacency[i]);
+            free(getInfoFromVertex(graph->adjacency[i]));
+            free(graph->adjacency[i]);
+        }
+        free(graph->adjacency);
+        free(graph);
     }
-    free(graph->adjacency);
-    free(graph);
 }
