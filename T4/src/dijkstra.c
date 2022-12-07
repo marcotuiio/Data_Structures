@@ -77,11 +77,11 @@ double calcW(Digraph g, Edge e, int type) {
 Node* fullDijkstra(Digraph g, Node src, Node dest, int type) {
     if (src == -1) {
         printf("Source node not found\n");
-        return;
+        return NULL;
     }
     if (dest == -1) {
         printf("Destination node not found\n");
-        return;
+        return NULL;
     }
 
     Node* distancia = calloc(getGraphSize(g), sizeof(Node));
