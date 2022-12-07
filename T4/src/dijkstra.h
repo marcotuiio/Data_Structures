@@ -7,6 +7,9 @@
 #ifndef DIJKSTRA_H
 #define DIJKSTRA_H
 
+#define DISTANCIA 0
+#define VELOCIDADE 1
+
 /*
     O algoritmo de Dijkstra solucionará o problema de encontrar o menor caminho
     em um grafo ponderado, a partir de um vértice inicial, até todos os outros
@@ -17,7 +20,7 @@
 int compareKeys(Chave ch1, Chave ch2);
 // Compara duas chaves de acordo com o alguma espeficicação previamente definida
 
-void fullDijkstra(Digraph g, Node src, Node dest, int type, FILE* svg, FILE* txt, char *cmr, char *cmc);
+Node* fullDijkstra(Digraph g, Node src, Node dest, int type);
 // Executa o algoritmo de Dijkstra para encontrar o caminho mais curto entre src e dest
 
 #endif

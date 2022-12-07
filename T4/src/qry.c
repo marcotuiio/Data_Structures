@@ -451,7 +451,86 @@ void pFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph g, void *origin) {
     // printf("DIJKSTRA: i: %d, j: %d\n", i, j);
 
     fprintf(txt, "Iniciando percurso de CEP: %s (X: %lf, Y: %lf) para CEP: %s (X: %lf, Y: %lf)\n", o->cep, o->x, o->y, cep, x2, y2);
-    fullDijkstra(g, i, j, 1, svg, txt, cmr, cmc);  // 0 = distancia, 1 = velocidade
-    fullDijkstra(g, i, j, 0, svg, txt, cmr, cmc);  // 0 = distancia, 1 = velocidade
+    Node *path_speed = fullDijkstra(g, i, j, 1);  // 0 = distancia, 1 = velocidade
+    drawPath(g, path_speed, svg, txt, VELOCIDADE, cmr, cmc);
+    Node *path_distance = fullDijkstra(g, i, j, 0);  // 0 = distancia, 1 = velocidade
+    drawPath(g, path_distance, svg, txt, DISTANCIA, cmr, cmc);
     
+    if (path_speed) free(path_speed);
+    if (path_distance) free(path_distance);
+}
+
+void drawPath(Digraph g, Node *caminho, FILE *svg, FILE *txt, int type, char* cmr, char* cmc) {
+    int i;
+    double x1, y1, x2, y2;
+    for (i = 0; i < getGraphSize(g) - 1; i++) {
+        if (caminho[i] == -1)
+            continue;
+        if (type == VELOCIDADE) {
+            x1 = getXVertex(getNodeInfo(g, caminho[i]));
+            y1 = getYVertex(getNodeInfo(g, caminho[i]));
+            x2 = getXVertex(getNodeInfo(g, caminho[i + 1]));
+            y2 = getYVertex(getNodeInfo(g, caminho[i + 1]));
+            fprintf(svg, "\t<path d=\"M%lf,%lf %lf,%lf\" style=\"stroke:%s; stroke-width:4; stroke-dasharray:2,2\"/> <circle x=\"0\" y=\"0\" r=\"5\" stroke=\"red\" fill=\"blue\"> <animateMotion path =\"M%lf,%lf %lf,%lf\" begin=\"0s\" dur=\"3s\" repeatCount=\"indefinite\" /> </circle>\n", x1, y1, x2, y2, cmr, x1, y1, x2, y2);
+
+        } else if (type == DISTANCIA) {
+            x1 = getXVertex(getNodeInfo(g, caminho[i])) - 6;
+            y1 = getYVertex(getNodeInfo(g, caminho[i])) - 6;
+            x2 = getXVertex(getNodeInfo(g, caminho[i + 1])) - 6;
+            y2 = getYVertex(getNodeInfo(g, caminho[i + 1])) - 6;
+            fprintf(svg, "\t<path d=\"M%lf,%lf %lf,%lf\" style=\"stroke:%s; stroke-width:4; stroke-dasharray:2,2\"/> <circle cx=\"0\" cy=\"0\" r=\"5\" stroke=\"blue\" fill=\"red\"> <animateMotion path =\"M%lf,%lf %lf,%lf\" begin=\"0s\" dur=\"3s\" repeatCount=\"indefinite\" /> </circle>\n", x1, y1, x2, y2, cmc, x1, y1, x2, y2);
+        }
+    }
+
+    if (type == 1) {
+        fprintf(txt, "\nCaminho mais curto:");
+    } else {
+        fprintf(txt, "\nCaminho mais rapido:");
+    }
+
+    char direcaoAnterior[30] = "direcaoAnterior";
+    char direcaoAtual[30] = "direcaoAtual";
+    Edge aresta;
+    for (i = 0; i < getGraphSize(g) - 1; i++) {
+        if (caminho[i] == -1) {
+            continue;
+        }
+        aresta = getEdge(g, caminho[i], caminho[i + 1]);
+        InfoEdge info = getEdgeInfo(g, aresta);
+        x1 = getXVertex(getNodeInfo(g, caminho[i]));
+        y1 = getYVertex(getNodeInfo(g, caminho[i]));
+        x2 = getXVertex(getNodeInfo(g, caminho[i + 1]));
+        y2 = getYVertex(getNodeInfo(g, caminho[i + 1]));
+
+        if (x1 < x2) {
+            strcpy(direcaoAtual, "Oeste");
+
+        } else if (x1 > x2) {
+            strcpy(direcaoAtual, "Leste");
+
+        } else if (y1 < y2) {
+            strcpy(direcaoAtual, "Norte");
+
+        } else if (y2 > y2) {
+            strcpy(direcaoAtual, "Sul");
+        }
+
+        if (!strcmp(direcaoAnterior, "direcaoAnterior")) {
+            fprintf(txt, "\nSiga na direcao %s na Rua %s", direcaoAtual, getNomeEdge(info));
+
+        } else if (strcmp(direcaoAtual, direcaoAnterior) == 1) {
+            fprintf(txt, " ate o cruzamento com a Rua %s.\n", getNomeEdge(info));
+            fprintf(txt, "Siga na direcao %s na Rua %s", direcaoAtual, getNomeEdge(info));
+        }
+
+        strcpy(direcaoAnterior, direcaoAtual);
+    }
+
+    if (!strcmp(direcaoAnterior, "direcaoAnterior")) {
+        fprintf(txt, "NÃO FOI POSSÍVEL ENCONTRAR UM CAMINHO ENTRE OS ENDEREÇOS\n");
+        fprintf(svg, "\t<path d=\"M%lf,%lf %lf,%lf\" style=\"stroke: #000000; stroke-width:1; stroke-dasharray:2,2\"/> <circle cx=\"0\" cy=\"0\" r=\"5\" stroke=\"red\" fill=\"red\"> <animateMotion path =\"M%lf,%lf %lf,%lf\" begin=\"0s\" dur=\"6s\" repeatCount=\"indefinite\" /> </circle>\n", x1, y1, x2, y2, x1, y1, x2, y2);
+
+    } else {
+        fprintf(txt, ". Chegou em seu destino.\n");
+    }
 }

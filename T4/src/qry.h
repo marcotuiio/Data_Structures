@@ -61,6 +61,7 @@ bool bFuncEdges(Digraph g, Edge e, int td, int tf, void *extra);
 // a velocidade média pelo fator especificado.
 
 void pFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph g, void *origin);
+void drawPath(Digraph g, Node *caminho, FILE *svg, FILE *txt, int type, char* cmr, char* cmc);
 // Determina o melhor trajeto entre a origem (@o) e o destino especificado pelo endereço
 // cep/face/num. O percurso na representação pictórica deve indicar o trajeto mais curto na cor
 // cmc e o trajeto mais rápido com a cor cmr.

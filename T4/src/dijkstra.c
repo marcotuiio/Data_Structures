@@ -1,12 +1,9 @@
 #include "dijkstra.h"
 
-#define DISTANCIA 0
-#define VELOCIDADE 1
-
-void initDijkstra(Digraph g, Node* distancia, Node* pai, Node src) {
+void initDijkstra(Digraph g, Node* distancia, Node* parent, Node src) {
     for (int i = 0; i < getGraphSize(g); i++) {
         distancia[i] = INT_MAX;
-        pai[i] = -1;
+        parent[i] = -1;
     }
     distancia[src] = 0;
 }
@@ -19,7 +16,7 @@ int compareKeys(Chave ch1, Chave ch2) {
     return 0;
 }
 
-void relaxDijkstra(Digraph g, Node* distancia, Node* pai, Node u, Node v, double w) {
+void relaxDijkstra(Digraph g, Node* distancia, Node* parent, Node u, Node v, double w) {
     Lista adj = adjacentEdges(g, u);
     Edge aresta = getFirst(adj);
 
@@ -30,7 +27,7 @@ void relaxDijkstra(Digraph g, Node* distancia, Node* pai, Node u, Node v, double
     if (aresta) {
         if (distancia[v] > distancia[u] + w) {
             distancia[v] = distancia[u] + w;
-            pai[v] = u;
+            parent[v] = u;
         }
     }
 }
@@ -77,7 +74,7 @@ double calcW(Digraph g, Edge e, int type) {
     return w;
 }
 
-void fullDijkstra(Digraph g, Node src, Node dest, int type, FILE* svg, FILE* txt, char* cmr, char* cmc) {
+Node* fullDijkstra(Digraph g, Node src, Node dest, int type) {
     if (src == -1) {
         printf("Source node not found\n");
         return;
@@ -88,15 +85,15 @@ void fullDijkstra(Digraph g, Node src, Node dest, int type, FILE* svg, FILE* txt
     }
 
     Node* distancia = calloc(getGraphSize(g), sizeof(Node));
-    int* caminho = calloc(getGraphSize(g), sizeof(int));
-    int pai[getGraphSize(g)];
+    Node* caminho = calloc(getGraphSize(g), sizeof(Node));
+    int parent[getGraphSize(g)];
     int menor;
     Node aux;
     PQueue pq = createPQ(getGraphSize(g), compareKeys);
     bool aberto[getGraphSize(g)];
     Edge aresta = NULL;
 
-    initDijkstra(g, distancia, pai, src);
+    initDijkstra(g, distancia, parent, src);
 
     for (int i = 0; i < getGraphSize(g); i++) {
         aberto[i] = true;
@@ -110,7 +107,7 @@ void fullDijkstra(Digraph g, Node src, Node dest, int type, FILE* svg, FILE* txt
         while (aresta) {
             if (getEnabled(aresta)) {
                 double w = calcW(g, aresta, type);
-                relaxDijkstra(g, distancia, pai, menor, getToAresta(aresta), w);
+                relaxDijkstra(g, distancia, parent, menor, getToAresta(aresta), w);
             }
             aresta = getNext(aresta);    
         }
@@ -126,82 +123,10 @@ void fullDijkstra(Digraph g, Node src, Node dest, int type, FILE* svg, FILE* txt
     while (aux != -1 && i >= 0) {
         caminho[i] = aux;
         i--;
-        aux = pai[aux];
-    }
-
-    double x1, y1, x2, y2;
-    for (i = 0; i < getGraphSize(g) - 1; i++) {
-        if (caminho[i] == -1)
-            continue;
-        if (type == VELOCIDADE) {
-            x1 = getXVertex(getNodeInfo(g, caminho[i]));
-            y1 = getYVertex(getNodeInfo(g, caminho[i]));
-            x2 = getXVertex(getNodeInfo(g, caminho[i + 1]));
-            y2 = getYVertex(getNodeInfo(g, caminho[i + 1]));
-            fprintf(svg, "\t<path d=\"M%lf,%lf %lf,%lf\" style=\"stroke:%s; stroke-width:4; stroke-dasharray:2,2\"/> <circle x=\"0\" y=\"0\" r=\"5\" stroke=\"red\" fill=\"blue\"> <animateMotion path =\"M%lf,%lf %lf,%lf\" begin=\"0s\" dur=\"3s\" repeatCount=\"indefinite\" /> </circle>\n", x1, y1, x2, y2, cmr, x1, y1, x2, y2);
-
-        } else if (type == DISTANCIA) {
-            x1 = getXVertex(getNodeInfo(g, caminho[i])) - 4;
-            y1 = getYVertex(getNodeInfo(g, caminho[i])) - 4;
-            x2 = getXVertex(getNodeInfo(g, caminho[i + 1])) - 4;
-            y2 = getYVertex(getNodeInfo(g, caminho[i + 1])) - 4;
-            fprintf(svg, "\t<path d=\"M%lf,%lf %lf,%lf\" style=\"stroke:%s; stroke-width:4; stroke-dasharray:2,2\"/> <circle cx=\"0\" cy=\"0\" r=\"5\" stroke=\"blue\" fill=\"red\"> <animateMotion path =\"M%lf,%lf %lf,%lf\" begin=\"0s\" dur=\"3s\" repeatCount=\"indefinite\" /> </circle>\n", x1, y1, x2, y2, cmc, x1, y1, x2, y2);
-        }
-    }
-
-    if (type == 1) {
-        fprintf(txt, "\nCaminho mais curto:");
-    } else {
-        fprintf(txt, "\nCaminho mais rapido:");
-    }
-
-    char direcaoAnterior[30] = "direcaoAnterior";
-    char direcaoAtual[30] = "direcaoAtual";
-
-    for (i = 0; i < getGraphSize(g) - 1; i++) {
-        if (caminho[i] == -1) {
-            continue;
-        }
-        aresta = getEdge(g, caminho[i], caminho[i + 1]);
-        InfoEdge info = getEdgeInfo(g, aresta);
-        x1 = getXVertex(getNodeInfo(g, caminho[i]));
-        y1 = getYVertex(getNodeInfo(g, caminho[i]));
-        x2 = getXVertex(getNodeInfo(g, caminho[i + 1]));
-        y2 = getYVertex(getNodeInfo(g, caminho[i + 1]));
-
-        if (x1 < x2) {
-            strcpy(direcaoAtual, "Oeste");
-
-        } else if (x1 > x2) {
-            strcpy(direcaoAtual, "Leste");
-
-        } else if (y1 < y2) {
-            strcpy(direcaoAtual, "Norte");
-
-        } else if (y2 > y2) {
-            strcpy(direcaoAtual, "Sul");
-        }
-
-        if (!strcmp(direcaoAnterior, "direcaoAnterior")) {
-            fprintf(txt, "\nSiga na direcao %s na Rua %s", direcaoAtual, getNomeEdge(info));
-
-        } else if (strcmp(direcaoAtual, direcaoAnterior) == 1) {
-            fprintf(txt, " ate o cruzamento com a Rua %s.\n", getNomeEdge(info));
-            fprintf(txt, "Siga na direcao %s na Rua %s", direcaoAtual, getNomeEdge(info));
-        }
-
-        strcpy(direcaoAnterior, direcaoAtual);
-    }
-
-    if (!strcmp(direcaoAnterior, "direcaoAnterior")) {
-        fprintf(txt, "NÃO FOI POSSÍVEL ENCONTRAR UM CAMINHO ENTRE OS ENDEREÇOS\n");
-        fprintf(svg, "\t<path d=\"M%lf,%lf %lf,%lf\" style=\"stroke: #000000; stroke-width:1; stroke-dasharray:2,2\"/> <circle cx=\"0\" cy=\"0\" r=\"5\" stroke=\"red\" fill=\"red\"> <animateMotion path =\"M%lf,%lf %lf,%lf\" begin=\"0s\" dur=\"6s\" repeatCount=\"indefinite\" /> </circle>\n", x1, y1, x2, y2, x1, y1, x2, y2);
-
-    } else {
-        fprintf(txt, ". Chegou em seu destino.\n");
+        aux = parent[aux];
     }
 
     free(distancia);
-    free(caminho);
     killPQ(pq);
+    return caminho;
 }
