@@ -41,8 +41,8 @@ void insertPQ(PQueue pq, Chave ch, PQInfo info, int prio) {
     p->size++;
 
     int i = p->size - 1;
-    PQNode *aux1 = &p->elements[(i - 1) / 2];                      // pai
-    PQNode *aux2 = &p->elements[i];                                // filho
+    PQNode *aux1 = &p->elements[(i - 1) / 2];                     // pai
+    PQNode *aux2 = &p->elements[i];                               // filho
     while (i > 0 && (aux1->prioridade - aux2->prioridade) < 0) {  // enquanto prio do pai for menor que do filho
         PQNode *aux = &p->elements[i];
         p->elements[i] = p->elements[(i - 1) / 2];

@@ -109,7 +109,7 @@ Node* fullDijkstra(Digraph g, Node src, Node dest, int type) {
                 double w = calcW(g, aresta, type);
                 relaxDijkstra(g, distancia, parent, menor, getToAresta(aresta), w);
             }
-            aresta = getNext(aresta);    
+            aresta = getNext(aresta);
         }
     }
 

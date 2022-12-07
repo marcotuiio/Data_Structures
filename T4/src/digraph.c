@@ -102,16 +102,6 @@ Node getGraphSize(Digraph g) {
     return graph->nVertex;
 }
 
-Node getNodeGivenXY(Digraph g, double x, double y) {
-    StDigraph *graph = g;
-    for (Node i = 0; i < graph->nVertex; i++) {
-        if (fabs(getXVertex(getNodeInfo(g, i)) - x) <= 50.0 && fabs(getYVertex(getNodeInfo(g, i)) - y) <= 50.0) {
-            return i;
-        }
-    }
-    return -1;
-}
-
 Node getNode(Digraph g, char *nome) {
     StDigraph *graph = g;
 
@@ -345,9 +335,9 @@ bool bfs(Digraph g, Node start, procEdge discoverNode, void *extra) {  // largur
                         return false;
                     }
                 }
-                setVisited(graph->adjacency[adjVertex], 'g');                              // marca o nó adjacente como visitado
+                setVisited(graph->adjacency[adjVertex], 'g');                                  // marca o nó adjacente como visitado
                 setD(graph->adjacency[adjVertex], getD(graph->adjacency[currentVertex]) + 1);  // marca a distância do nó adjacente
-                enfila(queue, adjVertex);                                                  // enfileira o nó adjacente
+                enfila(queue, adjVertex);                                                      // enfileira o nó adjacente
             }
         }
         freeListaAux(adj);

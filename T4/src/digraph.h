@@ -80,11 +80,6 @@ void addVerticesNames(Digraph g, char *nomes[], int nNomes);
 Node getGraphSize(Digraph g);
 
 /*
-   Dado um X e Y, retorna o vertice de G mais proximo de X e Y.
-*/
-Node getNodeGivenXY(Digraph g, double x, double y);
-
-/*
    Retorna no' cujo de nome e' "nome". Retorna -1, caso o nao
    exista no com o nome especificado.
 */

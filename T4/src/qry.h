@@ -18,6 +18,7 @@ FILE *openQry(char *bedQry);
 FILE *openTxt(char *bsdTxt);
 // Função que abre o arquivo de texto.
 
+
 void lookCep(InfoRb i, void *aux);
 // Função que procura na arvore a quadra com o cep desejado.
 
@@ -61,6 +62,7 @@ bool bFuncEdges(Digraph g, Edge e, int td, int tf, void *extra);
 // a velocidade média pelo fator especificado.
 
 void pFunc(FILE *qry, FILE *txt, FILE *svg, Rb t, Digraph g, void *origin);
+Node getNodeGivenXY(Digraph g, double x, double y);
 void drawPath(Digraph g, Node *caminho, FILE *svg, FILE *txt, int type, char* cmr, char* cmc);
 // Determina o melhor trajeto entre a origem (@o) e o destino especificado pelo endereço
 // cep/face/num. O percurso na representação pictórica deve indicar o trajeto mais curto na cor
