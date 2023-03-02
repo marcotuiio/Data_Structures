@@ -1,18 +1,7 @@
 # DATA STRUCTURES
 
-### T4
-"nothing makes senses"
-* bfs and dijkstra dont work and probably never will
-* qry:
-    - @o? ok
-    - p? the beggining is ok, need to finish dijkstra
-    - catac seems to be ok
-    - pnt ok
-    - rf seems ok (???)
-    - b seems ok (???)
-    - blq and rbl seem to work buut need to check if direction of edge is correct
-
-* TODO:
-    ** fix dijkstra
-    ** fix direction of edges
-    ** test with evandros qrys
+### 
+* T2, T3, T4 funcionam perfeitamente
+* Cuidado com a pasta 1Utils pois era usada para testar ideias e estruturas
+* Cuidado com T1
+* Cuidado com arquivos .h das estruturas principais de cada trabalho
